@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import in.calibrage.akshaya.models.LerningsModel;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
+import rx.Observable;
 
-public class ApiService {
+public interface ApiService {
 
 
 
-  /*  @GET
-    Observable<ArrayList<LerningsModel>> GetAccountOwnerDetails(@Url String url);
-*/
+    @GET
+    Observable<ArrayList<LerningsModel>> getlernings(@Url String url);
 
 
    /* @POST(APIConstantURL.LOGINPage)
