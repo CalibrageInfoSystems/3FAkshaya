@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.actvity.SplashActivity"
-    android:background="@drawable/app_bg">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/img_logo"
@@ -27,6 +27,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
     <in.calibrage.akshaya.common.TypeWriter
+        android:textStyle="bold"
         android:id="@+id/txt_desc"
         android:gravity="center"
         android:textSize="18dp"

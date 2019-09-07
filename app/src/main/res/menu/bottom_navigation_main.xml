@@ -9,11 +9,6 @@
         android:title="@string/home"
         />
     <item
-        android:id="@+id/action_login"
-        android:enabled="true"
-        android:icon="@drawable/ic_home"
-        android:title="@string/home"/>
-    <item
         android:id="@+id/action_wallet"
         android:enabled="true"
         android:icon="@drawable/bank_icon_white"
