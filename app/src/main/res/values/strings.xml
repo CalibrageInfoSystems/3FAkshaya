@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">3F Akshaya</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="requests">Requests</string>
+    <string name="support">Support</string>
+    <string name="bank">Bank Details</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

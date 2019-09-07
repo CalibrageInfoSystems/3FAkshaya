@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"
+        />
+    <item
+        android:id="@+id/action_login"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/action_wallet"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/requests"
+        />
+    <!--<item-->
+    <!--android:id="@+id/action_doctor"-->
+    <!--android:enabled="true"-->
+    <!--android:icon="@drawable/ic_doctor"-->
+    <!--android:title="doctor"-->
+    <!--/>-->
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_myprofile"
+        android:title="@string/profile" />
+</menu>

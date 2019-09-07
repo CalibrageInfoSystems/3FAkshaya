@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.actvity.SplashActivity"
+    android:background="@drawable/app_bg">
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_logo"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
+<in.calibrage.akshaya.common.TypeWriter
+
+    android:textStyle="bold"
+    android:id="@+id/txt_name"
+    android:gravity="center"
+    android:textSize="24dp"
+    android:textColor="@color/colorred"
+    android:layout_below="@+id/img_logo"
+    android:text="3F OIL PALM"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+    <in.calibrage.akshaya.common.TypeWriter
+        android:id="@+id/txt_desc"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="@color/colorOrange"
+        android:layout_below="@+id/txt_name"
+        android:text="sowing for better future"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
