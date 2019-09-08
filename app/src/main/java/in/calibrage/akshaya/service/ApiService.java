@@ -1,6 +1,20 @@
 package in.calibrage.akshaya.service;
 
+import java.util.ArrayList;
+
+import in.calibrage.akshaya.models.LerningsModel;
+import retrofit2.http.GET;
+import retrofit2.http.Url;
+
 public class ApiService {
+
+
+
+  /*  @GET
+    Observable<ArrayList<LerningsModel>> GetAccountOwnerDetails(@Url String url);
+*/
+
+
    /* @POST(APIConstantURL.LOGINPage)
     Observable<LoginPostAPIResponse> postLogin(@Body JsonObject data);
 
