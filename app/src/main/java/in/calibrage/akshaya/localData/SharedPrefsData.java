@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+
 import java.util.List;
+
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 
 
 public class SharedPrefsData {
@@ -14,6 +18,7 @@ public class SharedPrefsData {
     private static final String CHURCH_DATA = "churchapp";
     private SharedPreferences ChurchSharedPrefs = null;
     private static final String USER_ID = "user_id";
+    private static final String CataGories = "catagories";
 
 
     public static SharedPrefsData getInstance(Context context) {
@@ -161,5 +166,32 @@ public class SharedPrefsData {
         }
     }
 
+   public static void  saveCatagories(Context mContext, FarmerOtpResponceModel formerModel)
+   {
+       Gson gson = new Gson();
+
+       if (mContext != null) {
+           String json = gson.toJson(formerModel);
+           SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
+           SharedPreferences.Editor editor = profilePref.edit();
+           editor.putString(CataGories, json);
+
+           // Commit the edits!
+           editor.apply();
+
+       }
+   }
+
+   private static FarmerOtpResponceModel getCatagories(Context mContext)
+   {
+       Gson gson = new Gson();
+
+           SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
+                   Context.MODE_PRIVATE);
+           String json = profilePref.getString(USER_ID, "");
+           FarmerOtpResponceModel obj = gson.fromJson(json, FarmerOtpResponceModel.class);
+           return obj;
+
+   }
 
 }

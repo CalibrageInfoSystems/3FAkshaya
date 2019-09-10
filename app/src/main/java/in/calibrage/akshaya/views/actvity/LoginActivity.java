@@ -70,6 +70,8 @@ public class LoginActivity extends BaseActivity {
         Qr_scan = (Button) findViewById(R.id.btn_qrscan);
 
         farmerId = findViewById(R.id.farmer_id_edittxt);
+        //
+        farmerId.setText("APWGBDAB00010001");
     }
 
     private void setview() {

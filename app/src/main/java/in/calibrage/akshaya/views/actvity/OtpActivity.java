@@ -31,6 +31,7 @@ import java.io.IOException;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.PinEntryEditText;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -150,12 +151,13 @@ public class OtpActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(FarmerOtpResponceModel farmerOtpResponceModel) {
+                    public void onNext(final FarmerOtpResponceModel farmerOtpResponceModel) {
                         if (farmerOtpResponceModel.getIsSuccess()) {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     /* Create an Intent that will start the Menu-Activity. */
+                                    SharedPrefsData.saveCatagories(OtpActivity.this,farmerOtpResponceModel);
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);
 
