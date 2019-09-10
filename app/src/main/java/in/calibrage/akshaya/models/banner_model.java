@@ -1,11 +1,12 @@
 package in.calibrage.akshaya.models;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class LerningsModel {
+public class banner_model {
 
     @SerializedName("listResult")
     @Expose
@@ -74,23 +75,28 @@ public class LerningsModel {
         this.exception = exception;
     }
 
+
+
     public class ListResult {
 
+        @SerializedName("bannerImageUrl")
+        @Expose
+        private String bannerImageUrl;
         @SerializedName("id")
         @Expose
         private Integer id;
-        @SerializedName("lookUpTypeId")
+        @SerializedName("fileName")
         @Expose
-        private Integer lookUpTypeId;
-        @SerializedName("name")
+        private String fileName;
+        @SerializedName("fileLocation")
         @Expose
-        private String name;
-        @SerializedName("remarks")
+        private String fileLocation;
+        @SerializedName("fileExtension")
         @Expose
-        private String remarks;
-        @SerializedName("isActive")
+        private String fileExtension;
+        @SerializedName("description")
         @Expose
-        private Boolean isActive;
+        private String description;
         @SerializedName("createdByUserId")
         @Expose
         private Integer createdByUserId;
@@ -104,6 +110,14 @@ public class LerningsModel {
         @Expose
         private String updatedDate;
 
+        public String getBannerImageUrl() {
+            return bannerImageUrl;
+        }
+
+        public void setBannerImageUrl(String bannerImageUrl) {
+            this.bannerImageUrl = bannerImageUrl;
+        }
+
         public Integer getId() {
             return id;
         }
@@ -112,36 +126,36 @@ public class LerningsModel {
             this.id = id;
         }
 
-        public Integer getLookUpTypeId() {
-            return lookUpTypeId;
+        public String getFileName() {
+            return fileName;
         }
 
-        public void setLookUpTypeId(Integer lookUpTypeId) {
-            this.lookUpTypeId = lookUpTypeId;
+        public void setFileName(String fileName) {
+            this.fileName = fileName;
         }
 
-        public String getName() {
-            return name;
+        public String getFileLocation() {
+            return fileLocation;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setFileLocation(String fileLocation) {
+            this.fileLocation = fileLocation;
         }
 
-        public String getRemarks() {
-            return remarks;
+        public String getFileExtension() {
+            return fileExtension;
         }
 
-        public void setRemarks(String remarks) {
-            this.remarks = remarks;
+        public void setFileExtension(String fileExtension) {
+            this.fileExtension = fileExtension;
         }
 
-        public Boolean getIsActive() {
-            return isActive;
+        public String getDescription() {
+            return description;
         }
 
-        public void setIsActive(Boolean isActive) {
-            this.isActive = isActive;
+        public void setDescription(String description) {
+            this.description = description;
         }
 
         public Integer getCreatedByUserId() {
@@ -175,6 +189,7 @@ public class LerningsModel {
         public void setUpdatedDate(String updatedDate) {
             this.updatedDate = updatedDate;
         }
-    }
 
+    }
 }
+

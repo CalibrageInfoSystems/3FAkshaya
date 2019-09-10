@@ -1,11 +1,376 @@
 <resources>
+    <array name="menuOptions">
+        <item>Home</item>
+        <item>My Requests</item>
+        <item>Choose Language</item>
+    </array>
     <string name="app_name">3F Akshaya</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="requests">Requests</string>
-    <string name="support">Support</string>
     <string name="bank">Bank Details</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="chooselanguage">Choose Language</string>
+    <string name="choose_language_str">Choose Language(భాషను ఎంచుకోండి)</string>
+    <string name="telugu_str">Telugu(తెలుగు)</string>
+
+
+    <string name="english_str">English</string>
+    <string name="turn_off_flashlight">FlashLight on</string>
+    <string name="turn_on_flashlight">flashLight off</string>
+    <string name="title_activity_main">QR and Barcode Scanner</string>
+    <string name="message">Place a barcode inside the viewfinder rectangle to scan it.</string>
+    <string name="login">Login</string>
+    <string name="or">OR</string>
+    <string name="ok">OK</string>
+    <string name="videos">Videos</string>
+    <string name="doc">Documents</string>
+    <string name="scan_farmer_id">Click here for Scan Farmer QR Code</string>
+    <string name="farmerid">Enter Farmer Id</string>
+    <string name="cancel">Cancel</string>
+    <string name="plotidName">Plot Id:</string>
+    <string name="plotid">Plot252019 </string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="terms_agree">Please Agree Terms &amp;\n Conditions</string>
+    <string name="convenience_charge">Convenience Charge (Rs)</string>
+    <string name="total_amt_pay">Total Amount Payable (Rs)</string>
+    <string name="success">Success</string>
+    <string name="agree">Agree</string>
+    <string name="otp_desc">Enter the 6 digits code sent your registered mobile number</string>
+    <string name="resend_otp"><u>Resend Otp</u></string>
+    <string name="submit">Submit</string>
+    <string name="submit_req">Submit Request</string>
+    <string name="view">View</string>
+    <string name="view_recommendations">View Recommendations</string>
+    <string name="payment_summary">Payment Summary</string>
+    <string name="total_net_weight">Total Net weight</string>
+    <string name="Collections">Collections</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="standard_recommendations">Standard Recommendations</string>
+    <string name="recommended_by">Recommended By</string>
+    <string name="recommended_on">Recommended On</string>
+    <string name="payments">Payments</string>
+    <string name="view_pay">View Payments</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="bank_holder">Account Holder \nName</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="bank_ac_no">Bank Account Number:</string>
+    <string name="bank_ac_holder">Bank Holder Number:</string>
+    <string name="account_no">Account Number</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="ifsc">IFSC Code</string>
+    <string name="next">Next</string>
+    <string name="ledger_item">Ledger Item:</string>
+
+    <string name="dop">Date of payment:</string>
+    <string name="Recommend">Recommendations</string>
+    <string name="req_services">Request Services</string>
+    <string name="labour">Labour Request</string>
+    <string name="labour_duration">Package </string>
+    <string name="rate">Rate</string>
+    <string name="amount_of_FFB">Amount of FFB (Rs)</string>
+    <string name="labour_charges">Labour charges </string>
+
+    <string name="pole_charges">Pole charges</string>
+    <string name="confirm_req">Confirm Request</string>
+    <string name="frquency">Frequency (Days) </string>
+    <string name="pole">Pole</string>
+    <string name="fertilizer">Fertilizer\n</string>
+    <string name="uoM">uoM</string>
+    <string name="loan">Loan</string>
+    <string name="quickPay">QuickPay Request</string>
+    <string name="quick">QuickPay</string>
+    <string name="visit">Visit</string>
+    <string name="req_visit">Visit Request</string>
+    <string name="learning">Learning</string>
+    <string name="knowledge_zone">Knowledge\n Zone</string>
+    <string name="knowledge">Knowledge zone</string>
+    <string name="collection_center">Collection \n Center</string>
+    <string name="collection_center_name">Collection Center</string>
+    <string name="fertilizer_center_name">Fertilizer Center</string>
+    <string name="fertilizer_center">Fertilizer \n Center</string>
+    <string name="category1">Category1</string>
+    <string name="category2">Category2</string>
+    <string name="category3">Category3</string>
+    <string name="encyclopaedia">Encyclopaedia</string>
+    <string name="custom_msg">Custom Message to be displayed here</string>
+    <string name="name">Ramu</string>
+    <string name="time_peroid">Time Peroid</string>
+    <string name="from_date">From Date <font fgcolor="red">*</font></string>
+    <string name="to_date">To Date <font fgcolor="red">*</font></string>
+    <string name="collection_id">Collection ID</string>
+    <string name="date">Start Date</string>
+    <string name="weight">Weight</string>
+    <string name="cc">CC</string>
+    <string name="status">Status</string>
+    <string name="terms">Terms and conditions</string>
+    <string name="req_loan">Request for loan</string>
+    <string name="loan_msg">Request received and someone will contact you soon</string>
+    <string name="plot_id">Plot ID</string>
+    <string name="plot_size">Plot Size</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="spinner_title">Select Category</string>
+    <string name="village">Village</string>
+    <string name="comments">Comments</string>
+    <string name="comment">Comments<font fgcolor="red">*</font></string>
+    <string name="issue_identified">Issue Identified</string>
+    <string name="time">Select Time</string>
+    <string name="plot_code">Plot Code</string>
+    <string name="recommendedorfertilizer">Recommended\nFertilizer/Chemical</string>
+    <string name="dosage">Dosage(UOM)</string>
+    <string name="age">Age</string>
+    <string name="area">Area</string>
+    <string name="download">Download</string>
+    <string name="select_labour_type">Labour Service Type</string>
+    <string name="fertilizer1">Fertilizer1</string>
+    <string name="fertilizer2">Fertilizer2</string>
+    <string name="fertilizer3">Fertilizer3</string>
+    <string name="req_deatils">Request Deatils</string>
+    <string name="date_n_time">Date &amp; Time \n Of submission</string>
+    <string name="req_date">Requested Date</string>
+    <string name="aprove_date">Aproved Date</string>
+    <string name="staus">Status</string>
+    <string name="name_field">Name</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="net_weight">Net weight</string>
+    <string name="date_label">Date</string>
+    <string name="location">Location</string>
+    <string name="pin">Pin</string>
+    <string name="collection">Collections</string>
+    <string name="land_mark">Landmark</string>
+    <string name="select_collection">Select for which Collections need to payment</string>
+    <string name="show">More Information</string>
+    <string name="hide">Less information</string>
+    <string name="profile_name">John Doe</string>
+    <string name="size">size</string>
+    <string name="landmark">Landmark</string>
+    <string name="select_godown">Select Godown</string>
+    <string name="select_plot_type">Selected Plot Code:</string>
+    <string name="statusType">Status Type</string>
+    <string name="closingBal">Closing Balance (Rs)</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="language_notification">Language Setup Completed</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="i_have_agree_terms_conditions">I Agree Terms &amp; amp Conditions</string>
+    <string name="long_content">Lorem ipsum dolor sit amet...</string>
+    <string name="log_off">Log out</string>
+    <string name="tap_text">Please select language below:</string>
+    <string name="btn_en">English</string>
+    <string name="btn_te">Telugu</string>
+    <string name="labour_request">Labour Request</string>
+    <string name="fertilizer_request">Fertilizer Request</string>
+    <string name="my_requests">My Requests</string>
+
+    <string name="only_date">Date</string>
+    <string name="only_time">Time</string>
+    <string name="datentime">Date&amp;Time of submission</string>
+    <string name="approve_date">Approve Date</string>
+    <string name="only_status">Status</string>
+    <string name="total_rs">Total RS:</string>
+    <string name="Rs">\u20B9</string>
+    <string name="collections_total">Collections by total Rate\n from 2nd march to 3rd june:</string>
+    <string name="rate_adjustment">Rate Adjustment:</string>
+    <string name="transport_payment">Transport Payment:</string>
+    <string name="no_videos">No Videos</string>
+
+    <string name="thumbnail_image_view_desc">Youtube Video thumbnail image view</string>
+    <string name="close_player_activity">Close Player activity</string>
+    <!-- <string name="harvest">Harvest</string>-->
+    <string name="pest_n_disease">Pest and Disease</string>
+    <string name="general_info">General Information</string>
+    <string name="harvest">Harvest</string>
+    <string name="remarks">Remarks</string>
+    <string name="quantity">Quantity</string>
+
+    <string name="ffb_qty">Total FFB Qty (MT)</string>
+    <string name="ffb">FFB Qty (MT)</string>
+    <string name="adhoc_rate">Adhoc Rate per MT (Rs)</string>
+    <string name="invoice_rate">Invoice Rate per MT (Rs)</string>
+    <string name="gr_amount">Total GR Amount (Rs)</string>
+    <string name="memo">Memo</string>
+    <string name="amount">Amount (Rs)</string>
+    <string name="paymentMode">Payment Mode</string>
+    <string name="reqDate">Requested Date</string>
+    <string name="paidCollectionsWeight">Paid Collections Weight</string>
+    <string name="requestCodeLabel">Request Id</string>
+    <string name="no_collections_found">No Collections Found</string>
+    <string name="no_payments_found">No Payments Found</string>
+    <string name="no_recommendations_found">No Recommendations Found</string>
+    <string name="i_have_agree">I Agree</string>
+    <string name="measurement">Measurement</string>
+    <string name="price">Price</string>
+    <string name="startDate">Preferred Date</string>
+    <string name="serviceType">Service Type</string>
+    <string name="total_amt">Total Amount (Rs)</string>
+    <string name="totalAdjustedLabel">Total Adjusted (Rs)</string>
+    <string name="totalBalance">Total Balance (Rs)</string>
+    <string name="balance">Balance (Rs)</string>
+    <string name="collectionsWeight">Total Net Weight </string>
+    <string name="collectionsCount">Total Count</string>
+    <string name="unPaidCollectionsWeight">Unpaid Collections Weight </string>
+    <string name="gr">GR Amount (Rs)</string>
+    <string name="adjusted">Adjusted (Rs)</string>
+    <string name="loan_req">Request For Loan</string>
+    <string name="select_product">Select Products</string>
+    <string name="select_paymentmode">Select Payment Mode</string>
+    <string name="item_name">Item Names</string>
+    <string name="my_labour_req">Labour Requests</string>
+    <string name="my_pole_requests">Pole Requests</string>
+    <string name="my_fert_requests">Fertilizer Requests</string>
+    <string name="my_visit_requests">Visit Requests</string>
+    <string name="my_loan_requests">Loan Requests</string>
+    <string name="loan_message">In finance, a loan is the lending of money by one or more individuals, organizations, or other entities to other individuals, organizations etc. The recipient (i.e. the borrower) incurs a debt, and is usually liable to pay interest on that debt until it is repaid, and also to repay the principal amount borrowed.  The document evidencing the debt, e.g. a promissory note, will normally specify, among other things, the principal amount of money borrowed, the interest rate the lender is charging, and date of repayment. A loan entails the reallocation of the subject asset(s) for a period of time, between the lender and the borrower.  The interest provides an incentive for the lender to engage in the loan. In a legal loan, each of these obligations and restrictions is enforced by contract, which can also place the borrower under additional restrictions known as loan covenants. Although this article focuses on monetary loans, in practice any material object might be lent.</string>
+    <string name="gowdown_name">Gowdown Name</string>
+    <string name="product_details">Product Details</string>
+    <string name="got_it">Got It</string>
+    <string name="product">Product</string>
+    <string name="gst">GST(%)</string>
+    <string name="no_products">No Products Found</string>
+    <string name="gst_amount">GST (Rs)</string>
+    <string name="unpaidCollection">Unpaid Collections</string>
+    <string name="labour_lable">Labour</string>
+    <string name="no_req_found">No Requests Found</string>
+    <string name="no_unpaid_collections">Un Paid Collections not Found</string>
+    <string name="service">Service Charges 5% extra.\nThe charges will be deducted from the FFB payment in the next payment cycle</string>
+
+
+    />
+    <string name="total_records">Total Records</string>
+    <string name="quantity_mt">Quantity (MT)</string>
+    <string name="ffb_flot">FFB Flat Charge (Rs)</string>
+    <string name="address">Address</string>
+    <string name="no_pdfs">No Pdf\'s</string>
+    <string name="vechile_no">Vechile Number</string>
+    <string name="driver_name">Driver Name</string>
+    <string name="crop_manintance_visit">Crop Maintenance Visit</string>
+    <string name="cropMaintenanceCode">Crop Maintenance Code</string>
+    <string name="fertilizerSource">Fertilizer Source</string>
+    <string name="fertilizer_name">Fertilizer Name</string>
+    <string name="dosage_only">Dosage</string>
+    <string name="lastAppliedDate">Last Applied Date</string>
+    <string name="applyFertilizerFrequencyType">Apply Fertilizer Frequency</string>
+
+
+    <string name="treesAppearance">Trees Appearance</string>
+    <string name="treeGrowth">Tree Growth</string>
+    <string name="treeHeight">Tree Height</string>
+    <string name="fruitColor">Fruit Color</string>
+    <string name="fruitSize">Fruit Size</string>
+    <string name="fruitHyegiene">Fruit Hyegiene</string>
+    <string name="plantationType">Plantation Type</string>
+    <string name="fertilizer_crop">Fertilizers Details</string>
+    <string name="health_crop">Health Of Plantation Details</string>
+    <string name="uprrot_crop">Uprootment Details</string>
+
+
+    <string name="spalingPlanted">No Spaling Planted</string>
+    <string name="prevPalmsCount">Count of Trees in Previous Visit</string>
+    <string name="plamsCount">Count of Trees Currently Present</string>
+    <string name="isTreesMissing">Missing Trees</string>
+    <string name="missingTreesCount">No of Missing Trees</string>
+    <string name="reasonType">Reason for Missing Trees</string>
+    <string name="expectedPlamsCount">Expected Plams Count</string>
+    <string name="harv_crop">Harvest Details</string>
+
+
+    <string name="plotYield">Plot Yield (Kgs)</string>
+    <string name="yieldperHactor">Yield per Hectare (Kgs)</string>
+    <string name="collectionCenterName">Collection Center Name</string>
+    <string name="transaportMode">Transaport Mode</string>
+    <string name="vehicleType">Vehicle Type</string>
+    <string name="transportPaidAmount">Transport Paid Amount</string>
+    <string name="harvestingMethod">Harvesting Method</string>
+    <string name="wagesPerDay">Wages Per Day (Rs)</string>
+    <string name="wagesUnit">Wages Unit Name</string>
+    <string name="contractAmount">Contract Amount</string>
+    <string name="harvestingType">Harvesting Type</string>
+    <string name="inter_crop">InterCrop Details</string>
+    <string name="crop">Crop</string>
+
+    <string name="recommended_ertilizer">Recommended Fertilizer</string>
+    <string name="UOMName">UOM Name</string>
+    <string name="LastUpdatedDate">Last Updated Date</string>
+    <string name="fert_rec">Fertilizer Recommendation Details</string>
+
+
+    <string name="IsWeedProperlyDone">Is Weed Properly Done</string>
+    <string name="MethodType">Method Type</string>
+    <string name="Chemical">Chemical</string>
+    <string name="applicationFrequencyName">Application Frequency Name</string>
+    <string name="IsPrunning">Is Prunning</string>
+    <string name="PrunningFrequencyName">Prunning Frequency Name</string>
+    <string name="IsMulchingSeen">Is Mulching Seen</string>
+    <string name="IsWeavilsSeen">Is Weavils Seen</string>
+    <string name="weed">Weed Details</string>
+
+
+    <string name="NutrientDeficiencyName">Nutrient Deficiency Name</string>
+    <string name="Nameofchemicalapplied">Name of Chemical Applied</string>
+    <string name="registeredDate">Registered Date</string>
+    <string name="Pest">Pest</string>
+    <string name="pestChemicals">Pest Chemicals</string>
+    <string name="RecommendedChemical">Recommended Chemical</string>
+    <string name="disease">Disease</string>
+    <string name="complaintTypes">Complaint Types</string>
+    <string name="Criticality">Criticality</string>
+    <string name="description">Description</string>
+    <string name="ComplaintBy">Complaint Raised By</string>
+    <string name="assignedTo">Assigned To</string>
+    <string name="currentStatus">Current Status</string>
+    <string name="statusUpdate">Status Update</string>
+    <string name="pest">Pest Details</string>
+    <string name="pest_chemical">pestChemicalXrefData</string>
+    <string name="deases">Disease Details</string>
+    <string name="geo_boun">GeoBoundariesTag</string>
+
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="file_repo">FileRepositoryData</string>
+    <string name="id">ID</string>
+    <string name="nut_repo">Nutrient Deficiency Details</string>
+    <string name="com_repo">Complaints Data</string>
+
+    <!-- we need to use video ids instead of video link -->
+    <string-array name="video_id_array">
+        <item>CqhpNxI8qYw</item>
+        <item>sasCrpgHDy8</item>
+        <item>iJeh3x09Ya8</item>
+        <item>B5zRaD7B504</item>
+        <item>9qWHzj8k-Uo</item>
+        <item>RjiK45wC924</item>
+        <item>RH3zaLO8H4E</item>
+        <item>o14pyzosjvk</item>
+        <item>5SQrpBQne7A</item>
+        <item>5WJ3r67ORxo</item>
+    </string-array>
+
+    <string-array name="video_title_array">
+        <item>Android Security Lock Demo</item>
+        <item>Android Sectioned RecyclerView Demo</item>
+        <item>Android Home Screen Widgets Demo</item>
+        <item>Android Floating Widget like Facebook Messenger Chat Head Demo</item>
+        <item>Android Google Maps Introduction Demo</item>
+        <item>Android Lollipop Activity Transitions Demo</item>
+        <item>Android Toolbar Animation Using Design Support Library Demo</item>
+        <item>Android Material Advance Tabs Demo</item>
+        <item>Android Drag and Drop Demo</item>
+        <item>Android Fingerprint Authentication Demo</item>
+    </string-array>
+
+    <string-array name="video_duration_array">
+        <item>02:48</item>
+        <item>00:44</item>
+        <item>01:01</item>
+        <item>00:55</item>
+        <item>01:03</item>
+        <item>00:25</item>
+        <item>00:34</item>
+        <item>00:45</item>
+        <item>00:52</item>
+        <item>00:28</item>
+    </string-array>
 </resources>
+

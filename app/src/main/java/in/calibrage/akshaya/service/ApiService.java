@@ -1,9 +1,14 @@
 package in.calibrage.akshaya.service;
 
-import java.util.ArrayList;
+import com.google.gson.JsonObject;
 
+import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
+import in.calibrage.akshaya.models.collectionRequestModel;
+
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Url;
 import rx.Observable;
 
@@ -12,13 +17,13 @@ public interface ApiService {
 
 
     @GET
-    Observable<ArrayList<LerningsModel>> getlernings(@Url String url);
+    Observable<LerningsModel> getlernings(@Url String url);
 
 
-   /* @POST(APIConstantURL.LOGINPage)
-    Observable<LoginPostAPIResponse> postLogin(@Body JsonObject data);
+    @POST(APIConstantURL.Collection)
+    Observable<CollectionResponceModel> postcollection(@Body JsonObject data);
 
-
+ /*
     // PASSWORD RESET
     @PUT(APIConstantURL.PASSWORDRESET)
     Observable<String> putpassword(@Body JsonObject data);

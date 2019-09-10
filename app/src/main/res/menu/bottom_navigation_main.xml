@@ -9,7 +9,6 @@
         android:title="@string/home"
         />
     <item
-        android:id="@+id/action_wallet"
         android:enabled="true"
         android:icon="@drawable/bank_icon_white"
         android:title="@string/bank"
@@ -21,7 +20,6 @@
         <!--android:title="doctor"-->
         <!--/>-->
     <item
-        android:id="@+id/profile"
         android:enabled="true"
         android:icon="@drawable/ic_myprofile"
         android:title="@string/profile" />

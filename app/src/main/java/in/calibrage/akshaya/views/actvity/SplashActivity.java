@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.TypeWriter;
+import in.calibrage.akshaya.localData.SharedPrefsData;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class SplashActivity extends BaseActivity {
     private ImageView imgLogo;
@@ -44,20 +47,35 @@ public class SplashActivity extends BaseActivity {
         txt_desc.animateText("sowing for better future");
 
 
+
+
+
+
         new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
-
             @Override
             public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-
-                startActivity(new Intent(SplashActivity.this,HomeActivity.class));
-                finish();
+                if (SharedPrefsData.getInstance(SplashActivity.this).getIntFromSharedPrefs("lang") == 1) {
+                    updateResources(SplashActivity.this, "en-US");
+                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    // close this activity
+                    finish();
+                } else if (SharedPrefsData.getInstance(SplashActivity.this).getIntFromSharedPrefs("lang") == 2) {
+                    updateResources(SplashActivity.this, "te");
+                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    // close this activity
+                    finish();
+                } else {
+                    if(false)
+                    {
+                        startActivity(new Intent(SplashActivity.this,HomeActivity.class));
+                        finish();
+                    }else {
+                        startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                        finish();
+                    }
+                }
 
             }
         }, SPLASH_TIME_OUT);

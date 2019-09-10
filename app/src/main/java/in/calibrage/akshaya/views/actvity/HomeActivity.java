@@ -1,19 +1,17 @@
 package in.calibrage.akshaya.views.actvity;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
+import android.app.Dialog;
+import android.content.Intent;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -21,7 +19,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -30,9 +27,14 @@ import java.lang.reflect.Field;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.CircleTransform;
 import in.calibrage.akshaya.common.Constants;
-import in.calibrage.akshaya.views.fragments.HomeFragment;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 
-public class HomeActivity extends AppCompatActivity {
+import in.calibrage.akshaya.views.fragments.HomeFragment;
+import rx.Subscription;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private android.support.v7.widget.Toolbar toolbar;
     private BottomNavigationView bottom_navigation;
 
@@ -40,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private ImageView img_profile;
-
+    private Subscription mSubscription;
     private FrameLayout content_frame;
     private FragmentManager fragmentManager;
 
@@ -50,7 +52,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         init();
         setViews();
+
     }
+
+
 
     private void init() {
         nv = (NavigationView)findViewById(R.id.nv);
@@ -81,6 +86,8 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationViewHelper.disableShiftMode(bottom_navigation);
         initToolBar();
         Picasso.with(HomeActivity.this).load(Constants.PROFILE_URL).transform(new CircleTransform()).into(img_profile);
+        nv.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -101,14 +108,76 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
 
-        if (t.onOptionsItemSelected(item))
-            return true;
+        int id = item.getItemId();
+        Log.e("id===", String.valueOf(id));
+        if (id == R.id.languageTitle) {
+            Log.e("Roja===","lang");
+            selectLanguage();
+            // Handle the camera action
+        } else if (id == R.id.action_home) {
+            Log.e("Roja===","home");
+            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+            startActivity(intent);
+        }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
+
+    private void selectLanguage() {
+        final Dialog dialog = new Dialog(HomeActivity.this);
+        dialog.setContentView(R.layout.dialog_select_language);
+        dialog.setTitle("");
+        // set the custom forgotPasswordDialog components - text, image and button
+        final TextView rbEng = dialog.findViewById(R.id.rbEng);
+        final TextView rbTelugu = dialog.findViewById(R.id.rbTelugu);
+
+
+/**
+ * @param OnClickListner
+ */
+        rbEng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * "en" is the localization code for our default English language.
+                 */
+                updateResources(HomeActivity.this, "en-US");
+                SharedPrefsData.getInstance(HomeActivity.this).updateIntValue(HomeActivity.this, "lang", 1);
+                Intent refresh = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(refresh);
+                finish();
+                dialog.dismiss();
+            }
+        });
+
+/**
+ * @param OnClickListner
+ */
+        rbTelugu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * "te" is the localization code for our default Telugu language.
+                 */
+                updateResources(HomeActivity.this, "te");
+                SharedPrefsData.getInstance(HomeActivity.this).updateIntValue(HomeActivity.this, "lang", 2);
+                Intent refresh = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(refresh);
+                finish();
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+    }
+
+
 
     public class BottomNavigationViewHelper {
 
