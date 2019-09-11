@@ -156,7 +156,7 @@ public class OtpActivity extends BaseActivity {
                                     SharedPrefsData.saveCatagories(OtpActivity.this,farmerOtpResponceModel);
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);
-
+                                        finish();
 
                                 }
                             }, 300);
