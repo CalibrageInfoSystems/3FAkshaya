@@ -55,7 +55,6 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     String[] country = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
     RelativeLayout timePeroidLinear;
     Spinner spin;
-    Collection_Adapter collection_Adapter;
     private ArrayList<CollectionResponceModel.CollectioDatum> collection_list = new ArrayList<>();
     //  Button subBtn;
     private RecyclerView collecton_data;
@@ -159,8 +158,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         collecton_data.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         collecton_data.setLayoutManager(layoutManager);
-        collection_Adapter = new Collection_Adapter(CollectionsActivity.this);
-        collecton_data.setAdapter(collection_Adapter);
+       /* collection_Adapter = new Collection_Adapter(CollectionsActivity.this);
+        collecton_data.setAdapter(collection_Adapter);*/
 
         timePeroidLinear = (RelativeLayout) findViewById(R.id.new_relative);
 
@@ -199,7 +198,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
             Log.i(" financiyalYearFrom2 ", financiyalYearFrom);
             Log.i("financiyalYearTo2 ", financiyalYearTo);
         }
-
+        get30days();
     }
 
     @Override
@@ -314,8 +313,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         if (collectionResponcemodel.getResult().getCollectioData() != null) {
 
                             noRecords.setVisibility(View.GONE);
-                            collection_Adapter.clearList();
-                            collection_Adapter.addCollection(collectionResponcemodel.getResult().getCollectioData());
+                            Collection_Adapter adapter =new Collection_Adapter(CollectionsActivity.this,collection_list);
+                            collecton_data.setAdapter(adapter);
                             relativeLayoutCount.setVisibility(View.VISIBLE);
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
                             collectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
@@ -370,13 +369,14 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                     public void onNext(CollectionResponceModel collectionResponcemodel) {
 
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
-                        collection_Adapter.clearList();
+
                         if (collectionResponcemodel.getResult().getCollectioData() != null) {
                             noRecords.setVisibility(View.GONE);
-
-                            collection_Adapter.addCollection(collectionResponcemodel.getResult().getCollectioData());
                             relativeLayoutCount.setVisibility(View.VISIBLE);
-                            collecton_data.setAdapter(collection_Adapter);
+                            Collection_Adapter adapter =new Collection_Adapter(CollectionsActivity.this,collection_list);
+                            collecton_data.setAdapter(adapter);
+
+
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
                             collectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
                             collectionsCount.setText(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount());
@@ -432,11 +432,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                     public void onNext(CollectionResponceModel collectionResponcemodel) {
 
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
-                        collection_Adapter.clearList();
+
                         if (collectionResponcemodel.getResult().getCollectioData() != null) {
                             noRecords.setVisibility(View.GONE);
 
-                            collection_Adapter.addCollection(collectionResponcemodel.getResult().getCollectioData());
+                            Collection_Adapter adapter =new Collection_Adapter(CollectionsActivity.this,collection_list);
+                            collecton_data.setAdapter(adapter);
                             relativeLayoutCount.setVisibility(View.VISIBLE);
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
                             collectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());

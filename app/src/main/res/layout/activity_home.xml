@@ -25,13 +25,14 @@
         >
 
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="bottom|end"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="70dp"
             android:src="@drawable/ic_care"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/half_black"
             app:elevation="8dp"
             app:pressedTranslationZ="12dp" />
 

@@ -19,9 +19,10 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
     public Context mContext;
     private List<CollectionResponceModel.CollectioDatum> collection_Set;
 
-    public Collection_Adapter(Context context) {
+    public Collection_Adapter(Context context,List<CollectionResponceModel.CollectioDatum> collection_Set) {
 
         this.mContext = context;
+        this.collection_Set = collection_Set;
 
     }
 
@@ -52,16 +53,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
     }
 
 
-    public void addCollection(List<CollectionResponceModel.CollectioDatum> collection_Set)
-    {
-        collection_Set.addAll(collection_Set);
-        notifyDataSetChanged();
-    }
-    public  void  clearList()
-    {
-        collection_Set.clear();
-        notifyDataSetChanged();
-    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
