@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -58,14 +59,17 @@ public class OtpActivity extends AppCompatActivity {
     private ProgressDialog dialog;
     String first_name, middle_name, last_name, State_code;
     private  ImageView backImg;
+    LinearLayout linlaHeaderProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        setProgressBarIndeterminateVisibility(true);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_otp);
-        dialog = new ProgressDialog(this);
+
         init();
         setview();
     }
@@ -77,6 +81,7 @@ public class OtpActivity extends AppCompatActivity {
 
          backImg = (ImageView) findViewById(R.id.back);
         pinEntry = findViewById(R.id.txt_pin_entry);
+         linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
     }
         //  submitBtn.setTypeface(faceBold);
 
@@ -106,33 +111,17 @@ public class OtpActivity extends AppCompatActivity {
 
 
 
-//        Intent in = getIntent();
-//        //    farmerId= in.getExtras().getString("Farmer id");
-//        Log.d("Otp", "Farmer id======" + farmerId);
-///*
-//if(farmerId==null){
-//
-//}*/
-//        pinEntry = findViewById(R.id.txt_pin_entry);
-//        pinEntry.requestFocus();
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-//        if (pinEntry != null) {
-//
-//        }
-
-
-
 
     private void GetOtp() {
        // getFormerdetails
-
+        linlaHeaderProgress.setVisibility(View.VISIBLE);
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp+"139292")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerOtpResponceModel>() {
                     @Override
                     public void onCompleted() {
-
+                        linlaHeaderProgress.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -152,6 +141,7 @@ public class OtpActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(final FarmerOtpResponceModel farmerOtpResponceModel) {
+                        linlaHeaderProgress.setVisibility(View.GONE);
                         if (farmerOtpResponceModel.getIsSuccess()) {
                             new Handler().postDelayed(new Runnable() {
                                 @Override

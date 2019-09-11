@@ -8,6 +8,7 @@ public interface APIConstantURL {
     String Recommede_plots ="Farmer/GetActivePlotsByFarmerCode/APWGBDAB00010001";
     String Farmer_ID_CHECK ="Farmer/";
     String Farmer_otp ="Farmer/APWGBDAB00010001/";
+    String crop_maintance ="GetCropMaintenanceHistoryDetailsByPlotCode/APAB0001000004";
 
 
 

@@ -7,7 +7,7 @@
     <string name="chooselanguage">భాషను ఎంచుకోండి</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="choose_language_str">భాషను ఎంచుకోండి(Choose Language)</string>
+    <string name="choose_language_str">భాషను ఎంచుకోండి</string>
     <string name="telugu_str">తెలుగు(Telugu)</string>
     <string name="english_str">English</string>
      <string name = "turn_off_flashlight"> ఫ్లాష్‌లైట్ ఆన్</string>

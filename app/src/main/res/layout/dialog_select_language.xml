@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    android:background="@color/transparent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:background="@drawable/lang_baground"
+      >
 
         <TextView
             android:id="@+id/languageTitle"
@@ -14,14 +17,16 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/choose_language_str"
-            android:textColor="@color/btnNormalColor"
+            android:textColor="@color/colorOrange"
             android:textSize="18sp"
+            android:layout_margin="5dp"
             android:textStyle="bold" />
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
+
             android:layout_below="@+id/languageTitle"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary" />
@@ -34,6 +39,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:text="@string/english_str"
+            android:textColor="@color/white_new"
             android:textSize="18sp" />
 
         <View
@@ -41,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/rbEng"
+            android:visibility="invisible"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary" />
 
@@ -52,6 +59,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:text="@string/telugu_str"
+            android:textColor="@color/white_new"
             android:layout_marginBottom="10dp"
             android:textSize="18sp" />
     </RelativeLayout>

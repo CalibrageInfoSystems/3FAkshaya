@@ -7,7 +7,26 @@
 
     android:background="@drawable/palm_bg"
     tools:context="in.calibrage.akshaya.views.actvity.OtpActivity">
+    <LinearLayout
+        android:id="@+id/linlaHeaderProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+android:visibility="gone"
 
+
+        >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:theme="@style/AppTheme.WhiteAccent">
+
+        </ProgressBar>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -63,6 +82,8 @@
 
             android:textColor="@color/white"
             android:textSize="18dp" />
+
+
 
     </LinearLayout>
 

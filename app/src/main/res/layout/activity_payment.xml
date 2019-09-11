@@ -6,6 +6,26 @@
     android:background="@color/white"
     tools:context="in.calibrage.akshaya.views.actvity.PaymentActivity">
     <LinearLayout
+        android:id="@+id/linlaHeaderProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+
+
+        >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:theme="@style/AppTheme.WhiteAccent">
+
+        </ProgressBar>
+
+    </LinearLayout>
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_gravity="right"
