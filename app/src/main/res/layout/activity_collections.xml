@@ -11,16 +11,13 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:visibility="gone"
-
-
+        
         >
 
         <ProgressBar
             android:id="@+id/pbHeaderProgress"
             android:layout_width="30dp"
-            android:layout_height="30dp"
-
-            android:theme="@style/AppTheme.WhiteAccent">
+            android:layout_height="30dp">
 
         </ProgressBar>
 

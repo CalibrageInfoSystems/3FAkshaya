@@ -81,11 +81,10 @@ public class OtpActivity extends AppCompatActivity {
 
          backImg = (ImageView) findViewById(R.id.back);
         pinEntry = findViewById(R.id.txt_pin_entry);
-<<<<<<< HEAD
+
         pinEntry.requestFocus();
-=======
          linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
->>>>>>> c4fd411812904fc0fbf089b9db814d3513d7329b
+
     }
         //  submitBtn.setTypeface(faceBold);
 
