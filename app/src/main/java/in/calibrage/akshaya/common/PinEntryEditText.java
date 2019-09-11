@@ -176,7 +176,7 @@ public class PinEntryEditText extends EditText {
 
 
     private int getColorForState(int... states) {
-        return mColorStates.getColorForState(states, Color.GRAY);
+        return mColorStates.getColorForState(states, Color.WHITE);
     }
 
     /**
