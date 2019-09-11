@@ -21,4 +21,9 @@
         <item name="colorAccent">@color/colorOrange</item> <!-- Whatever color you want-->
 
     </style>
+
+    <style name="popup_window_animation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
 </resources>
