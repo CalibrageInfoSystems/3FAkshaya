@@ -58,6 +58,7 @@ android:visibility="gone"
             android:textSize="25dp" />
 
         <EditText
+            android:maxEms="150"
             android:id="@+id/farmer_id_edittxt"
             android:layout_width="match_parent"
             android:layout_height="60dp"
