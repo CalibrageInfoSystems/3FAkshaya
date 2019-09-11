@@ -139,7 +139,7 @@ public class LoginActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerResponceModel>() {
                     @Override
                     public void onCompleted() {
-                        mdilogue.dismiss();
+                        mdilogue.cancel();
                     }
 
                     @Override
@@ -161,7 +161,7 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onNext(FarmerResponceModel farmerResponceModel) {
 
-                        mdilogue.dismiss();
+                        mdilogue.cancel();
                         Log.d(TAG, "onNext: " + farmerResponceModel);
                         if (farmerResponceModel.getIsSuccess()) {
                             new Handler().postDelayed(new Runnable() {
