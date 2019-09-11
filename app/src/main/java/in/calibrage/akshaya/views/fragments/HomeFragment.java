@@ -74,7 +74,7 @@ public class HomeFragment extends BaseFragment {
         txt_banner =  v.findViewById(R.id.txt_banner);
         txt_banner.setSelected(true);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 4);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
         leaning_recycle.setLayoutManager(mLayoutManager);
         leaning_recycle.setItemAnimator(new DefaultItemAnimator());
         knowledgeZoneBaseAdapter = new KnowledgeZoneBaseAdapter(mContext, catagoriesList);

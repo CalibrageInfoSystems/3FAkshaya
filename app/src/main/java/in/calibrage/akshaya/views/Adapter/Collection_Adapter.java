@@ -41,7 +41,16 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         ((ViewHolder) holder).txtWeight.setText("" + collection_Set.get(position).getQuantity());
         ((ViewHolder) holder).txtCc.setText(collection_Set.get(position).getWhsCode());
         ((ViewHolder) holder).txtStatus.setText(collection_Set.get(position).getUApaystat());
+
+
+//        if(position%2 == 0){
+//            ((ViewHolder) holder).CardView.setBackgroundColor
+//        } else {
+//            ViewHolder.containerLayout.setBackgroundColor(R.color.BLUE);
+//
+//        }
     }
+
 
     @Override
     public int getItemCount() {
@@ -63,7 +72,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder  {
 
         public TextView txtCollectionId;
         public TextView txtDate;

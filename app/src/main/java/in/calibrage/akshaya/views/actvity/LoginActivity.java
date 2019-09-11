@@ -155,7 +155,7 @@ public class LoginActivity extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
-
+                        mdilogue.cancel();
                     }
 
                     @Override

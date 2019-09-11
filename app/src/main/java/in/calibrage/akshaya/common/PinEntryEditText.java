@@ -42,8 +42,8 @@ public class PinEntryEditText extends EditText {
 
     int[] mColors = new int[]{
             Color.GREEN,
-            Color.BLACK,
-            Color.GRAY
+            Color.WHITE,
+            Color.WHITE
     };
 
     ColorStateList mColorStates = new ColorStateList(mStates, mColors);

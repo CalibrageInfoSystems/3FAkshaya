@@ -143,6 +143,7 @@ public class OtpActivity extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
+                        mdilogue.cancel();
                     }
 
                     @Override
