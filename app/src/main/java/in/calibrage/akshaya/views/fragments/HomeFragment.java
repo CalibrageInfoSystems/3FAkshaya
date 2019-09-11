@@ -123,10 +123,10 @@ public class HomeFragment extends BaseFragment {
 //        dialog.setCanceledOnTouchOutside(false);
 //
 //        ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
-//        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp)
+//        mSubscription = service.getCropmaintaindetails(APIConstantURL.crop_maintance)
 //                .subscribeOn(Schedulers.newThread())
 //                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Subscriber<FarmerOtpResponceModel>() {
+//                .subscribe(new Subscriber<CropResponseModel>() {
 //                    @Override
 //                    public void onCompleted() {
 //                        if (dialog.isShowing()) {

@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -53,19 +55,25 @@ public class LoginActivity extends BaseActivity {
     private String Farmer_code;
     private Subscription mSubscription;
 
+    LinearLayout linlaHeaderProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        setProgressBarIndeterminateVisibility(true);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+
         init();
 
         setview();
     }
 
     private void init() {
+        linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
         loginBtn = (Button) findViewById(R.id.btn_login);
         Qr_scan = (Button) findViewById(R.id.btn_qrscan);
 
@@ -110,6 +118,7 @@ public class LoginActivity extends BaseActivity {
 
 
     private void GetLogin() {
+        linlaHeaderProgress.setVisibility(View.VISIBLE);
 
 
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -118,7 +127,7 @@ public class LoginActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerResponceModel>() {
                     @Override
                     public void onCompleted() {
-
+                        linlaHeaderProgress.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -139,7 +148,7 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onNext(FarmerResponceModel farmerResponceModel) {
 
-
+                        linlaHeaderProgress.setVisibility(View.GONE);
                         Log.d(TAG, "onNext: " + farmerResponceModel);
                         if (farmerResponceModel.getIsSuccess()) {
                             new Handler().postDelayed(new Runnable() {
@@ -160,62 +169,7 @@ public class LoginActivity extends BaseActivity {
                     }
                 });
 
-        /*String otpText = pinEntry.getText().toString();
 
-        dialog.setMessage("Loading, please wait....");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
-
-        String url = APIConstantURL.LOCAL_URL + "Farmer/" + "APWGBDAB00010001" + "/" + otpText;
-
-        Log.d("Otp", "url======" + url);
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "RESPONSE======" + response);
-                dialog.cancel();
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    Log.d(TAG, "RESPONSE======" + jsonObject);
-                    String success = jsonObject.getString("isSuccess");
-                    Log.d(TAG, "success======" + success);
-                    if (success.equals("true")) {
-
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-
-                        startActivity(intent);
-                        //  Toasty.success(getApplicationContext(), "OTP Valided Successfully", Toast.LENGTH_SHORT).show();
-                        //  Toast.makeText(getApplicationContext(),success,Toast.LENGTH_SHORT).show();
-                    } else {
-                        //Toasty.error(getApplicationContext(), "OTP Invalid", Toast.LENGTH_LONG).show();
-
-                    }
-//                    JSONArray alsoKnownAsArray = jsonObject.getJSONArray("listResult");
-//                    Log.e("alsoKnownAsArray===", String.valueOf(alsoKnownAsArray));
-
-
-                    // Toasty.success(getApplicationContext(), userDetails.getAddress(), Toast.LENGTH_LONG).show();
-
-//                    jsonString = gson.toJson(student);
-//                    System.out.println(jsonString);
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);*/
     }
 
 

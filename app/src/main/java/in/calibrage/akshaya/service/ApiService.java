@@ -3,6 +3,7 @@ package in.calibrage.akshaya.service;
 import com.google.gson.JsonObject;
 
 import in.calibrage.akshaya.models.CollectionResponceModel;
+import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
@@ -36,6 +37,8 @@ public interface ApiService {
     @GET
     Observable<FarmerOtpResponceModel> getFormerdetails(@Url String url);
 
+    @GET
+    Observable<CropResponseModel> getCropmaintaindetails(@Url String url);
 
 
 
