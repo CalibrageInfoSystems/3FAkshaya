@@ -7,25 +7,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 
 
-public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.ViewHolder>{
+public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.ViewHolder> {
 
     public Context mContext;
     private List<CollectionResponceModel.CollectioDatum> collection_Set;
-    public Collection_Adapter(  Context context,List<CollectionResponceModel.CollectioDatum> collection_Set) {
 
-        this.mContext=context;
-        this.collection_Set=collection_Set;
+    public Collection_Adapter(Context context) {
+
+        this.mContext = context;
+
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.collection_data_xml, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.collection_data_xml, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -35,22 +38,31 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
 
         ((ViewHolder) holder).txtCollectionId.setText(collection_Set.get(position).getUColnid());
         ((ViewHolder) holder).txtDate.setText(collection_Set.get(position).getDocDate());
-        ((ViewHolder) holder).txtWeight.setText(""+collection_Set.get(position).getQuantity());
+        ((ViewHolder) holder).txtWeight.setText("" + collection_Set.get(position).getQuantity());
         ((ViewHolder) holder).txtCc.setText(collection_Set.get(position).getWhsCode());
         ((ViewHolder) holder).txtStatus.setText(collection_Set.get(position).getUApaystat());
     }
 
     @Override
     public int getItemCount() {
-        return collection_Set.size();
+        if (collection_Set != null)
+            return collection_Set.size();
+        else
+            return 0;
     }
 
 
-    /*  @Override
-      public int getItemCount() {
-          return listdata.length;
-      }
-  */
+    public void addCollection(List<CollectionResponceModel.CollectioDatum> collection_Set)
+    {
+        collection_Set.addAll(collection_Set);
+        notifyDataSetChanged();
+    }
+    public  void  clearList()
+    {
+        collection_Set.clear();
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtCollectionId;

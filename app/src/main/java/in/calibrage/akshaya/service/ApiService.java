@@ -3,7 +3,10 @@ package in.calibrage.akshaya.service;
 import com.google.gson.JsonObject;
 
 import in.calibrage.akshaya.models.CollectionResponceModel;
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
+import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
+import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
 import retrofit2.http.Body;
@@ -22,6 +25,19 @@ public interface ApiService {
 
     @POST(APIConstantURL.Collection)
     Observable<CollectionResponceModel> postcollection(@Body JsonObject data);
+
+
+    @GET
+    Observable<RecomPlotcodes> getplots(@Url String url);
+
+    @GET
+    Observable<FarmerResponceModel> getFormerOTP(@Url String url);
+
+    @GET
+    Observable<FarmerOtpResponceModel> getFormerdetails(@Url String url);
+
+
+
 
  /*
     // PASSWORD RESET

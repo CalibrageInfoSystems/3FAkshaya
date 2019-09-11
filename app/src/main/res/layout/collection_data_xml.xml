@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:text="@string/collection_id"
-                android:textColor="@color/yellow"
+                android:textColor="@color/colorOrange2"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold"/>
 

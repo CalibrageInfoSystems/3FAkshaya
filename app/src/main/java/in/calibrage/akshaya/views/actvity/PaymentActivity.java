@@ -90,8 +90,8 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void getBankDetails() {
-        String url = APIConstantURL.LOCAL_URL+"Farmer/GetBankDetailsByFarmerCode/"+"APWGBDAB0001001";
-
+        String url = APIConstantURL.LOCAL_URL+"Farmer/GetBankDetailsByFarmerCode/"+"APWGBDAB00010001";
+Log.e("url===",url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

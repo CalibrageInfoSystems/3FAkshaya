@@ -53,6 +53,7 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
+
             android:gravity="center_vertical">
 
             <LinearLayout
@@ -61,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_margin="5dp"
+               android:paddingTop="@dimen/_8dp"
                 android:gravity="center_vertical"
                 android:weightSum="1">
 

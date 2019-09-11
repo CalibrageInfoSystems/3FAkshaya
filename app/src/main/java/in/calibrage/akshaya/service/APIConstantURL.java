@@ -5,4 +5,10 @@ public interface APIConstantURL {
     String LookUpCategory = "GetActiveLookUp/9";
     String banner ="Banner";
     String Collection ="Collection";
+    String Recommede_plots ="Farmer/GetActivePlotsByFarmerCode/APWGBDAB00010001";
+    String Farmer_ID_CHECK ="Farmer/";
+    String Farmer_otp ="Farmer/APWGBDAB00010001/";
+
+
+
 }

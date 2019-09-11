@@ -9,23 +9,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import java.util.List;
+
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
 
 public class KnowledgeZoneBaseAdapter extends BaseAdapter {
 
     private Context mContext;
-    private LerningsModel lerningsModel;
 
-    public KnowledgeZoneBaseAdapter(Context context, LerningsModel books) {
+ private List<FarmerOtpResponceModel.CategoriesDetail> learning_Set;
+    public KnowledgeZoneBaseAdapter(Context context, List<FarmerOtpResponceModel.CategoriesDetail> learning_Set) {
         this.mContext = context;
-        this.lerningsModel = books;
+        this.learning_Set = learning_Set;
     }
 
     // 2
     @Override
     public int getCount() {
-        return lerningsModel.getListResult().size();
+        return learning_Set.size();
     }
 
     // 3
@@ -44,7 +47,7 @@ public class KnowledgeZoneBaseAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // 1
-        final LerningsModel.ListResult book = lerningsModel.getListResult().get(position);
+//     final LerningsModel.ListResult book = learning_Set.getListResult().get(position);
 
         // 2
         if (convertView == null) {
@@ -60,7 +63,9 @@ public class KnowledgeZoneBaseAdapter extends BaseAdapter {
         // 4
         //  imageView.setImageResource(R.drawable.encylopedia);
         try {
-            textView.setText(book.getName());
+
+
+            textView.setText(learning_Set.get(position).getName());
             // imageView.setImageResource(covers[position]);
 //            Glide.with(mContext)
 //                    .load( R.drawable.ic_myprofile)
