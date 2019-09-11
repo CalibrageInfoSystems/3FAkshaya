@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,67 +16,66 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
 
-public class KnowledgeZoneBaseAdapter extends BaseAdapter {
+public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZoneBaseAdapter.ViewHolder> {
 
-    private Context mContext;
+    public Context mContext;
+    private List<FarmerOtpResponceModel.CategoriesDetail> learning_Set;
 
- private List<FarmerOtpResponceModel.CategoriesDetail> learning_Set;
-    public KnowledgeZoneBaseAdapter(Context context, List<FarmerOtpResponceModel.CategoriesDetail> learning_Set) {
+    public KnowledgeZoneBaseAdapter(Context context, FarmerOtpResponceModel catagoriesList) {
+
         this.mContext = context;
-        this.learning_Set = learning_Set;
+        this.learning_Set = catagoriesList.getResult().getCategoriesDetails();
+
     }
 
-    // 2
     @Override
-    public int getCount() {
-        return learning_Set.size();
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View listItem = layoutInflater.inflate(R.layout.adapter_kz_home, parent, false);
+        ViewHolder viewHolder = new ViewHolder(listItem);
+        return viewHolder;
     }
 
-    // 3
     @Override
-    public long getItemId(int position) {
-        return 0;
+    public void onBindViewHolder(ViewHolder holder, int position) {
+
+        ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getName());
+
     }
 
-    // 4
     @Override
-    public Object getItem(int position) {
-        return null;
+    public int getItemCount() {
+        if (learning_Set != null)
+            return learning_Set.size();
+        else
+            return 0;
     }
 
-    // 5
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // 1
-//     final LerningsModel.ListResult book = learning_Set.getListResult().get(position);
 
-        // 2
-        if (convertView == null) {
-            final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(R.layout.adapter_kz_home, null);
+    public void addCollection(List<FarmerOtpResponceModel.CategoriesDetail> learning_Set)
+    {
+        learning_Set.addAll(learning_Set);
+        notifyDataSetChanged();
+    }
+    public  void  clearList()
+    {
+        learning_Set.clear();
+        notifyDataSetChanged();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView text_title;
+     private  ImageView img;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            text_title = itemView.findViewById(R.id.text_title);
+            img= itemView.findViewById(R.id.imageView);
+//
         }
 
-        // 3
-        final ImageView imageView = convertView.findViewById(R.id.imageView);
-        final TextView textView = convertView.findViewById(R.id.text_title);
 
-
-        // 4
-        //  imageView.setImageResource(R.drawable.encylopedia);
-        try {
-
-
-            textView.setText(learning_Set.get(position).getName());
-            // imageView.setImageResource(covers[position]);
-//            Glide.with(mContext)
-//                    .load( R.drawable.ic_myprofile)
-//                    .apply(RequestOptions.circleCropTransform())
-//                    .into(imageView);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return convertView;
     }
 
 }

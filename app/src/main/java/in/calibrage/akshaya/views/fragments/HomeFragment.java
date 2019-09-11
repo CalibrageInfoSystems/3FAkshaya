@@ -20,6 +20,7 @@ import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -48,9 +49,11 @@ public class HomeFragment extends BaseFragment {
  private RecyclerView leaning_recycle;
     private KnowledgeZoneBaseAdapter knowledgeZoneBaseAdapter;
 
+   private FarmerOtpResponceModel catagoriesList;
     public HomeFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -58,13 +61,15 @@ public class HomeFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+        catagoriesList = SharedPrefsData.getCatagories(getContext());
         init();
         dialog = new ProgressDialog(getActivity());
         leaning_recycle = (RecyclerView) v.findViewById(R.id.learning_list);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
         leaning_recycle.setLayoutManager(mLayoutManager);
         leaning_recycle.setItemAnimator(new DefaultItemAnimator());
-        //leaning_recycle.setAdapter(mContext,knowledgeZoneBaseAdapter);
+        knowledgeZoneBaseAdapter = new KnowledgeZoneBaseAdapter(mContext,catagoriesList);
+        leaning_recycle.setAdapter(knowledgeZoneBaseAdapter);
 
         v.findViewById(R.id.collections_button).setOnClickListener(new View.OnClickListener() {
             @Override

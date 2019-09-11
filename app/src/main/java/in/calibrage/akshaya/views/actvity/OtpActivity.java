@@ -127,7 +127,7 @@ public class OtpActivity extends AppCompatActivity {
        // getFormerdetails
 
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp+Pin_text)
+        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp+"139292")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerOtpResponceModel>() {
                     @Override

@@ -182,13 +182,13 @@ public class SharedPrefsData {
        }
    }
 
-   private static FarmerOtpResponceModel getCatagories(Context mContext)
+   public static FarmerOtpResponceModel getCatagories(Context mContext)
    {
        Gson gson = new Gson();
 
            SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
                    Context.MODE_PRIVATE);
-           String json = profilePref.getString(USER_ID, "");
+           String json = profilePref.getString(CataGories, "");
            FarmerOtpResponceModel obj = gson.fromJson(json, FarmerOtpResponceModel.class);
            return obj;
 

@@ -45,16 +45,20 @@
                 <ImageView
                     android:outlineAmbientShadowColor="@color/colorOrange"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
+                    android:src="@drawable/collections"
                     android:layout_width="50dp"
+                    android:id="@+id/collection_img"
                     android:layout_height="50dp"/>
+
                 <TextView
-                    android:text="Collections"
-                    android:textSize="15dp"
-                    android:fontFamily="@font/oswald_regular"
-                    android:textAlignment="center"
+                    android:layout_gravity="bottom"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/oswald_regular"
+                    android:layout_below="@+id/collection_img"
+                    android:text="@string/collection"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:background="@color/red"
@@ -69,14 +73,15 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:src="@drawable/payments"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
-                    android:text="Collections"
+                    android:text="@string/payments"
                     android:textSize="15dp"
                     android:fontFamily="@font/oswald_regular"
                     android:textAlignment="center"
+                    android:layout_gravity="bottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </android.support.v7.widget.CardView>
@@ -93,12 +98,13 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:src="@drawable/recommendations"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
-                    android:text="Collections"
+                    android:text="@string/recommendations"
                     android:textSize="15dp"
+                    android:layout_gravity="bottom"
                     android:fontFamily="@font/oswald_regular"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -143,14 +149,17 @@
                 android:layout_weight="0.33333"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
+
                 <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+
+                    android:src="@drawable/labour" />
                 <TextView
-                    android:text="Collections"
+                    android:text="@string/labour"
                     android:textSize="15dp"
+                    android:layout_gravity="bottom"
                     android:fontFamily="@font/oswald_regular"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -168,40 +177,42 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:src="@drawable/pole"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
-                    android:text="Collections"
+                    android:text="@string/pole"
                     android:textSize="15dp"
+                    android:layout_gravity="bottom"
                     android:fontFamily="@font/oswald_regular"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:background="@color/red"
-                android:elevation="8dp"
-                card_view:cardCornerRadius="6dp"
-                android:layout_margin="3dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="0.33333"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="Collections"
-                    android:textSize="15dp"
-                    android:fontFamily="@font/oswald_regular"
-                    android:textAlignment="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>  <android.support.v7.widget.CardView
+            android:background="@color/red"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="6dp"
+            android:layout_margin="3dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="0.33333"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/fertilizer"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <TextView
+                android:text="@string/fertilizer"
+                android:textSize="15dp"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/oswald_regular"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </android.support.v7.widget.CardView>
+
 
         </LinearLayout>
 
@@ -243,12 +254,13 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:src="@drawable/quick_pay"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
                     android:text="Collections"
                     android:textSize="15dp"
+                    android:layout_gravity="bottom"
                     android:fontFamily="@font/oswald_regular"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -266,12 +278,13 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:src="@drawable/visit"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
-                    android:text="Collections"
+                    android:text="@string/visit"
                     android:textSize="15dp"
+                    android:layout_gravity="bottom"
                     android:fontFamily="@font/oswald_regular"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -289,11 +302,12 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_myprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:src="@drawable/loan"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <TextView
-                    android:text="Collections"
+                    android:text="@string/loan"
+                    android:layout_gravity="bottom"
                     android:textSize="15dp"
                     android:fontFamily="@font/oswald_regular"
                     android:textAlignment="center"
