@@ -67,7 +67,7 @@
         <string name = "confirm_req">అభ్యర్థనను నిర్ధారించండి</string>
         <string name = "frquency">తరచుదనం(రోజుల్లో)</string>
         <string name = "pole">పోల్</string>
-        <string name = "fertilizer">ఎరువులు\n</string>
+        <string name = "fertilizer">ఎరువులు</string>
         <string name = "loan">లోన్</string>
         <string name = "quickPay">క్విక్‌పే అభ్యర్థన</string>
     <string name="quick">త్వరితచెల్లింపు</string>
@@ -330,6 +330,9 @@
     <string name="nut_repo">NutrientData</string>
     <string name="com_repo">Complaints Data</string>
     <string name="my3F">My 3F</string>
+    <string name="logout">లాగ్అవుట్</string>
+    <string name="confirmation">నిర్ధారణ</string>
+    <string name="alert_logout">మీరు లాగ్ అవుట్ చేయాలనుకుంటున్నారా?</string>
     <!--  we need to use video ids instead of video link  -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>

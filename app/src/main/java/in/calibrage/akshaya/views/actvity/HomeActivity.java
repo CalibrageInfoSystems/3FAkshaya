@@ -10,13 +10,16 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,7 +42,7 @@ import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private android.support.v7.widget.Toolbar toolbar;
     private BottomNavigationView bottom_navigation;
-
+    private AlertDialog alert, alertDialog;
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
@@ -47,9 +50,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private Subscription mSubscription;
     private FrameLayout content_frame;
     private FragmentManager fragmentManager;
-    private TextView txt_name, txt_phone, txt_adrs;
+    private TextView txt_name, txt_phone, txt_adrs,dialogMessage;
     private FarmerOtpResponceModel catagoriesList;
-
+    private Button ok_btn, cancel_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,9 +144,64 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_logout) {
+
+            //popupdialog to show message to logout the application
+            logOutDialog();
+        }
 
         return true;
     }
+
+    private void logOutDialog() {
+
+            LayoutInflater layoutInflater = LayoutInflater.from(HomeActivity.this);
+            View dialogRootView = layoutInflater.inflate(R.layout.dialog_logout, null);
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
+            ok_btn =dialogRootView.findViewById(R.id.ok_btn);
+            cancel_btn = dialogRootView.findViewById(R.id.cancel_btn);
+            dialogMessage =dialogRootView.findViewById(R.id.dialogMessage);
+            dialogMessage.setText(getString(R.string.alert_logout));
+
+            alertDialogBuilder.setView(dialogRootView);
+
+
+/**
+ * @param OnClickListner
+ */
+            ok_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                 //   getApplicationContext().getSharedPreferences(PREF_NAME, 0).edit().clear().commit();
+                    updateResources(getApplicationContext(), "en-US");
+                  //  SharedPrefsData.putInt(getApplicationContext(), Constants.ISLOGIN, 0, PREF_NAME);
+                    SharedPrefsData.getInstance(getApplicationContext()).ClearData(getApplicationContext());
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                    // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+                    finish();
+                }
+            });
+
+/**
+ * @param OnClickListner
+ */
+            cancel_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+
+            alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+
+
+
 
     private void selectLanguage() {
         final Dialog dialog = new Dialog(HomeActivity.this);

@@ -47,6 +47,9 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-vision:11.8.0'
 
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+
     /*dependencies {
         implementation ('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
             // Exclude is only needed if you already have

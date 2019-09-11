@@ -334,7 +334,8 @@
     <string name="com_repo">Complaints Data</string>
     <string name="my3F">My 3F</string>
     <string name="logout">LogOut</string>
-
+    <string name="confirmation">Confirmation</string>
+    <string name="alert_logout">Are you sure you want to Logout?</string>
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>

@@ -1,6 +1,8 @@
 package in.calibrage.akshaya.views.actvity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -36,6 +38,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.models.FarmerResponceModel;
@@ -54,14 +57,11 @@ public class LoginActivity extends BaseActivity {
     private EditText farmerId;
     private String Farmer_code;
     private Subscription mSubscription;
+   private SpotsDialog mdilogue ;
 
-    LinearLayout linlaHeaderProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setProgressBarIndeterminateVisibility(true);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -73,13 +73,23 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void init() {
-        linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
+
         loginBtn = (Button) findViewById(R.id.btn_login);
         Qr_scan = (Button) findViewById(R.id.btn_qrscan);
 
         farmerId = findViewById(R.id.farmer_id_edittxt);
         //
         farmerId.setText("APWGBDAB00010001");
+        mdilogue= (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(this)
+                .setTheme(R.style.Custom)
+                .build();
+
+
+
+
+        validationPopShow();
+
     }
 
     private void setview() {
@@ -95,6 +105,7 @@ public class LoginActivity extends BaseActivity {
                         Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    validationPopShow();
                     farmerId.setError("Please Enter Farmer Id");
                 }
             }
@@ -118,16 +129,17 @@ public class LoginActivity extends BaseActivity {
 
 
     private void GetLogin() {
-        linlaHeaderProgress.setVisibility(View.VISIBLE);
 
 
+
+        mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getFormerOTP(APIConstantURL.Farmer_ID_CHECK + farmerId.getText().toString())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerResponceModel>() {
                     @Override
                     public void onCompleted() {
-                        linlaHeaderProgress.setVisibility(View.GONE);
+                        mdilogue.dismiss();
                     }
 
                     @Override
@@ -143,12 +155,13 @@ public class LoginActivity extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
+
                     }
 
                     @Override
                     public void onNext(FarmerResponceModel farmerResponceModel) {
 
-                        linlaHeaderProgress.setVisibility(View.GONE);
+                        mdilogue.dismiss();
                         Log.d(TAG, "onNext: " + farmerResponceModel);
                         if (farmerResponceModel.getIsSuccess()) {
                             new Handler().postDelayed(new Runnable() {
@@ -166,6 +179,7 @@ public class LoginActivity extends BaseActivity {
                             Toast.makeText(LoginActivity.this, farmerResponceModel.getEndUserMessage(), Toast.LENGTH_SHORT).show();
                         }
                         // Log.d(TAG,)
+
                     }
                 });
 
