@@ -332,6 +332,8 @@
     <string name="id">ID</string>
     <string name="nut_repo">Nutrient Deficiency Details</string>
     <string name="com_repo">Complaints Data</string>
+    <string name="my3F">My 3F</string>
+    <string name="logout">LogOut</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">

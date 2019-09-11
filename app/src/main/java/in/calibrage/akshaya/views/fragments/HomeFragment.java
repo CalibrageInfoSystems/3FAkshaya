@@ -14,6 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,19 +45,20 @@ import rx.schedulers.Schedulers;
  */
 public class HomeFragment extends BaseFragment {
     public static String TAG = "HomeFragment";
+    private ImageView img_banner;
     private ProgressDialog dialog;
     private Context mContext;
     private Subscription mSubscription;
     private List<in.calibrage.akshaya.models.LerningsModel> getCategoryList;
     private Object LerningsModel;
- private RecyclerView leaning_recycle;
+    private RecyclerView leaning_recycle;
     private KnowledgeZoneBaseAdapter knowledgeZoneBaseAdapter;
+    private FarmerOtpResponceModel catagoriesList;
+    private TextView txt_banner;
 
-   private FarmerOtpResponceModel catagoriesList;
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -65,16 +70,20 @@ public class HomeFragment extends BaseFragment {
         init();
         dialog = new ProgressDialog(getActivity());
         leaning_recycle = (RecyclerView) v.findViewById(R.id.learning_list);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
+        img_banner =  v.findViewById(R.id.img_banner);
+        txt_banner =  v.findViewById(R.id.txt_banner);
+        txt_banner.setSelected(true);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 4);
         leaning_recycle.setLayoutManager(mLayoutManager);
         leaning_recycle.setItemAnimator(new DefaultItemAnimator());
-        knowledgeZoneBaseAdapter = new KnowledgeZoneBaseAdapter(mContext,catagoriesList);
+        knowledgeZoneBaseAdapter = new KnowledgeZoneBaseAdapter(mContext, catagoriesList);
         leaning_recycle.setAdapter(knowledgeZoneBaseAdapter);
 
         v.findViewById(R.id.collections_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(getContext(), CollectionsActivity.class);
+                Intent intent = new Intent(getContext(), CollectionsActivity.class);
                 startActivity(intent);
             }
         });
@@ -83,23 +92,27 @@ public class HomeFragment extends BaseFragment {
         v.findViewById(R.id.recommendations_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(getContext(), RecommendationActivity.class);
+                Intent intent = new Intent(getContext(), RecommendationActivity.class);
                 startActivity(intent);
             }
         });
         v.findViewById(R.id.payments_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(getContext(), PaymentActivity.class);
+                Intent intent = new Intent(getContext(), PaymentActivity.class);
                 startActivity(intent);
             }
         });
-       //getSpinnerPermission();
+        //getSpinnerPermission();
+        Picasso.with(getContext()).load(catagoriesList.getResult().getBannerDetails().get(0).getImageURL()).into(img_banner);
+        txt_banner.setText(catagoriesList.getResult().getBannerDetails().get(0).getDescription() +"                    "+catagoriesList.getResult().getBannerDetails().get(0).getDescription() +"                    "+catagoriesList.getResult().getBannerDetails().get(0).getDescription());
         return v;
     }
 
     private void init() {
         mContext = getContext();
+
+
     }
 
 //    private void getSpinnerPermission() {

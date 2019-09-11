@@ -1,4 +1,5 @@
 package in.calibrage.akshaya.common;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import in.calibrage.akshaya.R;
+
 @SuppressLint("AppCompatCustomView")
 public class PinEntryEditText extends EditText {
     public static final String XML_NAMESPACE_ANDROID = "http://schemas.android.com/apk/res/android";
@@ -29,7 +31,7 @@ public class PinEntryEditText extends EditText {
 
     private OnClickListener mClickListener;
 
-    private float mLineStroke = 1; //1dp by default
+    private float mLineStroke = 2; //1dp by default
     private float mLineStrokeSelected = 2; //2dp by default
     private Paint mLinesPaint;
     int[][] mStates = new int[][]{
@@ -79,8 +81,9 @@ public class PinEntryEditText extends EditText {
             final int colorActivated = outValue.data;
             mColors[0] = colorActivated;
 
-            context.getTheme().resolveAttribute(R.attr.colorPrimaryDark,
-                    outValue, true);
+          /*  context.getTheme().resolveAttribute(R.attr.colorPrimaryDark,
+                    outValue, true);*/
+
             final int colorDark = outValue.data;
             mColors[1] = colorDark;
 

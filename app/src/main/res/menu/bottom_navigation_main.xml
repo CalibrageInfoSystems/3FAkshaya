@@ -10,17 +10,21 @@
         />
     <item
         android:enabled="true"
-        android:icon="@drawable/bank_icon_white"
-        android:title="@string/bank"
+        android:icon="@drawable/ic_request"
+        android:title="@string/requests"
          />
-    <!--<item-->
-        <!--android:id="@+id/action_doctor"-->
-        <!--android:enabled="true"-->
-        <!--android:icon="@drawable/ic_doctor"-->
-        <!--android:title="doctor"-->
-        <!--/>-->
+    <item
+        android:id="@+id/action_doctor"
+        android:enabled="true"
+        android:icon="@drawable/ic_my"
+        android:title="@string/my3F"
+        />
     <item
         android:enabled="true"
         android:icon="@drawable/ic_myprofile"
         android:title="@string/profile" />
+    <item
+        android:enabled="true"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
 </menu>

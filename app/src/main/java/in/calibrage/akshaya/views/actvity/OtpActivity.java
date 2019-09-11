@@ -77,6 +77,7 @@ public class OtpActivity extends AppCompatActivity {
 
          backImg = (ImageView) findViewById(R.id.back);
         pinEntry = findViewById(R.id.txt_pin_entry);
+        pinEntry.requestFocus();
     }
         //  submitBtn.setTypeface(faceBold);
 

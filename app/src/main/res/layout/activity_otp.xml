@@ -5,37 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="@drawable/palm_bg"
+    android:background="@drawable/bg"
     tools:context="in.calibrage.akshaya.views.actvity.OtpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg"
+        android:foreground="@color/half_black2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
         android:orientation="vertical"
         android:weightSum="4">
 
         <ImageView
+            android:id="@+id/back"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/arrow_left"
             android:layout_margin="10dp"
             android:layout_weight="0.1"
-            android:id="@+id/back"/>
+            android:src="@drawable/arrow_left" />
 
         <TextView
-            android:layout_width="match_parent"
             android:id="@+id/otp_desc"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/otp_desc"
-            android:layout_weight="0.1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
             android:layout_margin="@dimen/margin_20"
-            android:textSize="@dimen/text_size"
-            />
+            android:layout_weight="0.1"
+            android:text="@string/otp_desc"
+           android:textColor="@color/white_new"
+            android:textSize="@dimen/text_size" />
+
         <in.calibrage.akshaya.common.PinEntryEditText
+
             android:id="@+id/txt_pin_entry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="@dimen/_16"
             android:background="@null"
             android:cursorVisible="true"
             android:digits="1234567890"
@@ -44,24 +57,21 @@
             android:textIsSelectable="false"
             android:textSize="20sp"
             android:visibility="visible"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="@dimen/margin_10"
+            android:textColor="@color/white_new"/>
 
-            />
         <Button
+
             android:id="@+id/btn_otp_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            android:background="@drawable/layout_backgound"
+            android:background="@drawable/button_bg"
             android:elevation="8dp"
             android:fontFamily="@font/oswald_vf"
             android:text="SUBMIT"
             android:textAlignment="center"
             android:textAllCaps="false"
-
-            android:textColor="@color/white"
+            android:textColor="@color/colorOrange"
             android:textSize="18dp" />
 
     </LinearLayout>

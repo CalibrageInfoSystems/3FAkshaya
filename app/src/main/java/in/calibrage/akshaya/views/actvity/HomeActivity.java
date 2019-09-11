@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import in.calibrage.akshaya.common.CircleTransform;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.views.fragments.HomeFragment;
 import rx.Subscription;
 
@@ -45,6 +47,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private Subscription mSubscription;
     private FrameLayout content_frame;
     private FragmentManager fragmentManager;
+    private TextView txt_name, txt_phone, txt_adrs;
+    private FarmerOtpResponceModel catagoriesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +60,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     private void init() {
-        nv = (NavigationView)findViewById(R.id.nv);
+        nv = (NavigationView) findViewById(R.id.nv);
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.app_name);
 
@@ -70,6 +73,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         View headerLayout =
                 nv.inflateHeaderView(R.layout.navigation_header);
         img_profile = headerLayout.findViewById(R.id.img_profile);
+        txt_name = headerLayout.findViewById(R.id.txt_name);
+        txt_phone = headerLayout.findViewById(R.id.txt_phone);
+        txt_adrs = headerLayout.findViewById(R.id.txt_adrs);
 
         fragmentManager = getSupportFragmentManager();
         content_frame = (FrameLayout) findViewById(R.id.content_frame);
@@ -85,9 +91,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         BottomNavigationViewHelper bottomNavigationViewHelper = new BottomNavigationViewHelper();
         bottomNavigationViewHelper.disableShiftMode(bottom_navigation);
         initToolBar();
-        Picasso.with(HomeActivity.this).load(Constants.PROFILE_URL).transform(new CircleTransform()).into(img_profile);
-        nv.setNavigationItemSelectedListener(this);
 
+        nv.setNavigationItemSelectedListener(this);
+        catagoriesList = SharedPrefsData.getCatagories(HomeActivity.this);
+
+        String name = catagoriesList.getResult().getFarmerDetails().get(0).getFirstName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getMiddleName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getLastName();
+        txt_name.setText(name.replace("null", ""));
+
+        if (catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber() == null)
+            txt_phone.setVisibility(View.GONE);
+        else
+            txt_phone.setText(catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber().toString());
+        txt_adrs.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
+        if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1()))
+            Picasso.with(HomeActivity.this).load(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1()).error(R.drawable.ic_user).transform(new CircleTransform()).into(img_profile);
 
     }
 
@@ -101,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(!dl.isDrawerOpen(Gravity.START)) dl.openDrawer(Gravity.START);
+                        if (!dl.isDrawerOpen(Gravity.START)) dl.openDrawer(Gravity.START);
                         else dl.closeDrawer(Gravity.END);
                     }
                 }
@@ -116,11 +133,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         Log.e("id===", String.valueOf(id));
         if (id == R.id.languageTitle) {
-            Log.e("Roja===","lang");
+            Log.e("Roja===", "lang");
             selectLanguage();
             // Handle the camera action
         } else if (id == R.id.action_home) {
-            Log.e("Roja===","home");
+            Log.e("Roja===", "home");
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
         }
@@ -176,7 +193,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         dialog.show();
     }
-
 
 
     public class BottomNavigationViewHelper {
