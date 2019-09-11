@@ -7,43 +7,40 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="@drawable/button_bg">
+        android:background="@drawable/lang_baground">
 
-        <RelativeLayout
-            android:id="@+id/main_rel"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/colorOrange">
 
-            <ImageView
-                android:id="@+id/tick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_tickmark" />
+        <TextView
+            android:id="@+id/dialogText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/confirmation"
+            android:textColor="@color/colorOrange"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/tick"
-                android:text="@string/confirmation"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:id="@+id/dialogText"/>
-        </RelativeLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_margin="@dimen/margin_10"
+                android:layout_below="@+id/dialogText"
+
+                android:background="@drawable/line_bg" />
+
 
         <TextView
             android:id="@+id/dialogMessage"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/main_rel"
+            android:layout_below="@id/view"
             android:gravity="center"
             android:padding="10dip"
             android:text=""
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
 
