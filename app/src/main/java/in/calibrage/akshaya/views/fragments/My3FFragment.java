@@ -28,7 +28,7 @@ public class My3FFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-   
+
     public static My3FFragment newInstance(String param1, String param2) {
         My3FFragment fragment = new My3FFragment();
         Bundle args = new Bundle();

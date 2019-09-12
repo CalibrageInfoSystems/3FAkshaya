@@ -49,9 +49,6 @@ dependencies {
 // PROGRESS Dialogue
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
 
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-
 
     /*dependencies {
         implementation ('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
