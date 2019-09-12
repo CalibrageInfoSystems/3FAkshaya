@@ -166,6 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="8"
+                    android:fontFamily="@font/roboto_regular"
                     android:focusable="false"
                     android:hint="@string/from_date"
 
@@ -190,6 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:fontFamily="@font/roboto_regular"
                     android:focusable="false"
                     android:hint="@string/to_date" />
             </android.support.design.widget.TextInputLayout>

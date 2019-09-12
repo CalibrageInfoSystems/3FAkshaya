@@ -9,6 +9,7 @@ public interface APIConstantURL {
     String Farmer_ID_CHECK ="Farmer/";
     String Farmer_otp ="Farmer/APWGBDAB00010001/";
     String crop_maintance ="GetCropMaintenanceHistoryDetailsByPlotCode/APAB0001000004";
+    String payment_history ="Payment/GetVendorLedger";
 
 
 

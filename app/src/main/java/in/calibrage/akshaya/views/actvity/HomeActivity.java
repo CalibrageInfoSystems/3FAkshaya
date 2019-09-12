@@ -3,6 +3,7 @@ package in.calibrage.akshaya.views.actvity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -19,6 +20,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -56,6 +59,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
         init();
         setViews();
@@ -156,7 +162,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void logOutDialog() {
 
             LayoutInflater layoutInflater = LayoutInflater.from(HomeActivity.this);
+
             View dialogRootView = layoutInflater.inflate(R.layout.dialog_logout, null);
+
             final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
             ok_btn =dialogRootView.findViewById(R.id.ok_btn);
             cancel_btn = dialogRootView.findViewById(R.id.cancel_btn);
@@ -204,9 +212,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void selectLanguage() {
-        final Dialog dialog = new Dialog(HomeActivity.this);
+        final Dialog dialog = new Dialog(HomeActivity.this,R.style.popup_window_animation);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_select_language);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
         dialog.setTitle("");
+
         // set the custom forgotPasswordDialog components - text, image and button
         final TextView rbEng = dialog.findViewById(R.id.rbEng);
         final TextView rbTelugu = dialog.findViewById(R.id.rbTelugu);

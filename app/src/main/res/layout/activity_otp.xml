@@ -57,9 +57,9 @@
             android:maxLength="6"
             android:textIsSelectable="false"
             android:textSize="20sp"
-            android:visibility="visible"
+        android:textColor="@color/white"
 
-            android:textColor="@color/white_new"/>
+            />
 
         <Button
 

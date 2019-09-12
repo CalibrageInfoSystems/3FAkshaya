@@ -21,31 +21,48 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.models.PaymentRequestModel;
+import in.calibrage.akshaya.models.PaymentResponseModel;
+import in.calibrage.akshaya.service.ApiService;
+import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.PaymentAdapter;
+import retrofit2.adapter.rxjava.HttpException;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class PaymentHistoryActivity extends AppCompatActivity {
+
+    private static final String TAG = PaymentHistoryActivity.class.getSimpleName();
     EditText fromText,toText;
     String fromString,toString;
     DatePickerDialog picker;
     RelativeLayout totalLinear;
     private PaymentAdapter pay_adapter;
-
+    private Subscription mSubscription;
     Button submit;
     String  datetimevaluereq;
     String reformattedStrFrom,reformattedStrTo;
-    TextView text,Total_records,ffb,gr,totalAdjusted,totalBalance;
+    TextView noRecords,Total_records,ffb,gr,totalAdjusted,totalBalance;
     private Calendar calendar;
     String finalbalance;
     private ProgressDialog dialog;
     ImageView _infoView;
     TextInputLayout from_txt,to_txt;
     RecyclerView Payment_recycle;
+    private SpotsDialog mdilogue ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,13 +72,16 @@ public class PaymentHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_history);
 
         dialog = new ProgressDialog(this);
-        text=(TextView)findViewById(R.id.text);
+        noRecords=(TextView)findViewById(R.id.text);
         ffb=(TextView)findViewById(R.id.ffb_total);
-      /*  gr=(TextView)findViewById(R.id.GR_total);
-        amountTotal=(TextView)findViewById(R.id.amount_total);
-        totalAdjusted=(TextView)findViewById(R.id.totalAdjusted);*/
+
         totalBalance=(TextView)findViewById(R.id.totalBalance);
         Total_records=(TextView)findViewById(R.id.total_records);
+        mdilogue= (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(this)
+                .setTheme(R.style.Custom)
+                .build();
+
         ImageView backImg=(ImageView)findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +102,7 @@ public class PaymentHistoryActivity extends AppCompatActivity {
         from_txt = (TextInputLayout)findViewById(R.id.txt_from_date);
         to_txt = (TextInputLayout)findViewById(R.id.txt_to_date);
         submit=(Button)findViewById(R.id.btn__sub);
-        Payment_recycle = (RecyclerView) findViewById(R.id.recycler_view);
+        Payment_recycle = (RecyclerView) findViewById(R.id.payment_recycler_view);
         Payment_recycle.setHasFixedSize(true);
         LinearLayoutManager  layoutManager = new LinearLayoutManager(this);
         Payment_recycle.setLayoutManager(layoutManager);
@@ -232,5 +252,77 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
     private void getPaymentDetails(String fromString, String toString) {
 
-    }
+        SimpleDateFormat fromUser = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+
+            reformattedStrFrom = myFormat.format(fromUser.parse(this.fromString));
+            reformattedStrTo = myFormat.format(fromUser.parse(this.toString));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        mdilogue.show();
+        JsonObject object = paymenObject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.postpayment(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<PaymentResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onNext(PaymentResponseModel paymentResponseModel) {
+                        mdilogue.dismiss();
+
+                        Log.d(TAG, "onNext:collection " + paymentResponseModel);
+
+                        if(paymentResponseModel.getResult().getPaymentResponce() != null)
+                        {
+                            noRecords.setVisibility(View.GONE);
+                            pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
+                            Payment_recycle.setAdapter(pay_adapter);
+                            //relativeLayoutCount.setVisibility(View.VISIBLE);
+
+//                            collectionsWeight.setText("roja");
+//                            collectionsCount.setText("");
+//                            paidCollectionsWeight.setText("");
+//                            unPaidCollectionsWeight.setText("");
+                        }
+                        else{
+                            noRecords.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+
+                });
 }
+
+    private JsonObject paymenObject() {
+        PaymentRequestModel requestModel = new PaymentRequestModel();
+        requestModel.setVendorCode("VWGBDAB00010001");
+        requestModel.setToDate(reformattedStrTo);
+        requestModel.setFromDate(reformattedStrFrom);
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();    }
+    }

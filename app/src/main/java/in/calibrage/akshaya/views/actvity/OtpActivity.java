@@ -35,6 +35,7 @@ import java.io.IOException;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.common.PinEntryEditText;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
@@ -116,6 +117,7 @@ public class OtpActivity extends BaseActivity {
             }
         });
         Pin_text =pinEntry.getText().toString();
+
     }
 
 
@@ -145,16 +147,21 @@ public class OtpActivity extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
+                        mdilogue.cancel();
                     }
 
                     @Override
                     public void onNext(final FarmerOtpResponceModel farmerOtpResponceModel) {
                         mdilogue.dismiss();
                         if (farmerOtpResponceModel.getIsSuccess()) {
+
+
+
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     /* Create an Intent that will start the Menu-Activity. */
+                                    SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
                                     SharedPrefsData.saveCatagories(OtpActivity.this,farmerOtpResponceModel);
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);

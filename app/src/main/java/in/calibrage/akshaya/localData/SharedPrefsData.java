@@ -144,26 +144,21 @@ public class SharedPrefsData {
         }
     }
 
-    public static void putBool(Context context, String key, boolean value, String pref) {
-        if (context == null || key == null) {
-            return;
-        }
-        if (pref == null || pref.isEmpty()) {
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
-        } else {
-            context.getSharedPreferences(pref, Context.MODE_PRIVATE).edit().putBoolean(key, value).apply();
+    public static void putBool(Context context, String key, boolean value) {
+
+        if (context != null) {
+            SharedPreferences profilePref = context.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = profilePref.edit();
+            editor.putBoolean(key, value);
+            editor.apply();
+
         }
     }
 
-    public static boolean getBool(Context context, String key, String pref) {
-        if (context == null || key == null) {
-            return false;
-        }
-        if (pref == null || pref.isEmpty()) {
-            return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(key, false);
-        } else {
-            return context.getSharedPreferences(pref, Context.MODE_PRIVATE).getBoolean(key, false);
-        }
+    public static boolean getBool(Context context, String key) {
+        SharedPreferences profilePref = context.getSharedPreferences(CHURCH_DATA,
+                Context.MODE_PRIVATE);
+         return profilePref.getBoolean(key, false);
     }
 
    public static void  saveCatagories(Context mContext, FarmerOtpResponceModel formerModel)

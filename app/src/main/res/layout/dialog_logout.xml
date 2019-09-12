@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/view"
             android:gravity="center"
-            android:padding="10dip"
+            android:padding="1dp"
+
             android:text=""
             android:textColor="@color/white"
             android:textSize="18sp" />
