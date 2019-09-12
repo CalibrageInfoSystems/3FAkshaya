@@ -13,39 +13,39 @@
         <activity android:name=".views.actvity.CropMaintanceVisitActivity"></activity>
         <activity
             android:name=".views.actvity.ScannedBarcodeActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" android:screenOrientation="portrait"></activity>
         <activity
             android:name=".views.actvity.PaymentHistoryActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait"/>
         <activity
             android:name=".views.actvity.PaymentActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait"/>
         <activity
             android:name=".views.actvity.RecommendationActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.OtpActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.LoginActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.CollectionsActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.HomeActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme2">
+            android:theme="@style/AppTheme2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" />
         <activity android:name=".common.BaseActivity" />
 
         <meta-data

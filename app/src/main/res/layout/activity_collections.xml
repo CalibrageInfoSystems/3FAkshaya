@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/shape_collections"
     tools:context="in.calibrage.akshaya.views.actvity.CollectionsActivity">
     <LinearLayout
         android:id="@+id/linlaHeaderProgress"
@@ -146,7 +147,7 @@
             android:layout_marginEnd="@dimen/margin_15"
             android:orientation="horizontal"
 
-            android:weightSum="2"
+            android:weightSum="1"
 
             >
 
@@ -157,6 +158,7 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:clipChildren="false"
                 android:hint="@string/from_date"
+                android:weightSum="0.5"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
 
                 >
@@ -184,6 +186,7 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:clipChildren="false"
                 android:hint="@string/to_date"
+                android:weightSum="0.5"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText
@@ -233,7 +236,7 @@
         android:visibility="gone"
         android:layout_margin="8dp"
         android:elevation="2dp"
-        android:background="@drawable/layout_backgound"
+
         android:layout_alignWithParentIfMissing="true"
 
         >

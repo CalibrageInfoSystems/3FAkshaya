@@ -100,8 +100,10 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);
+
+                finish();
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
             }
         });
 
@@ -397,11 +399,16 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
                             collecton_data.setAdapter(collection_Adapter);
                             relativeLayoutCount.setVisibility(View.VISIBLE);
+
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
-                            collectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
-                            collectionsCount.setText(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount());
-                            paidCollectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight());
-                            unPaidCollectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight());
+
+                            unPaidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()));
+                            collectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()));
+                            collectionsCount.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
+                            paidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()));
+
+
+
                         }  else{
                             noRecords.setVisibility(View.VISIBLE);
                         }
@@ -491,5 +498,11 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 }
