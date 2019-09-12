@@ -32,7 +32,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginBottom="70dp"
             android:src="@drawable/ic_care"
-            app:backgroundTint="@color/half_black"
+            app:backgroundTint="@color/white"
             app:elevation="8dp"
             app:pressedTranslationZ="12dp" />
 

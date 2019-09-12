@@ -50,29 +50,29 @@ import rx.schedulers.Schedulers;
 
 public class CollectionsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     DatePickerDialog picker;
-    public static String TAG = "CollectionsActivity";
-    EditText fromText, toText;
-    String[] country = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
+    public static  String TAG="CollectionsActivity";
+    EditText fromText,toText;
+    String[] country = { "Last 30 Days", "Current Financial Year", "Custom Time Period"};
     RelativeLayout timePeroidLinear;
     Spinner spin;
+    Collection_Adapter collection_Adapter;
     private ArrayList<CollectionResponceModel.CollectioDatum> collection_list = new ArrayList<>();
     //  Button subBtn;
     private RecyclerView collecton_data;
     String currentDate;
     private ProgressDialog dialog;
     private RecyclerView.LayoutManager layoutManager;
-    String farmerCode, Farmer_code;
+    String farmerCode,Farmer_code;
     TextView noRecords;
     String last_30day;
-    TextView collectionsWeight, collectionsCount, paidCollectionsWeight, unPaidCollectionsWeight, text;
+    TextView collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight,text;
     RelativeLayout relativeLayoutCount;
     private Subscription mSubscription;
-    String financiyalYearFrom = "";
-    String financiyalYearTo = "";
-    String fromString, toString;
-    String reformattedStrFrom, reformattedStrTo;
+    String financiyalYearFrom="";
+    String financiyalYearTo="";
+    String fromString,toString;
+    String reformattedStrFrom,reformattedStrTo;
     Button collection_Submit;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,34 +81,34 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_collections);
         dialog = new ProgressDialog(this);
-        noRecords = (TextView) findViewById(R.id.text);
+        noRecords=(TextView)findViewById(R.id.text);
 
-        collectionsWeight = (TextView) findViewById(R.id.collectionsWeight);
-        collectionsCount = (TextView) findViewById(R.id.collectionsCount);
-        paidCollectionsWeight = (TextView) findViewById(R.id.paidCollectionsWeight);
-        unPaidCollectionsWeight = (TextView) findViewById(R.id.unPaidCollectionsWeight);
-        ImageView backImg = (ImageView) findViewById(R.id.back);
+        collectionsWeight=(TextView)findViewById(R.id.collectionsWeight);
+        collectionsCount=(TextView)findViewById(R.id.collectionsCount);
+        paidCollectionsWeight=(TextView)findViewById(R.id.paidCollectionsWeight);
+        unPaidCollectionsWeight=(TextView)findViewById(R.id.unPaidCollectionsWeight);
+        ImageView backImg=(ImageView)findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
                 startActivity(intent);
             }
         });
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
 
-        ImageView home_btn = (ImageView) findViewById(R.id.home_btn);
+        ImageView home_btn=(ImageView)findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
                 startActivity(intent);
             }
         });
-        collection_Submit = (Button) findViewById(R.id.buttonSubmit);
-        fromText = (EditText) findViewById(R.id.from_date);
+        collection_Submit=(Button)findViewById(R.id.buttonSubmit);
+        fromText=(EditText) findViewById(R.id.from_date);
         fromText.setInputType(InputType.TYPE_NULL);
         fromText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,9 +131,10 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         });
 
 
-        relativeLayoutCount = (RelativeLayout) findViewById(R.id.top_linear);
 
-        toText = (EditText) findViewById(R.id.to_date);
+        relativeLayoutCount=(RelativeLayout)findViewById(R.id.top_linear);
+
+        toText=(EditText) findViewById(R.id.to_date);
         toText.setInputType(InputType.TYPE_NULL);
         toText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,16 +159,13 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         collecton_data.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         collecton_data.setLayoutManager(layoutManager);
-       /* collection_Adapter = new Collection_Adapter(CollectionsActivity.this);
-        collecton_data.setAdapter(collection_Adapter);*/
-
-        timePeroidLinear = (RelativeLayout) findViewById(R.id.new_relative);
+        timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
 
         spin = (Spinner) findViewById(R.id.spinner);
         spin.setOnItemSelectedListener(this);
 
 
-        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, country);
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spin.setAdapter(aa);
@@ -184,21 +182,23 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
 
         int CurrentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int CurrentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);
+        int CurrentMonth = (Calendar.getInstance().get(Calendar.MONTH)+1);
 
-        if (CurrentMonth < 4) {
-            financiyalYearFrom = (CurrentYear - 1) + "-04-01";
-            financiyalYearTo = (CurrentYear) + "-03-31";
+        if(CurrentMonth<4)
+        {
+            financiyalYearFrom=(CurrentYear-1)+"-04-01";
+            financiyalYearTo=(CurrentYear)+"-03-31";
             Log.i(" financiyalYearFrom====181 ", financiyalYearFrom);
             Log.i("financiyalYearTo====182 ", financiyalYearTo);
-        } else {
-            financiyalYearFrom = (CurrentYear) + "-04-01";
-            financiyalYearTo = (CurrentYear + 1) + "-03-31";
-            ;
+        }
+        else
+        {
+            financiyalYearFrom=(CurrentYear)+"-04-01";
+            financiyalYearTo=(CurrentYear+1)+"-03-31";;
             Log.i(" financiyalYearFrom2 ", financiyalYearFrom);
             Log.i("financiyalYearTo2 ", financiyalYearTo);
         }
-        get30days();
+
     }
 
     @Override
@@ -270,7 +270,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                     }
                 }
             });
-        } else {
+        }
+        else {
             timePeroidLinear.setVisibility(View.GONE);
             relativeLayoutCount.setVisibility(View.GONE);
             //   subBtn.setVisibility(View.VISIBLE);
@@ -310,20 +311,25 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if (collectionResponcemodel.getResult().getCollectioData() != null) {
+                        if(collectionResponcemodel.getResult().getCollectioData() != null)
+                        {
 
                             noRecords.setVisibility(View.GONE);
-                            Collection_Adapter adapter =new Collection_Adapter(CollectionsActivity.this,collection_list);
-                            collecton_data.setAdapter(adapter);
+                            collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
+                            collecton_data.setAdapter(collection_Adapter);
                             relativeLayoutCount.setVisibility(View.VISIBLE);
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
-                            collectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
+                            collectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
                             collectionsCount.setText(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount());
-                            paidCollectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight());
-                            unPaidCollectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight());
-                        } else {
+                            paidCollectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight());
+                            unPaidCollectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight());
+                        }
+                        else{
                             noRecords.setVisibility(View.VISIBLE);
                         }
+
+
+
 
 
                     }
@@ -370,19 +376,18 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if (collectionResponcemodel.getResult().getCollectioData() != null) {
+                        if(collectionResponcemodel.getResult().getCollectioData() != null)
+                        {
                             noRecords.setVisibility(View.GONE);
+                            collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
+                            collecton_data.setAdapter(collection_Adapter);
                             relativeLayoutCount.setVisibility(View.VISIBLE);
-                            Collection_Adapter adapter =new Collection_Adapter(CollectionsActivity.this,collection_list);
-                            collecton_data.setAdapter(adapter);
-
-
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
-                            collectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
+                            collectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
                             collectionsCount.setText(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount());
-                            paidCollectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight());
-                            unPaidCollectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight());
-                        } else {
+                            paidCollectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight());
+                            unPaidCollectionsWeight.setText(""+collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight());
+                        }  else{
                             noRecords.setVisibility(View.VISIBLE);
                         }
 
@@ -393,7 +398,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-    private JsonObject collectionObject2() {
+    private JsonObject collectionObject2(){
         collectionRequestModel requestModel = new collectionRequestModel();
         requestModel.setFarmerCode("APWGBDAB00010001");
         requestModel.setToDate(financiyalYearTo);
@@ -433,18 +438,19 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if (collectionResponcemodel.getResult().getCollectioData() != null) {
+                        if(collectionResponcemodel.getResult().getCollectioData() != null)
+                        {
                             noRecords.setVisibility(View.GONE);
-
-                            Collection_Adapter adapter =new Collection_Adapter(CollectionsActivity.this,collection_list);
-                            collecton_data.setAdapter(adapter);
+                            collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
+                            collecton_data.setAdapter(collection_Adapter);
                             relativeLayoutCount.setVisibility(View.VISIBLE);
-                            // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
-                            collectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight());
-                            collectionsCount.setText(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount());
-                            paidCollectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight());
-                            unPaidCollectionsWeight.setText("" + collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight());
-                        } else {
+
+                            collectionsWeight.setText("roja");
+                            collectionsCount.setText("");
+                            paidCollectionsWeight.setText("");
+                            unPaidCollectionsWeight.setText("");
+                        }
+                        else{
                             noRecords.setVisibility(View.VISIBLE);
                         }
 
@@ -463,7 +469,6 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 

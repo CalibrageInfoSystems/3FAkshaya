@@ -57,6 +57,6 @@
     <color name="very_light_gray_tr">#7Ff3f3f3</color>
 
     <color name="spots_dialog_color">@color/half_black</color>
-
+    <color name="pin_normal">#FFFFFF</color>
 
 </resources>

@@ -5,12 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.common.TypeWriter;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 
@@ -26,6 +29,9 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         init();
         setViews();
@@ -49,6 +55,8 @@ public class SplashActivity extends BaseActivity {
 
 
 
+        final boolean is_login =  SharedPrefsData.getBool(SplashActivity.this, Constants.IS_LOGIN);
+
 
 
         new Handler().postDelayed(new Runnable() {
@@ -67,7 +75,8 @@ public class SplashActivity extends BaseActivity {
                     // close this activity
                     finish();
                 } else {
-                    if(false)
+
+                    if(is_login)
                     {
                         startActivity(new Intent(SplashActivity.this,HomeActivity.class));
                         finish();
