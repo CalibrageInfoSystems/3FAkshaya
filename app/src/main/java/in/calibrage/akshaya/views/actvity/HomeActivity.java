@@ -193,11 +193,11 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
         Log.e("id===", String.valueOf(id));
         if (id == R.id.languageTitle) {
-            Log.e("Roja===", "lang");
+
             selectLanguage();
             // Handle the camera action
         } else if (id == R.id.action_home) {
-            Log.e("Roja===", "home");
+               finish();
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_logout) {

@@ -97,6 +97,10 @@
     <string name="custom_msg">Custom Message to be displayed here</string>
     <string name="name">Ramu</string>
     <string name="time_peroid">Time Peroid</string>
+
+
+    <string name="selecte_from_date"> Selected From Date </string>
+    <string name="selecte_to_date"> Selected To Date </string>
     <string name="from_date">From Date <font fgcolor="red">*</font></string>
     <string name="to_date">To Date <font fgcolor="red">*</font></string>
     <string name="collection_id">Collection ID</string>
@@ -196,7 +200,7 @@
     <string name="reqDate">Requested Date</string>
     <string name="paidCollectionsWeight">Paid Collections Weight</string>
     <string name="requestCodeLabel">Request Id</string>
-    <string name="no_collections_found">No Collections Found</string>
+    <string name="no_collections_found">No Collections Available</string>
     <string name="no_payments_found">No Payments Found</string>
     <string name="no_recommendations_found">No Recommendations Found</string>
     <string name="i_have_agree">I Agree</string>

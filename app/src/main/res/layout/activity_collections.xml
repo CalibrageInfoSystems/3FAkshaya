@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape_collections"
+    android:background="@drawable/bg_new"
     tools:context="in.calibrage.akshaya.views.actvity.CollectionsActivity">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_gravity="right"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:id="@+id/backlinear"
-        android:background="@color/transparent">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@color/transparent"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -26,6 +26,7 @@
                 android:layout_height="20dp"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginTop="18dp"
+
                 android:layout_marginEnd="@dimen/margin_20"
                 android:src="@drawable/arrow_l" />
 
@@ -56,11 +57,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/linear1"
         android:layout_below="@+id/backlinear"
+        android:orientation="vertical"
         android:weightSum="2">
 
         <!-- <ImageView
@@ -71,45 +72,218 @@
         android:layout_weight="0.1"
         android:id="@+id/back"/>-->
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/spinner_bg"
+            android:elevation="2dp">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+android:padding="10dp"
+                android:foregroundGravity="bottom"
+                android:src="@drawable/arrow_down" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                style="@style/SpinnerDropdown"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:minHeight="0dp"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/time_peroid"
-            android:textStyle="bold"
-            android:textColor="@color/yellow"
-            android:textSize="@dimen/text_size_22"
             android:gravity="center_horizontal"
             android:padding="@dimen/margin_10"
-            android:visibility="gone"
-            />
+            android:text="@string/time_peroid"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/text_size_22"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:background="@drawable/spinner_bg"
-            android:layout_marginTop="10dp"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_sad" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/no_collections_found"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/margin_20" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/selecte_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_relative"
+
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:background="@drawable/collect_bg"
+        android:layout_margin="@dimen/_8dp"
+
+
+        >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:elevation="2dp">
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:textAlignment="center"
-                android:background="@null"
-                android:minHeight="0dp" />
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/selected_fromdate_rl"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_arrow_drop_down" />
-        </RelativeLayout>
+                android:layout_below="@+id/lin_one"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal">
 
 
+                <TextView
+                    android:id="@+id/selected_fromdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1sp"
+
+                    android:text="@string/selecte_from_date"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="1sp"
+                    android:text=":"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/seleced_date_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="1sp"
+                    android:layout_toRightOf="@+id/dot"
+                    android:hint=""
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                   />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/selected_to_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_two"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="3sp"
+                android:elevation="2dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/dott"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="1sp"
+                    android:text=":"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/seleced_date_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="1sp"
+                    android:layout_toRightOf="@+id/dott"
+                    android:hint="31213254698"
+                    android:text=""
+
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/tvtext_to_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/selecte_to_date"
+
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                   />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_one"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/text_size"
+            android:layout_toRightOf="@+id/seleced_date_to"
+            android:layout_weight="0.3"
+            android:background="@drawable/button_bg"
+            android:text="Edit"
+            android:textColor="@color/black"
+            android:textSize="@dimen/margin_12" />
     </LinearLayout>
 
     <RelativeLayout
@@ -120,69 +294,8 @@
         android:layout_marginStart="@dimen/margin_15"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="@dimen/margin_15"
-        android:visibility="gone"
-        android:background="@drawable/spinner_bg">
-
-        <LinearLayout
-            android:id="@+id/linear2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_15"
-            android:layout_marginEnd="@dimen/margin_15"
-            android:orientation="horizontal"
-
-            android:weightSum="1"
-
-            >
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/txt_from_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_5"
-                android:clipChildren="false"
-                android:hint="@string/from_date"
-                android:weightSum="0.5"
-                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
-
-                >
-
-                <EditText
-                    android:id="@+id/from_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:fontFamily="@font/roboto_regular"
-                    android:focusable="false"
-                    android:hint="@string/from_date"
-
-                    />
-            </android.support.design.widget.TextInputLayout>
-
-            <Space
-                android:layout_width="@dimen/margin_10"
-                android:layout_height="wrap_content" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/txt_to_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_5"
-                android:clipChildren="false"
-                android:hint="@string/to_date"
-                android:weightSum="0.5"
-                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
-
-                <EditText
-                    android:id="@+id/to_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="@font/roboto_regular"
-                    android:focusable="false"
-                    android:hint="@string/to_date" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
+        android:background="@drawable/spinner_bg"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/buttonSubmit"
@@ -193,45 +306,99 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-
+            android:background="@drawable/button_bg"
             android:padding="15dp"
             android:shadowColor="@android:color/transparent"
             android:text="@string/submit"
-
-            android:textColor="@color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+            android:textColor="@color/colorOrange"
             android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_15"
+            android:layout_marginEnd="@dimen/margin_15"
+            android:orientation="horizontal"
+
+            android:weightSum="2"
+
+            >
+
+            <Space
+                android:layout_width="@dimen/margin_10"
+                android:layout_height="wrap_content" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/txt_from_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:clipChildren="false"
+                android:hint="@string/from_date"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+
+                >
+
+                <EditText
+                    android:id="@+id/from_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="8"
+android:hint="@string/from_date"
+                    android:focusable="false"
+                    android:textColor="@color/white_new"
+
+
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/txt_to_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:clipChildren="false"
+                android:hint="@string/to_date"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                <EditText
+                    android:id="@+id/to_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/to_date"
+                    android:focusable="false"
+                    android:textColor="@color/white_new" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 
+
     <RelativeLayout
 
-
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="@dimen/margin_20"
-
-
-        android:layout_marginEnd="@dimen/margin_20"
-
+android:background="@drawable/collect_bg"
+        android:id="@+id/top_linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:id="@+id/top_linear"
-        android:layout_below="@+id/new_relative"
-        android:visibility="gone"
-        android:layout_margin="8dp"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_below="@+id/selecte_label"
+        android:layout_margin="@dimen/_8dp"
+     android:visibility="gone"
         android:elevation="2dp"
 
-        android:layout_alignWithParentIfMissing="true"
-
         >
+
         <RelativeLayout
             android:id="@+id/lin_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_one"
-            android:orientation="horizontal"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="10sp">
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
 
 
             <TextView
@@ -243,7 +410,7 @@
                 android:text="@string/collectionsCount"
                 android:textColor="@color/white"
                 android:textSize="14dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <TextView
@@ -252,8 +419,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
-                android:textColor="@color/white"
                 android:text=":"
+                android:textColor="@color/white"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -261,14 +428,14 @@
                 android:id="@+id/collectionsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dot2"
+                android:hint=""
                 android:text=""
                 android:textColor="@color/white"
-                android:layout_marginLeft="10sp"
                 android:textSize="14dp"
-                android:textStyle="bold"
-                android:hint=""/>
+                 />
 
         </RelativeLayout>
 
@@ -277,10 +444,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_two"
-            android:orientation="horizontal"
-            android:elevation="2dp"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="3sp">
+            android:layout_marginTop="3sp"
+            android:elevation="2dp"
+            android:orientation="horizontal">
 
 
             <TextView
@@ -310,15 +477,15 @@
                 android:id="@+id/collectionsWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dot3"
-                android:text=""
-                android:textColor="@color/white"
                 android:hint="31213254698"
+                android:text=""
 
-                android:layout_marginLeft="10sp"
+                android:textColor="@color/white"
                 android:textSize="14dp"
-                android:textStyle="bold"/>
+            />
 
         </RelativeLayout>
 
@@ -327,10 +494,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_three"
-            android:orientation="horizontal"
-            android:layout_marginTop="3sp"
             android:layout_marginStart="6dp"
-            >
+            android:layout_marginTop="3sp"
+            android:orientation="horizontal">
 
 
             <TextView
@@ -338,11 +504,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
-                android:textColor="@color/white"
                 android:text="@string/unPaidCollectionsWeight"
+                android:textColor="@color/white"
 
                 android:textSize="14dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/dot4"
@@ -350,8 +516,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
-                android:textColor="@color/white"
                 android:text=":"
+                android:textColor="@color/white"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -360,14 +526,14 @@
                 android:id="@+id/unPaidCollectionsWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dot4"
-                android:text=""
                 android:hint=""
+                android:text=""
                 android:textColor="@color/white"
-                android:layout_marginLeft="10sp"
                 android:textSize="14dp"
-                android:textStyle="bold"/>
+             />
 
         </RelativeLayout>
 
@@ -376,10 +542,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_four"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="3sp"
-            android:layout_marginStart="6dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
 
             <TextView
@@ -387,11 +553,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
-                android:textColor="@color/white"
                 android:text="@string/paidCollectionsWeight"
+                android:textColor="@color/white"
 
                 android:textSize="14dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/dot5"
@@ -399,8 +565,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
-                android:textColor="@color/white"
                 android:text=":"
+                android:textColor="@color/white"
 
                 android:textStyle="bold" />
 
@@ -415,51 +581,27 @@
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="14dp"
-                android:textStyle="bold" />
+              />
 
         </RelativeLayout>
 
     </RelativeLayout>
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/collection_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:scrollbars="vertical"
-        android:visibility="gone"
+        android:layout_below="@+id/top_linear"
         android:layout_margin="8dp"
         android:layout_marginTop="@dimen/margin_5"
-        android:layout_below="@+id/top_linear"
-        android:scrollbarThumbVertical="@color/colorPrimary"
+        android:clipToPadding="false"
         android:scrollbarSize="3dp"
         android:scrollbarStyle="outsideInset"
+        android:scrollbarThumbVertical="@color/colorPrimary"
+        android:scrollbars="vertical"
+        android:visibility="gone"
 
         />
-    <LinearLayout
-        android:visibility="visible"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/text"
-        android:text="@string/no_collections_found"
-       android:weightSum="1"
-       android:layout_centerHorizontal="true"
-       android:layout_alignParentBottom="true"
-        >
-        <ImageView
-            android:src="@drawable/ic_sad"
-            android:layout_weight="0.5"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-        <TextView
-            android:gravity="center"
-            android:textColor="@color/colorOrange"
-            android:textSize="@dimen/margin_20"
-            android:fontFamily="@font/roboto_regular"
-            android:text="No Collections Available"
-            android:layout_weight="0.5"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-    </LinearLayout>
+
 </RelativeLayout>
