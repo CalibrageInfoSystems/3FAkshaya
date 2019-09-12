@@ -3,7 +3,9 @@ package in.calibrage.akshaya.views.actvity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -75,6 +77,7 @@ public class OtpActivity extends BaseActivity {
         setview();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void init() {
         // TextView otpDesc = (TextView) findViewById(R.id.otp_desc);
 
@@ -82,7 +85,6 @@ public class OtpActivity extends BaseActivity {
 
          backImg = (ImageView) findViewById(R.id.back);
         pinEntry = findViewById(R.id.txt_pin_entry);
-
         pinEntry.requestFocus();
         mdilogue= (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)

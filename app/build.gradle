@@ -46,8 +46,11 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.0'
 
     implementation 'com.google.android.gms:play-services-vision:11.8.0'
-
+// PROGRESS Dialogue
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
 
     /*dependencies {

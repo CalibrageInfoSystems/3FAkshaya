@@ -54,7 +54,7 @@
                     android:layout_margin="5dp"
 
                     android:outlineAmbientShadowColor="@color/colorOrange"
-                    android:src="@drawable/ic_palm" />
+                    android:src="@drawable/ic_home_collection" />
 
                 <TextView
                     android:textColor="@color/colorOrange"
