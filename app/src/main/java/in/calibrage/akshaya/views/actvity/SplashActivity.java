@@ -21,7 +21,7 @@ import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class SplashActivity extends BaseActivity {
     private ImageView imgLogo;
-    private TypeWriter txt_name,txt_desc;
+    private TypeWriter txt_name, txt_desc;
     private Context context;
     private static int SPLASH_TIME_OUT = 6000;
 
@@ -36,13 +36,15 @@ public class SplashActivity extends BaseActivity {
         init();
         setViews();
     }
+
     private void init() {
         imgLogo = findViewById(R.id.img_logo);
         txt_name = findViewById(R.id.txt_name);
         txt_desc = findViewById(R.id.txt_desc);
     }
+
     private void setViews() {
-        Animation myanim = AnimationUtils.loadAnimation(this,R.anim.logo_spalsh);
+        Animation myanim = AnimationUtils.loadAnimation(this, R.anim.logo_spalsh);
         imgLogo.startAnimation(myanim);
         txt_name.setText("");
         txt_name.setCharacterDelay(30);
@@ -53,40 +55,34 @@ public class SplashActivity extends BaseActivity {
         txt_desc.animateText("sowing for better future");
 
 
-
-
-        final boolean is_login =  SharedPrefsData.getBool(SplashActivity.this, Constants.IS_LOGIN);
-
+        final boolean is_login = SharedPrefsData.getBool(SplashActivity.this, Constants.IS_LOGIN);
+        final int langID = SharedPrefsData.getInstance(SplashActivity.this).getIntFromSharedPrefs("lang");
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (SharedPrefsData.getInstance(SplashActivity.this).getIntFromSharedPrefs("lang") == 1) {
-                    updateResources(SplashActivity.this, "en-US");
-                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(i);
-                    // close this activity
-                    finish();
-                } else if (SharedPrefsData.getInstance(SplashActivity.this).getIntFromSharedPrefs("lang") == 2) {
+
+
+                if (langID == 2)
                     updateResources(SplashActivity.this, "te");
-                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(i);
-                    // close this activity
+                else
+                    updateResources(SplashActivity.this, "en-US");
+
+
+
+
+                if (is_login) {
                     finish();
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+
                 } else {
-
-                    if(is_login)
-                    {
-                        startActivity(new Intent(SplashActivity.this,HomeActivity.class));
-                        finish();
-                    }else {
-                        startActivity(new Intent(SplashActivity.this,LoginActivity.class));
-                        finish();
-                    }
+                    finish();
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 }
-
             }
+
+
         }, SPLASH_TIME_OUT);
     }
 

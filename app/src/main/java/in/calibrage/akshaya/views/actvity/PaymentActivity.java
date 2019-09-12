@@ -37,10 +37,11 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.service.APIConstantURL;
 
 public class PaymentActivity extends AppCompatActivity {
-    public static  String TAG="PaymentActivity";
-    private TextView accoontHolderName,accoontNumber,bankNamee,branchName,ifscCode;
+    public static String TAG = "PaymentActivity";
+    private TextView accoontHolderName, accoontNumber, bankNamee, branchName, ifscCode;
     private ProgressDialog dialog;
     String Farmer_code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,36 +52,38 @@ public class PaymentActivity extends AppCompatActivity {
 
 
         dialog = new ProgressDialog(this);
-        accoontHolderName=(TextView)findViewById(R.id.tvtext_item_three);
-        accoontNumber=(TextView)findViewById(R.id.tvtext_item_five);
-        bankNamee=(TextView)findViewById(R.id.tvtext_item_seven);
-        branchName=(TextView)findViewById(R.id.tvtext_item_nine);
-        ifscCode=(TextView)findViewById(R.id.tvtext_item_eleven);
-        ImageView backImg=(ImageView)findViewById(R.id.back);
+        accoontHolderName = (TextView) findViewById(R.id.tvtext_item_three);
+        accoontNumber = (TextView) findViewById(R.id.tvtext_item_five);
+        bankNamee = (TextView) findViewById(R.id.tvtext_item_seven);
+        branchName = (TextView) findViewById(R.id.tvtext_item_nine);
+        ifscCode = (TextView) findViewById(R.id.tvtext_item_eleven);
+        ImageView backImg = (ImageView) findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);
+                finish();
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
             }
         });
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
 
-        ImageView home_btn=(ImageView)findViewById(R.id.home_btn);
+        ImageView home_btn = (ImageView) findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);
+                finish();
+              /*  Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
             }
         });
-        Button submitBtn=(Button)findViewById(R.id.nextButton);
+        Button submitBtn = (Button) findViewById(R.id.nextButton);
         // submitBtn.setTypeface(faceBold);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),PaymentHistoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PaymentHistoryActivity.class);
                 startActivity(intent);
 
             }
@@ -90,21 +93,21 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void getBankDetails() {
-        String url = APIConstantURL.LOCAL_URL+"Farmer/GetBankDetailsByFarmerCode/"+"APWGBDAB00010001";
-Log.e("url===",url);
+        String url = APIConstantURL.LOCAL_URL + "Farmer/GetBankDetailsByFarmerCode/" + "APWGBDAB00010001";
+        Log.e("url===", url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d(TAG,"RESPONSE======"+ response);
+                Log.d(TAG, "RESPONSE======" + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Log.d(TAG,"RESPONSE======"+ jsonObject);
+                    Log.d(TAG, "RESPONSE======" + jsonObject);
                     if (dialog.isShowing()) {
                         dialog.dismiss();
                     }
                     JSONArray alsoKnownAsArray = jsonObject.getJSONArray("listResult");
-                    for(int i = 0; i<alsoKnownAsArray.length(); i++) {
+                    for (int i = 0; i < alsoKnownAsArray.length(); i++) {
                         JSONObject leagueData = alsoKnownAsArray.getJSONObject(i);
                         String cardName = leagueData.getString("accountHolderName");
                         String bank_Account = leagueData.getString("accountNumber");
@@ -120,10 +123,10 @@ Log.e("url===",url);
                         ifscCode.setText(ifscCode1);
                     }
 
-                    String affectedRecords=jsonObject.getString("affectedRecords");
-                    Log.d(TAG,"RESPONSE getBankDetails======"+ affectedRecords);
-                    String success=jsonObject.getString("isSuccess");
-                    Log.d(TAG,"success======"+ success);
+                    String affectedRecords = jsonObject.getString("affectedRecords");
+                    Log.d(TAG, "RESPONSE getBankDetails======" + affectedRecords);
+                    String success = jsonObject.getString("isSuccess");
+                    Log.d(TAG, "success======" + success);
                     /*if (success.equals("true")){
 
                         Toasty.success(getApplicationContext(), "Otp sent successfully", Toast.LENGTH_LONG).show();

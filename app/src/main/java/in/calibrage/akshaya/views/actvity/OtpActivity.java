@@ -163,9 +163,10 @@ public class OtpActivity extends BaseActivity {
                                     /* Create an Intent that will start the Menu-Activity. */
                                     SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
                                     SharedPrefsData.saveCatagories(OtpActivity.this,farmerOtpResponceModel);
+                                    finish();
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);
-                                        finish();
+
 
                                 }
                             }, 300);

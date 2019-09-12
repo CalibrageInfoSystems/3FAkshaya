@@ -124,14 +124,8 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-
     }
-
-
     private void GetLogin() {
-
-
-
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getFormerOTP(APIConstantURL.Farmer_ID_CHECK + farmerId.getText().toString())
@@ -160,7 +154,6 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onNext(FarmerResponceModel farmerResponceModel) {
-
                         mdilogue.cancel();
                         Log.d(TAG, "onNext: " + farmerResponceModel);
                         if (farmerResponceModel.getIsSuccess()) {
@@ -168,18 +161,13 @@ public class LoginActivity extends BaseActivity {
                                 @Override
                                 public void run() {
                                     /* Create an Intent that will start the Menu-Activity. */
-                                    Intent intent = new Intent(getApplicationContext(), OtpActivity.class);
-                                    startActivity(intent);
-
-
+                                    finish();
+                                    startActivity( new Intent(getApplicationContext(), OtpActivity.class));
                                 }
                             }, 300);
-
                         } else {
                             Toast.makeText(LoginActivity.this, farmerResponceModel.getEndUserMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        // Log.d(TAG,)
-
                     }
                 });
 
