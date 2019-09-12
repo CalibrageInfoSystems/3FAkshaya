@@ -166,7 +166,7 @@ public class OtpActivity extends BaseActivity {
                                         finish();
 
                                 }
-                            }, 3000);
+                            }, 300);
 
                         }
                     }

@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
@@ -73,6 +74,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     String fromString,toString;
     String reformattedStrFrom,reformattedStrTo;
     Button collection_Submit;
+
+    private SpotsDialog mdilogue ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +91,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         paidCollectionsWeight=(TextView)findViewById(R.id.paidCollectionsWeight);
         unPaidCollectionsWeight=(TextView)findViewById(R.id.unPaidCollectionsWeight);
         ImageView backImg=(ImageView)findViewById(R.id.back);
+        mdilogue= (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(this)
+                .setTheme(R.style.Custom)
+                .build();
+
+
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -281,6 +290,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void getCustomCollections(String fromString, String toString) {
+        mdilogue.show();
         JsonObject object = collectionObject3();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.postcollection(object)
@@ -289,6 +299,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 .subscribe(new Subscriber<CollectionResponceModel>() {
                     @Override
                     public void onCompleted() {
+                        mdilogue.dismiss();
                     }
 
                     @Override
@@ -304,11 +315,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             }
                             e.printStackTrace();
                         }
+                        mdilogue.cancel();
                     }
 
                     @Override
                     public void onNext(CollectionResponceModel collectionResponcemodel) {
-
+                        mdilogue.cancel();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
                         if(collectionResponcemodel.getResult().getCollectioData() != null)
@@ -346,6 +358,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void getfinacialyear() {
+        mdilogue.show();
         JsonObject object = collectionObject2();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.postcollection(object)
@@ -354,6 +367,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 .subscribe(new Subscriber<CollectionResponceModel>() {
                     @Override
                     public void onCompleted() {
+                        mdilogue.dismiss();
                     }
 
                     @Override
@@ -369,11 +383,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             }
                             e.printStackTrace();
                         }
+                        mdilogue.dismiss();
                     }
 
                     @Override
                     public void onNext(CollectionResponceModel collectionResponcemodel) {
-
+                        mdilogue.dismiss();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
                         if(collectionResponcemodel.getResult().getCollectioData() != null)
@@ -408,6 +423,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void get30days() {
+        mdilogue.show();
         JsonObject object = collectionObject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.postcollection(object)
@@ -416,10 +432,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 .subscribe(new Subscriber<CollectionResponceModel>() {
                     @Override
                     public void onCompleted() {
+                        mdilogue.dismiss();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+
                         if (e instanceof HttpException) {
                             ((HttpException) e).code();
                             ((HttpException) e).message();
@@ -431,11 +449,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             }
                             e.printStackTrace();
                         }
+                        mdilogue.cancel();
                     }
 
                     @Override
                     public void onNext(CollectionResponceModel collectionResponcemodel) {
-
+                        mdilogue.dismiss();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
                         if(collectionResponcemodel.getResult().getCollectioData() != null)

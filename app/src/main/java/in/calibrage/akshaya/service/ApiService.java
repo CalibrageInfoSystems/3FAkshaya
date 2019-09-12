@@ -7,6 +7,7 @@ import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
+import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
@@ -40,6 +41,9 @@ public interface ApiService {
     @GET
     Observable<CropResponseModel> getCropmaintaindetails(@Url String url);
 
+
+    @POST(APIConstantURL.payment_history)
+    Observable<PaymentResponseModel> postpayment(@Body JsonObject data);
 
 
  /*
