@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/dateLabel"
                 android:layout_marginLeft="180dp"
-
+                android:maxLength="10"
                 android:text="Email"
                 android:textSize="@dimen/album_title" />
             <TextView

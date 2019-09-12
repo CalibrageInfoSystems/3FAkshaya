@@ -1,6 +1,9 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,9 +32,11 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(PaymentAdapter.ViewHolder holder, int position) {
 
+        ((ViewHolder) holder).memo_text.setText(""+payment_Set.get(position).getMemo());
         ((ViewHolder) holder).date.setText(payment_Set.get(position).getRefDate());
         ((ViewHolder) holder).quantity_ffb.setText(""+payment_Set.get(position).getQuantity());
         ((ViewHolder) holder).adhoc_value.setText(""+payment_Set.get(position).getAdhocRate());
@@ -40,6 +45,117 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         ((ViewHolder) holder).adjustTxt.setText(""+payment_Set.get(position).getAdjusted());
         ((ViewHolder) holder).finalAmount.setText(""+payment_Set.get(position).getAmount());
         ((ViewHolder) holder).balance.setText(""+payment_Set.get(position).getBalance());
+
+
+        if(position%2 == 0){
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+
+        } else {
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+
+        }
+        // holder.textViewPowers.setText(powers);*/
+        if (payment_Set.get(position).getAdhocRate()==0.0)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.adhoc_value.setVisibility(View.GONE);
+            holder.text_two.setVisibility(View.GONE);
+        }
+        else {
+            holder.adhoc_value.setVisibility(View.VISIBLE);
+            holder.text_two.setVisibility(View.VISIBLE);
+        }
+        if (payment_Set.get(position).getQuantity()==0.0)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.text_one.setVisibility(View.GONE);
+            holder.quantity_ffb.setVisibility(View.GONE);
+        }
+        else {
+            holder.text_one.setVisibility(View.VISIBLE);
+            holder.quantity_ffb.setVisibility(View.VISIBLE);
+        }
+        if (payment_Set.get(position).getInvoiceRate()==0.0)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.txt_invoice.setVisibility(View.GONE);
+            holder.text_thee.setVisibility(View.GONE);
+
+        }
+        else {
+            holder.txt_invoice.setVisibility(View.VISIBLE);
+            holder.text_thee.setVisibility(View.VISIBLE);
+        }
+        if (payment_Set.get(position).getGRAmount()==0.0)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.txt_gr_rate.setVisibility(View.GONE);
+            holder.text_four.setVisibility(View.GONE);
+
+        }
+        else {
+            holder.txt_gr_rate.setVisibility(View.VISIBLE);
+            holder.text_four.setVisibility(View.VISIBLE);
+        }
+//
+//
+        if (payment_Set.get(position).getAdjusted()==0.0)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.adjustTxt.setVisibility(View.GONE);
+            holder.text_five.setVisibility(View.GONE);
+
+        }
+        else {
+            holder.adjustTxt.setVisibility(View.VISIBLE);
+            holder.text_five.setVisibility(View.VISIBLE);
+        }
+//
+//        if (superHero.getBankHolderName()==0.0)
+//        {
+//            //   Log.e("bbbbb",superHero.getmAmount());
+//            holder. txtBankHolderName.setVisibility(View.GONE);
+//            holder.text_four.setVisibility(View.GONE);
+//
+//        }
+//        else {
+//            holder. txtBankHolderName.setVisibility(View.VISIBLE);
+//            holder.text_four.setVisibility(View.VISIBLE);
+//        }
+
+//
+        if (payment_Set.get(position).getMemo()==null)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.memo_text.setVisibility(View.GONE);
+            holder.text_six.setVisibility(View.GONE);
+
+        }
+        else {
+            holder.memo_text.setVisibility(View.VISIBLE);
+            holder.text_six.setVisibility(View.VISIBLE);
+        }
+        if (payment_Set.get(position).getAmount()==0.0)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.finalAmount.setVisibility(View.GONE);
+            holder.text_seven.setVisibility(View.GONE);
+        }
+        else {
+            holder.finalAmount.setVisibility(View.VISIBLE);
+            holder.text_seven.setVisibility(View.VISIBLE);
+        }
+        if (payment_Set.get(position).getBalance()==0.0)
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.balance.setVisibility(View.GONE);
+            holder.text_eight.setVisibility(View.GONE);
+        }
+        else {
+            holder.balance.setVisibility(View.VISIBLE);
+            holder.text_eight.setVisibility(View.VISIBLE);
+        }
+
 
 
     }
@@ -58,7 +174,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         public TextView memo_text;
         public TextView showMore;
         public TextView finalAmount;
-        public LinearLayout contentLayout;
+        protected CardView card_view;
         public TextView  remarks,textViewPowers,date,balance,adjustTxt;
         public TextView  text_one,text_two,text_thee,text_four,text_five,text_six,text_seven,text_eight;
         public ViewHolder(View itemView) {
@@ -88,7 +204,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             text_seven= (TextView) itemView.findViewById(R.id.amount_label);
             text_eight= (TextView) itemView.findViewById(R.id.balanceLabel);
 
-
+            card_view=itemView.findViewById(R.id.card_view);
         }
     }
 }
