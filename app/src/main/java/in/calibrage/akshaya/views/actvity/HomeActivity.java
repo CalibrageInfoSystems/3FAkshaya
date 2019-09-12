@@ -211,19 +211,13 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void logOutDialog() {
 
-        LayoutInflater layoutInflater = LayoutInflater.from(HomeActivity.this);
 
-        View dialogRootView = layoutInflater.inflate(R.layout.dialog_logout, null);
-
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
-        ok_btn = dialogRootView.findViewById(R.id.ok_btn);
-        cancel_btn = dialogRootView.findViewById(R.id.cancel_btn);
-        dialogMessage = dialogRootView.findViewById(R.id.dialogMessage);
-        dialogMessage.setText(getString(R.string.alert_logout));
-
-        alertDialogBuilder.setView(dialogRootView);
-
-
+        final Dialog dialog = new Dialog(HomeActivity.this,R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_logout);
+        cancel_btn = dialog.findViewById(R.id.cancel_btn);
+        ok_btn = dialog.findViewById(R.id.ok_btn);
 /**
  * @param OnClickListner
  */
@@ -250,12 +244,11 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog.dismiss();
+                dialog.dismiss();
             }
         });
 
-        alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        dialog.show();
     }
 
 
