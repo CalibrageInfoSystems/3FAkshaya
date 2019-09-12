@@ -20,7 +20,7 @@ import in.calibrage.akshaya.common.BaseFragment;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends BaseFragment {
-    // TODO: Rename parameter arguments, choose names that match
+    public static String TAG = ProfileFragment.class.getSimpleName();
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -76,7 +76,7 @@ public class ProfileFragment extends BaseFragment {
         }
     }
 
-    @Override
+ /*   @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -91,7 +91,7 @@ public class ProfileFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
+    }*/
 
     /**
      * This interface must be implemented by activities that contain this

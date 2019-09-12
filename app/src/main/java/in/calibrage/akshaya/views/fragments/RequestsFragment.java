@@ -14,7 +14,7 @@ import in.calibrage.akshaya.common.BaseFragment;
  * A simple {@link Fragment} subclass.
  */
 public class RequestsFragment extends BaseFragment {
-
+public static String TAG = RequestsFragment.class.getSimpleName();
 
     public RequestsFragment() {
         // Required empty public constructor

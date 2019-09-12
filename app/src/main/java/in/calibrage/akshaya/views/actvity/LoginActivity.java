@@ -99,20 +99,23 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if (farmerId.getText() != null & farmerId.getText().toString().trim() != "" & !TextUtils.isEmpty(farmerId.getText())) {
+
                     if (isOnline())
                         GetLogin();
                     else {
                         Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    validationPopShow();
-                    farmerId.setError("Please Enter Farmer Id");
+                   // validationPopShow();
+                   // farmerId.setError("Please Enter Farmer Id");
+                    showDialog(LoginActivity.this,"Please Enter Farmer Id");
                 }
             }
         });
         Qr_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                /* Intent intent = new Intent(getApplicationContext(), ScannedBarcodeActivity.class);
                 st(intent);
                 if (validations()) {
@@ -166,7 +169,7 @@ public class LoginActivity extends BaseActivity {
                                 }
                             }, 300);
                         } else {
-                            Toast.makeText(LoginActivity.this, farmerResponceModel.getEndUserMessage(), Toast.LENGTH_SHORT).show();
+                            showDialog(LoginActivity.this,farmerResponceModel.getEndUserMessage());
                         }
                     }
                 });

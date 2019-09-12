@@ -4,11 +4,15 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -32,17 +36,23 @@ import com.squareup.picasso.Picasso;
 import java.lang.reflect.Field;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleTransform;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.views.fragments.HomeFragment;
+import in.calibrage.akshaya.views.fragments.My3FFragment;
+import in.calibrage.akshaya.views.fragments.ProfileFragment;
+import in.calibrage.akshaya.views.fragments.RequestsFragment;
 import rx.Subscription;
 
+import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+import static in.calibrage.akshaya.common.CommonUtil.view;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private android.support.v7.widget.Toolbar toolbar;
     private BottomNavigationView bottom_navigation;
     private AlertDialog alert, alertDialog;
@@ -53,9 +63,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private Subscription mSubscription;
     private FrameLayout content_frame;
     private FragmentManager fragmentManager;
-    private TextView txt_name, txt_phone, txt_adrs,dialogMessage;
+    private TextView txt_name, txt_phone, txt_adrs, dialogMessage;
     private FarmerOtpResponceModel catagoriesList;
     private Button ok_btn, cancel_btn;
+    String FragmentTAG ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,12 +99,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         fragmentManager = getSupportFragmentManager();
         content_frame = (FrameLayout) findViewById(R.id.content_frame);
-        HomeFragment homeFragment = new HomeFragment();
+       /* HomeFragment homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, homeFragment, "homeTag")
-                .commit();
-
-
+                .commit();*/
+       viewFragment(new HomeFragment(),HomeFragment.TAG);
+//        FragmentTAG = HomeFragment.TAG;
     }
 
     private void setViews() {
@@ -114,6 +125,46 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         txt_adrs.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
         if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1()))
             Picasso.with(HomeActivity.this).load(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1()).error(R.drawable.ic_user).transform(new CircleTransform()).into(img_profile);
+
+        bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
+                switch (item.getItemId()) {
+                    case R.id.action_home: {
+
+                        /*replaceFragment(HomeActivity.this,R.id.content_frame,new HomeFragment(),FragmentTAG,HomeFragment.TAG);
+                        FragmentTAG = HomeFragment.TAG;*/
+                        viewFragment( new HomeFragment(),HomeFragment.TAG);
+                        break;
+                    }
+                    case R.id.action_profile: {
+//                        getSupportFragmentManager().beginTransaction()
+//                                .replace(R.id.content_frame, new ProfileFragment(), ProfileFragment.TAG)
+//                                .commit();
+                        viewFragment( new ProfileFragment(),ProfileFragment.TAG);
+                        break;
+                    }
+                    case R.id.action_3f: {
+                        /*getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.content_frame, new My3FFragment(), My3FFragment.TAG)
+                                .commit();*/
+                        viewFragment( new My3FFragment(),My3FFragment.TAG);
+                        break;
+                    }
+                    case R.id.action_requests: {
+                        viewFragment( new RequestsFragment(),RequestsFragment.TAG);
+                        break;
+                    }
+                    case R.id.action_logout: {
+                        logOutDialog();
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -149,8 +200,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Log.e("Roja===", "home");
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
-        }
-        else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
 
             //popupdialog to show message to logout the application
             logOutDialog();
@@ -161,58 +211,56 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void logOutDialog() {
 
-            LayoutInflater layoutInflater = LayoutInflater.from(HomeActivity.this);
+        LayoutInflater layoutInflater = LayoutInflater.from(HomeActivity.this);
 
-            View dialogRootView = layoutInflater.inflate(R.layout.dialog_logout, null);
+        View dialogRootView = layoutInflater.inflate(R.layout.dialog_logout, null);
 
-            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
-            ok_btn =dialogRootView.findViewById(R.id.ok_btn);
-            cancel_btn = dialogRootView.findViewById(R.id.cancel_btn);
-            dialogMessage =dialogRootView.findViewById(R.id.dialogMessage);
-            dialogMessage.setText(getString(R.string.alert_logout));
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HomeActivity.this);
+        ok_btn = dialogRootView.findViewById(R.id.ok_btn);
+        cancel_btn = dialogRootView.findViewById(R.id.cancel_btn);
+        dialogMessage = dialogRootView.findViewById(R.id.dialogMessage);
+        dialogMessage.setText(getString(R.string.alert_logout));
 
-            alertDialogBuilder.setView(dialogRootView);
+        alertDialogBuilder.setView(dialogRootView);
 
 
 /**
  * @param OnClickListner
  */
-            ok_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                 //   getApplicationContext().getSharedPreferences(PREF_NAME, 0).edit().clear().commit();
-                    updateResources(getApplicationContext(), "en-US");
-                  //  SharedPrefsData.putInt(getApplicationContext(), Constants.ISLOGIN, 0, PREF_NAME);
-                    SharedPrefsData.getInstance(getApplicationContext()).ClearData(getApplicationContext());
-                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                    // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //   getApplicationContext().getSharedPreferences(PREF_NAME, 0).edit().clear().commit();
+                updateResources(getApplicationContext(), "en-US");
+                //  SharedPrefsData.putInt(getApplicationContext(), Constants.ISLOGIN, 0, PREF_NAME);
+                SharedPrefsData.getInstance(getApplicationContext()).ClearData(getApplicationContext());
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
-                    finish();
-                }
-            });
+                finish();
+            }
+        });
 
 /**
  * @param OnClickListner
  */
-            cancel_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    alertDialog.dismiss();
-                }
-            });
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
 
-            alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-        }
-
-
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
 
     private void selectLanguage() {
-        final Dialog dialog = new Dialog(HomeActivity.this,R.style.popup_window_animation);
+        final Dialog dialog = new Dialog(HomeActivity.this, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_select_language);
 
@@ -291,4 +339,33 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+    private void viewFragment(Fragment fragment, String name){
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, fragment);
+        // 1. Know how many fragments there are in the stack
+        final int count = fragmentManager.getBackStackEntryCount();
+        // 2. If the fragment is **not** "home type", save it to the stack
+        if( name.equals( HomeFragment.TAG) ) {
+            fragmentTransaction.addToBackStack(name);
+        }
+        // Commit !
+        fragmentTransaction.commit();
+        // 3. After the commit, if the fragment is not an "home type" the back stack is changed, triggering the
+        // OnBackStackChanged callback
+        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                // If the stack decreases it means I clicked the back button
+                if( fragmentManager.getBackStackEntryCount() <= count){
+                    // pop all the fragment and remove the listener
+                    fragmentManager.popBackStack(HomeFragment.TAG, POP_BACK_STACK_INCLUSIVE);
+                    fragmentManager.removeOnBackStackChangedListener(this);
+                    // set the home button selected
+                    bottom_navigation.getMenu().getItem(0).setChecked(true);
+                }
+            }
+        });
+    }
+
 }

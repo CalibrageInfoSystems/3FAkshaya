@@ -13,6 +13,7 @@ import in.calibrage.akshaya.common.BaseFragment;
 
 
 public class My3FFragment extends BaseFragment {
+    public static String TAG = My3FFragment.class.getSimpleName();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,7 +62,7 @@ public class My3FFragment extends BaseFragment {
         }
     }
 
-    @Override
+   /* @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -76,7 +77,7 @@ public class My3FFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
+    }*/
 
     /**
      * This interface must be implemented by activities that contain this

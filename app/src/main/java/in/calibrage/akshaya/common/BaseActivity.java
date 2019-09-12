@@ -1,5 +1,7 @@
 package in.calibrage.akshaya.common;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -12,9 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import in.calibrage.akshaya.R;
@@ -145,7 +150,7 @@ public class BaseActivity extends AppCompatActivity {
                             .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                     fragmentTransaction
                             .addToBackStack(cuurentFragmentTag)
-                            .add(container, fragment, newFragmentTag);
+                            .replace(container, fragment, newFragmentTag);
                     fragmentTransaction.commitAllowingStateLoss();
                 }
 
@@ -183,8 +188,47 @@ public class BaseActivity extends AppCompatActivity {
         });
 
     }
+    public void showDialog(Activity activity, String msg){
+        final Dialog dialog = new Dialog(activity,R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog);
+
+        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+        text.setText(msg);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
+    /**
+     * Hides the soft keyboard
+     */
+    public void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            inputMethodManager.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0);
+        }
+    }
+
+    /**
+     * Shows the soft keyboard
+     */
+    public void showSoftKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        view.requestFocus();
+        inputMethodManager.showSoftInput(view, 0);
 
 
+    }
 }
 
 
