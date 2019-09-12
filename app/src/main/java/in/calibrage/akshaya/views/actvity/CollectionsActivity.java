@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -64,7 +65,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     private ProgressDialog dialog;
     private RecyclerView.LayoutManager layoutManager;
     String farmerCode,Farmer_code;
-    TextView noRecords;
+    LinearLayout noRecords;
     String last_30day;
     TextView collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight,text;
     RelativeLayout relativeLayoutCount;
@@ -84,7 +85,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_collections);
         dialog = new ProgressDialog(this);
-        noRecords=(TextView)findViewById(R.id.text);
+        noRecords=(LinearLayout) findViewById(R.id.text);
 
         collectionsWeight=(TextView)findViewById(R.id.collectionsWeight);
         collectionsCount=(TextView)findViewById(R.id.collectionsCount);

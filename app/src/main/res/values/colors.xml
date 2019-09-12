@@ -10,7 +10,7 @@
     <color name="colorOrange_head">#D7FB7500</color>
     <color name="colorOrange2">#A3E86100</color>
 
-    <color name="white">#f5f5f5</color>
+    <color name="white">#FAF5F5F5</color>
     <color name="half_white">#7Ff5f5f5</color>
     <color name="black">#000000</color>
     <color name="half_black">#CB000000</color>
@@ -49,7 +49,7 @@
     <color name="Maroon">#800000</color>
     <color name="White">#FFFFFF</color>
     <color name="Red">#FF4500</color>
-    <color name="lightgrey">#D3D3D3</color>
+    <color name="lightgrey">#FDD3D3D3</color>
 
     <color name="new_accent_cb">#e4aaaf</color>
     <color name="new_accent_c">#99edbfc3</color>
