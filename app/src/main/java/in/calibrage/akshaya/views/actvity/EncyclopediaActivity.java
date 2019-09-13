@@ -6,11 +6,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -26,9 +29,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class EncyclopediaActivity extends AppCompatActivity {
+    private static final String TAG = EncyclopediaActivity.class.getSimpleName();
     private int postTypeId;
     private String titleName;
-
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -46,7 +49,6 @@ public class EncyclopediaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_encyclopedia);
         init();
         setViews();
-        GetEncyclopediaDetails();
     }
 
     private void init() {
@@ -80,45 +82,6 @@ public class EncyclopediaActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-
-    private void GetEncyclopediaDetails() {
-        mdilogue.show();
-        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getEncyclopediaDetails(APIConstantURL.GetEncyclopediaDetails)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<GetEncyclopediaDetails>() {
-                    @Override
-                    public void onCompleted() {
-                        mdilogue.dismiss();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            ((HttpException) e).code();
-                            ((HttpException) e).message();
-                            ((HttpException) e).response().errorBody();
-                            try {
-                                ((HttpException) e).response().errorBody().string();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            e.printStackTrace();
-                        }
-                        mdilogue.cancel();
-                    }
-
-                    @Override
-                    public void onNext(final GetEncyclopediaDetails mGetEncyclopediaDetails) {
-                        mdilogue.dismiss();
-
-                    }
-
-
-                });
-
-
-    }
 
 
 
