@@ -50,7 +50,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class OtpActivity extends BaseActivity {
-    public static final String TAG= OtpActivity.class.getSimpleName();
+    public static final String TAG = OtpActivity.class.getSimpleName();
     private Subscription mSubscription;
 
 
@@ -63,8 +63,9 @@ public class OtpActivity extends BaseActivity {
     public SharedPreferences.Editor editor;
     private ProgressDialog dialog;
     String first_name, middle_name, last_name, State_code;
-    private  ImageView backImg;
-    private SpotsDialog mdilogue ;
+    private ImageView backImg;
+    private SpotsDialog mdilogue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,16 +85,16 @@ public class OtpActivity extends BaseActivity {
 
         sub_Btn = (Button) findViewById(R.id.btn_otp_login);
 
-         backImg = (ImageView) findViewById(R.id.back);
+        backImg = (ImageView) findViewById(R.id.back);
         pinEntry = findViewById(R.id.txt_pin_entry);
         pinEntry.requestFocus();
-        mdilogue= (SpotsDialog) new SpotsDialog.Builder()
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
 
     }
-        //  submitBtn.setTypeface(faceBold);
+    //  submitBtn.setTypeface(faceBold);
 
     private void setview() {
         sub_Btn.setOnClickListener(new View.OnClickListener() {
@@ -103,9 +104,7 @@ public class OtpActivity extends BaseActivity {
 
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {
                     GetOtp();
-                }
-                else
-                {
+                } else {
                     pinEntry.setError("Please Enter Pin");
                 }
             }
@@ -116,17 +115,15 @@ public class OtpActivity extends BaseActivity {
                 finish();
             }
         });
-        Pin_text =pinEntry.getText().toString();
+        Pin_text = pinEntry.getText().toString();
 
     }
-
-
 
 
     private void GetOtp() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp+"139292")
+        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp + "139292")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerOtpResponceModel>() {
                     @Override
@@ -156,13 +153,12 @@ public class OtpActivity extends BaseActivity {
                         if (farmerOtpResponceModel.getIsSuccess()) {
 
 
-
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     /* Create an Intent that will start the Menu-Activity. */
                                     SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
-                                    SharedPrefsData.saveCatagories(OtpActivity.this,farmerOtpResponceModel);
+                                    SharedPrefsData.saveCatagories(OtpActivity.this, farmerOtpResponceModel);
 
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);

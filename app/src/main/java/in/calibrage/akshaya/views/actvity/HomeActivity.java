@@ -282,7 +282,6 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 dialog.dismiss();
             }
         });
-
         dialog.show();
     }
 

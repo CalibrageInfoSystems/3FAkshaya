@@ -6,6 +6,7 @@ import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
+import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.LerningsModel;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
@@ -45,6 +46,9 @@ public interface ApiService {
     @POST(APIConstantURL.payment_history)
     Observable<PaymentResponseModel> postpayment(@Body JsonObject data);
 
+
+    @GET
+    Observable<GetEncyclopediaDetails> getEncyclopediaDetails(@Url String url);
 
  /*
     // PASSWORD RESET
