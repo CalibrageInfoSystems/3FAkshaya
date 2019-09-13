@@ -44,6 +44,10 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CropMaintanceVisitActivity.class);
                 intent.putExtra("plotid",    holder.textViewplotId.getText());
+                intent.putExtra("plotAge",    holder.textViewpalmArea.getText());
+                intent.putExtra("plotVillage",    holder.textViewLocation.getText());
+                intent.putExtra("landMark",    holder.textViewstatus.getText());
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 mContext.startActivity(intent);

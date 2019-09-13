@@ -335,6 +335,7 @@
     <string name="logout">లాగ్అవుట్</string>
     <string name="confirmation">నిర్ధారణ</string>
     <string name="alert_logout">మీరు లాగ్ అవుట్ చేయాలనుకుంటున్నారా?</string>
+    <string name="no_plots">No Plots Available</string>
     <!--  we need to use video ids instead of video link  -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>

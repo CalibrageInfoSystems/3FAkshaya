@@ -43,29 +43,41 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
 
         holder.comments.setText(dataa.getComments());
 
-//        if (dataa.getReasonType().contains("null"))
-//        {
-//            //   Log.e("bbbbb",superHero.getmAmount());
-//            holder.reasonType.setVisibility(View.GONE);
-//            holder.reason_label.setVisibility(View.GONE);
-//
-//        }
-//        else {
-//            holder.reasonType.setVisibility(View.VISIBLE);
-//            holder.reason_label.setVisibility(View.VISIBLE);
-//        }
-//        if (dataa.getComments().contains("null"))
-//        {
-//            //   Log.e("bbbbb",superHero.getmAmount());
-//            holder.comments.setVisibility(View.GONE);
-//            holder.comment_label.setVisibility(View.GONE);
-//
-//        }
-//        else {
-//            holder.comments.setVisibility(View.VISIBLE);
-//            holder.comment_label.setVisibility(View.VISIBLE);
-//        }
+        if (dataa.getDosage().contains("null"))
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.Dosage.setVisibility(View.GONE);
+            holder.dosage_label.setVisibility(View.GONE);
+            holder.UOMName.setVisibility(View.GONE);
 
+        }
+        else {
+            holder.Dosage.setVisibility(View.VISIBLE);
+            holder.dosage_label.setVisibility(View.VISIBLE);
+            holder.UOMName.setVisibility(View.VISIBLE);
+        }
+        if (dataa.getComments().contains("null"))
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.comments.setVisibility(View.GONE);
+            holder.comment_label.setVisibility(View.GONE);
+
+        }
+        else {
+            holder.comments.setVisibility(View.VISIBLE);
+            holder.comment_label.setVisibility(View.VISIBLE);
+        }
+        if (dataa.getRecommendedFertilizer().contains("null"))
+        {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.RecommendedFertilizer.setVisibility(View.GONE);
+            holder.RecommendedFertilizer_label.setVisibility(View.GONE);
+
+        }
+        else {
+            holder.RecommendedFertilizer.setVisibility(View.VISIBLE);
+            holder.RecommendedFertilizer_label.setVisibility(View.VISIBLE);
+        }
         //      holder.imageView.setImageResource(listdata[position].getImgId());
 
     }
@@ -79,7 +91,8 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        public TextView NutrientDeficiencyName,Nameofchemicalapplied,RecommendedFertilizer,UOMName,Dosage,RegisteredDate,comments;
+        public TextView NutrientDeficiencyName,Nameofchemicalapplied,RecommendedFertilizer,UOMName,Dosage,RegisteredDate,comments,dosage_label,
+                RecommendedFertilizer_label;
 
         // ImageView thumbnail;
         public TextView comment_label,reason_label;
@@ -94,10 +107,10 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
             Dosage= itemView.findViewById(R.id.Dosage);
 
             RegisteredDate = itemView.findViewById(R.id.RegisteredDate);
-
+            dosage_label=itemView.findViewById(R.id.DosageLabel);
             comments =itemView.findViewById(R.id.Comments);
             comment_label=itemView.findViewById(R.id.commentsLabel);
-           // reason_label=itemView.findViewById(R.id.reasonTypeLabel);
+            RecommendedFertilizer_label=itemView.findViewById(R.id.RecommendedFertilizerLabel);
 
         }
 

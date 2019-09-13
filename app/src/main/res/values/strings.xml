@@ -342,6 +342,7 @@
     <string name="logout">LogOut</string>
     <string name="confirmation">Confirmation</string>
     <string name="alert_logout">Are you sure you want to Logout?</string>
+    <string name="no_plots">No Plots Available</string>
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>
