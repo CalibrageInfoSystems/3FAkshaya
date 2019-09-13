@@ -52,9 +52,8 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
 
         if(position%2 == 0){
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
-
         } else {
-            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.light_gray2));
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
         }
     }

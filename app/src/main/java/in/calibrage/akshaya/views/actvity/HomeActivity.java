@@ -197,9 +197,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             selectLanguage();
             // Handle the camera action
         } else if (id == R.id.action_home) {
-               finish();
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-            startActivity(intent);
+
+            viewFragment( new HomeFragment(),HomeFragment.TAG);
         } else if (id == R.id.nav_logout) {
 
             //popupdialog to show message to logout the application
