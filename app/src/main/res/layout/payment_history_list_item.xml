@@ -24,6 +24,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/album_title"
                 android:text="@string/only_date"
+                android:textColor="@color/black"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"/>
 
@@ -44,6 +45,7 @@
                 android:gravity="center_vertical"
                 android:textStyle="bold"
                 android:textSize="@dimen/album_title"
+                android:textColor="@color/black"
                 android:text="@string/ffb"
                 android:layout_below="@id/dateLabel"
                 android:layout_marginTop="10dp"
@@ -64,6 +66,7 @@
             <TextView
 
                 android:id="@+id/adhocLabel"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ffb_quantity"
@@ -85,7 +88,7 @@
 
                 android:layout_alignBaseline="@id/adhocLabel"/>
             <TextView
-
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/invoice_label"
@@ -110,7 +113,7 @@
                 android:textSize="@dimen/album_title" />
 
             <TextView
-
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/gr_amount_label"
@@ -138,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/adjustedLabel"
                 android:text="@string/adjusted"
+                android:textColor="@color/black"
                 android:layout_below="@id/gr_amount_label"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
@@ -165,6 +169,7 @@
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"/>
             <TextView
@@ -190,7 +195,7 @@
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold"
                 android:layout_marginTop="12dp"
-
+                android:textColor="@color/black"
                 android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="match_parent"
@@ -214,7 +219,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/balance"
                 android:textSize="@dimen/album_title"
-
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView

@@ -89,7 +89,7 @@
             android:textAlignment="center"
             android:gravity="center"
             android:textStyle="bold"
-            android:textColor="@color/yellow"
+            android:textColor="@color/colorOrange"
             android:text="@string/bank_details"
             android:textSize="@dimen/text_size" />
 

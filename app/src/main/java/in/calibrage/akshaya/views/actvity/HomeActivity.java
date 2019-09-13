@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,6 +32,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -67,6 +70,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     private FarmerOtpResponceModel catagoriesList;
     private Button ok_btn, cancel_btn;
     String FragmentTAG ;
+    FloatingActionButton myFab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +88,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         nv = (NavigationView) findViewById(R.id.nv);
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.app_name);
-
+        myFab = (FloatingActionButton)findViewById(R.id.call_fb);
         dl.addDrawerListener(t);
         t.syncState();
 
@@ -166,6 +170,27 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             }
         });
 
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Uri u = Uri.parse("tel:" + "123456789");
+
+
+                Intent i = new Intent(Intent.ACTION_DIAL, u);
+
+                try
+                {
+
+                    startActivity(i);
+                }
+                catch (SecurityException s)
+                {
+
+                 Toast.makeText(HomeActivity.this, "SecurityException", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+        });
+
     }
 
     public void initToolBar() {
@@ -197,9 +222,10 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             selectLanguage();
             // Handle the camera action
         } else if (id == R.id.action_home) {
-               finish();
+
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
+            finish();
         } else if (id == R.id.nav_logout) {
 
             //popupdialog to show message to logout the application
@@ -216,6 +242,11 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_logout);
+
+        dialogMessage =dialog.findViewById(R.id.dialogMessage);
+        dialogMessage.setText(getString(R.string.alert_logout));
+
+
         cancel_btn = dialog.findViewById(R.id.cancel_btn);
         ok_btn = dialog.findViewById(R.id.ok_btn);
 /**

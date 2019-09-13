@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+    android:layout_width="match_parent"
+
+
+    android:layout_height="match_parent"
+
+
+    tools:context="in.calibrage.akshaya.views.actvity.EncyclopediaActivity">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_gravity="right"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/backlinear"
+        android:background="@color/colorOrange_head">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal" >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/arrow_l"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:id="@+id/back"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:id="@+id/text_label"
+                android:layout_marginTop="15dp"
+                android:text=""
+                android:layout_alignLeft="@+id/back"
+              android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_20" />
+
+
+            <ImageView
+                android:id="@+id/home_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/home"
+                android:textColor="#ff0000ff"
+                android:layout_marginTop="3dp"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <!--
+            <include        android:layout_height="wrap_content"
+
+
+                android:layout_width="match_parent"
+
+
+                layout="@layout/toolbar_lay"        >
+
+            </include>-->
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/backlinear"
+        android:layout_marginTop="-2dp"
+        android:elevation="6dp"
+        app:tabBackground="@color/white"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabPaddingEnd="-1dp"
+        app:tabPaddingStart="-1dp"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabTextColor="@color/colorOrange2" />
+
+    <android.support.v4.view.ViewPager
+        android:layout_marginTop="50dp"
+
+        android:layout_width="match_parent"
+        android:layout_below="@+id/backlinear"
+
+        android:layout_height="wrap_content"
+
+
+        android:id="@+id/viewpager">
+
+    </android.support.v4.view.ViewPager>
+</RelativeLayout>

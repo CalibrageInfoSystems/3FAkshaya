@@ -1,12 +1,14 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -15,6 +17,7 @@ import java.util.List;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.LerningsModel;
+import in.calibrage.akshaya.views.actvity.EncyclopediaActivity;
 
 public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZoneBaseAdapter.ViewHolder> {
 
@@ -37,10 +40,20 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getName());
+        holder.learn_relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, EncyclopediaActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("postTypeId", learning_Set.get(position).getId());
+                intent.putExtra("name", learning_Set.get(position).getName());
 
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -67,11 +80,13 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
 
         public TextView text_title;
      private  ImageView img;
+     private RelativeLayout learn_relative;
 
         public ViewHolder(View itemView) {
             super(itemView);
             text_title = itemView.findViewById(R.id.text_title);
             img= itemView.findViewById(R.id.imageView);
+            learn_relative =itemView.findViewById(R.id.learn_relative);
 //
         }
 
