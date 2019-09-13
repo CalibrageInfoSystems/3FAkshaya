@@ -248,8 +248,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         }
         if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
          timePeroidLinear.setVisibility(View.VISIBLE); //
-           // relativeLayoutCount.setVisibility(View.GONE);
-           // collecton_data.setVisibility(View.GONE);
+           relativeLayoutCount.setVisibility(View.GONE);
+           collecton_data.setVisibility(View.GONE);
             collection_Submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -1,0 +1,221 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="2dp"
+        card_view:cardCornerRadius="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/card_margin"
+            >
+
+            <TextView
+                android:id="@+id/seedsPlantedLabel"
+                android:layout_marginStart="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/spalingPlanted"
+                android:paddingLeft="8dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/seedsPlanted"
+                android:textColor="@color/colorOrange2"
+                android:layout_toRightOf="@+id/seedsPlantedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+
+            <TextView
+                android:id="@+id/prevPalmsCountLabel"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seedsPlantedLabel"
+                android:layout_marginStart="@dimen/margin_10"
+
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:text="@string/prevPalmsCount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/album_title"
+
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/prevPalmsCount"
+                android:hint="0000"
+                android:layout_toRightOf="@+id/prevPalmsCountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:layout_below="@id/seedsPlantedLabel"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/plamsCountLabel"
+                android:text="@string/plamsCount"
+                android:layout_marginStart="8dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/prevPalmsCountLabel"
+                android:paddingLeft="8dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/plamsCount"
+                android:hint="0000"
+                android:layout_toRightOf="@+id/plamsCountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/prevPalmsCountLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/isTreesMissingLabel"
+                android:layout_marginStart="8dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/isTreesMissing"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/plamsCountLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/isTreesMissing"
+                android:layout_toRightOf="@+id/isTreesMissingLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="yes"
+                android:layout_below="@id/plamsCountLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/missingTreesCountLabel"
+                android:layout_marginStart="8dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/missingTreesCount"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/isTreesMissingLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/missingTreesCount"
+                android:layout_toRightOf="@+id/missingTreesCountLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="0000"
+                android:layout_below="@id/isTreesMissingLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/reasonTypeLabel"
+                android:layout_marginStart="8dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/reasonType"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/missingTreesCountLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/reasonType"
+                android:layout_toRightOf="@+id/reasonTypeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="reason"
+                android:layout_below="@id/missingTreesCountLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/expectedPlamsCountLabel"
+                android:layout_marginStart="8dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/expectedPlamsCount"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/reasonTypeLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/expectedPlamsCount"
+                android:layout_toRightOf="@+id/expectedPlamsCountLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="0000"
+                android:layout_below="@id/reasonTypeLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/commentsLabel"
+                android:layout_marginStart="8dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/comments"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/expectedPlamsCountLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/comments"
+                android:layout_toRightOf="@+id/commentsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/comments"
+                android:layout_below="@id/expectedPlamsCountLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

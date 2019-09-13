@@ -10,8 +10,12 @@ public interface APIConstantURL {
     String Farmer_otp ="Farmer/APWGBDAB00010001/";
     String crop_maintance ="GetCropMaintenanceHistoryDetailsByPlotCode/APAB0001000004";
     String payment_history ="Payment/GetVendorLedger";
+
     String GetEncyclopediaDetails = "Encyclopedia/GetEncyclopediaDetails/1004/AP";
 
+
+
+    public static  String DEVELOPER_KEY = "AIzaSyBx7v0YOb140fDO7EbfMx4l87raxezDWFw";
 
 
 

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "in.calibrage.akshaya"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -49,17 +49,13 @@ dependencies {
 // PROGRESS Dialogue
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
 
+
     dependencies {
 
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         //... other dependencies
     }
-    /*dependencies {
-        implementation ('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
-            // Exclude is only needed if you already have
-            // androidx.appcompat as a dependency in your app.
-            exclude group: 'androidx.appcompat', module: 'appcompat'
-        }
-    }*/
+
+
 
 }

@@ -2,7 +2,6 @@ package in.calibrage.akshaya.views.actvity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +14,6 @@ import java.io.IOException;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
-import in.calibrage.akshaya.common.Constants;
-import in.calibrage.akshaya.localData.SharedPrefsData;
-import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -32,6 +28,7 @@ import rx.schedulers.Schedulers;
 public class EncyclopediaActivity extends AppCompatActivity {
     private int postTypeId;
     private String titleName;
+
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -39,7 +36,6 @@ public class EncyclopediaActivity extends AppCompatActivity {
     private ImageView backImg;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +119,10 @@ public class EncyclopediaActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
 }
 
 
