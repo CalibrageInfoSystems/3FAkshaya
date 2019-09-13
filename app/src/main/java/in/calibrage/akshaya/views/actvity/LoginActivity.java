@@ -164,8 +164,9 @@ public class LoginActivity extends BaseActivity {
                                 @Override
                                 public void run() {
                                     /* Create an Intent that will start the Menu-Activity. */
-                                    finish();
+
                                     startActivity( new Intent(getApplicationContext(), OtpActivity.class));
+                                    finish();
                                 }
                             }, 300);
                         } else {

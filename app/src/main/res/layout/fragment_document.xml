@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.calibrage.akshaya.views.fragments.">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"
+        android:visibility="gone"
+        android:textAlignment="center"
+        android:text="@string/no_pdfs"
+        android:layout_marginTop="@dimen/text_size_20"
+        android:textSize="@dimen/text_size_20"
+        android:textColor="@color/colorAccent"
+        android:layout_centerInParent="true"
+        />
+
+</FrameLayout>

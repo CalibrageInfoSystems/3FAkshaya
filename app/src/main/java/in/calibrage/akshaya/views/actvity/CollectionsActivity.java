@@ -79,6 +79,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     TextView Seleteddatefrom,selectedsateto;
     private SpotsDialog mdilogue ;
     LinearLayout date_linear;
+    ImageView backImg,home_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,37 +87,49 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_collections);
-        dialog = new ProgressDialog(this);
-        noRecords=(LinearLayout) findViewById(R.id.text);
+        init();
+        setViews();
+    }
 
-        collectionsWeight=(TextView)findViewById(R.id.collectionsWeight);
-        collectionsCount=(TextView)findViewById(R.id.collectionsCount);
-        paidCollectionsWeight=(TextView)findViewById(R.id.paidCollectionsWeight);
-        unPaidCollectionsWeight=(TextView)findViewById(R.id.unPaidCollectionsWeight);
-        Seleteddatefrom=(TextView)findViewById(R.id.seleced_date_from);
-        selectedsateto=(TextView)findViewById(R.id.seleced_date_to);
-        date_linear=(LinearLayout) findViewById(R.id.selecte_label);
-        ImageView backImg=(ImageView)findViewById(R.id.back);
-        mdilogue= (SpotsDialog) new SpotsDialog.Builder()
+    private void init() {
+        noRecords = (LinearLayout) findViewById(R.id.text);
+
+        collectionsWeight = (TextView) findViewById(R.id.collectionsWeight);
+        collectionsCount = (TextView) findViewById(R.id.collectionsCount);
+        paidCollectionsWeight = (TextView) findViewById(R.id.paidCollectionsWeight);
+        unPaidCollectionsWeight = (TextView) findViewById(R.id.unPaidCollectionsWeight);
+        Seleteddatefrom = (TextView) findViewById(R.id.seleced_date_from);
+        selectedsateto = (TextView) findViewById(R.id.seleced_date_to);
+        date_linear = (LinearLayout) findViewById(R.id.selecte_label);
+        backImg = (ImageView) findViewById(R.id.back);
+        home_btn = (ImageView) findViewById(R.id.home_btn);
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
 
 
+        collection_Submit = (Button) findViewById(R.id.buttonSubmit);
+        fromText = (EditText) findViewById(R.id.from_date);
+        relativeLayoutCount = (RelativeLayout) findViewById(R.id.top_linear);
+        String from_date = "<font color='#000000'>From Date </font>" + "<font color='#FF0000'>*</font>" + "<font color='#000000'></font>";
+        //   fromText.setText(Html.fromHtml(from_date));
+        toText = (EditText) findViewById(R.id.to_date);
+        String to_date = "<font color='#000000'>To Date </font>" + "<font color='#FF0000'>*</font>" + "<font color='#000000'></font>";
+        //  toText.setText(Html.fromHtml(to_date));
+        collecton_data = (RecyclerView) findViewById(R.id.collection_recycler_view);
+        spin = (Spinner) findViewById(R.id.spinner);
+        timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
+    }
+    private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 finish();
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
+
             }
         });
-
-        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
-
-        ImageView home_btn=(ImageView)findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,14 +137,6 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 startActivity(intent);
             }
         });
-        collection_Submit=(Button)findViewById(R.id.buttonSubmit);
-        fromText=(EditText) findViewById(R.id.from_date);
-
-
-        String from_date = "<font color='#000000'>From Date </font>" + "<font color='#FF0000'>*</font>" + "<font color='#000000'></font>";
-     //   fromText.setText(Html.fromHtml(from_date));
-
-
         fromText.setInputType(InputType.TYPE_NULL);
         fromText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,16 +157,6 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 picker.getDatePicker().setMaxDate(System.currentTimeMillis());
             }
         });
-
-
-
-        relativeLayoutCount=(RelativeLayout)findViewById(R.id.top_linear);
-
-        toText=(EditText) findViewById(R.id.to_date);
-
-        String to_date = "<font color='#000000'>To Date </font>" + "<font color='#FF0000'>*</font>" + "<font color='#000000'></font>";
-      //  toText.setText(Html.fromHtml(to_date));
-
         toText.setInputType(InputType.TYPE_NULL);
         toText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,15 +177,10 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 picker.getDatePicker().setMaxDate(System.currentTimeMillis());
             }
         });
-        collecton_data = (RecyclerView) findViewById(R.id.collection_recycler_view);
         collecton_data.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         collecton_data.setLayoutManager(layoutManager);
-        timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
-
-        spin = (Spinner) findViewById(R.id.spinner);
         spin.setOnItemSelectedListener(this);
-
 
         ArrayAdapter aa = new ArrayAdapter(this,R.layout.spinner_item,selection);
         aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
@@ -215,8 +205,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         {
             financiyalYearFrom=(CurrentYear-1)+"-04-01";
             financiyalYearTo=(CurrentYear)+"-03-31";
-            Log.i(" financiyalYearFrom====181 ", financiyalYearFrom);
-            Log.i("financiyalYearTo====182 ", financiyalYearTo);
+            Log.i(" from_year ", financiyalYearFrom);
+            Log.i("tp_year ", financiyalYearTo);
         }
         else
         {
@@ -227,6 +217,15 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         }
 
     }
+
+
+
+
+
+//        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+//        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -316,6 +315,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void getCustomCollections(String fromString, String toString) {
+        collection_list.clear();
         mdilogue.show();
         JsonObject object = collectionObject3();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -364,6 +364,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         }
                         else{
                             noRecords.setVisibility(View.VISIBLE);
+                            relativeLayoutCount.setVisibility(View.GONE);
                         }
 
 
@@ -384,6 +385,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void getfinacialyear() {
+        collection_list.clear();
         mdilogue.show();
         JsonObject object = collectionObject2();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -435,6 +437,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
                         }  else{
                             noRecords.setVisibility(View.VISIBLE);
+                            relativeLayoutCount.setVisibility(View.GONE);
                         }
 
 
@@ -454,6 +457,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void get30days() {
+        collection_list.clear();
         mdilogue.show();
         JsonObject object = collectionObject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -502,6 +506,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         }
                         else{
                             noRecords.setVisibility(View.VISIBLE);
+                            relativeLayoutCount.setVisibility(View.GONE);
                         }
 
                     }
@@ -527,6 +532,6 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        this.finish();
+       // this.finish();
     }
 }

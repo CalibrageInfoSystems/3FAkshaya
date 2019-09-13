@@ -71,7 +71,7 @@ public class PaymentHistoryActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_payment_history);
 
-        dialog = new ProgressDialog(this);
+
         noRecords=(TextView)findViewById(R.id.text);
         ffb=(TextView)findViewById(R.id.ffb_total);
 
@@ -83,6 +83,7 @@ public class PaymentHistoryActivity extends AppCompatActivity {
                 .build();
 
         ImageView backImg=(ImageView)findViewById(R.id.back);
+        totalLinear=(RelativeLayout)findViewById(R.id.linear1);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -302,15 +303,24 @@ public class PaymentHistoryActivity extends AppCompatActivity {
                             noRecords.setVisibility(View.GONE);
                             pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
                             Payment_recycle.setAdapter(pay_adapter);
-                            //relativeLayoutCount.setVisibility(View.VISIBLE);
+                            totalLinear.setVisibility(View.VISIBLE);
+                          //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
 
-//                            collectionsWeight.setText("roja");
-//                            collectionsCount.setText("");
-//                            paidCollectionsWeight.setText("");
-//                            unPaidCollectionsWeight.setText("");
+                            Total_records.setText( String.valueOf(paymentResponseModel.getAffectedRecords()));
+                            ffb.setText( String.valueOf(paymentResponseModel.getResult().getTotalQuanitity()));
+                            if (paymentResponseModel.getResult().getTotalBalance()==("null"))
+                            {
+                                totalBalance.setText("0");
+
+                            }
+                            else {
+                                totalBalance.setText( String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
+                            }
+
                         }
                         else{
                             noRecords.setVisibility(View.VISIBLE);
+                            totalLinear.setVisibility(View.GONE);
                         }
                     }
 

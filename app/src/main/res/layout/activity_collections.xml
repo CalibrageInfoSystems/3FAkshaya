@@ -125,7 +125,7 @@ android:padding="10dp"
         android:layout_centerHorizontal="true"
 
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:weightSum="1">
 
         <ImageView

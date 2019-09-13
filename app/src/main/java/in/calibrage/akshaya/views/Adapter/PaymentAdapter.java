@@ -5,19 +5,23 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHolder>{
-
+    String  datetimevaluereq;
     public Context mContext;
     private List<PaymentResponseModel.PaymentResponce> payment_Set;
     public PaymentAdapter(  Context context,List<PaymentResponseModel.PaymentResponce> payment_Set) {
@@ -37,15 +41,34 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     public void onBindViewHolder(PaymentAdapter.ViewHolder holder, int position) {
 
         ((ViewHolder) holder).memo_text.setText(""+payment_Set.get(position).getMemo());
-        ((ViewHolder) holder).date.setText(payment_Set.get(position).getRefDate());
+
+
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date oneWayTripDate = input.parse(payment_Set.get(position).getRefDate());
+
+            datetimevaluereq=output.format(oneWayTripDate);
+            //datetimevalute.setText(output.format(oneWayTripDate));
+
+            Log.e("===============","======currentData======"+output.format(oneWayTripDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ((ViewHolder) holder).date.setText(datetimevaluereq);
         ((ViewHolder) holder).quantity_ffb.setText(""+payment_Set.get(position).getQuantity());
         ((ViewHolder) holder).adhoc_value.setText(""+payment_Set.get(position).getAdhocRate());
         ((ViewHolder) holder).txt_invoice.setText(""+payment_Set.get(position).getInvoiceRate());
         ((ViewHolder) holder).txt_gr_rate.setText(""+payment_Set.get(position).getGRAmount());
         ((ViewHolder) holder).adjustTxt.setText(""+payment_Set.get(position).getAdjusted());
         ((ViewHolder) holder).finalAmount.setText(""+payment_Set.get(position).getAmount());
-        ((ViewHolder) holder).balance.setText(""+payment_Set.get(position).getBalance());
-
+        if ((payment_Set.get(position).getBalance()) < 0) {
+            String balance1= payment_Set.get(position).getBalance()+""+")";
+            ((ViewHolder) holder).balance.setText(balance1.toString().replace("-","("));
+        }
+       else {
+            ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
+        }
 
         if(position%2 == 0){
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));

@@ -32,8 +32,14 @@ import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.KnowledgeZoneBaseAdapter;
 import in.calibrage.akshaya.views.actvity.CollectionsActivity;
+import in.calibrage.akshaya.views.actvity.FertilizerActivity;
+import in.calibrage.akshaya.views.actvity.LabourRecommendationsActivity;
+import in.calibrage.akshaya.views.actvity.LoanActivity;
 import in.calibrage.akshaya.views.actvity.PaymentActivity;
+import in.calibrage.akshaya.views.actvity.PoleActivity;
+import in.calibrage.akshaya.views.actvity.QuickPayActivity;
 import in.calibrage.akshaya.views.actvity.RecommendationActivity;
+import in.calibrage.akshaya.views.actvity.RequestVisitActivity;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -100,6 +106,51 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//
+        v.findViewById(R.id.labour_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getContext(), LabourRecommendationsActivity.class);
+                startActivity(intent);
+            }
+        });
+        v.findViewById(R.id.pole_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getContext(), PoleActivity.class);
+                startActivity(intent);
+            }
+        });
+        v.findViewById(R.id.fertilizer_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getContext(), FertilizerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        v.findViewById(R.id.quickPay_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getContext(), QuickPayActivity.class);
+                startActivity(intent);
+            }
+        });
+        v.findViewById(R.id.visit_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getContext(), RequestVisitActivity.class);
+                startActivity(intent);
+            }
+        });
+        v.findViewById(R.id.loan_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getContext(), LoanActivity.class);
                 startActivity(intent);
             }
         });

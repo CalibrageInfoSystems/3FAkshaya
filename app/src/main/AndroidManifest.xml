@@ -10,42 +10,59 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.actvity.CropMaintanceVisitActivity"></activity>
+        <activity android:name=".views.actvity.EncyclopediaActivity"></activity>
+        <activity android:name=".views.actvity.LoanActivity" />
+        <activity android:name=".views.actvity.RequestVisitActivity" />
+        <activity android:name=".views.actvity.QuickPayActivity" />
+        <activity android:name=".views.actvity.FertilizerActivity" />
+        <activity android:name=".views.actvity.PoleActivity" />
+        <activity android:name=".views.actvity.LabourRecommendationsActivity" />
+        <activity android:name=".views.actvity.CropMaintanceVisitActivity" />
         <activity
             android:name=".views.actvity.ScannedBarcodeActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.PaymentHistoryActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.PaymentActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.RecommendationActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.OtpActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.LoginActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.CollectionsActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.HomeActivity"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme2" >
+            android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".common.BaseActivity" />
 
         <meta-data
@@ -57,14 +74,11 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
