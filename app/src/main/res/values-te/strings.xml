@@ -175,6 +175,8 @@
     <string name="thumbnail_image_view_desc">Youtube Video thumbnail image view</string>
     <string name="close_player_activity">Close Player activity</string>
     <!--<string name="harvest">హార్వెస్ట్</string>-->
+    <string name="selecte_from_date"> Selected From Date </string>
+    <string name="selecte_to_date"> Selected To Date </string>
 
     <string name="pest_n_disease">తెగులు మరియు వ్యాధి</string>
     <string name="general_info">సాధారణ సమాచారం</string>
@@ -187,7 +189,7 @@
     <string name="memo">మెమో</string>
     <string name="amount">మొత్తం (రూ.)</string>
     <string name="select_plot_type">ఎంచుకున్న ప్లాట్ కోడ్:</string>
-    <string name="no_collections_found">సేకరణలు ఏవీ కనుగొనబడలేదు</string>
+    <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
     <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
     <string name="no_recommendations_found">సిఫార్సులు కనుగొనబడలేదు</string>
     <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
