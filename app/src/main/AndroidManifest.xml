@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.actvity.EncyclopediaActivity"></activity>
+        <activity android:name=".views.actvity.EncyclopediaActivity" />
         <activity android:name=".views.actvity.LoanActivity" />
         <activity android:name=".views.actvity.RequestVisitActivity" />
         <activity android:name=".views.actvity.QuickPayActivity" />
@@ -74,11 +74,10 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

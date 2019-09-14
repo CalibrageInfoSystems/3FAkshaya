@@ -1,0 +1,217 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="2dp"
+        card_view:cardCornerRadius="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/card_margin"
+            >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageViewHero"
+                android:layout_marginStart="2dp"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"/>
+
+
+            <TextView
+                android:id="@+id/treesAppearanceLabel"
+                android:layout_toRightOf="@+id/imageViewHero"
+
+                android:layout_marginStart="3dp"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="@string/treesAppearance"
+                android:paddingLeft="8dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/treesAppearance"
+
+                android:textColor="@color/colorOrange2"
+                android:layout_toRightOf="@+id/treesAppearanceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treesAppearance"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+
+            <TextView
+                android:id="@+id/treeGirthLabel"
+                android:layout_toRightOf="@+id/imageViewHero"
+                android:layout_marginStart="3dp"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/treesAppearanceLabel"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:text="@string/treeGrowth"
+                android:textColor="@color/black"
+                android:textSize="@dimen/album_title"
+
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/treeGirth"
+                android:hint="@string/treeGrowth"
+                android:layout_toRightOf="@+id/treeGirthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:layout_below="@id/treesAppearanceLabel"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/treeHeightLabel"
+                android:layout_toRightOf="@+id/imageViewHero"
+                android:text="@string/treeHeight"
+                android:layout_marginStart="3dp"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/treeGirthLabel"
+                android:paddingLeft="8dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/treeHeight"
+                android:hint="@string/treeHeight"
+                android:layout_toRightOf="@+id/treeHeightLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/treeGirthLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/fruitColorLabel"
+                android:layout_toRightOf="@+id/imageViewHero"
+                android:layout_marginStart="3dp"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="@string/fruitColor"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/treeHeightLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/fruitColor"
+                android:layout_toRightOf="@+id/fruitColorLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/fruitColor"
+                android:layout_below="@id/treeHeightLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/fruitSizeLabel"
+                android:layout_toRightOf="@+id/imageViewHero"
+                android:layout_marginStart="3dp"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="@string/fruitSize"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/fruitColorLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/fruitSize"
+                android:layout_toRightOf="@+id/fruitSizeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/fruitSize"
+                android:layout_below="@id/fruitColorLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/fruitHyegieneLabel"
+                android:layout_toRightOf="@+id/imageViewHero"
+                android:layout_marginStart="3dp"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="@string/fruitHyegiene"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/fruitSizeLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/fruitHyegiene"
+                android:layout_toRightOf="@+id/fruitHyegieneLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/fruitHyegiene"
+                android:layout_below="@id/fruitSizeLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/plantationTypeLabel"
+                android:layout_toRightOf="@+id/imageViewHero"
+                android:layout_marginStart="3dp"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="@string/plantationType"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textColor="@color/black"
+                android:layout_below="@+id/fruitHyegieneLabel"
+                android:textStyle="bold"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/plantationType"
+                android:layout_toRightOf="@+id/plantationTypeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/plantationType"
+                android:layout_below="@id/fruitHyegieneLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

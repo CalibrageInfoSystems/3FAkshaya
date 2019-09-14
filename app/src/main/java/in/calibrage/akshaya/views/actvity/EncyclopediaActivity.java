@@ -26,6 +26,7 @@ public class EncyclopediaActivity extends AppCompatActivity {
     ViewPager viewPager;
     TextView label;
     ImageView backImg;
+    private OnAboutDataReceivedListener mAboutDataListener;
     PagerAdapter pagerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,4 +74,15 @@ public class EncyclopediaActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
 
     }
+
+
+    public interface OnAboutDataReceivedListener {
+        void onDataReceived(String model);
+    }
+
+
+    public void setAboutDataListener(OnAboutDataReceivedListener listener) {
+        this.mAboutDataListener = listener;
+    }
+
 }
