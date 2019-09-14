@@ -223,9 +223,13 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             // Handle the camera action
         } else if (id == R.id.action_home) {
 
+
+            viewFragment( new HomeFragment(),HomeFragment.TAG);
+
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
+
         } else if (id == R.id.nav_logout) {
 
             //popupdialog to show message to logout the application

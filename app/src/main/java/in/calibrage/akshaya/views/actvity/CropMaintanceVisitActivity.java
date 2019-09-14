@@ -74,26 +74,26 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     ImageView thumbnail;
     private healthPlantation_Adapter hAdapter;
     private uprootment_Adapter UAdapter;
-//
+    //
 //    private fertilizerRecommendation_Adapter fertadapter;
 //
     private pest_Adapter pestadapter;
-//
+    //
     private DiseaseDataAdapter disease_adapter;
-//
+    //
 //
     private NutrientDataAdapter nut_adapter;
 
     private List<healthPlantation> Plantation_List = new ArrayList<>();
     private List<uprootmentData> uprootment_List = new ArrayList<>();
-//
+    //
 //    private List<fertilizerRecommendation> fert_rec_List = new ArrayList<>();
 //    private List<wood>wood_List = new ArrayList<>();
-   private List<pest> pestt_List = new ArrayList<>();
-//
-private List<DiseaseDataModel> disease_List = new ArrayList<>();
-//
-   private List<Nutrient_Model>nut_List = new ArrayList<>();
+    private List<pest> pestt_List = new ArrayList<>();
+    //
+    private List<DiseaseDataModel> disease_List = new ArrayList<>();
+    //
+    private List<Nutrient_Model>nut_List = new ArrayList<>();
 
 
 
@@ -196,14 +196,14 @@ private List<DiseaseDataModel> disease_List = new ArrayList<>();
 
                     JSONObject healthPlantation_Data = jsonObject.getJSONObject("healthPlantationData");
 
-Log.e("data===",healthPlantation_Data.getString("treesAppearance"));
-                  treesAppearance.setText(healthPlantation_Data.getString("treesAppearance"));
-                  treeGirth.setText(healthPlantation_Data.getString("treeGirth"));
-                   treeHeight.setText(healthPlantation_Data.getString("treeHeight"));
-                  fruitColor.setText(healthPlantation_Data.getString("fruitColor"));
-                 fruitSize.setText(healthPlantation_Data.getString("fruitSize"));
-                 fruitHyegiene.setText(healthPlantation_Data.getString("fruitHyegiene"));
-                plantationType.setText(healthPlantation_Data.getString("plantationType"));
+                    Log.e("data===",healthPlantation_Data.getString("treesAppearance"));
+                    treesAppearance.setText(healthPlantation_Data.getString("treesAppearance"));
+                    treeGirth.setText(healthPlantation_Data.getString("treeGirth"));
+                    treeHeight.setText(healthPlantation_Data.getString("treeHeight"));
+                    fruitColor.setText(healthPlantation_Data.getString("fruitColor"));
+                    fruitSize.setText(healthPlantation_Data.getString("fruitSize"));
+                    fruitHyegiene.setText(healthPlantation_Data.getString("fruitHyegiene"));
+                    plantationType.setText(healthPlantation_Data.getString("plantationType"));
                     Log.d(TAG, "healthPlantation_Data ======" + healthPlantation_Data);
 
                     Picasso.with(CropMaintanceVisitActivity.this).load(healthPlantation_Data.getString("plantationPictureLocation")).fit().centerCrop()
