@@ -11,7 +11,7 @@ public interface APIConstantURL {
     String crop_maintance ="GetCropMaintenanceHistoryDetailsByPlotCode/APAB0001000004";
     String payment_history ="Payment/GetVendorLedger";
 
-    String GetEncyclopediaDetails = "Encyclopedia/GetEncyclopediaDetails/1004/AP";
+    String GetEncyclopediaDetails = "Encyclopedia/GetEncyclopediaDetails/";
 
 
 

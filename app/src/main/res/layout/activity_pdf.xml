@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light_gray2"
-    tools:context=".views.actvity.PlayerActivity">
-
+    tools:context=".views.actvity.PDFActivity">
     <android.support.v7.widget.Toolbar
         android:visibility="visible"
+        android:layout_alignParentTop="true"
         style="@style/ToolBarTheme.ToolBarStyle"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:background="@color/colorOrange_head" />
-
-
-    <fragment
-        android:id="@+id/youtube_player_fragment"
-        android:layout_gravity="center"
-        android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+    <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"/>
-
-
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -34,9 +34,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.service.APIConstantURL;
 
-public class PaymentActivity extends AppCompatActivity {
+public class PaymentActivity extends BaseActivity {
     public static String TAG = "PaymentActivity";
     private TextView accoontHolderName, accoontNumber, bankNamee, branchName, ifscCode;
     private ProgressDialog dialog;
