@@ -1,6 +1,9 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +33,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
@@ -40,6 +44,14 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
 // holder.txtWeight.setText(String.valueOf(superHero.getWeight()+" "+"KGs"));
         holder.UOMName.setText(superHero.getUOMName());
         holder.Comments.setText(superHero.getComments());
+
+
+        if(position%2 == 0){
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+        } else {
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
+
+        }
         if (superHero.getDosage().contains("null"))
         {
             //   Log.e("bbbbb",superHero.getmAmount());
@@ -67,7 +79,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         public TextView RecommendedChemical;
         public TextView Dosage;
         public TextView UOMName,dosage_label,Comments,txtDriverName;
-
+        protected CardView card_view;
         public ViewHolder(View itemView) {
             super(itemView);
             Disease = itemView.findViewById(R.id.Disease);
@@ -77,6 +89,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             UOMName = itemView.findViewById(R.id.UOMName);
             Comments = itemView.findViewById(R.id.Comments);
             dosage_label= itemView.findViewById(R.id.DosageLabel);
+            card_view=itemView.findViewById(R.id.card_view);
         }
     }
 }

@@ -55,7 +55,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_5"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="2dp"
         android:layout_below="@+id/backlinear"
         android:background="@drawable/collect_bg"
         android:id="@+id/relative1">
@@ -225,8 +227,11 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 card_view:cardUseCompatPadding="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="2dp"
                 card_view:cardElevation="2dp"
-                card_view:cardCornerRadius="2dp">
+                card_view:cardCornerRadius="6dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -461,6 +466,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 card_view:cardUseCompatPadding="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="2dp"
                 card_view:cardElevation="2dp"
                 card_view:cardCornerRadius="2dp">
 

@@ -1,6 +1,9 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +36,7 @@ public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return viewHolder;
         }
 
+@RequiresApi(api = Build.VERSION_CODES.M)
 @Override
 public void onBindViewHolder(final ViewHolder holder, int position) {
 
@@ -42,7 +46,12 @@ public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.Dosage.setText(list.getDosage());
     holder.UOMame.setText(list.getUOMame());
         holder.recommended_fertilizer.setText(list.getRecommended_fertilizer());
+    if(position%2 == 0){
+        holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+    } else {
+        holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
+    }
     if (list.getComments().contains("null"))
     {
         //   Log.e("bbbbb",superHero.getmAmount());
@@ -64,7 +73,7 @@ public int getItemCount() {
 public class ViewHolder extends RecyclerView.ViewHolder {
 
     public TextView LastUpdatedDate,comments,Dosage,UOMame,recommended_fertilizer,comment_label;
-
+private CardView card_view;
     public ViewHolder(View itemView) {
         super(itemView);
         this.LastUpdatedDate = (TextView) itemView.findViewById(R.id.LastUpdatedDate);
@@ -73,8 +82,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         this.UOMame = (TextView) itemView.findViewById(R.id.UOMName);
         this.recommended_fertilizer = (TextView) itemView.findViewById(R.id.recommended_fertilizer);
         comment_label=itemView.findViewById(R.id.commentsLabel);
-
-
+        card_view=itemView.findViewById(R.id.card_view);
 
     }
 

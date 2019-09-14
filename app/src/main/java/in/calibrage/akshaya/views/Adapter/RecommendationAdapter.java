@@ -2,6 +2,8 @@ package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,6 +37,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
@@ -63,7 +66,12 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
         ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getStatusType());
 
+        if(position%2 == 0){
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+        } else {
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
+        }
 
 
     }
