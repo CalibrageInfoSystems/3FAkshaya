@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_new"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_gravity="right"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/backlinear"
-        android:background="@color/transparent">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@color/transparent"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+
             <ImageView
+                android:id="@+id/back"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/arrow_l"
-                android:layout_marginTop="18dp"
                 android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="@dimen/margin_20"
-                android:id="@+id/back"/>
+                android:src="@drawable/arrow_l" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
+                android:layout_alignLeft="@+id/back"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
                 android:text="Crop History"
-                android:layout_alignLeft="@+id/back"
-
-                android:layout_marginStart="25dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
-
 
             <ImageView
                 android:id="@+id/home_btn"
@@ -44,97 +44,95 @@
                 android:layout_height="45dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginRight="15dp"
                 android:src="@drawable/home"
-                android:textColor="#ff0000ff"
-                android:layout_marginTop="3dp"
-                />
+                android:textColor="#ff0000ff" />
 
         </RelativeLayout>
     </LinearLayout>
+
     <RelativeLayout
+        android:layout_marginTop="@dimen/margin_10"
+        android:id="@+id/relative1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/backlinear"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="2dp"
-        android:layout_below="@+id/backlinear"
-        android:background="@drawable/collect_bg"
-        android:id="@+id/relative1">
+        android:background="@color/transparent">
 
         <TextView
             android:id="@+id/plotIdLabel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textStyle="bold"
             android:text="@string/plot_code"
             android:textColor="@color/white_new"
             android:textSize="@dimen/album_title"
-            android:fontFamily="@font/roboto_regular"
-            />
-
+            android:textStyle="bold" />
 
 
         <TextView
             android:id="@+id/plot"
-            android:layout_marginStart="10dp"
-            android:layout_toRightOf="@+id/plotIdLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/album_title_padding"
-            android:paddingRight="@dimen/album_title_padding"
-
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@+id/plotIdLabel"
             android:hint="APAB0001000001"
+            android:paddingLeft="@dimen/album_title_padding"
+
+            android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/white"
-            android:textSize="@dimen/album_title"
-            />
+            android:textSize="@dimen/album_title" />
 
         <TextView
             android:id="@+id/palmAreaLabel"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/margin_5"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/plot_size"
-            android:textSize="@dimen/album_title"
             android:layout_below="@id/plot"
+            android:layout_marginTop="@dimen/margin_5"
+            android:fontFamily="@font/roboto_regular"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:fontFamily="@font/roboto_regular"
+            android:text="@string/plot_size"
             android:textColor="@color/white_new"
-            />
+            android:textSize="@dimen/album_title"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/age_plot"
-            android:layout_toRightOf="@+id/palmAreaLabel"
-            android:layout_marginTop="@dimen/margin_5"
-            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="25 h"
-            android:textSize="@dimen/album_title"
             android:layout_below="@id/plot"
-            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_toRightOf="@+id/palmAreaLabel"
+            android:hint="25 h"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
+            android:textColor="@color/white"
+            android:textSize="@dimen/album_title"
 
 
             />
 
         <TextView
             android:id="@+id/textView55"
-            android:textStyle="bold"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/palmAreaLabel"
             android:layout_marginTop="@dimen/margin_5"
-            android:paddingLeft="@dimen/album_title_padding"
             android:fontFamily="@font/roboto_regular"
+            android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/village"
             android:textColor="@color/white_new"
-            android:textSize="@dimen/album_title" />
+            android:textSize="@dimen/album_title"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/palmArea"
@@ -146,24 +144,24 @@
             android:layout_toRightOf="@+id/textView55"
             android:hint="abc"
             android:paddingLeft="@dimen/album_title_padding"
-            android:textColor="@color/white"
             android:paddingRight="@dimen/album_title_padding"
+            android:textColor="@color/white"
             android:textSize="@dimen/album_title" />
+
         <TextView
             android:id="@+id/landmarkLabel"
 
-            android:layout_marginTop="@dimen/margin_5"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/landmark"
-            android:textSize="@dimen/album_title"
             android:layout_below="@id/palmArea"
+            android:layout_marginTop="@dimen/margin_5"
+            android:fontFamily="@font/roboto_regular"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_regular"
+            android:text="@string/landmark"
             android:textColor="@color/white_new"
-            />
+            android:textSize="@dimen/album_title"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/landmark"
@@ -174,117 +172,104 @@
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
             android:hint="abc"
-            android:textColor="@color/white"
             android:paddingLeft="@dimen/album_title_padding"
-            android:textSize="@dimen/album_title"
             android:paddingRight="@dimen/album_title_padding"
-            />
+            android:textColor="@color/white"
+            android:textSize="@dimen/album_title" />
     </RelativeLayout>
+
+
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/relative1"
-
         android:paddingTop="5dp"
-
-        android:paddingBottom="5dp"
-        >
+        android:paddingBottom="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            
 
-            <RelativeLayout
-                android:id="@+id/healthtitleLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:padding="2dp">
-
-
-                <TextView
-                    android:id="@+id/health_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/health_crop"
-                    android:textColor="@color/colorOrange2"
-                    android:textSize="16dp" />
-
-            </RelativeLayout>
             <android.support.v7.widget.CardView
                 android:id="@+id/card_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                card_view:cardUseCompatPadding="true"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="2dp"
+                card_view:cardCornerRadius="6dp"
                 card_view:cardElevation="2dp"
-                card_view:cardCornerRadius="6dp">
+                card_view:cardUseCompatPadding="true">
 
                 <RelativeLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/card_margin"
                     >
-
+                    <TextView
+                        android:gravity="center"
+                        android:background="@color/half_black2"
+                        android:textAlignment="center"
+                        android:id="@+id/health_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:text="@string/health_crop"
+                        android:textColor="@color/white_new"
+                        android:textSize="16dp" />
                     <ImageView
+                        android:layout_below="@+id/health_text"
+                        android:id="@+id/imageViewHero"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:id="@+id/imageViewHero"
                         android:layout_marginStart="2dp"
                         android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"/>
-
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding" />
 
                     <TextView
+                        android:layout_below="@+id/health_text"
                         android:id="@+id/treesAppearanceLabel"
-                        android:layout_toRightOf="@+id/imageViewHero"
-
-                        android:layout_marginStart="3dp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/treesAppearance"
+                        android:layout_marginStart="3dp"
+                        android:layout_toRightOf="@+id/imageViewHero"
                         android:paddingLeft="8dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="@string/treesAppearance"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
+                        android:layout_below="@+id/health_text"
                         android:id="@+id/treesAppearance"
 
-                        android:textColor="@color/colorOrange2"
-                        android:layout_toRightOf="@+id/treesAppearanceLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/treesAppearance"
+                        android:layout_toRightOf="@+id/treesAppearanceLabel"
                         android:gravity="center"
                         android:paddingLeft="4dp"
-
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+
+                        android:text="@string/treesAppearance"
+                        android:textColor="@color/colorOrange2"
                         android:textSize="@dimen/album_title" />
 
                     <TextView
                         android:id="@+id/treeGirthLabel"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:layout_marginStart="3dp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/treesAppearanceLabel"
+                        android:layout_marginStart="3dp"
+                        android:layout_toRightOf="@+id/imageViewHero"
                         android:paddingLeft="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
                         android:paddingRight="@dimen/album_title_padding"
@@ -293,217 +278,219 @@
                         android:textSize="@dimen/album_title"
 
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/treeGirth"
-                        android:hint="@string/treeGrowth"
-                        android:layout_toRightOf="@+id/treeGirthLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="4dp"
                         android:layout_below="@id/treesAppearanceLabel"
-                        android:paddingRight="@dimen/album_title_padding"
+                        android:layout_toRightOf="@+id/treeGirthLabel"
+                        android:hint="@string/treeGrowth"
+                        android:paddingLeft="4dp"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/treeHeightLabel"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:text="@string/treeHeight"
-                        android:layout_marginStart="3dp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/treeGirthLabel"
+                        android:layout_marginStart="3dp"
+                        android:layout_toRightOf="@+id/imageViewHero"
                         android:paddingLeft="8dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
-                        android:textStyle="bold"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="@string/treeHeight"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/album_title" />
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/treeHeight"
-                        android:hint="@string/treeHeight"
-                        android:layout_toRightOf="@+id/treeHeightLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/treeGirthLabel"
+                        android:layout_toRightOf="@+id/treeHeightLabel"
+                        android:hint="@string/treeHeight"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/fruitColorLabel"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:layout_marginStart="3dp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/fruitColor"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/treeHeightLabel"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginStart="3dp"
+                        android:layout_toRightOf="@+id/imageViewHero"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/fruitColor"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/fruitColor"
-                        android:layout_toRightOf="@+id/fruitColorLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/fruitColor"
                         android:layout_below="@id/treeHeightLabel"
+                        android:layout_toRightOf="@+id/fruitColorLabel"
+                        android:hint="@string/fruitColor"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/fruitSizeLabel"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:layout_marginStart="3dp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/fruitSize"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/fruitColorLabel"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginStart="3dp"
+                        android:layout_toRightOf="@+id/imageViewHero"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/fruitSize"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/fruitSize"
-                        android:layout_toRightOf="@+id/fruitSizeLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/fruitSize"
                         android:layout_below="@id/fruitColorLabel"
+                        android:layout_toRightOf="@+id/fruitSizeLabel"
+                        android:hint="@string/fruitSize"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/fruitHyegieneLabel"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:layout_marginStart="3dp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/fruitHyegiene"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/fruitSizeLabel"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginStart="3dp"
+                        android:layout_toRightOf="@+id/imageViewHero"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/fruitHyegiene"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/fruitHyegiene"
-                        android:layout_toRightOf="@+id/fruitHyegieneLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/fruitHyegiene"
                         android:layout_below="@id/fruitSizeLabel"
+                        android:layout_toRightOf="@+id/fruitHyegieneLabel"
+                        android:hint="@string/fruitHyegiene"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/plantationTypeLabel"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:layout_marginStart="3dp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/plantationType"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/fruitHyegieneLabel"
+                        android:layout_marginStart="3dp"
+                        android:layout_toRightOf="@+id/imageViewHero"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/plantationType"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
                         android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginBottom="@dimen/margin_5"/>
+
                     <TextView
                         android:id="@+id/plantationType"
-                        android:layout_toRightOf="@+id/plantationTypeLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/plantationType"
                         android:layout_below="@id/fruitHyegieneLabel"
+                        android:layout_toRightOf="@+id/plantationTypeLabel"
+                        android:hint="@string/plantationType"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:textSize="@dimen/album_title"
+                        android:layout_marginBottom="@dimen/margin_5"/>
 
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
-            <RelativeLayout
-                android:id="@+id/categorytitleLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:padding="2dp">
 
 
-                <TextView
-                    android:id="@+id/uproot_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/uprrot_crop"
-                    android:textColor="@color/colorOrange2"
-                    android:textSize="16dp" />
-
-            </RelativeLayout>
 
             <android.support.v7.widget.CardView
                 android:id="@+id/card_view1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                card_view:cardUseCompatPadding="true"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="2dp"
+                card_view:cardCornerRadius="6dp"
                 card_view:cardElevation="2dp"
-                card_view:cardCornerRadius="2dp">
+                card_view:cardUseCompatPadding="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/card_margin"
                     >
-
                     <TextView
+                        android:gravity="center"
+                        android:background="@color/half_black2"
+                        android:id="@+id/uproot_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/uprrot_crop"
+                        android:textColor="@color/white_new"
+                        android:textSize="16dp" />
+                    <TextView
+                        android:layout_below="@+id/uproot_text"
                         android:id="@+id/seedsPlantedLabel"
-                        android:layout_marginStart="10dp"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/spalingPlanted"
+                        android:layout_marginStart="10dp"
                         android:paddingLeft="8dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="@string/spalingPlanted"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
+                        android:layout_below="@+id/uproot_text"
                         android:id="@+id/seedsPlanted"
-                        android:textColor="@color/colorOrange2"
-                        android:layout_toRightOf="@+id/seedsPlantedLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0000"
+                        android:layout_toRightOf="@+id/seedsPlantedLabel"
                         android:gravity="center"
                         android:paddingLeft="4dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="0000"
+                        android:textColor="@color/colorOrange2"
                         android:textSize="@dimen/album_title" />
 
                     <TextView
+
                         android:id="@+id/prevPalmsCountLabel"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
@@ -518,169 +505,181 @@
                         android:textSize="@dimen/album_title"
 
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/prevPalmsCount"
-                        android:hint="0000"
-                        android:layout_toRightOf="@+id/prevPalmsCountLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="4dp"
                         android:layout_below="@id/seedsPlantedLabel"
-                        android:paddingRight="@dimen/album_title_padding"
+                        android:layout_toRightOf="@+id/prevPalmsCountLabel"
+                        android:hint="0000"
+                        android:paddingLeft="4dp"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/plamsCountLabel"
-                        android:text="@string/plamsCount"
-                        android:layout_marginStart="8dp"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/prevPalmsCountLabel"
+                        android:layout_marginStart="8dp"
                         android:paddingLeft="8dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
-                        android:textStyle="bold"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="@string/plamsCount"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/album_title" />
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/plamsCount"
-                        android:hint="0000"
-                        android:layout_toRightOf="@+id/plamsCountLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/prevPalmsCountLabel"
+                        android:layout_toRightOf="@+id/plamsCountLabel"
+                        android:hint="0000"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/isTreesMissingLabel"
-                        android:layout_marginStart="8dp"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/isTreesMissing"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/plamsCountLabel"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginStart="8dp"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/isTreesMissing"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/isTreesMissing"
-                        android:layout_toRightOf="@+id/isTreesMissingLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="yes"
                         android:layout_below="@id/plamsCountLabel"
+                        android:layout_toRightOf="@+id/isTreesMissingLabel"
+                        android:hint="yes"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/missingTreesCountLabel"
-                        android:layout_marginStart="8dp"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/missingTreesCount"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/isTreesMissingLabel"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginStart="8dp"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/missingTreesCount"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/missingTreesCount"
-                        android:layout_toRightOf="@+id/missingTreesCountLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="0000"
                         android:layout_below="@id/isTreesMissingLabel"
+                        android:layout_toRightOf="@+id/missingTreesCountLabel"
+                        android:hint="0000"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/reasonTypeLabel"
-                        android:layout_marginStart="8dp"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/reasonType"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/missingTreesCountLabel"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginStart="8dp"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/reasonType"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/reasonType"
-                        android:layout_toRightOf="@+id/reasonTypeLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="reason"
                         android:layout_below="@id/missingTreesCountLabel"
+                        android:layout_toRightOf="@+id/reasonTypeLabel"
+                        android:hint="reason"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/expectedPlamsCountLabel"
-                        android:layout_marginStart="8dp"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/expectedPlamsCount"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/reasonTypeLabel"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginStart="8dp"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/expectedPlamsCount"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/expectedPlamsCount"
-                        android:layout_toRightOf="@+id/expectedPlamsCountLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="0000"
                         android:layout_below="@id/reasonTypeLabel"
+                        android:layout_toRightOf="@+id/expectedPlamsCountLabel"
+                        android:hint="0000"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/commentsLabel"
-                        android:layout_marginStart="8dp"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/comments"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:textColor="@color/black"
                         android:layout_below="@+id/expectedPlamsCountLabel"
+                        android:layout_marginStart="8dp"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingRight="2dp"
+                        android:text="@string/comments"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title"
                         android:textStyle="bold"
-                        android:textSize="@dimen/album_title" />
+
+                        android:layout_marginBottom="@dimen/margin_5"/>
+
                     <TextView
                         android:id="@+id/comments"
-                        android:layout_toRightOf="@+id/commentsLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/comments"
                         android:layout_below="@id/expectedPlamsCountLabel"
+                        android:layout_toRightOf="@+id/commentsLabel"
+                        android:hint="@string/comments"
                         android:paddingLeft="5dp"
-                        android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:textSize="@dimen/album_title"
+                        android:layout_marginBottom="@dimen/margin_5"/>
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
-
-
-
-
 
 
             <RelativeLayout
@@ -700,12 +699,12 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-android:visibility="gone"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/pest"
                     android:textColor="@color/colorOrange2"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -713,10 +712,10 @@ android:visibility="gone"
                 android:id="@+id/recyclerView_pest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_below="@+id/pagerHomeLay"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp" />
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/dease_lay"
@@ -730,17 +729,17 @@ android:visibility="gone"
                     android:id="@+id/dease_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-
                     android:layout_marginLeft="20dp"
+
                     android:layout_marginTop="10dp"
                     android:text="@string/deases"
                     android:textColor="@color/colorOrange2"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -748,11 +747,10 @@ android:visibility="gone"
                 android:id="@+id/recyclerView_dease"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_below="@+id/pagerHomeLay"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp" />
-
+                android:visibility="gone" />
 
 
             <RelativeLayout
@@ -767,17 +765,17 @@ android:visibility="gone"
                     android:id="@+id/nut_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-
                     android:layout_marginLeft="20dp"
+
                     android:layout_marginTop="10dp"
                     android:text="@string/nut_repo"
                     android:textColor="@color/colorOrange2"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -785,10 +783,10 @@ android:visibility="gone"
                 android:id="@+id/recyclerView_nut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_below="@+id/pagerHomeLay"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp" />
+                android:visibility="gone" />
 
 
             <RelativeLayout
@@ -803,17 +801,17 @@ android:visibility="gone"
                     android:id="@+id/fert_rec_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-
                     android:layout_marginLeft="20dp"
+
                     android:layout_marginTop="10dp"
                     android:text="@string/fert_rec"
                     android:textColor="@color/colorOrange2"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -821,24 +819,23 @@ android:visibility="gone"
                 android:id="@+id/recyclerView_fert_rec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_below="@+id/pagerHomeLay"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp" />
+                android:visibility="gone" />
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
+
     <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text"
         android:layout_below="@+id/recycler_view"
-        android:visibility="gone"
-        android:textAlignment="center"
-        android:text="@string/no_req_found"
-        android:layout_marginTop="@dimen/text_size_20"
-        android:textSize="@dimen/text_size_20"
-        android:textColor="@color/colorAccent"
         android:layout_centerInParent="true"
-        />
+        android:layout_marginTop="@dimen/text_size_20"
+        android:text="@string/no_req_found"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_size_20"
+        android:visibility="gone" />
 </RelativeLayout>
