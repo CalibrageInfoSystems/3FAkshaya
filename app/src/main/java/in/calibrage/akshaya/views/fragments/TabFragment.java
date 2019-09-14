@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,7 @@ import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.actvity.PlayerActivity;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -159,8 +161,10 @@ public class TabFragment extends BaseFragment {
         }
         @Override
         public void onBindViewHolder(videoViewHolder holder, int position) {
+
+
             try {
-                String videoId = CommonUtil.extractYoutubeId(listResultVideo.get(position).getEmbedUrl());
+                final String videoId = CommonUtil.extractYoutubeId(listResultVideo.get(position).getEmbedUrl());
                 Log.e("VideoId is->", "" + videoId);
                 String img_url = "http://img.youtube.com/vi/" + videoId + "/0.jpg"; // this is link which will give u thumnail image of that video
                 Picasso.with(getContext())
@@ -169,9 +173,20 @@ public class TabFragment extends BaseFragment {
                         .into(holder.iv_youtube_thumnail);
                 holder.txt_name.setText(listResultVideo.get(position).getName());
                 holder.txt_desc.setText(listResultVideo.get(position).getDescription());
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), PlayerActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("videoid", videoId);
+                        getContext().startActivity(intent);
+                    }
+                });
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+
         }
         @Override
         public int getItemCount() {

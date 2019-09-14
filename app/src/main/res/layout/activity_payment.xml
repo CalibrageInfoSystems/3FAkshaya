@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/shape"
     tools:context="in.calibrage.akshaya.views.actvity.PaymentActivity">
     <LinearLayout
         android:id="@+id/linlaHeaderProgress"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/backlinear"
-        android:background="@color/colorOrange">
+        android:background="@color/transparent">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
@@ -89,7 +89,7 @@
             android:textAlignment="center"
             android:gravity="center"
             android:textStyle="bold"
-            android:textColor="@color/colorOrange"
+            android:textColor="@color/white"
             android:text="@string/bank_details"
             android:textSize="@dimen/text_size" />
 

@@ -48,6 +48,8 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                 intent.putExtra("postTypeId", learning_Set.get(position).getId());
                 intent.putExtra("name", learning_Set.get(position).getName());
                 mContext.startActivity(intent);
+
+
             }
         });
     }
