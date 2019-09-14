@@ -94,7 +94,7 @@ public class TabFragment extends BaseFragment {
         textView.setVisibility(View.GONE);
         rcv_pdf = view.findViewById(R.id.rcv_pdf);
         rcv_video = view.findViewById(R.id.rcv_video);
-        llmanagerPDF = new GridLayoutManager(getContext(),2);
+        llmanagerPDF = new GridLayoutManager(getContext(), 2);
         llmanagerVideo = new LinearLayoutManager(getContext());
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(getContext())
@@ -125,9 +125,9 @@ public class TabFragment extends BaseFragment {
     }
 
     private void GetEncyclopediaDetails() {
-       int typeid= SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("postTypeId");
-       String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
-       String finalUrl = APIConstantURL.GetEncyclopediaDetails+typeid +"/"+statecode;
+        int typeid = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("postTypeId");
+        String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
+        String finalUrl = APIConstantURL.GetEncyclopediaDetails + typeid + "/" + statecode;
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.getEncyclopediaDetails(finalUrl)
@@ -262,18 +262,18 @@ public class TabFragment extends BaseFragment {
         @Override
         public void onBindViewHolder(PdfViewHolder holder, final int position) {
 
-           holder.txt_pdfname.setText(listResultPDF.get(position).getName());
+            holder.txt_pdfname.setText(listResultPDF.get(position).getName());
 
-           holder.itemView.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View view) {
-                   Intent intent = new Intent(getContext(), PDFActivity.class);
-                   intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                   intent.putExtra("url", listResultPDF.get(position).getFileUrl());
-                   intent.putExtra("name",listResultPDF.get(position).getName());
-                   getContext().startActivity(intent);
-               }
-           });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), PDFActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("url", listResultPDF.get(position).getFileUrl());
+                    intent.putExtra("name", listResultPDF.get(position).getName());
+                    getContext().startActivity(intent);
+                }
+            });
         }
 
         @Override
@@ -284,6 +284,7 @@ public class TabFragment extends BaseFragment {
         class PdfViewHolder extends RecyclerView.ViewHolder {
             ImageView iv_youtube_thumnail;
             TextView txt_pdfname;
+
             public PdfViewHolder(View itemView) {
                 super(itemView);
                 iv_youtube_thumnail = itemView.findViewById(R.id.img_thumnail);
