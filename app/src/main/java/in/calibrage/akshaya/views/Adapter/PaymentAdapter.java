@@ -32,7 +32,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.payment_history_list_item, parent, false);
+                .inflate(R.layout.payment_history_list_item2, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -56,6 +56,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             e.printStackTrace();
         }
         ((ViewHolder) holder).date.setText(datetimevaluereq);
+        ((ViewHolder) holder).dateLabel.setText(datetimevaluereq);
         ((ViewHolder) holder).quantity_ffb.setText(""+payment_Set.get(position).getQuantity());
         ((ViewHolder) holder).adhoc_value.setText(""+payment_Set.get(position).getAdhocRate());
         ((ViewHolder) holder).txt_invoice.setText(""+payment_Set.get(position).getInvoiceRate());
@@ -63,7 +64,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         ((ViewHolder) holder).adjustTxt.setText(""+payment_Set.get(position).getAdjusted());
         ((ViewHolder) holder).finalAmount.setText(""+payment_Set.get(position).getAmount());
 
-        if(position%2 == 0){
+       /* if(position%2 == 0){
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
@@ -76,10 +77,10 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
        else {
             ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
         }
-
+*/
 
         // holder.textViewPowers.setText(powers);*/
-        if (payment_Set.get(position).getAdhocRate()==0.0)
+       /* if (payment_Set.get(position).getAdhocRate()==0.0)
         {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.adhoc_value.setVisibility(View.GONE);
@@ -120,7 +121,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         else {
             holder.txt_gr_rate.setVisibility(View.VISIBLE);
             holder.text_four.setVisibility(View.VISIBLE);
-        }
+        }*/
 //
 //
         if (payment_Set.get(position).getAdjusted()==0.0)
@@ -148,7 +149,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 //        }
 
 //
-        if (payment_Set.get(position).getMemo()==null)
+      /*  if (payment_Set.get(position).getMemo()==null)
         {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.memo_text.setVisibility(View.GONE);
@@ -178,7 +179,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         else {
             holder.balance.setVisibility(View.VISIBLE);
             holder.text_eight.setVisibility(View.VISIBLE);
-        }
+        }*/
 
 
 
@@ -199,7 +200,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         public TextView showMore;
         public TextView finalAmount;
         protected CardView card_view;
-        public TextView  remarks,textViewPowers,date,balance,adjustTxt;
+        public TextView  remarks,textViewPowers,date,balance,adjustTxt,dateLabel;
         public TextView  text_one,text_two,text_thee,text_four,text_five,text_six,text_seven,text_eight;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -216,6 +217,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             //contentLayout = (LinearLayout)itemView.findViewById(R.id.content);
 
             date= (TextView) itemView.findViewById(R.id.date);
+            dateLabel= (TextView) itemView.findViewById(R.id.dateLabel);
             balance= (TextView) itemView.findViewById(R.id.balance);
             textViewPowers= (TextView) itemView.findViewById(R.id.textViewPowers);
 

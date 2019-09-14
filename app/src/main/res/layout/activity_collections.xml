@@ -322,7 +322,7 @@ android:layout_gravity="center"
 
 <!--    </RelativeLayout>-->
 
-
+<!--    android:background="@drawable/collect_bg"-->
     <RelativeLayout
 
 android:background="@drawable/collect_bg"

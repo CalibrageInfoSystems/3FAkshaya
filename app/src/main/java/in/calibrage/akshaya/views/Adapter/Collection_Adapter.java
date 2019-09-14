@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 
 
@@ -74,6 +75,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
         }
+        AnimationUtil.animate(holder, true);
     }
 
     @Override

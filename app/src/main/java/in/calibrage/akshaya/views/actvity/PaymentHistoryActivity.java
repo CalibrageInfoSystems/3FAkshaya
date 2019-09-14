@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -308,7 +309,7 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
                             Total_records.setText( String.valueOf(paymentResponseModel.getAffectedRecords()));
                             ffb.setText( String.valueOf(paymentResponseModel.getResult().getTotalQuanitity()));
-                            if (paymentResponseModel.getResult().getTotalBalance()==("null"))
+                            if (paymentResponseModel.getResult().getTotalBalance()== null )
                             {
                                 totalBalance.setText("0");
 

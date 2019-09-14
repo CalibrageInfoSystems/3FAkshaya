@@ -74,278 +74,305 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:layout_margin="@dimen/_8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:id="@+id/lin_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0sp"
-        android:layout_margin="@dimen/_8dp"
-        android:background="@drawable/collect_bg"
-        android:layout_below="@+id/backlinear">
+        android:background="@drawable/collect_bg">
 
+        <ImageView
+            android:layout_marginTop="@dimen/margin_10"
+            android:id="@+id/imgBank"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bank_white"/>
         <RelativeLayout
+            android:layout_below="@+id/imgBank"
             android:id="@+id/lin_head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0sp">
-        <TextView
-            android:id="@+id/tvtext_item"
+
+            <TextView
+                android:id="@+id/tvtext_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:gravity="center"
+                android:text="@string/bank_details"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+<LinearLayout
+    android:layout_below="@+id/tvtext_item"
+    android:background="@drawable/line_bg"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:text="@string/bank_details"
-            android:textSize="@dimen/text_size" />
+            android:layout_below="@+id/lin_head"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
 
 
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15sp"
+                android:text="@string/bank_holder"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/dot2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15sp"
+                android:layout_toRightOf="@+id/dot2"
+                android:hint="Kiran vinnakota"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+               />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_two"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/account_no"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot3"
+                android:hint="31213254698"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+               />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_three"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:text="@string/bank_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot4"
+                android:hint="SBI"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_four"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tvtext_item_eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:text="@string/branch_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/dot5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_nine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot5"
+                android:hint="JNTU"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_six"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_five"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:text="@string/ifsc"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:id="@+id/tvtext_item_eleven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot6"
+                android:hint="SBIN0021008"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                />
+
+            -->
+        </RelativeLayout>
+        <Button
+            android:fontFamily="@font/roboto_regular"
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:background="@drawable/button_bg"
+            android:layout_margin="@dimen/text_size"
+            android:layout_below="@+id/lin_six"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/margin_12"
+            android:textColor="@color/colorOrange"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/lin_two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lin_head"
-        android:orientation="horizontal"
-        android:layout_marginTop="10sp">
 
-
-        <TextView
-            android:id="@+id/tvtext_item_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/bank_holder"
-            android:textColor="@color/white"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold"/>
-
-
-        <TextView
-            android:id="@+id/dot2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
-            android:textColor="@color/white"
-            android:text=":"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvtext_item_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15sp"
-            android:layout_toRightOf="@+id/dot2"
-            android:hint="Kiran vinnakota"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/lin_three"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lin_two"
-        android:orientation="horizontal"
-        android:layout_marginTop="10sp">
-
-
-        <TextView
-            android:id="@+id/tvtext_item_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="@dimen/album_title"
-            android:layout_marginLeft="20dp"
-            android:text="@string/account_no"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/dot3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:text=":"
-            android:textColor="@color/white"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvtext_item_five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_toRightOf="@+id/dot3"
-            android:text=""
-            android:textSize="@dimen/album_title"
-            android:hint="31213254698"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10sp"
-            android:textStyle="bold"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/lin_four"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lin_three"
-        android:orientation="horizontal"
-        android:layout_marginTop="10sp">
-
-
-        <TextView
-            android:id="@+id/tvtext_item_six"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/bank_name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/dot4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5sp"
-            android:textColor="@color/white"
-            android:text=":"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvtext_item_seven"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_toRightOf="@+id/dot4"
-            android:text=""
-            android:hint="SBI"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10sp"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/lin_five"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lin_four"
-        android:orientation="horizontal"
-        android:layout_marginTop="10sp">
-
-
-        <TextView
-            android:id="@+id/tvtext_item_eight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/branch_name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/dot5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5sp"
-            android:textColor="@color/white"
-            android:text=":"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvtext_item_nine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_toRightOf="@+id/dot5"
-            android:text=""
-            android:hint="JNTU"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10sp"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/lin_six"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lin_five"
-        android:orientation="horizontal"
-        android:layout_marginTop="10sp">
-
-
-        <TextView
-            android:id="@+id/tvtext_item_ten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/ifsc"
-            android:textColor="@color/white"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/dot6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5sp"
-            android:textColor="@color/white"
-            android:text=":"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvtext_item_eleven"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_toRightOf="@+id/dot6"
-            android:text=""
-            android:hint="SBIN0021008"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10sp"
-            android:textSize="@dimen/album_title"
-            android:textStyle="bold"/>
-
-        -->    </RelativeLayout>
-
-    </RelativeLayout>
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        android:background="@drawable/button_bg"
-        android:layout_margin="@dimen/text_size"
-        android:layout_below="@+id/lin_one"
-        android:layout_alignParentRight="true"
-        android:textSize="@dimen/margin_12"
-        android:textColor="@color/colorOrange"
-        />
 
 
 
