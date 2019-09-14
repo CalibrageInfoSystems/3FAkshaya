@@ -48,6 +48,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-vision:11.8.0'
 // PROGRESS Dialogue
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
+// PDF thumb
+    implementation 'com.github.barteksc:pdfium-android:1.4.0'
 
 
     dependencies {

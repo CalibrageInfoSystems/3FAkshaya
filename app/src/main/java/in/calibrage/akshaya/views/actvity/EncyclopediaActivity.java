@@ -17,6 +17,8 @@ import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -28,7 +30,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class EncyclopediaActivity extends AppCompatActivity {
+public class EncyclopediaActivity extends BaseActivity {
     private static final String TAG = EncyclopediaActivity.class.getSimpleName();
     private int postTypeId;
     private String titleName;
@@ -39,7 +41,8 @@ public class EncyclopediaActivity extends AppCompatActivity {
     private ImageView backImg;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
-
+    private String[] tabnames;
+   private ViewPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,34 +55,44 @@ public class EncyclopediaActivity extends AppCompatActivity {
     }
 
     private void init() {
-        backImg = findViewById(R.id.back);
-        label = findViewById(R.id.text_label);
+
+
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tablayout);
         toolbar = findViewById(R.id.toolbar);
-        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
-                .setContext(this)
-                .setTheme(R.style.Custom)
-                .build();
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
     }
 
     private void setViews() {
         if (getIntent() != null) {
             postTypeId = getIntent().getIntExtra("postTypeId", 0);
             titleName = getIntent().getStringExtra("name");
+            tabnames = getIntent().getStringArrayExtra("tabslist");
+            SharedPrefsData.getInstance(this).updateIntValue(this,"count",tabnames.length);
+            SharedPrefsData.getInstance(this).updateIntValue(this,"postTypeId",postTypeId);
+            adapter = new ViewPagerAdapter(getSupportFragmentManager(),tabnames);
         }
-        label.setText(titleName);
-        backImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-        setSupportActionBar(toolbar);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+
+
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        toolbar.setTitle(titleName);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(this)
+                .setTheme(R.style.Custom)
+                .build();
     }
 
 

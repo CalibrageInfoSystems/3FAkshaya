@@ -1,9 +1,14 @@
 package in.calibrage.akshaya.views.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +18,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.shockwave.pdfium.PdfDocument;
+import com.shockwave.pdfium.PdfiumCore;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -24,10 +32,12 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.actvity.PDFActivity;
 import in.calibrage.akshaya.views.actvity.PlayerActivity;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
@@ -43,13 +53,17 @@ public class TabFragment extends BaseFragment {
     private LinearLayoutManager llmanagerVideo, llmanagerPDF;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
+    private int count;
 
 
-    public static Fragment getInstance(int position) {
+    public static Fragment getInstance(int position, int count) {
         Bundle bundle = new Bundle();
         bundle.putInt("pos", position);
+        bundle.putInt("title", position);
         TabFragment tabFragment = new TabFragment();
         tabFragment.setArguments(bundle);
+        count = count;
+
         return tabFragment;
     }
 
@@ -77,14 +91,31 @@ public class TabFragment extends BaseFragment {
     private void init(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         textView.setText("Fragment " + (position + 1));
+        textView.setVisibility(View.GONE);
         rcv_pdf = view.findViewById(R.id.rcv_pdf);
         rcv_video = view.findViewById(R.id.rcv_video);
-        llmanagerPDF = new LinearLayoutManager(getContext());
+        llmanagerPDF = new GridLayoutManager(getContext(),2);
         llmanagerVideo = new LinearLayoutManager(getContext());
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(getContext())
                 .setTheme(R.style.Custom)
                 .build();
+        count = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("count");
+        Log.e(TAG, " --- analysis ----- getTabsCount --->> count :" + count);
+        if (count == 3 && position == 1) {
+            rcv_video.setVisibility(View.VISIBLE);
+            rcv_pdf.setVisibility(View.GONE);
+        } else if (count == 3 && position == 2) {
+            rcv_video.setVisibility(View.GONE);
+            rcv_pdf.setVisibility(View.VISIBLE);
+        } else if (count == 2 && position == 0) {
+            rcv_video.setVisibility(View.VISIBLE);
+            rcv_pdf.setVisibility(View.GONE);
+        } else if (count == 2 && position == 1) {
+            rcv_video.setVisibility(View.GONE);
+            rcv_pdf.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void setViews() {
@@ -94,9 +125,12 @@ public class TabFragment extends BaseFragment {
     }
 
     private void GetEncyclopediaDetails() {
+       int typeid= SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("postTypeId");
+       String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
+       String finalUrl = APIConstantURL.GetEncyclopediaDetails+typeid +"/"+statecode;
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
-        mSubscription = service.getEncyclopediaDetails(APIConstantURL.GetEncyclopediaDetails)
+        mSubscription = service.getEncyclopediaDetails(finalUrl)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<GetEncyclopediaDetails>() {
                     @Override
@@ -159,6 +193,7 @@ public class TabFragment extends BaseFragment {
             VideoAdapter.videoViewHolder viewHolder = new videoViewHolder(v);
             return viewHolder;
         }
+
         @Override
         public void onBindViewHolder(videoViewHolder holder, int position) {
 
@@ -188,13 +223,15 @@ public class TabFragment extends BaseFragment {
             }
 
         }
+
         @Override
         public int getItemCount() {
             return listResultVideo.size();
         }
+
         class videoViewHolder extends RecyclerView.ViewHolder {
             ImageView iv_youtube_thumnail;
-            TextView txt_name,txt_desc;
+            TextView txt_name, txt_desc;
 
             public videoViewHolder(View itemView) {
                 super(itemView);
@@ -207,10 +244,11 @@ public class TabFragment extends BaseFragment {
 
     class PdfAdapter extends RecyclerView.Adapter<PdfAdapter.PdfViewHolder> {
 
-        List<GetEncyclopediaDetails.ListResult> listResultPDF = new ArrayList<>();
+        private List<GetEncyclopediaDetails.ListResult> listResultPDF = new ArrayList<>();
 
         public PdfAdapter(List<GetEncyclopediaDetails.ListResult> listResultPDF) {
             this.listResultPDF = listResultPDF;
+
         }
 
         @Override
@@ -222,8 +260,20 @@ public class TabFragment extends BaseFragment {
         }
 
         @Override
-        public void onBindViewHolder(PdfViewHolder holder, int position) {
+        public void onBindViewHolder(PdfViewHolder holder, final int position) {
 
+           holder.txt_pdfname.setText(listResultPDF.get(position).getName());
+
+           holder.itemView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   Intent intent = new Intent(getContext(), PDFActivity.class);
+                   intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   intent.putExtra("url", listResultPDF.get(position).getFileUrl());
+                   intent.putExtra("name",listResultPDF.get(position).getName());
+                   getContext().startActivity(intent);
+               }
+           });
         }
 
         @Override
@@ -232,9 +282,12 @@ public class TabFragment extends BaseFragment {
         }
 
         class PdfViewHolder extends RecyclerView.ViewHolder {
-
+            ImageView iv_youtube_thumnail;
+            TextView txt_pdfname;
             public PdfViewHolder(View itemView) {
                 super(itemView);
+                iv_youtube_thumnail = itemView.findViewById(R.id.img_thumnail);
+                txt_pdfname = itemView.findViewById(R.id.txt_pdfname);
             }
         }
     }

@@ -1,6 +1,10 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -15,6 +19,7 @@ public class PlayerActivity extends BaseActivity implements YouTubePlayer.OnInit
     private YouTubePlayer mPlayer;
     private String YouTubeKey = Config.DEVELOPER_KEY;
     private String videoid;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +28,18 @@ public class PlayerActivity extends BaseActivity implements YouTubePlayer.OnInit
 
             videoid = getIntent().getStringExtra("videoid");
         }
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
 
         playerFragment =
                 (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_player_fragment);
@@ -56,5 +73,11 @@ public class PlayerActivity extends BaseActivity implements YouTubePlayer.OnInit
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         mPlayer = null;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

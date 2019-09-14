@@ -17,45 +17,16 @@
         android:background="@color/transparent"
         android:orientation="horizontal">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+        <android.support.v7.widget.Toolbar
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="@dimen/margin_20"
-                android:src="@drawable/arrow_l" />
+            app:titleTextColor="@color/white_new"
+            android:visibility="visible"
+            style="@style/ToolBarTheme.ToolBarStyle"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/text_label"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_alignLeft="@+id/back"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_20" />
-
-
-            <ImageView
-                android:id="@+id/home_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/home"
-                android:textColor="#ff0000ff" />
-
-        </RelativeLayout>
+            android:background="@color/transparent" />
     </LinearLayout>
     <!--
             <include        android:layout_height="wrap_content"
@@ -79,14 +50,14 @@
         android:elevation="6dp"
         app:tabBackground="@color/transparent"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorOrange"
+        app:tabIndicatorColor="@color/white_new"
         app:tabMaxWidth="0dp"
         app:tabMode="fixed"
         app:tabPaddingEnd="-1dp"
         app:tabPaddingStart="-1dp"
-        app:tabSelectedTextColor="@color/colorOrange"
+        app:tabSelectedTextColor="@color/white_new"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        app:tabTextColor="@color/white" />
+        app:tabTextColor="@color/light_gray" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
