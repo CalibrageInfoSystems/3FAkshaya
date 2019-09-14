@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,10 +43,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.DiseaseDataModel;
 import in.calibrage.akshaya.models.Nutrient_Model;
+import in.calibrage.akshaya.models.fertilizerRecommendation;
 import in.calibrage.akshaya.models.healthPlantation;
 import in.calibrage.akshaya.models.pest;
 import in.calibrage.akshaya.models.uprootmentData;
@@ -53,6 +57,7 @@ import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.DiseaseDataAdapter;
 import in.calibrage.akshaya.views.Adapter.NutrientDataAdapter;
+import in.calibrage.akshaya.views.Adapter.fertilizerRecommendation_Adapter;
 import in.calibrage.akshaya.views.Adapter.healthPlantation_Adapter;
 import in.calibrage.akshaya.views.Adapter.pest_Adapter;
 import in.calibrage.akshaya.views.Adapter.uprootment_Adapter;
@@ -74,8 +79,9 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     ImageView thumbnail;
     private healthPlantation_Adapter hAdapter;
     private uprootment_Adapter UAdapter;
+    private TextView Age, id_plot, area,landMark;
     //
-//    private fertilizerRecommendation_Adapter fertadapter;
+   private fertilizerRecommendation_Adapter fertadapter;
 //
     private pest_Adapter pestadapter;
     //
@@ -87,7 +93,7 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     private List<healthPlantation> Plantation_List = new ArrayList<>();
     private List<uprootmentData> uprootment_List = new ArrayList<>();
     //
-//    private List<fertilizerRecommendation> fert_rec_List = new ArrayList<>();
+    private List<fertilizerRecommendation> fert_rec_List = new ArrayList<>();
 //    private List<wood>wood_List = new ArrayList<>();
     private List<pest> pestt_List = new ArrayList<>();
     //
@@ -96,26 +102,32 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     private List<Nutrient_Model>nut_List = new ArrayList<>();
 
 
-
+    private SpotsDialog mdilogue ;
     String datetimevalute;
     TextView health_text,uprootment_text,fert_rec_text,pest_text,diase_text,nut_text;
     public TextView treesAppearance,treeGirth,treeHeight,fruitColor,fruitSize,fruitHyegiene,plantationType;
     public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
     // ImageView thumbnail;
     public TextView comment_label,reason_label;
-
+    String plot_Age,location,landmarkCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_crop_maintance_visit);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
             plot_id = extras.getString("plotid");
+            plot_Age = extras.getString("plotAge");
+            location = extras.getString("plotVillage");
+            landmarkCode = extras.getString("landMark");
 
         } else {
-            // handle case
+
         }
         intview();
         setViews();
@@ -134,6 +146,8 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
         recyclerView_nut =(RecyclerView)findViewById(R.id.recyclerView_nut);
         nut_text =(TextView) findViewById(R.id.nut_text);
 
+        recycler_view_fert_rec_Details =(RecyclerView)findViewById(R.id.recyclerView_fert_rec);
+        fert_rec_text =(TextView) findViewById(R.id.fert_rec_text);
 
         treesAppearance = findViewById(R.id.treesAppearance);
         treeGirth = findViewById(R.id.treeGirth);
@@ -157,6 +171,16 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
         comments =findViewById(R.id.comments);
         comment_label=findViewById(R.id.commentsLabel);
         reason_label=findViewById(R.id.reasonTypeLabel);
+
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(this)
+                .setTheme(R.style.Custom)
+                .build();
+
+        Age = findViewById(R.id.age_plot);
+        id_plot = findViewById(R.id.plot);
+        area = findViewById(R.id.palmArea);
+        landMark = findViewById(R.id.landmark);
     }
 
     private void  setViews() {
@@ -172,19 +196,27 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
         recyclerView_nut.setLayoutManager(mLayoutManager_nut);
         recyclerView_nut.setItemAnimator(new DefaultItemAnimator());
 
+        RecyclerView.LayoutManager mLayoutManager_fert_rec = new LinearLayoutManager(getApplicationContext());
+        recycler_view_fert_rec_Details.setLayoutManager(mLayoutManager_fert_rec);
+        recycler_view_fert_rec_Details.setItemAnimator(new DefaultItemAnimator());
+        Age.setText(plot_Age );
+        area.setText(location);
+        id_plot.setText(plot_id);
+        landMark.setText(landmarkCode);
     }
 
 
 
     private void GetCropMaintenanceHistoryDetailsByCode() {
-
-        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APAY0017000141";
+        mdilogue.show();
+        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APAP0009000035";
         Log.e("url====",url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                mdilogue.dismiss();
                 Log.d(TAG, "RESPONSE======" + response);
 
                 try {
@@ -399,6 +431,51 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
 
 
 
+                    JSONArray fertilizerRecommendation_Details = jsonObject.getJSONArray("fertilizerRecommendationDetails");
+
+                    Log.e("fert_rec_Data===", String.valueOf(fertilizerRecommendation_Details));
+                    Log.e("fert_rec_Data===", String.valueOf(fertilizerRecommendation_Details.length()));
+                    if(fertilizerRecommendation_Details.length()==0){
+                        recycler_view_fert_rec_Details.setVisibility(View.GONE);
+                        fert_rec_text.setVisibility(View.GONE);
+
+                    }
+                    else {
+                        recycler_view_fert_rec_Details.setVisibility(View.VISIBLE);
+                        fert_rec_text.setVisibility(View.VISIBLE);
+
+                    }
+                    for (int i = 0; i < fertilizerRecommendation_Details.length(); i++) {
+
+                        fertilizerRecommendation fert_List = new fertilizerRecommendation();
+                        JSONObject json = null;
+
+                        try {
+                            json = fertilizerRecommendation_Details.getJSONObject(i);
+
+                            fert_List.setLastUpdatedDate(json.getString("updatedDate"));
+                            fert_List.setComments(json.getString("comments"));
+                            fert_List.setDosage(json.getString("dosage"));
+
+                            fert_List.setUOMame(json.getString("uomName"));
+                            fert_List.setRecommended_fertilizer(json.getString("recommendedFertilizerName"));
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        fert_rec_List.add(fert_List);
+
+
+                    }
+                    fertadapter = new fertilizerRecommendation_Adapter( CropMaintanceVisitActivity.this,fert_rec_List);
+
+                    //Adding adapter to recyclerview
+                    recycler_view_fert_rec_Details.setAdapter(fertadapter);
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -408,6 +485,7 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                mdilogue.dismiss();
                 if (error instanceof NetworkError) {
                     Log.i("one:" + TAG, error.toString());
 

@@ -3,6 +3,7 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_new"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/backlinear"
-        android:background="@color/colorPrimary">
+        android:background="@color/transparent">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -31,7 +32,7 @@
                 android:layout_marginTop="15dp"
                 android:text="Crop History"
                 android:layout_alignLeft="@+id/back"
-                android:textStyle="bold"
+
                 android:layout_marginStart="25dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
@@ -51,11 +52,137 @@
 
         </RelativeLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_5"
+        android:layout_below="@+id/backlinear"
+        android:background="@drawable/collect_bg"
+        android:id="@+id/relative1">
+
+        <TextView
+            android:id="@+id/plotIdLabel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:textStyle="bold"
+            android:text="@string/plot_code"
+            android:textColor="@color/white_new"
+            android:textSize="@dimen/album_title"
+            android:fontFamily="@font/roboto_regular"
+            />
+
+
+
+        <TextView
+            android:id="@+id/plot"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@+id/plotIdLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+
+            android:hint="APAB0001000001"
+            android:textColor="@color/white"
+            android:textSize="@dimen/album_title"
+            />
+
+        <TextView
+            android:id="@+id/palmAreaLabel"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plot_size"
+            android:textSize="@dimen/album_title"
+            android:layout_below="@id/plot"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white_new"
+            />
+        <TextView
+            android:id="@+id/age_plot"
+            android:layout_toRightOf="@+id/palmAreaLabel"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="25 h"
+            android:textSize="@dimen/album_title"
+            android:layout_below="@id/plot"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+
+
+            />
+
+        <TextView
+            android:id="@+id/textView55"
+            android:textStyle="bold"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/palmAreaLabel"
+            android:layout_marginTop="@dimen/margin_5"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingRight="@dimen/album_title_padding"
+            android:text="@string/village"
+            android:textColor="@color/white_new"
+            android:textSize="@dimen/album_title" />
+
+        <TextView
+            android:id="@+id/palmArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/age_plot"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_toRightOf="@+id/textView55"
+            android:hint="abc"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:textColor="@color/white"
+            android:paddingRight="@dimen/album_title_padding"
+            android:textSize="@dimen/album_title" />
+        <TextView
+            android:id="@+id/landmarkLabel"
+
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/landmark"
+            android:textSize="@dimen/album_title"
+            android:layout_below="@id/palmArea"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white_new"
+            />
+
+        <TextView
+            android:id="@+id/landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/palmArea"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_toRightOf="@+id/textView55"
+            android:hint="abc"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:textSize="@dimen/album_title"
+            android:paddingRight="@dimen/album_title_padding"
+            />
+    </RelativeLayout>
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/backlinear"
+        android:layout_below="@+id/relative1"
 
         android:paddingTop="5dp"
 
@@ -67,7 +194,31 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:id="@+id/healthtitleLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                android:padding="2dp">
+
+
+                <TextView
+                    android:id="@+id/health_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/health_crop"
+                    android:textColor="@color/colorOrange2"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
             <android.support.v7.widget.CardView
                 android:id="@+id/card_view"
                 android:layout_width="match_parent"
@@ -541,7 +692,7 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-
+android:visibility="gone"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/pest"
@@ -571,7 +722,7 @@
                     android:id="@+id/dease_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:visibility="gone"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
@@ -608,7 +759,7 @@
                     android:id="@+id/nut_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:visibility="gone"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center_vertical"
@@ -632,7 +783,40 @@
                 android:layout_marginTop="3dp" />
 
 
+            <RelativeLayout
+                android:id="@+id/fert_rec_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                android:padding="2dp">
+
+
+                <TextView
+                    android:id="@+id/fert_rec_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/fert_rec"
+                    android:textColor="@color/colorOrange2"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_fert_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_below="@+id/pagerHomeLay"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

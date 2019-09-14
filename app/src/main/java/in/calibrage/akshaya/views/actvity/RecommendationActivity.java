@@ -9,12 +9,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -33,12 +36,32 @@ public class RecommendationActivity extends AppCompatActivity {
     private ProgressDialog dialog;
     private Subscription mSubscription;
     TextView no_plots;
+    ImageView backImg,home_btn;
+    private SpotsDialog mdilogue ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_recommendation);
-        dialog = new ProgressDialog(this);
-        ImageView backImg=(ImageView)findViewById(R.id.back);
+
+        init();
+        setViews();
+    }
+
+    private void init() {
+        no_plots=(TextView)findViewById(R.id.text);
+        home_btn=(ImageView)findViewById(R.id.home_btn);
+
+        backImg=(ImageView)findViewById(R.id.back);
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(this)
+                .setTheme(R.style.Custom)
+                .build();
+        recom_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+    }
+    private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,8 +70,6 @@ public class RecommendationActivity extends AppCompatActivity {
                 //  finish();
             }
         });
-        no_plots=(TextView)findViewById(R.id.text);
-        ImageView home_btn=(ImageView)findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,19 +77,19 @@ public class RecommendationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        recom_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recom_recyclerView.setHasFixedSize(true);
         recom_recyclerView.setLayoutManager(new LinearLayoutManager(this));
-      //  recom_recyclerView.setAdapter(rec_adapter);
-
         Getplots();
     }
 
-    private void Getplots() {
-        dialog.setMessage("Loading, please wait....");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
 
+
+
+
+
+    private void Getplots() {
+
+        mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getplots(APIConstantURL.Recommede_plots)
                 .subscribeOn(Schedulers.newThread())
@@ -76,9 +97,7 @@ public class RecommendationActivity extends AppCompatActivity {
                 .subscribe(new Subscriber<RecomPlotcodes>() {
                     @Override
                     public void onCompleted() {
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
+                        mdilogue.dismiss();
                     }
 
                     @Override
@@ -94,14 +113,13 @@ public class RecommendationActivity extends AppCompatActivity {
                             }
                             e.printStackTrace();
                         }
+                        mdilogue.dismiss();
                     }
 
                     @Override
                     public void onNext(RecomPlotcodes recomPlotcodes) {
                         Log.d("", "onNext: " + recomPlotcodes);
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
+                        mdilogue.dismiss();
                         if(recomPlotcodes.getIsSuccess())
                         {
 
