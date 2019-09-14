@@ -56,7 +56,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     public static  String TAG="CollectionsActivity";
     EditText fromText,toText;
     String[] selection = { "Last 30 Days", "Current Financial Year", "Custom Time Period"};
-    RelativeLayout timePeroidLinear;
+
     Spinner spin;
     Collection_Adapter collection_Adapter;
     private ArrayList<CollectionResponceModel.CollectioDatum> collection_list = new ArrayList<>();
@@ -68,7 +68,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     String farmerCode,Farmer_code;
     LinearLayout noRecords;
     String last_30day;
-    TextView collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight,text;
+    TextView collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight;
     RelativeLayout relativeLayoutCount;
     private Subscription mSubscription;
     String financiyalYearFrom="";
@@ -98,8 +98,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         collectionsCount = (TextView) findViewById(R.id.collectionsCount);
         paidCollectionsWeight = (TextView) findViewById(R.id.paidCollectionsWeight);
         unPaidCollectionsWeight = (TextView) findViewById(R.id.unPaidCollectionsWeight);
-        Seleteddatefrom = (TextView) findViewById(R.id.seleced_date_from);
-        selectedsateto = (TextView) findViewById(R.id.seleced_date_to);
+
         date_linear = (LinearLayout) findViewById(R.id.selecte_label);
         backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
@@ -119,7 +118,10 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         //  toText.setText(Html.fromHtml(to_date));
         collecton_data = (RecyclerView) findViewById(R.id.collection_recycler_view);
         spin = (Spinner) findViewById(R.id.spinner);
-        timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+
+      //  timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
     }
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +139,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                 startActivity(intent);
             }
         });
-        fromText.setInputType(InputType.TYPE_NULL);
+
         fromText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -229,6 +231,9 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        fromText.getText().clear();
+        toText.getText().clear();
         if (spin.getSelectedItem().toString().equals("Last 30 Days")) {
 
             collecton_data.setVisibility(View.VISIBLE); //
@@ -246,70 +251,85 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
             collecton_data.setVisibility(View.GONE);
 
         }
-        if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
-         timePeroidLinear.setVisibility(View.VISIBLE); //
-           relativeLayoutCount.setVisibility(View.GONE);
-           collecton_data.setVisibility(View.GONE);
-            collection_Submit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    fromString = fromText.getText().toString().trim();
-                    toString = toText.getText().toString().trim();
+        {
+            //  String Month = MonthArray[index];
+            if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
+                //   adapter.notifyDataSetChanged();
+                collecton_data.setVisibility(View.GONE); //
+                noRecords.setVisibility(View.GONE);
 
-                    SimpleDateFormat fromUser = new SimpleDateFormat("dd/MM/yyyy");
-                    SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+                collection_Submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        fromString = fromText.getText().toString().trim();
+                        toString = toText.getText().toString().trim();
+                        SimpleDateFormat fromUser = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-                    try {
-
-                        reformattedStrFrom = myFormat.format(fromUser.parse(fromString));
-                        reformattedStrTo = myFormat.format(fromUser.parse(toString));
-                        Log.d("collection", "RESPONSE reformattedStr======" + reformattedStrFrom);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
-                        Toast.makeText(CollectionsActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_LONG).show();
-                        timePeroidLinear.setVisibility(View.VISIBLE); //
-                       collecton_data.setVisibility(View.GONE);
-
-                    } else {
-
-                        timePeroidLinear.setVisibility(View.GONE);
-                        date_linear.setVisibility(View.VISIBLE);
-                        Seleteddatefrom.setText(fromString);
-                        selectedsateto.setText(toString);
-                      collecton_data.setVisibility(View.VISIBLE);
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                        Date date1 = null;
                         try {
-                            date1 = formatter.parse(fromString);
-                            Date date2 = formatter.parse(toString);
-                            if (date2.compareTo(date1) < 0) {
-                                // Toasty.error(getApplicationContext(),"Please Enter From Date is less than To Date",Toasty.LENGTH_LONG).show();
-                            } else {
-                                collecton_data.invalidate();
-                                //       recyclerView.setVisibility(View.VISIBLE);
-                                getCustomCollections(fromString, toString);
 
-
-                            }
+                            reformattedStrFrom = myFormat.format(fromUser.parse(fromString));
+                            reformattedStrTo = myFormat.format(fromUser.parse(toString));
+                            Log.d("collection", "RESPONSE reformattedStr======" + reformattedStrFrom);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
 
+                        if(fromString.equalsIgnoreCase("")||toString.equalsIgnoreCase(""))
+                        {
+                            Toast.makeText(CollectionsActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
+                            date_linear.setVisibility(View.VISIBLE); //
+                            collecton_data.setVisibility(View.GONE);
+                        }
+                        else
+                        {
+
+
+                            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                            Date date1 = null;
+                            try {
+                                date1 = formatter.parse(fromString);
+                                Date date2 = formatter.parse(toString);
+                                if (date2.compareTo(date1)<0)
+                                {
+                                    Toast.makeText(getApplicationContext(),"Please Enter From Date is less than To Date",Toast.LENGTH_LONG).show();
+                                }else{
+                                    collecton_data.invalidate();
+                                    //       recyclerView.setVisibility(View.VISIBLE);
+                                    getCustomCollections(fromString,toString);
+
+
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+
 
                     }
-                }
-            });
 
+                });
 
+            }
+            else{
+                collecton_data.setVisibility(View.GONE);
+
+            }
         }
-        else {
-           timePeroidLinear.setVisibility(View.GONE);
+        if(spin.getSelectedItem().toString().equals("Custom Time Period")){
+            // Toast.makeText(getApplicationContext(),"hiddd" , Toast.LENGTH_LONG).show();
+            date_linear.setVisibility(View.VISIBLE); //
             relativeLayoutCount.setVisibility(View.GONE);
-            date_linear.setVisibility(View.GONE);
-            //   subBtn.setVisibility(View.VISIBLE);
+            //  subBtn.setVisibility(View.VISIBLE);
 
+//do something
+        }else {
+            date_linear.setVisibility(View.GONE);
+            relativeLayoutCount.setVisibility(View.GONE);
+            //   subBtn.setVisibility(View.VISIBLE);
         }
 
     }
@@ -349,9 +369,11 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         mdilogue.cancel();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if(collectionResponcemodel.getResult().getCollectioData() != null)
-                        {
+                        if(collectionResponcemodel.getResult()!= null)
 
+                        {
+                            Log.e("nodada====","nodata===custom");
+                            collecton_data.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
                             collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
                             collecton_data.setAdapter(collection_Adapter);
@@ -363,6 +385,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             paidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight())+""+"0 Kgs");
                         }
                         else{
+                            Log.e("nodada====","nodata===custom2");
                             noRecords.setVisibility(View.VISIBLE);
                             relativeLayoutCount.setVisibility(View.GONE);
                         }
@@ -377,7 +400,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
     private JsonObject collectionObject3() {
         collectionRequestModel requestModel = new collectionRequestModel();
-        requestModel.setFarmerCode("APWGBDAB00010001");
+        requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(reformattedStrTo);
         requestModel.setFromDate(reformattedStrFrom);
 
@@ -419,8 +442,11 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         mdilogue.dismiss();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if(collectionResponcemodel.getResult().getCollectioData() != null)
+                        if(collectionResponcemodel.getResult()!= null)
                         {
+
+                            Log.e("nodada====","nodata===1year");
+                            collecton_data.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
                             collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
                             collecton_data.setAdapter(collection_Adapter);
@@ -436,6 +462,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
 
                         }  else{
+                            Log.e("nodada====","nodata===1year2");
                             noRecords.setVisibility(View.VISIBLE);
                             relativeLayoutCount.setVisibility(View.GONE);
                         }
@@ -449,7 +476,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
     private JsonObject collectionObject2(){
         collectionRequestModel requestModel = new collectionRequestModel();
-        requestModel.setFarmerCode("APWGBDAB00010001");
+        requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(financiyalYearTo);
         requestModel.setFromDate(financiyalYearFrom);
 
@@ -492,8 +519,10 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         mdilogue.dismiss();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if(collectionResponcemodel.getResult().getCollectioData() != null)
+                        if(collectionResponcemodel.getResult()!= null)
                         {
+
+
                             noRecords.setVisibility(View.GONE);
                             collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
                             collecton_data.setAdapter(collection_Adapter);
@@ -507,6 +536,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         else{
                             noRecords.setVisibility(View.VISIBLE);
                             relativeLayoutCount.setVisibility(View.GONE);
+
                         }
 
                     }
@@ -518,7 +548,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
     private JsonObject collectionObject() {
         collectionRequestModel requestModel = new collectionRequestModel();
-        requestModel.setFarmerCode("APWGBDAB00010001");
+        requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(currentDate);
         requestModel.setFromDate(last_30day);
 
