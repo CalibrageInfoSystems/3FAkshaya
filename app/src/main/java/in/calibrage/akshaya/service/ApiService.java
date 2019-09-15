@@ -10,6 +10,8 @@ import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.LerningsModel;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
+import in.calibrage.akshaya.models.SpinnerModel;
+import in.calibrage.akshaya.models.Stand_recom_model;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
 import retrofit2.http.Body;
@@ -49,6 +51,12 @@ public interface ApiService {
 
     @GET
     Observable<GetEncyclopediaDetails> getEncyclopediaDetails(@Url String url);
+
+    @GET
+    Observable<SpinnerModel> getSpinnerDetails(@Url String url);
+
+    @GET
+    Observable<Stand_recom_model> GetRecommendationdetails(@Url String url);
 
  /*
     // PASSWORD RESET

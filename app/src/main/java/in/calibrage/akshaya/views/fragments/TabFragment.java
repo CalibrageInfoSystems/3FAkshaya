@@ -15,13 +15,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
-import com.shockwave.pdfium.PdfDocument;
-import com.shockwave.pdfium.PdfiumCore;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -34,9 +48,13 @@ import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
+import in.calibrage.akshaya.models.GetRecommendationsByAgeModel;
+import in.calibrage.akshaya.models.SpinnerModel;
+import in.calibrage.akshaya.models.Stand_recom_model;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.Adapter.GetRecommendationsByAgeAdapter;
 import in.calibrage.akshaya.views.actvity.PDFActivity;
 import in.calibrage.akshaya.views.actvity.PlayerActivity;
 import retrofit2.adapter.rxjava.HttpException;
@@ -45,16 +63,22 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class TabFragment extends BaseFragment {
+public class TabFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
     public static final String TAG = TabFragment.class.getSimpleName();
     int position;
     private TextView textView;
-    private RecyclerView rcv_video, rcv_pdf;
-    private LinearLayoutManager llmanagerVideo, llmanagerPDF;
+    private RecyclerView rcv_video, rcv_pdf, rcv_recom;
+    private LinearLayoutManager llmanagerVideo, llmanagerPDF, layoutManagerrecom;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
     private int count;
-
+    private String text_year;
+    Spinner spinner;
+    boolean isLoading = false;
+    private GetRecommendationsByAgeAdapter adapter;
+    private List<GetRecommendationsByAgeModel> recom_list = new ArrayList<>();
+    private LinearLayout lyt_firstTab;
+    LinearLayout noRecords;
 
     public static Fragment getInstance(int position, int count) {
         Bundle bundle = new Bundle();
@@ -85,33 +109,51 @@ public class TabFragment extends BaseFragment {
         init(view);
         setViews();
         GetEncyclopediaDetails();
-
+        if (SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("count") == 3)
+            GetRecommendation();
     }
+
 
     private void init(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
+        noRecords = (LinearLayout) view.findViewById(R.id.text);
+        lyt_firstTab = view.findViewById(R.id.lyt_firstTab);
         textView.setText("Fragment " + (position + 1));
         textView.setVisibility(View.GONE);
         rcv_pdf = view.findViewById(R.id.rcv_pdf);
         rcv_video = view.findViewById(R.id.rcv_video);
+        rcv_recom = view.findViewById(R.id.rcv_recom);
+        spinner = (Spinner) view.findViewById(R.id.spinner);
         llmanagerPDF = new GridLayoutManager(getContext(), 2);
         llmanagerVideo = new LinearLayoutManager(getContext());
+        layoutManagerrecom = new LinearLayoutManager(getContext());
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(getContext())
                 .setTheme(R.style.Custom)
                 .build();
         count = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("count");
         Log.e(TAG, " --- analysis ----- getTabsCount --->> count :" + count);
-        if (count == 3 && position == 1) {
+
+        if (count == 3 && position == 0) {
+            Log.e("recon==","recom_visible");
+            lyt_firstTab.setVisibility(View.VISIBLE);
+            rcv_video.setVisibility(View.GONE);
+            rcv_pdf.setVisibility(View.GONE);
+        } else if (count == 3 && position == 1) {
+            lyt_firstTab.setVisibility(View.GONE);
             rcv_video.setVisibility(View.VISIBLE);
             rcv_pdf.setVisibility(View.GONE);
+
         } else if (count == 3 && position == 2) {
             rcv_video.setVisibility(View.GONE);
             rcv_pdf.setVisibility(View.VISIBLE);
+            lyt_firstTab.setVisibility(View.GONE);
         } else if (count == 2 && position == 0) {
+            lyt_firstTab.setVisibility(View.GONE);
             rcv_video.setVisibility(View.VISIBLE);
             rcv_pdf.setVisibility(View.GONE);
         } else if (count == 2 && position == 1) {
+            lyt_firstTab.setVisibility(View.GONE);
             rcv_video.setVisibility(View.GONE);
             rcv_pdf.setVisibility(View.VISIBLE);
         }
@@ -121,7 +163,8 @@ public class TabFragment extends BaseFragment {
     private void setViews() {
         rcv_video.setLayoutManager(llmanagerVideo);
         rcv_pdf.setLayoutManager(llmanagerPDF);
-
+        rcv_recom.setLayoutManager(layoutManagerrecom);
+        spinner.setOnItemSelectedListener(this);
     }
 
     private void GetEncyclopediaDetails() {
@@ -171,12 +214,160 @@ public class TabFragment extends BaseFragment {
 
                         Log.e(TAG, "--- analysis ---- >> :Result GetEncyclopediaDetails() --->  VideoSize :" + listResultVideo.size());
                         Log.e(TAG, "--- analysis ---- >> :Result GetEncyclopediaDetails() --->  PDFSize :" + listResultPDF.size());
+
+
                         rcv_video.setAdapter(new VideoAdapter(listResultVideo));
                         rcv_pdf.setAdapter(new PdfAdapter(listResultPDF));
                     }
 
 
                 });
+    }
+
+    private void GetRecommendation() {
+        ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
+        mSubscription = service.getSpinnerDetails(APIConstantURL.GetRecommendationAges)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<SpinnerModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onNext(SpinnerModel spinnerModel) {
+
+                        ArrayList<String> listdata = new ArrayList<>();
+                        if (spinnerModel.getListResult() != null) {
+
+                            for (SpinnerModel.ListResult data : spinnerModel.getListResult()
+                            ) {
+                                listdata.add(data.getDisplayName());
+                            }
+                            Log.d(TAG, "RESPONSE GetRecommendationAges listdata======" + listdata);
+
+//                            ArrayAdapter aa = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listdata);
+//                            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                            spinner.setAdapter(aa);
+
+
+                            ArrayAdapter aa = new ArrayAdapter(getContext(), R.layout.spinner_item, listdata);
+                            aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+                            spinner.setAdapter(aa);
+                        } else {
+                            Log.e("nodada====", "nodata===custom2");
+
+                        }
+
+                    }
+
+                });
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        text_year = spinner.getItemAtPosition(spinner.getSelectedItemPosition()).toString();
+        Log.e("text_year===", text_year);
+
+        parseData(text_year, false);
+    }
+
+    private void parseData(String text_year, final boolean lazyloading) {
+
+        mdilogue.show();
+        String URL_TOKEN = APIConstantURL.LOCAL_URL + "GetRecommendationsByAge/" + text_year;
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_TOKEN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Doctor_Json" + response);
+                mdilogue.dismiss();
+                try {
+
+                    if (lazyloading) {
+                        recom_list.remove(recom_list.size() - 1);
+                        int scrollPosition = recom_list.size();
+                        adapter.notifyItemRemoved(scrollPosition);
+                    }
+                    JSONArray jsonArray = new JSONArray(response);
+                    Log.e("jsonArray==", jsonArray.toString());
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        GetRecommendationsByAgeModel get_list = new GetRecommendationsByAgeModel();
+                        JSONObject json = null;
+                        try {
+                            json = jsonArray.getJSONObject(i);
+                            get_list.setFertilizer(json.getString("fertilizer"));
+                            get_list.setYear(json.getString("quantity") + " " + "Kgs");
+                            get_list.setRemarks(json.getString("remarks"));
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        recom_list.add(get_list);
+                    }
+                    adapter = new GetRecommendationsByAgeAdapter(recom_list, getContext());
+
+
+                    rcv_recom.setAdapter(adapter);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                if (lazyloading) {
+                    adapter.notifyDataSetChanged();
+                    isLoading = false;
+
+                } else {
+
+                    adapter = new GetRecommendationsByAgeAdapter(recom_list, getContext());
+                    rcv_recom.setAdapter(adapter);
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mdilogue.dismiss();
+                error.printStackTrace();
+            }
+
+            ;
+        });
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.videoViewHolder> {

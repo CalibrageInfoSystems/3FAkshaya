@@ -12,10 +12,11 @@ public interface APIConstantURL {
     String payment_history ="Payment/GetVendorLedger";
 
     String GetEncyclopediaDetails = "Encyclopedia/GetEncyclopediaDetails/";
+    String GetRecommendationAges = "GetRecommendationAges";
 
 
 
-    public static  String DEVELOPER_KEY = "AIzaSyBx7v0YOb140fDO7EbfMx4l87raxezDWFw";
+
 
 
 
