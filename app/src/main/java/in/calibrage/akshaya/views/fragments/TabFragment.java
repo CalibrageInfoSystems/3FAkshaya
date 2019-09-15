@@ -116,7 +116,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 
     private void init(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
-        noRecords = (LinearLayout) view.findViewById(R.id.text);
+        noRecords = (LinearLayout) view.findViewById(R.id.nodata);
         lyt_firstTab = view.findViewById(R.id.lyt_firstTab);
         textView.setText("Fragment " + (position + 1));
         textView.setVisibility(View.GONE);

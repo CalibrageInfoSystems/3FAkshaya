@@ -228,7 +228,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
-            finish();
+           // finish();
 
         } else if (id == R.id.nav_logout) {
 

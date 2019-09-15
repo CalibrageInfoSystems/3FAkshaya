@@ -64,6 +64,20 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         ((ViewHolder) holder).adjustTxt.setText(""+payment_Set.get(position).getAdjusted());
         ((ViewHolder) holder).finalAmount.setText(""+payment_Set.get(position).getAmount());
 
+        if ((payment_Set.get(position).getBalance()) < 0) {
+            String balance1= payment_Set.get(position).getBalance()+""+")";
+            ((ViewHolder) holder).balance.setText(balance1.toString().replace("-","("));
+        }
+        else {
+            ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
+        }
+        if(position%2 == 0){
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+        } else {
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
+
+        }
+
        /* if(position%2 == 0){
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {

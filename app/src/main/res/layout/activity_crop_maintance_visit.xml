@@ -442,7 +442,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="4dp"
                 card_view:cardCornerRadius="6dp"
                 card_view:cardElevation="2dp"
                 card_view:cardUseCompatPadding="true">
@@ -450,11 +450,13 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
                     >
                     <TextView
+                        android:id="@+id/uproot_text"
                         android:gravity="center"
                         android:background="@color/half_black2"
-                        android:id="@+id/uproot_text"
+
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_gravity="center_vertical"
@@ -692,19 +694,17 @@
 
                 <TextView
                     android:id="@+id/pest_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@color/half_black2"
 
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
                     android:text="@string/pest"
-                    android:textColor="@color/colorOrange2"
+                    android:textColor="@color/white_new"
                     android:textSize="16dp"
-                    android:visibility="gone" />
+                    android:visibility="gone"/>
+
 
             </RelativeLayout>
 
@@ -727,19 +727,16 @@
 
                 <TextView
                     android:id="@+id/dease_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:background="@color/half_black2"
 
-                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/deases"
-                    android:textColor="@color/colorOrange2"
-                    android:textSize="16dp"
-                    android:visibility="gone" />
+                    android:textColor="@color/white_new"
+                    android:visibility="gone"
+                    android:textSize="16dp" />
 
             </RelativeLayout>
 
@@ -763,19 +760,16 @@
 
                 <TextView
                     android:id="@+id/nut_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:background="@color/half_black2"
 
-                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/nut_repo"
-                    android:textColor="@color/colorOrange2"
-                    android:textSize="16dp"
-                    android:visibility="gone" />
+                    android:textColor="@color/white_new"
+                    android:visibility="gone"
+                    android:textSize="16dp" />
 
             </RelativeLayout>
 
@@ -799,19 +793,15 @@
 
                 <TextView
                     android:id="@+id/fert_rec_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:background="@color/half_black2"
 
-                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/fert_rec"
-                    android:textColor="@color/colorOrange2"
-                    android:textSize="16dp"
-                    android:visibility="gone" />
+                    android:textColor="@color/white_new"
+                    android:textSize="16dp" /> />
 
             </RelativeLayout>
 

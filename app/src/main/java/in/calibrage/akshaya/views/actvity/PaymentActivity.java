@@ -75,8 +75,7 @@ public class PaymentActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 finish();
-              /*  Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
+
             }
         });
         Button submitBtn = (Button) findViewById(R.id.nextButton);
@@ -89,7 +88,7 @@ public class PaymentActivity extends BaseActivity {
 
             }
         });
-        // getBankDetails();
+
         getBankDetails();
     }
 
@@ -128,15 +127,6 @@ public class PaymentActivity extends BaseActivity {
                     Log.d(TAG, "RESPONSE getBankDetails======" + affectedRecords);
                     String success = jsonObject.getString("isSuccess");
                     Log.d(TAG, "success======" + success);
-                    /*if (success.equals("true")){
-
-                        Toasty.success(getApplicationContext(), "Otp sent successfully", Toast.LENGTH_LONG).show();
-                        //   Toast.makeText(getApplicationContext(),success,Toast.LENGTH_SHORT).show();
-                    }else{
-
-                        Toasty.error(getApplicationContext(), "Invalid Farmer id", Toast.LENGTH_LONG).show();
-                        //Toast.makeText(getApplicationContext(),"Invalid User",Toast.LENGTH_SHORT).show();
-                    }*/
 
 
                 } catch (JSONException e) {
