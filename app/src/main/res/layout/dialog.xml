@@ -5,15 +5,31 @@
     android:layout_height="wrap_content"
     android:background="@color/half_black2">
 
-    <ImageView
-        android:padding="@dimen/margin_5"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/a"
+    <LinearLayout
         android:gravity="center"
         android:background="@color/red"
-        android:src="@drawable/ic_cross"
-        android:scaleType="fitCenter" />
+        android:orientation="horizontal"
+        android:id="@+id/a"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <ImageView
+            android:foregroundGravity="left"
+            android:padding="@dimen/margin_5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:background="@color/red"
+            android:src="@drawable/ic_cross"
+            />
+        <TextView
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/white_new"
+            android:text="@string/error"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"/>
+    </LinearLayout>
+
 
     <TextView
         android:fontFamily="@font/roboto_regular"
@@ -32,9 +48,9 @@
         android:gravity="center_horizontal" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="    OK     "
+        android:text="@string/ok"
         android:id="@+id/btn_dialog"
         android:gravity="center_vertical|center_horizontal"
         android:layout_below="@+id/text_dialog"

@@ -55,5 +55,5 @@
 
 <!--    home layout height-->
 
-    <dimen name="home_View_lyt_height">75dp</dimen>
+    <dimen name="home_View_lyt_height">80dp</dimen>
     </resources>

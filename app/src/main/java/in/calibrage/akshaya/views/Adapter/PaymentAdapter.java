@@ -69,7 +69,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         } else {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
-        }
+        }*/
         if ((payment_Set.get(position).getBalance()) < 0) {
             String balance1= payment_Set.get(position).getBalance()+""+")";
             ((ViewHolder) holder).balance.setText(balance1.toString().replace("-","("));
@@ -77,10 +77,10 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
        else {
             ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
         }
-*/
+
 
         // holder.textViewPowers.setText(powers);*/
-       /* if (payment_Set.get(position).getAdhocRate()==0.0)
+        if (payment_Set.get(position).getAdhocRate()==0.0)
         {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.adhoc_value.setVisibility(View.GONE);
@@ -121,7 +121,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         else {
             holder.txt_gr_rate.setVisibility(View.VISIBLE);
             holder.text_four.setVisibility(View.VISIBLE);
-        }*/
+        }
 //
 //
         if (payment_Set.get(position).getAdjusted()==0.0)
@@ -149,7 +149,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 //        }
 
 //
-      /*  if (payment_Set.get(position).getMemo()==null)
+        if (payment_Set.get(position).getMemo()==null)
         {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.memo_text.setVisibility(View.GONE);
@@ -179,7 +179,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         else {
             holder.balance.setVisibility(View.VISIBLE);
             holder.text_eight.setVisibility(View.VISIBLE);
-        }*/
+        }
 
 
 

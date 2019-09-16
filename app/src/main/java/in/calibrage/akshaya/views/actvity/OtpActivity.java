@@ -160,7 +160,7 @@ public class OtpActivity extends BaseActivity {
                                     SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
                                     SharedPrefsData.saveCatagories(OtpActivity.this, farmerOtpResponceModel);
 
-                                    SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this,"statecode",farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
+                                    SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "statecode", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);
                                     finish();
