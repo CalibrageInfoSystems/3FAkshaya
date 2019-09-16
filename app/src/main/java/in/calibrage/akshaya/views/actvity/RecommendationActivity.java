@@ -34,6 +34,8 @@ public class RecommendationActivity extends AppCompatActivity {
     private RecyclerView recom_recyclerView;
     private RecommendationAdapter rec_adapter;
     private ProgressDialog dialog;
+
+    String Farmer_code;
     private Subscription mSubscription;
     TextView no_plots;
     ImageView backImg,home_btn;
@@ -60,6 +62,8 @@ public class RecommendationActivity extends AppCompatActivity {
                 .setTheme(R.style.Custom)
                 .build();
         recom_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
     }
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +95,7 @@ public class RecommendationActivity extends AppCompatActivity {
 
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getplots(APIConstantURL.Recommede_plots)
+        mSubscription = service.getplots(APIConstantURL.Recommede_plots+Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<RecomPlotcodes>() {

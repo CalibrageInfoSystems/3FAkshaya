@@ -188,7 +188,7 @@
                     android:id="@+id/ffb_quantity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.6"
                     android:gravity="center_vertical"
                     android:text="@string/ffb"
 
@@ -199,7 +199,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@id/ffb_quantity"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
 
                     android:textSize="@dimen/album_title" />
             </LinearLayout>
@@ -216,7 +216,7 @@
                     android:id="@+id/adhocLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.6"
                     android:gravity="center_vertical"
                     android:text="@string/adhoc_rate"
                     />
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ffb_quantity"
                     android:layout_alignBaseline="@id/adhocLabel"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
 
                     android:textSize="@dimen/album_title" />
             </LinearLayout>
@@ -244,7 +244,7 @@
                     android:id="@+id/invoice_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.6"
                     android:gravity="center_vertical"
                     android:text="@string/invoice_rate"
                     android:textSize="@dimen/album_title"
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/adhocLabel"
                     android:layout_alignBaseline="@id/invoice_label"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
 
 
                     />
@@ -276,7 +276,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/adjustedLabel"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.6"
                     android:gravity="center_vertical"
                     android:text="@string/memo"
                     android:textSize="@dimen/album_title" />
@@ -287,7 +287,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/gr_amount_label"
                     android:layout_alignBaseline="@id/memo_label"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.4" />
             </LinearLayout>
 
             <LinearLayout
@@ -306,7 +306,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/amount_label"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.6"
                     android:gravity="center_vertical"
                     android:text="@string/balance"
                     android:textColor="@color/black"
@@ -320,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/amount_label"
                     android:layout_alignBaseline="@id/balanceLabel"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
 
                     android:textSize="@dimen/album_title" />
             </LinearLayout>

@@ -207,7 +207,7 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
 
     private void GetCropMaintenanceHistoryDetailsByCode() {
         mdilogue.show();
-        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APAP0009000035";
+        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id;
         Log.e("url====",url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());

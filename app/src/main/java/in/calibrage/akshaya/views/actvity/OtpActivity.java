@@ -57,7 +57,7 @@ public class OtpActivity extends BaseActivity {
     private Button sub_Btn;
 
     private String Pin_text;
-    public static String farmerId;
+    public  String Farmer_code;
 
     private PinEntryEditText pinEntry;
     public SharedPreferences.Editor editor;
@@ -66,6 +66,7 @@ public class OtpActivity extends BaseActivity {
     private ImageView backImg;
     private SpotsDialog mdilogue;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +93,8 @@ public class OtpActivity extends BaseActivity {
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
-
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
     }
     //  submitBtn.setTypeface(faceBold);
 
@@ -115,7 +117,7 @@ public class OtpActivity extends BaseActivity {
                 finish();
             }
         });
-        Pin_text = pinEntry.getText().toString();
+
 
     }
 
@@ -123,7 +125,7 @@ public class OtpActivity extends BaseActivity {
     private void GetOtp() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp + "139292")
+        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp +Farmer_code+"/" + pinEntry.getText().toString())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerOtpResponceModel>() {
                     @Override
@@ -166,8 +168,11 @@ public class OtpActivity extends BaseActivity {
                                     finish();
 
                                 }
-                            }, 300);
+                            }, 000);
 
+                        }
+                        else {
+                            showDialog(OtpActivity.this,farmerOtpResponceModel.getEndUserMessage());
                         }
                     }
 
