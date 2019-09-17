@@ -210,7 +210,6 @@ public class BaseActivity extends AppCompatActivity {
 
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
         text.setText(msg);
-
         Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,7 +217,6 @@ public class BaseActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
         dialog.show();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -226,7 +224,6 @@ public class BaseActivity extends AppCompatActivity {
                 ((Animatable) img.getDrawable()).start();
             }
         }, 500);
-
     }
 
     /**

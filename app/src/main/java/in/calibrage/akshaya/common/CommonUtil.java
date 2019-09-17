@@ -27,6 +27,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -140,7 +141,9 @@ public class CommonUtil {
             return date;
         }
     }
+
     public static boolean ISLANG = true;
+
     /*
      *  check user permissions
      * */
@@ -388,6 +391,7 @@ public class CommonUtil {
         dialogMessage.setText(title);
         toast.show();
     }
+
     public static String extractYoutubeId(String url) throws MalformedURLException {
         String query = new URL(url).getQuery();
         String[] param = query.split("&");
@@ -402,15 +406,45 @@ public class CommonUtil {
     }
 
 
-    public  static SpannableStringBuilder  getMultiColourString(String inputText)
-    {
+    public static SpannableStringBuilder getMultiColourString(String inputText) {
 
-        SpannableStringBuilder builder =new SpannableStringBuilder();
-        SpannableString ss= new SpannableString(inputText);
-        ss.setSpan(new ForegroundColorSpan(Color.RED),inputText.length()-1,inputText.length(),0);
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        SpannableString ss = new SpannableString(inputText);
+        ss.setSpan(new ForegroundColorSpan(Color.RED), inputText.length() - 1, inputText.length(), 0);
         builder.append(ss);
 
-       return  builder;
+        return builder;
     }
 
+    public static String getDeviceDensityString(Context context) {
+        String dims= "";
+        switch (context.getResources().getDisplayMetrics().densityDpi) {
+            case DisplayMetrics.DENSITY_LOW:
+                return dims= "ldpi";
+            case DisplayMetrics.DENSITY_MEDIUM:
+                return dims= "mdpi";
+            case DisplayMetrics.DENSITY_TV:
+            case DisplayMetrics.DENSITY_HIGH:
+                return dims ="hdpi";
+            case DisplayMetrics.DENSITY_260:
+            case DisplayMetrics.DENSITY_280:
+            case DisplayMetrics.DENSITY_300:
+            case DisplayMetrics.DENSITY_XHIGH:
+                return dims = "xhdpi";
+            case DisplayMetrics.DENSITY_340:
+            case DisplayMetrics.DENSITY_360:
+            case DisplayMetrics.DENSITY_400:
+            case DisplayMetrics.DENSITY_420:
+            case DisplayMetrics.DENSITY_440:
+            case DisplayMetrics.DENSITY_XXHIGH:
+                return dims = "xxhdpi";
+            case DisplayMetrics.DENSITY_560:
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                return dims ="xxxhdpi";
+        }
+
+
+
+        return dims;
+    }
 }
