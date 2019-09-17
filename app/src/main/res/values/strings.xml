@@ -103,8 +103,8 @@
 
     <string name="selecte_from_date"> Selected From Date </string>
     <string name="selecte_to_date"> Selected To Date </string>
-<!--    <string name="from_date">From Date <font fgcolor="red">*</font></string>-->
-    <string name="from_date">Email<font fgcolor="red">*</font></string>
+    <string name="from_date">From Date <font fgcolor="red">*</font></string>
+
     <string name="to_date">To Date <font fgcolor="red">*</font></string>
     <string name="collection_id">Collection ID</string>
     <string name="date">Start Date</string>

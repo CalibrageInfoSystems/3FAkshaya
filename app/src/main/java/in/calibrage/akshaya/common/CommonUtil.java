@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -22,7 +23,10 @@ import android.os.ParcelFileDescriptor;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -398,5 +402,15 @@ public class CommonUtil {
     }
 
 
+    public  static SpannableStringBuilder  getMultiColourString(String inputText)
+    {
+
+        SpannableStringBuilder builder =new SpannableStringBuilder();
+        SpannableString ss= new SpannableString(inputText);
+        ss.setSpan(new ForegroundColorSpan(Color.RED),inputText.length()-1,inputText.length(),0);
+        builder.append(ss);
+
+       return  builder;
+    }
 
 }

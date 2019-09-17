@@ -34,6 +34,7 @@ import java.util.Date;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.models.PaymentRequestModel;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.service.ApiService;
@@ -75,6 +76,7 @@ public class PaymentHistoryActivity extends BaseActivity {
         setviews();
 
     }
+
     private void init() {
         noRecords = (TextView) findViewById(R.id.text);
         ffb = (TextView) findViewById(R.id.ffb_total);
@@ -96,7 +98,17 @@ public class PaymentHistoryActivity extends BaseActivity {
         fromText = (EditText) findViewById(R.id.from_date);
         fromText.setInputType(InputType.TYPE_NULL);
         toText = (EditText) findViewById(R.id.to_date);
+        final TextInputLayout txt_to_date = findViewById(R.id.txt_to_date);
+        final TextInputLayout txt_from_date = findViewById(R.id.txt_from_date);
+
+
+        fromText.setHint(CommonUtil.getMultiColourString(getString(R.string.from_date)));
+        toText.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
+        //  txt_to_date.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
+
+
     }
+
     private void setviews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,7 +256,6 @@ public class PaymentHistoryActivity extends BaseActivity {
     }
 
 
-
     public static long compareTo(Date date1, Date date2) {
         return date1.getTime() - date2.getTime();
 
@@ -327,8 +338,8 @@ public class PaymentHistoryActivity extends BaseActivity {
         PaymentRequestModel requestModel = new PaymentRequestModel();
         //TODO need to save in shared pref
         /*
-        * remove fist 2 letters from former code and add v
-        * */
+         * remove fist 2 letters from former code and add v
+         * */
         requestModel.setVendorCode("VWGBDAB00010001");
         requestModel.setToDate(reformattedStrTo);
         requestModel.setFromDate(reformattedStrFrom);

@@ -82,7 +82,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_5"
                 android:clipChildren="false"
-                android:hint="@string/from_date"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
 
                 >
@@ -95,7 +94,7 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/roboto_regular"
                     android:focusable="false"
-                    android:hint="@string/from_date"
+
 
                     />
             </android.support.design.widget.TextInputLayout>
@@ -110,10 +109,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_5"
                 android:clipChildren="false"
-                android:hint="@string/to_date"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText
+
                     android:id="@+id/to_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,7 +120,7 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/roboto_regular"
                     android:focusable="false"
-                    android:hint="@string/to_date" />
+                     />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
