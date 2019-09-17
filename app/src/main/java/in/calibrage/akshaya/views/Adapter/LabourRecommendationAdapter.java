@@ -48,6 +48,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
         holder.plot_Mandal.setText(recomm_Set.get(position).getMandalName());
         holder.plot_State.setText(recomm_Set.get(position).getStateName());
         holder.plot_District.setText(recomm_Set.get(position).getDistrictName());
+        holder.date_plantation.setText(recomm_Set.get(position).getDateOfPlanting());
 
 
 
@@ -64,6 +65,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
                 intent.putExtra("plotMandal",    holder.plot_Mandal.getText());
                 intent.putExtra("plotState",    holder.plot_State.getText());
                 intent.putExtra("plotDistrict",    holder.plot_District.getText());
+                intent.putExtra("date_of_plandation",    holder.date_plantation.getText());
 
 
                 Log.e("plotDistrict====", (String) holder.plot_Mandal.getText());
@@ -90,7 +92,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation;
-        public TextView textViewstatus;
+        public TextView textViewstatus,date_plantation;
         public CardView card_view;
         public TextView farmer_Code,plot_Mandal,plot_State,plot_District;
         public ViewHolder(View itemView) {
@@ -103,7 +105,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
             this.plot_Mandal = (TextView) itemView.findViewById(R.id.plot_Mandal);
             this.plot_State = (TextView) itemView.findViewById(R.id.plot_State);
             this.plot_District = (TextView) itemView.findViewById(R.id.plot_District);
-
+            this.date_plantation = (TextView) itemView.findViewById(R.id.date_plantation);
 
             this.card_view =  (CardView) itemView.findViewById(R.id.card_view);
 

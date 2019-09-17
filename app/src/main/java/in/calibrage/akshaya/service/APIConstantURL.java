@@ -20,6 +20,8 @@ public interface APIConstantURL {
 
     String Post_Loan = " RequestHeader/AddRequestHeader";
 
+    String labour_amount = "LabourServiceCost/GetLabourServiceCostByAge";
+
 
 
 

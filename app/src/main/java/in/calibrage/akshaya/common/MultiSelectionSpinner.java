@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
+import com.google.gson.JsonObject;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,7 +25,7 @@ public class MultiSelectionSpinner extends Spinner implements
 
     public interface OnMultipleItemsSelectedListener{
         void selectedIndices(List<Integer> indices);
-        void selectedStrings(List<String> strings);
+        JsonObject selectedStrings(List<String> strings);
     }
     private OnMultipleItemsSelectedListener listener;
 
@@ -113,9 +115,11 @@ public class MultiSelectionSpinner extends Spinner implements
         mSelection = new boolean[_items.length];
         mSelectionAtStart  = new boolean[_items.length];
         simple_adapter.clear();
-        simple_adapter.add(_items[0]);
+       // simple_adapter.add(_items[0]);
+        simple_adapter.add("Tap to select");
+        ///simple_adapter.add(_items[0]);
         Arrays.fill(mSelection, false);
-        mSelection[0] = true;
+       // mSelection[0] = true;
     }
 
     public void setSelection(String[] selection) {

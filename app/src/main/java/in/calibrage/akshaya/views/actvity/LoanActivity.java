@@ -4,9 +4,12 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,8 +34,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -44,6 +49,7 @@ import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LoanRequest;
 import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.LobourResponse;
+import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
@@ -105,10 +111,17 @@ public class LoanActivity extends BaseActivity {
             loan_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkbox.isChecked()) {
-                    GetLoanDetails();
-                } else {
-                    Toast.makeText(getApplicationContext(), R.string.terms_agree, Toast.LENGTH_SHORT).show();
+                if (amount.getText() != null & amount.getText().toString().trim() != "" & !TextUtils.isEmpty(amount.getText())) {
+                    if (checkbox.isChecked()) {
+
+                        GetLoanDetails();
+                    }
+                    else {
+                        showDialog(LoanActivity.this,getResources().getString(R.string.terms_agree));
+
+                    }
+                }else {
+                    showDialog(LoanActivity.this,"Please Enter Loan Amount" );
                 }
 
 
@@ -166,21 +179,23 @@ public class LoanActivity extends BaseActivity {
                         mdilogue.cancel();
                     }
 
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void onNext(LoanResponse loanResponse) {
 
 
                         if (loanResponse.getIsSuccess()) {
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    /* Create an Intent that will start the Menu-Activity. */
-                                    Toast.makeText(LoanActivity.this, "Success==", Toast.LENGTH_LONG).show();
+
+                            String Amount = amount.getText().toString();
+                            String Reason = reason.getText().toString();
+                            List<MSGmodel> displayList = new ArrayList<>();
+
+                            displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
+                            displayList.add(new MSGmodel(getResources().getString(R.string.reason_loan), Reason));
+
+                            showSuccessDialog(displayList);
 
 
-                                   showSuccessDialog("mallem mahesh");
-                                }
-                            }, 300);
                         } else {
                         showDialog(LoanActivity.this, loanResponse.getEndUserMessage());
                         }
@@ -205,7 +220,7 @@ public class LoanActivity extends BaseActivity {
         requestModel.setCropMaintainceDate(currentDate);
         requestModel.setStatusTypeId(15);
         requestModel.setRequestTypeId(28);
-        requestModel.setTotalCost(9.1);
+        requestModel.setTotalCost(Double.parseDouble(amount.getText().toString()));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 

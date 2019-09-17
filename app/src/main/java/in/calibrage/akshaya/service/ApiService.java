@@ -6,6 +6,7 @@ import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
+import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
@@ -80,7 +81,8 @@ public interface ApiService {
     @POST(APIConstantURL.Post_Loan)
     Observable<LoanResponse> postLoan(@Body JsonObject data);
 
-
+    @POST(APIConstantURL.labour_amount)
+    Observable<GetAmount> postservice_amount(@Body JsonObject data);
 
 
  /*

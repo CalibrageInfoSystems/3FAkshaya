@@ -8,11 +8,14 @@ import android.content.Context;
 import android.graphics.drawable.Animatable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +29,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.models.MSGmodel;
+
+import static in.calibrage.akshaya.R.color.color_blue;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -171,7 +179,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void validationPopShow() {
 
-        LayoutInflater layoutInflater = (LayoutInflater)BaseActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) BaseActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customView = layoutInflater.inflate(R.layout.popup, null);
 
         closePopupBtn = (Button) customView.findViewById(R.id.closePopupBtn);
@@ -181,7 +189,7 @@ public class BaseActivity extends AppCompatActivity {
         popupWindow.setAnimationStyle(R.style.popup_window_animation);
 
         //display the popup window
-       // popupWindow.showAtLocation(linearLayout1, Gravity.CENTER, 0, 0);
+        // popupWindow.showAtLocation(linearLayout1, Gravity.CENTER, 0, 0);
 
         //close the popup window on button click
         closePopupBtn.setOnClickListener(new View.OnClickListener() {
@@ -192,12 +200,13 @@ public class BaseActivity extends AppCompatActivity {
         });
 
     }
-    public void showDialog(Activity activity, String msg){
-        final Dialog dialog = new Dialog(activity,R.style.DialogSlideAnim);
+
+    public void showDialog(Activity activity, String msg) {
+        final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog);
-       final ImageView img = dialog.findViewById(R.id.img_cross);
+        final ImageView img = dialog.findViewById(R.id.img_cross);
 
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
         text.setText(msg);
@@ -216,9 +225,10 @@ public class BaseActivity extends AppCompatActivity {
             public void run() {
                 ((Animatable) img.getDrawable()).start();
             }
-        },500);
+        }, 500);
 
     }
+
     /**
      * Hides the soft keyboard
      */
@@ -242,16 +252,63 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-
-    protected void showSuccessDialog(String msg) {
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    protected void showSuccessDialog(List<MSGmodel> msg) {
         ViewGroup viewGroup = findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
-        TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
-        txtmsg.setText(msg);
+
+
+        //TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
+        LinearLayout layout = dialogView.findViewById(R.id.linear_text);
+
+
+
+        for (int i = 0; i < msg.size(); i++) {
+
+            LinearLayout lty = new LinearLayout(this);
+            lty.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT));
+            lty.setWeightSum(1);
+            lty.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView txtTitle = new TextView(this);
+            txtTitle.setText(msg.get(i).getKey());
+            txtTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            txtTitle.setLayoutParams(new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));
+            txtTitle.setTextColor(getColor(R.color.red));
+            lty.addView(txtTitle);
+
+            TextView txtitem = new TextView(this);
+            txtitem.setText(msg.get(i).getValue());
+            txtitem.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            txtitem.setLayoutParams(new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));
+
+
+            lty.addView(txtitem);
+
+            layout.addView(lty);
+        }
+
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogView);
-        AlertDialog alertDialog = builder.create();
+        final AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
+        Button dialogButton = (Button) alertDialog.findViewById(R.id.buttonOk);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
 //        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
 //        ((Animatable) mImgCheck.getDrawable()).start();
     }

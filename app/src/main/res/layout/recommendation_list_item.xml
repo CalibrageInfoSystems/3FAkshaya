@@ -183,7 +183,16 @@
                 android:scaleType="centerCrop"
                 android:layout_margin="-10dp"
                 android:src="@drawable/arrow_right" />
-
+            <TextView
+                android:id="@+id/date_plantation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/plot_State"
+                android:visibility="gone"
+                android:paddingBottom="@dimen/songs_count_padding_bottom"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:textSize="@dimen/songs_count" />
 
         </RelativeLayout>
 
