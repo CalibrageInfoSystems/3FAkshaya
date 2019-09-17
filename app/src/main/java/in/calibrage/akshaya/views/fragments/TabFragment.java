@@ -78,7 +78,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private GetRecommendationsByAgeAdapter adapter;
     private List<GetRecommendationsByAgeModel> recom_list = new ArrayList<>();
     private LinearLayout lyt_firstTab;
-    LinearLayout noRecords;
+    LinearLayout noRecords  ,noVedios;
 
     public static Fragment getInstance(int position, int count) {
         Bundle bundle = new Bundle();
@@ -117,6 +117,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private void init(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         noRecords = (LinearLayout) view.findViewById(R.id.nodata);
+        noVedios= (LinearLayout) view.findViewById(R.id.no_videos);
         lyt_firstTab = view.findViewById(R.id.lyt_firstTab);
         textView.setText("Fragment " + (position + 1));
         textView.setVisibility(View.GONE);
@@ -218,10 +219,25 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 
                         rcv_video.setAdapter(new VideoAdapter(listResultVideo));
                         rcv_pdf.setAdapter(new PdfAdapter(listResultPDF));
+
+                        if (listResultPDF.size() == 0) {
+                            noRecords.setVisibility(View.VISIBLE);
+
+                        } else {
+                            noRecords.setVisibility(View.GONE);
+
+                        }
+
+//
+//                        if (listResultVideo.size() == 0) {
+//                            noVedios.setVisibility(View.VISIBLE);
+//                            rcv_video.setVisibility(View.GONE);
+//                        } else {
+//                            noVedios.setVisibility(View.GONE);
+//                            rcv_video.setVisibility(View.VISIBLE);
+//                        }
                     }
-
-
-                });
+                    });
     }
 
     private void GetRecommendation() {
@@ -399,7 +415,12 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         .into(holder.iv_youtube_thumnail);
                 holder.txt_name.setText(listResultVideo.get(position).getName());
                 holder.txt_desc.setText(listResultVideo.get(position).getDescription());
-
+            if    (listResultVideo.size()== 0){
+                Log.e("no====","videos==") ;
+                }
+            else {
+                Log.e("==========","videos==") ;
+            }
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

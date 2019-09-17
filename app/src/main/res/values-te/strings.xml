@@ -221,7 +221,7 @@
     <string name="my_fert_requests">ఎరువుల అభ్యర్థనలు</string>
     <string name="my_visit_requests">అభ్యర్థనలను సందర్శించండి</string>
     <string name="my_loan_requests">రుణ అభ్యర్థనలు</string>
-    <string name="loan_message">In finance, a loan is the lending of money by one or more individuals, organizations, or other entities to other individuals, organizations etc. The recipient (i.e. the borrower) incurs a debt, and is usually liable to pay interest on that debt until it is repaid, and also to repay the principal amount borrowed.  The document evidencing the debt, e.g. a promissory note, will normally specify, among other things, the principal amount of money borrowed, the interest rate the lender is charging, and date of repayment. A loan entails the reallocation of the subject asset(s) for a period of time, between the lender and the borrower.  The interest provides an incentive for the lender to engage in the loan. In a legal loan, each of these obligations and restrictions is enforced by contract, which can also place the borrower under additional restrictions known as loan covenants. Although this article focuses on monetary loans, in practice any material object might be lent.</string>
+    <string name="loan_message">ఫైనాన్స్‌లో, loan ణం అంటే ఒకటి లేదా అంతకంటే ఎక్కువ వ్యక్తులు, సంస్థలు లేదా ఇతర వ్యక్తులు, సంస్థలకు రుణాలు ఇవ్వడం. గ్రహీత (అనగా రుణగ్రహీత) అప్పును కలిగి ఉంటాడు మరియు సాధారణంగా ఆ రుణంపై వడ్డీని చెల్లించే వరకు బాధ్యత వహిస్తాడు. ఇది తిరిగి చెల్లించబడుతుంది మరియు అరువు తీసుకున్న ప్రధాన మొత్తాన్ని కూడా తిరిగి చెల్లించాలి. రుణాన్ని రుజువు చేసే పత్రం, ఉదా. ప్రామిసరీ నోట్, సాధారణంగా, ఇతర విషయాలతోపాటు, రుణం తీసుకున్న ప్రధాన డబ్బు, రుణదాత వసూలు చేస్తున్న వడ్డీ రేటు మరియు తిరిగి చెల్లించే తేదీని పేర్కొంటుంది. Loan ణం రుణదాత మరియు రుణగ్రహీత మధ్య కొంతకాలం విషయ ఆస్తి (ల) ను తిరిగి కేటాయించడం. వడ్డీ రుణదాతకు రుణంలో పాల్గొనడానికి ప్రోత్సాహాన్ని అందిస్తుంది. చట్టబద్దమైన రుణంలో, ఈ బాధ్యతలు మరియు పరిమితులు ప్రతి ఒక్కటి కాంట్రాక్ట్ ద్వారా అమలు చేయబడతాయి, ఇది రుణగ్రహీతను రుణ ఒప్పందాలు అని పిలువబడే అదనపు పరిమితుల క్రింద ఉంచవచ్చు. ఈ వ్యాసం ద్రవ్య రుణాలపై దృష్టి సారించినప్పటికీ, ఆచరణలో ఏదైనా భౌతిక వస్తువు అప్పు ఇవ్వబడుతుంది.</string>
     <string name="gowdown_name">గౌడౌన్ పేరు</string>
     <string name="product_details">వస్తువు యొక్క వివరాలు</string>
     <string name="got_it">దొరికింది</string>
@@ -336,6 +336,8 @@
     <string name="confirmation">నిర్ధారణ</string>
     <string name="alert_logout">మీరు లాగ్ అవుట్ చేయాలనుకుంటున్నారా?</string>
     <string name="no_plots">No Plots Available</string>
+    <string name="loan_amount">Loan Amount</string>
+    <string name="reason_loan">Reason for Loan</string>
     <!--  we need to use video ids instead of video link  -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>

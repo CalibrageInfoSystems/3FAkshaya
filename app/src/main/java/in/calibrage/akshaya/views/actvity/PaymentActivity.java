@@ -62,9 +62,9 @@ public class PaymentActivity extends BaseActivity {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
+               // finish();
+              Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);
             }
         });
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
@@ -74,7 +74,9 @@ public class PaymentActivity extends BaseActivity {
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);
+             //   finish();
 
             }
         });
