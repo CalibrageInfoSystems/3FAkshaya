@@ -4,12 +4,17 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.InputType;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -110,6 +115,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
         collection_Submit = (Button) findViewById(R.id.buttonSubmit);
         fromText = (EditText) findViewById(R.id.from_date);
+
+
         relativeLayoutCount = (RelativeLayout) findViewById(R.id.top_linear);
         String from_date = "<font color='#000000'>From Date </font>" + "<font color='#FF0000'>*</font>" + "<font color='#000000'></font>";
         //   fromText.setText(Html.fromHtml(from_date));

@@ -33,6 +33,7 @@ import java.util.Date;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.models.PaymentRequestModel;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.service.ApiService;
@@ -44,73 +45,80 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class PaymentHistoryActivity extends AppCompatActivity {
+public class PaymentHistoryActivity extends BaseActivity {
 
     private static final String TAG = PaymentHistoryActivity.class.getSimpleName();
-    EditText fromText,toText;
-    String fromString,toString;
-    DatePickerDialog picker;
-    RelativeLayout totalLinear;
+    private EditText fromText, toText;
+    private String fromString, toString;
+    private DatePickerDialog picker;
+    private RelativeLayout totalLinear;
     private PaymentAdapter pay_adapter;
     private Subscription mSubscription;
-    Button submit;
-    String  datetimevaluereq;
-    String reformattedStrFrom,reformattedStrTo;
-    TextView noRecords,Total_records,ffb,gr,totalAdjusted,totalBalance;
+    private Button submit;
+    private String datetimevaluereq;
+    private String reformattedStrFrom, reformattedStrTo;
+    private TextView noRecords, Total_records, ffb, gr, totalAdjusted, totalBalance;
     private Calendar calendar;
-    String finalbalance;
+    private String finalbalance;
     private ProgressDialog dialog;
-    ImageView _infoView;
-    TextInputLayout from_txt,to_txt;
-    RecyclerView Payment_recycle;
-    private SpotsDialog mdilogue ;
+    private ImageView _infoView;
+    private TextInputLayout from_txt, to_txt;
+    private RecyclerView Payment_recycle;
+    private SpotsDialog mdilogue;
+    private ImageView backImg, home_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_payment_history);
+        init();
+        setviews();
 
+    }
+    private void init() {
+        noRecords = (TextView) findViewById(R.id.text);
+        ffb = (TextView) findViewById(R.id.ffb_total);
 
-        noRecords=(TextView)findViewById(R.id.text);
-        ffb=(TextView)findViewById(R.id.ffb_total);
-
-        totalBalance=(TextView)findViewById(R.id.totalBalance);
-        Total_records=(TextView)findViewById(R.id.total_records);
-        mdilogue= (SpotsDialog) new SpotsDialog.Builder()
+        totalBalance = (TextView) findViewById(R.id.totalBalance);
+        Total_records = (TextView) findViewById(R.id.total_records);
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
 
-        ImageView backImg=(ImageView)findViewById(R.id.back);
-        totalLinear=(RelativeLayout)findViewById(R.id.linear1);
+        backImg = (ImageView) findViewById(R.id.back);
+        totalLinear = (RelativeLayout) findViewById(R.id.linear1);
+        home_btn = (ImageView) findViewById(R.id.home_btn);
+        from_txt = (TextInputLayout) findViewById(R.id.txt_from_date);
+        to_txt = (TextInputLayout) findViewById(R.id.txt_to_date);
+        submit = (Button) findViewById(R.id.btn__sub);
+        Payment_recycle = (RecyclerView) findViewById(R.id.payment_recycler_view);
+        fromText = (EditText) findViewById(R.id.from_date);
+        fromText.setInputType(InputType.TYPE_NULL);
+        toText = (EditText) findViewById(R.id.to_date);
+    }
+    private void setviews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),PaymentActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageView home_btn=(ImageView)findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
             }
         });
-        from_txt = (TextInputLayout)findViewById(R.id.txt_from_date);
-        to_txt = (TextInputLayout)findViewById(R.id.txt_to_date);
-        submit=(Button)findViewById(R.id.btn__sub);
-        Payment_recycle = (RecyclerView) findViewById(R.id.payment_recycler_view);
+
         Payment_recycle.setHasFixedSize(true);
-        LinearLayoutManager  layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         Payment_recycle.setLayoutManager(layoutManager);
 
-        fromText=(EditText) findViewById(R.id.from_date);
-        fromText.setInputType(InputType.TYPE_NULL);
+
         fromText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,17 +142,17 @@ public class PaymentHistoryActivity extends AppCompatActivity {
             }
         });
 
-        toText=(EditText) findViewById(R.id.to_date);
+
         toText.setInputType(InputType.TYPE_NULL);
         toText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar  calendar1 = Calendar.getInstance();
+                Calendar calendar1 = Calendar.getInstance();
                 int day = calendar1.get(Calendar.DAY_OF_MONTH);
                 int month = calendar1.get(Calendar.MONTH);
                 int year = calendar1.get(Calendar.YEAR);
                 // date picker dialog
-                DatePickerDialog   picker1 = new DatePickerDialog(PaymentHistoryActivity.this,
+                DatePickerDialog picker1 = new DatePickerDialog(PaymentHistoryActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -152,10 +160,10 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
                                 toText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
-                                String selected_date=(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                String selected_date = (dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                                 int month = (monthOfYear + 1);
 
-                                Log.e("selected_date===",selected_date);
+                                Log.e("selected_date===", selected_date);
                             }
                         }, year, month, day);
 
@@ -169,18 +177,15 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
                 fromString = fromText.getText().toString().trim();
                 toString = toText.getText().toString().trim();
                 Log.d("fromString==", fromString);
                 Log.d("toString==", toString);
 
-                if(fromString.equalsIgnoreCase("")||toString.equalsIgnoreCase(""))
-                {
+                if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
                     Toast.makeText(PaymentHistoryActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
 
-                }
-                else {
+                } else {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     // String str1 = "9/10/2015";
                     Date date1 = null;
@@ -188,10 +193,9 @@ public class PaymentHistoryActivity extends AppCompatActivity {
                         date1 = formatter.parse(fromString);
 
                         Date date2 = formatter.parse(toString);
-                        if (date2.compareTo(date1)<0)
-                        {
-                            Toast.makeText(getApplicationContext(),"Please Enter From Date is less than To Date",Toast.LENGTH_LONG).show();
-                        }else{
+                        if (date2.compareTo(date1) < 0) {
+                            Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
+                        } else {
 
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                             Date d1 = null;
@@ -225,29 +229,23 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
                             Log.e("dayCount===", String.valueOf(dayCount));
 
-                            getPaymentDetails(fromString,toString);
+                            getPaymentDetails(fromString, toString);
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
 
 
-
-
-
-
                 }
-
 
 
             }
         });
-
     }
 
-    public static long compareTo( Date date1, Date date2 )
-    {
 
+
+    public static long compareTo(Date date1, Date date2) {
         return date1.getTime() - date2.getTime();
 
     }
@@ -299,27 +297,23 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
                         Log.d(TAG, "onNext:collection " + paymentResponseModel);
 
-                        if(paymentResponseModel.getResult().getPaymentResponce() != null)
-                        {
+                        if (paymentResponseModel.getResult().getPaymentResponce() != null) {
                             noRecords.setVisibility(View.GONE);
                             pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
                             Payment_recycle.setAdapter(pay_adapter);
                             totalLinear.setVisibility(View.VISIBLE);
-                          //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
+                            //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
 
-                            Total_records.setText( String.valueOf(paymentResponseModel.getAffectedRecords()));
-                            ffb.setText( String.valueOf(paymentResponseModel.getResult().getTotalQuanitity()));
-                            if (paymentResponseModel.getResult().getTotalBalance()== null )
-                            {
+                            Total_records.setText(String.valueOf(paymentResponseModel.getAffectedRecords()));
+                            ffb.setText(String.valueOf(paymentResponseModel.getResult().getTotalQuanitity()));
+                            if (paymentResponseModel.getResult().getTotalBalance() == null) {
                                 totalBalance.setText("0");
 
-                            }
-                            else {
-                                totalBalance.setText( String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
+                            } else {
+                                totalBalance.setText(String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
                             }
 
-                        }
-                        else{
+                        } else {
                             noRecords.setVisibility(View.VISIBLE);
                             totalLinear.setVisibility(View.GONE);
                         }
@@ -327,13 +321,18 @@ public class PaymentHistoryActivity extends AppCompatActivity {
 
 
                 });
-}
+    }
 
     private JsonObject paymenObject() {
         PaymentRequestModel requestModel = new PaymentRequestModel();
+        //TODO need to save in shared pref
+        /*
+        * remove fist 2 letters from former code and add v
+        * */
         requestModel.setVendorCode("VWGBDAB00010001");
         requestModel.setToDate(reformattedStrTo);
         requestModel.setFromDate(reformattedStrFrom);
 
-        return new Gson().toJsonTree(requestModel).getAsJsonObject();    }
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
+}

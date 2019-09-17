@@ -177,7 +177,7 @@ android:visibility="gone"
                 android:layout_margin="@dimen/margin_5"
                 android:clipChildren="false"
                 android:layout_weight="0.3"
-                android:hint="@string/from_date"
+
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
 
                 >
@@ -191,7 +191,6 @@ android:visibility="gone"
                     android:hint="@string/from_date"
                     android:textColor="@color/white_new"
 
-
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -203,7 +202,6 @@ android:visibility="gone"
                 android:layout_marginTop="@dimen/margin_5"
                 android:clipChildren="false"
                 android:layout_weight="0.3"
-                android:hint="@string/to_date"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText

@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="@drawable/bg"
     android:orientation="vertical"
     tools:context=".views.actvity.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg"
-        android:foreground="@color/half_black2" />
+        android:background="@drawable/app_bg"
+        android:foreground="@color/transparent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +38,6 @@
             android:textSize="25dp" />
 
         <EditText
-android:inputType="text"
             android:id="@+id/farmer_id_edittxt"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -48,6 +46,7 @@ android:inputType="text"
             android:background="@drawable/edt_bg"
             android:fontFamily="@font/roboto_regular"
             android:hint="Enter Former ID"
+            android:inputType="text"
             android:maxEms="150"
             android:maxLines="1"
             android:nextFocusDown="@id/btn_login"
@@ -76,42 +75,28 @@ android:inputType="text"
                 android:weightSum="1">
 
                 <Button
+                    android:layout_height="wrap_content"
                     android:id="@+id/btn_login"
+                    style="@style/Common_Button"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/button_bg"
-                    android:elevation="8dp"
-                    android:fontFamily="@font/oswald_vf"
-                    android:text="Login"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorOrange"
-                    android:textSize="18dp" />
+                    android:text="Login" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
-                    android:text="(OR)"
+                    android:text="OR"
                     android:textColor="@color/white_new"
                     android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/btn_qrscan"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:background="@drawable/button_bg"
-                    android:elevation="8dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:gravity="center"
                     android:text="Scan QR"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorOrange"
-                    android:textSize="18dp" />
+                    style="@style/Common_Button" />
 
             </LinearLayout>
         </LinearLayout>

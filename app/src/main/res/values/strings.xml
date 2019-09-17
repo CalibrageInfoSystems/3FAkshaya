@@ -103,7 +103,8 @@
 
     <string name="selecte_from_date"> Selected From Date </string>
     <string name="selecte_to_date"> Selected To Date </string>
-    <string name="from_date">From Date <font fgcolor="red">*</font></string>
+<!--    <string name="from_date">From Date <font fgcolor="red">*</font></string>-->
+    <string name="from_date">Email<font fgcolor="red">*</font></string>
     <string name="to_date">To Date <font fgcolor="red">*</font></string>
     <string name="collection_id">Collection ID</string>
     <string name="date">Start Date</string>
@@ -215,7 +216,7 @@
     <string name="totalBalance">Total Balance (Rs)</string>
     <string name="balance">Balance (Rs)</string>
     <string name="collectionsWeight">Total Net Weight </string>
-    <string name="collectionsCount">Total Count</string>
+    <string name="collectionsCount">Total Collection</string>
     <string name="unPaidCollectionsWeight">Unpaid Collections Weight </string>
     <string name="gr">GR Amount (Rs)</string>
     <string name="adjusted">Adjusted (Rs)</string>
@@ -343,8 +344,12 @@
     <string name="confirmation">Confirmation</string>
     <string name="alert_logout">Are you sure you want to Logout?</string>
     <string name="no_plots">No Plots Available</string>
+
     <string name="loan_amount">Loan Amount</string>
     <string name="reason_loan">Reason for Loan</string>
+
+    <string name="error">Error</string>
+
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>
