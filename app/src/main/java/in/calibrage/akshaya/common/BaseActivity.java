@@ -169,7 +169,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void validationPopShow() {
 
-        LayoutInflater layoutInflater = (LayoutInflater)BaseActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) BaseActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customView = layoutInflater.inflate(R.layout.popup, null);
 
         closePopupBtn = (Button) customView.findViewById(R.id.closePopupBtn);
@@ -179,7 +179,7 @@ public class BaseActivity extends AppCompatActivity {
         popupWindow.setAnimationStyle(R.style.popup_window_animation);
 
         //display the popup window
-       // popupWindow.showAtLocation(linearLayout1, Gravity.CENTER, 0, 0);
+        // popupWindow.showAtLocation(linearLayout1, Gravity.CENTER, 0, 0);
 
         //close the popup window on button click
         closePopupBtn.setOnClickListener(new View.OnClickListener() {
@@ -190,16 +190,14 @@ public class BaseActivity extends AppCompatActivity {
         });
 
     }
-    public void showDialog(Activity activity, String msg){
-        final Dialog dialog = new Dialog(activity,R.style.DialogSlideAnim);
+    public void showDialog(Activity activity, String msg) {
+        final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog);
-       final ImageView img = dialog.findViewById(R.id.img_cross);
-
+        final ImageView img = dialog.findViewById(R.id.img_cross);
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
         text.setText(msg);
-
         Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,15 +205,13 @@ public class BaseActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
         dialog.show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 ((Animatable) img.getDrawable()).start();
             }
-        },500);
-
+        }, 500);
     }
     /**
      * Hides the soft keyboard

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -17,9 +18,11 @@ import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.common.TypeWriter;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 
+import static in.calibrage.akshaya.common.CommonUtil.getDeviceDensityString;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class SplashActivity extends BaseActivity {
+    public static final String TAG= SplashActivity.class.getSimpleName();
     private ImageView imgLogo;
     private TypeWriter txt_name, txt_desc;
     private Context context;
@@ -35,6 +38,7 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         init();
         setViews();
+        Log.d(TAG, "------ analysis --------- >> GetDimens SIZE :"+getDeviceDensityString(this));
     }
 
     private void init() {
