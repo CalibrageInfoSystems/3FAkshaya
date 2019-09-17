@@ -38,6 +38,7 @@ import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LoanRequest;
@@ -52,7 +53,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class LoanActivity extends AppCompatActivity {
+public class LoanActivity extends BaseActivity {
     CheckBox checkbox;
     private ProgressDialog dialog;
     public static String TAG = "LoanActivity";
@@ -177,11 +178,11 @@ public class LoanActivity extends AppCompatActivity {
                                     Toast.makeText(LoanActivity.this, "Success==", Toast.LENGTH_LONG).show();
 
 
-                                  //  showSuccessDialog("mallem mahesh");
+                                   showSuccessDialog("mallem mahesh");
                                 }
                             }, 300);
                         } else {
-                          //  showDialog(LoanActivity.this, loanResponse.getEndUserMessage());
+                        showDialog(LoanActivity.this, loanResponse.getEndUserMessage());
                         }
 
                     }

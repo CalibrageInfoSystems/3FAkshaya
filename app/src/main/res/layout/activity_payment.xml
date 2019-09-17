@@ -74,47 +74,39 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_margin="@dimen/_8dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:id="@+id/lin_one"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="403dp"
+        android:layout_height="393dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:layout_marginBottom="@dimen/_8dp"
         android:background="@drawable/collect_bg">
 
-        <ImageView
-            android:layout_marginTop="@dimen/margin_10"
-            android:id="@+id/imgBank"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
+        <Button
+            android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_bank_white"/>
-        <RelativeLayout
-            android:layout_below="@+id/imgBank"
-            android:id="@+id/lin_head"
-            android:layout_width="match_parent"
+            android:layout_below="@+id/lin_six"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/text_size"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/next"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/margin_12" />
+
+        <ImageView
+            android:id="@+id/imgBank"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0sp">
-
-            <TextView
-                android:id="@+id/tvtext_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15sp"
-                android:gravity="center"
-                android:text="@string/bank_details"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size"
-                android:textStyle="bold" />
-<LinearLayout
-    android:layout_below="@+id/tvtext_item"
-    android:background="@drawable/line_bg"
-    android:layout_width="match_parent"
-    android:layout_height="1dp"/>
-
-        </RelativeLayout>
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_10"
+            android:src="@drawable/ic_bank_white" />
 
         <RelativeLayout
             android:id="@+id/lin_two"
@@ -126,12 +118,12 @@
 
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15sp"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/bank_holder"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
@@ -139,30 +131,29 @@
 
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/dot2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15sp"
+                android:fontFamily="@font/roboto_regular"
                 android:text=":"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15sp"
                 android:layout_toRightOf="@+id/dot2"
+                android:fontFamily="@font/roboto_regular"
                 android:hint="Kiran vinnakota"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/album_title"
-               />
+                android:textSize="@dimen/album_title" />
 
         </RelativeLayout>
 
@@ -176,12 +167,12 @@
 
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/account_no"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
@@ -199,18 +190,17 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot3"
+                android:fontFamily="@font/roboto_regular"
                 android:hint="31213254698"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/album_title"
-               />
+                android:textSize="@dimen/album_title" />
 
         </RelativeLayout>
 
@@ -224,12 +214,12 @@
 
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5sp"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/bank_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
@@ -247,18 +237,17 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_seven"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot4"
+                android:fontFamily="@font/roboto_regular"
                 android:hint="SBI"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/album_title"
-                />
+                android:textSize="@dimen/album_title" />
 
         </RelativeLayout>
 
@@ -283,30 +272,29 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/dot5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5sp"
+                android:fontFamily="@font/roboto_regular"
                 android:text=":"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_nine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot5"
+                android:fontFamily="@font/roboto_regular"
                 android:hint="JNTU"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/album_title"
-                />
+                android:textSize="@dimen/album_title" />
 
         </RelativeLayout>
 
@@ -320,12 +308,12 @@
 
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_ten"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5sp"
+                android:fontFamily="@font/roboto_regular"
                 android:text="@string/ifsc"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
@@ -343,33 +331,47 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/roboto_regular"
                 android:id="@+id/tvtext_item_eleven"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot6"
+                android:fontFamily="@font/roboto_regular"
                 android:hint="SBIN0021008"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/album_title"
-                />
+                android:textSize="@dimen/album_title" />
 
             -->
         </RelativeLayout>
-        <Button
-            android:fontFamily="@font/roboto_regular"
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
+
+        <RelativeLayout
+            android:id="@+id/lin_head"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/next"
-            android:background="@drawable/button_bg"
-            android:layout_margin="@dimen/text_size"
-            android:layout_below="@+id/lin_six"
-            android:layout_alignParentRight="true"
-            android:textSize="@dimen/margin_12"
-            android:textColor="@color/colorOrange"/>
+            android:layout_below="@+id/imgBank"
+            android:layout_marginTop="0sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tvtext_item"
+                android:background="@drawable/line_bg" />
+
+            <TextView
+                android:id="@+id/tvtext_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:gravity="center"
+                android:text="@string/bank_details"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
 
