@@ -11,6 +11,7 @@ import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LerningsModel;
+import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
@@ -73,8 +74,12 @@ public interface ApiService {
     Observable<Labourservicetype> getLabourService(@Url String url);
 
 
-    @POST(APIConstantURL.Collection)
+    @POST(APIConstantURL.post_labour)
     Observable<LobourResponse> postLabour(@Body JsonObject data);
+
+    @POST(APIConstantURL.Post_Loan)
+    Observable<LoanResponse> postLoan(@Body JsonObject data);
+
 
 
 

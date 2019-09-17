@@ -16,7 +16,9 @@ public interface APIConstantURL {
     String GetActivePlotsByFarmerCode = "Farmer/GetActivePlotsByFarmerCode/";
     String GetLabourDuration = "TypeCdDmt/7";
     String GetLabourServicetype = " TypeCdDmt/6";
+    String post_labour = "LabourRequest/AddLabourRequestHeader";
 
+    String Post_Loan = " RequestHeader/AddRequestHeader";
 
 
 

@@ -59,13 +59,14 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     EditText edittext;
     int day, year, month;
     String Farmer_code;
+    Integer ids_list,durationId;
     List<String> list = new ArrayList<String>();
 
     List<String> labour_id = new ArrayList<String>();
     List<Integer> labour_uID = new ArrayList<Integer>();
     List<String> freq_id = new ArrayList<String>();
-    List<String> period_list = new ArrayList<String>();
-    List<String> period_id = new ArrayList<String>();
+
+    List<Integer> period_id = new ArrayList<Integer>();
     Spinner frequencySpinner, labourSpinner;
     private ProgressDialog dialog;
     public static String TAG = "LabourActivity";
@@ -80,7 +81,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     Button button_submit;
     private SpotsDialog mdilogue;
     CheckBox checkbox;
-    String frequencyId, durationId, serviceTypeId, Seleted_date, farmated_date, isSuccess, register;
+    String frequencyId, serviceTypeId, Seleted_date, farmated_date, isSuccess, register;
     String plot_id, plot_Age, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString;
     EditText commentsTxt;
     ImageView backImg, home_btn;
@@ -280,7 +281,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 String seleced_period = labourSpinner.getItemAtPosition(labourSpinner.getSelectedItemPosition()).toString();
 
                 Log.e("seleced_period===", seleced_period);
-                //  durationId=period_id.get(labourSpinner.getSelectedItemPosition());
+              durationId=period_id.get(labourSpinner.getSelectedItemPosition());
 //
             }
 
@@ -396,6 +397,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             for (Labourservicetype.ListResult data : labourservicetype.getListResult()
                             ) {
                                 labour_id.add(data.getDesc());
+                                labour_uID.add(data.getTypeCdId());
                             }
                             Log.d(TAG, "RESPONSE======" + labour_id);
 
@@ -453,7 +455,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             for (LabourDuration.ListResult data : labourDuration.getListResult()
                             ) {
                                 listdata.add(data.getDesc());
-                                labour_uID.add(data.getTypeCdId());
+                                period_id.add(data.getTypeCdId());
                             }
                             Log.d(TAG, "RESPONSE======" + listdata);
 
@@ -478,8 +480,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
         for (Integer values : indices) {
             Log.d(TAG, "---- analysis ---- > get selected labour ID :"+labour_uID.get(values));
-            Log.d(TAG, "---- analysis ---- > get selected labour ID :"+values);
+            ids_list =labour_uID.get(values);
+
+            Log.d(TAG, "---- analysis ---- > get selected labour ID :"+ids_list);
         }
+
+
     }
     @Override
     public void selectedStrings(List<String> strings) {
@@ -501,7 +507,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setPlotMandal(plotMandal);
 
         requestModel.setPlotDistrict(plotDistrict);
-        requestModel.setServiceTypes("19,21");
+
+        requestModel.setServiceTypes("19");
 
         requestModel.setCreatedDate(edittext.getText().toString());
         requestModel.setUpdatedByUserId(null);
