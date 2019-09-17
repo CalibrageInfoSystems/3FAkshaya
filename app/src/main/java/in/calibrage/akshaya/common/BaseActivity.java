@@ -197,6 +197,7 @@ public class BaseActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog);
+       final ImageView img = dialog.findViewById(R.id.img_cross);
 
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
         text.setText(msg);
@@ -210,6 +211,12 @@ public class BaseActivity extends AppCompatActivity {
         });
 
         dialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        },500);
 
     }
     /**
