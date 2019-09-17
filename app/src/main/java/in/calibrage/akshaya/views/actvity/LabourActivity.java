@@ -62,7 +62,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     Integer ids_list,durationId;
     List<String> list = new ArrayList<String>();
 
-    List<String> labour_id = new ArrayList<String>();
+    List<String> service_name = new ArrayList<String>();
     List<Integer> labour_uID = new ArrayList<Integer>();
     List<String> freq_id = new ArrayList<String>();
 
@@ -282,6 +282,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
                 Log.e("seleced_period===", seleced_period);
               durationId=period_id.get(labourSpinner.getSelectedItemPosition());
+                Log.e("duration======", String.valueOf(durationId));
 //
             }
 
@@ -349,19 +350,6 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 });
     }
 
-    private void showSuccessDialog(String msg) {
-        ViewGroup viewGroup = findViewById(android.R.id.content);
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
-        TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
-        txtmsg.setText(msg);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(dialogView);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
-        ((Animatable) mImgCheck.getDrawable()).start();
-    }
-
 
     private void GetSpinnerLabourType() {
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -396,12 +384,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
                             for (Labourservicetype.ListResult data : labourservicetype.getListResult()
                             ) {
-                                labour_id.add(data.getDesc());
+                                service_name.add(data.getDesc());
                                 labour_uID.add(data.getTypeCdId());
                             }
-                            Log.d(TAG, "RESPONSE======" + labour_id);
+                            Log.d(TAG, "RESPONSE======" + service_name);
 
-                            multiSelectionSpinner.setItems(labour_id);
+                            multiSelectionSpinner.setItems(service_name);
 
 //
 
@@ -451,7 +439,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
                         if (labourDuration.getListResult() != null) {
-
+                            listdata.add("Select");
                             for (LabourDuration.ListResult data : labourDuration.getListResult()
                             ) {
                                 listdata.add(data.getDesc());
@@ -500,7 +488,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setPlotCode(plot_id);
         requestModel.setIsFarmerRequest(true);
         requestModel.setComments(commentsTxt.getText().toString());
-        requestModel.setPreferredDate(edittext.getText().toString());
+        requestModel.setPreferredDate(reformattedDate);
         requestModel.setCreatedByUserId(null);
         requestModel.setDurationId(2);
         requestModel.setPlotVillage(location);
@@ -508,11 +496,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
         requestModel.setPlotDistrict(plotDistrict);
 
-        requestModel.setServiceTypes("19");
+        requestModel.setServiceTypes("19,21");
 
-        requestModel.setCreatedDate(edittext.getText().toString());
+        requestModel.setCreatedDate(reformattedDate);
         requestModel.setUpdatedByUserId(null);
-        requestModel.setUpdatedDate(edittext.getText().toString());
+        requestModel.setUpdatedDate(reformattedDate);
         requestModel.setAmount(1.1);
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();

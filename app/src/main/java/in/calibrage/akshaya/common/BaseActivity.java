@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.common;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -234,6 +236,22 @@ public class BaseActivity extends AppCompatActivity {
 
 
     }
+
+
+
+    protected void showSuccessDialog(String msg) {
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
+        TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
+        txtmsg.setText(msg);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+//        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
+//        ((Animatable) mImgCheck.getDrawable()).start();
+    }
+
 }
 
 
