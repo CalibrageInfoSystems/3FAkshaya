@@ -52,7 +52,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {
-    private static final String TAG = LoginActivity.class.getSimpleName();
+   private static final String TAG = LoginActivity.class.getSimpleName();
     private Button loginBtn, Qr_scan;
     private EditText farmerId;
     private String Farmer_code;

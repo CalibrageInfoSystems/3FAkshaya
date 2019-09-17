@@ -7,7 +7,12 @@ import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
+import in.calibrage.akshaya.models.LabourDuration;
+import in.calibrage.akshaya.models.LabourRecommendationsModel;
+import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LerningsModel;
+import in.calibrage.akshaya.models.LoanResponse;
+import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.SpinnerModel;
@@ -57,6 +62,26 @@ public interface ApiService {
 
     @GET
     Observable<Stand_recom_model> GetRecommendationdetails(@Url String url);
+
+
+    @GET
+    Observable<LabourRecommendationsModel> getrecommdetails(@Url String url);
+
+    @GET
+    Observable<LabourDuration> getLabourduration(@Url String url);
+
+    @GET
+    Observable<Labourservicetype> getLabourService(@Url String url);
+
+
+    @POST(APIConstantURL.post_labour)
+    Observable<LobourResponse> postLabour(@Body JsonObject data);
+
+    @POST(APIConstantURL.Post_Loan)
+    Observable<LoanResponse> postLoan(@Body JsonObject data);
+
+
+
 
  /*
     // PASSWORD RESET

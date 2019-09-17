@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -110,6 +111,7 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     // ImageView thumbnail;
     public TextView comment_label,reason_label;
     String plot_Age,location,landmarkCode;
+    ImageView backImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,6 +137,9 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     }
 
     private void intview() {
+
+         backImg = (ImageView) findViewById(R.id.back);
+
         recycler_view_pest =(RecyclerView)findViewById(R.id.recyclerView_pest);
         pest_text =(TextView) findViewById(R.id.pest_text);
 
@@ -182,6 +187,13 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     }
 
     private void  setViews() {
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+
+            }
+        });
         RecyclerView.LayoutManager mLayoutManager_pest = new LinearLayoutManager(getApplicationContext());
         recycler_view_pest.setLayoutManager(mLayoutManager_pest);
         recycler_view_pest.setItemAnimator(new DefaultItemAnimator());

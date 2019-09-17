@@ -13,6 +13,13 @@ public interface APIConstantURL {
 
     String GetEncyclopediaDetails = "Encyclopedia/GetEncyclopediaDetails/";
     String GetRecommendationAges = "GetRecommendationAges";
+    String GetActivePlotsByFarmerCode = "Farmer/GetActivePlotsByFarmerCode/";
+    String GetLabourDuration = "TypeCdDmt/7";
+    String GetLabourServicetype = " TypeCdDmt/6";
+    String post_labour = "LabourRequest/AddLabourRequestHeader";
+
+    String Post_Loan = " RequestHeader/AddRequestHeader";
+
 
 
 
