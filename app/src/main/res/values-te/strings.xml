@@ -402,10 +402,10 @@
     <string name="wagesUnit">Wages Unit Name</string>
     <string name="contractAmount">Contract Amount</string>
     <string name="harvestingType">Harvesting Type</string>
-    <string name="inter_crop">InterCrop Details</string>
+    <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
 
-    <string name="crop">Crop</string>
-
+    <string name="crop">పంట</string>
+    <string name="cropHistory">పంట చరిత్ర</string>
 
     <string name="recommended_ertilizer">Recommended Fertilizer</string>
     <string name="UOMName">UOM Name</string>

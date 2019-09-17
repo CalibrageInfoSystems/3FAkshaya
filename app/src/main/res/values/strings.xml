@@ -296,6 +296,7 @@
     <string name="harvestingType">Harvesting Type</string>
     <string name="inter_crop">InterCrop Details</string>
     <string name="crop">Crop</string>
+    <string name="cropHistory">Crop History</string>
 
     <string name="recommended_ertilizer">Recommended Fertilizer</string>
     <string name="UOMName">UOM Name</string>
