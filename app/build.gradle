@@ -28,7 +28,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     //noinspection GradleCompatible
     implementation 'com.android.support:design:26.1.0'
 //picasso
@@ -51,8 +50,12 @@ dependencies {
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
 // PDF thumb
     implementation 'com.github.barteksc:pdfium-android:1.4.0'
+
     implementation 'com.karumi:dexter:5.0.0'
     implementation 'com.kyanogen.signatureview:signature-view:1.0'
+
+// Digital Signature
+    implementation 'com.williamww:silky-signature:0.1.0'
 
     dependencies {
 
