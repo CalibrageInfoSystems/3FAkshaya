@@ -83,7 +83,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     ArrayList<String> listdata = new ArrayList<String>();
     MultiSelectionSpinner multiSelectionSpinner;
     Dialog myDialog;
- LabourTermsNCondtionsAdapter Tadapter;
+    LabourTermsNCondtionsAdapter Tadapter;
     TextView terms, amount;
     String seleced_Duration;
     RelativeLayout amount_Label;
@@ -282,9 +282,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                    myDialog = new Dialog(LabourActivity.this);
+                myDialog = new Dialog(LabourActivity.this);
 
-                    ShowPopup();
+                ShowPopup();
 
             }
         });
@@ -314,14 +314,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
     private void ShowPopup() {
         myDialog.setContentView(R.layout.custompopup);
-        ok=(TextView)myDialog.findViewById(R.id.ok);
-        head_text=(TextView)myDialog.findViewById(R.id.head_text) ;
-        getTerms=(TextView)myDialog.findViewById(R.id.txtclose) ;
-        terms_recycle=(RecyclerView) myDialog.findViewById(R.id.recycler_term) ;
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        ok = (TextView) myDialog.findViewById(R.id.ok);
+        head_text = (TextView) myDialog.findViewById(R.id.head_text);
+        getTerms = (TextView) myDialog.findViewById(R.id.txtclose);
+        terms_recycle = (RecyclerView) myDialog.findViewById(R.id.recycler_term);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(LabourActivity.this);
         terms_recycle.setLayoutManager(mLayoutManager);
-        terms_recycle.setItemAnimator(new DefaultItemAnimator());
 
         Getterms_conditions();
 
@@ -349,7 +347,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     private void Getterms_conditions() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getterms(APIConstantURL.GetLabourTermsandConditions + null)
+        mSubscription = service.getterms(APIConstantURL.GetLabourTermsandConditions)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<LabourTermsNCondtionsModel>() {
@@ -378,20 +376,15 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                     public void onNext(LabourTermsNCondtionsModel labourTermsNCondtionsModel) {
 
 
-
-                        List<ServiceType> serviceTypes =new ArrayList<>();
+                        List<ServiceType> serviceTypes = new ArrayList<>();
                         //if(labourTermsNCondtionsModel != null & labourTermsNCondtionsModel.getResult().ge)
                         Log.d("", "onNext: " + labourTermsNCondtionsModel);
                         mdilogue.dismiss();
                         if (labourTermsNCondtionsModel.getIsSuccess()) {
 
-
-                             Tadapter = new LabourTermsNCondtionsAdapter(LabourActivity.this, labourTermsNCondtionsModel.getResult().getHarvesting());
+                            Tadapter = new LabourTermsNCondtionsAdapter(LabourActivity.this, labourTermsNCondtionsModel);
                             terms_recycle.setAdapter(Tadapter);
-
                         }
-
-
                     }
 
 
