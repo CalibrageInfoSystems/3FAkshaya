@@ -1,13 +1,18 @@
 package in.calibrage.akshaya.views.actvity;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -43,12 +48,15 @@ import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.AmountRequest;
 import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.LabourDuration;
+import in.calibrage.akshaya.models.LabourTermsNCondtionsModel;
 import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.MSGmodel;
+import in.calibrage.akshaya.models.ServiceType;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.Adapter.LabourTermsNCondtionsAdapter;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -74,7 +82,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     public static String TAG = "LabourActivity";
     ArrayList<String> listdata = new ArrayList<String>();
     MultiSelectionSpinner multiSelectionSpinner;
-    //  LabourTermsNCondtionsAdapter Tadapter;
+    Dialog myDialog;
+ LabourTermsNCondtionsAdapter Tadapter;
     TextView terms, amount;
     String seleced_Duration;
     RelativeLayout amount_Label;
@@ -272,11 +281,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-//                if (validationspop()) {
-//                    myDialog = new Dialog(LabourActivity.this);
-//
-//                    ShowPopup();
-//                }
+
+                    myDialog = new Dialog(LabourActivity.this);
+
+                    ShowPopup();
+
             }
         });
         Getlabour_duration();
@@ -301,6 +310,92 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
         multiSelectionSpinner.setListener(this);
+    }
+
+    private void ShowPopup() {
+        myDialog.setContentView(R.layout.custompopup);
+        ok=(TextView)myDialog.findViewById(R.id.ok);
+        head_text=(TextView)myDialog.findViewById(R.id.head_text) ;
+        getTerms=(TextView)myDialog.findViewById(R.id.txtclose) ;
+        terms_recycle=(RecyclerView) myDialog.findViewById(R.id.recycler_term) ;
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        terms_recycle.setLayoutManager(mLayoutManager);
+        terms_recycle.setItemAnimator(new DefaultItemAnimator());
+
+        Getterms_conditions();
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        getTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+
+        // add OK and Cancel buttons
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        myDialog.show();
+
+
+    }
+
+    private void Getterms_conditions() {
+        mdilogue.show();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.getterms(APIConstantURL.GetLabourTermsandConditions + null)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<LabourTermsNCondtionsModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onNext(LabourTermsNCondtionsModel labourTermsNCondtionsModel) {
+
+
+
+                        List<ServiceType> serviceTypes =new ArrayList<>();
+                        //if(labourTermsNCondtionsModel != null & labourTermsNCondtionsModel.getResult().ge)
+                        Log.d("", "onNext: " + labourTermsNCondtionsModel);
+                        mdilogue.dismiss();
+                        if (labourTermsNCondtionsModel.getIsSuccess()) {
+
+
+                             Tadapter = new LabourTermsNCondtionsAdapter(LabourActivity.this, labourTermsNCondtionsModel.getResult().getHarvesting());
+                            terms_recycle.setAdapter(Tadapter);
+
+                        }
+
+
+                    }
+
+
+                });
     }
 
     private boolean validations() {

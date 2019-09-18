@@ -21,9 +21,9 @@ public interface APIConstantURL {
     String Post_Loan = " RequestHeader/AddRequestHeader";
 
     String labour_amount = "LabourServiceCost/GetLabourServiceCostByAge";
-
-
-
+    String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
+    String GetLabourTermsandConditions ="Farmer/GetUnPayedCollectionsByFarmerCode/";
+    String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetails/";
 
 
 

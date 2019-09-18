@@ -101,6 +101,7 @@ public class LoginActivity extends BaseActivity {
                 if (farmerId.getText() != null & farmerId.getText().toString().trim() != "" & !TextUtils.isEmpty(farmerId.getText())) {
                     Farmer_code =farmerId.getText().toString();
                     Log.e("former==id",Farmer_code);
+
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("FARMER", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("farmerid", Farmer_code);  // Saving string data of your editext

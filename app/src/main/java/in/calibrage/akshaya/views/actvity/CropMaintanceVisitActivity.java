@@ -111,7 +111,7 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     // ImageView thumbnail;
     public TextView comment_label,reason_label;
     String plot_Age,location,landmarkCode;
-    ImageView backImg;
+    ImageView backImg,home_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,7 +139,7 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
     private void intview() {
 
          backImg = (ImageView) findViewById(R.id.back);
-
+        home_btn = (ImageView) findViewById(R.id.home_btn);
         recycler_view_pest =(RecyclerView)findViewById(R.id.recyclerView_pest);
         pest_text =(TextView) findViewById(R.id.pest_text);
 
@@ -213,6 +213,14 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
+
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

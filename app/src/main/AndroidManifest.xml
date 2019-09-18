@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.actvity.LabourActivity"></activity>
+        <activity android:name=".views.actvity.Quickpay_SummaryActivity"></activity>
+        <activity android:name=".views.actvity.LabourActivity" />
         <activity android:name=".views.actvity.PDFActivity" />
         <activity android:name=".views.actvity.PlayerActivity" />
         <activity android:name=".views.actvity.EncyclopediaActivity" />
@@ -65,12 +66,15 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" >
-           <!-- <intent-filter>
+            android:screenOrientation="portrait">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".common.BaseActivity" />
 
@@ -78,15 +82,15 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
     </application>
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -36,7 +36,7 @@
     <string name="terms_conditions">Terms &amp; Conditions</string>
     <string name="terms_agree">Please Agree Terms &amp;\n Conditions</string>
     <string name="convenience_charge">Convenience Charge (Rs)</string>
-    <string name="total_amt_pay">Total Amount Payable (Rs)</string>
+    <string name="total_amt_pay">TTotal Bill Amount (Rs)</string>
     <string name="success">Success</string>
     <string name="agree">Agree</string>
     <string name="otp_desc">Enter the 6 digits code sent your registered mobile number</string>
@@ -71,7 +71,7 @@
     <string name="labour">Labour Request</string>
     <string name="labour_duration">Package </string>
     <string name="rate">Rate</string>
-    <string name="amount_of_FFB">Amount of FFB (Rs)</string>
+    <string name="amount_of_FFB">Total FFB Cost (Rs)</string>
     <string name="labour_charges">Labour charges </string>
 
     <string name="pole_charges">Pole charges</string>
@@ -247,7 +247,7 @@
     />
     <string name="total_records">Total Records</string>
     <string name="quantity_mt">Quantity (MT)</string>
-    <string name="ffb_flot">FFB Flat Charge (Rs)</string>
+    <string name="ffb_flot">FFB Rate (Rs)</string>
     <string name="address">Address</string>
     <string name="no_pdfs">No Pdf\'s</string>
     <string name="vechile_no">Vechile Number</string>
@@ -279,7 +279,7 @@
     <string name="isTreesMissing">Missing Trees</string>
     <string name="missingTreesCount">No of Missing Trees</string>
     <string name="reasonType">Reason for Missing Trees</string>
-    <string name="expectedPlamsCount">Expected Plams Count</string>
+    <string name="expectedPlamsCount">Expected Palms Count</string>
     <string name="harv_crop">Harvest Details</string>
 
 
@@ -350,6 +350,7 @@
     <string name="reason_loan">Reason for Loan</string>
 
     <string name="error">Error</string>
+    <string name="quick_pay">Quick Pay Fee (Rs)</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">

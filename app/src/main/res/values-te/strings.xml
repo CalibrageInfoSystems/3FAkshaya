@@ -361,86 +361,86 @@
     <string name="vechile_no">వాహన సంఖ్య</string>
     <string name="driver_name">డ్రైవర్ పేరు</string>
     <string name="crop_manintance_visit">పంట నిర్వహణ సందర్శన</string>
-    <string name="cropMaintenanceCode">Crop Maintenance Code</string>
-    <string name="fertilizerSource">Fertilizer Source</string>
-    <string name="fertilizer_name">Fertilizer Name</string>
-    <string name="dosage_only">Dosage</string>
-    <string name="lastAppliedDate">Last Applied Date</string>
-    <string name="applyFertilizerFrequencyType">Apply Fertilizer FrequencyType</string>
+    <string name="cropMaintenanceCode">పంట నిర్వహణ కోడ్</string>
+    <string name="fertilizerSource">ఎరువుల మూలం</string>
+    <string name="fertilizer_name">ఎరువుల పేరు</string>
+    <string name="dosage_only">మోతాదు</string>
+    <string name="lastAppliedDate">చివరి అనువర్తిత తేదీ</string>
+    <string name="applyFertilizerFrequencyType">ఎరువుల ఫ్రీక్వెన్సీటైప్‌ను వర్తించండి</string>
 
 
-    <string name="treesAppearance">Trees Appearance</string>
-    <string name="treeGrowth">Tree Growth</string>
-    <string name="treeHeight">Tree Height</string>
-    <string name="fruitColor">Fruit Color</string>
-    <string name="fruitSize">Fruit Size</string>
-    <string name="fruitHyegiene">Fruit Hyegiene</string>
-    <string name="plantationType">Plantation Type</string>
-    <string name="fertilizer_crop">Fertilizers Details</string>
-    <string name="health_crop">Health Of Plantation Details</string>
-    <string name="uprrot_crop">Uprootment Details</string>
+    <string name="treesAppearance">చెట్ల స్వరూపం</string>
+    <string name="treeGrowth">చెట్ల పెరుగుదల</string>
+    <string name="treeHeight">చెట్ల ఎత్తు</string>
+    <string name="fruitColor">పండ్ల రంగు</string>
+    <string name="fruitSize">పండ్ల పరిమాణం</string>
+    <string name="fruitHyegiene">పండ్ల పరిశుభ్రత</string>
+    <string name="plantationType">తోటల రకం</string>
+    <string name="fertilizer_crop">ఎరువుల వివరాలు</string>
+    <string name="health_crop">ప్లాంటేషన్ వివరాల ఆరోగ్యం</string>
+    <string name="uprrot_crop">నిర్మూలన వివరాలు</string>
 
 
-    <string name="spalingPlanted">No Spaling Planted</string>
-    <string name="prevPalmsCount">Count of Trees in Previous Visit</string>
-    <string name="plamsCount">Count of Trees Currently Present</string>
-    <string name="isTreesMissing">Missing Trees</string>
-    <string name="missingTreesCount">No of Missing Trees</string>
-    <string name="reasonType">Reason for Missing Trees</string>
-    <string name="expectedPlamsCount">Expected Plams Count</string>
-    <string name="harv_crop">Harvest Details</string>
+    <string name="spalingPlanted">స్పేలింగ్ లేదు</string>
+    <string name="prevPalmsCount">మునుపటి సందర్శనలో చెట్ల సంఖ్య</string>
+    <string name="plamsCount">ప్రస్తుతం ఉన్న చెట్ల సంఖ్య</string>
+    <string name="isTreesMissing">తప్పిపోయిన చెట్లు</string>
+    <string name="missingTreesCount">తప్పిపోయిన చెట్ల సంఖ్య</string>
+    <string name="reasonType">చెట్లు తప్పిపోవడానికి కారణం</string>
+    <string name="expectedPlamsCount">P హించిన పామ్స్ కౌంట్</string>
+    <string name="harv_crop">హార్వెస్ట్ వివరాలు</string>
 
 
-    <string name="plotYield">Plot Yield (Kgs)</string>
-    <string name="yieldperHactor">Yield per Hectare (Kgs)</string>
-    <string name="collectionCenterName">Collection Center Name</string>
-    <string name="transaportMode">Transaport Mode</string>
-    <string name="vehicleType">Vehicle Type</string>
-    <string name="transportPaidAmount">Transport Paid Amount</string>
-    <string name="harvestingMethod">Harvesting Method</string>
-    <string name="wagesPerDay">Wages Per Day (Rs)</string>
-    <string name="wagesUnit">Wages Unit Name</string>
-    <string name="contractAmount">Contract Amount</string>
-    <string name="harvestingType">Harvesting Type</string>
+    <string name="plotYield">ప్లాట్ దిగుబడి (కిలోలు)</string>
+    <string name="yieldperHactor">హెక్టారుకు దిగుబడి (కిలోలు)</string>
+    <string name="collectionCenterName">సేకరణ కేంద్రం పేరు</string>
+    <string name="transaportMode">రవాణా మోడ్</string>
+    <string name="vehicleType">వాహన రకం</string>
+    <string name="transportPaidAmount">రవాణా చెల్లింపు మొత్తం</string>
+    <string name="harvestingMethod">హార్వెస్టింగ్ విధానం</string>
+    <string name="wagesPerDay">రోజుకు వేతనాలు (రూ.)</string>
+    <string name="wagesUnit">వేతనాలు యూనిట్ పేరు</string>
+    <string name="contractAmount">ఒప్పంద మొత్తం</string>
+    <string name="harvestingType">హార్వెస్టింగ్ రకం</string>
     <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
 
     <string name="crop">పంట</string>
     <string name="cropHistory">పంట చరిత్ర</string>
 
-    <string name="recommended_ertilizer">Recommended Fertilizer</string>
-    <string name="UOMName">UOM Name</string>
-    <string name="LastUpdatedDate">Last Updated Date</string>
-    <string name="fert_rec">Fertilizer Recommendation Details</string>
+    <string name="recommended_ertilizer">సిఫార్సు చేసిన ఎరువులు</string>
+    <string name="UOMName">UOM పేరు</string>
+    <string name="LastUpdatedDate">చివరిగా నవీకరించబడిన తేదీ</string>
+    <string name="fert_rec">ఎరువుల సిఫార్సు వివరాలు</string>
 
 
-    <string name="IsWeedProperlyDone">Is Weed Properly Done</string>
-    <string name="MethodType">Method Type</string>
-    <string name="Chemical">Chemical</string>
-    <string name="applicationFrequencyName">Application Frequency Name</string>
-    <string name="IsPrunning">Is Prunning</string>
-    <string name="PrunningFrequencyName">Prunning Frequency Name</string>
-    <string name="IsMulchingSeen">Is Mulching Seen</string>
-    <string name="IsWeavilsSeen">Is Weavils Seen</string>
-    <string name="weed">Weed Details</string>
+    <string name="IsWeedProperlyDone">కలుపు సరిగ్గా పూర్తయింది</string>
+    <string name="MethodType">విధానం రకం</string>
+    <string name="Chemical">కెమికల్</string>
+    <string name="applicationFrequencyName">అప్లికేషన్ ఫ్రీక్వెన్సీ పేరు</string>
+    <string name="IsPrunning">కత్తిరింపు</string>
+    <string name="PrunningFrequencyName">కత్తిరింపు ఫ్రీక్వెన్సీ పేరు</string>
+    <string name="IsMulchingSeen">మల్చింగ్ చూసింది</string>
+    <string name="IsWeavilsSeen">వీవిల్స్ చూశారు</string>
+    <string name="weed">కలుపు వివరాలు</string>
 
 
-    <string name="NutrientDeficiencyName">Nutrient Deficiency Name</string>
-    <string name="Nameofchemicalapplied">Name of Chemical Applied</string>
-    <string name="registeredDate">Registered Date</string>
-    <string name="Pest">Pest</string>
-    <string name="pestChemicals">Pest Chemicals</string>
-    <string name="RecommendedChemical">Recommended Chemical</string>
-    <string name="disease">Disease</string>
-    <string name="complaintTypes">Complaint Types</string>
-    <string name="Criticality">Criticality</string>
-    <string name="description">Description</string>
-    <string name="ComplaintBy">Complaint Raised By</string>
-    <string name="assignedTo">Assigned To</string>
-    <string name="currentStatus">Current Status</string>
-    <string name="statusUpdate">Status Update</string>
-    <string name="pest">Pest Details</string>
+    <string name="NutrientDeficiencyName">పోషక లోపం పేరు</string>
+    <string name="Nameofchemicalapplied">కెమికల్ అప్లైడ్ పేరు</string>
+    <string name="registeredDate">నమోదు చేసిన తేదీ</string>
+    <string name="Pest">తెగులు</string>
+    <string name="pestChemicals">పెస్ట్ కెమికల్స్</string>
+    <string name="RecommendedChemical">సిఫార్సు చేసిన కెమికల్</string>
+    <string name="disease">వ్యాధి</string>
+    <string name="complaintTypes">ఫిర్యాదు రకాలు</string>
+    <string name="Criticality">క్లిష్టమైన</string>
+    <string name="description">వివరణ</string>
+    <string name="ComplaintBy">ద్వారా ఫిర్యాదు</string>
+    <string name="assignedTo">కేటాయించిన</string>
+    <string name="currentStatus">ప్రస్తుత స్థితి</string>
+    <string name="statusUpdate">స్థితి నవీకరణ</string>
+    <string name="pest">తెగులు వివరాలు</string>
     <string name="pest_chemical">pestChemicalXrefData</string>
-    <string name="deases">Disease Details</string>
+    <string name="deases">వ్యాధి వివరాలు</string>
     <string name="geo_boun">GeoBoundariesTag</string>
 
 
@@ -456,10 +456,11 @@
     <string name="alert_logout">మీరు లాగ్ అవుట్ చేయాలనుకుంటున్నారా?</string>
     <string name="no_plots">No Plots Available</string>
 
-    <string name="loan_amount">Loan Amount</string>
-    <string name="reason_loan">Reason for Loan</string>
+    <string name="loan_amount">అప్పు మొత్తం</string>
+    <string name="reason_loan">రుణానికి కారణం</string>
 
     <string name="error">లోపం</string>
+    <string name="quick_pay">Quick Pay Fee</string>
 
     <!--  we need to use video ids instead of video link  -->
     <string-array name="video_id_array">

@@ -161,8 +161,10 @@ public class OtpActivity extends BaseActivity {
                                     /* Create an Intent that will start the Menu-Activity. */
                                     SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
                                     SharedPrefsData.saveCatagories(OtpActivity.this, farmerOtpResponceModel);
-
+  SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this,Constants.USER_ID,farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
+  Log.e("Formarcode==",farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
                                     SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "statecode", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
+
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);
                                     finish();

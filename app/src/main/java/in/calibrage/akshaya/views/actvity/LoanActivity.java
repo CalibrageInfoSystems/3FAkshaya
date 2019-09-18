@@ -116,8 +116,8 @@ public class LoanActivity extends BaseActivity {
 
                         GetLoanDetails();
                     }
-                    else {
-                        showDialog(LoanActivity.this,getResources().getString(R.string.terms_agree));
+                    else {showDialog(LoanActivity.this,"Please Agree Terms &amp;\\n Conditions");
+
 
                     }
                 }else {

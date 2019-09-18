@@ -8,13 +8,16 @@ import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
+import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
+import in.calibrage.akshaya.models.LabourTermsNCondtionsModel;
 import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LerningsModel;
 import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.PaymentResponseModel;
+import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.SpinnerModel;
 import in.calibrage.akshaya.models.Stand_recom_model;
@@ -83,6 +86,18 @@ public interface ApiService {
 
     @POST(APIConstantURL.labour_amount)
     Observable<GetAmount> postservice_amount(@Body JsonObject data);
+
+
+    @GET
+    Observable<QuickPayModel> getquick(@Url String url);
+
+
+    @GET
+    Observable<LabourTermsNCondtionsModel> getterms(@Url String url);
+
+    @GET
+    Observable<GetquickpayDetailsModel> getquickpaydetails(@Url String url);
+
 
 
  /*
