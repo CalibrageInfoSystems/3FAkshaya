@@ -126,8 +126,6 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
             location = extras.getString("plotVillage");
             landmarkCode = extras.getString("landMark");
 
-        } else {
-
         }
         intview();
         setViews();

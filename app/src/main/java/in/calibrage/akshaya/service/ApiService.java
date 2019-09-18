@@ -8,6 +8,7 @@ import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
+import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
@@ -97,6 +98,14 @@ public interface ApiService {
 
     @GET
     Observable<GetquickpayDetailsModel> getquickpaydetails(@Url String url);
+
+
+    @GET
+    Observable<LabourRecommendationsModel> getvisitplotdetails(@Url String url);
+
+
+    @GET
+    Observable<GetIssueModel> getIssuestypes(@Url String url);
 
 
 

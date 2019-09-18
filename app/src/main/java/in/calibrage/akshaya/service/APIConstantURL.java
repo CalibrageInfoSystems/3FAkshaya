@@ -24,7 +24,7 @@ public interface APIConstantURL {
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetLabourTermsandConditions ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetails/";
-
+    String GetIssue = "TypeCdDmt/10";
 
 
 

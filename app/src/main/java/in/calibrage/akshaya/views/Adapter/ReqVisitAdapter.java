@@ -14,21 +14,22 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
-import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
+import in.calibrage.akshaya.models.VisitplotDetailsModel;
 import in.calibrage.akshaya.views.actvity.CropMaintanceVisitActivity;
+import in.calibrage.akshaya.views.actvity.Visit_request_Activity;
 
-public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder>{
+public class ReqVisitAdapter  extends RecyclerView.Adapter<ReqVisitAdapter.ViewHolder>{
 
     public Context mContext;
     private List<RecomPlotcodes.ListResult> plot_Set;
     // RecyclerView recyclerView;
 
-   public RecommendationAdapter(  Context context,List<RecomPlotcodes.ListResult> plot_Set) {
+    public ReqVisitAdapter(  Context context,List<RecomPlotcodes.ListResult> plot_Set) {
 
-            this.mContext=context;
-            this.plot_Set=plot_Set;
-        }
+        this.mContext=context;
+        this.plot_Set=plot_Set;
+    }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -45,7 +46,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, CropMaintanceVisitActivity.class);
+                Intent intent = new Intent(mContext, Visit_request_Activity.class);
                 intent.putExtra("plotid",    holder.textViewplotId.getText());
                 intent.putExtra("plotAge",    holder.textViewpalmArea.getText());
                 intent.putExtra("plotVillage",    holder.textViewLocation.getText());

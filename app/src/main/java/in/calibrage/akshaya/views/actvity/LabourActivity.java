@@ -77,13 +77,13 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     List<String> selected_labour = new ArrayList<String>();
 
     List<Integer> period_id = new ArrayList<Integer>();
-    Spinner frequencySpinner, labourSpinner;
+    Spinner labourSpinner;
     private ProgressDialog dialog;
     public static String TAG = "LabourActivity";
     ArrayList<String> listdata = new ArrayList<String>();
     MultiSelectionSpinner multiSelectionSpinner;
     Dialog myDialog;
- LabourTermsNCondtionsAdapter Tadapter;
+   LabourTermsNCondtionsAdapter Tadapter;
     TextView terms, amount;
     String seleced_Duration;
     RelativeLayout amount_Label;
