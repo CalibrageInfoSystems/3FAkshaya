@@ -116,12 +116,12 @@ public class LoanActivity extends BaseActivity {
 
                         GetLoanDetails();
                     }
-                    else {showDialog(LoanActivity.this,"Please Agree Terms &amp;\\n Conditions");
+                    else {showDialog(LoanActivity.this,getResources().getString(R.string.terms_agree));
 
 
                     }
                 }else {
-                    showDialog(LoanActivity.this,"Please Enter Loan Amount" );
+                    showDialog(LoanActivity.this,getString(R.string.str_enter_loan_amount) );
                 }
 
 
