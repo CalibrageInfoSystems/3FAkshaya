@@ -78,7 +78,8 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private GetRecommendationsByAgeAdapter adapter;
     private List<GetRecommendationsByAgeModel> recom_list = new ArrayList<>();
     private LinearLayout lyt_firstTab;
-    LinearLayout noRecords  ,noVedios;
+    LinearLayout noRecords, noVedios;
+
     public static Fragment getInstance(int position, int count) {
         Bundle bundle = new Bundle();
         bundle.putInt("pos", position);
@@ -116,7 +117,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private void init(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         noRecords = (LinearLayout) view.findViewById(R.id.nodata);
-        noVedios= (LinearLayout) view.findViewById(R.id.no_videos);
+        noVedios = (LinearLayout) view.findViewById(R.id.no_videos);
         lyt_firstTab = view.findViewById(R.id.lyt_firstTab);
         textView.setText("Fragment " + (position + 1));
         textView.setVisibility(View.GONE);
@@ -135,7 +136,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
         Log.e(TAG, " --- analysis ----- getTabsCount --->> count :" + count);
 
         if (count == 3 && position == 0) {
-            Log.e("recon==","recom_visible");
+            Log.e("recon==", "recom_visible");
             lyt_firstTab.setVisibility(View.VISIBLE);
             rcv_video.setVisibility(View.GONE);
             rcv_pdf.setVisibility(View.GONE);
@@ -236,7 +237,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 //                            rcv_video.setVisibility(View.VISIBLE);
 //                        }
                     }
-                    });
+                });
     }
 
     private void GetRecommendation() {
@@ -414,12 +415,11 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         .into(holder.iv_youtube_thumnail);
                 holder.txt_name.setText(listResultVideo.get(position).getName());
                 holder.txt_desc.setText(listResultVideo.get(position).getDescription());
-            if    (listResultVideo.size()== 0){
-                Log.e("no====","videos==") ;
+                if (listResultVideo.size() == 0) {
+                    Log.e("no====", "videos==");
+                } else {
+                    Log.e("==========", "videos==");
                 }
-            else {
-                Log.e("==========","videos==") ;
-            }
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -485,6 +485,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                     getContext().startActivity(intent);
                 }
             });
+            holder.txt_desc.setText(listResultPDF.get(position).getDescription());
         }
 
         @Override
@@ -494,12 +495,13 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 
         class PdfViewHolder extends RecyclerView.ViewHolder {
             ImageView iv_youtube_thumnail;
-            TextView txt_pdfname;
+            TextView txt_pdfname, txt_desc;
 
             public PdfViewHolder(View itemView) {
                 super(itemView);
                 iv_youtube_thumnail = itemView.findViewById(R.id.img_thumnail);
                 txt_pdfname = itemView.findViewById(R.id.txt_pdfname);
+                txt_desc = itemView.findViewById(R.id.txt_desc);
             }
         }
     }
