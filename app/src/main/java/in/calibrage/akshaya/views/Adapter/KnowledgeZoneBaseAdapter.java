@@ -49,7 +49,9 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                 intent.putExtra("name", learning_Set.get(position).getName());
 
                 if(learning_Set.get(position).getId() == 1 ){
-                    String[] tabnames = {"Standard ","Videos","PDF"};
+                    String[] tabnames = {mContext.getString(R.string.str_standard),mContext.getString(R.string.str_videos),mContext.getString(R.string.str_pdf)};
+
+
                     intent.putExtra("tabslist", tabnames);
                 }else
                 {

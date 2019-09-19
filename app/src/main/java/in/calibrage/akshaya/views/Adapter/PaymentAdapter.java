@@ -39,15 +39,11 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(PaymentAdapter.ViewHolder holder, int position) {
-
         ((ViewHolder) holder).memo_text.setText(""+payment_Set.get(position).getMemo());
-
-
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date oneWayTripDate = input.parse(payment_Set.get(position).getRefDate());
-
             datetimevaluereq=output.format(oneWayTripDate);
             //datetimevalute.setText(output.format(oneWayTripDate));
 
@@ -184,7 +180,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             holder.finalAmount.setVisibility(View.VISIBLE);
             holder.text_seven.setVisibility(View.VISIBLE);
         }
-        if (payment_Set.get(position).getBalance()==0.0)
+     /*   if (payment_Set.get(position).getBalance()==0.0)
         {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.balance.setVisibility(View.GONE);
@@ -193,7 +189,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         else {
             holder.balance.setVisibility(View.VISIBLE);
             holder.text_eight.setVisibility(View.VISIBLE);
-        }
+        }*/
 
 
 
