@@ -360,6 +360,8 @@
     <string name="unkonown2">UnKnown2</string>
     <string name="request_rise">Raise Request</string>
     <string name="clear">Clear</string>
+    <string name="datevalidation">Please Enter From Date is less than To Date</string>
+    <string name="enter_Date">Please Enter From Date and To Date</string>
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>

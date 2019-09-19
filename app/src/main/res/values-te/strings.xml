@@ -470,6 +470,8 @@
     <string name="unkonown2">తెలియని2</string>
     <string name="request_rise">అభ్యర్థనను పెంచండి</string>
     <string name="clear">నిశ్చితమైన</string>
+    <string name="datevalidation">దయచేసి తేదీ నుండి తేదీ కంటే తక్కువ</string>
+    <string name="enter_Date">దయచేసి తేదీ మరియు తేదీ నుండి నమోదు చేయండి</string>
     <!--  we need to use video ids instead of video link  -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>
