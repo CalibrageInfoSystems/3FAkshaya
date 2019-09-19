@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg"
-        android:foreground="@color/transparent" />
+        android:background="@drawable/appbg"
+        android:foreground="@color/half_black2" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
             android:fontFamily="@font/roboto_regular"
             android:hint="Enter Former ID"
             android:inputType="text"
-            android:maxEms="150"
+            android:maxEms="50"
             android:maxLines="1"
             android:nextFocusDown="@id/btn_login"
             android:paddingLeft="5dp"
@@ -75,10 +75,10 @@
                 android:weightSum="1">
 
                 <Button
-                    android:layout_height="wrap_content"
                     android:id="@+id/btn_login"
                     style="@style/Common_Button"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="Login" />
 
                 <TextView
@@ -92,11 +92,11 @@
 
                 <Button
                     android:id="@+id/btn_qrscan"
+                    style="@style/Common_Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:text="Scan QR"
-                    style="@style/Common_Button" />
+                    android:text="Scan QR" />
 
             </LinearLayout>
         </LinearLayout>

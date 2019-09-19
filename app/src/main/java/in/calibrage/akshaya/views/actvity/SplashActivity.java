@@ -22,7 +22,7 @@ import static in.calibrage.akshaya.common.CommonUtil.getDeviceDensityString;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class SplashActivity extends BaseActivity {
-    public static final String TAG= SplashActivity.class.getSimpleName();
+    public static final String TAG = SplashActivity.class.getSimpleName();
     private ImageView imgLogo;
     private TypeWriter txt_name, txt_desc;
     private Context context;
@@ -38,7 +38,7 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         init();
         setViews();
-        Log.d(TAG, "------ analysis --------- >> GetDimens SIZE :"+getDeviceDensityString(this));
+        Log.d(TAG, "------ analysis --------- >> GetDimens SIZE :" + getDeviceDensityString(this));
     }
 
     private void init() {
@@ -60,6 +60,7 @@ public class SplashActivity extends BaseActivity {
 
 
         final boolean is_login = SharedPrefsData.getBool(SplashActivity.this, Constants.IS_LOGIN);
+        final boolean welcome = SharedPrefsData.getBool(SplashActivity.this, Constants.WELCOME);
         final int langID = SharedPrefsData.getInstance(SplashActivity.this).getIntFromSharedPrefs("lang");
 
 
@@ -67,22 +68,18 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
 
-
                 if (langID == 2)
                     updateResources(SplashActivity.this, "te");
                 else
                     updateResources(SplashActivity.this, "en-US");
 
-
-
-
                 if (is_login) {
-
                     startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-
                 } else {
-
-                    startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
+                    if (welcome)
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    else
+                        startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
                 }
             }
 
