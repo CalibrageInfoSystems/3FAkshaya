@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.github.barteksc:pdfium-android:1.4.0'
 // Digital Signature
     implementation 'com.williamww:silky-signature:0.1.0'
+
+    implementation 'com.itextpdf:itextg:5.5.10'
     dependencies {
 
         implementation fileTree(dir: 'libs', include: ['*.jar'])
