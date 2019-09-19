@@ -3,121 +3,114 @@
     <string name="home">హోమ్</string>
     <string name="profile">ప్రొఫైల్</string>
     <string name="requests">అభ్యర్థనలు</string>
-    <string name="bank">బ్యాంక్ వివరములు</string>
     <string name="chooselanguage">భాషను ఎంచుకోండి</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="choose_language_str">భాషను ఎంచుకోండి</string>
     <string name="telugu_str">తెలుగు(Telugu)</string>
-    <string name="english_str">English</string>
+    <string name="english_str">English</string><![CDATA[
      
-    <string name="turn_off_flashlight"> ఫ్లాష్‌లైట్ ఆన్</string>
+
         
-    <string name="turn_on_flashlight"> ఫ్లాష్‌లైట్ ఆఫ్</string>
+
         
-    <string name="title_activity_main">QR మరియు బార్‌కోడ్ స్కానర్</string>
+
         
-    <string name="message">స్కాన్ చేయడానికి వ్యూఫైండర్ దీర్ఘచతురస్రం లోపల బార్‌కోడ్ ఉంచండి.</string>
+
         
-    <string name="login">లాగిన్</string>
+
         
-    <string name="or">లేదా</string>
         
-    <string name="ok"> సరే</string>
+    ]]><string name="ok"> సరే</string><![CDATA[
         
-    <string name="videos">వీడియోలు</string>
+
         
-    <string name="doc">పత్రాలు</string>
+
         
-    <string name="scan_farmer_id">స్కాన్ ఫార్మర్ QR కోడ్ కోసం ఇక్కడ క్లిక్ చేయండి</string>
+
         
-    <string name="farmerid">రైతు ఐడిని నమోదు చేయండి</string>
         
+    ]]>
     <string name="cancel">రద్దు చేయండి</string>
     <string name="plot_id">ప్లాట్ ఐడి</string>
     <string name="terms_agree">దయచేసి నిబంధనలు మరియు షరతులను అంగీకరించండి</string>
         
-    <string name="terms_conditions"> నిబంధనలు &amp; పరిస్థితులు</string>
+    <string name="terms_conditions"> నిబంధనలు &amp; పరిస్థితులు</string><![CDATA[
         
-    <string name="success">విజయం</string>
+
         
-    <string name="agree">అంగీకరిస్తున్నారు</string>
         
-    <string name="otp_desc">పంపిన 6 అంకెల కోడ్‌ను నమోదు చేయండి</string>
+    ]]><string name="otp_desc">పంపిన 6 అంకెల కోడ్‌ను నమోదు చేయండి</string><![CDATA[
         
-    <string name="resend_otp">Otp</string>
         
+    ]]>
     <string name="submit"> సమర్పించండి</string>
         
     <string name="submit_req">అభ్యర్థనను సమర్పించండి</string>
         
-    <string name="view">చూడండి</string>
-    <string name="uoM">uoM</string>
+    <string name="view">చూడండి</string><![CDATA[
+
         
-    <string name="view_recommendations">ఆదాయాలను వీక్షించండి</string>
         
-    <string name="payment_summary">చెల్లింపు సారాంశం</string>
+    ]]><string name="payment_summary">చెల్లింపు సారాంశం</string><![CDATA[
         
-    <string name="total_net_weight">మొత్తం నికర బరువు</string>
+
         
-    <string name="Collections">సేకరణలు</string>
         
-    <string name="recommendations">సిఫార్సులు</string>
-    <string name="standard_recommendations">ప్రామాణిక సిఫార్సులు</string>
+    ]]><string name="recommendations">సిఫార్సులు</string><![CDATA[
+
         
-    <string name="recommended_by">సిఫార్సు ద్వారా చేయబడింది</string>
+
         
-    <string name="recommended_on">సిఫార్సు చేయబడింది</string>
         
-    <string name="payments">చెల్లింపులు</string>
+    ]]><string name="payments">చెల్లింపులు</string><![CDATA[
         
-    <string name="view_pay">చెల్లింపులను వీక్షించండి </string>
         
+    ]]>
     <string name="bank_details">బ్యాంక్ వివరాలు</string>
         
     <string name="bank_holder">ఖాతా హోల్డర్\n పేరు</string>
         
-    <string name="bank_name">బ్యాంక్ పేరు</string>
+    <string name="bank_name">బ్యాంక్ పేరు</string><![CDATA[
         
-    <string name="bank_ac_no">బ్యాంక్ ఖాతా సంఖ్య:</string>
+
         
-    <string name="bank_ac_holder">బ్యాంక్ హోల్డర్ సంఖ్య:</string>
         
+    ]]>
     <string name="account_no">ఖాతా సంఖ్య</string>
         
     <string name="branch_name">బ్రాంచ్ పేరు</string>
         
     <string name="ifsc">IFSC కోడ్</string>
         
-    <string name="next">తదుపరి</string>
+    <string name="next">తదుపరి</string><![CDATA[
         
-    <string name="ledger_item">లెడ్జర్ అంశం:</string>
+
         
-    <string name="dop">చెల్లింపు తేదీ:</string>
+
       
         
-    <string name="Recommend">సిఫార్సులు</string>
         
+    ]]>
     <string name="req_services">సేవలను అభ్యర్థించండి</string>
         
     <string name="labour">కార్మిక అభ్యర్థన</string>
         
-    <string name="labour_duration">ప్యాకేజీ</string>
+    <string name="labour_duration">ప్యాకేజీ</string><![CDATA[
         
-    <string name="rate">రేట్</string>
         
-    <string name="amount_of_FFB">ఎఫ్‌ఎఫ్‌బి మొత్తం (రూ.)</string>
+    ]]><string name="amount_of_FFB">ఎఫ్‌ఎఫ్‌బి మొత్తం (రూ.)</string><![CDATA[
         
-    <string name="labour_charges">కార్మిక ఛార్జీలు</string>
+
         
-    <string name="pole_charges">పోల్ ఛార్జీలు</string>
      
+    ]]>
     <string name="closingBal">ముగింపు బ్యాలెన్స్ (రూ.)</string>
         
-    <string name="confirm_req">అభ్యర్థనను నిర్ధారించండి</string>
+    <string name="confirm_req">అభ్యర్థనను నిర్ధారించండి</string><![CDATA[
         
-    <string name="frquency">తరచుదనం(రోజుల్లో)</string>
         
+    ]]>
     <string name="pole">పోల్</string>
         
     <string name="fertilizer">ఎరువులు</string>
@@ -131,32 +124,32 @@
         
     <string name="req_visit">సందర్శనను అభ్యర్థించండి</string>
         
-    <string name="learning">నేర్చుకోవడం</string>
+    <string name="learning">నేర్చుకోవడం</string><![CDATA[
         
-    <string name="knowledge_zone">జ్ఞానం \n జోన్</string>
-    <string name="knowledge">నాలెడ్జ్ జోన్</string>
+
+
         
-    <string name="collection_center">సేకరణ \n సెంటర్</string>
+
         
-    <string name="fertilizer_center">ఎరువులు \n కేంద్రం</string>
+
         
-    <string name="category1">వర్గం 1</string>
+
         
-    <string name="category2">వర్గం 2</string>
+
         
-    <string name="category3">వర్గం 3</string>
+
         
-    <string name="encyclopaedia">ఎన్సైక్లోపీడియా</string>
+
         
-    <string name="custom_msg">ఇక్కడ ప్రదర్శించబడే అనుకూల సందేశం</string>
+
         
-    <string name="name">రాము</string>
         
+    ]]>
     <string name="time_peroid">టైమ్ పెరాయిడ్</string>
         
-    <string name="from_date">తేదీ నుండి <font fgcolor="red">*</font></string>
+    <string name="from_date">తేదీ నుండి </string>
         
-    <string name="to_date">తేదీ వరకు <font fgcolor="red">*</font></string>
+    <string name="to_date">తేదీ వరకు </string>
         
     <string name="collection_id">సేకరణ ID</string>
         
@@ -166,163 +159,126 @@
         
     <string name="cc">సిసి</string>
         
-    <string name="status">స్థితి:</string>
+    <string name="status">స్థితి:</string><![CDATA[
         
-    <string name="terms">నిబంధనలు మరియు షరతులు</string>
         
-    <string name="req_loan">రుణం కోసం అభ్యర్థన</string>
+    ]]><string name="req_loan">రుణం కోసం అభ్యర్థన</string><![CDATA[
         
-    <string name="loan_msg">అభ్యర్థన స్వీకరించబడింది మరియు ఎవరైనా మిమ్మల్ని త్వరలో సంప్రదిస్తారు</string>
       
-    <string name="no_videos">వీడియోలు లేవు</string>
-    <string name="plotidName">ప్లాట్ ఐడి:</string>
-    <string name="plotid">Plot252019</string>
+    ]]><string name="no_videos">వీడియోలు లేవు</string><![CDATA[
+
         
-    <string name="plot_size">ప్లాట్ పరిమాణం</string>
+    ]]><string name="plot_size">ప్లాట్ పరిమాణం</string><![CDATA[
         
-    <string name="confirm">నిర్ధారించండి</string>
+
         
-    <string name="spinner_title">వర్గాన్ని ఎంచుకోండి</string>
         
+    ]]>
     <string name="village">గ్రామం</string>
         
-    <string name="comments">వ్యాఖ్యలు</string>
-    <string name="comment">వ్యాఖ్యలు<font fgcolor="red">*</font></string>
+    <string name="comments">వ్యాఖ్యలు</string><![CDATA[
+
         
-    <string name="issue_identified">ఇష్యూ గుర్తించబడింది</string>
+
         
-    <string name="time">సమయం ఎంచుకోండి</string>
         
-    <string name="plot_code">ప్లాట్ కోడ్</string>
+    ]]><string name="plot_code">ప్లాట్ కోడ్</string><![CDATA[
         
-    <string name="recommendedorfertilizer">సిఫార్సు చేసిన\n ఎరువులు/రసాయన</string>
+
         
-    <string name="dosage"> మోతాదు (UOM) </string>
-    <string name="collection_center_name">సేకరణ కేంద్రం</string>
-    <string name="fertilizer_center_name">ఎరువుల కేంద్రం</string>
-    <string name="age">వయస్సు</string>
+
+
+
+
         
-    <string name="area">ప్రాంతం</string>
+
         
-    <string name="download">డౌన్‌లోడ్</string>
         
-    <string name="select_labour_type">కార్మిక రకాన్ని ఎంచుకోండి</string>
+    ]]><string name="select_labour_type">కార్మిక రకాన్ని ఎంచుకోండి</string><![CDATA[
         
-    <string name="fertilizer1">ఎరువులు 1</string>
+
         
-    <string name="fertilizer2">ఎరువులు 2</string>
+
         
-    <string name="fertilizer3">ఎరువులు 3</string>
+
         
-    <string name="req_deatils">అభ్యర్థన డీటిల్స్</string>
+
         
-    <string name="date_n_time">తేదీ &amp;సమర్పణ సమయం</string>
+
         
-    <string name="req_date">అభ్యర్థించిన తేదీ</string>
+
         
-    <string name="aprove_date">ఆమోదించబడిన తేదీ</string>
+
         
-    <string name="staus">స్థితి</string>
+
         
-    <string name="name_field">పేరు</string>
+
         
-    <string name="mobile_number">మొబైల్ సంఖ్య</string>
         
+    ]]>
     <string name="net_weight">నికర బరువు</string>
         
     <string name="date_label">తేదీ:</string>
         
-    <string name="location">స్థానం</string>
+    <string name="location">స్థానం</string><![CDATA[
         
-    <string name="pin">పిన్</string>
         
+    ]]>
     <string name="collection">కలెక్షన్స్</string>
         
-    <string name="land_mark">మైలురాయి</string>
+    <string name="land_mark">మైలురాయి</string><![CDATA[
         
-    <string name="select_collection">ఏ సేకరణలకు చెల్లింపు అవసరమో ఎంచుకోండి</string>
+
         
-    <string name="show">మరింత సమాచారం</string>
+
         
-    <string name="hide">తక్కువ సమాచారం</string>
+
         
-    <string name="profile_name">జాన్ డో</string>
-    <string name="product">ఉత్పత్తి </string>
-    <string name="gst">జిఎస్టి (%)</string>
+
+
     />
      
+    ]]>
     <string name="convenience_charge">సౌలభ్యం ఛార్జ్ (రూ.)</string>
         
     <string name="total_amt_pay">చెల్లించవలసిన మొత్తం (రూ.)</string>
-    <string name="size">పరిమాణం</string>
-    <string name="select_godown">గోడౌన్ ఎన్నుకోండి</string>
-    <string name="landmark">సరిహద్దు గుర్తు</string>
-    <array name="menuOptions">
-        <item>హోమ్</item>
-        <item>నా అభ్యర్థనలు</item>
-        <item>భాషను ఎంచుకోండి</item>
-    </array>
+    <string name="landmark">సరిహద్దు గుర్తు</string><![CDATA[
+
      
-    <string name="choose_language">భాషను ఎంచుకోండి</string>
+    ]]>
     <string name="language_notification">భాషా సెటప్ పూర్తయింది</string>
         <!-- TODO: Remove or change this placeholder text -->
         
-    <string name="hello_blank_fragment">హలో ఖాళీ భాగం</string>
+    <string name="hello_blank_fragment">హలో ఖాళీ భాగం</string><![CDATA[
         
-    <string name="i_have_agree_terms_conditions"> నేను నిబంధనలు &amp; షరతులను అంగీకరిస్తున్నాను</string>
+
         
-    <string name="long_content"> లోరెం ఇప్సమ్ డోలర్ సిట్ అమేట్ ... </string>
         
+    ]]>
     <string name="log_off">లాగ్ ఆఫ్</string>
     <string name="tap_text">దిగువ ఏదైనా భాషను ఎంచుకోండి:</string>
     <string name="btn_en">English</string>
         
     <string name="btn_te">తెలుగు</string>
-    <string name="labour_request">కార్మిక అభ్యర్థన</string>
-    <string name="fertilizer_request">ఎరువుల అభ్యర్థన</string>
-    <string name="my_requests">నా అభ్యర్థనలు</string>
     <string name="only_date">తేదీ</string>
-    <string name="only_time">సమయం</string>
-    <string name="datentime">సమర్పించిన తేదీ సమయం</string>
-    <string name="approve_date">తేదీని ఆమోదించండి</string>
-    <string name="only_status">స్థితి</string>
-    <string name="total_rs">మొత్తం RS:</string>
-    <string name="Rs">\u20B9</string>
-    <string name="collections_total">2 వ మార్చి నుండి 3 వ జూన్ వరకు \nమొత్తం రేటుద్వారా సేకరణలు:</string>
-    <string name="rate_adjustment">రేటు సర్దుబాటు:</string>
-    <string name="transport_payment">రవాణా చెల్లింపు:</string>
     <string name="remarks">వ్యాఖ్యలు</string>
     <string name="quantity">మొత్తము</string>
-    <string name="thumbnail_image_view_desc">Youtube Video thumbnail image view</string>
-    <string name="close_player_activity">Close Player activity</string>
     <!--<string name="harvest">హార్వెస్ట్</string>-->
-    <string name="selecte_from_date"> Selected From Date </string>
-    <string name="selecte_to_date"> Selected To Date </string>
 
-    <string name="pest_n_disease">తెగులు మరియు వ్యాధి</string>
-    <string name="general_info">సాధారణ సమాచారం</string>
-    <string name="harvest">హార్వెస్ట్</string>
     <string name="ffb_qty">మొత్తం FFB పరిమాణం (MT):</string>
     <string name="ffb">FFB Qty పరిమాణం (MT)</string>
     <string name="adhoc_rate">ఎమ్‌టికి అడోక్ రేటు (రూ)</string>
     <string name="invoice_rate">MT కి ఇన్వాయిస్ రేటు</string>
-    <string name="gr_amount">మొత్తం జిఆర్ మొత్తం (రూ.):</string>
     <string name="memo">మెమో</string>
     <string name="amount">మొత్తం (రూ.)</string>
-    <string name="select_plot_type">ఎంచుకున్న ప్లాట్ కోడ్:</string>
     <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
     <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
-    <string name="no_recommendations_found">సిఫార్సులు కనుగొనబడలేదు</string>
     <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
     <string name="measurement">కొలత</string>
-    <string name="price">ధర</string>
     <string name="startDate">ఇష్టపడే తేదీ</string>
-    <string name="serviceType">సేవా రకం</string>
-    <string name="total_amt">మొత్తం మొత్తం (రూ.)</string>
 
     <string name="paidCollectionsWeight">చెల్లింపు సేకరణల బరువు</string>
     <string name="unPaidCollectionsWeight">చెల్లించని సేకరణల బరువు</string>
-    <string name="totalAdjustedLabel">మొత్తం సర్దుబాటు (రూ.)</string>
     <string name="totalBalance">మొత్తం బ్యాలెన్స్ (రూ.)</string>
     <string name="balance">బ్యాలెన్స్ (రూ.)</string>
     <string name="collectionsWeight">మొత్తం సేకరణల బరువు</string>
@@ -330,24 +286,8 @@
     <string name="gr">జీఆర్ మొత్తం (రూ.)</string>
     <string name="adjusted">సర్దుబాటు (రూ.)</string>
     <string name="loan_req">లోన్ కోసం అభ్యర్థన</string>
-    <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
-    <string name="select_paymentmode">చెల్లింపు మోడ్‌ను ఎంచుకోండి </string>
-    <string name="paymentMode">చెల్లింపు మోడ్</string>
-    <string name="reqDate">అభ్యర్థించిన తేదీ</string>
-    <string name="requestCodeLabel">ఐడిని అభ్యర్థించండి</string>
-    <string name="statusType">స్థితి రకం</string>
-    <string name="item_name">అంశం పేర్లు</string>
-    <string name="my_labour_req">కార్మిక అభ్యర్థనలు</string>
-    <string name="my_pole_requests">పోల్ అభ్యర్థనలు</string>
-    <string name="my_fert_requests">ఎరువుల అభ్యర్థనలు</string>
-    <string name="my_visit_requests">అభ్యర్థనలను సందర్శించండి</string>
-    <string name="my_loan_requests">రుణ అభ్యర్థనలు</string>
     <string name="loan_message">ఫైనాన్స్‌లో, loan ణం అంటే ఒకటి లేదా అంతకంటే ఎక్కువ వ్యక్తులు, సంస్థలు లేదా ఇతర వ్యక్తులు, సంస్థలకు రుణాలు ఇవ్వడం. గ్రహీత (అనగా రుణగ్రహీత) అప్పును కలిగి ఉంటాడు మరియు సాధారణంగా ఆ రుణంపై వడ్డీని చెల్లించే వరకు బాధ్యత వహిస్తాడు. ఇది తిరిగి చెల్లించబడుతుంది మరియు అరువు తీసుకున్న ప్రధాన మొత్తాన్ని కూడా తిరిగి చెల్లించాలి. రుణాన్ని రుజువు చేసే పత్రం, ఉదా. ప్రామిసరీ నోట్, సాధారణంగా, ఇతర విషయాలతోపాటు, రుణం తీసుకున్న ప్రధాన డబ్బు, రుణదాత వసూలు చేస్తున్న వడ్డీ రేటు మరియు తిరిగి చెల్లించే తేదీని పేర్కొంటుంది. Loan ణం రుణదాత మరియు రుణగ్రహీత మధ్య కొంతకాలం విషయ ఆస్తి (ల) ను తిరిగి కేటాయించడం. వడ్డీ రుణదాతకు రుణంలో పాల్గొనడానికి ప్రోత్సాహాన్ని అందిస్తుంది. చట్టబద్దమైన రుణంలో, ఈ బాధ్యతలు మరియు పరిమితులు ప్రతి ఒక్కటి కాంట్రాక్ట్ ద్వారా అమలు చేయబడతాయి, ఇది రుణగ్రహీతను రుణ ఒప్పందాలు అని పిలువబడే అదనపు పరిమితుల క్రింద ఉంచవచ్చు. ఈ వ్యాసం ద్రవ్య రుణాలపై దృష్టి సారించినప్పటికీ, ఆచరణలో ఏదైనా భౌతిక వస్తువు అప్పు ఇవ్వబడుతుంది.</string>
-    <string name="gowdown_name">గౌడౌన్ పేరు</string>
-    <string name="product_details">వస్తువు యొక్క వివరాలు</string>
     <string name="got_it">దొరికింది</string>
-    <string name="no_products">ఉత్పత్తులు కనుగొనబడలేదు</string>
-    <string name="gst_amount">జీఎస్టీ (రూ.) </string>
     <string name="unpaidCollection">చెల్లించని సేకరణలు</string>
     <string name="labour_lable">లేబర్</string>
     <string name="no_req_found">అభ్యర్థనలు ఏవీ కనుగొనబడలేదు</string>
@@ -356,17 +296,8 @@
     <string name="total_records">మొత్తం రికార్డులు</string>
     <string name="quantity_mt">మొత్తము (MT)</string>
     <string name="ffb_flot">ఎఫ్ఎఫ్బి ఫ్లాట్ ఛార్జ్ (రూ.)</string>
-    <string name="address">చిరునామా</string>
     <string name="no_pdfs">పిడిఎఫ్ లేదు</string>
-    <string name="vechile_no">వాహన సంఖ్య</string>
-    <string name="driver_name">డ్రైవర్ పేరు</string>
-    <string name="crop_manintance_visit">పంట నిర్వహణ సందర్శన</string>
-    <string name="cropMaintenanceCode">పంట నిర్వహణ కోడ్</string>
-    <string name="fertilizerSource">ఎరువుల మూలం</string>
-    <string name="fertilizer_name">ఎరువుల పేరు</string>
     <string name="dosage_only">మోతాదు</string>
-    <string name="lastAppliedDate">చివరి అనువర్తిత తేదీ</string>
-    <string name="applyFertilizerFrequencyType">ఎరువుల ఫ్రీక్వెన్సీటైప్‌ను వర్తించండి</string>
 
 
     <string name="treesAppearance">చెట్ల స్వరూపం</string>
@@ -376,7 +307,6 @@
     <string name="fruitSize">పండ్ల పరిమాణం</string>
     <string name="fruitHyegiene">పండ్ల పరిశుభ్రత</string>
     <string name="plantationType">తోటల రకం</string>
-    <string name="fertilizer_crop">ఎరువుల వివరాలు</string>
     <string name="health_crop">ప్లాంటేషన్ వివరాల ఆరోగ్యం</string>
     <string name="uprrot_crop">నిర్మూలన వివరాలు</string>
 
@@ -388,24 +318,9 @@
     <string name="missingTreesCount">తప్పిపోయిన చెట్ల సంఖ్య</string>
     <string name="reasonType">చెట్లు తప్పిపోవడానికి కారణం</string>
     <string name="expectedPlamsCount">P హించిన పామ్స్ కౌంట్</string>
-    <string name="harv_crop">హార్వెస్ట్ వివరాలు</string>
 
-
-    <string name="plotYield">ప్లాట్ దిగుబడి (కిలోలు)</string>
-    <string name="yieldperHactor">హెక్టారుకు దిగుబడి (కిలోలు)</string>
-    <string name="collectionCenterName">సేకరణ కేంద్రం పేరు</string>
-    <string name="transaportMode">రవాణా మోడ్</string>
-    <string name="vehicleType">వాహన రకం</string>
-    <string name="transportPaidAmount">రవాణా చెల్లింపు మొత్తం</string>
-    <string name="harvestingMethod">హార్వెస్టింగ్ విధానం</string>
-    <string name="wagesPerDay">రోజుకు వేతనాలు (రూ.)</string>
-    <string name="wagesUnit">వేతనాలు యూనిట్ పేరు</string>
-    <string name="contractAmount">ఒప్పంద మొత్తం</string>
-    <string name="harvestingType">హార్వెస్టింగ్ రకం</string>
-    <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
 
     <string name="crop">పంట</string>
-    <string name="cropHistory">పంట చరిత్ర</string>
 
     <string name="recommended_ertilizer">సిఫార్సు చేసిన ఎరువులు</string>
     <string name="UOMName">UOM పేరు</string>
@@ -413,15 +328,7 @@
     <string name="fert_rec">ఎరువుల సిఫార్సు వివరాలు</string>
 
 
-    <string name="IsWeedProperlyDone">కలుపు సరిగ్గా పూర్తయింది</string>
-    <string name="MethodType">విధానం రకం</string>
     <string name="Chemical">కెమికల్</string>
-    <string name="applicationFrequencyName">అప్లికేషన్ ఫ్రీక్వెన్సీ పేరు</string>
-    <string name="IsPrunning">కత్తిరింపు</string>
-    <string name="PrunningFrequencyName">కత్తిరింపు ఫ్రీక్వెన్సీ పేరు</string>
-    <string name="IsMulchingSeen">మల్చింగ్ చూసింది</string>
-    <string name="IsWeavilsSeen">వీవిల్స్ చూశారు</string>
-    <string name="weed">కలుపు వివరాలు</string>
 
 
     <string name="NutrientDeficiencyName">పోషక లోపం పేరు</string>
@@ -431,25 +338,11 @@
     <string name="pestChemicals">పెస్ట్ కెమికల్స్</string>
     <string name="RecommendedChemical">సిఫార్సు చేసిన కెమికల్</string>
     <string name="disease">వ్యాధి</string>
-    <string name="complaintTypes">ఫిర్యాదు రకాలు</string>
-    <string name="Criticality">క్లిష్టమైన</string>
-    <string name="description">వివరణ</string>
-    <string name="ComplaintBy">ద్వారా ఫిర్యాదు</string>
-    <string name="assignedTo">కేటాయించిన</string>
-    <string name="currentStatus">ప్రస్తుత స్థితి</string>
-    <string name="statusUpdate">స్థితి నవీకరణ</string>
     <string name="pest">తెగులు వివరాలు</string>
-    <string name="pest_chemical">pestChemicalXrefData</string>
     <string name="deases">వ్యాధి వివరాలు</string>
-    <string name="geo_boun">GeoBoundariesTag</string>
 
 
-    <string name="longitude">Longitude</string>
-    <string name="latitude">Latitude</string>
-    <string name="file_repo">FileRepositoryData</string>
-    <string name="id">ID</string>
     <string name="nut_repo">NutrientData</string>
-    <string name="com_repo">Complaints Data</string>
     <string name="my3F">నా 3 ఎఫ్</string>
     <string name="logout">లాగ్అవుట్</string>
     <string name="confirmation">నిర్ధారణ</string>
@@ -473,43 +366,6 @@
     <string name="datevalidation">దయచేసి తేదీ నుండి తేదీ కంటే తక్కువ</string>
     <string name="enter_Date">దయచేసి తేదీ మరియు తేదీ నుండి నమోదు చేయండి</string>
     <!--  we need to use video ids instead of video link  -->
-    <string-array name="video_id_array">
-        <item>CqhpNxI8qYw</item>
-        <item>sasCrpgHDy8</item>
-        <item>iJeh3x09Ya8</item>
-        <item>B5zRaD7B504</item>
-        <item>9qWHzj8k-Uo</item>
-        <item>RjiK45wC924</item>
-        <item>RH3zaLO8H4E</item>
-        <item>o14pyzosjvk</item>
-        <item>5SQrpBQne7A</item>
-        <item>5WJ3r67ORxo</item>
-    </string-array>
 
-    <string-array name="video_title_array">
-        <item>Android Security Lock Demo</item>
-        <item>Android Sectioned RecyclerView Demo</item>
-        <item>Android Home Screen Widgets Demo</item>
-        <item>Android Floating Widget like Facebook Messenger Chat Head Demo</item>
-        <item>Android Google Maps Introduction Demo</item>
-        <item>Android Lollipop Activity Transitions Demo</item>
-        <item>Android Toolbar Animation Using Design Support Library Demo</item>
-        <item>Android Material Advance Tabs Demo</item>
-        <item>Android Drag and Drop Demo</item>
-        <item>Android Fingerprint Authentication Demo</item>
-    </string-array>
-
-    <string-array name="video_duration_array">
-        <item>02:48</item>
-        <item>00:44</item>
-        <item>01:01</item>
-        <item>00:55</item>
-        <item>01:03</item>
-        <item>00:25</item>
-        <item>00:34</item>
-        <item>00:45</item>
-        <item>00:52</item>
-        <item>00:28</item>
-    </string-array>
 </resources>
 
