@@ -147,9 +147,9 @@
     ]]>
     <string name="time_peroid">టైమ్ పెరాయిడ్</string>
         
-    <string name="from_date">తేదీ నుండి </string>
+    <string name="from_date">తేదీ నుండి * </string>
         
-    <string name="to_date">తేదీ వరకు </string>
+    <string name="to_date">తేదీ వరకు * </string>
         
     <string name="collection_id">సేకరణ ID</string>
         
@@ -351,7 +351,6 @@
 
     <string name="loan_amount">అప్పు మొత్తం</string>
     <string name="reason_loan">రుణానికి కారణం</string>
-
     <string name="error">లోపం</string>
     <string name="quick_pay">Quick Pay Fee</string>
     <string name="issue_type">Type of Issue</string>
@@ -372,6 +371,8 @@
     <string name="scan_qr">QR ను స్కాన్ చేయండి</string>
     <string name="ente_pin">దయచేసి పిన్ను నమోదు చేయండి</string>
     <!--  we need to use video ids instead of video link  -->
-
+    <string name="str_standard">ప్రామాణిక</string>
+    <string name="str_videos">వీడియో</string>
+    <string name="str_pdf">పౕఢప్</string>
 </resources>
 

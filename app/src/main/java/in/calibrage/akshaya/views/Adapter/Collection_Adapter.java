@@ -23,19 +23,21 @@ import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 
 
-public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.ViewHolder>{
-    String  datetimevaluereq;
+public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.ViewHolder> {
+    String datetimevaluereq;
     public Context mContext;
     private List<CollectionResponceModel.CollectioDatum> collection_Set;
-    public Collection_Adapter(  Context context,List<CollectionResponceModel.CollectioDatum> collection_Set) {
 
-        this.mContext=context;
-        this.collection_Set=collection_Set;
+    public Collection_Adapter(Context context, List<CollectionResponceModel.CollectioDatum> collection_Set) {
+
+        this.mContext = context;
+        this.collection_Set = collection_Set;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.collection_data_xml, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.collection_data_xml, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -52,24 +54,24 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         try {
             Date oneWayTripDate = input.parse(collection_Set.get(position).getDocDate());
 
-       datetimevaluereq=output.format(oneWayTripDate);
+            datetimevaluereq = output.format(oneWayTripDate);
             //datetimevalute.setText(output.format(oneWayTripDate));
 
-            Log.e("===============","======currentData======"+output.format(oneWayTripDate));
+            Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         ((ViewHolder) holder).txtDate.setText(datetimevaluereq);
-        ((ViewHolder) holder).txtWeight.setText(""+collection_Set.get(position).getQuantity()+""+"0 Kgs");
+        ((ViewHolder) holder).txtWeight.setText("" + collection_Set.get(position).getQuantity() + "" + "0 Kgs");
         ((ViewHolder) holder).txtCc.setText(collection_Set.get(position).getWhsCode());
-        ((ViewHolder) holder).txtStatus.setText(collection_Set.get(position).getUApaystat().toString().replace("Payment",""));
-        if(collection_Set.get(position).getUApaystat().toString().endsWith("Paid"))
-            ((ViewHolder) holder).txtStatus.setTextColor(mContext.getColor( R.color.green));
+        ((ViewHolder) holder).txtStatus.setText(collection_Set.get(position).getUApaystat().toString().replace("Payment", ""));
+        if (collection_Set.get(position).getUApaystat().toString().endsWith("Paid"))
+            ((ViewHolder) holder).txtStatus.setTextColor(mContext.getColor(R.color.green));
         else
-            ((ViewHolder) holder).txtStatus.setTextColor(mContext.getColor( R.color.red));
+            ((ViewHolder) holder).txtStatus.setTextColor(mContext.getColor(R.color.red));
 
 
-        if(position%2 == 0){
+        if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
@@ -105,7 +107,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
             txtWeight = itemView.findViewById(R.id.weight);
             txtCc = itemView.findViewById(R.id.cc);
             txtStatus = itemView.findViewById(R.id.status);
-            card_view=itemView.findViewById(R.id.card_view);
+            card_view = itemView.findViewById(R.id.card_view);
 //
         }
 

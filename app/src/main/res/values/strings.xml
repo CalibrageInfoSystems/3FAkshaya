@@ -51,9 +51,9 @@
     <string name="time_peroid">Time Peroid</string>
 
 
-    <string name="from_date">From Date </string>
+    <string name="from_date">From Date *</string>
 
-    <string name="to_date">To Date </string>
+    <string name="to_date">To Date *</string>
     <string name="collection_id">Collection ID</string>
     <string name="date">Start Date</string>
     <string name="weight">Weight</string>
@@ -190,12 +190,18 @@
     <string name="clear">Clear</string>
     <string name="datevalidation">Please Enter From Date is less than To Date</string>
     <string name="enter_Date">Please Enter From Date and To Date</string>
+
     <string name="farmar_id"> Enter Farmer Id</string>
     <string name="Internet">Please Check Internet Connection</string>
     <string name="welcome">Welcome</string>
     <string name="login">Login</string>
     <string name="scan_qr">Scan QR</string>
     <string name="ente_pin">Please Enter Pin</string>
+
+    <string name="str_standard">Standard</string>
+    <string name="str_videos">Videos</string>
+    <string name="str_pdf">PDF</string>
+
     <!-- we need to use video ids instead of video link -->
 
 </resources>
