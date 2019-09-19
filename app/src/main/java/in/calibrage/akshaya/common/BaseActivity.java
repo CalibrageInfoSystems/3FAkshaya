@@ -34,7 +34,7 @@ import java.util.List;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.MSGmodel;
 
-import static in.calibrage.akshaya.R.color.color_blue;
+
 
 
 public class BaseActivity extends AppCompatActivity {
