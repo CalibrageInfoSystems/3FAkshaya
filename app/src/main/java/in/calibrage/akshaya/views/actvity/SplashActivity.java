@@ -74,12 +74,24 @@ public class SplashActivity extends BaseActivity {
                     updateResources(SplashActivity.this, "en-US");
 
                 if (is_login) {
-                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+
                 } else {
-                    if (welcome)
-                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                    else
-                        startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
+                    if (welcome) {
+                        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(SplashActivity.this, LanguageActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    }
+
                 }
             }
 

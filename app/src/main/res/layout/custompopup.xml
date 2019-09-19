@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginEnd="30dp"
+
             android:background="@color/colorOrange"
 
             android:gravity="center"
@@ -39,6 +39,7 @@
         </LinearLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/txtclose"
             android:layout_width="30dp"
             android:layout_height="44.5dp"
@@ -66,7 +67,7 @@
         <TextView
             android:id="@+id/age"
             style="@style/Common_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:text="@string/measurement"
@@ -76,7 +77,7 @@
         <TextView
             android:id="@+id/prunning"
             style="@style/Common_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:text="@string/Prunning"
@@ -86,7 +87,7 @@
         <TextView
             android:id="@+id/harv"
             style="@style/Common_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
 
             android:layout_height="wrap_content"
             android:layout_weight=".2"
@@ -96,7 +97,7 @@
         <TextView
             android:id="@+id/un1"
             style="@style/Common_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:text="@string/unkonown" />
@@ -104,7 +105,7 @@
         <TextView
             android:id="@+id/un2"
             style="@style/Common_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:text="@string/unkonown2" />

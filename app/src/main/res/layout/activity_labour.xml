@@ -351,23 +351,47 @@
             </RelativeLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/txt_from_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/comments">
+                android:layout_margin="@dimen/margin_5"
+                android:clipChildren="false"
+
+                android:hint="@string/comments"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+
+                >
 
                 <EditText
+
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:inputType="textMultiLine"
-                    android:id="@+id/commentTxt"
-                    android:textColor="@color/white_new"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="@dimen/_8dp"
-                    android:textSize="@dimen/album_title"
+
 
                     android:maxLength="1000"
+                    android:id="@+id/commentTxt"
+                    android:textColor="@color/white_new"
+
                     />
             </android.support.design.widget.TextInputLayout>
+<!--            <android.support.design.widget.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="@string/comments">-->
+
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:inputType="textMultiLine"-->
+<!--                    android:id="@+id/commentTxt"-->
+<!--                    android:textColor="@color/white_new"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:layout_marginRight="@dimen/_8dp"-->
+<!--                    android:textSize="@dimen/album_title"-->
+
+<!--                    android:maxLength="1000"-->
+<!--                    />-->
+<!--            </android.support.design.widget.TextInputLayout>-->
             <LinearLayout
                 android:id="@+id/linearLayou"
                 android:layout_width="fill_parent"
@@ -600,12 +624,12 @@
 
                </LinearLayout>-->
         </LinearLayout>
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fragment_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" >-->
 
 
-        </FrameLayout>
+<!--        </FrameLayout>-->
     </RelativeLayout>
 

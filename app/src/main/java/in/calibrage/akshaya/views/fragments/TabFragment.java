@@ -220,13 +220,13 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         rcv_video.setAdapter(new VideoAdapter(listResultVideo));
                         rcv_pdf.setAdapter(new PdfAdapter(listResultPDF));
 
-                        if (listResultPDF.size() == 0) {
-                            noRecords.setVisibility(View.VISIBLE);
-
-                        } else {
-                            noRecords.setVisibility(View.GONE);
-
-                        }
+//                        if (listResultPDF.size() == 0) {
+//                            noRecords.setVisibility(View.VISIBLE);
+//
+//                        } else {
+//                            noRecords.setVisibility(View.GONE);
+//
+//                        }
 
 //
 //                        if (listResultVideo.size() == 0) {

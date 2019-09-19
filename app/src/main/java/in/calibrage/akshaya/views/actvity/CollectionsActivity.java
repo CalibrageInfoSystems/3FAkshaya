@@ -44,6 +44,7 @@ import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
@@ -58,9 +59,9 @@ import rx.schedulers.Schedulers;
 
 public class CollectionsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     DatePickerDialog picker;
-    public static  String TAG="CollectionsActivity";
-    EditText fromText,toText;
-    String[] selection = { "Last 30 Days", "Current Financial Year", "Custom Time Period"};
+    public static String TAG = "CollectionsActivity";
+    EditText fromText, toText;
+    String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
 
     Spinner spin;
     Collection_Adapter collection_Adapter;
@@ -70,21 +71,22 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     String currentDate;
     private ProgressDialog dialog;
     private RecyclerView.LayoutManager layoutManager;
-    String farmerCode,Farmer_code;
+    String farmerCode, Farmer_code;
     LinearLayout noRecords;
     String last_30day;
-    TextView collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight;
+    TextView collectionsWeight, collectionsCount, paidCollectionsWeight, unPaidCollectionsWeight;
     RelativeLayout relativeLayoutCount;
     private Subscription mSubscription;
-    String financiyalYearFrom="";
-    String financiyalYearTo="";
-    String fromString,toString;
-    String reformattedStrFrom,reformattedStrTo;
+    String financiyalYearFrom = "";
+    String financiyalYearTo = "";
+    String fromString, toString;
+    String reformattedStrFrom, reformattedStrTo;
     Button collection_Submit;
-    TextView Seleteddatefrom,selectedsateto;
-    private SpotsDialog mdilogue ;
+    TextView Seleteddatefrom, selectedsateto;
+    private SpotsDialog mdilogue;
     LinearLayout date_linear;
-    ImageView backImg,home_btn;
+    ImageView backImg, home_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,9 +129,11 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         spin = (Spinner) findViewById(R.id.spinner);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
-
-      //  timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
+        fromText.setHint(CommonUtil.getMultiColourString(getString(R.string.from_date)));
+        toText.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
+        //  timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
     }
+
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,8 +146,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(CollectionsActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -191,7 +199,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
         collecton_data.setLayoutManager(layoutManager);
         spin.setOnItemSelectedListener(this);
 
-        ArrayAdapter aa = new ArrayAdapter(this,R.layout.spinner_item,selection);
+        ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, selection);
         aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 
         spin.setAdapter(aa);
@@ -208,19 +216,17 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
 
         int CurrentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int CurrentMonth = (Calendar.getInstance().get(Calendar.MONTH)+1);
+        int CurrentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);
 
-        if(CurrentMonth<4)
-        {
-            financiyalYearFrom=(CurrentYear-1)+"-04-01";
-            financiyalYearTo=(CurrentYear)+"-03-31";
+        if (CurrentMonth < 4) {
+            financiyalYearFrom = (CurrentYear - 1) + "-04-01";
+            financiyalYearTo = (CurrentYear) + "-03-31";
             Log.i(" from_year ", financiyalYearFrom);
             Log.i("tp_year ", financiyalYearTo);
-        }
-        else
-        {
-            financiyalYearFrom=(CurrentYear)+"-04-01";
-            financiyalYearTo=(CurrentYear+1)+"-03-31";;
+        } else {
+            financiyalYearFrom = (CurrentYear) + "-04-01";
+            financiyalYearTo = (CurrentYear + 1) + "-03-31";
+            ;
             Log.i(" financiyalYearFrom2 ", financiyalYearFrom);
             Log.i("financiyalYearTo2 ", financiyalYearTo);
         }
@@ -228,12 +234,8 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     }
 
 
-
-
-
 //        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
 //        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
-
 
 
     @Override
@@ -282,14 +284,11 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             e.printStackTrace();
                         }
 
-                        if(fromString.equalsIgnoreCase("")||toString.equalsIgnoreCase(""))
-                        {
+                        if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
                             Toast.makeText(CollectionsActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
                             date_linear.setVisibility(View.VISIBLE); //
                             collecton_data.setVisibility(View.GONE);
-                        }
-                        else
-                        {
+                        } else {
 
 
                             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -297,13 +296,12 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             try {
                                 date1 = formatter.parse(fromString);
                                 Date date2 = formatter.parse(toString);
-                                if (date2.compareTo(date1)<0)
-                                {
-                                    Toast.makeText(getApplicationContext(),"Please Enter From Date is less than To Date",Toast.LENGTH_LONG).show();
-                                }else{
+                                if (date2.compareTo(date1) < 0) {
+                                    Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
+                                } else {
                                     collecton_data.invalidate();
                                     //       recyclerView.setVisibility(View.VISIBLE);
-                                    getCustomCollections(fromString,toString);
+                                    getCustomCollections(fromString, toString);
 
 
                                 }
@@ -315,25 +313,23 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         }
 
 
-
                     }
 
                 });
 
-            }
-            else{
+            } else {
                 collecton_data.setVisibility(View.GONE);
 
             }
         }
-        if(spin.getSelectedItem().toString().equals("Custom Time Period")){
+        if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
             // Toast.makeText(getApplicationContext(),"hiddd" , Toast.LENGTH_LONG).show();
             date_linear.setVisibility(View.VISIBLE); //
             relativeLayoutCount.setVisibility(View.GONE);
             //  subBtn.setVisibility(View.VISIBLE);
 
 //do something
-        }else {
+        } else {
             date_linear.setVisibility(View.GONE);
             relativeLayoutCount.setVisibility(View.GONE);
             //   subBtn.setVisibility(View.VISIBLE);
@@ -376,29 +372,26 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         mdilogue.cancel();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if(collectionResponcemodel.getResult()!= null)
-
-                        {
-                            Log.e("nodada====","nodata===custom");
+                        if (collectionResponcemodel.getResult() != null) {
+                            Log.e("nodada====", "nodata===custom");
                             collecton_data.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
+
                             collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
                             collecton_data.setAdapter(collection_Adapter);
+
                             relativeLayoutCount.setVisibility(View.VISIBLE);
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
-                            unPaidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight())+""+"0 Kgs");
-                            collectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight())+""+"0 Kgs");
-                            collectionsCount.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
-                            paidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight())+""+"0 Kgs");
-                        }
-                        else{
-                            Log.e("nodada====","nodata===custom2");
+                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
+                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kgs");
+                            collectionsCount.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
+                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kgs");
+                        } else {
+                            Log.e("nodada====", "nodata===custom2");
                             noRecords.setVisibility(View.VISIBLE);
                             relativeLayoutCount.setVisibility(View.GONE);
+                            collecton_data.setVisibility(View.GONE);
                         }
-
-
-
 
 
                     }
@@ -449,10 +442,9 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         mdilogue.dismiss();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if(collectionResponcemodel.getResult()!= null)
-                        {
+                        if (collectionResponcemodel.getResult() != null) {
 
-                            Log.e("nodada====","nodata===1year");
+                            Log.e("nodada====", "nodata===1year");
                             collecton_data.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
                             collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
@@ -461,15 +453,14 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
 
-                            unPaidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight())+""+"0 Kgs");
-                            collectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight())+""+"0 Kgs");
-                            collectionsCount.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
-                            paidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight())+""+"0 Kgs");
+                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
+                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kgs");
+                            collectionsCount.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
+                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kgs");
 
 
-
-                        }  else{
-                            Log.e("nodada====","nodata===1year2");
+                        } else {
+                            Log.e("nodada====", "nodata===1year2");
                             noRecords.setVisibility(View.VISIBLE);
                             relativeLayoutCount.setVisibility(View.GONE);
                         }
@@ -481,7 +472,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-    private JsonObject collectionObject2(){
+    private JsonObject collectionObject2() {
         collectionRequestModel requestModel = new collectionRequestModel();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(financiyalYearTo);
@@ -526,8 +517,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                         mdilogue.dismiss();
                         Log.d(TAG, "onNext:collection " + collectionResponcemodel);
 
-                        if(collectionResponcemodel.getResult()!= null)
-                        {
+                        if (collectionResponcemodel.getResult() != null) {
 
 
                             noRecords.setVisibility(View.GONE);
@@ -535,12 +525,11 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                             collecton_data.setAdapter(collection_Adapter);
                             relativeLayoutCount.setVisibility(View.VISIBLE);
 
-                            unPaidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight())+""+"0 Kgs");
-                            collectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight())+""+"0 Kgs");
-                            collectionsCount.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
-                            paidCollectionsWeight.setText( String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight())+""+"0 Kgs");
-                        }
-                        else{
+                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
+                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kgs");
+                            collectionsCount.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
+                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kgs");
+                        } else {
                             noRecords.setVisibility(View.VISIBLE);
                             relativeLayoutCount.setVisibility(View.GONE);
 
@@ -561,6 +550,7 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -569,6 +559,6 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-       // this.finish();
+         this.finish();
     }
 }
