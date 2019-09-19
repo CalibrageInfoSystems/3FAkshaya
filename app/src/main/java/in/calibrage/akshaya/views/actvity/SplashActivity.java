@@ -77,12 +77,12 @@ public class SplashActivity extends BaseActivity {
 
 
                 if (is_login) {
-                    finish();
+
                     startActivity(new Intent(SplashActivity.this, HomeActivity.class));
 
                 } else {
-                    finish();
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+
+                    startActivity(new Intent(SplashActivity.this, LanguageActivity.class));
                 }
             }
 

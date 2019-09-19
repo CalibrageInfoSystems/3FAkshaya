@@ -463,8 +463,13 @@
     <string name="quick_pay">Quick Pay Fee</string>
     <string name="issue_type">Type of Issue</string>
     <string name="image">Image Upload</string>
-    <string name="digital_signature">Digital Signature</string>
-
+    <string name="digital_signature">డిజిటల్ సంతకం</string>
+    <string name="Prunning">చక్కబెట్టుట</string>
+    <string name="harvesting">నూర్పిళ్ళు</string>
+    <string name="unkonown">తెలియని1</string>
+    <string name="unkonown2">తెలియని2</string>
+    <string name="request_rise">అభ్యర్థనను పెంచండి</string>
+    <string name="clear">నిశ్చితమైన</string>
     <!--  we need to use video ids instead of video link  -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>

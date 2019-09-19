@@ -19,6 +19,7 @@ import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.models.QuickPayModel;
+import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.SpinnerModel;
 import in.calibrage.akshaya.models.Stand_recom_model;
@@ -107,6 +108,8 @@ public interface ApiService {
     @GET
     Observable<GetIssueModel> getIssuestypes(@Url String url);
 
+    @POST(APIConstantURL.post_quickpay)
+    Observable<QuickPayResponce> postquickpay(@Body JsonObject data);
 
 
  /*

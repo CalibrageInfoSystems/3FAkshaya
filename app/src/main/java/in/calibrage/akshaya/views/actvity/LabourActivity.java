@@ -151,6 +151,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
+        Getterms_conditions();
     }
 
     private void setViews() {
@@ -248,16 +249,16 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
         });
 
-
+        Getterms_conditions();
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-//                    if (validationspop()) {
-//                        myDialog = new Dialog(LabourActivity.this);
-//
-//                        ShowPopup();
-//                    }
+                    Getterms_conditions();
+                        myDialog = new Dialog(LabourActivity.this);
+
+                        ShowPopup();
+
                 }
 
             }
@@ -280,12 +281,13 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
         });
+       // Getterms_conditions();
         terms.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-
+                Getterms_conditions();
                 myDialog = new Dialog(LabourActivity.this);
 
                 ShowPopup();
@@ -325,7 +327,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(LabourActivity.this);
         terms_recycle.setLayoutManager(mLayoutManager);
 
-        Getterms_conditions();
+
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -397,13 +399,23 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
     private boolean validations() {
 
+
+        if (selected_labour.size() == 0) {
+            showDialog(LabourActivity.this, "Please Select Service Type ");
+            return false;
+        }
         if (labourSpinner.getSelectedItemPosition() == 0) {
 
             showDialog(LabourActivity.this, "Please Select Package");
             return false;
         }
-        if (selected_labour.size() == 0) {
-            showDialog(LabourActivity.this, "Please Select Service Type ");
+        if(checkbox.isChecked()){
+            // showCustomDialog();
+
+            checkbox.setChecked(true);
+        }else {
+            //Toasty.error(getApplicationContext(),R.string.terms_agree, Toast.LENGTH_LONG).show();
+            showDialog(LabourActivity.this, getResources().getString(R.string.terms_agree));
             return false;
         }
 
@@ -650,7 +662,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             amount_Label.setVisibility(View.VISIBLE);
                             amount.setText(getAmount.getResult().toString());
                         } else {
-                            //  showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
+                           //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
                         }
 
                     }

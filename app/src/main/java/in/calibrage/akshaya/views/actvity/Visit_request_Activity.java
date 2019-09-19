@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -51,21 +53,23 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class Visit_request_Activity extends AppCompatActivity {
-    String plot_Age,location,landmarkCode,plot_id,Farmer_code;
+    String plot_Age, location, landmarkCode, plot_id, Farmer_code;
     private Subscription mSubscription;
-    private SpotsDialog mdilogue ;
-    ImageView backImg,home_btn;
-    private TextView Age, id_plot, area,landMark;
+    private SpotsDialog mdilogue;
+    ImageView backImg, home_btn;
+    private TextView Age, id_plot, area, landMark;
     List<String> Issue_type = new ArrayList<String>();
     private static final String TAG = Visit_request_Activity.class.getSimpleName();
     List<Integer> Issue_Id = new ArrayList<Integer>();
     Spinner Select_Issue;
-   String selected_issue;
-
+    String selected_issue;
+    ImageButton btn_addIMG;
     private Button btn;
-    private ImageView imageview;
+    private ImageView imageview, imageview2, imageview3;
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
+
+    private List<Bitmap> images = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,15 +89,14 @@ public class Visit_request_Activity extends AppCompatActivity {
         setViews();
 
 
-
     }
-
 
 
     private void intview() {
         requestMultiplePermissions();
         backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
+        btn_addIMG = findViewById(R.id.btn_addIMG);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
@@ -108,10 +111,18 @@ public class Visit_request_Activity extends AppCompatActivity {
         Select_Issue = findViewById(R.id.issue_type);
 
         imageview = (ImageView) findViewById(R.id.iv);
+        imageview2 = (ImageView) findViewById(R.id.iv2);
+        imageview3 = (ImageView) findViewById(R.id.iv3);
+
+        imageview.setVisibility(View.GONE);
+        imageview2.setVisibility(View.GONE);
+        imageview2.setVisibility(View.GONE);
+        btn_addIMG.setVisibility(View.VISIBLE);
+
     }
 
 
-    private void  requestMultiplePermissions(){
+    private void requestMultiplePermissions() {
         Dexter.withActivity(this)
                 .withPermissions(
                         Manifest.permission.CAMERA,
@@ -162,7 +173,7 @@ public class Visit_request_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Age.setText(plot_Age );
+        Age.setText(plot_Age);
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
@@ -173,7 +184,7 @@ public class Visit_request_Activity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selected_issue = Select_Issue.getItemAtPosition(Select_Issue.getSelectedItemPosition()).toString();
 
-              //  Log.e("seleced_period===", seleced_Duration);
+                //  Log.e("seleced_period===", seleced_Duration);
 //                durationId = period_id.get(labourSpinner.getSelectedItemPosition());
                 //Log.e("duration======", String.valueOf(durationId));
 //
@@ -186,20 +197,51 @@ public class Visit_request_Activity extends AppCompatActivity {
         });
 
 
-        imageview.setOnClickListener(new View.OnClickListener() {
+      /*  imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPictureDialog();
+                add_text.setVisibility(View.VISIBLE);
+            }
+
+        });
+         imageview2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPictureDialog();
+                add_text.setVisibility(View.VISIBLE);
+            }
+        });
+        imageview3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPictureDialog();
             }
         });
+
+        */
+        btn_addIMG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (images.size() > 2) {
+                    Toast.makeText(Visit_request_Activity.this, "max Images 3", Toast.LENGTH_SHORT).show();
+                } else {
+                    showPictureDialog();
+                }
+
+
+            }
+        });
+
     }
 
-    private void showPictureDialog(){
+
+    private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
         pictureDialog.setTitle("Select Action");
         String[] pictureDialogItems = {
                 "Select photo from gallery",
-                "Capture photo from camera" };
+                "Capture photo from camera"};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -242,21 +284,57 @@ public class Visit_request_Activity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
                     String path = saveImage(bitmap);
-                 //   Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    imageview.setImageBitmap(bitmap);
-
+                    Log.e("path===", path);
+                    //   Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+                    //imageview.setImageBitmap(bitmap);
+                    images.add(bitmap);
+                    displayImages();
                 } catch (IOException e) {
                     e.printStackTrace();
-                  //  Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
 
         } else if (requestCode == CAMERA) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            imageview.setImageBitmap(thumbnail);
+            images.add(thumbnail);
             saveImage(thumbnail);
+            displayImages();
             //Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void displayImages() {
+
+        if (images.size() > 0) {
+            if (images.size() > 0 && images.get(0) != null) {
+                imageview.setImageBitmap(images.get(0));
+                imageview.setVisibility(View.VISIBLE);
+
+            }
+            if (images.size() > 1 && images.get(1) != null) {
+                imageview2.setImageBitmap(images.get(1));
+                imageview2.setVisibility(View.VISIBLE);
+            }
+            if (images.size() > 2 && images.get(2) != null) {
+                imageview3.setImageBitmap(images.get(2));
+                imageview3.setVisibility(View.VISIBLE);
+                btn_addIMG.setVisibility(View.GONE);
+            }
+        }
+
+    }
+
+    public void onclcik() {
+        StringBuilder builder = null;
+        for (int i = 0; i < images.size(); i++) {
+            String base64 = CommonUtil.bitMaptoBase64(images.get(i));
+            if (i == 0) {
+                builder.append(base64);
+            } else
+                builder.append("," + base64);
+        }
+        String base64 = builder.toString();
     }
 
     public String saveImage(Bitmap myBitmap) {
@@ -287,6 +365,7 @@ public class Visit_request_Activity extends AppCompatActivity {
         }
         return "";
     }
+
     private void GetIssue_type() {
 
 
@@ -319,7 +398,6 @@ public class Visit_request_Activity extends AppCompatActivity {
                     public void onNext(GetIssueModel getIssueModel) {
 
 
-
                         if (getIssueModel.getListResult() != null) {
                             Issue_type.add("Select");
                             for (GetIssueModel.ListResult data : getIssueModel.getListResult()
@@ -344,4 +422,6 @@ public class Visit_request_Activity extends AppCompatActivity {
                 });
 
     }
+
+
 }

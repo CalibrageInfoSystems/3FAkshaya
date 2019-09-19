@@ -22,9 +22,11 @@ public interface APIConstantURL {
 
     String labour_amount = "LabourServiceCost/GetLabourServiceCostByAge";
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
-    String GetLabourTermsandConditions ="LabourRequest/GetLabourTermsandConditions/null";
+    String GetLabourTermsandConditions ="LabourServiceCost/GetLabourServiceCost/null";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetails/";
     String GetIssue = "TypeCdDmt/10";
+
+    String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
 
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 

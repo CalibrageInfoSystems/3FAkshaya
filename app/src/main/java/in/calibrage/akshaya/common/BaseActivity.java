@@ -303,6 +303,7 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+                finish();
             }
         });
 
