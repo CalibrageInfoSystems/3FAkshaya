@@ -79,7 +79,6 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private List<GetRecommendationsByAgeModel> recom_list = new ArrayList<>();
     private LinearLayout lyt_firstTab;
     LinearLayout noRecords  ,noVedios;
-
     public static Fragment getInstance(int position, int count) {
         Bundle bundle = new Bundle();
         bundle.putInt("pos", position);

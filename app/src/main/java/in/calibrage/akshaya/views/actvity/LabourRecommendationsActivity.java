@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
@@ -65,6 +66,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
     String Farmer_code;
     LinearLayout noRecords;
     ImageView backImg,home_btn;
+    private SpotsDialog mdilogue ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,10 @@ public class LabourRecommendationsActivity  extends BaseActivity {
         noRecords = (LinearLayout) findViewById(R.id.text);
         backImg = (ImageView) findViewById(R.id.back);
          home_btn = (ImageView) findViewById(R.id.home_btn);
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(this)
+                .setTheme(R.style.Custom)
+                .build();
     }
 
     private void setViews() {
@@ -118,7 +124,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
     }
 
     private void GetLabourRequestDetails() {
-
+        mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getrecommdetails(APIConstantURL.GetActivePlotsByFarmerCode +"APWGBDAB00010001")
                 .subscribeOn(Schedulers.newThread())
@@ -126,7 +132,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
                 .subscribe(new Subscriber<LabourRecommendationsModel>() {
                     @Override
                     public void onCompleted() {
-
+                        mdilogue.dismiss();
                     }
 
                     @Override
@@ -142,11 +148,12 @@ public class LabourRecommendationsActivity  extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
+                        mdilogue.dismiss();
                     }
 
                     @Override
                     public void onNext(LabourRecommendationsModel labourRecommendationsModel) {
-
+                        mdilogue.dismiss();
                         Log.d(TAG, "onNext:lobour " + labourRecommendationsModel);
 
                         if(labourRecommendationsModel.getListResult() != null)

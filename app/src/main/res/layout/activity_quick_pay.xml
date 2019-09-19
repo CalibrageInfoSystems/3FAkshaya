@@ -3,55 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape"
-    >
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_gravity="right"
+    android:background="@drawable/shape">
+
+    <Button
+        android:id="@+id/nextButton"
+        style="@style/Common_Button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/backlinear"
-        android:background="@color/transparent">
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal" >
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_left"
-                android:layout_marginTop="18dp"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
-                android:id="@+id/back"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:text="@string/quickPay"
-                android:layout_alignLeft="@+id/back"
-
-                android:layout_marginStart="25dp"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_20" />
-
-
-            <ImageView
-                android:id="@+id/home_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/home"
-                android:textColor="#ff0000ff"
-                android:layout_marginTop="3dp"
-                />
-
-        </RelativeLayout>
-    </LinearLayout>
+        android:layout_below="@+id/quick_recycler_view"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/margin_5"
+        android:text="@string/request_rise" />
     <!--
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -84,32 +46,54 @@
               android:text="Quick Pay"
               android:textSize="@dimen/text_size_20" />
       </LinearLayout>-->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/backlinear"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hed_text"
-        android:textAlignment="center"
-        android:textColor="@color/yellow"
-        android:layout_margin="10dp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        android:text="@string/unpaidCollection"
-        android:layout_below="@+id/backlinear"
-        android:textSize="15sp" />
+        android:layout_gravity="right"
+        android:background="@color/transparent"
+        android:orientation="horizontal">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/quick_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
-        android:scrollbars="vertical"
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:src="@drawable/ic_left" />
 
-        android:scrollbarThumbVertical="@color/colorPrimary"
-        android:scrollbarSize="3dp"
-        android:scrollbarStyle="outsideInset"
-        android:layout_below="@+id/hed_text"
+            <ImageView
+                android:id="@+id/home_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/home"
+                android:textColor="#ff0000ff" />
 
-        />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignLeft="@+id/back"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+
+                android:text="@string/quickPay"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_20" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/text"
         android:layout_width="match_parent"
@@ -139,33 +123,51 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/linear"
+        android:layout_alignParentBottom="true"
 
 
-        android:layout_alignParentBottom="true">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@+id/linear"
+            android:layout_alignParentBottom="true"
 
-            android:layout_alignParentBottom="true">
+            android:orientation="horizontal">
 
 
         </LinearLayout>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/quick_recycler_view"
-            android:text="@string/next"
-            style="@style/Common_Button"
-            android:id="@+id/nextButton"
-            />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/hed_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/backlinear"
+        android:layout_margin="10dp"
+        android:text="@string/unpaidCollection"
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/quick_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hed_text"
+        android:scrollbarSize="3dp"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarThumbVertical="@color/colorPrimary"
+        android:scrollbars="vertical"
+
+        />
     <!--  <com.calibrage.a3ffarmerapp.Activities.CommonButton
           android:layout_width="match_parent"
           android:layout_height="wrap_content"

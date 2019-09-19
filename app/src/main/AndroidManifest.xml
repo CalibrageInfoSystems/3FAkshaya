@@ -23,6 +23,7 @@
         <activity android:name=".views.actvity.PoleActivity" />
         <activity android:name=".views.actvity.LabourRecommendationsActivity" />
         <activity android:name=".views.actvity.CropMaintanceVisitActivity" />
+        <activity android:name=".views.actvity.LanguageActivity" />
         <activity
             android:name=".views.actvity.ScannedBarcodeActivity"
             android:screenOrientation="portrait"

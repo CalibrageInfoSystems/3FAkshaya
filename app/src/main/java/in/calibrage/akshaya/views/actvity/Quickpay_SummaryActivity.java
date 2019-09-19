@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
+import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
@@ -24,8 +29,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
@@ -33,8 +40,13 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
+import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
+import in.calibrage.akshaya.models.LobourResponse;
+import in.calibrage.akshaya.models.MSGmodel;
+import in.calibrage.akshaya.models.PostQuickpaymodel;
 import in.calibrage.akshaya.models.QuickPayModel;
+import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
@@ -119,6 +131,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
                 startActivity(intent);
+            }
+        });
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
         clear.setOnClickListener(new View.OnClickListener() {
@@ -224,11 +242,32 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                             Log.e("nodada====", "nodata===custom2");
                             text_quntity.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getQuantity()));
-                            text_flat_charge.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge()));
+
+                            if (getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge() == null) {
+                                text_flat_charge.setText("0");
+
+                            } else {
+                                text_flat_charge.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge()));
+                            }
                             ffbCostTxt.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getFfbCost()));
-                            convenienceChargeTxt.setText("-"+String.valueOf(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
+
+                            if (getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge() == null) {
+                                convenienceChargeTxt.setText("0");
+
+                            } else {
+
+                                convenienceChargeTxt.setText("-" + String.valueOf(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
+                            }
                             closingBalanceTxt.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
                             totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+
+                            if (getquickpayDetailsModel.getListResult().get(0).getTotal() == null) {
+                                totalAmount.setText("0");
+
+                            } else {
+
+                                totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                            }
                             text_quickpay_fee.setText("-"+String.valueOf(getquickpayDetailsModel.getListResult().get(0).getQuickPay()));
 
                         } else {
@@ -248,6 +287,92 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
 
     private void submitReq() {
+        mdilogue.show();
+        JsonObject object = quickReuestobject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.postquickpay(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<QuickPayResponce>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onNext(QuickPayResponce quickPayResponce) {
+
+
+                        if (quickPayResponce.getIsSuccess()) {
+                            new Handler().postDelayed(new Runnable() {
+                                @RequiresApi(api = Build.VERSION_CODES.M)
+                                @Override
+                                public void run() {
+//                                    String selected_name = arrayyTOstring(selected_labour);
+//                                    String Amount = amount.getText().toString();
+//                                    String date = edittext.getText().toString();
+//                                    List<MSGmodel> displayList = new ArrayList<>();
+//
+//                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+//                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
+//                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), Amount));
+//                                    displayList.add(new MSGmodel(getResources().getString(R.string.date), date));
+//
+//
+////
+//                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
+//
+//                                    showSuccessDialog(displayList);
+                                }
+                            }, 300);
+                        } else {
+                            showDialog(Quickpay_SummaryActivity.this, quickPayResponce.getEndUserMessage());
+                        }
+
+                    }
+
+
+                });
+
+
+    }
+
+    private JsonObject quickReuestobject() {
+        PostQuickpaymodel requestModel = new PostQuickpaymodel();
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setIsFarmerRequest(true);
+        requestModel.setCreatedByUserId(null);
+      requestModel.setReqCreatedDate(currentDate);
+        requestModel.setCreatedDate(currentDate);
+        requestModel.setUpdatedByUserId(null);
+        requestModel.setUpdatedDate(currentDate);
+
+        requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
+        requestModel.setCollectionIds("COL2019TAB027CCBDL01117-94,COL2019TAB140CCBDL01131-21");
+        requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
+
+        requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
+        requestModel.setFileName(null);
+        requestModel.setFileLocation("png");
+        requestModel.setFileExtension("png");
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
 
     }

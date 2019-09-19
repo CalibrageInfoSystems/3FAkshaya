@@ -27,6 +27,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ import android.widget.Toast;
 import com.shockwave.pdfium.PdfDocument;
 import com.shockwave.pdfium.PdfiumCore;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -446,5 +448,12 @@ public class CommonUtil {
 
 
         return dims;
+    }
+    public static String bitMaptoBase64(Bitmap bitmap)
+    {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 50, outputStream);
+
+        return Base64.encodeToString(outputStream.toByteArray(), Base64.NO_WRAP);
     }
 }

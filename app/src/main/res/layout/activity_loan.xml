@@ -91,6 +91,7 @@
         android:textColor="@color/white_new"
         android:layout_margin="8dp"
         android:padding="5dp"
+        android:textColorHint="@color/white"
         android:layout_marginStart="8dp"
         android:inputType="number"
         android:layout_marginEnd="@dimen/_8dp"
@@ -129,6 +130,7 @@
             android:layout_marginEnd="@dimen/_8dp"
             android:background="@drawable/spinner_bg"
             android:textSize="@dimen/album_title"
+            android:textColorHint="@color/white"
             android:hint="@string/reason_loan"
             android:inputType="textMultiLine"/>
     </LinearLayout>
@@ -144,6 +146,7 @@
         android:layout_height="wrap_content"
         android:text="@string/i_have_agree"
         android:textSize="16dp"
+        android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="8dp"

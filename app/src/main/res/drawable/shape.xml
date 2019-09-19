@@ -5,7 +5,10 @@
             <solid android:color="#E9E7E7" />
         </shape>
     </item>
+
+
     <item android:top="-90dp" android:bottom="350dp" android:left="-60dp" android:right="-60dp">
+
         <shape>
             <gradient
                 android:angle="45"

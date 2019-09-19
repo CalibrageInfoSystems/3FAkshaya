@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".2"
                 android:hint="@string/measurement"
-
+android:textColor="@color/half_black"
                 android:textSize="14dp" />
 
             <TextView
@@ -44,7 +44,7 @@
                 style="@style/Common_textView"
                 android:layout_weight=".2"
                 android:hint="Pruning"
-
+                android:textColor="@color/half_black"
                 android:textSize="14dp" />
 
             <TextView
@@ -54,7 +54,7 @@
 
                 android:hint="Harvesting"
                 android:layout_weight=".2"
-
+                android:textColor="@color/half_black"
                 style="@style/Common_textView"
                 />
 
@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:hint="UnKnown1"
                 android:layout_weight=".2"
+                android:textColor="@color/half_black"
                 style="@style/Common_textView"
                 />
 
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:hint="UnKnown2"
                 android:layout_weight=".2"
+                android:textColor="@color/half_black"
                 style="@style/Common_textView"
                 />
 

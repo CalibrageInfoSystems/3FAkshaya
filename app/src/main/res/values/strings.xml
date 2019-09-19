@@ -354,7 +354,12 @@
     <string name="issue_type">Type of Issue</string>
     <string name="image">Image Upload</string>
     <string name="digital_signature">Digital Signature</string>
-
+    <string name="Prunning">Prunning</string>
+    <string name="harvesting">Harvesting</string>
+    <string name="unkonown">UnKnown1</string>
+    <string name="unkonown2">UnKnown2</string>
+    <string name="request_rise">Raise Request</string>
+    <string name="clear">Clear</string>
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">
         <item>CqhpNxI8qYw</item>
