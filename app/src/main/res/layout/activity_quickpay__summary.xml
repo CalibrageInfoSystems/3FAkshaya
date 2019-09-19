@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-            android:layout_marginVertical="100dp"
+            android:layout_marginVertical="50dp"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="@dimen/_8dp"
                 android:layout_marginLeft="@dimen/_8dp"
@@ -436,10 +436,59 @@
 
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/lin_five"
+                    android:id="@+id/sign"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:paddingTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/digital_signature"
+                        android:textSize="@dimen/album_title"
+                        android:textColor="@color/white_new"
+                        android:layout_marginStart="6dp"
+                        android:drawablePadding="5dp"
+                        android:textStyle="bold"
+                        android:drawableRight="@drawable/star"
+                        />
+                    <com.kyanogen.signatureview.SignatureView
+                        xmlns:sign="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/signature_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/spinner_bg"
+                        android:layout_margin="@dimen/margin_10"
+                        sign:penSize="5dp"
+                        sign:backgroundColor="#ffffff"
+                        sign:penColor="#000000"
+                        sign:enableSignature="true"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/clear"
+                        android:layout_gravity="end"
+                        android:text="clear"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:id="@+id/save"
+                        android:text="save"/>
+                </LinearLayout>
+
+
+                <LinearLayout
                 android:id="@+id/linearLayou"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_five"
+                    android:layout_below="@+id/sign"
                 android:orientation="horizontal"
 
                 android:layout_marginTop="@dimen/margin_15"
@@ -469,18 +518,23 @@
                     />
             </LinearLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linearLayou"
-                android:text="@string/confirm_req"
+                <Button
+                    android:id="@+id/buttonConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearLayou"
+                    android:layout_marginLeft="10dp"
+                    style="@style/Common_Button"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_bg"
 
-                android:textSize="@dimen/album_title"
-               style="@style/Common_Button"
+                    android:shadowColor="@android:color/transparent"
+                    android:text="@string/confirm_req"
 
-                android:id="@+id/buttonConfirm"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"/>
+
+                    />
 
         </RelativeLayout>
 

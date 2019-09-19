@@ -24,7 +24,7 @@ public interface APIConstantURL {
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetLabourTermsandConditions ="LabourRequest/GetLabourTermsandConditions/null";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetails/";
-
+    String GetIssue = "TypeCdDmt/10";
 
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 

@@ -351,6 +351,9 @@
 
     <string name="error">Error</string>
     <string name="quick_pay">Quick Pay Fee (Rs)</string>
+    <string name="issue_type">Type of Issue</string>
+    <string name="image">Image Upload</string>
+    <string name="digital_signature">Digital Signature</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="video_id_array">
