@@ -18,21 +18,22 @@ import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.views.actvity.CropMaintanceVisitActivity;
 
-public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder>{
+public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder> {
 
     public Context mContext;
     private List<RecomPlotcodes.ListResult> plot_Set;
     // RecyclerView recyclerView;
 
-   public RecommendationAdapter(  Context context,List<RecomPlotcodes.ListResult> plot_Set) {
+    public RecommendationAdapter(Context context, List<RecomPlotcodes.ListResult> plot_Set) {
 
-            this.mContext=context;
-            this.plot_Set=plot_Set;
-        }
+        this.mContext = context;
+        this.plot_Set = plot_Set;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.recommendation_list_item, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.recommendation_list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -46,15 +47,14 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CropMaintanceVisitActivity.class);
-                intent.putExtra("plotid",    holder.textViewplotId.getText());
-                intent.putExtra("plotAge",    holder.textViewpalmArea.getText());
-                intent.putExtra("plotVillage",    holder.textViewLocation.getText());
-                intent.putExtra("landMark",    holder.textViewstatus.getText());
+                intent.putExtra("plotid", holder.textViewplotId.getText());
+                intent.putExtra("plotAge", holder.textViewpalmArea.getText());
+                intent.putExtra("plotVillage", holder.textViewLocation.getText());
+                intent.putExtra("landMark", holder.textViewstatus.getText());
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 mContext.startActivity(intent);
-
 
 
             }
@@ -62,11 +62,11 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         });
 
         ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
-        ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea()+" "+"Ha");
+        ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea() + " " + "Ha");
         ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
         ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
 
-        if(position%2 == 0){
+        if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
@@ -75,9 +75,13 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
 
     }
+
     @Override
     public int getItemCount() {
-        return plot_Set.size();
+        if (plot_Set != null)
+            return plot_Set.size();
+        else
+            return 0;
     }
 
 
@@ -95,7 +99,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             this.textViewpalmArea = (TextView) itemView.findViewById(R.id.palmArea);
             this.textViewLocation = (TextView) itemView.findViewById(R.id.location);
             this.textViewstatus = (TextView) itemView.findViewById(R.id.status);
-            this.card_view =  (CardView) itemView.findViewById(R.id.card_view);
+            this.card_view = (CardView) itemView.findViewById(R.id.card_view);
 
         }
 
