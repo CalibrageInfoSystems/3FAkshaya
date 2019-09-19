@@ -107,6 +107,7 @@ public class OtpActivity extends BaseActivity {
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {
                     GetOtp();
                 } else {
+                    showDialog(OtpActivity.this,getResources().getString(R.string.ente_pin));
                     pinEntry.setError("Please Enter Pin");
                 }
             }

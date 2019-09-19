@@ -20,7 +20,7 @@
     <string name="convenience_charge">Convenience Charge (Rs)</string>
     <string name="total_amt_pay">TTotal Bill Amount (Rs)</string>
     <string name="otp_desc">Enter the 6 digits code sent your registered mobile number</string>
-    <string name="submit">Submit</string>
+    <string name="submit">SUBMIT</string>
     <string name="submit_req">Submit Request</string>
     <string name="view">Views</string>
     <string name="payment_summary">Payment Summary</string>
@@ -190,6 +190,12 @@
     <string name="clear">Clear</string>
     <string name="datevalidation">Please Enter From Date is less than To Date</string>
     <string name="enter_Date">Please Enter From Date and To Date</string>
+    <string name="farmar_id"> Enter Farmer Id</string>
+    <string name="Internet">Please Check Internet Connection</string>
+    <string name="welcome">Welcome</string>
+    <string name="login">Login</string>
+    <string name="scan_qr">Scan QR</string>
+    <string name="ente_pin">Please Enter Pin</string>
     <!-- we need to use video ids instead of video link -->
 
 </resources>

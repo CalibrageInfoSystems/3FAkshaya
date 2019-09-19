@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHolder>{
@@ -64,13 +65,13 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         ((ViewHolder) holder).adjustTxt.setText(""+payment_Set.get(position).getAdjusted());
         ((ViewHolder) holder).finalAmount.setText(""+payment_Set.get(position).getAmount());
 
-        if ((payment_Set.get(position).getBalance()) < 0) {
-            String balance1= payment_Set.get(position).getBalance()+""+")";
-            ((ViewHolder) holder).balance.setText(balance1.toString().replace("-","("));
-        }
-        else {
-            ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
-        }
+//        if ((payment_Set.get(position).getBalance()) < 0) {
+//            String balance1= payment_Set.get(position).getBalance()+""+")";
+//            ((ViewHolder) holder).balance.setText(balance1.toString().replace("-","("));
+//        }
+//        else {
+//            ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
+//        }
         if(position%2 == 0){
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
@@ -187,15 +188,15 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         if (payment_Set.get(position).getBalance()==0.0)
         {
             //   Log.e("bbbbb",superHero.getmAmount());
-            holder.balance.setVisibility(View.GONE);
-            holder.text_eight.setVisibility(View.GONE);
+            holder.balance.setText("0");
+          //  holder.text_eight.setVisibility(View.GONE);
         }
         else {
             holder.balance.setVisibility(View.VISIBLE);
             holder.text_eight.setVisibility(View.VISIBLE);
         }
 
-
+        AnimationUtil.animate(holder, true);
 
     }
 

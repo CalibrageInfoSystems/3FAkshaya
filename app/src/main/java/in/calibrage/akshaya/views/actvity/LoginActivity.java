@@ -109,12 +109,14 @@ public class LoginActivity extends BaseActivity {
                     if (isOnline())
                         GetLogin();
                     else {
-                        Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                        showDialog(LoginActivity.this,getResources().getString(R.string.Internet));
+                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                    // validationPopShow();
                    // farmerId.setError("Please Enter Farmer Id");
-                    showDialog(LoginActivity.this,"Please Enter Farmer Id");
+                    showDialog(LoginActivity.this,getResources().getString(R.string.farmar_id));
+                    //showDialog(LoginActivity.this,"Please Enter Farmer Id");
                 }
             }
         });

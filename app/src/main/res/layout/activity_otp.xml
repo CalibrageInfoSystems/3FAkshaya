@@ -67,7 +67,7 @@
             android:id="@+id/btn_otp_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SUBMIT"
+            android:text="@string/submit"
             android:layout_margin="3dp"
            style="@style/Common_Button" />
 

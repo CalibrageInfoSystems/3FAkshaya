@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +53,7 @@ public class PaymentHistoryActivity extends BaseActivity {
     private EditText fromText, toText;
     private String fromString, toString;
     private DatePickerDialog picker;
-    private RelativeLayout totalLinear;
+    private LinearLayout totalLinear;
     private PaymentAdapter pay_adapter;
     private Subscription mSubscription;
     private Button submit;
@@ -89,7 +90,7 @@ public class PaymentHistoryActivity extends BaseActivity {
                 .build();
 
         backImg = (ImageView) findViewById(R.id.back);
-        totalLinear = (RelativeLayout) findViewById(R.id.linear1);
+        totalLinear = (LinearLayout) findViewById(R.id.linear1);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         from_txt = (TextInputLayout) findViewById(R.id.txt_from_date);
         to_txt = (TextInputLayout) findViewById(R.id.txt_to_date);
@@ -196,7 +197,7 @@ public class PaymentHistoryActivity extends BaseActivity {
 
                 if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
                     showDialog(PaymentHistoryActivity.this,getResources().getString(R.string.enter_Date));
-                  //  Toast.makeText(PaymentHistoryActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
+                  // Toast.makeText(PaymentHistoryActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
 
                 } else {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

@@ -265,7 +265,7 @@
     <string name="quantity">మొత్తము</string>
     <!--<string name="harvest">హార్వెస్ట్</string>-->
 
-    <string name="ffb_qty">మొత్తం FFB పరిమాణం (MT):</string>
+    <string name="ffb_qty">మొత్తం FFB పరిమాణం (MT)</string>
     <string name="ffb">FFB Qty పరిమాణం (MT)</string>
     <string name="adhoc_rate">ఎమ్‌టికి అడోక్ రేటు (రూ)</string>
     <string name="invoice_rate">MT కి ఇన్వాయిస్ రేటు</string>
@@ -355,7 +355,7 @@
     <string name="error">లోపం</string>
     <string name="quick_pay">Quick Pay Fee</string>
     <string name="issue_type">Type of Issue</string>
-    <string name="image">Image Upload</string>
+    <string name="image">చిత్రం అప్‌లోడ్</string>
     <string name="digital_signature">డిజిటల్ సంతకం</string>
     <string name="Prunning">చక్కబెట్టుట</string>
     <string name="harvesting">నూర్పిళ్ళు</string>
@@ -365,6 +365,12 @@
     <string name="clear">నిశ్చితమైన</string>
     <string name="datevalidation">దయచేసి తేదీ నుండి తేదీ కంటే తక్కువ</string>
     <string name="enter_Date">దయచేసి తేదీ మరియు తేదీ నుండి నమోదు చేయండి</string>
+    <string name="farmar_id"> రైతు ఐడిని నమోదు చేయండి</string>
+    <string name="Internet">దయచేసి ఇంటర్నెట్ కనెక్షన్‌ను తనిఖీ చేయండి</string>
+    <string name="welcome">స్వాగతం</string>
+    <string name="login">లాగిన్</string>
+    <string name="scan_qr">QR ను స్కాన్ చేయండి</string>
+    <string name="ente_pin">దయచేసి పిన్ను నమోదు చేయండి</string>
     <!--  we need to use video ids instead of video link  -->
 
 </resources>
