@@ -159,16 +159,19 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LabourRecommendationsActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(LabourActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -466,7 +469,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                     displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.amount), Amount));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.date), date));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
 
 
 //
@@ -762,5 +765,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         }
         return string.toString();
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
 }

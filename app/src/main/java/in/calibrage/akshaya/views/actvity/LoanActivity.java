@@ -102,8 +102,7 @@ public class LoanActivity extends BaseActivity {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
+             finish();
             }
         });
 
@@ -128,13 +127,17 @@ public class LoanActivity extends BaseActivity {
             }
         });
 
-        home_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);
-            }
-        });
+            home_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
+                    Intent intent = new Intent(LoanActivity.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Log.i("LOG_RESPONSE date ", currentDate);
         terms.setOnClickListener(new View.OnClickListener() {
@@ -209,7 +212,7 @@ public class LoanActivity extends BaseActivity {
     private JsonObject LoanReuestobject() {
         LoanRequest requestModel = new LoanRequest();
         requestModel.setFarmerCode(Farmer_code);
-        requestModel.setPlotCode("APAB0001000001");
+        requestModel.setPlotCode(null);
         requestModel.setIsFarmerRequest(true);
         requestModel.setComments(reason.getText().toString());
         requestModel.setCreatedByUserId(null);
@@ -260,7 +263,11 @@ public class LoanActivity extends BaseActivity {
 
 
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
 
 
 }

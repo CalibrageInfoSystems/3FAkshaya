@@ -287,7 +287,8 @@ public class BaseActivity extends AppCompatActivity {
 
 
             lty.addView(txtitem);
-
+          //  lty.setGravity(View.FOCUS_LEFT);
+            lty.setGravity(Gravity.LEFT | Gravity.LEFT);
             layout.addView(lty);
         }
 
