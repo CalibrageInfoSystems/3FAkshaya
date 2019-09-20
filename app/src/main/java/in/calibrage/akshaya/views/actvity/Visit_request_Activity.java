@@ -120,8 +120,8 @@ public class Visit_request_Activity extends BaseActivity {
             landmarkCode = extras.getString("landMark");
 
         }
-        intview();
-        setViews();
+       // intview();
+       // setViews();
 
 
     }

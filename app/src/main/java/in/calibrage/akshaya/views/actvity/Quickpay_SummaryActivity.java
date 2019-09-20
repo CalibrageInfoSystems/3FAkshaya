@@ -388,7 +388,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
         getTerms = (TextView) dialog.findViewById(R.id.txtclose);
         //  image.setImageResource(R.drawable.ic_action_duration);
-
         dialog.show();
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

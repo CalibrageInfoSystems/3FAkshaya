@@ -18,7 +18,7 @@
     <string name="terms_conditions">Terms &amp; Conditions</string>
     <string name="terms_agree">Please Agree Terms \n Conditions</string>
     <string name="convenience_charge">Convenience Charge (Rs)</string>
-    <string name="total_amt_pay">TTotal Bill Amount (Rs)</string>
+    <string name="total_amt_pay">Total Bill Amount (Rs)</string>
     <string name="otp_desc">Enter the 6 digits code sent your registered mobile number</string>
     <string name="submit">SUBMIT</string>
     <string name="submit_req">Submit Request</string>
