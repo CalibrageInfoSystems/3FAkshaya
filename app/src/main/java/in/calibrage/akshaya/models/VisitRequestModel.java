@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.models;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -30,7 +31,7 @@ public class VisitRequestModel {
     }
 
 
-    public class RequestHeader {
+    public static class RequestHeader {
 
         @SerializedName("id")
         @Expose
@@ -80,6 +81,8 @@ public class VisitRequestModel {
         @SerializedName("issueTypeId")
         @Expose
         private Integer issueTypeId;
+
+
 
         public Integer getId() {
             return id;
@@ -209,9 +212,27 @@ public class VisitRequestModel {
             this.issueTypeId = issueTypeId;
         }
 
+        public RequestHeader() {
+            this.id = id;
+            this.requestCode = requestCode;
+            this.requestTypeId = requestTypeId;
+            this.farmerCode = farmerCode;
+            this.plotCode = plotCode;
+            this.reqCreatedDate = reqCreatedDate;
+            this.statusTypeId = statusTypeId;
+            this.isFarmerRequest = isFarmerRequest;
+            this.createdByUserId = createdByUserId;
+            this.createdDate = createdDate;
+            this.updatedByUserId = updatedByUserId;
+            this.updatedDate = updatedDate;
+            this.totalCost = totalCost;
+            this.comments = comments;
+            this.cropMaintainceDate = cropMaintainceDate;
+            this.issueTypeId = issueTypeId;
+        }
     }
 
-    public class VisitRepo {
+    public static class VisitRepo {
 
         @SerializedName("id")
         @Expose
@@ -313,5 +334,23 @@ public class VisitRequestModel {
             this.fileTypeId = fileTypeId;
         }
 
+
+        public VisitRepo( ) {
+            this.id = id;
+            this.requestCode = requestCode;
+            this.fileLocation = fileLocation;
+            this.fileName = fileName;
+            this.fileExtension = fileExtension;
+            this.isActive = isActive;
+            this.createdByUserId = createdByUserId;
+            this.createdDate = createdDate;
+            this.fileTypeId = fileTypeId;
+        }
+    }
+
+
+    public VisitRequestModel(RequestHeader requestHeader, List<VisitRepo> visitRepo) {
+        this.requestHeader = requestHeader;
+        this.visitRepo = visitRepo;
     }
 }

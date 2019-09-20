@@ -28,6 +28,8 @@ public interface APIConstantURL {
 
     String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
 
+    String post_visit = "RequestHeader/AddVisitRequest";
+
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 

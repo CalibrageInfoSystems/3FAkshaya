@@ -6,36 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape"
-
     tools:context=".views.actvity.HomeActivity">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/transparent"
-        android:minHeight="50dp"
-        android:titleTextColor="#ffffff"/>
 
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        >
-
-        <android.support.design.widget.FloatingActionButton
-            android:background="@drawable/shape"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="70dp"
-            android:src="@drawable/ic_care"
-            app:backgroundTint="@color/white"
-            app:elevation="8dp"
-            android:id="@+id/call_fb"
-            app:pressedTranslationZ="12dp" />
+        android:layout_marginTop="30dp">
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -46,8 +23,58 @@
             app:itemIconTint="@color/drawer_item"
             app:itemTextColor="@color/drawer_item"
             app:menu="@menu/bottom_navigation_main" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/call_fb"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/shape"
+            android:src="@drawable/ic_care"
+            app:backgroundTint="@color/white"
+            app:elevation="8dp"
+            app:pressedTranslationZ="12dp" />
     </FrameLayout>
 
+    <LinearLayout
+        android:id="@+id/lyt_head"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/transparent"
+            android:titleTextColor="#ffffff"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:titleTextColor="@color/whitepure">
+
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_applogo" />
+
+                <TextView
+                    style="@style/Common_textView_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textColor="@color/whitepure" />
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/nv"
         android:layout_width="wrap_content"
@@ -57,6 +84,5 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/navigation_menu">
-
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

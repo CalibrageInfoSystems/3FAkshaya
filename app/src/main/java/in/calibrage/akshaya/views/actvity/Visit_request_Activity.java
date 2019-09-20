@@ -5,11 +5,19 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,12 +25,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -35,14 +46,24 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.GetIssueModel;
+import in.calibrage.akshaya.models.LobourResponse;
+import in.calibrage.akshaya.models.MSGmodel;
+import in.calibrage.akshaya.models.VisitRequestModel;
+import in.calibrage.akshaya.models.VisitresponseModel;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
@@ -52,7 +73,10 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class Visit_request_Activity extends AppCompatActivity {
+import static android.Manifest.permission.RECORD_AUDIO;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+public class Visit_request_Activity extends BaseActivity {
     String plot_Age, location, landmarkCode, plot_id, Farmer_code;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
@@ -70,6 +94,17 @@ public class Visit_request_Activity extends AppCompatActivity {
     private int GALLERY = 1, CAMERA = 2;
 
     private List<Bitmap> images = new ArrayList<>();
+
+    String currentDate;
+    Button buttonStart, buttonStop, buttonPlayLastRecordAudio, buttonStopPlayingRecording, submit;
+    String AudioSavePathInDevice = "";
+    MediaRecorder mediaRecorder;
+    Random random;
+    String RandomAudioFileName = "ABCDEFGHIJKLMNOP";
+    public static final int RequestPermissionCode = 1;
+    MediaPlayer mediaPlayer;
+
+    EditText comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +126,8 @@ public class Visit_request_Activity extends AppCompatActivity {
 
     }
 
-
     private void intview() {
-        requestMultiplePermissions();
+     //   requestMultiplePermissions();
         backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         btn_addIMG = findViewById(R.id.btn_addIMG);
@@ -109,7 +143,7 @@ public class Visit_request_Activity extends AppCompatActivity {
         area = findViewById(R.id.palmArea);
         landMark = findViewById(R.id.landmark);
         Select_Issue = findViewById(R.id.issue_type);
-
+        comments = findViewById(R.id.comments);
         imageview = (ImageView) findViewById(R.id.iv);
         imageview2 = (ImageView) findViewById(R.id.iv2);
         imageview3 = (ImageView) findViewById(R.id.iv3);
@@ -118,6 +152,17 @@ public class Visit_request_Activity extends AppCompatActivity {
         imageview2.setVisibility(View.GONE);
         imageview2.setVisibility(View.GONE);
         btn_addIMG.setVisibility(View.VISIBLE);
+
+        buttonStart = (Button) findViewById(R.id.button);
+        buttonStop = (Button) findViewById(R.id.button2);
+        buttonPlayLastRecordAudio = (Button) findViewById(R.id.button3);
+        buttonStopPlayingRecording = (Button) findViewById(R.id.button4);
+        submit = (Button) findViewById(R.id.req_loan);
+        buttonStop.setEnabled(false);
+        buttonPlayLastRecordAudio.setEnabled(false);
+        buttonStopPlayingRecording.setEnabled(false);
+
+        random = new Random();
 
     }
 
@@ -156,6 +201,8 @@ public class Visit_request_Activity extends AppCompatActivity {
                 })
                 .onSameThread()
                 .check();
+
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     }
 
     private void setViews() {
@@ -201,29 +248,6 @@ public class Visit_request_Activity extends AppCompatActivity {
         });
 
 
-      /*  imageview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPictureDialog();
-                add_text.setVisibility(View.VISIBLE);
-            }
-
-        });
-         imageview2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPictureDialog();
-                add_text.setVisibility(View.VISIBLE);
-            }
-        });
-        imageview3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPictureDialog();
-            }
-        });
-
-        */
         btn_addIMG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -237,8 +261,349 @@ public class Visit_request_Activity extends AppCompatActivity {
             }
         });
 
+
+        buttonStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (checkPermissionn()) {
+
+                    AudioSavePathInDevice = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + CreateRandomAudioFileName(5) + "3FRecording.3gp";
+
+                    MediaRecorderReady();
+
+                    try {
+                        mediaRecorder.prepare();
+                        mediaRecorder.start();
+                    } catch (IllegalStateException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    buttonStart.setEnabled(false);
+                    buttonStop.setEnabled(true);
+
+                    Toast.makeText(Visit_request_Activity.this, "Recording started", Toast.LENGTH_LONG).show();
+                } else {
+
+                    requestPermission();
+
+                }
+
+            }
+        });
+
+        buttonStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mediaRecorder.stop();
+
+                buttonStop.setEnabled(false);
+                buttonPlayLastRecordAudio.setEnabled(true);
+                buttonStart.setEnabled(true);
+                buttonStopPlayingRecording.setEnabled(false);
+
+                Toast.makeText(Visit_request_Activity.this, "Recording Completed", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        buttonPlayLastRecordAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
+
+                buttonStop.setEnabled(false);
+                buttonStart.setEnabled(false);
+                buttonStopPlayingRecording.setEnabled(true);
+
+                mediaPlayer = new MediaPlayer();
+
+                try {
+                    mediaPlayer.setDataSource(AudioSavePathInDevice);
+                    mediaPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mediaPlayer.start();
+
+                Toast.makeText(Visit_request_Activity.this, "Recording Playing", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        buttonStopPlayingRecording.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                buttonStop.setEnabled(false);
+                buttonStart.setEnabled(true);
+                buttonStopPlayingRecording.setEnabled(false);
+                buttonPlayLastRecordAudio.setEnabled(true);
+
+                if (mediaPlayer != null) {
+
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+
+                    MediaRecorderReady();
+
+                }
+
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validations()) {
+
+                    if (isOnline())
+                        AddVisitRequest();
+                    else {
+                        showDialog(Visit_request_Activity. this, getResources().getString(R.string.Internet));
+                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                    }
+
+                }}
+        });
     }
 
+    private boolean validations() {
+        if (Select_Issue.getSelectedItemPosition() == 0) {
+
+            showDialog(Visit_request_Activity.this, getResources().getString(R.string.valid_issue_type));
+            return false;
+        }
+        if (images.size()== 0 && AudioSavePathInDevice.length()==0 ){
+
+            Log.d(TAG, "---- analysis ---->> base64 :"+images.size()+AudioSavePathInDevice);
+            showDialog(Visit_request_Activity.this, getResources().getString(R.string.select_image));
+            return false;
+        }
+
+
+//        if (AudioSavePathInDevice.length()==0 ){
+//
+//            Log.d(TAG, "---- analysis ---->> base64 :"+images.size()+AudioSavePathInDevice);
+//            showDialog(Visit_request_Activity.this, getResources().getString(R.string.select_image));
+//            return false;
+//        }
+        return true;
+    }
+
+
+    private void AddVisitRequest() {
+        mdilogue.show();
+        JsonObject object = visitReuestobject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.postvisit(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<VisitresponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onNext(VisitresponseModel visitresponseModel) {
+
+
+                        if (visitresponseModel.getIsSuccess()) {
+                            new Handler().postDelayed(new Runnable() {
+                                @RequiresApi(api = Build.VERSION_CODES.M)
+                                @Override
+                                public void run() {
+//                                        String selected_name = arrayyTOstring(selected_labour);
+//                                        String Amount = amount.getText().toString();
+//                                        String date = edittext.getText().toString();
+//                                        List<MSGmodel> displayList = new ArrayList<>();
+//
+//                                        displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+//                                        displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
+//                                        displayList.add(new MSGmodel(getResources().getString(R.string.amount), Amount));
+//                                        displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
+//
+//
+////
+//                                        Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
+//
+//                                        showSuccessDialog(displayList);
+                                }
+                            }, 300);
+                        } else {
+                            showDialog(Visit_request_Activity.this, visitresponseModel.getEndUserMessage());
+                        }
+
+                    }
+
+
+                });
+    }
+
+    private JsonObject visitReuestobject() {
+
+        VisitRequestModel.RequestHeader header = new VisitRequestModel.RequestHeader();
+
+        header.setId(0);
+        header.setRequestCode(null);
+        header.setRequestTypeId(14);
+        header.setFarmerCode(Farmer_code);
+        header.setPlotCode(plot_id);
+        header.setReqCreatedDate(currentDate);
+        header.setStatusTypeId(15);
+        header.setIsFarmerRequest(true);
+        header.setCreatedByUserId(null);
+
+        header.setCreatedDate(currentDate);
+        header.setUpdatedByUserId(null);
+        header.setUpdatedDate(currentDate);
+        header.setTotalCost(null);
+        header.setComments(comments.getText().toString());
+        header.setCropMaintainceDate(currentDate);
+        header.setIssueTypeId(Issue_Id.get(Select_Issue.getSelectedItemPosition() - 1));
+
+        List<VisitRequestModel.VisitRepo> visitRepo = new ArrayList<>();
+
+        for (int i = 0; i < images.size(); i++) {
+
+            VisitRequestModel.VisitRepo visitRepo1 = new VisitRequestModel.VisitRepo();
+            visitRepo1.setId(1);
+            visitRepo1.setRequestCode(null);
+            visitRepo1.setFileLocation(null);
+            visitRepo1.setFileName(CommonUtil.bitMaptoBase64(images.get(i)));
+            visitRepo1.setFileExtension(".jpg");
+            visitRepo1.setIsActive(true);
+            visitRepo1.setCreatedByUserId(null);
+            visitRepo1.setCreatedDate(currentDate);
+            visitRepo1.setFileTypeId(36);
+
+
+            visitRepo.add(visitRepo1);
+        }
+
+
+        VisitRequestModel.VisitRepo visitRepo1audio = new VisitRequestModel.VisitRepo();
+        visitRepo1audio.setId(1);
+        visitRepo1audio.setRequestCode(null);
+        visitRepo1audio.setFileLocation(null);
+        visitRepo1audio.setFileName(CommonUtil.getStringFile(new File(AudioSavePathInDevice)));
+        visitRepo1audio.setFileExtension(".3gp");
+        visitRepo1audio.setIsActive(true);
+        visitRepo1audio.setCreatedByUserId(null);
+        visitRepo1audio.setCreatedDate(currentDate);
+        visitRepo1audio.setFileTypeId(37);
+
+
+        visitRepo.add(visitRepo1audio);
+
+        VisitRequestModel requestModel = new VisitRequestModel(header, visitRepo);
+
+        Log.d(TAG, "---- analysis ---->> base64 514:"+images.size()+AudioSavePathInDevice);
+//
+//        String val = arrayTOstring(ids_list);
+//        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
+//
+//        requestModel.setServiceTypes(val);
+//
+//        requestModel.setCreatedDate(reformattedDate);
+//        requestModel.setUpdatedByUserId(null);
+//        requestModel.setUpdatedDate(reformattedDate);
+//        requestModel.setAmount(Double.parseDouble((String) amount.getText()));
+
+        // TODO
+        // clearalllists();
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+
+
+    }
+
+
+    private void requestPermission() {
+
+        ActivityCompat.requestPermissions(Visit_request_Activity.this, new String[]{WRITE_EXTERNAL_STORAGE, RECORD_AUDIO}, RequestPermissionCode);
+
+    }
+
+    public void MediaRecorderReady() {
+
+        mediaRecorder = new MediaRecorder();
+
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+
+        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+
+        mediaRecorder.setOutputFile(AudioSavePathInDevice);
+
+    }
+
+    public String CreateRandomAudioFileName(int string) {
+
+        StringBuilder stringBuilder = new StringBuilder(string);
+
+        int i = 0;
+        while (i < string) {
+
+            stringBuilder.append(RandomAudioFileName.charAt(random.nextInt(RandomAudioFileName.length())));
+
+            i++;
+        }
+        return stringBuilder.toString();
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case RequestPermissionCode:
+                if (grantResults.length > 0) {
+
+                    boolean StoragePermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean RecordPermission = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+
+                    if (StoragePermission && RecordPermission) {
+
+                        Toast.makeText(Visit_request_Activity.this, "Permission Granted", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(Visit_request_Activity.this, "Permission Denied", Toast.LENGTH_LONG).show();
+
+                    }
+                }
+
+                break;
+        }
+    }
+
+    public boolean checkPermissionn() {
+
+        int result = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), RECORD_AUDIO);
+
+        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
+    }
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -329,16 +694,18 @@ public class Visit_request_Activity extends AppCompatActivity {
 
     }
 
-    public void onclcik() {
-        StringBuilder builder = null;
+    public String getbase64() {
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < images.size(); i++) {
             String base64 = CommonUtil.bitMaptoBase64(images.get(i));
+            Log.d(TAG, "---- analysis ---->> base64 :" + base64);
             if (i == 0) {
                 builder.append(base64);
             } else
                 builder.append("," + base64);
         }
         String base64 = builder.toString();
+        return base64;
     }
 
     public String saveImage(Bitmap myBitmap) {
@@ -352,8 +719,7 @@ public class Visit_request_Activity extends AppCompatActivity {
         }
 
         try {
-            File f = new File(wallpaperDirectory, Calendar.getInstance()
-                    .getTimeInMillis() + ".jpg");
+            File f = new File(wallpaperDirectory, Calendar.getInstance().getTimeInMillis() + ".jpg");
             f.createNewFile();
             FileOutputStream fo = new FileOutputStream(f);
             fo.write(bytes.toByteArray());
@@ -426,6 +792,7 @@ public class Visit_request_Activity extends AppCompatActivity {
                 });
 
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

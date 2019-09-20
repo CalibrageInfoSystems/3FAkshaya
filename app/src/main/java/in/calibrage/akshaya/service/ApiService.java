@@ -23,6 +23,7 @@ import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.SpinnerModel;
 import in.calibrage.akshaya.models.Stand_recom_model;
+import in.calibrage.akshaya.models.VisitresponseModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
 import retrofit2.http.Body;
@@ -110,6 +111,11 @@ public interface ApiService {
 
     @POST(APIConstantURL.post_quickpay)
     Observable<QuickPayResponce> postquickpay(@Body JsonObject data);
+
+
+
+    @POST(APIConstantURL.post_visit)
+    Observable<VisitresponseModel> postvisit(@Body JsonObject data);
 
 
  /*
