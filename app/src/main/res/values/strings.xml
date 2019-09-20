@@ -16,7 +16,7 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="terms_conditions">Terms &amp; Conditions</string>
-    <string name="terms_agree">Please Agree Terms &amp;\n Conditions</string>
+    <string name="terms_agree">Please Agree Terms \n Conditions</string>
     <string name="convenience_charge">Convenience Charge (Rs)</string>
     <string name="total_amt_pay">TTotal Bill Amount (Rs)</string>
     <string name="otp_desc">Enter the 6 digits code sent your registered mobile number</string>
@@ -201,6 +201,7 @@
     <string name="str_standard">Standard</string>
     <string name="str_videos">Videos</string>
     <string name="str_pdf">PDF</string>
+    <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
 
     <!-- we need to use video ids instead of video link -->
 
