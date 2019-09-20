@@ -365,13 +365,13 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
         requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
+        //TODO make dynamic
         requestModel.setCollectionIds("COL2019TAB027CCBDL01117-94,COL2019TAB140CCBDL01131-21");
         requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
         requestModel.setFileName(null);
-        requestModel.setFileLocation("");
-        requestModel.setFileExtension("png");
-
+        requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
+        requestModel.setFileExtension(".pdf");
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
 

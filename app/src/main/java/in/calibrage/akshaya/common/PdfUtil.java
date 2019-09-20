@@ -21,7 +21,7 @@ import java.util.Date;
 import in.calibrage.akshaya.R;
 
 public class PdfUtil {
-    private static  final String TAG = PdfUtil.class.getSimpleName();
+    public static  final String TAG = PdfUtil.class.getSimpleName();
     private static String FILE = Environment.getExternalStorageDirectory().getPath() + "/mypdf/" + "quickpay.pdf";
     public static  void createPDF(Context ctx,Bitmap bitmapsignature,String qtymit,String FFBrate,String totalFFB,String convinceCharge,String quickpay,String closingBal,String totalBal)
     {
