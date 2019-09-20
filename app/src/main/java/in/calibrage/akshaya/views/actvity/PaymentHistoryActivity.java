@@ -114,19 +114,23 @@ public class PaymentHistoryActivity extends BaseActivity {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
-                startActivity(intent);
+                finish();
+//                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+//                startActivity(intent);
             }
         });
 
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(PaymentHistoryActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         });
-
         Payment_recycle.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         Payment_recycle.setLayoutManager(layoutManager);
@@ -349,5 +353,10 @@ public class PaymentHistoryActivity extends BaseActivity {
         requestModel.setFromDate(reformattedStrFrom);
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 }

@@ -69,9 +69,33 @@
         android:background="@drawable/spinner_bg"
         android:orientation="horizontal"
         android:weightSum="1"
-
         >
 
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txt_from_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_weight="0.3"
+            android:clipChildren="false"
+            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+
+            >
+
+            <EditText
+                android:id="@+id/from_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="7"
+
+                android:focusable="false"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
+
+
+                />
+        </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_to_date"
             android:layout_width="wrap_content"
@@ -90,30 +114,6 @@
                 android:focusable="false"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/white" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_from_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_5"
-            android:layout_weight="0.3"
-            android:clipChildren="false"
-            app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
-
-            >
-
-            <EditText
-                android:id="@+id/from_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="7"
-                android:focusable="false"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="@color/white"
-
-
-                />
         </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/btn__sub"

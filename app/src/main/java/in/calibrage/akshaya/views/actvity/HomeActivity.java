@@ -103,11 +103,11 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
         fragmentManager = getSupportFragmentManager();
         content_frame = (FrameLayout) findViewById(R.id.content_frame);
-       /* HomeFragment homeFragment = new HomeFragment();
+        HomeFragment homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, homeFragment, "homeTag")
-                .commit();*/
-       viewFragment(new HomeFragment(),HomeFragment.TAG);
+                .commit();
+     //  viewFragment(new HomeFragment(),HomeFragment.TAG);
 //        FragmentTAG = HomeFragment.TAG;
     }
 
@@ -367,7 +367,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
     private void viewFragment(Fragment fragment, String name){
-        final FragmentManager fragmentManager = getSupportFragmentManager();
+  /*      final FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);
         // 1. Know how many fragments there are in the stack
@@ -392,7 +392,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                     bottom_navigation.getMenu().getItem(0).setChecked(true);
                 }
             }
-        });
+        });*/
     }
 
 }

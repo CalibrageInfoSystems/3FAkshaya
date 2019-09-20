@@ -99,7 +99,7 @@
     <string name="no_collections_found">No Collections Available</string>
     <string name="no_payments_found">No Payments Found</string>
     <string name="i_have_agree">I Agree</string>
-    <string name="measurement">Measurement</string>
+    <string name="measurement">Age</string>
     <string name="startDate">Preferred Date</string>
     <string name="totalBalance">Total Balance (Rs)</string>
     <string name="balance">Balance (Rs)</string>

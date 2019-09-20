@@ -274,7 +274,7 @@
     <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
     <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
     <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
-    <string name="measurement">కొలత</string>
+
     <string name="startDate">ఇష్టపడే తేదీ</string>
 
     <string name="paidCollectionsWeight">చెల్లింపు సేకరణల బరువు</string>
