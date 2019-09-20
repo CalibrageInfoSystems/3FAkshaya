@@ -13,6 +13,7 @@
         android:layout_below="@+id/quick_recycler_view"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/margin_5"
+        android:padding="10dp"
         android:text="@string/request_rise" />
     <!--
         <android.support.v7.widget.Toolbar

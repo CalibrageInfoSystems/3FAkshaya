@@ -275,8 +275,13 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //
                 if (validations()) {
 
+                    if (isOnline())
+                        AddLabourRequestHeader();
+                    else {
+                        showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                    }
 
-                    AddLabourRequestHeader();
                     //
                 }
 
@@ -404,12 +409,14 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
         if (selected_labour.size() == 0) {
-            showDialog(LabourActivity.this, "Please Select Service Type ");
+            showDialog(LabourActivity.this, getResources().getString(R.string.Valid_service));
+
+           // showDialog(LabourActivity.this, "Please Select Service Type ");
             return false;
         }
         if (labourSpinner.getSelectedItemPosition() == 0) {
 
-            showDialog(LabourActivity.this, "Please Select Package");
+            showDialog(LabourActivity.this, getResources().getString(R.string.valid_pack));
             return false;
         }
         if(checkbox.isChecked()){

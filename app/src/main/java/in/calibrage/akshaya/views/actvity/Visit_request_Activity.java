@@ -169,8 +169,12 @@ public class Visit_request_Activity extends AppCompatActivity {
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(Visit_request_Activity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         });
         Age.setText(plot_Age);
@@ -422,6 +426,10 @@ public class Visit_request_Activity extends AppCompatActivity {
                 });
 
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
 
 }

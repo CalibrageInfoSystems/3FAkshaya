@@ -137,7 +137,7 @@
     <string name="uprrot_crop">Uprootment Details</string>
 
 
-    <string name="spalingPlanted">No Spaling Planted</string>
+    <string name="spalingPlanted">No Sapling Planted</string>
     <string name="prevPalmsCount">Count of Trees in Previous Visit</string>
     <string name="plamsCount">Count of Trees Currently Present</string>
     <string name="isTreesMissing">Missing Trees</string>
@@ -202,6 +202,8 @@
     <string name="str_videos">Videos</string>
     <string name="str_pdf">PDF</string>
     <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
+    <string name="Valid_service">Please Select Service Type</string>
+    <string name="valid_pack">Please Select Package</string>
 
     <!-- we need to use video ids instead of video link -->
 

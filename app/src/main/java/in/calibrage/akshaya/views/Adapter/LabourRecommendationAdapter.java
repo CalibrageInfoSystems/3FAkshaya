@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.views.actvity.LabourActivity;
 
@@ -79,7 +80,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
 
         });
 
-
+        AnimationUtil.animate(holder, true);
     }
     @Override
     public int getItemCount() {

@@ -257,6 +257,7 @@ public class BaseActivity extends AppCompatActivity {
 
         //TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
         LinearLayout layout = dialogView.findViewById(R.id.linear_text);
+        final ImageView img = dialogView.findViewById(R.id.img);
 
 
 
@@ -271,7 +272,7 @@ public class BaseActivity extends AppCompatActivity {
 
             TextView txtTitle = new TextView(this);
             txtTitle.setText(msg.get(i).getKey());
-            txtTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            txtTitle.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             txtTitle.setLayoutParams(new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));
@@ -280,7 +281,7 @@ public class BaseActivity extends AppCompatActivity {
 
             TextView txtitem = new TextView(this);
             txtitem.setText(msg.get(i).getValue());
-            txtitem.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            txtitem.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             txtitem.setLayoutParams(new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));
@@ -288,7 +289,7 @@ public class BaseActivity extends AppCompatActivity {
 
             lty.addView(txtitem);
           //  lty.setGravity(View.FOCUS_LEFT);
-            lty.setGravity(Gravity.LEFT | Gravity.LEFT);
+
             layout.addView(lty);
         }
 
@@ -307,7 +308,12 @@ public class BaseActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+      /*  new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        }, 500);*/
 //        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
 //        ((Animatable) mImgCheck.getDrawable()).start();
     }

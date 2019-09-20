@@ -403,4 +403,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
 }

@@ -66,30 +66,59 @@
         android:background="@drawable/collect_bg"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/req_loan"
-            style="@style/Common_Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/images"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_bg"
-            android:padding="15dp"
-            android:shadowColor="@android:color/transparent"
-            android:text="@string/submit_req"
 
-
-            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/amount_label"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:drawableRight="@drawable/star"
+                android:drawablePadding="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/issue_type"
+                android:textColor="@color/white_new"
+                android:textSize="@dimen/album_title" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
 
+                android:background="@drawable/spinner_bg"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="@dimen/_8dp"
+                    android:src="@drawable/arrow_down" />
+
+                <Spinner
+                    android:id="@+id/issue_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:minHeight="0dp"
+                    android:padding="@dimen/margin_10" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/textViewc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:drawableRight="@drawable/star"
+                android:drawablePadding="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/comments"
+                android:textColor="@color/white_new"
+                android:textSize="@dimen/album_title" />
             <EditText
                 android:id="@+id/reason"
                 android:layout_width="match_parent"
@@ -110,10 +139,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
+                android:drawableRight="@drawable/star"
                 android:drawablePadding="5dp"
                 android:paddingTop="5dp"
-
-                android:text="@string/comments"
+                android:text="@string/image"
                 android:textColor="@color/white_new"
                 android:textSize="@dimen/album_title" />
         </LinearLayout>
@@ -125,13 +154,17 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <ImageButton
-                android:id="@+id/btn_addIMG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center"
-                android:background="@color/transparent"
-                android:src="@drawable/ic_add" />
+                android:layout_margin="@dimen/margin_10"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_weight=".33"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
 
             <ImageView
                 android:id="@+id/iv2"
@@ -158,18 +191,30 @@
                 android:src="@mipmap/ic_launcher"
                 android:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/iv"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+            <ImageButton
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/margin_10"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="@dimen/margin_10"
-                android:layout_weight=".33"
-                android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_add"
+                android:id="@+id/btn_addIMG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="@color/whitepure"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="130dp" />
         </LinearLayout>
+        <Button
+            android:id="@+id/req_loan"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            style="@style/Common_Button"
+            android:padding="@dimen/margin_15"
+
+            android:layout_marginBottom="@dimen/margin_10"
+            android:text="@string/submit_req">
+
+        </Button>
 
         <LinearLayout
             android:id="@+id/amount_label"
@@ -178,60 +223,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
+<!--            <RelativeLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_margin="8dp"-->
 
-                android:background="@drawable/spinner_bg"
-                android:elevation="2dp">
+<!--                android:background="@drawable/spinner_bg"-->
+<!--                android:elevation="2dp">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:padding="@dimen/_8dp"
-                    android:src="@drawable/arrow_down" />
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:padding="@dimen/_8dp"-->
+<!--                    android:src="@drawable/arrow_down" />-->
 
-                <Spinner
-                    android:id="@+id/issue_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:minHeight="0dp"
-                    android:padding="@dimen/margin_10" />
-            </RelativeLayout>
+<!--                <Spinner-->
+<!--                    android:id="@+id/issue_type"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@null"-->
+<!--                    android:minHeight="0dp"-->
+<!--                    android:padding="@dimen/margin_10" />-->
+<!--            </RelativeLayout>-->
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:drawableRight="@drawable/star"
-                android:drawablePadding="5dp"
-                android:paddingTop="5dp"
-                android:text="@string/issue_type"
-                android:textColor="@color/white_new"
-                android:textSize="@dimen/album_title" />
+
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/image_upload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:drawableRight="@drawable/star"
-            android:drawablePadding="5dp"
-            android:paddingTop="5dp"
-            android:text="@string/image"
-            android:textColor="@color/white_new"
-            android:textSize="@dimen/album_title" />
+
 
     </LinearLayout>
 
 
+
+        />
     <RelativeLayout
         android:id="@+id/relative1"
         android:layout_width="match_parent"

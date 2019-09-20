@@ -3,6 +3,7 @@ package in.calibrage.akshaya.views.actvity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -68,7 +69,7 @@ public class PaymentHistoryActivity extends BaseActivity {
     private RecyclerView Payment_recycle;
     private SpotsDialog mdilogue;
     private ImageView backImg, home_btn;
-
+    String  Farmer_code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +108,8 @@ public class PaymentHistoryActivity extends BaseActivity {
         toText.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
         //  txt_to_date.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
 
-
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
     }
 
     private void setviews() {
@@ -248,8 +250,13 @@ public class PaymentHistoryActivity extends BaseActivity {
                             float dayCount = (float) diff / (24 * 60 * 60 * 1000);
 
                             Log.e("dayCount===", String.valueOf(dayCount));
+                            if (isOnline())
+                                getPaymentDetails(fromString, toString);
+                            else {
+                                showDialog(PaymentHistoryActivity.this,getResources().getString(R.string.Internet));
+                                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                            }
 
-                            getPaymentDetails(fromString, toString);
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -348,7 +355,14 @@ public class PaymentHistoryActivity extends BaseActivity {
         /*
          * remove fist 2 letters from former code and add v
          * */
-        requestModel.setVendorCode("VWGBDAB00010001");
+
+        String text;
+        text=Farmer_code;
+        if(text.contains(":")){
+            text = text.replace("V","AP");
+        }
+        Log.i("Tag",text);
+        requestModel.setVendorCode(text);
         requestModel.setToDate(reformattedStrTo);
         requestModel.setFromDate(reformattedStrFrom);
 

@@ -104,8 +104,14 @@ public class OtpActivity extends BaseActivity {
             public void onClick(View view) {
 
 
+
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {
+                    if (isOnline())
                     GetOtp();
+                    else {
+                        showDialog(OtpActivity.this,getResources().getString(R.string.Internet));
+                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     showDialog(OtpActivity.this,getResources().getString(R.string.ente_pin));
                     pinEntry.setError("Please Enter Pin");

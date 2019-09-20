@@ -46,6 +46,7 @@ import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.DiseaseDataModel;
 import in.calibrage.akshaya.models.Nutrient_Model;
@@ -68,7 +69,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class CropMaintanceVisitActivity extends AppCompatActivity {
+public class CropMaintanceVisitActivity extends BaseActivity {
     private RecyclerView recyclerView;
 
     private Subscription mSubscription;
@@ -129,8 +130,13 @@ public class CropMaintanceVisitActivity extends AppCompatActivity {
         }
         intview();
         setViews();
+        if (isOnline())
+            GetCropMaintenanceHistoryDetailsByCode();
+        else {
+            showDialog(CropMaintanceVisitActivity.this,getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
 
-        GetCropMaintenanceHistoryDetailsByCode();
 
     }
 

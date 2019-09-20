@@ -155,11 +155,11 @@
         
     <string name="date">తేదీని ఎంచుకోండి</string>
         
-    <string name="weight">బరువు:</string>
+    <string name="weight">బరువు</string>
         
     <string name="cc">సిసి</string>
         
-    <string name="status">స్థితి:</string><![CDATA[
+    <string name="status">స్థితి</string><![CDATA[
         
         
     ]]><string name="req_loan">రుణం కోసం అభ్యర్థన</string><![CDATA[
@@ -218,7 +218,7 @@
     ]]>
     <string name="net_weight">నికర బరువు</string>
         
-    <string name="date_label">తేదీ:</string>
+    <string name="date_label">తేదీ</string>
         
     <string name="location">స్థానం</string><![CDATA[
         
@@ -311,13 +311,13 @@
     <string name="uprrot_crop">నిర్మూలన వివరాలు</string>
 
 
-    <string name="spalingPlanted">స్పేలింగ్ లేదు</string>
+    <string name="spalingPlanted">మొక్క నాటడం లేదు</string>
     <string name="prevPalmsCount">మునుపటి సందర్శనలో చెట్ల సంఖ్య</string>
     <string name="plamsCount">ప్రస్తుతం ఉన్న చెట్ల సంఖ్య</string>
     <string name="isTreesMissing">తప్పిపోయిన చెట్లు</string>
     <string name="missingTreesCount">తప్పిపోయిన చెట్ల సంఖ్య</string>
     <string name="reasonType">చెట్లు తప్పిపోవడానికి కారణం</string>
-    <string name="expectedPlamsCount">P హించిన పామ్స్ కౌంట్</string>
+    <string name="expectedPlamsCount">ఊహించినద పామ్స్ కౌంట్</string>
 
 
     <string name="crop">పంట</string>
@@ -357,9 +357,9 @@
     <string name="image">చిత్రం అప్‌లోడ్</string>
     <string name="digital_signature">డిజిటల్ సంతకం</string>
     <string name="Prunning">చక్కబెట్టుట</string>
-    <string name="harvesting">నూర్పిళ్ళు</string>
-    <string name="unkonown">తెలియని1</string>
-    <string name="unkonown2">తెలియని2</string>
+    <string name="harvesting">Harvesting</string>
+    <string name="unkonown">UnKnown1</string>
+    <string name="unkonown2">UnKnown2</string>
     <string name="request_rise">అభ్యర్థనను పెంచండి</string>
     <string name="clear">నిశ్చితమైన</string>
     <string name="datevalidation">దయచేసి తేదీ నుండి తేదీ కంటే తక్కువ</string>
@@ -373,7 +373,9 @@
     <!--  we need to use video ids instead of video link  -->
     <string name="str_standard">ప్రామాణిక</string>
     <string name="str_videos">వీడియో</string>
-    <string name="str_pdf">పౕఢప్</string>
+    <string name="str_pdf">పిడిఎఫ్</string>
     <string name="str_enter_loan_amount">దయచేసి రుణ మొత్తాన్ని నమోదు చేయండి</string>
+    <string name="Valid_service">దయచేసి సేవా రకాన్ని ఎంచుకోండి</string>
+    <string name="valid_pack">దయచేసి ప్యాకేజీని ఎంచుకోండి</string>
 </resources>
 

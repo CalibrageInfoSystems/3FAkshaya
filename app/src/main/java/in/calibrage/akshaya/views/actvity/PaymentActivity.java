@@ -88,8 +88,13 @@ public class PaymentActivity extends BaseActivity {
 
             }
         });
-
-        getBankDetails();
+        if (isOnline())
+            getBankDetails();
+        else {
+            showDialog(PaymentActivity.this,getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
+        //getBankDetails();
     }
 
     private void getBankDetails() {

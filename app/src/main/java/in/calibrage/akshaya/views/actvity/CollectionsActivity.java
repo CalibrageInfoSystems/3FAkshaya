@@ -44,6 +44,7 @@ import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
@@ -57,7 +58,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class CollectionsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CollectionsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     DatePickerDialog picker;
     public static String TAG = "CollectionsActivity";
     EditText fromText, toText;
@@ -301,7 +302,14 @@ public class CollectionsActivity extends AppCompatActivity implements AdapterVie
                                 } else {
                                     collecton_data.invalidate();
                                     //       recyclerView.setVisibility(View.VISIBLE);
-                                    getCustomCollections(fromString, toString);
+
+                                    if (isOnline())
+                                        getCustomCollections(fromString, toString);
+                                    else {
+                                        showDialog(CollectionsActivity.this,getResources().getString(R.string.Internet));
+                                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                                    }
+
 
 
                                 }
