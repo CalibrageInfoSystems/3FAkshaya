@@ -85,9 +85,6 @@ public class LoginActivity extends BaseActivity {
                 .setTheme(R.style.Custom)
                 .build();
 
-
-
-
         validationPopShow();
 
     }

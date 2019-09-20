@@ -1,6 +1,7 @@
 package in.calibrage.akshaya;
 
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -55,11 +57,12 @@ import android.widget.Toast;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
-    private static String FILE =  Environment.getExternalStorageDirectory().getPath() + "/mypdf/" + "firstPdf.pdf";
+    private static String FILE = Environment.getExternalStorageDirectory().getPath() + "/mypdf/" + "firstPdf.pdf";
 
     TextView txt1;
     Bitmap b;
 
+    @SuppressLint("WrongThread")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txt1 = (TextView) findViewById(R.id.textView1);
-
+/*
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
-          //  addMetaData(document);
+            addMetaData(document);
             addTitlePage(document);
             addContent(document);
             //createImage();
@@ -81,6 +84,32 @@ public class MainActivity extends AppCompatActivity {
             document.close();
 
             Toast.makeText(this, "First PDF DONE", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            document.open();
+            // Left
+            Paragraph paragraph = new Paragraph("DATE :"+new Date());
+            document.add(new Paragraph("\n\n\n"));
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.banner_logo);
+            ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream3);
+            Image maimg = Image.getInstance(stream3.toByteArray());
+            maimg.setAbsolutePosition(200, 745);
+            maimg.scalePercent(20);
+            document.add(maimg);
+            document.add(new Paragraph("\n\n\n"));
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+            document.add(new Paragraph("\n\n\n"));
+            document.add( createFirstTable());
+
+
+            document.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,14 +190,15 @@ public class MainActivity extends AppCompatActivity {
         ));
         addEmptyLine(preface, 1);
         preface.add(new Paragraph(
-                "This document describes something which is very important "
+                "This document describes Quick Pay Request : "
         ));
 
         addEmptyLine(preface, 8);
 
-        preface.add(new Paragraph(
+       /* preface.add(new Paragraph(
                 "This document is a preliminary version and not subject to your license agreement or any other agreement with vogella.de ;-)."
-        ));
+        ))*/
+        ;
 
         document.add(preface);
         // Start a new page
@@ -222,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static void createTable(Section subCatPart)
             throws BadElementException {
-        PdfPTable table = new PdfPTable(3);
+        PdfPTable table = new PdfPTable(2);
 
         // t.setBorderColor(BaseColor.GRAY);
         // t.setPadding(4);
@@ -237,12 +267,9 @@ public class MainActivity extends AppCompatActivity {
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase(""));
-        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(c1);
         table.setHeaderRows(1);
 
-        table.addCell("Date:");
+        table.addCell("" + R.string.quantity_mt);
         table.addCell("1.1");
         table.addCell("");
         table.addCell("Labor Rate:");
@@ -268,5 +295,22 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }
+    }
+    public  PdfPTable createFirstTable() {
+        // a table with three columns
+        PdfPTable table = new PdfPTable(2);
+        // the cell object
+
+        // we add the four remaining cells with addCell()
+        table.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(getResources().getString(R.string.quantity_mt));
+        table.addCell("row 1; cell 2");
+        table.addCell(getResources().getString(R.string.ffb));
+        table.addCell("row 2; cell 2");
+        table.addCell(getResources().getString(R.string.quantity_mt));
+        table.addCell("row 1; cell 2");
+        table.addCell(getResources().getString(R.string.quantity_mt));
+        table.addCell("row 2; cell 2");
+        return table;
     }
 }
