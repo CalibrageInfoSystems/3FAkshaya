@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.VisitplotDetailsModel;
 import in.calibrage.akshaya.views.actvity.CropMaintanceVisitActivity;
@@ -74,7 +75,7 @@ public class ReqVisitAdapter  extends RecyclerView.Adapter<ReqVisitAdapter.ViewH
 
         }
 
-
+        AnimationUtil.animate(holder, true);
     }
     @Override
     public int getItemCount() {

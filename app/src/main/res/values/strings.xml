@@ -204,6 +204,14 @@
     <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
     <string name="Valid_service">Please Select Service Type</string>
     <string name="valid_pack">Please Select Package</string>
+    <string name="record">Voice Recording</string>
+    <string name="select_product">Select Products</string>
+    <string name="total_amt">Total Amount (Rs)</string>
+    <string name="confirm">Confirm</string>
+    <string name="Rs">\u20B9</string>
+    <string name="select_product_toast">Please Select Atleast One Product</string>
+    <string name="valid_issue_type">Please Select Issue Type</string>
+    <string name="select_image">Please Attach At Least One Image or Voice Record</string>
 
     <!-- we need to use video ids instead of video link -->
 

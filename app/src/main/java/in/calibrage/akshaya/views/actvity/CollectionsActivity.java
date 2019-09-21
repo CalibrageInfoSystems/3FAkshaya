@@ -286,7 +286,9 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                         }
 
                         if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
-                            Toast.makeText(CollectionsActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
+
+
+                            showDialog(CollectionsActivity.this,getResources().getString(R.string.enter_Date));
                             date_linear.setVisibility(View.VISIBLE); //
                             collecton_data.setVisibility(View.GONE);
                         } else {
@@ -298,7 +300,8 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                                 date1 = formatter.parse(fromString);
                                 Date date2 = formatter.parse(toString);
                                 if (date2.compareTo(date1) < 0) {
-                                    Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
+                                    showDialog(CollectionsActivity.this,getResources().getString(R.string.datevalidation));
+                                    //Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
                                 } else {
                                     collecton_data.invalidate();
                                     //       recyclerView.setVisibility(View.VISIBLE);
