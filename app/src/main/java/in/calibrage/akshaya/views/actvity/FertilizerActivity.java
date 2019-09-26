@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.animation.Animator;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +19,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -47,30 +51,34 @@ import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.CircleAnimationUtil;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 
-public class FertilizerActivity extends BaseActivity implements ModelFertAdapter.OnClickAck{
+public class FertilizerActivity extends BaseActivity implements ModelFertAdapter.OnClickAck {
 
     private RecyclerView recyclerView;
     private ModelFertAdapter adapter;
-    List<Integer> selectedId_List =new ArrayList<>();
-    List<Integer> selectedQty_List =new ArrayList<>();
-    List<String> selecteditem_List =new ArrayList<>();
-    List<Integer> selectedgst_List =new ArrayList<>();
-    List<Integer> amount_List =new ArrayList<>();
+    List<Integer> selectedId_List = new ArrayList<>();
+    List<Integer> selectedQty_List = new ArrayList<>();
+    List<String> selecteditem_List = new ArrayList<>();
+    List<Integer> selectedgst_List = new ArrayList<>();
+    List<Integer> amount_List = new ArrayList<>();
+    String amount;
+    String dis_price, Farmer_code;
     final Context context = this;
     Button button;
     TextView mealTotalText;
-    private  String TAG="FertilizerActivity";
-    private List<ModelFert> product_list=new ArrayList<>();
+    private String TAG = "FertilizerActivity";
+    private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
-    String amount;
-    String dis_price,Farmer_code;
-    Integer Id ,quantity;
+
+    private ImageButton cartButtonIV;
+    Integer Id, quantity;
     int price_final;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,51 +91,46 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         setSupportActionBar(toolbar);
 
         initCollapsingToolbar();*/
-        ImageView backImg=(ImageView)findViewById(R.id.back);
+        cartButtonIV = findViewById(R.id.cartButtonIV);
+        ImageView backImg = (ImageView) findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                 finish();
+                finish();
             }
         });
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
 
         recyclerView = (RecyclerView) findViewById(R.id.fer_recycler_view);
-        mealTotalText = (TextView)findViewById(R.id.meal_total);
+        mealTotalText = (TextView) findViewById(R.id.meal_total);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //recyclerView.setAdapter(adapter);
-
-        Button buttonBarCodeScan = findViewById(R.id.confirm);
+//
+//        Button buttonBarCodeScan = findViewById(R.id.confirm);
 
         Getstate();
-        buttonBarCodeScan.setOnClickListener(new View.OnClickListener() {
+        cartButtonIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         if (validations()) {
                             Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
 
                             i.putExtra("Ids", (Serializable) selectedId_List);
-
-
                             i.putExtra("quantity", (Serializable) selectedQty_List);
                             i.putExtra("item_names", (Serializable) selecteditem_List);
                             i.putExtra("item_amount", (Serializable) amount_List);
                             i.putExtra("gst_per", (Serializable) selectedgst_List);
-
                             i.putExtra("amount", amount);
                             startActivity(i);
 
@@ -144,11 +147,8 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     }
 
     private boolean validations() {
-        if( selectedQty_List.isEmpty())
-        {
-
-            showDialog(FertilizerActivity.this,getResources().getString(R.string.select_product_toast));
-
+        if (selectedQty_List.isEmpty()) {
+            showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
             return false;
         }
         return true;
@@ -239,22 +239,16 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 superHero.setSize(json.getString("size"));
                 superHero.setId(json.getInt("id"));
                 superHero.setUomType(json.getString("uomType"));
-                Log.e("uom===",json.getString("uomType"));
-                int price_finall =json.getInt("price");
+                Log.e("uom===", json.getString("uomType"));
+                int price_finall = json.getInt("price");
                 Log.e("price_final====", String.valueOf(price_finall));
-                String final_price= Integer.toString(price_finall);
+                String final_price = Integer.toString(price_finall);
                 Log.e("final_price====", String.valueOf(final_price));
                 dis_price = json.getString("discountedPrice");
-                Log.e("dis_price====",dis_price);
-
-
-
-
-
+                Log.e("dis_price====", dis_price);
 
 
                 ArrayList<String> powers = new ArrayList<String>();
-
 
 
                 superHero.setPowers(powers);
@@ -287,18 +281,16 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     }
 
 
-
-
-    public long calculateMealTotal(){
-        try{
+    public long calculateMealTotal() {
+        try {
             long mealTotal = 0;
-            for(ModelFert order : product_list){
+            for (ModelFert order : product_list) {
 
-                mealTotal =mealTotal+order.getmQuantity()* order.getPrice();
+                mealTotal = mealTotal + order.getmQuantity() * order.getPrice();
 
 
-                quantity=order.getmQuantity();
-                Id=order.getId();
+                quantity = order.getmQuantity();
+                Id = order.getId();
                 Log.e("quantity kk===", quantity.toString());
                 Log.e("Id-=== kk", Id.toString());
 //            selectedId_List = new ArrayList<>();
@@ -334,31 +326,34 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
 //
             return mealTotal;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return 0;
     }
 
-    public void setMealTotal(){
-        mealTotalText.setText(" "+ calculateMealTotal());
+    public void setMealTotal() {
+        mealTotalText.setText(" " + calculateMealTotal());
         // mealTotalText.setText("Rs"+" "+ calculateMealTotal());
         amount = mealTotalText.getText().toString();
         Log.e("amount-===", mealTotalText.getText().toString());
     }
 
     @Override
-    public void setOnClickAckListener(String status, int position, Boolean ischecked) {
-        if(ischecked){
-            if(selectedId_List.size()>0){
-                if(selectedId_List.contains(product_list.get(position).getId())){
-                    selectedId_List.set(selectedId_List.indexOf(product_list.get(position).getId()),product_list.get(position).getId());
-                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()),product_list.get(position).getmQuantity());
-                    selecteditem_List.set(selectedId_List.indexOf(product_list.get(position).getId()),(product_list.get(position).getName()));
-                    amount_List.set(selectedId_List.indexOf(product_list.get(position).getId()),(product_list.get(position).getPrice()));
-                    selectedgst_List.set(selectedId_List.indexOf(product_list.get(position).getId()),(product_list.get(position).getgst()));
-                }else {
+    public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
+        if (ischecked) {
+            ImageButton cartButtonIV = findViewById(R.id.cartButtonIV);
+
+            makeFlyAnimation(img);
+            if (selectedId_List.size() > 0) {
+                if (selectedId_List.contains(product_list.get(position).getId())) {
+                    selectedId_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getId());
+                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
+                    selecteditem_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getName()));
+                    amount_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getPrice()));
+                    selectedgst_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getgst()));
+                } else {
                     selectedId_List.add(product_list.get(position).getId());
                     selectedQty_List.add(product_list.get(position).getmQuantity());
                     selecteditem_List.add(product_list.get(position).getName());
@@ -366,7 +361,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     selectedgst_List.add(product_list.get(position).getgst());
 
                 }
-            }else {
+            } else {
                 selectedId_List.add(product_list.get(position).getId());
                 selectedQty_List.add(product_list.get(position).getmQuantity());
                 selecteditem_List.add(product_list.get(position).getName());
@@ -380,22 +375,22 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             Log.e("amount_List_List-==", amount_List.toString());
             //    Toast.makeText(FertilizerActivity.this,selectedId_List.toString(),Toast.LENGTH_SHORT).show();
 
-        }else{
-            if(selectedId_List.size()>0){
-                if(product_list.get(position).getmQuantity()>=1){
-                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()),product_list.get(position).getmQuantity());
+        } else {
+            if (selectedId_List.size() > 0) {
+                if (product_list.get(position).getmQuantity() >= 1) {
+                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
 
-                }else {
+                } else {
 
                     int a = selectedId_List.indexOf(product_list.get(position).getId());
-                    if(a<0) {
+                    if (a < 0) {
                         Log.e(" =====", "negative");
 
                         return;
                     }
-                    Log.e(TAG, "test "+a );
-                    Log.e(TAG, "test "+selectedQty_List.size() );
-                    Log.e(TAG, "test "+selectedQty_List.toString() );
+                    Log.e(TAG, "test " + a);
+                    Log.e(TAG, "test " + selectedQty_List.size());
+                    Log.e(TAG, "test " + selectedQty_List.toString());
 
                     selectedQty_List.remove(a);
                     selectedId_List.remove(selectedId_List.indexOf(product_list.get(position).getId()));
@@ -408,11 +403,8 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             }
 
 
-
         }
     }
-
-
 
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
@@ -457,4 +449,36 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
+    private void makeFlyAnimation(ImageView targetView) {
+
+        // RelativeLayout destView = (RelativeLayout) findViewById(R.id.cartRelativeLayout);
+        ImageView destView = findViewById(R.id.cartButtonIV);
+
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setCircleDuration(500).setMoveDuration(800).setDestView(destView).setAnimationListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                //  addItemToCart();
+                // Toast.makeText(MainActivity.this, "Continue Shopping...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        }).startAnimation();
+
+
+    }
+
 }

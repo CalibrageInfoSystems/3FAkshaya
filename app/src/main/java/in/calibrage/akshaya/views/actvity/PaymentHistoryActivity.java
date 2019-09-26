@@ -357,12 +357,14 @@ public class PaymentHistoryActivity extends BaseActivity {
          * */
 
         String text;
-        text=Farmer_code;
-        if(text.contains(":")){
-            text = text.replace("V","AP");
-        }
-        Log.i("Tag",text);
-        requestModel.setVendorCode(text);
+        text=Farmer_code.substring(1);
+        text=text.substring(1);
+
+
+                String finalstring= "V"+text;
+
+        Log.i("VendorCode",finalstring);
+        requestModel.setVendorCode(finalstring);
         requestModel.setToDate(reformattedStrTo);
         requestModel.setFromDate(reformattedStrFrom);
 

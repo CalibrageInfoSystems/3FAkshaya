@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(PaymentAdapter.ViewHolder holder, int position) {
+
         ((ViewHolder) holder).memo_text.setText("" + payment_Set.get(position).getMemo());
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
@@ -161,14 +163,18 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 //        }
 
 //
-            if (payment_Set.get(position).getMemo() == null) {
-                //   Log.e("bbbbb",superHero.getmAmount());
-                holder.memo_text.setVisibility(View.GONE);
-                holder.text_six.setVisibility(View.GONE);
+            try {
+                if ("" + payment_Set.get(position).getMemo() == null || "" + ""+payment_Set.get(position).getMemo() == "null") {
+                    //   Log.e("bbbbb",superHero.getmAmount());
+                    holder.memo_text.setVisibility(View.GONE);
+                    holder.text_six.setVisibility(View.GONE);
 
-            } else {
-                holder.memo_text.setVisibility(View.VISIBLE);
-                holder.text_six.setVisibility(View.VISIBLE);
+                } else {
+                    holder.memo_text.setVisibility(View.VISIBLE);
+                    holder.text_six.setVisibility(View.VISIBLE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             if (payment_Set.get(position).getAmount() == 0.0) {
                 //   Log.e("bbbbb",superHero.getmAmount());
@@ -187,6 +193,14 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         else {
             holder.balance.setVisibility(View.VISIBLE);
 //            holder.text_eight.setVisibility(View.VISIBLE);*/
+            if (holder.memo_text.getVisibility() == View.VISIBLE) {
+                if (TextUtils.isEmpty(holder.memo_text.getText()) || holder.memo_text.getText() == "null") {
+                    holder.memo_text.setVisibility(View.GONE);
+                    holder.text_six.setVisibility(View.GONE);
+                }
+            }
+
+
             AnimationUtil.animate(holder, true);
 
         }

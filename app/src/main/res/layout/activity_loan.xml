@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/loan_req"
+                android:text="@string/req_loan"
                 android:layout_alignLeft="@+id/back"
 
                 android:layout_marginStart="25dp"
@@ -176,9 +176,8 @@
            android:layout_gravity="center"
             style="@style/Common_Button"
            android:padding="@dimen/margin_15"
-
           android:layout_marginBottom="@dimen/margin_10"
-            android:text="@string/req_loan"
+            android:text="@string/submit_req"
 
 
          />

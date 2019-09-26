@@ -57,7 +57,7 @@ public class OtpActivity extends BaseActivity {
     private Button sub_Btn;
 
     private String Pin_text;
-    public  String Farmer_code;
+    public String Farmer_code;
 
     private PinEntryEditText pinEntry;
     public SharedPreferences.Editor editor;
@@ -104,16 +104,15 @@ public class OtpActivity extends BaseActivity {
             public void onClick(View view) {
 
 
-
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {
                     if (isOnline())
-                    GetOtp();
+                        GetOtp();
                     else {
-                        showDialog(OtpActivity.this,getResources().getString(R.string.Internet));
+                        showDialog(OtpActivity.this, getResources().getString(R.string.Internet));
                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    showDialog(OtpActivity.this,getResources().getString(R.string.ente_pin));
+                    showDialog(OtpActivity.this, getResources().getString(R.string.ente_pin));
                     pinEntry.setError("Please Enter Pin");
                 }
             }
@@ -132,7 +131,7 @@ public class OtpActivity extends BaseActivity {
     private void GetOtp() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp +Farmer_code+"/" + pinEntry.getText().toString())
+        mSubscription = service.getFormerdetails(APIConstantURL.Farmer_otp + Farmer_code + "/" + pinEntry.getText().toString())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerOtpResponceModel>() {
                     @Override
@@ -168,8 +167,8 @@ public class OtpActivity extends BaseActivity {
                                     /* Create an Intent that will start the Menu-Activity. */
                                     SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
                                     SharedPrefsData.saveCatagories(OtpActivity.this, farmerOtpResponceModel);
-  SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this,Constants.USER_ID,farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
-  Log.e("Formarcode==",farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
+                                    SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, Constants.USER_ID, farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
+                                    Log.e("Formarcode==", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
                                     SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "statecode", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
 
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -179,9 +178,8 @@ public class OtpActivity extends BaseActivity {
                                 }
                             }, 000);
 
-                        }
-                        else {
-                            showDialog(OtpActivity.this,farmerOtpResponceModel.getEndUserMessage());
+                        } else {
+                            showDialog(OtpActivity.this, farmerOtpResponceModel.getEndUserMessage());
                         }
                     }
 

@@ -30,6 +30,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.Base64OutputStream;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import in.calibrage.akshaya.R;
@@ -423,15 +425,15 @@ public class CommonUtil {
     }
 
     public static String getDeviceDensityString(Context context) {
-        String dims= "";
+        String dims = "";
         switch (context.getResources().getDisplayMetrics().densityDpi) {
             case DisplayMetrics.DENSITY_LOW:
-                return dims= "ldpi";
+                return dims = "ldpi";
             case DisplayMetrics.DENSITY_MEDIUM:
-                return dims= "mdpi";
+                return dims = "mdpi";
             case DisplayMetrics.DENSITY_TV:
             case DisplayMetrics.DENSITY_HIGH:
-                return dims ="hdpi";
+                return dims = "hdpi";
             case DisplayMetrics.DENSITY_260:
             case DisplayMetrics.DENSITY_280:
             case DisplayMetrics.DENSITY_300:
@@ -446,23 +448,23 @@ public class CommonUtil {
                 return dims = "xxhdpi";
             case DisplayMetrics.DENSITY_560:
             case DisplayMetrics.DENSITY_XXXHIGH:
-                return dims ="xxxhdpi";
+                return dims = "xxxhdpi";
         }
-
 
 
         return dims;
     }
-    public static String bitMaptoBase64(Bitmap bitmap)
-    {
+
+    public static String bitMaptoBase64(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 50, outputStream);
 
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
+
     public static String getStringFile(File f) {
         InputStream inputStream = null;
-        String encodedFile= "", lastVal;
+        String encodedFile = "", lastVal;
         try {
             inputStream = new FileInputStream(f.getAbsolutePath());
 
@@ -475,17 +477,16 @@ public class CommonUtil {
                 output64.write(buffer, 0, bytesRead);
             }
             output64.close();
-            encodedFile =  output.toString();
-        }
-        catch (FileNotFoundException e1 ) {
+            encodedFile = output.toString();
+        } catch (FileNotFoundException e1) {
             e1.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         lastVal = encodedFile;
         return lastVal;
     }
+
     public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
                                    boolean filter) {
         float ratio = Math.min(
@@ -498,4 +499,29 @@ public class CommonUtil {
                 height, filter);
         return newBitmap;
     }
+
+    public static String arrayToString(List<String> array) {
+        String result = "";
+        if (array.size() > 0) {
+            StringBuilder sb = new StringBuilder();
+            for (String s : array) {
+
+                sb.append(s).append(",");
+            }
+            result = sb.deleteCharAt(sb.length() - 1).toString();
+        }
+        Log.d("Commonutil ","--- analysis ----->> List to string -->>"+result);
+        return result;
+    }
+    public static int sum(List<Integer> list){
+        if(list==null || list.size()<1)
+            return 0;
+
+        int sum = 0;
+        for(Integer i: list)
+            sum = sum+i;
+
+        return sum;
+    }
+
 }

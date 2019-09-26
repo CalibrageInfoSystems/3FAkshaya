@@ -35,6 +35,8 @@ import org.json.JSONObject;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.Constants;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.service.APIConstantURL;
 
 public class PaymentActivity extends BaseActivity {
@@ -65,7 +67,7 @@ public class PaymentActivity extends BaseActivity {
             }
         });
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID);  // Saving string data of your editext
         ImageView home_btn = (ImageView) findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override

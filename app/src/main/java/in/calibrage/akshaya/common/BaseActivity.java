@@ -5,9 +5,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
@@ -22,6 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,12 +33,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+
+import java.io.File;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.MSGmodel;
-
-
+import in.calibrage.akshaya.views.actvity.PDFActivity;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -316,6 +322,13 @@ public class BaseActivity extends AppCompatActivity {
         }, 500);*/
 //        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
 //        ((Animatable) mImgCheck.getDrawable()).start();
+    }
+
+
+    private void pdfOpen(String fileUrl) {
+
+
+
     }
 
 }

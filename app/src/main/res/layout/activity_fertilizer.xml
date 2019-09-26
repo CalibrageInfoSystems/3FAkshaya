@@ -1,145 +1,191 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.calibrage.akshaya.views.actvity.FertilizerActivity"
-    >
+    android:background="#E9E7E7"
+    tools:context="in.calibrage.akshaya.views.actvity.FertilizerActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linear1"
-        android:background="@color/colorOrange2"
-        >
+        android:background="@color/colorOrange_head"
+        android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/back"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_left"
-            android:layout_marginTop="17dp"
+            android:layout_alignParentLeft="true"
             android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="17dp"
             android:layout_marginEnd="10dp"
-            android:id="@+id/back"/>
+            android:src="@drawable/ic_left" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/back"
             android:text="@string/select_product"
-  android:textColor="@color/white"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_20" />
 
-<!--        <Button-->
-<!--            android:id="@+id/button"-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:layout_margin="10dp"-->
 
 
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/button_circle_white"-->
-<!--            android:text="@string/view_recommendations"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="12dp"-->
-<!--            android:textStyle="bold" />-->
+        <LinearLayout
+            android:layout_marginRight="@dimen/margin_5"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
 
-    </LinearLayout>-->
+
+            <TextView
+                android:id="@+id/tvtext_item_four"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="@string/Rs2"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                 />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/dot3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="#111"
+                android:textSize="@dimen/album_title"
+                 />
+            <TextView
+                android:layout_marginRight="@dimen/margin_5"
+                android:id="@+id/meal_total"
+                style="@style/Common_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_10"
+
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:hint="0"
+                android:text=""
+                android:textAlignment="center"
+
+                />
+            <ImageButton
+                android:padding="@dimen/margin_10"
+                 android:layout_gravity="bottom"
+                android:id="@+id/cartButtonIV"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:clickable="false"
+
+                android:scaleType="fitCenter"
+                android:src="@drawable/cart" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/linear1">
+        android:layout_below="@+id/linear1"
+        android:layout_margin="@dimen/margin_5"
+        android:orientation="vertical">
+
+
         <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/fer_recycler_view"
-            android:scrollbars="vertical"
-            android:scrollbarThumbVertical="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
             android:scrollbarSize="3dp"
             android:scrollbarStyle="outsideInset"
+            android:scrollbarThumbVertical="@color/colorPrimary"
 
-            android:paddingBottom="70dp">
-        </android.support.v7.widget.RecyclerView>
+            android:scrollbars="vertical" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/linear"
-        android:layout_marginTop="@dimen/margin_10"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_alignParentBottom="true">
+        android:layout_marginTop="@dimen/margin_10"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/lin_three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_two"
-            android:orientation="horizontal"
             android:layout_gravity="center"
+            android:layout_marginTop="10sp"
             android:background="#28201E1E"
-            android:paddingBottom="@dimen/margin_5"
-            android:layout_marginTop="10sp">
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/margin_5">
 
 
-            <TextView
-                android:id="@+id/tvtext_item_four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="@dimen/album_title"
+            <!--   <TextView
+                   android:id="@+id/tvtext_item_four"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="50dp"
+                   android:layout_marginTop="5dp"
 
-                android:layout_marginStart="50dp"
-                android:text="@string/total_amt"
-                android:textColor="#111"
-                android:textStyle="bold"/>
+                   android:text="@string/total_amt"
+                   android:textColor="#111"
+                   android:textSize="@dimen/album_title"
+                   android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/dot3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text=":"
+               <TextView
+                   android:id="@+id/dot3"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginTop="5dp"
+                   android:text=":"
 
-                android:textColor="#111"
-                android:textSize="@dimen/album_title"
-                android:textStyle="bold" />
+                   android:textColor="#111"
+                   android:textSize="@dimen/album_title"
+                   android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/meal_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5sp"
-                android:layout_toRightOf="@+id/dot3"
-                android:text=""
-                android:textSize="@dimen/album_title"
-                android:hint="0"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10sp"
-                android:textStyle="bold"/>
+            <!-- <TextView
+                 android:id="@+id/meal_total"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10sp"
+                 android:layout_marginTop="5sp"
+                 android:layout_toRightOf="@+id/dot3"
+                 android:hint="0"
+                 android:text=""
+                 android:textColor="@color/black"
+                 android:textSize="@dimen/album_title"
+                 android:textStyle="bold" />-->
 
         </RelativeLayout>
+
         <Button
+            android:visibility="gone"
+            android:id="@+id/confirm"
+            style="@style/Common_Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/recycler_view"
-            android:text="@string/confirm"
-            android:id="@+id/confirm"
-            style="@style/Common_Button"/>
+            android:text="@string/confirm" />
     </LinearLayout>
-
-
 
 
 </RelativeLayout>

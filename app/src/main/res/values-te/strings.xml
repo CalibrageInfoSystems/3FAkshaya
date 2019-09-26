@@ -48,7 +48,7 @@
         
     <string name="submit_req">అభ్యర్థనను సమర్పించండి</string>
         
-    <string name="view">చూడండి</string><![CDATA[
+    <string name="view">విశ్లేషణ</string><![CDATA[
 
         
         
@@ -69,7 +69,7 @@
     ]]>
     <string name="bank_details">బ్యాంక్ వివరాలు</string>
         
-    <string name="bank_holder">ఖాతా హోల్డర్\n పేరు</string>
+    <string name="bank_holder">ఖాతా దారుని\n పేరు</string>
         
     <string name="bank_name">బ్యాంక్ పేరు</string><![CDATA[
         
@@ -307,7 +307,7 @@
     <string name="fruitSize">పండ్ల పరిమాణం</string>
     <string name="fruitHyegiene">పండ్ల పరిశుభ్రత</string>
     <string name="plantationType">తోటల రకం</string>
-    <string name="health_crop">ప్లాంటేషన్ వివరాల ఆరోగ్యం</string>
+    <string name="health_crop">తోటల ఆరోగ్యం</string>
     <string name="uprrot_crop">నిర్మూలన వివరాలు</string>
 
 
@@ -320,14 +320,11 @@
     <string name="expectedPlamsCount">ఊహించినద పామ్స్ కౌంట్</string>
 
 
-    <string name="crop">పంట</string>
-
+    <string name="crop">పంట నిర్వహణ</string>
     <string name="recommended_ertilizer">సిఫార్సు చేసిన ఎరువులు</string>
     <string name="UOMName">UOM పేరు</string>
     <string name="LastUpdatedDate">చివరిగా నవీకరించబడిన తేదీ</string>
     <string name="fert_rec">ఎరువుల సిఫార్సు వివరాలు</string>
-
-
     <string name="Chemical">కెమికల్</string>
 
 
@@ -363,7 +360,7 @@
     <string name="request_rise">అభ్యర్థనను పెంచండి</string>
     <string name="clear">నిశ్చితమైన</string>
     <string name="datevalidation">దయచేసి తేదీ నుండి తేదీ కంటే తక్కువ</string>
-    <string name="enter_Date">దయచేసి తేదీ మరియు తేదీ నుండి నమోదు చేయండి</string>
+    <string name="enter_Date">దయచేసి తేదీ నుండి మరియు తేది వరకు నమోదు చేయండి</string>
     <string name="farmar_id"> రైతు ఐడిని నమోదు చేయండి</string>
     <string name="Internet">దయచేసి ఇంటర్నెట్ కనెక్షన్‌ను తనిఖీ చేయండి</string>
     <string name="welcome">స్వాగతం</string>
@@ -385,5 +382,8 @@
     <string name="select_product_toast">దయచేసి కనీసం ఒక ఉత్పత్తిని ఎంచుకోండి</string>
     <string name="valid_issue_type">దయచేసి ఇష్యూ రకాన్ని ఎంచుకోండి</string>
     <string name="select_image">Please Attach At Least One Image or Voice Record</string>
+    <string name="str_select_plot">ప్లాట్ ఎంచుకోండి</string>
+    <string name="select_godown">Select Godown</string>
+    <string name="payment_mode">Payment Mode</string>
 </resources>
 

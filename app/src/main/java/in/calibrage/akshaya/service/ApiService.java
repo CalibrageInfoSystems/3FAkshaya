@@ -2,6 +2,7 @@ package in.calibrage.akshaya.service;
 
 import com.google.gson.JsonObject;
 
+import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
@@ -18,6 +19,7 @@ import in.calibrage.akshaya.models.LerningsModel;
 import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.PaymentResponseModel;
+import in.calibrage.akshaya.models.PaymentsType;
 import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.models.RecomPlotcodes;
@@ -117,6 +119,11 @@ public interface ApiService {
     @POST(APIConstantURL.post_visit)
     Observable<VisitresponseModel> postvisit(@Body JsonObject data);
 
+    @GET
+    Observable<ActiveGodownsModel> getActiveGodowns(@Url String url);
+
+    @GET
+    Observable<PaymentsType> getpaymentModes(@Url String url);
 
  /*
     // PASSWORD RESET

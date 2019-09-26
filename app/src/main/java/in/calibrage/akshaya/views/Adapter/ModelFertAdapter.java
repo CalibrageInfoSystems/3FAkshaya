@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         imageLoader = CustomVolleyRequest.getInstance(context).getImageLoader();
         imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
 
+        holder.imageView2.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.currentFoodName.setText(superHero.getName());
         holder.currentCost.setText(context.getString(R.string.Rs)+ (superHero.getPrice()));
@@ -73,7 +75,13 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         //   holder.actual_amt.setText(superHero.getDiscountedPrice());
         //  holder.disc.setText(superHero.getDescription());
         holder.disc.setText(superHero.getDescription());
-        holder.size.setText(superHero.getSize()+" "+superHero.getUomType());
+        if(!TextUtils.isEmpty(superHero.getSize()))
+        {
+            holder.size.setText(superHero.getSize()+" "+superHero.getUomType());
+        }else {
+            holder.size.setText("N/A");
+        }
+
         holder.quantityText.setText(""+ superHero.getmQuantity());
 
         //holder.remove_text.setText(superHero.getId());
@@ -135,7 +143,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
             public void onClick(View view) {
                 superHero.addToQuantity();
                 holder.quantityText.setText("x "+ superHero.getmQuantity());
-                onClickAck1.setOnClickAckListener("add",holder.getAdapterPosition(),Boolean.TRUE);
+                onClickAck1.setOnClickAckListener("add",holder.getAdapterPosition(),Boolean.TRUE,holder.imageView);
                 //     holder.currentCost.setText("GH"+ (superHero.getPrice() * superHero.getmQuantity()));
                 Log.e("product===1","" + superHero.getId() + superHero.getmQuantity());
                 notifyDataSetChanged();
@@ -148,7 +156,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
                 superHero.removeFromQuantity();
                 holder.quantityText.setText("x "+superHero.getmQuantity());
 
-                onClickAck1.setOnClickAckListener("remove",holder.getAdapterPosition(),Boolean.FALSE);
+                onClickAck1.setOnClickAckListener("remove",holder.getAdapterPosition(),Boolean.FALSE,holder.imageView);
 
                 Log.e("product===2","id" + superHero.getId()+ " quantity " +  superHero.getmQuantity());
                 //     holder.currentCost.setText("GH"+ (superHero.getPrice() * superHero.getmQuantity()));
@@ -199,7 +207,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        public NetworkImageView imageView;
+        public NetworkImageView imageView,imageView2;
         public  TextView currentFoodName,
                 currentCost,
                 quantityText,
@@ -214,6 +222,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = (NetworkImageView) itemView.findViewById(R.id.thumbnail);
+            imageView2 = (NetworkImageView) itemView.findViewById(R.id.thumbnail2);
             currentFoodName = (TextView) itemView.findViewById(R.id.selected_food_name);
             currentCost = (TextView) itemView.findViewById(R.id.selected_food_amount);
             subtractMeal = (ImageView) itemView.findViewById(R.id.minus_meal);
@@ -233,7 +242,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
     }
 
     public interface OnClickAck {
-        void setOnClickAckListener(String status, int position, Boolean ischecked);
+        void setOnClickAckListener(String status, int position, Boolean ischecked,NetworkImageView img);
     }
 
 }
