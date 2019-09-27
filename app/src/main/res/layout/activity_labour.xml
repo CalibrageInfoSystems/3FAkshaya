@@ -179,7 +179,13 @@
             android:textColor="@color/white_new"
             android:textSize="@dimen/album_title" />
     </RelativeLayout>
-
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relative1"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
@@ -235,7 +241,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_one"
             android:layout_margin="6dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:orientation="horizontal"
            >
 
@@ -577,8 +583,9 @@
             android:text="@string/submit_req"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
             android:textColor="@color/colorOrange"
-            android:textStyle="bold" />
-
+           />
+    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
         <!--<LinearLayout
             android:layout_width="fill_parent"
@@ -763,7 +770,7 @@
                    android:textSize="@dimen/text_size_15"/>
 
            </LinearLayout>-->
-    </LinearLayout>
+<!--    </LinearLayout>-->
     <!--        <FrameLayout-->
     <!--            android:id="@+id/fragment_container"-->
     <!--            android:layout_width="match_parent"-->

@@ -96,7 +96,8 @@ public class Visit_request_Activity extends BaseActivity {
     private List<Bitmap> images = new ArrayList<>();
 
     String currentDate;
-    Button buttonStart, buttonStop, buttonPlayLastRecordAudio, buttonStopPlayingRecording, submit;
+    Button submit;
+    Button buttonStart, buttonStop, buttonPlayLastRecordAudio, buttonStopPlayingRecording;
     String AudioSavePathInDevice = "";
     MediaRecorder mediaRecorder;
     Random random;
@@ -120,14 +121,14 @@ public class Visit_request_Activity extends BaseActivity {
             landmarkCode = extras.getString("landMark");
 
         }
-       // intview();
-       // setViews();
+        intview();
+        setViews();
 
 
     }
 
     private void intview() {
-     //   requestMultiplePermissions();
+        //   requestMultiplePermissions();
         backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         btn_addIMG = findViewById(R.id.btn_addIMG);
@@ -156,11 +157,11 @@ public class Visit_request_Activity extends BaseActivity {
         buttonStart = (Button) findViewById(R.id.button);
         buttonStop = (Button) findViewById(R.id.button2);
         buttonPlayLastRecordAudio = (Button) findViewById(R.id.button3);
-        buttonStopPlayingRecording = (Button) findViewById(R.id.button4);
+     //   buttonStopPlayingRecording = (Button) findViewById(R.id.button4);
         submit = (Button) findViewById(R.id.req_loan);
         buttonStop.setEnabled(false);
         buttonPlayLastRecordAudio.setEnabled(false);
-        buttonStopPlayingRecording.setEnabled(false);
+       // buttonStopPlayingRecording.setEnabled(false);
 
         random = new Random();
 
@@ -305,7 +306,7 @@ public class Visit_request_Activity extends BaseActivity {
                 buttonStop.setEnabled(false);
                 buttonPlayLastRecordAudio.setEnabled(true);
                 buttonStart.setEnabled(true);
-                buttonStopPlayingRecording.setEnabled(false);
+               // buttonStopPlayingRecording.setEnabled(false);
 
                 Toast.makeText(Visit_request_Activity.this, "Recording Completed", Toast.LENGTH_LONG).show();
 
@@ -318,7 +319,7 @@ public class Visit_request_Activity extends BaseActivity {
 
                 buttonStop.setEnabled(false);
                 buttonStart.setEnabled(false);
-                buttonStopPlayingRecording.setEnabled(true);
+               // buttonStopPlayingRecording.setEnabled(true);
 
                 mediaPlayer = new MediaPlayer();
 
@@ -336,26 +337,26 @@ public class Visit_request_Activity extends BaseActivity {
             }
         });
 
-        buttonStopPlayingRecording.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                buttonStop.setEnabled(false);
-                buttonStart.setEnabled(true);
-                buttonStopPlayingRecording.setEnabled(false);
-                buttonPlayLastRecordAudio.setEnabled(true);
-
-                if (mediaPlayer != null) {
-
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-
-                    MediaRecorderReady();
-
-                }
-
-            }
-        });
+//        buttonStopPlayingRecording.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                buttonStop.setEnabled(false);
+//                buttonStart.setEnabled(true);
+//                buttonStopPlayingRecording.setEnabled(false);
+//                buttonPlayLastRecordAudio.setEnabled(true);
+//
+//                if (mediaPlayer != null) {
+//
+//                    mediaPlayer.stop();
+//                    mediaPlayer.release();
+//
+//                    MediaRecorderReady();
+//
+//                }
+//
+//            }
+//        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -437,18 +438,18 @@ public class Visit_request_Activity extends BaseActivity {
 //                                        String selected_name = arrayyTOstring(selected_labour);
 //                                        String Amount = amount.getText().toString();
 //                                        String date = edittext.getText().toString();
-//                                        List<MSGmodel> displayList = new ArrayList<>();
+                                    List<MSGmodel> displayList = new ArrayList<>();
+
+                                    // displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.issue_type), selected_issue));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.comments), comments.getText().toString()));
+                                    //displayList.add(new MSGmodel(getResources().getString(R.string.image), date));
+
+
 //
-//                                        displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
-//                                        displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
-//                                        displayList.add(new MSGmodel(getResources().getString(R.string.amount), Amount));
-//                                        displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
-//
-//
-////
-//                                        Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
-//
-//                                        showSuccessDialog(displayList);
+                                    // Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
+
+                                    showSuccessDialog(displayList);
                                 }
                             }, 300);
                         } else {

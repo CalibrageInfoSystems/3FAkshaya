@@ -1,4 +1,5 @@
- package in.calibrage.akshaya.models;
+
+package in.calibrage.akshaya.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -31,19 +32,25 @@ public class PostQuickpaymodel {
     private Object fileName;
     @SerializedName("fileLocation")
     @Expose
-    private String fileLocation;
+    private Object fileLocation;
     @SerializedName("fileExtension")
     @Expose
-    private String fileExtension;
+    private Object fileExtension;
+    @SerializedName("signatureName")
+    @Expose
+    private Object signatureName;
+    @SerializedName("signatureExtension")
+    @Expose
+    private String signatureExtension;
     @SerializedName("createdByUserId")
     @Expose
-    private Object createdByUserId;
+    private Integer createdByUserId;
     @SerializedName("createdDate")
     @Expose
     private String createdDate;
     @SerializedName("updatedByUserId")
     @Expose
-    private Object updatedByUserId;
+    private Integer updatedByUserId;
     @SerializedName("updatedDate")
     @Expose
     private String updatedDate;
@@ -112,27 +119,43 @@ public class PostQuickpaymodel {
         this.fileName = fileName;
     }
 
-    public String getFileLocation() {
+    public Object getFileLocation() {
         return fileLocation;
     }
 
-    public void setFileLocation(String fileLocation) {
+    public void setFileLocation(Object fileLocation) {
         this.fileLocation = fileLocation;
     }
 
-    public String getFileExtension() {
+    public Object getFileExtension() {
         return fileExtension;
     }
 
-    public void setFileExtension(String fileExtension) {
+    public void setFileExtension(Object fileExtension) {
         this.fileExtension = fileExtension;
     }
 
-    public Object getCreatedByUserId() {
+    public Object getSignatureName() {
+        return signatureName;
+    }
+
+    public void setSignatureName(Object signatureName) {
+        this.signatureName = signatureName;
+    }
+
+    public String getSignatureExtension() {
+        return signatureExtension;
+    }
+
+    public void setSignatureExtension(String signatureExtension) {
+        this.signatureExtension = signatureExtension;
+    }
+
+    public Integer getCreatedByUserId() {
         return createdByUserId;
     }
 
-    public void setCreatedByUserId(Object createdByUserId) {
+    public void setCreatedByUserId(Integer createdByUserId) {
         this.createdByUserId = createdByUserId;
     }
 
@@ -144,11 +167,11 @@ public class PostQuickpaymodel {
         this.createdDate = createdDate;
     }
 
-    public Object getUpdatedByUserId() {
+    public Integer getUpdatedByUserId() {
         return updatedByUserId;
     }
 
-    public void setUpdatedByUserId(Object updatedByUserId) {
+    public void setUpdatedByUserId(Integer updatedByUserId) {
         this.updatedByUserId = updatedByUserId;
     }
 

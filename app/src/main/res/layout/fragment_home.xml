@@ -423,7 +423,7 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
-                    android:text="Single-line text view that scrolls automatically if the text is too long to fit in the widget"
+
                     android:textColor="@color/blue" />
 
                 <com.smarteist.autoimageslider.SliderView

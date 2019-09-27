@@ -74,6 +74,7 @@ public class CommonUtil {
     public static int fileSize;
     private static NotificationManager manager;
 
+
     public static boolean isShowNotifiction = false;
 
     /*

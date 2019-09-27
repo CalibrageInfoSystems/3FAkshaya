@@ -1,5 +1,5 @@
-package in.calibrage.akshaya.models;
 
+package in.calibrage.akshaya.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -41,19 +41,31 @@ public class AddLabourRequestHeader {
     private String serviceTypes;
     @SerializedName("createdByUserId")
     @Expose
-    private Object createdByUserId;
+    private Integer createdByUserId;
     @SerializedName("createdDate")
     @Expose
     private String createdDate;
     @SerializedName("updatedByUserId")
     @Expose
-    private Object updatedByUserId;
+    private Integer updatedByUserId;
     @SerializedName("updatedDate")
     @Expose
     private String updatedDate;
     @SerializedName("amount")
     @Expose
     private Double amount;
+    @SerializedName("harvestingAmount")
+    @Expose
+    private Double harvestingAmount;
+    @SerializedName("pruningAmount")
+    @Expose
+    private Double pruningAmount;
+    @SerializedName("unKnown1Amount")
+    @Expose
+    private Double unKnown1Amount;
+    @SerializedName("unKnown2Amount")
+    @Expose
+    private Double unKnown2Amount;
 
     public String getFarmerCode() {
         return farmerCode;
@@ -71,7 +83,7 @@ public class AddLabourRequestHeader {
         this.plotCode = plotCode;
     }
 
-    public Boolean getIsFarmerRequest(boolean b) {
+    public Boolean getIsFarmerRequest() {
         return isFarmerRequest;
     }
 
@@ -143,11 +155,11 @@ public class AddLabourRequestHeader {
         this.serviceTypes = serviceTypes;
     }
 
-    public Object getCreatedByUserId() {
+    public Integer getCreatedByUserId() {
         return createdByUserId;
     }
 
-    public void setCreatedByUserId(Object createdByUserId) {
+    public void setCreatedByUserId(Integer createdByUserId) {
         this.createdByUserId = createdByUserId;
     }
 
@@ -159,11 +171,11 @@ public class AddLabourRequestHeader {
         this.createdDate = createdDate;
     }
 
-    public Object getUpdatedByUserId() {
+    public Integer getUpdatedByUserId() {
         return updatedByUserId;
     }
 
-    public void setUpdatedByUserId(Object updatedByUserId) {
+    public void setUpdatedByUserId(Integer updatedByUserId) {
         this.updatedByUserId = updatedByUserId;
     }
 
@@ -181,6 +193,38 @@ public class AddLabourRequestHeader {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Double getHarvestingAmount() {
+        return harvestingAmount;
+    }
+
+    public void setHarvestingAmount(Double harvestingAmount) {
+        this.harvestingAmount = harvestingAmount;
+    }
+
+    public Double getPruningAmount() {
+        return pruningAmount;
+    }
+
+    public void setPruningAmount(Double pruningAmount) {
+        this.pruningAmount = pruningAmount;
+    }
+
+    public Double getUnKnown1Amount() {
+        return unKnown1Amount;
+    }
+
+    public void setUnKnown1Amount(Double unKnown1Amount) {
+        this.unKnown1Amount = unKnown1Amount;
+    }
+
+    public Double getUnKnown2Amount() {
+        return unKnown2Amount;
+    }
+
+    public void setUnKnown2Amount(Double unKnown2Amount) {
+        this.unKnown2Amount = unKnown2Amount;
     }
 
 }

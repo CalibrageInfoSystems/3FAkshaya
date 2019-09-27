@@ -1,4 +1,6 @@
-package in.calibrage.akshaya.models;
+
+
+        package in.calibrage.akshaya.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -8,7 +10,7 @@ public class QuickPayResponce {
 
     @SerializedName("result")
     @Expose
-    private Object result;
+    private String result;
     @SerializedName("isSuccess")
     @Expose
     private Boolean isSuccess;
@@ -25,11 +27,11 @@ public class QuickPayResponce {
     @Expose
     private Object exception;
 
-    public Object getResult() {
+    public String getResult() {
         return result;
     }
 
-    public void setResult(Object result) {
+    public void setResult(String result) {
         this.result = result;
     }
 

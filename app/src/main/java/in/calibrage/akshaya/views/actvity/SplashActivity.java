@@ -56,7 +56,7 @@ public class SplashActivity extends BaseActivity {
 
         txt_desc.setText("");
         txt_desc.setCharacterDelay(60);
-        txt_desc.animateText("sowing for a better future");
+        txt_desc.animateText("Sowing for a Better Future");
 
 
         final boolean is_login = SharedPrefsData.getBool(SplashActivity.this, Constants.IS_LOGIN);

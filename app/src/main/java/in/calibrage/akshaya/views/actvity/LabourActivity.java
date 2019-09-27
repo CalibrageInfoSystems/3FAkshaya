@@ -14,6 +14,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,6 +44,7 @@ import java.util.List;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.MultiSelectionSpinner;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.AmountRequest;
@@ -84,13 +86,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     MultiSelectionSpinner multiSelectionSpinner;
     Dialog myDialog;
 
-   LabourTermsNCondtionsAdapter Tadapter;
+    LabourTermsNCondtionsAdapter Tadapter;
 
 
-
-    TextView terms, amount,harv_amount,un_amount,un2_amount;
+    TextView terms, amount, prun_amount, harv_amount, un_amount, un2_amount;
     String seleced_Duration;
-    RelativeLayout amount_Label,harv_amount_label,un_amount_label,un2_amount_label;
+    RelativeLayout amount_Label, harv_amount_label, un_amount_label, un2_amount_label;
     private Subscription mSubscription;
     TextView ok, getTerms, head_text;
     TextView Age, id_plot, area, landMark;
@@ -98,8 +99,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     Button button_submit;
     private SpotsDialog mdilogue;
     CheckBox checkbox;
-    String frequencyId, serviceTypeId, Seleted_date, farmated_date, isSuccess, register;
-    String plot_id, plot_Age, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString, plantationdate;
+    String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register;
+    String plot_id, plot_Age, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString, plantationdate, finalAmount;
     EditText commentsTxt;
     ImageView backImg, home_btn;
 
@@ -150,7 +151,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         un_amount_label = findViewById(R.id.un_amount_label);
         un2_amount_label = findViewById(R.id.un2_amount_label);
 
-        amount = findViewById(R.id.pruning_amount);
+        prun_amount = findViewById(R.id.pruning_amount);
         harv_amount = findViewById(R.id.harv_amount);
         un_amount = findViewById(R.id.un_amount);
         un2_amount = findViewById(R.id.un2_amount);
@@ -266,9 +267,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     Getterms_conditions();
-                        myDialog = new Dialog(LabourActivity.this);
+                    myDialog = new Dialog(LabourActivity.this);
 
-                        ShowPopup();
+                    ShowPopup();
 
                 }
 
@@ -286,7 +287,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                     if (isOnline())
                         AddLabourRequestHeader();
                     else {
-                        showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+                        showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
 
@@ -297,7 +298,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
         });
-       // Getterms_conditions();
+        // Getterms_conditions();
         terms.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -342,7 +343,6 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         terms_recycle = (RecyclerView) myDialog.findViewById(R.id.recycler_term);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(LabourActivity.this);
         terms_recycle.setLayoutManager(mLayoutManager);
-
 
 
         ok.setOnClickListener(new View.OnClickListener() {
@@ -419,7 +419,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         if (selected_labour.size() == 0) {
             showDialog(LabourActivity.this, getResources().getString(R.string.Valid_service));
 
-           // showDialog(LabourActivity.this, "Please Select Service Type ");
+            // showDialog(LabourActivity.this, "Please Select Service Type ");
             return false;
         }
         if (labourSpinner.getSelectedItemPosition() == 0) {
@@ -427,11 +427,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             showDialog(LabourActivity.this, getResources().getString(R.string.valid_pack));
             return false;
         }
-        if(checkbox.isChecked()){
+        if (checkbox.isChecked()) {
             // showCustomDialog();
 
             checkbox.setChecked(true);
-        }else {
+        } else {
             //Toasty.error(getApplicationContext(),R.string.terms_agree, Toast.LENGTH_LONG).show();
             showDialog(LabourActivity.this, getResources().getString(R.string.terms_agree));
             return false;
@@ -477,7 +477,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                 @Override
                                 public void run() {
                                     String selected_name = arrayyTOstring(selected_labour);
-                                    String Amount = amount.getText().toString();
+                                    String Amount = harv_amount.getText().toString();
                                     String date = edittext.getText().toString();
                                     List<MSGmodel> displayList = new ArrayList<>();
 
@@ -622,7 +622,6 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         for (Integer values : indices) {
             Log.d(TAG, "---- analysis ---- > get selected labour ID :" + labour_uID.get(values));
             ids_list.add(labour_uID.get(values));
-
             Log.d(TAG, "---- analysis ---- > get selected labour ID :" + ids_list);
         }
 
@@ -635,27 +634,60 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             String name = strings.get(i);
             Log.d(TAG, "---- analysis ---- > get selected labour name :" + name);
             selected_labour.add(name);
-if(name.contains("Pruning"))
-{
-    amount_Label.setVisibility(View.VISIBLE);
-}
-            if(name.contains("Harvesting"))
-            {
-                harv_amount_label.setVisibility(View.VISIBLE);
-            }
-
-            if(name.contains("UnKnown1"))
-            {
-                un_amount_label.setVisibility(View.VISIBLE);
-            }
-            if(name.contains("UnKnown2"))
-            {
-                un2_amount_label.setVisibility(View.VISIBLE);
-            }
-
 
             Log.d(TAG, "---- analysis ---- > get selected labour name :" + selected_labour);
+             /*       if (name.equalsIgnoreCase("Pruning")) {
+            amount_Label.setVisibility(View.VISIBLE);
+        } else {
+            amount_Label.setVisibility(View.GONE);
         }
+
+        if (name.equalsIgnoreCase("Harvesting")) {
+            harv_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            harv_amount_label.setVisibility(View.GONE);
+        }
+
+        if (name.equalsIgnoreCase("UnKnown1")) {
+            un_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            un_amount_label.setVisibility(View.GONE);
+        }
+
+        if (name.equalsIgnoreCase("UnKnown2")) {
+            un2_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            un2_amount_label.setVisibility(View.GONE);
+        }*/
+        }
+
+
+        String name = CommonUtil.arrayToString(strings);
+
+        if (name.contains("Pruning")) {
+            amount_Label.setVisibility(View.VISIBLE);
+        } else {
+            amount_Label.setVisibility(View.GONE);
+        }
+
+        if (name.contains("Harvesting")) {
+            harv_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            harv_amount_label.setVisibility(View.GONE);
+        }
+
+        if (name.contains("UnKnown1")) {
+            un_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            un_amount_label.setVisibility(View.GONE);
+        }
+
+        if (name.contains("UnKnown2")) {
+            un2_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            un2_amount_label.setVisibility(View.GONE);
+        }
+
 
         return null;
     }
@@ -695,13 +727,13 @@ if(name.contains("Pruning"))
 
 
                         if (getAmount.getIsSuccess()) {
-                          //  amount_Label.setVisibility(View.VISIBLE);
-                            amount.setText(getAmount.getResult().getPrunningCost().toString());
+                            //  amount_Label.setVisibility(View.VISIBLE);
+                            prun_amount.setText(getAmount.getResult().getPrunningCost().toString());
                             harv_amount.setText(getAmount.getResult().getHarvestCost().toString());
                             un_amount.setText(getAmount.getResult().getUnKnown1Cost().toString());
                             un2_amount.setText(getAmount.getResult().getUnKnown2Cost().toString());
                         } else {
-                           //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
+                            //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
                         }
 
                     }
@@ -712,9 +744,9 @@ if(name.contains("Pruning"))
 
     private JsonObject amountReuestobject() {
         AmountRequest requestModel = new AmountRequest();
-        requestModel.setDateOfPlanting("2015-09-26T18:54:02.1686519+05:30");
+        requestModel.setDateOfPlanting(plantationdate);
 
-       // String val = arrayTOstring(ids_list);
+        // String val = arrayTOstring(ids_list);
 //        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
 //
 //        requestModel.setServiceTypeIds(val);
@@ -724,27 +756,10 @@ if(name.contains("Pruning"))
 
     }
 
-//    @Override
-//    public JsonObject selectedStrings(List<String> strings) {
-//        AddLabourRequestHeader requestModel = new AddLabourRequestHeader();
-//        requestModel.setFarmerCode(Farmer_code);
-//
-//        String val = arrayTOstring(ids_list);
-//        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
-//
-//        requestModel.setServiceTypes(val);
-//
-//
-//        return new Gson().toJsonTree(requestModel).getAsJsonObject();
-//
-//
-//
-//
-//    }
-
 
     private JsonObject LabourReuestobject() {
-
+        finalAmount = getAmount();
+        Log.d(TAG, "----- analysis ----->> GetAmount -->> Amount :" + finalAmount);
         AddLabourRequestHeader requestModel = new AddLabourRequestHeader();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(plot_id);
@@ -766,13 +781,39 @@ if(name.contains("Pruning"))
         requestModel.setCreatedDate(reformattedDate);
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(reformattedDate);
-        requestModel.setAmount(Double.parseDouble((String) amount.getText()));
+        requestModel.setAmount(1.1);
+        requestModel.setHarvestingAmount(Double.parseDouble((String) prun_amount.getText()));
+        requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
+        requestModel.setUnKnown1Amount(Double.parseDouble((String) harv_amount.getText()));
+        requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
 
         // TODO
         // clearalllists();
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
+
+    }
+
+    private String getAmount() {
+
+            Double finalAmount = 0.0;
+            if (harv_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(harv_amount.getText())) {
+                finalAmount = finalAmount + Double.parseDouble(String.valueOf(harv_amount.getText()));
+            }
+            if (prun_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(prun_amount.getText())) {
+                finalAmount = finalAmount + Double.parseDouble(String.valueOf(prun_amount.getText()));
+            }
+
+            if (un_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(un_amount.getText())) {
+                finalAmount = finalAmount + Double.parseDouble(String.valueOf(un_amount.getText()));
+            }
+
+            if (un2_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(un2_amount.getText())) {
+                finalAmount = finalAmount + Double.parseDouble(String.valueOf(un2_amount.getText()));
+            }
+
+            return "" + finalAmount;
 
     }
 
@@ -801,6 +842,7 @@ if(name.contains("Pruning"))
         }
         return string.toString();
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

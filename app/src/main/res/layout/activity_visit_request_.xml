@@ -166,6 +166,7 @@
                 android:layout_marginBottom="@dimen/margin_10"
                 android:layout_weight=".33"
                 android:scaleType="fitXY"
+                android:visibility="gone"
                 android:src="@mipmap/ic_launcher" />
 
             <ImageView
@@ -222,67 +223,67 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
 
-          >
+            >
             <ImageButton
 
                 android:id="@+id/btn_addvoice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-android:background="@color/transparent"
+                android:background="@color/transparent"
 
                 android:src="@drawable/voice_add"
                 />
 
         </LinearLayout>
-    <LinearLayout
-        android:id="@+id/btn_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/btn_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".2"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_10"
+            android:weightSum="1">
 
-            android:text="Record"
+            <Button
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
 
-
-            />
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="STOP"
-            android:src="@drawable/ic_calender"
-            android:layout_weight=".2"
-            android:id="@+id/button2"
+                android:text="Record"
 
 
-            />
+                />
 
-        <ImageButton
-            android:id="@+id/button3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
-            android:src="@drawable/iconsplay"
-
-           />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="-10dp"
-            android:layout_weight=".4"
-            android:text="STOP PLAYING "
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="STOP"
+                android:layout_weight=".33"
+                android:id="@+id/button2"
 
 
-            />
-    </LinearLayout>
+                />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+
+                android:text="Play" />
+
+<!--            <Button-->
+<!--                android:id="@+id/button4"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="-10dp"-->
+<!--                android:layout_weight=".4"-->
+<!--                android:text="STOP PLAYING "-->
+
+
+<!--                />-->
+        </LinearLayout>
 
         <Button
             android:id="@+id/req_loan"
@@ -305,30 +306,30 @@ android:background="@color/transparent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_margin="8dp"-->
+            <!--            <RelativeLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:layout_margin="8dp"-->
 
-<!--                android:background="@drawable/spinner_bg"-->
-<!--                android:elevation="2dp">-->
+            <!--                android:background="@drawable/spinner_bg"-->
+            <!--                android:elevation="2dp">-->
 
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentRight="true"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:padding="@dimen/_8dp"-->
-<!--                    android:src="@drawable/arrow_down" />-->
+            <!--                <ImageView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_alignParentRight="true"-->
+            <!--                    android:layout_alignParentBottom="true"-->
+            <!--                    android:padding="@dimen/_8dp"-->
+            <!--                    android:src="@drawable/arrow_down" />-->
 
-<!--                <Spinner-->
-<!--                    android:id="@+id/issue_type"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@null"-->
-<!--                    android:minHeight="0dp"-->
-<!--                    android:padding="@dimen/margin_10" />-->
-<!--            </RelativeLayout>-->
+            <!--                <Spinner-->
+            <!--                    android:id="@+id/issue_type"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:background="@null"-->
+            <!--                    android:minHeight="0dp"-->
+            <!--                    android:padding="@dimen/margin_10" />-->
+            <!--            </RelativeLayout>-->
 
 
 
@@ -341,7 +342,7 @@ android:background="@color/transparent"
 
 
 
-        />
+    />
     <RelativeLayout
         android:id="@+id/relative1"
         android:layout_width="match_parent"

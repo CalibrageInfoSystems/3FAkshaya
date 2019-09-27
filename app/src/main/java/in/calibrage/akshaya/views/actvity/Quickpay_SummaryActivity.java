@@ -1,7 +1,9 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -14,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -66,7 +70,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     String currentDate;
     String total;
     TextView terms;
-    TextView ok, getTerms;
+    TextView ok, getTerms,clear;
     TextView ffbCostTxt, convenienceChargeTxt, closingBalanceTxt, totalAmount, text_flat_charge, text_quntity, text_quickpay_fee;
     String Farmer_code;
     private Subscription mSubscription;
@@ -74,7 +78,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     Button submit;
     private SpotsDialog mdilogue;
     Bitmap bitmap;
-    Button clear, save;
+    Button save;
     SignatureView signatureView;
     String path;
     private static final String IMAGE_DIRECTORY = "/signdemo";
@@ -96,11 +100,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         backImg = (ImageView) findViewById(R.id.back);
 
         signatureView = (SignatureView) findViewById(R.id.signature_view);
-        clear = (Button) findViewById(R.id.clear);
+        clear = (TextView) findViewById(R.id.clear);
         save = (Button) findViewById(R.id.save);
 
 
-        terms = (TextView) findViewById(R.id.terms);
+      //  terms = (TextView) findViewById(R.id.terms);
 
         ffbCostTxt = (TextView) findViewById(R.id.tvtext_item_five);
         convenienceChargeTxt = (TextView) findViewById(R.id.tvtext_item_seven);
@@ -158,14 +162,14 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             }
         });
 
-        terms.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                showCustomDialog();
-            }
-        });
+//        terms.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                showCustomDialog();
+//            }
+//        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +178,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                     PdfUtil.createPDF(Quickpay_SummaryActivity.this, CommonUtil.scaleDown(signatureView.getSignatureBitmap(), 200, true), text_quntity.getText().toString(), ffbCostTxt.getText().toString(), ffbCostTxt.getText().toString(), convenienceChargeTxt.getText().toString(), text_quickpay_fee.getText().toString(), closingBalanceTxt.getText().toString(), totalAmount.getText().toString());
                     submitReq();
                 } else {
-                    showDialog(Quickpay_SummaryActivity.this, "Please Agree Terms &amp;\\n Conditions");
+                    showDialog(Quickpay_SummaryActivity.this, "Please Agree Terms & Conditions");
                 }
 
             }
@@ -326,6 +330,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override
                                 public void run() {
+                                    showSuccesspdf();
 //                                    String selected_name = arrayyTOstring(selected_labour);
 //                                    String Amount = amount.getText().toString();
 //                                    String date = edittext.getText().toString();
@@ -355,6 +360,31 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     }
 
+    private void showSuccesspdf() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Title here");
+
+        WebView wv = new WebView(this);
+        wv.loadUrl("http://183.82.111.111/3FFarmer/FileRepository/2019\\09\\27\\QuickpayPdf/20190927113441434.pdf");
+
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+
+                return true;
+            }
+        });
+
+        alert.setView(wv);
+        alert.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
+    }
     private JsonObject quickReuestobject() {
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
         requestModel.setFarmerCode(Farmer_code);
@@ -372,6 +402,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setFileName(null);
         requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
         requestModel.setFileExtension(".pdf");
+        requestModel.setSignatureExtension(".pdf");
+        requestModel.setSignatureName(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
 
