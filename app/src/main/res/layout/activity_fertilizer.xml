@@ -32,29 +32,57 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_20" />
 
+        <TextView
+            android:id="@+id/txt_recomandations"
+            style="@style/Common_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/margin_5"
+            android:background="@drawable/edt_bg"
+            android:gravity="center"
+            android:text="@string/recommendations"
+            android:textColor="@color/whitepure" />
+    </RelativeLayout>
+    -->
 
+    <LinearLayout
+        android:id="@+id/lyt_cart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/linear1"
+        android:layout_alignParentRight="true"
+        android:background="@color/light_gray2"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_marginRight="@dimen/margin_5"
-            android:layout_alignParentRight="true"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
 
+            <ImageButton
+                android:id="@+id/cartButtonIV"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@null"
+                android:clickable="false"
+                android:padding="@dimen/margin_10"
+                android:scaleType="fitCenter"
+                android:src="@drawable/cart" />
 
             <TextView
                 android:id="@+id/tvtext_item_four"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:text="@string/Rs2"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/Rs"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="25dp"
-                 />
+                android:textSize="25dp" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/dot3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,43 +90,55 @@
                 android:text=":"
                 android:textColor="#111"
                 android:textSize="@dimen/album_title"
-                 />
+                android:visibility="gone" />
+
             <TextView
-                android:layout_marginRight="@dimen/margin_5"
                 android:id="@+id/meal_total"
                 style="@style/Common_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_10"
-
-                android:textColor="@color/white"
-                android:textSize="25dp"
+                android:layout_marginRight="@dimen/margin_5"
+                android:gravity="center"
                 android:hint="0"
                 android:text=""
                 android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+        </LinearLayout>
 
-                />
-            <ImageButton
-                android:padding="@dimen/margin_10"
-                 android:layout_gravity="bottom"
-                android:id="@+id/cartButtonIV"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:clickable="false"
-
-                android:scaleType="fitCenter"
-                android:src="@drawable/cart" />
+        <LinearLayout
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
+            <Button
+                android:gravity="center"
+                android:layout_marginRight="@dimen/margin_10"
+                android:id="@+id/btn_next"
+                style="@style/Common_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="@string/next" />
         </LinearLayout>
 
 
-    </RelativeLayout>
-    -->
+    </LinearLayout>
 
     <LinearLayout
+
+        android:id="@+id/devider"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/lyt_cart"
+        android:background="@drawable/devider_line"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear1"
+        android:layout_below="@+id/lyt_cart"
         android:layout_margin="@dimen/margin_5"
         android:orientation="vertical">
 
@@ -117,14 +157,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/margin_10"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/lin_three"
@@ -178,24 +218,17 @@
         </RelativeLayout>
 
         <Button
-            android:visibility="gone"
             android:id="@+id/confirm"
             style="@style/Common_Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/recycler_view"
-            android:text="@string/confirm" />
+            android:text="@string/confirm"
+            android:visibility="gone" />
     </LinearLayout>
 
 
 </RelativeLayout>
 
-    <!-- <Button
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/selected_food_list"
-         android:text="@string/confirm"
-         android:id="@+id/confirm"
-         android:textColor="@color/white"
-         android:background="@color/green"/>-->
+
 

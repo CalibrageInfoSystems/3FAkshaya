@@ -46,7 +46,7 @@ public class PDFActivity extends AppCompatActivity {
         }
         webView = findViewById(R.id.webView);
 
-        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+               mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();

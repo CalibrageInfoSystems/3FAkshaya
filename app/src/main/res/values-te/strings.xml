@@ -391,5 +391,6 @@
     <string name="irrigation_name">Irrigation Name</string>
     <string name="updated_by">UpdatedBy</string>
     <string name="updated_date">Updated Date</string>
+    <string name="no_recommendations">No Recommendations</string>
 </resources>
 
