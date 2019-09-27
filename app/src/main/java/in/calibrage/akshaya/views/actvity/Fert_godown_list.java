@@ -2,6 +2,8 @@ package in.calibrage.akshaya.views.actvity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,11 +53,12 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
      * */
 
     private Context ctx;
-    private Button btn_submit;
+    private Button btn_submit,button;
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
     private EditText editText;
     private TextView txt_select_godown, txt_Payment_mode,text_amount,Final_amount,gst_amount;
+    private BottomSheetBehavior behavior;
 
     private Toolbar toolbar;
     private Subscription mSubscription;
@@ -118,6 +121,8 @@ ImageView home_btn;
         Final_amount=(TextView)findViewById(R.id.final_amount_gst) ;
         gst_amount=(TextView)findViewById(R.id.gst_amount) ;
         home_btn = (ImageView) findViewById(R.id.home_btn);
+
+
         getActiveGodowns();
         getPaymentMods();
         //sw_paymentMode.setText("one", "two", "three", "four");
@@ -193,6 +198,17 @@ ImageView home_btn;
             @Override
             public void onClick(View view) {
                 onSubmit();
+            }
+        });
+        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                // React to state change
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                // React to dragging events
             }
         });
     }
@@ -297,7 +313,6 @@ ImageView home_btn;
 
     @Override
     public void onItemClick(ActiveGodownsModel.ListResult item) {
-        Toast.makeText(ctx, item.getDesc(), Toast.LENGTH_SHORT).show();
         selectedGodown = item;
     }
 }

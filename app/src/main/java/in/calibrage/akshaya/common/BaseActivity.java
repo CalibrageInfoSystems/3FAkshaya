@@ -231,7 +231,6 @@ public class BaseActivity extends AppCompatActivity {
             }
         }, 500);
     }
-
     /**
      * Hides the soft keyboard
      */
@@ -242,7 +241,6 @@ public class BaseActivity extends AppCompatActivity {
             inputMethodManager.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0);
         }
     }
-
     /**
      * Shows the soft keyboard
      */

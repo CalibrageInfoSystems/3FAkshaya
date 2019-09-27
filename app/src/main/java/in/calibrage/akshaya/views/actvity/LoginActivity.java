@@ -129,7 +129,6 @@ public class LoginActivity extends BaseActivity {
                 }*/
             }
         });
-
     }
     private void GetLogin() {
         mdilogue.show();

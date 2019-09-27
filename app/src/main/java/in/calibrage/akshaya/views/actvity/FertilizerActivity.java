@@ -68,8 +68,8 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     String amount;
     String dis_price, Farmer_code;
     final Context context = this;
-    Button button;
-    TextView mealTotalText;
+    Button button, btn_next;
+    TextView mealTotalText, txt_recomandations;
     private String TAG = "FertilizerActivity";
     private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
@@ -82,15 +82,12 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_fertilizer);
         dialog = new ProgressDialog(this);
-       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        initCollapsingToolbar();*/
+        txt_recomandations = findViewById(R.id.txt_recomandations);
+        btn_next = findViewById(R.id.btn_next);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         ImageView backImg = (ImageView) findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +139,30 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
                 //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //  startActivity(i);
+            }
+        });
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validations()) {
+                    Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
+                    i.putExtra("Ids", (Serializable) selectedId_List);
+                    i.putExtra("quantity", (Serializable) selectedQty_List);
+                    i.putExtra("item_names", (Serializable) selecteditem_List);
+                    i.putExtra("item_amount", (Serializable) amount_List);
+                    i.putExtra("gst_per", (Serializable) selectedgst_List);
+                    i.putExtra("amount", amount);
+                    startActivity(i);
+
+                    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+
+                }
+            }
+        });
+        txt_recomandations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FertilizerActivity.this, FertlizerRecomandationsActivity.class));
             }
         });
     }

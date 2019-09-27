@@ -128,7 +128,6 @@
     <string name="dosage_only">Dosage</string>
 
 
-
     <string name="treesAppearance">Trees Appearance</string>
     <string name="treeGrowth">Tree Growth</string>
     <string name="treeHeight">Tree Height</string>
@@ -142,7 +141,7 @@
 
     <string name="spalingPlanted">No.of Saplings Planted</string>
     <string name="prevPalmsCount">Previous Trees Count</string>
-<!--    <string name="plamsCount">Count of Trees Currently Present</string>-->
+    <!--    <string name="plamsCount">Count of Trees Currently Present</string>-->
     <string name="plamsCount">Number of Trees</string>
     <string name="isTreesMissing">Missing Trees</string>
     <string name="missingTreesCount">No.of Missing Trees</string>
@@ -218,7 +217,7 @@
     <string name="select_product_toast">Please Select Atleast One Product</string>
     <string name="valid_issue_type">Please Select Issue Type</string>
     <string name="select_image">Please Attach At Least One Image or Voice Record</string>
-<string name="str_select_plot">Select Plot</string>
+    <string name="str_select_plot">Select Plot</string>
     <string name="select_godown">Select Godown *</string>
     <string name="payment_mode">Payment Mode *</string>
 
@@ -240,6 +239,7 @@
 
     <string name="lastAppliedDate">Last Applied Date</string>
     <string name="applyFertilizerFrequencyType">Apply Fertilizer Frequency</string>
+    <string name="no_recommendations">No Recommendations</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
