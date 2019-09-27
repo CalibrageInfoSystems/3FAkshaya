@@ -88,9 +88,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
 
-    TextView terms, amount;
+    TextView terms, amount,harv_amount,un_amount,un2_amount;
     String seleced_Duration;
-    RelativeLayout amount_Label;
+    RelativeLayout amount_Label,harv_amount_label,un_amount_label,un2_amount_label;
     private Subscription mSubscription;
     TextView ok, getTerms, head_text;
     TextView Age, id_plot, area, landMark;
@@ -145,8 +145,16 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         edittext = (EditText) findViewById(R.id.date_display);
         checkbox = (CheckBox) findViewById(R.id.checkBox);
         button_submit = findViewById(R.id.buttonSubmit);
-        amount_Label = findViewById(R.id.amount_label);
-        amount = findViewById(R.id.amount);
+        amount_Label = findViewById(R.id.pruning_amount_label);
+        harv_amount_label = findViewById(R.id.harv_amount_label);
+        un_amount_label = findViewById(R.id.un_amount_label);
+        un2_amount_label = findViewById(R.id.un2_amount_label);
+
+        amount = findViewById(R.id.pruning_amount);
+        harv_amount = findViewById(R.id.harv_amount);
+        un_amount = findViewById(R.id.un_amount);
+        un2_amount = findViewById(R.id.un2_amount);
+
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
@@ -627,6 +635,24 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             String name = strings.get(i);
             Log.d(TAG, "---- analysis ---- > get selected labour name :" + name);
             selected_labour.add(name);
+if(name.contains("Pruning"))
+{
+    amount_Label.setVisibility(View.VISIBLE);
+}
+            if(name.contains("Harvesting"))
+            {
+                harv_amount_label.setVisibility(View.VISIBLE);
+            }
+
+            if(name.contains("UnKnown1"))
+            {
+                un_amount_label.setVisibility(View.VISIBLE);
+            }
+            if(name.contains("UnKnown2"))
+            {
+                un2_amount_label.setVisibility(View.VISIBLE);
+            }
+
 
             Log.d(TAG, "---- analysis ---- > get selected labour name :" + selected_labour);
         }
@@ -669,8 +695,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
                         if (getAmount.getIsSuccess()) {
-                            amount_Label.setVisibility(View.VISIBLE);
-                            amount.setText(getAmount.getResult().toString());
+                          //  amount_Label.setVisibility(View.VISIBLE);
+                            amount.setText(getAmount.getResult().getPrunningCost().toString());
+                            harv_amount.setText(getAmount.getResult().getHarvestCost().toString());
+                            un_amount.setText(getAmount.getResult().getUnKnown1Cost().toString());
+                            un2_amount.setText(getAmount.getResult().getUnKnown2Cost().toString());
                         } else {
                            //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
                         }
@@ -683,12 +712,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
     private JsonObject amountReuestobject() {
         AmountRequest requestModel = new AmountRequest();
-        requestModel.setDateOfPlanting(plantationdate);
+        requestModel.setDateOfPlanting("2015-09-26T18:54:02.1686519+05:30");
 
-        String val = arrayTOstring(ids_list);
-        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
-
-        requestModel.setServiceTypeIds(val);
+       // String val = arrayTOstring(ids_list);
+//        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
+//
+//        requestModel.setServiceTypeIds(val);
 
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();

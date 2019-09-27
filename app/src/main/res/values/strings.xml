@@ -83,7 +83,7 @@
     <string name="btn_te">Telugu</string>
 
     <string name="only_date">Date</string>
-    <string name="no_videos">No Videos</string>
+    <string name="no_videos">No Videos Available</string>
 
     <!-- <string name="harvest">Harvest</string>-->
     <string name="remarks">Remarks</string>
@@ -95,6 +95,8 @@
     <string name="invoice_rate">Invoice Rate per MT (Rs)</string>
     <string name="memo">Memo</string>
     <string name="amount">Amount (Rs)</string>
+    <string name="harv_amount">Harvesting Amount / Ton</string>
+    <string name="pru_amount">Pruning Amount / Tree</string>
     <string name="paidCollectionsWeight">Paid Collections Weight</string>
     <string name="no_collections_found">No Collections Available</string>
     <string name="no_payments_found">No Payments Found</string>
@@ -122,7 +124,7 @@
     <string name="total_records">Total Records</string>
     <string name="quantity_mt">Quantity (MT)</string>
     <string name="ffb_flot">FFB Rate (Rs)</string>
-    <string name="no_pdfs">No Pdf\'s</string>
+    <string name="no_pdfs">No Pdfs Available</string>
     <string name="dosage_only">Dosage</string>
 
 
@@ -141,14 +143,14 @@
     <string name="spalingPlanted">No.of Saplings Planted</string>
     <string name="prevPalmsCount">Previous Trees Count</string>
 <!--    <string name="plamsCount">Count of Trees Currently Present</string>-->
-    <string name="plamsCount">Current Trees Count</string>
+    <string name="plamsCount">Number of Trees</string>
     <string name="isTreesMissing">Missing Trees</string>
     <string name="missingTreesCount">No.of Missing Trees</string>
     <string name="reasonType">Reason for Missing Trees</string>
     <string name="expectedPlamsCount">Expected Palms Count</string>
 
 
-    <string name="crop">Crop Maintenance Visits </string>
+    <string name="crop">Crop Maintenance Visit</string>
 
     <string name="recommended_ertilizer">Recommended Fertilizer</string>
     <string name="UOMName">UOM Name</string>
@@ -224,6 +226,20 @@
     <string name="gst">GST(%)</string>
     <string name="no_products">No Products Found</string>
     <string name="gst_amount">GST (Rs)</string>
+    <string name="irrigation">Irrigation Details</string>
+    <string name="irrigation_name">Irrigation Name</string>
+    <string name="updated_by">Updated By</string>
+    <string name="updated_date">Updated Date</string>
+    <string name="inter_crop">InterCrop Details</string>
+
+    <string name="fertilizer_crop">Fertilizers Details</string>
+
+
+    <string name="fertilizerSource">Fertilizer Source</string>
+    <string name="fertilizer_name">Fertilizer Name</string>
+
+    <string name="lastAppliedDate">Last Applied Date</string>
+    <string name="applyFertilizerFrequencyType">Apply Fertilizer Frequency</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

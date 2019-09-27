@@ -72,9 +72,10 @@ android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_gravity="left"
+            android:layout_marginStart="@dimen/margin_5"
+            android:layout_marginLeft="6dp"
             android:layout_marginTop="1dp"
             android:paddingLeft="@dimen/margin_10"
-            android:layout_marginStart="@dimen/margin_5"
             android:text="@string/loan_message"
             android:textSize="14dp" />
 

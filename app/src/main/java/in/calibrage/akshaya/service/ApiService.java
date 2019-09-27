@@ -3,6 +3,7 @@ package in.calibrage.akshaya.service;
 import com.google.gson.JsonObject;
 
 import in.calibrage.akshaya.models.ActiveGodownsModel;
+import in.calibrage.akshaya.models.BannerresponseModel;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
@@ -124,6 +125,9 @@ public interface ApiService {
 
     @GET
     Observable<PaymentsType> getpaymentModes(@Url String url);
+
+    @GET
+    Observable<BannerresponseModel> getbannerdetails(@Url String url);
 
  /*
     // PASSWORD RESET

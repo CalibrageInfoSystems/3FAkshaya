@@ -17,7 +17,7 @@ public interface APIConstantURL {
     String GetLabourServicetype = " TypeCdDmt/6";
     String post_labour = "LabourRequest/AddLabourRequestHeader";
     String Post_Loan = " RequestHeader/AddRequestHeader";
-    String labour_amount = "LabourServiceCost/GetLabourServiceCostByAge";
+    String labour_amount = "LabourServiceCost/GetLabourServiceCostCalculation";
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetLabourTermsandConditions ="LabourServiceCost/GetLabourServiceCost/null";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetails/";
@@ -26,6 +26,8 @@ public interface APIConstantURL {
     String post_visit = "RequestHeader/AddVisitRequest";
     String GetActiveGodowns = "Godown/GetActiveGodowns";
     String GetPaymentsTypeByFarmerCode = "Farmer/GetPaymentsTypeByFarmerCode/";
+    String GetBannerByStateCode = "Banner/GetBannerByStateCode/AP";
+
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 

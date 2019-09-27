@@ -66,7 +66,7 @@ import rx.schedulers.Schedulers;
 public class TabFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
     public static final String TAG = TabFragment.class.getSimpleName();
     int position;
-    private TextView textView;
+    private TextView textView,txt_no;
     private RecyclerView rcv_video, rcv_pdf, rcv_recom;
     private LinearLayoutManager llmanagerVideo, llmanagerPDF, layoutManagerrecom;
     private SpotsDialog mdilogue;
@@ -116,6 +116,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 
     private void init(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
+
         noRecords = (LinearLayout) view.findViewById(R.id.nodata);
         noVedios = (LinearLayout) view.findViewById(R.id.no_videos);
         lyt_firstTab = view.findViewById(R.id.lyt_firstTab);
@@ -136,7 +137,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
         Log.e(TAG, " --- analysis ----- getTabsCount --->> count :" + count);
 
         if (count == 3 && position == 0) {
-            Log.e("recon==", "recom_visible");
+
             lyt_firstTab.setVisibility(View.VISIBLE);
             rcv_video.setVisibility(View.GONE);
             rcv_pdf.setVisibility(View.GONE);
@@ -220,12 +221,50 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         rcv_video.setAdapter(new VideoAdapter(listResultVideo));
                         rcv_pdf.setAdapter(new PdfAdapter(listResultPDF));
 
-//                        if (listResultPDF.size() == 0) {
-//                            noRecords.setVisibility(View.VISIBLE);
+
+
+                        if (count == 3 && position == 0) {
+
+                            lyt_firstTab.setVisibility(View.VISIBLE);
+                            rcv_video.setVisibility(View.GONE);
+                            rcv_pdf.setVisibility(View.GONE);
+                        } else if (count == 3 && position == 1&& listResultVideo.size() == 0) {
+                            lyt_firstTab.setVisibility(View.GONE);
+                            noVedios.setVisibility(View.VISIBLE);
+                            rcv_pdf.setVisibility(View.GONE);
+
+                        } else if (count == 3 && position == 2&& listResultPDF.size() == 0) {
+                            rcv_video.setVisibility(View.GONE);
+                            noRecords.setVisibility(View.VISIBLE);
+                            lyt_firstTab.setVisibility(View.GONE);
+                        } else if (count == 2 && position == 0&& listResultVideo.size() == 0) {
+                            lyt_firstTab.setVisibility(View.GONE);
+                            noVedios.setVisibility(View.VISIBLE);
+                            rcv_pdf.setVisibility(View.GONE);
+                        } else if (count == 2 && position == 1&& listResultPDF.size() == 0) {
+                            lyt_firstTab.setVisibility(View.GONE);
+                            rcv_video.setVisibility(View.GONE);
+                            noRecords.setVisibility(View.VISIBLE);
+                        }
+
+
+//
+
+//                        if (count == 3 && position == 1 && listResultVideo.size() == 0) {
+//                            noVedios.setVisibility(View.VISIBLE);
+//                            rcv_video.setVisibility(View.GONE);
+//                            rcv_pdf.setVisibility(View.GONE);
+//                            noRecords.setVisibility(View.GONE);
+//                            lyt_firstTab.setVisibility(View.GONE);
 //
 //                        } else {
+//                            noVedios.setVisibility(View.GONE);
+//                            rcv_video.setVisibility(View.VISIBLE);
+//                            rcv_pdf.setVisibility(View.GONE);
 //                            noRecords.setVisibility(View.GONE);
-//
+//                            noVedios.setVisibility(View.GONE);
+//                            rcv_pdf.setVisibility(View.GONE);
+//                            lyt_firstTab.setVisibility(View.GONE);
 //                        }
 
 //
@@ -432,7 +471,9 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-
+if(listResultVideo.size()==0){
+    txt_no.setText("Nodataa....");
+}
         }
 
         @Override

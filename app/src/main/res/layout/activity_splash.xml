@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_name"
         android:gravity="center"
-        android:text="sowing for better future"
+        android:text="Sowing for a Better Future"
         android:textColor="@color/colorOrange"
         android:textSize="18dp"
         android:textStyle="bold" />

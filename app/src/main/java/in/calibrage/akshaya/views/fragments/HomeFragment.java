@@ -10,24 +10,34 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.localData.SharedPrefsData;
+import in.calibrage.akshaya.models.BannerresponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
+import in.calibrage.akshaya.models.LabourRecommendationsModel;
+import in.calibrage.akshaya.service.APIConstantURL;
+import in.calibrage.akshaya.service.ApiService;
+import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.KnowledgeZoneBaseAdapter;
+import in.calibrage.akshaya.views.Adapter.LabourRecommendationAdapter;
 import in.calibrage.akshaya.views.Adapter.SlideAdapter;
 import in.calibrage.akshaya.views.actvity.CollectionsActivity;
 import in.calibrage.akshaya.views.actvity.FertilizerActivity;
@@ -38,7 +48,11 @@ import in.calibrage.akshaya.views.actvity.PoleActivity;
 import in.calibrage.akshaya.views.actvity.QuickPayActivity;
 import in.calibrage.akshaya.views.actvity.RecommendationActivity;
 import in.calibrage.akshaya.views.actvity.RequestVisitActivity;
+import retrofit2.adapter.rxjava.HttpException;
+import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,8 +69,8 @@ public class HomeFragment extends BaseFragment {
     private KnowledgeZoneBaseAdapter knowledgeZoneBaseAdapter;
     private FarmerOtpResponceModel catagoriesList;
     private TextView txt_banner;
-
-
+    SliderView sliderView;
+    private SpotsDialog mdilogue ;
     HashMap<String, String> HashMapForURL;
 
     public HomeFragment() {
@@ -152,14 +166,14 @@ public class HomeFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
-        //getSpinnerPermission();
+        GetBannerByStateCode();
         //Picasso.with(getContext()).load(catagoriesList.getResult().getBannerDetails().get(0).getImageURL()).into(img_banner);
        // txt_banner.setText(catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription());
-        SliderView sliderView=  v.findViewById(R.id.imageSlider);
-        final SlideAdapter adapter = new SlideAdapter(getContext());
-        adapter.setCount(3);
-
-        sliderView.setSliderAdapter(adapter);
+         sliderView=  v.findViewById(R.id.imageSliderr);
+//        final SlideAdapter adapter = new SlideAdapter(getContext());
+//        adapter.setCount(3);
+//
+//        sliderView.setSliderAdapter(adapter);
         sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION);
         sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
@@ -169,9 +183,84 @@ public class HomeFragment extends BaseFragment {
         return v;
     }
 
+    private void GetBannerByStateCode() {
+
+        mdilogue.show();
+        ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
+        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode )
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<BannerresponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onNext(BannerresponseModel bannerresponseModel) {
+
+                        if(bannerresponseModel.getListResult() != null) {
+                            final SlideAdapter adapter = new SlideAdapter(getContext(),bannerresponseModel.getListResult());
+                            adapter.setCount(bannerresponseModel.getAffectedRecords());
+
+                            sliderView.setSliderAdapter(adapter);
+                            sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+                            sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION);
+                            sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+                            sliderView.setIndicatorSelectedColor(Color.WHITE);
+                            sliderView.setIndicatorUnselectedColor(Color.GRAY);
+                            sliderView.startAutoCycle();
+                            txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() +"                          "+bannerresponseModel.getListResult().get(0).getDescription()+"                          " );
+                        }
+                    }
+
+//                    @Override
+//                    public void onNext(LabourRecommendationsModel labourRecommendationsModel) {
+//                        mdilogue.dismiss();
+//                        Log.d(TAG, "onNext:lobour " + labourRecommendationsModel);
+//
+//                        if(labourRecommendationsModel.getListResult() != null)
+//                        {
+//                            noRecords.setVisibility(View.GONE);
+//                            adapter = new LabourRecommendationAdapter(labourRecommendationsModel.getListResult(),LabourRecommendationsActivity.this);
+//                            recyclerView.setAdapter(adapter);
+//
+//
+//                        }
+//                        else{
+//                            noRecords.setVisibility(View.VISIBLE);
+//
+//                        }
+//                    }
+
+
+                });
+
+
+    }
+
     private void init() {
         mContext = getContext();
-
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(mContext)
+                .setTheme(R.style.Custom)
+                .build();
 
     }
 

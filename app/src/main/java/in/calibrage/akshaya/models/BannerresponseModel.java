@@ -4,11 +4,11 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetAmount {
+public class BannerresponseModel {
 
-    @SerializedName("result")
+    @SerializedName("listResult")
     @Expose
-    private Result result;
+    private List<ListResult> listResult = null;
     @SerializedName("isSuccess")
     @Expose
     private Boolean isSuccess;
@@ -25,12 +25,12 @@ public class GetAmount {
     @Expose
     private Object exception;
 
-    public Result getResult() {
-        return result;
+    public List<ListResult> getListResult() {
+        return listResult;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setListResult(List<ListResult> listResult) {
+        this.listResult = listResult;
     }
 
     public Boolean getIsSuccess() {
@@ -74,51 +74,51 @@ public class GetAmount {
     }
 
 
-    public class Result {
+    public class ListResult {
 
-        @SerializedName("harvestCost")
+        @SerializedName("id")
         @Expose
-        private Double harvestCost;
-        @SerializedName("prunningCost")
+        private Integer id;
+        @SerializedName("imageName")
         @Expose
-        private Double prunningCost;
-        @SerializedName("unKnown1Cost")
+        private String imageName;
+        @SerializedName("description")
         @Expose
-        private Double unKnown1Cost;
-        @SerializedName("unKnown2Cost")
+        private String description;
+        @SerializedName("stateCode")
         @Expose
-        private Double unKnown2Cost;
+        private String stateCode;
 
-        public Double getHarvestCost() {
-            return harvestCost;
+        public Integer getId() {
+            return id;
         }
 
-        public void setHarvestCost(Double harvestCost) {
-            this.harvestCost = harvestCost;
+        public void setId(Integer id) {
+            this.id = id;
         }
 
-        public Double getPrunningCost() {
-            return prunningCost;
+        public String getImageName() {
+            return imageName;
         }
 
-        public void setPrunningCost(Double prunningCost) {
-            this.prunningCost = prunningCost;
+        public void setImageName(String imageName) {
+            this.imageName = imageName;
         }
 
-        public Double getUnKnown1Cost() {
-            return unKnown1Cost;
+        public String getDescription() {
+            return description;
         }
 
-        public void setUnKnown1Cost(Double unKnown1Cost) {
-            this.unKnown1Cost = unKnown1Cost;
+        public void setDescription(String description) {
+            this.description = description;
         }
 
-        public Double getUnKnown2Cost() {
-            return unKnown2Cost;
+        public String getStateCode() {
+            return stateCode;
         }
 
-        public void setUnKnown2Cost(Double unKnown2Cost) {
-            this.unKnown2Cost = unKnown2Cost;
+        public void setStateCode(String stateCode) {
+            this.stateCode = stateCode;
         }
 
     }

@@ -49,7 +49,10 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.DiseaseDataModel;
+import in.calibrage.akshaya.models.InterCrop;
+import in.calibrage.akshaya.models.Irrigation_Model;
 import in.calibrage.akshaya.models.Nutrient_Model;
+import in.calibrage.akshaya.models.fertilizer;
 import in.calibrage.akshaya.models.fertilizerRecommendation;
 import in.calibrage.akshaya.models.healthPlantation;
 import in.calibrage.akshaya.models.pest;
@@ -58,8 +61,11 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.DiseaseDataAdapter;
+import in.calibrage.akshaya.views.Adapter.InterCrop_Adapter;
+import in.calibrage.akshaya.views.Adapter.IrrigationAdapter;
 import in.calibrage.akshaya.views.Adapter.NutrientDataAdapter;
 import in.calibrage.akshaya.views.Adapter.fertilizerRecommendation_Adapter;
+import in.calibrage.akshaya.views.Adapter.fertilizer_Adapter;
 import in.calibrage.akshaya.views.Adapter.healthPlantation_Adapter;
 import in.calibrage.akshaya.views.Adapter.pest_Adapter;
 import in.calibrage.akshaya.views.Adapter.uprootment_Adapter;
@@ -75,12 +81,14 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     private Subscription mSubscription;
     private static final String TAG = CropMaintanceVisitActivity.class.getSimpleName();
     String Farmer_code,plot_id,datevaluereq,timevaluereq;
-    RecyclerView recycler_view_health_plant,recycler_view_uprootment ,
+    RecyclerView recycler_view_InterCrop,recycler_view_irrigation ,
             recycler_view_fert_rec_Details,recycler_view_pest,recycler_view_desease,
-            recyclerView_nut;
+            recyclerView_nut,recycler_view_fertilizer;
     ImageView thumbnail;
     private healthPlantation_Adapter hAdapter;
     private uprootment_Adapter UAdapter;
+
+    private fertilizer_Adapter fAdapter;
     private TextView Age, id_plot, area,landMark;
     //
    private fertilizerRecommendation_Adapter fertadapter;
@@ -89,8 +97,10 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     //
     private DiseaseDataAdapter disease_adapter;
     //
-//
+    private InterCrop_Adapter interadapter;
     private NutrientDataAdapter nut_adapter;
+
+    private IrrigationAdapter irrigation_adapter;
 
     private List<healthPlantation> Plantation_List = new ArrayList<>();
     private List<uprootmentData> uprootment_List = new ArrayList<>();
@@ -102,13 +112,15 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     private List<DiseaseDataModel> disease_List = new ArrayList<>();
     //
     private List<Nutrient_Model>nut_List = new ArrayList<>();
-
+    private List<Irrigation_Model>Irr_List = new ArrayList<>();
+    private List<InterCrop> intercrop_List = new ArrayList<>();
+    private List<fertilizer> fertilizer_List = new ArrayList<>();
 
     private SpotsDialog mdilogue ;
     String datetimevalute;
-    TextView health_text,uprootment_text,fert_rec_text,pest_text,diase_text,nut_text;
+    TextView irrigation_text,uprootment_text,fert_rec_text,pest_text,diase_text,nut_text;
     public TextView treesAppearance,treeGirth,treeHeight,fruitColor,fruitSize,fruitHyegiene,plantationType;
-    public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
+    public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments,InterCrop_text,Fert_text;
     // ImageView thumbnail;
     public TextView comment_label,reason_label;
     String plot_Age,location,landmarkCode;
@@ -155,7 +167,11 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
         recycler_view_fert_rec_Details =(RecyclerView)findViewById(R.id.recyclerView_fert_rec);
         fert_rec_text =(TextView) findViewById(R.id.fert_rec_text);
+        recycler_view_fertilizer =(RecyclerView)findViewById(R.id.recycler_fertilizer);
+        Fert_text =(TextView) findViewById(R.id.fertlizer);
 
+        recycler_view_irrigation =(RecyclerView)findViewById(R.id.recyclerView_irrigation);
+        irrigation_text=(TextView) findViewById(R.id.irr_rec_text);
         treesAppearance = findViewById(R.id.treesAppearance);
         treeGirth = findViewById(R.id.treeGirth);
         treeHeight = findViewById(R.id.treeHeight);
@@ -172,7 +188,8 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         plamsCount = findViewById(R.id.plamsCount);
         isTreesMissing = findViewById(R.id.isTreesMissing);
         missingTreesCount= findViewById(R.id.missingTreesCount);
-
+        recycler_view_InterCrop =(RecyclerView)findViewById(R.id.recyclerView_InterCrop);
+        InterCrop_text =(TextView) findViewById(R.id.InterCrop_text);
         reasonType = findViewById(R.id.reasonType);
         expectedPlamsCount= findViewById(R.id.expectedPlamsCount);
         comments =findViewById(R.id.comments);
@@ -213,6 +230,20 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         RecyclerView.LayoutManager mLayoutManager_fert_rec = new LinearLayoutManager(getApplicationContext());
         recycler_view_fert_rec_Details.setLayoutManager(mLayoutManager_fert_rec);
         recycler_view_fert_rec_Details.setItemAnimator(new DefaultItemAnimator());
+
+        RecyclerView.LayoutManager mLayoutManager_irrigation = new LinearLayoutManager(getApplicationContext());
+        recycler_view_irrigation.setLayoutManager(mLayoutManager_irrigation);
+        recycler_view_irrigation.setItemAnimator(new DefaultItemAnimator());
+
+
+        RecyclerView.LayoutManager mLayoutManager_inter = new LinearLayoutManager(getApplicationContext());
+        recycler_view_InterCrop.setLayoutManager(mLayoutManager_inter);
+        recycler_view_InterCrop.setItemAnimator(new DefaultItemAnimator());
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recycler_view_fertilizer.setLayoutManager(mLayoutManager);
+        recycler_view_fertilizer.setItemAnimator(new DefaultItemAnimator());
+
         Age.setText(plot_Age );
         area.setText(location);
         id_plot.setText(plot_id);
@@ -235,7 +266,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private void GetCropMaintenanceHistoryDetailsByCode() {
         mdilogue.show();
-        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id;
+        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APAB0001000004";
         Log.e("url====",url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -501,6 +532,142 @@ public class CropMaintanceVisitActivity extends BaseActivity {
                     //Adding adapter to recyclerview
                     recycler_view_fert_rec_Details.setAdapter(fertadapter);
 
+
+                    JSONArray Irrigation_Data = jsonObject.getJSONArray("plotIrrigation");
+
+                    if(Irrigation_Data.length()==0){
+                        recycler_view_irrigation.setVisibility(View.GONE);
+                        irrigation_text.setVisibility(View.GONE);
+
+                    }
+                    else {
+                        recycler_view_irrigation.setVisibility(View.VISIBLE);
+                        irrigation_text.setVisibility(View.VISIBLE);
+
+                    }
+
+                    for (int i = 0; i < Irrigation_Data.length(); i++) {
+
+
+                        Irrigation_Model Irrigation_List = new Irrigation_Model();
+                        JSONObject json = null;
+
+                        try {
+                            json = Irrigation_Data.getJSONObject(i);
+
+
+                            //Irrigation_List.setPlotCode(json.getString("plotCode"));
+
+                            Irrigation_List.setName(json.getString("name"));
+
+                            Irrigation_List.setUpdatedBy(json.getString("updatedBy"));
+
+                            Irrigation_List.setUpdatedbyDate(json.getString("updatedbyDate"));
+
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Irr_List.add(Irrigation_List);
+
+
+                    }
+                    irrigation_adapter = new IrrigationAdapter( CropMaintanceVisitActivity.this,Irr_List);
+                    recycler_view_irrigation.setAdapter(irrigation_adapter);
+
+                    JSONArray interCropPlantationXref_Data = jsonObject.getJSONArray("interCropPlantationXrefData");
+
+                    if(interCropPlantationXref_Data.length()==0){
+                        recycler_view_InterCrop.setVisibility(View.GONE);
+                        InterCrop_text.setVisibility(View.GONE);
+
+                    }
+                    else {
+                        recycler_view_InterCrop.setVisibility(View.VISIBLE);
+                        InterCrop_text.setVisibility(View.VISIBLE);
+
+                    }
+                    for (int i = 0; i < interCropPlantationXref_Data.length(); i++) {
+
+                        InterCrop Icrop_List = new InterCrop();
+                        JSONObject json = null;
+
+                        try {
+                            json = interCropPlantationXref_Data.getJSONObject(i);
+                            Icrop_List.setCrop(json.getString("crop"));
+                            Log.e("ourput===5",json.toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }  intercrop_List.add(Icrop_List);
+
+
+                    }
+                    interadapter = new InterCrop_Adapter( CropMaintanceVisitActivity.this,intercrop_List);
+
+                    //Adding adapter to recyclerview
+                    recycler_view_InterCrop.setAdapter(interadapter);
+                    JSONArray fertilizer_Data = jsonObject.getJSONArray("fertilizerData");
+
+
+                    if(fertilizer_Data.length()==0){
+                        recycler_view_fertilizer.setVisibility(View.GONE);
+                        Fert_text.setVisibility(View.GONE);
+
+                    }
+                    else {
+                        recycler_view_fertilizer.setVisibility(View.VISIBLE);
+                        Fert_text.setVisibility(View.VISIBLE);
+
+                    }
+                    Log.e("alsoKnownAsArray==76", String.valueOf(fertilizer_Data));
+                    for (int i = 0; i < fertilizer_Data.length(); i++) {
+
+                        fertilizer fert_List = new fertilizer();
+                        JSONObject json = null;
+
+                        try {
+                            json = fertilizer_Data.getJSONObject(i);
+
+                            // fert_List.setPloteCode(json.getString("plotCode"));
+                            fert_List.setfertilizer_sourse(json.getString("fertilizerSourceType"));
+                            fert_List.setfertilizer_name(json.getString("fertilizer"));
+                            fert_List.setDosage(json.getString("dosage")+" "+"kgs");
+
+                            fert_List.setfrequency(json.getString("applyFertilizerFrequencyType"));
+
+                            String date=json.getString("updatedDate");
+                            //  String amount_total=json.getString("totalCost");
+                            String  datee = date.substring(0, 10);
+                            Log.e("datee===",datee);
+                            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+                            SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+                            try {
+                                Date oneWayTripDate = input.parse(datee);
+
+                                datetimevalute=output.format(oneWayTripDate);
+                                //datetimevalute.setText(output.format(oneWayTripDate));
+
+                                Log.e("===============","======currentData======"+output.format(oneWayTripDate));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            fert_List.setdate(datetimevalute);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        fertilizer_List.add(fert_List);
+
+
+                    }
+                    fAdapter = new fertilizer_Adapter( CropMaintanceVisitActivity.this,fertilizer_List);
+
+                    //Adding adapter to recyclerview
+                    recycler_view_fertilizer.setAdapter(fAdapter);
 
 
                 } catch (JSONException e) {

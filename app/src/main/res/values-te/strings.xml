@@ -271,6 +271,8 @@
     <string name="invoice_rate">MT కి ఇన్వాయిస్ రేటు</string>
     <string name="memo">మెమో</string>
     <string name="amount">మొత్తం (రూ.)</string>
+    <string name="harv_amount">Harvesting Amount / Ton</string>
+    <string name="pru_amount">Pruning Amount / Tree</string>
     <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
     <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
     <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
@@ -313,7 +315,7 @@
 
     <string name="spalingPlanted">మొక్క నాటడం లేదు</string>
     <string name="prevPalmsCount">మునుపటి సందర్శనలో చెట్ల సంఖ్య</string>
-    <string name="plamsCount">ప్రస్తుతం ఉన్న చెట్ల సంఖ్య</string>
+    <string name="plamsCount"> చెట్ల సంఖ్య</string>
     <string name="isTreesMissing">తప్పిపోయిన చెట్లు</string>
     <string name="missingTreesCount">తప్పిపోయిన చెట్ల సంఖ్య</string>
     <string name="reasonType">చెట్లు తప్పిపోవడానికి కారణం</string>
@@ -385,5 +387,9 @@
     <string name="str_select_plot">ప్లాట్ ఎంచుకోండి</string>
     <string name="select_godown">Select Godown</string>
     <string name="payment_mode">Payment Mode</string>
+    <string name="irrigation">Irrigation Details</string>
+    <string name="irrigation_name">Irrigation Name</string>
+    <string name="updated_by">UpdatedBy</string>
+    <string name="updated_date">Updated Date</string>
 </resources>
 

@@ -186,6 +186,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative1"
         android:layout_margin="@dimen/margin_5"
+
         android:background="@drawable/collect_bg"
         android:orientation="vertical"
         android:paddingTop="@dimen/margin_5">
@@ -229,26 +230,75 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/amount_label"
+            android:id="@+id/harv_amount_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_one"
             android:layout_margin="6dp"
+            android:visibility="gone"
             android:orientation="horizontal"
-            android:visibility="gone">
+           >
 
 
             <TextView
-                android:id="@+id/amount_Label"
+                android:id="@+id/harv_amount_Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
 
-                android:text="@string/amount"
+                android:text="@string/harv_amount"
                 android:textColor="@color/white"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
+
+            <TextView
+                android:id="@+id/doth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:id="@+id/harv_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="1sp"
+                android:layout_toRightOf="@+id/doth"
+                android:hint=""
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/pruning_amount_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_one"
+            android:layout_margin="6dp"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:id="@+id/pruning_amount_Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1sp"
+
+                android:text="@string/pru_amount"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/dot2"
@@ -263,7 +313,7 @@
 
             <TextView
 
-                android:id="@+id/amount"
+                android:id="@+id/pruning_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
@@ -275,7 +325,102 @@
                 android:textSize="14dp" />
 
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/un_amount_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_one"
+            android:layout_margin="6dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
 
+
+            <TextView
+                android:id="@+id/un_amount_Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1sp"
+
+                android:text="@string/unkonown"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/dotu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:id="@+id/un_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="1sp"
+                android:layout_toRightOf="@+id/dotu"
+                android:hint=""
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/un2_amount_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_one"
+            android:layout_margin="6dp"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:id="@+id/un2_amount_Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1sp"
+
+                android:text="@string/unkonown2"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/dotu2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:id="@+id/un2_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="1sp"
+                android:layout_toRightOf="@+id/dotu2"
+                android:hint=""
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
