@@ -130,17 +130,17 @@ ImageView home_btn;
 
     private void setviews() {
 
-        home_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
-                Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        home_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+//                startActivity(intent);*/
+//                Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             selected_ids_lists = (ArrayList<Integer>) getIntent().getSerializableExtra("Ids");
@@ -200,17 +200,17 @@ ImageView home_btn;
                 onSubmit();
             }
         });
-        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                // React to state change
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                // React to dragging events
-            }
-        });
+//        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+//            @Override
+//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+//                // React to state change
+//            }
+//
+//            @Override
+//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+//                // React to dragging events
+//            }
+//        });
     }
 
     private void settoolbar() {

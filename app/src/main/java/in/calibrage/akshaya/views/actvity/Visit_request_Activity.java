@@ -20,14 +20,18 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -107,6 +111,9 @@ public class Visit_request_Activity extends BaseActivity {
 
     EditText comments;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,11 +164,11 @@ public class Visit_request_Activity extends BaseActivity {
         buttonStart = (Button) findViewById(R.id.button);
         buttonStop = (Button) findViewById(R.id.button2);
         buttonPlayLastRecordAudio = (Button) findViewById(R.id.button3);
-     //   buttonStopPlayingRecording = (Button) findViewById(R.id.button4);
+        //   buttonStopPlayingRecording = (Button) findViewById(R.id.button4);
         submit = (Button) findViewById(R.id.req_loan);
         buttonStop.setEnabled(false);
         buttonPlayLastRecordAudio.setEnabled(false);
-       // buttonStopPlayingRecording.setEnabled(false);
+        // buttonStopPlayingRecording.setEnabled(false);
 
         random = new Random();
 
@@ -306,7 +313,7 @@ public class Visit_request_Activity extends BaseActivity {
                 buttonStop.setEnabled(false);
                 buttonPlayLastRecordAudio.setEnabled(true);
                 buttonStart.setEnabled(true);
-               // buttonStopPlayingRecording.setEnabled(false);
+                // buttonStopPlayingRecording.setEnabled(false);
 
                 Toast.makeText(Visit_request_Activity.this, "Recording Completed", Toast.LENGTH_LONG).show();
 
@@ -319,7 +326,7 @@ public class Visit_request_Activity extends BaseActivity {
 
                 buttonStop.setEnabled(false);
                 buttonStart.setEnabled(false);
-               // buttonStopPlayingRecording.setEnabled(true);
+                // buttonStopPlayingRecording.setEnabled(true);
 
                 mediaPlayer = new MediaPlayer();
 
@@ -365,11 +372,12 @@ public class Visit_request_Activity extends BaseActivity {
                     if (isOnline())
                         AddVisitRequest();
                     else {
-                        showDialog(Visit_request_Activity. this, getResources().getString(R.string.Internet));
+                        showDialog(Visit_request_Activity.this, getResources().getString(R.string.Internet));
                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
 
-                }}
+                }
+            }
         });
     }
 
@@ -379,9 +387,9 @@ public class Visit_request_Activity extends BaseActivity {
             showDialog(Visit_request_Activity.this, getResources().getString(R.string.valid_issue_type));
             return false;
         }
-        if (images.size()== 0 && AudioSavePathInDevice.length()==0 ){
+        if (images.size() == 0 && AudioSavePathInDevice.length() == 0) {
 
-            Log.d(TAG, "---- analysis ---->> base64 :"+images.size()+AudioSavePathInDevice);
+            Log.d(TAG, "---- analysis ---->> base64 :" + images.size() + AudioSavePathInDevice);
             showDialog(Visit_request_Activity.this, getResources().getString(R.string.select_image));
             return false;
         }
@@ -443,13 +451,15 @@ public class Visit_request_Activity extends BaseActivity {
                                     // displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.issue_type), selected_issue));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.comments), comments.getText().toString()));
+                                    //
+                                    //  displayList.add(new MSGmodel(getResources().getString(R.string.comments), comments.getText().toString()));
                                     //displayList.add(new MSGmodel(getResources().getString(R.string.image), date));
 
 
 //
                                     // Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showSuccessDialog(displayList);
+                                    showvisitSuccessDialog(displayList);
                                 }
                             }, 300);
                         } else {
@@ -461,6 +471,133 @@ public class Visit_request_Activity extends BaseActivity {
 
                 });
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    protected void showvisitSuccessDialog(List<MSGmodel> displayList) {
+
+Button play;
+        ImageView iv1, iv2, iv3;
+        LinearLayout voice_layout;
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.visit_dialog, viewGroup, false);
+
+
+        iv1 = dialogView.findViewById(R.id.iv);
+        iv2 = dialogView.findViewById(R.id.iv2);
+        iv3 = dialogView.findViewById(R.id.iv3);
+        voice_layout=dialogView.findViewById(R.id.voice_layout);
+        play=dialogView.findViewById(R.id.play);
+        iv1.setVisibility(View.GONE);
+        iv2.setVisibility(View.GONE);
+        iv3.setVisibility(View.GONE);
+        voice_layout.setVisibility(View.GONE);
+
+        File file =new File(AudioSavePathInDevice);
+if(file.exists())
+{
+    voice_layout.setVisibility(View.VISIBLE);
+}
+
+        for(int i=0; i<images.size();i++)
+        {
+            if(i== 0 )
+            {
+                iv1.setVisibility(View.VISIBLE);
+                iv1.setImageBitmap(images.get(i));
+            }
+            if(i== 1){
+                iv2.setVisibility(View.VISIBLE);
+                iv2.setImageBitmap(images.get(i));
+            }
+
+            if(i==2)
+            {
+                iv3.setVisibility(View.VISIBLE);
+                iv3.setImageBitmap(images.get(i));
+            }
+        }
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
+
+                mediaPlayer = new MediaPlayer();
+
+                try {
+                    mediaPlayer.setDataSource(AudioSavePathInDevice);
+                    mediaPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mediaPlayer.start();
+
+                Toast.makeText(Visit_request_Activity.this, "Recording Playing", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        //TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
+        LinearLayout layout = dialogView.findViewById(R.id.linear_text);
+        final ImageView img = dialogView.findViewById(R.id.img);
+
+
+        for (int i = 0; i < displayList.size(); i++) {
+
+            LinearLayout lty = new LinearLayout(this);
+            lty.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT));
+            lty.setWeightSum(1);
+            lty.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView txtTitle = new TextView(this);
+            txtTitle.setText(displayList.get(i).getKey());
+            txtTitle.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            txtTitle.setLayoutParams(new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
+            txtTitle.setTextColor(getColor(R.color.red));
+            lty.addView(txtTitle);
+
+            TextView txtitem = new TextView(this);
+            txtitem.setText(displayList.get(i).getValue());
+            txtitem.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            txtitem.setLayoutParams(new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
+
+
+            lty.addView(txtitem);
+            //  lty.setGravity(View.FOCUS_LEFT);
+
+            layout.addView(lty);
+            displayImages();
+        }
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button dialogButton = (Button) alertDialog.findViewById(R.id.buttonOk);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                finish();
+            }
+        });
+      /*  new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        }, 500);*/
+//        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
+//        ((Animatable) mImgCheck.getDrawable()).start();
+    }
+
 
     private JsonObject visitReuestobject() {
 
@@ -520,7 +657,7 @@ public class Visit_request_Activity extends BaseActivity {
 
         VisitRequestModel requestModel = new VisitRequestModel(header, visitRepo);
 
-        Log.d(TAG, "---- analysis ---->> base64 514:"+images.size()+AudioSavePathInDevice);
+        Log.d(TAG, "---- analysis ---->> base64 514:" + images.size() + AudioSavePathInDevice);
 //
 //        String val = arrayTOstring(ids_list);
 //        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);

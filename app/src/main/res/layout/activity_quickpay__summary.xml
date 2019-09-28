@@ -132,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="10dp"
+
                         android:drawableRight="@drawable/star"
                         android:drawablePadding="5dp"
                         android:paddingTop="5dp"
@@ -143,16 +143,16 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:layout_marginEnd="@dimen/margin_15"
+                        android:textAlignment="textEnd"
                         android:id="@+id/clear"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="1dp"
 
-                        android:background="@drawable/button_bg2"
+
+
                         android:text="@string/clear"
-                        android:textColor="@color/colorOrange" />
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
 
@@ -207,8 +207,8 @@
                 android:id="@+id/linearLayou"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/scoll_view"
-                android:layout_marginTop="5dp"
+                android:layout_below="@+id/terms_cond"
+
 
                 android:orientation="horizontal">
 
@@ -561,19 +561,14 @@
 
             </RelativeLayout>
 
-            <ScrollView
-                android:id="@+id/scoll_view"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_below="@+id/lin_five">
-
                 <LinearLayout
                     android:id="@+id/terms_cond"
                     android:layout_width="match_parent"
-
+android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
                     android:layout_height="150dp"
                     android:layout_below="@+id/lin_five"
-                    android:layout_margin="@dimen/margin_10"
+
                     android:background="@drawable/terms_bg"
                     android:orientation="vertical">
                     <TextView
@@ -590,13 +585,13 @@
                         android:editable="false"
                         android:id="@+id/measurement"
                         android:layout_width="wrap_content"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="left"
                         android:layout_marginStart="@dimen/margin_5"
                         android:layout_marginLeft="6dp"
                         android:layout_marginTop="1dp"
-                        android:isScrollContainer="true"
+
                         android:paddingLeft="@dimen/margin_10"
                         android:text="@string/loan_message"
                         android:textSize="14dp" />
@@ -606,7 +601,7 @@
                 </LinearLayout>
 
 
-            </ScrollView>
+
 
             <TextView
                 android:id="@+id/tvtext_item"

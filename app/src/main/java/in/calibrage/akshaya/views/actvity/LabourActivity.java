@@ -477,13 +477,14 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                 @Override
                                 public void run() {
                                     String selected_name = arrayyTOstring(selected_labour);
+                                    finalAmount = getAmount();
                                     String Amount = harv_amount.getText().toString();
                                     String date = edittext.getText().toString();
                                     List<MSGmodel> displayList = new ArrayList<>();
 
                                     displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), Amount));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), finalAmount));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
 
 

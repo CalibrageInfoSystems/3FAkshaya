@@ -1,9 +1,223 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.actvity.PoleActivity">
+    android:background="#E9E7E7"
+    tools:context="in.calibrage.akshaya.views.actvity.FertilizerActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange_head"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/back"
+            android:text="@string/select_product"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_20" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_cart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/linear1"
+        android:layout_alignParentRight="true"
+        android:background="@color/light_gray2"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
+
+            <ImageButton
+                android:id="@+id/cartButtonIV"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@null"
+                android:clickable="false"
+                android:padding="@dimen/margin_10"
+                android:scaleType="fitCenter"
+                android:src="@drawable/cart" />
+
+            <TextView
+                android:id="@+id/tvtext_item_four"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/Rs"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/dot3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="#111"
+                android:textSize="@dimen/album_title"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/meal_total"
+                style="@style/Common_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_5"
+                android:gravity="center"
+                android:hint="0"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
+            <Button
+                android:gravity="center"
+                android:layout_marginRight="@dimen/margin_10"
+                android:id="@+id/btn_next"
+                style="@style/Common_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="@string/next" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/devider"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/lyt_cart"
+        android:background="@drawable/devider_line"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyt_cart"
+        android:layout_margin="@dimen/margin_5"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fer_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scrollbarSize="3dp"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbarThumbVertical="@color/colorPrimary"
+
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_10"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/lin_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_two"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:background="#28201E1E"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/margin_5">
+
+
+            <!--   <TextView
+                   android:id="@+id/tvtext_item_four"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="50dp"
+                   android:layout_marginTop="5dp"
+
+                   android:text="@string/total_amt"
+                   android:textColor="#111"
+                   android:textSize="@dimen/album_title"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:id="@+id/dot3"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginTop="5dp"
+                   android:text=":"
+
+                   android:textColor="#111"
+                   android:textSize="@dimen/album_title"
+                   android:textStyle="bold" />-->
+
+            <!-- <TextView
+                 android:id="@+id/meal_total"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10sp"
+                 android:layout_marginTop="5sp"
+                 android:layout_toRightOf="@+id/dot3"
+                 android:hint="0"
+                 android:text=""
+                 android:textColor="@color/black"
+                 android:textSize="@dimen/album_title"
+                 android:textStyle="bold" />-->
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/confirm"
+            style="@style/Common_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_view"
+            android:text="@string/confirm"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+
