@@ -217,7 +217,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
                        // sw_paymentMode.setText(finalstring);
 
-                        String[] a = { finalstring };
+                        String a =  '"' + finalstring + '"';
 
                          sw_paymentMode.setText(a);
                         Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
