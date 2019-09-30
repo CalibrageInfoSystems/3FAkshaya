@@ -71,7 +71,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     String dis_price, Farmer_code;
     final Context context = this;
     Button button, btn_next;
-    TextView mealTotalText, txt_recomandations;
+    TextView mealTotalText, txt_recomandations, txt_count;
     private String TAG = "FertilizerActivity";
     private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
@@ -80,6 +80,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     private ImageButton cartButtonIV;
     Integer Id, quantity;
     int price_final;
+    int Count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +88,8 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
         setContentView(R.layout.activity_fertilizer);
         dialog = new ProgressDialog(this);
-
         txt_recomandations = findViewById(R.id.txt_recomandations);
+        txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         ImageView backImg = (ImageView) findViewById(R.id.back);
@@ -351,6 +352,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             }
 
 //
+
             return mealTotal;
         } catch (Exception e) {
             e.printStackTrace();
@@ -373,6 +375,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
             makeFlyAnimation(img);
             if (selectedId_List.size() > 0) {
+
                 if (selectedId_List.contains(product_list.get(position).getId())) {
                     selectedId_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getId());
                     selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
@@ -380,6 +383,8 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     amount_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getPrice()));
                     selectedgst_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getgst()));
                     selectedsize_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getSize()));
+                    Count= Count+1;
+                    txt_count.setText(Count+"");
 
                 } else {
                     selectedId_List.add(product_list.get(position).getId());
@@ -388,15 +393,21 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     amount_List.add(product_list.get(position).getPrice());
                     selectedgst_List.add(product_list.get(position).getgst());
                     selectedsize_List.add(product_list.get(position).getSize());
+                    Count= Count+1;
+                    txt_count.setText(Count+"");
 
                 }
             } else {
+
                 selectedId_List.add(product_list.get(position).getId());
                 selectedQty_List.add(product_list.get(position).getmQuantity());
                 selecteditem_List.add(product_list.get(position).getName());
                 amount_List.add(product_list.get(position).getPrice());
                 selectedgst_List.add(product_list.get(position).getgst());
                 selectedsize_List.add(product_list.get(position).getSize());
+
+                Count= Count+1;
+                txt_count.setText(Count+"");
             }
 
             Log.e(" add selectedId_List-==", selectedId_List.toString());
@@ -407,9 +418,16 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
         } else {
             if (selectedId_List.size() > 0) {
+
+
+
                 if (product_list.get(position).getmQuantity() >= 1) {
                     selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
-
+                    if(Count >0)
+                    {
+                        Count= Count-1;
+                        txt_count.setText(Count+"");
+                    }
                 } else {
 
                     int a = selectedId_List.indexOf(product_list.get(position).getId());
@@ -423,8 +441,15 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     Log.e(TAG, "test " + selectedQty_List.toString());
 
                     selectedQty_List.remove(a);
+
                     selectedId_List.remove(selectedId_List.indexOf(product_list.get(position).getId()));
-                    // selectedQty_List.remove(0);
+                    Log.d(TAG, "--------- analysis ---->>(< 0) Item Count"+selectedId_List.size() );
+                    if(Count >0)
+                    {
+                        Count= Count-1;
+                        txt_count.setText(Count+"");
+                    }
+
                 }
 
 
