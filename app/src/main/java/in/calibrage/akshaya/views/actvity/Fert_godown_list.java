@@ -511,8 +511,10 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     @Override
                     public void onNext(SubsidyResponse subsidyResponse) {
                         mdilogue.cancel();
+                        if (subsidyResponse.getIsSuccess()) {
+                            subsidy_amount.setText(subsidyResponse.getResult().getRemainingAmount().toString());
 
-
+                        }
                     }
 
                 });
