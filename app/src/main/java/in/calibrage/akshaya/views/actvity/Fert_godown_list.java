@@ -88,7 +88,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
     private EditText editText;
-    private TextView txt_select_godown, txt_Payment_mode,text_amount,Final_amount,gst_amount;
+    private TextView txt_select_godown, txt_Payment_mode,text_amount,Final_amount,gst_amount,subsidy_amount;
     private BottomSheetBehavior behavior;
 
     private Toolbar toolbar;
@@ -141,6 +141,7 @@ ImageView home_btn;
         txt_select_godown = findViewById(R.id.txt_select_godown);
         txt_Payment_mode = findViewById(R.id.txt_Payment_mode);
         lst_godown_list = findViewById(R.id.lst_godown_list);
+        subsidy_amount=findViewById(R.id.subcdamount);
         sw_paymentMode = findViewById(R.id.sw_paymentMode);
         linearLayoutManager = new LinearLayoutManager(ctx);
         lst_godown_list.setLayoutManager(linearLayoutManager);
@@ -157,10 +158,10 @@ ImageView home_btn;
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
-
+        getPaymentMods();
         getFertilizerSubsidies();
         getActiveGodowns();
-        getPaymentMods();
+
 
 
         sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
@@ -185,7 +186,7 @@ ImageView home_btn;
         //sw_paymentMode.setText("one", "two", "three", "four");
     }
 
-    private void getFertilizerSubsidies() {
+    private void getPaymentMods() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getpaymentModes(APIConstantURL.GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
@@ -257,7 +258,7 @@ ImageView home_btn;
             String part1 = parts[0];
             only_amount = parts[1];
             Log.e("final_amount===", "=1===  " + part1 + " ===rs ===" + only_amount);
-            text_amount.setText(":"+only_amount);
+            text_amount.setText(""+only_amount);
             Amount_ = Integer.parseInt(only_amount);
 
             try {
@@ -374,7 +375,7 @@ ImageView home_btn;
 //
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showSuccessDialog(displayList);
+                                    showSuccessDialog(displayList,getString(R.string.success_fertilizer));
                                 }
                             }, 300);
                         } else {
@@ -403,14 +404,14 @@ ImageView home_btn;
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
-        requestModel.setStatusTypeId(Statusid);
+        requestModel.setStatusTypeId(16);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setCreatedDate(formattedDate);
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(formattedDate);
         requestModel.setGodownId(GodownId);
-        requestModel.setPaymentModeType(Paymode);
+        requestModel.setPaymentModeType(25);
         requestModel.setFileName(null);
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
@@ -494,7 +495,7 @@ ImageView home_btn;
 
     }
 
-    private void getPaymentMods() {
+    private void getFertilizerSubsidies() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getsubsidy(APIConstantURL.Getfarmersubsidy + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
@@ -513,6 +514,8 @@ ImageView home_btn;
                     @Override
                     public void onNext(SubsidyResponse subsidyResponse) {
                         mdilogue.cancel();
+
+
                     }
 
                 });

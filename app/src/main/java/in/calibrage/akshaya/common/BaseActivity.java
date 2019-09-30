@@ -40,7 +40,9 @@ import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.MSGmodel;
+import in.calibrage.akshaya.views.actvity.HomeActivity;
 import in.calibrage.akshaya.views.actvity.PDFActivity;
+import in.calibrage.akshaya.views.actvity.Visit_request_Activity;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -254,13 +256,15 @@ public class BaseActivity extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    protected void showSuccessDialog(List<MSGmodel> msg) {
+    protected void showSuccessDialog(List<MSGmodel> msg,String summary) {
         ViewGroup viewGroup = findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
 
 
         //TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
         LinearLayout layout = dialogView.findViewById(R.id.linear_text);
+        TextView summary_text =dialogView.findViewById(R.id.summary_text);
+        summary_text.setText(summary);
         final ImageView img = dialogView.findViewById(R.id.img);
 
 
@@ -309,6 +313,9 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
             }
         });

@@ -31,6 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Summary"
+          android:id="@+id/summary_text"
+
             android:textColor="@color/colorOrange"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />

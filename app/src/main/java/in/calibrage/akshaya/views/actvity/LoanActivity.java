@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,7 +62,7 @@ import rx.schedulers.Schedulers;
 
 public class LoanActivity extends BaseActivity {
     CheckBox checkbox;
-    private ProgressDialog dialog;
+
     public static String TAG = "LoanActivity";
     String currentDate;
     TextView ok, getTerms,head_text;
@@ -71,7 +72,7 @@ public class LoanActivity extends BaseActivity {
     Button loan_Btn;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
-
+     Dialog myDialog;
     EditText amount,reason;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,19 @@ public class LoanActivity extends BaseActivity {
              finish();
             }
         });
+            checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                      //  showCustomDialog();
+                        myDialog = new Dialog(LoanActivity.this);
+
+                        showCustomDialog();
+
+                    }
+
+                }
+            });
 
 
             loan_Btn.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +210,7 @@ public class LoanActivity extends BaseActivity {
                             displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
                             displayList.add(new MSGmodel(getResources().getString(R.string.reason_loan), Reason));
 
-                            showSuccessDialog(displayList);
+                            showSuccessDialog(displayList,getResources().getString(R.string.success_Loan));
 
 
                         } else {

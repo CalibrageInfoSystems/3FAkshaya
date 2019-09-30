@@ -462,7 +462,7 @@ public class Visit_request_Activity extends BaseActivity {
 //
                                     // Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showvisitSuccessDialog(displayList);
+                                    showvisitSuccessDialog(displayList,getResources().getString(R.string.visit_success));
                                 }
                             }, 300);
                         } else {
@@ -476,14 +476,15 @@ public class Visit_request_Activity extends BaseActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    protected void showvisitSuccessDialog(List<MSGmodel> displayList) {
+    protected void showvisitSuccessDialog(List<MSGmodel> displayList,String summary) {
 
-Button play;
+final Button play;
         ImageView iv1, iv2, iv3;
         LinearLayout voice_layout;
         ViewGroup viewGroup = findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.visit_dialog, viewGroup, false);
-
+        TextView summary_text =dialogView.findViewById(R.id.summary_text);
+        summary_text.setText(summary);
 
         iv1 = dialogView.findViewById(R.id.iv);
         iv2 = dialogView.findViewById(R.id.iv2);
@@ -525,7 +526,7 @@ if(file.exists())
             public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
 
                 mediaPlayer = new MediaPlayer();
-
+                play.setBackgroundResource(R.drawable.pause);
                 try {
                     mediaPlayer.setDataSource(AudioSavePathInDevice);
                     mediaPlayer.prepare();
@@ -588,6 +589,9 @@ if(file.exists())
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+                Intent intent = new Intent(Visit_request_Activity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
             }
         });

@@ -184,7 +184,7 @@
             <ImageView
                 android:id="@+id/iv3"
                 android:layout_width="80dp"
-                android:layout_height="110dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_10"
                 android:layout_marginTop="10dp"
@@ -261,7 +261,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/stop"
                 android:layout_marginLeft="20dp"
-                style="@style/Common_Button"
+              android:background="@drawable/button_bg_disable"
                 android:layout_weight=".5"
                 android:id="@+id/button2"
 

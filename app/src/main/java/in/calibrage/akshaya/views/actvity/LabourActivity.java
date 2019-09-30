@@ -499,7 +499,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //
                                     Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showSuccessDialog(displayList);
+                                    showSuccessDialog(displayList,getResources().getString(R.string.success_labour));
                                 }
                             }, 300);
                         } else {

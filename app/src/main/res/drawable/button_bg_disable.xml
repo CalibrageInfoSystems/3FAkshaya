@@ -12,7 +12,7 @@
                 android:type="linear" />
             <stroke
                 android:width="2dp"
-                android:color="@color/black" />
+                android:color="@color/gray" />
             <padding
                 android:bottom="4dp"
                 android:left="4dp"
