@@ -61,12 +61,14 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     List<String> selecteditem_List = new ArrayList<>();
     List<Integer> selectedgst_List = new ArrayList<>();
     List<Integer> amount_List = new ArrayList<>();
+
+    List<String> selectedsize_List = new ArrayList<>();
     String amount;
     String dis_price, Farmer_code;
     final Context context = this;
     Button button, btn_next;
-    TextView mealTotalText, txt_recomandations;
-    private String TAG = "FertilizerActivity";
+    TextView mealTotalText, txt_recomandations, txt_count;
+    private String TAG = "PoleActivity";
     private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
@@ -74,13 +76,15 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     private ImageButton cartButtonIV;
     Integer Id, quantity;
     int price_final;
+    int Count=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pole);
         dialog = new ProgressDialog(this);
-
-        txt_recomandations = findViewById(R.id.txt_recomandations);
+        txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         ImageView backImg = (ImageView) findViewById(R.id.back);
@@ -122,7 +126,9 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                             i.putExtra("item_names", (Serializable) selecteditem_List);
                             i.putExtra("item_amount", (Serializable) amount_List);
                             i.putExtra("gst_per", (Serializable) selectedgst_List);
+                            i.putExtra("procuct_size", (Serializable) selectedsize_List);
                             i.putExtra("amount", amount);
+
                             startActivity(i);
 
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
@@ -145,6 +151,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                     i.putExtra("item_names", (Serializable) selecteditem_List);
                     i.putExtra("item_amount", (Serializable) amount_List);
                     i.putExtra("gst_per", (Serializable) selectedgst_List);
+                    i.putExtra("procuct_size", (Serializable) selectedsize_List);
                     i.putExtra("amount", amount);
                     startActivity(i);
 
@@ -153,7 +160,12 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 }
             }
         });
-
+//        txt_recomandations.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(FertilizerActivity.this, RecommendationActivity.class));
+//            }
+//        });
     }
 
     private boolean validations() {
@@ -335,6 +347,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
             }
 
 //
+
             return mealTotal;
         } catch (Exception e) {
             e.printStackTrace();
@@ -357,26 +370,39 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
 
             makeFlyAnimation(img);
             if (selectedId_List.size() > 0) {
+
                 if (selectedId_List.contains(product_list.get(position).getId())) {
                     selectedId_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getId());
                     selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
                     selecteditem_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getName()));
                     amount_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getPrice()));
                     selectedgst_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getgst()));
+                    selectedsize_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getSize()));
+                    Count= Count+1;
+                    txt_count.setText(Count+"");
+
                 } else {
                     selectedId_List.add(product_list.get(position).getId());
                     selectedQty_List.add(product_list.get(position).getmQuantity());
                     selecteditem_List.add(product_list.get(position).getName());
                     amount_List.add(product_list.get(position).getPrice());
                     selectedgst_List.add(product_list.get(position).getgst());
+                    selectedsize_List.add(product_list.get(position).getSize());
+                    Count= Count+1;
+                    txt_count.setText(Count+"");
 
                 }
             } else {
+
                 selectedId_List.add(product_list.get(position).getId());
                 selectedQty_List.add(product_list.get(position).getmQuantity());
                 selecteditem_List.add(product_list.get(position).getName());
                 amount_List.add(product_list.get(position).getPrice());
                 selectedgst_List.add(product_list.get(position).getgst());
+                selectedsize_List.add(product_list.get(position).getSize());
+
+                Count= Count+1;
+                txt_count.setText(Count+"");
             }
 
             Log.e(" add selectedId_List-==", selectedId_List.toString());
@@ -387,9 +413,16 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
 
         } else {
             if (selectedId_List.size() > 0) {
+
+
+
                 if (product_list.get(position).getmQuantity() >= 1) {
                     selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
-
+                    if(Count >0)
+                    {
+                        Count= Count-1;
+                        txt_count.setText(Count+"");
+                    }
                 } else {
 
                     int a = selectedId_List.indexOf(product_list.get(position).getId());
@@ -403,8 +436,15 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                     Log.e(TAG, "test " + selectedQty_List.toString());
 
                     selectedQty_List.remove(a);
+
                     selectedId_List.remove(selectedId_List.indexOf(product_list.get(position).getId()));
-                    // selectedQty_List.remove(0);
+                    Log.d(TAG, "--------- analysis ---->>(< 0) Item Count"+selectedId_List.size() );
+                    if(Count >0)
+                    {
+                        Count= Count-1;
+                        txt_count.setText(Count+"");
+                    }
+
                 }
 
 

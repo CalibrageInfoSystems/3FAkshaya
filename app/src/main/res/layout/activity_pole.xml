@@ -35,6 +35,7 @@
 
     </RelativeLayout>
 
+
     <LinearLayout
         android:id="@+id/lyt_cart"
         android:layout_width="match_parent"
@@ -50,16 +51,37 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5">
 
-            <ImageButton
-                android:id="@+id/cartButtonIV"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:background="@null"
-                android:clickable="false"
-                android:padding="@dimen/margin_10"
-                android:scaleType="fitCenter"
-                android:src="@drawable/cart" />
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="?attr/actionButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/cartButtonIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/cart" />
+
+                <TextView
+                    android:id="@+id/txt_count"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right|end|top"
+                    android:layout_marginEnd="-5dp"
+                    android:layout_marginRight="-5dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/notification_white"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text="0"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tvtext_item_four"
@@ -96,18 +118,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+            android:gravity="right">
+
             <Button
-                android:gravity="center"
-                android:layout_marginRight="@dimen/margin_10"
                 android:id="@+id/btn_next"
                 style="@style/Common_Button"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="@dimen/margin_10"
+                android:gravity="center"
                 android:text="@string/next" />
         </LinearLayout>
 

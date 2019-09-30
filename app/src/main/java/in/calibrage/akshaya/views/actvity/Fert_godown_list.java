@@ -84,11 +84,11 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
      * */
 
     private Context ctx;
-    private Button btn_submit,button;
+    private Button btn_submit, button;
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
     private EditText editText;
-    private TextView txt_select_godown, txt_Payment_mode,text_amount,Final_amount,gst_amount,subsidy_amount;
+    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount;
     private BottomSheetBehavior behavior;
 
     private Toolbar toolbar;
@@ -96,16 +96,16 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
 
-    ArrayList<Integer> selected_quntity_list=new ArrayList<Integer>();
-    ArrayList<Integer> selected_ids_lists=new ArrayList<Integer>();
-    ArrayList<String> product_names=new ArrayList<String>();
-    ArrayList<Integer> product_gst=new ArrayList<Integer>();
-    ArrayList<Integer> amount_final=new ArrayList<Integer>();
-    ArrayList<Integer> gstvalues=new ArrayList<Integer>();
-    ArrayList<String> selects_product_size=new ArrayList<String>();
+    ArrayList<Integer> selected_quntity_list = new ArrayList<Integer>();
+    ArrayList<Integer> selected_ids_lists = new ArrayList<Integer>();
+    ArrayList<String> product_names = new ArrayList<String>();
+    ArrayList<Integer> product_gst = new ArrayList<Integer>();
+    ArrayList<Integer> amount_final = new ArrayList<Integer>();
+    ArrayList<Integer> gstvalues = new ArrayList<Integer>();
+    ArrayList<String> selects_product_size = new ArrayList<String>();
     String Amount;
-    String  Farmer_code,formattedDate,IsSuccess;
-ImageView home_btn;
+    String Farmer_code, formattedDate, IsSuccess;
+    ImageView home_btn;
     Integer GodownId;
     private Spinner paymentspin;
     List<String> listdata = new ArrayList<>();
@@ -113,10 +113,10 @@ ImageView home_btn;
     SwitchMultiButton sw_paymentMode;
     private ActiveGodownsModel.ListResult selectedGodown;
     private List<product> product_List = new ArrayList<>();
-    private String final_amount,only_amount;
+    private String final_amount, only_amount;
     int mealTotal = 0;
-    int Gst_sum, Amount_,include_gst_amount;
-    Integer Paymode,Statusid;
+    int Gst_sum, Amount_, include_gst_amount;
+    Integer Paymode, Statusid;
     private producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
     PaymentsType paymentsTypes;
@@ -134,14 +134,14 @@ ImageView home_btn;
 
     private void init() {
         ctx = this;
-        recycler_view_products=(RecyclerView)findViewById(R.id.products_recy) ;
+        recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view_products.setLayoutManager(mLayoutManager);
         btn_submit = findViewById(R.id.btn_submit);
         txt_select_godown = findViewById(R.id.txt_select_godown);
         txt_Payment_mode = findViewById(R.id.txt_Payment_mode);
         lst_godown_list = findViewById(R.id.lst_godown_list);
-        subsidy_amount=findViewById(R.id.subcdamount);
+        subsidy_amount = findViewById(R.id.subcdamount);
         sw_paymentMode = findViewById(R.id.sw_paymentMode);
         linearLayoutManager = new LinearLayoutManager(ctx);
         lst_godown_list.setLayoutManager(linearLayoutManager);
@@ -151,9 +151,9 @@ ImageView home_btn;
                 .build();
 //        txt_select_godown.setText(CommonUtil.getMultiColourString(getString(R.string.select_godown)));
 //        txt_Payment_mode.setText(CommonUtil.getMultiColourString(getString(R.string.payment_mode)));
-        text_amount=(TextView)findViewById(R.id.amount) ;
-        Final_amount=(TextView)findViewById(R.id.final_amount_gst) ;
-        gst_amount=(TextView)findViewById(R.id.gst_amount) ;
+        text_amount = (TextView) findViewById(R.id.amount);
+        Final_amount = (TextView) findViewById(R.id.final_amount_gst);
+        gst_amount = (TextView) findViewById(R.id.gst_amount);
         home_btn = (ImageView) findViewById(R.id.home_btn);
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
@@ -163,23 +163,20 @@ ImageView home_btn;
         getActiveGodowns();
 
 
-
         sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
             @Override
             public void onSwitch(int position, String tabText) {
-                Paymode= paymentsTypes.getListResult().get(position).getTypeCdId();
+                Paymode = paymentsTypes.getListResult().get(position).getTypeCdId();
                 String name = paymentsTypes.getListResult().get(position).getDesc();
-   if (name.contains("Cash"))
-    {
-        Statusid= 16;
-    }
-   if (name.contains("Against FFB"))
-    {
-        Statusid= 15;
-    }
+                if (name.contains("Cash")) {
+                    Statusid = 16;
+                }
+                if (name.contains("Against FFB")) {
+                    Statusid = 15;
+                }
 
-                Log.d(TAG,"------------ analysis -------- >> Mahesh :"+Paymode);
-                Log.d(TAG,"------------ analysis -------- >> Mahesh :"+name);
+                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + Paymode);
+                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + name);
 
             }
         });
@@ -204,7 +201,7 @@ ImageView home_btn;
 
                     @Override
                     public void onNext(PaymentsType paymentsType) {
-                        paymentsTypes= paymentsType;
+                        paymentsTypes = paymentsType;
                         mdilogue.cancel();
                         for (PaymentsType.ListResult string : paymentsType.getListResult()
                         ) {
@@ -216,9 +213,13 @@ ImageView home_btn;
                         char ch = '"';
                         String finalstring = ch + arrayToString(listdata) + ch;
                         finalstring = finalstring.replace(",", ch + "," + ch);
+
                         Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
-                        sw_paymentMode.setText(finalstring);
-                        // sw_paymentMode.setText("Cash", "Against FFB");
+                       // sw_paymentMode.setText(finalstring);
+
+                        String[] a = { finalstring };
+
+                         sw_paymentMode.setText(a);
                         Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
 
 
@@ -228,7 +229,7 @@ ImageView home_btn;
 
     private void setviews() {
         Calendar c = Calendar.getInstance();
-        System.out.println("Current time => "+c.getTime());
+        System.out.println("Current time => " + c.getTime());
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
@@ -248,17 +249,17 @@ ImageView home_btn;
         if (extras != null) {
             selected_ids_lists = (ArrayList<Integer>) getIntent().getSerializableExtra("Ids");
             selected_quntity_list = (ArrayList<Integer>) getIntent().getSerializableExtra("quantity");
-            product_names=(ArrayList<String>) getIntent().getSerializableExtra("item_names");
-            amount_final=(ArrayList<Integer>) getIntent().getSerializableExtra("item_amount");
-            product_gst=(ArrayList<Integer>) getIntent().getSerializableExtra("gst_per");
+            product_names = (ArrayList<String>) getIntent().getSerializableExtra("item_names");
+            amount_final = (ArrayList<Integer>) getIntent().getSerializableExtra("item_amount");
+            product_gst = (ArrayList<Integer>) getIntent().getSerializableExtra("gst_per");
 
-            selects_product_size=(ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
+            selects_product_size = (ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
             final_amount = getIntent().getExtras().getString("amount");
             String[] parts = final_amount.split(" "); // escape .
             String part1 = parts[0];
             only_amount = parts[1];
             Log.e("final_amount===", "=1===  " + part1 + " ===rs ===" + only_amount);
-            text_amount.setText(""+only_amount);
+            text_amount.setText("" + only_amount);
             Amount_ = Integer.parseInt(only_amount);
 
             try {
@@ -288,15 +289,17 @@ ImageView home_btn;
                     include_gst_amount = Gst_sum + Amount_;
                     Log.e("gst_Sum===", String.valueOf(Gst_sum));
 
-                    gst_amount.setText(" "+String.valueOf(Gst_sum));
-                    Final_amount.setText(" "+String.valueOf(include_gst_amount));
+                    gst_amount.setText(" " + String.valueOf(Gst_sum));
+                    Final_amount.setText(" " + String.valueOf(include_gst_amount));
 
                 }
                 mAdapter = new producut_Adapter(this, product_List);
                 recycler_view_products.setAdapter(mAdapter);
 
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
@@ -362,7 +365,7 @@ ImageView home_btn;
 
                             Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
 
-                           new Handler().postDelayed(new Runnable() {
+                            new Handler().postDelayed(new Runnable() {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override
                                 public void run() {
@@ -375,14 +378,12 @@ ImageView home_btn;
 //
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showSuccessDialog(displayList,getString(R.string.success_fertilizer));
+                                    showSuccessDialog(displayList, getString(R.string.success_fertilizer));
                                 }
                             }, 300);
                         } else {
                             showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
                         }
-
-
 
 
                     }
@@ -391,9 +392,7 @@ ImageView home_btn;
                 });
 
 
-
     }
-
 
 
     private JsonObject fertReuestobject() {
@@ -428,7 +427,6 @@ ImageView home_btn;
         for (int i = 0; i < selected_ids_lists.size(); i++) {
 
 
-
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
             products.setBagCost(amount_final.get(i).doubleValue());
             products.setGstPersentage(product_gst.get(i).doubleValue());
@@ -438,14 +436,13 @@ ImageView home_btn;
 
 
             req_products.add(products);
-            }
+        }
 
         requestModel.setRequestProductDetails(req_products);
 
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
-
 
 
     private void settoolbar() {
@@ -467,7 +464,7 @@ ImageView home_btn;
     private void getActiveGodowns() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns+"/"+"AP")
+        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns + "/" + "AP")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ActiveGodownsModel>() {
                     @Override
@@ -535,7 +532,7 @@ ImageView home_btn;
     @Override
     public void onItemClick(ActiveGodownsModel.ListResult item) {
         selectedGodown = item;
- GodownId =selectedGodown.getId();
-       // Log.e("selectedGodown===",selectedGodown.getId().toString());
+        GodownId = selectedGodown.getId();
+        // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
 }

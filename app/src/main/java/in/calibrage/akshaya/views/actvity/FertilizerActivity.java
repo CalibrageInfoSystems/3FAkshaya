@@ -77,7 +77,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
 
-    private ImageButton cartButtonIV;
+    private ImageView cartButtonIV;
     Integer Id, quantity;
     int price_final;
     int Count=0;
@@ -371,7 +371,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     @Override
     public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
         if (ischecked) {
-            ImageButton cartButtonIV = findViewById(R.id.cartButtonIV);
+            ImageView cartButtonIV = findViewById(R.id.cartButtonIV);
 
             makeFlyAnimation(img);
             if (selectedId_List.size() > 0) {
