@@ -17,6 +17,7 @@ public class ModelFert {
     private String mAmount;
     private int gst;
     private int Id;
+
     public ModelFert() {
         this.name = name;
         this.discountedPrice = discountedPrice;

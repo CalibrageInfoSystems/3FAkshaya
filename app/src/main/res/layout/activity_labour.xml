@@ -241,7 +241,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_one"
             android:layout_margin="6dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:orientation="horizontal"
            >
 
@@ -449,10 +449,12 @@
             android:background="@drawable/spinner_bg"
             android:editable="false"
             android:ems="10"
+
             android:focusable="false"
-            android:gravity="center"
+
             android:hint="@string/startDate"
             android:inputType="date"
+            android:textColorHint="@color/white"
             android:padding="5dp"
             android:textColor="@color/white_new"
             android:textSize="@dimen/album_title" />
@@ -503,14 +505,27 @@
                 android:src="@drawable/arrow_down" />
         </RelativeLayout>
 
-
+        <TextView
+            android:id="@+id/comment_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:drawableRight="@drawable/star"
+            android:drawablePadding="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/comments"
+            android:textColor="@color/white_new"
+            android:textSize="@dimen/album_title" />
 
             <EditText
                 android:inputType="text"
                 android:lines="1"
                 android:hint="@string/comments"
               android:layout_margin="@dimen/margin_10"
+                android:textColorHint="@color/white"
                 android:maxLines="1"
+
+                android:textSize="@dimen/album_title"
                 android:id="@+id/commentTxt"
                android:background="@drawable/edt_bg"
                 android:layout_width="match_parent"

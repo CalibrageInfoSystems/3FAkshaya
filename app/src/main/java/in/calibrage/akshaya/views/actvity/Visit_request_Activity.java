@@ -276,7 +276,7 @@ public class Visit_request_Activity extends BaseActivity {
 
                 if (checkPermissionn()) {
 
-                    AudioSavePathInDevice = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + CreateRandomAudioFileName(5) + "3FRecording.3gp";
+                    AudioSavePathInDevice = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + CreateRandomAudioFileName(5) + "3FRecording.mp3";
 
                     MediaRecorderReady();
 
@@ -646,7 +646,7 @@ if(file.exists())
         visitRepo1audio.setRequestCode(null);
         visitRepo1audio.setFileLocation(null);
         visitRepo1audio.setFileName(CommonUtil.getStringFile(new File(AudioSavePathInDevice)));
-        visitRepo1audio.setFileExtension(".3gp");
+        visitRepo1audio.setFileExtension(".mp3");
         visitRepo1audio.setIsActive(true);
         visitRepo1audio.setCreatedByUserId(null);
         visitRepo1audio.setCreatedDate(currentDate);

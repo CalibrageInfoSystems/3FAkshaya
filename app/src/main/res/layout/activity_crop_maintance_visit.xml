@@ -192,546 +192,248 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <RelativeLayout
 
+                android:background="@drawable/collect_bg"
+                android:id="@+id/top_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_below="@+id/selecte_label"
+                android:layout_margin="@dimen/_8dp"
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="2dp"
-                card_view:cardCornerRadius="6dp"
-                card_view:cardElevation="2dp"
-                card_view:cardUseCompatPadding="true">
+                android:elevation="2dp"
+
+                >
 
                 <RelativeLayout
-
+                    android:id="@+id/lin_two"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                    <TextView
-                        android:gravity="center"
-                        android:background="@color/half_black2"
-                        android:textAlignment="center"
-                        android:id="@+id/health_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:text="@string/health_crop"
-                        android:textColor="@color/white_new"
-                        android:textSize="16dp" />
-                    <ImageView
-                        android:layout_below="@+id/health_text"
-                        android:id="@+id/imageViewHero"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginStart="2dp"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_one"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="10sp"
+                    android:orientation="horizontal">
+
 
                     <TextView
-                        android:layout_below="@+id/health_text"
                         android:id="@+id/treesAppearanceLabel"
-                        android:layout_width="135dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                   android:layout_marginTop="20dp"
-                        android:paddingRight="@dimen/album_title_padding"
+                        android:layout_marginTop="1sp"
+
                         android:text="@string/treesAppearance"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/dot2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text=":"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_below="@+id/health_text"
                         android:id="@+id/treesAppearance"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/treesAppearanceLabel"
-                        android:gravity="center"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/treesAppearance"
-                        android:textColor="@color/colorOrange2"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/treeGirthLabel"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/treesAppearanceLabel"
-                        android:layout_marginStart="3dp"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:text="@string/treeGrowth"
-                        android:visibility="gone"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/treeGirth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/treesAppearanceLabel"
-                        android:layout_toRightOf="@+id/treeGirthLabel"
-                        android:hint="@string/treeGrowth"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:visibility="gone"
-
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/treeHeightLabel"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/treeGirthLabel"
-                        android:layout_marginStart="3dp"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:visibility="gone"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:text="@string/treeHeight"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/treeHeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/treeGirthLabel"
-                        android:layout_toRightOf="@+id/treeHeightLabel"
-                        android:hint="@string/treeHeight"
-                        android:paddingLeft="5dp"
-                        android:visibility="gone"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/fruitColorLabel"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/treeHeightLabel"
-                        android:layout_marginStart="3dp"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:visibility="gone"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:text="@string/fruitColor"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/fruitColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/treeHeightLabel"
-                        android:layout_toRightOf="@+id/fruitColorLabel"
-                        android:hint="@string/fruitColor"
-                        android:paddingLeft="5dp"
-                        android:visibility="gone"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/fruitSizeLabel"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/fruitColorLabel"
-                        android:layout_marginStart="3dp"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:visibility="gone"
-                        android:text="@string/fruitSize"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/fruitSize"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/fruitColorLabel"
-                        android:layout_toRightOf="@+id/fruitSizeLabel"
-                        android:hint="@string/fruitSize"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-
-                        android:visibility="gone"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/fruitHyegieneLabel"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/fruitSizeLabel"
-                        android:layout_marginStart="3dp"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:text="@string/fruitHyegiene"
-                        android:visibility="gone"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/fruitHyegiene"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/fruitSizeLabel"
-                        android:layout_toRightOf="@+id/fruitHyegieneLabel"
-
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:visibility="gone"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/plantationTypeLabel"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/fruitHyegieneLabel"
-                        android:layout_marginStart="3dp"
-                        android:layout_toRightOf="@+id/imageViewHero"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:visibility="gone"
-                        android:text="@string/plantationType"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="@dimen/margin_5"/>
-
-                    <TextView
-                        android:id="@+id/plantationType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/fruitHyegieneLabel"
-                        android:layout_toRightOf="@+id/plantationTypeLabel"
-                        android:hint="@string/plantationType"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:visibility="gone"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title"
-                        android:layout_marginBottom="@dimen/margin_5"/>
-
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dot2"
+                        android:hint=""
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        />
 
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
-
-
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_view1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="4dp"
-                card_view:cardCornerRadius="6dp"
-                card_view:cardElevation="2dp"
-                card_view:cardUseCompatPadding="true">
-
                 <RelativeLayout
+                    android:id="@+id/lin_three"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="3dp"
-                    >
-                    <TextView
-                        android:id="@+id/uproot_text"
-                        android:gravity="center"
-                        android:background="@color/half_black2"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_two"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="3sp"
+                    android:elevation="2dp"
+                    android:orientation="horizontal">
 
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/uprrot_crop"
-                        android:textColor="@color/white_new"
-                        android:textSize="16dp" />
-                    <TextView
-                        android:layout_below="@+id/uproot_text"
-                        android:id="@+id/seedsPlantedLabel"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:paddingLeft="8dp"
-                        android:visibility="gone"
-
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:text="@string/spalingPlanted"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_below="@+id/uproot_text"
-                        android:id="@+id/seedsPlanted"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/seedsPlantedLabel"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:text="0000"
-                        android:textColor="@color/colorOrange2"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-
-                        android:id="@+id/prevPalmsCountLabel"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/seedsPlantedLabel"
-                        android:layout_marginStart="@dimen/margin_10"
-                        android:visibility="gone"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:text="@string/prevPalmsCount"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/prevPalmsCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/seedsPlantedLabel"
-                        android:layout_toRightOf="@+id/prevPalmsCountLabel"
-                        android:hint="0000"
-                        android:visibility="gone"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
 
                     <TextView
                         android:id="@+id/plamsCountLabel"
-                        android:layout_width="250dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/prevPalmsCountLabel"
-                        android:layout_marginStart="8dp"
-
-                        android:padding="@dimen/album_title_padding"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="1dp"
                         android:text="@string/plamsCount"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
+
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dot3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text=":"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/plamsCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/prevPalmsCountLabel"
-                        android:layout_toRightOf="@+id/plamsCountLabel"
-                        android:hint="0000"
-                        android:paddingLeft="5dp"
-                        android:textColor="@color/colorOrange2"
-                        android:padding="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dot3"
+                        android:hint=""
+                        android:text=""
 
-                    <TextView
-                        android:id="@+id/isTreesMissingLabel"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/plamsCountLabel"
-                        android:layout_marginStart="8dp"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:text="@string/isTreesMissing"
-                        android:visibility="gone"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/isTreesMissing"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/plamsCountLabel"
-                        android:layout_toRightOf="@+id/isTreesMissingLabel"
-                        android:hint="yes"
-                        android:visibility="gone"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/missingTreesCountLabel"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/isTreesMissingLabel"
-                        android:layout_marginStart="8dp"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:visibility="gone"
-                        android:text="@string/missingTreesCount"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/missingTreesCount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/isTreesMissingLabel"
-                        android:layout_toRightOf="@+id/missingTreesCountLabel"
-                        android:hint="0000"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:visibility="gone"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/reasonTypeLabel"
-                        android:layout_width="250dp"
-                        android:visibility="gone"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/missingTreesCountLabel"
-                        android:layout_marginStart="8dp"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:text="@string/reasonType"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/reasonType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/missingTreesCountLabel"
-                        android:layout_toRightOf="@+id/reasonTypeLabel"
-                        android:hint="reason"
-                        android:visibility="gone"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/expectedPlamsCountLabel"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/reasonTypeLabel"
-                        android:layout_marginStart="8dp"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:visibility="gone"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="2dp"
-                        android:text="@string/expectedPlamsCount"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/expectedPlamsCount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/reasonTypeLabel"
-                        android:layout_toRightOf="@+id/expectedPlamsCountLabel"
-                        android:hint="0000"
-                        android:visibility="gone"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/commentsLabel"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/expectedPlamsCountLabel"
-                        android:layout_marginStart="8dp"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:visibility="gone"
-                        android:paddingRight="2dp"
-                        android:text="@string/comments"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title"
-                        android:textStyle="bold"
-
-                        android:layout_marginBottom="@dimen/margin_5"/>
-
-                    <TextView
-                        android:id="@+id/comments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/expectedPlamsCountLabel"
-                        android:layout_toRightOf="@+id/commentsLabel"
-                        android:hint="@string/comments"
-                        android:visibility="gone"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title"
-                        android:layout_marginBottom="@dimen/margin_5"/>
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        />
 
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+                <RelativeLayout
+                    android:id="@+id/lin_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_three"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="3sp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/tvtext_item_six"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1sp"
+                        android:text="@string/Frequency_harvest"
+                        android:textColor="@color/white"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dot4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text=":"
+                        android:textColor="@color/white"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/unPaidCollectionsWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dot4"
+                        android:hint=""
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lin_five"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_four"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="3sp"
+
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:id="@+id/dot5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text="@string/Frequency"
+                        android:textColor="@color/white"
+
+                        android:textStyle="bold" />
+
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/lin_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_five"
+                    android:layout_marginStart="6dp"
+
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/text_static"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1sp"
+                        android:text="@string/static_data"
+                        android:textColor="@color/white"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+
+
 
 
             <RelativeLayout
-                android:id="@+id/pest_lay"
+                android:id="@+id/pest_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/collect_bg"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
                 <TextView
-                    android:id="@+id/pest_text"
-                    android:gravity="center"
-                    android:background="@color/half_black2"
-
+                    android:id="@+id/pest_text1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+
                     android:layout_gravity="center_vertical"
+
+                    android:gravity="center"
                     android:text="@string/pest"
                     android:textColor="@color/white_new"
                     android:textSize="16dp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
@@ -741,22 +443,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pagerHomeLay"
-                android:layout_marginTop="3dp"
+
                 android:layout_marginBottom="3dp"
                 android:visibility="gone" />
 
             <RelativeLayout
-                android:id="@+id/dease_lay"
+                android:id="@+id/dease_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/collect_bg"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
                 <TextView
-                    android:id="@+id/dease_text"
+                    android:id="@+id/dease_text1"
                     android:gravity="center"
-                    android:background="@color/half_black2"
+
 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -773,23 +478,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pagerHomeLay"
-                android:layout_marginTop="3dp"
+
                 android:layout_marginBottom="3dp"
                 android:visibility="gone" />
 
 
             <RelativeLayout
-                android:id="@+id/nut_lay"
+                android:id="@+id/nut_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/collect_bg"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
                 <TextView
-                    android:id="@+id/nut_text"
+                    android:id="@+id/nut_text1"
                     android:gravity="center"
-                    android:background="@color/half_black2"
+
 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -806,23 +514,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pagerHomeLay"
-                android:layout_marginTop="3dp"
+
                 android:layout_marginBottom="3dp"
                 android:visibility="gone" />
 
 
             <RelativeLayout
-                android:id="@+id/fert_rec_lay"
+                android:id="@+id/fert_rec_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-android:visibility="gone"
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/collect_bg"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
                 <TextView
-                    android:id="@+id/fert_rec_text"
+                    android:id="@+id/fert_rec_text1"
                     android:gravity="center"
-                    android:background="@color/half_black2"
+
 
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -838,26 +549,29 @@ android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pagerHomeLay"
-                android:layout_marginTop="3dp"
+
                 android:layout_marginBottom="3dp"
                 android:visibility="gone" />
 
 
             <RelativeLayout
-                android:id="@+id/irrigaton_rec_lay"
+                android:id="@+id/irr_rec_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/collect_bg"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
                 <TextView
-                    android:id="@+id/irr_rec_text"
+                    android:id="@+id/irr_rec_text1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-android:visibility="gone"
+
                     android:layout_gravity="center_vertical"
-                    android:background="@color/half_black2"
+
                     android:gravity="center"
                     android:text="@string/irrigation"
                     android:textColor="@color/white_new"
@@ -871,26 +585,30 @@ android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pagerHomeLay"
-                android:layout_marginTop="3dp"
+
                 android:layout_marginBottom="3dp"
                 android:visibility="gone" />
 
 
             <RelativeLayout
-                android:id="@+id/InterCroplay"
+                android:id="@+id/InterCrop_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/collect_bg"
+                android:visibility="gone"
 
                 android:padding="2dp">
 
 
                 <TextView
-                    android:id="@+id/InterCrop_text"
+                    android:id="@+id/InterCrop_text1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:visibility="gone"
+
                     android:layout_gravity="center_vertical"
-                    android:background="@color/half_black2"
+
                     android:gravity="center"
                     android:text="@string/inter_crop"
                     android:textColor="@color/white_new"
@@ -905,23 +623,26 @@ android:visibility="gone"
                 android:visibility="gone"
                 android:layout_below="@+id/pagerHomeLay"
                 android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp" />
+              />
 
 
             <RelativeLayout
-                android:id="@+id/fert_Lay"
+                android:id="@+id/fertlizer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/collect_bg"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
                 <TextView
-                    android:id="@+id/fertlizer"
+                    android:id="@+id/fertlizer1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:visibility="gone"
                     android:layout_gravity="center_vertical"
-                    android:background="@color/half_black2"
+
                     android:gravity="center"
                     android:text="@string/fertilizer_crop"
                     android:textColor="@color/white_new"

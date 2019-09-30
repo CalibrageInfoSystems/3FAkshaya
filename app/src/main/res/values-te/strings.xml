@@ -117,7 +117,7 @@
         
     <string name="loan">లోన్</string>
         
-    <string name="quickPay">క్విక్‌పే అభ్యర్థన</string>
+    <string name="quickPay">త్వరితచెల్లింపు అభ్యర్థన</string>
     <string name="quick">త్వరితచెల్లింపు</string>
         
     <string name="visit">సందర్శించండి</string>
@@ -265,14 +265,14 @@
     <string name="quantity">మొత్తము</string>
     <!--<string name="harvest">హార్వెస్ట్</string>-->
 
-    <string name="ffb_qty">మొత్తం FFB పరిమాణం (MT)</string>
+    <string name="ffb_qty">మొత్తం ఎఫ్‌ఎఫ్‌బి పరిమాణం (MT)</string>
     <string name="ffb">FFB Qty పరిమాణం (MT)</string>
     <string name="adhoc_rate">ఎమ్‌టికి అడోక్ రేటు (రూ)</string>
     <string name="invoice_rate">MT కి ఇన్వాయిస్ రేటు</string>
     <string name="memo">మెమో</string>
     <string name="amount">మొత్తం (రూ.)</string>
-    <string name="harv_amount">Harvesting Amount / Ton</string>
-    <string name="pru_amount">Pruning Amount / Tree</string>
+    <string name="harv_amount">హార్వెస్టింగ్ మొత్తం / టన్ను</string>
+    <string name="pru_amount">కత్తిరింపు మొత్తం / చెట్టు</string>
     <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
     <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
     <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
@@ -288,7 +288,7 @@
     <string name="gr">జీఆర్ మొత్తం (రూ.)</string>
     <string name="adjusted">సర్దుబాటు (రూ.)</string>
     <string name="loan_req">లోన్ కోసం అభ్యర్థన</string>
-    <string name="loan_message">ఫైనాన్స్‌లో, loan ణం అంటే ఒకటి లేదా అంతకంటే ఎక్కువ వ్యక్తులు, సంస్థలు లేదా ఇతర వ్యక్తులు, సంస్థలకు రుణాలు ఇవ్వడం. గ్రహీత (అనగా రుణగ్రహీత) అప్పును కలిగి ఉంటాడు మరియు సాధారణంగా ఆ రుణంపై వడ్డీని చెల్లించే వరకు బాధ్యత వహిస్తాడు. ఇది తిరిగి చెల్లించబడుతుంది మరియు అరువు తీసుకున్న ప్రధాన మొత్తాన్ని కూడా తిరిగి చెల్లించాలి. రుణాన్ని రుజువు చేసే పత్రం, ఉదా. ప్రామిసరీ నోట్, సాధారణంగా, ఇతర విషయాలతోపాటు, రుణం తీసుకున్న ప్రధాన డబ్బు, రుణదాత వసూలు చేస్తున్న వడ్డీ రేటు మరియు తిరిగి చెల్లించే తేదీని పేర్కొంటుంది. Loan ణం రుణదాత మరియు రుణగ్రహీత మధ్య కొంతకాలం విషయ ఆస్తి (ల) ను తిరిగి కేటాయించడం. వడ్డీ రుణదాతకు రుణంలో పాల్గొనడానికి ప్రోత్సాహాన్ని అందిస్తుంది. చట్టబద్దమైన రుణంలో, ఈ బాధ్యతలు మరియు పరిమితులు ప్రతి ఒక్కటి కాంట్రాక్ట్ ద్వారా అమలు చేయబడతాయి, ఇది రుణగ్రహీతను రుణ ఒప్పందాలు అని పిలువబడే అదనపు పరిమితుల క్రింద ఉంచవచ్చు. ఈ వ్యాసం ద్రవ్య రుణాలపై దృష్టి సారించినప్పటికీ, ఆచరణలో ఏదైనా భౌతిక వస్తువు అప్పు ఇవ్వబడుతుంది.</string>
+    <string name="loan_message">ఫైనాన్స్‌లో, ఋణం అంటే ఒకటి లేదా అంతకంటే ఎక్కువ వ్యక్తులు, సంస్థలు లేదా ఇతర వ్యక్తులు, సంస్థలకు రుణాలు ఇవ్వడం. గ్రహీత (అనగా రుణగ్రహీత) అప్పును కలిగి ఉంటాడు మరియు సాధారణంగా ఆ రుణంపై వడ్డీని చెల్లించే వరకు బాధ్యత వహిస్తాడు. ఇది తిరిగి చెల్లించబడుతుంది మరియు అరువు తీసుకున్న ప్రధాన మొత్తాన్ని కూడా తిరిగి చెల్లించాలి. రుణాన్ని రుజువు చేసే పత్రం, ఉదా. ప్రామిసరీ నోట్, సాధారణంగా, ఇతర విషయాలతోపాటు, రుణం తీసుకున్న ప్రధాన డబ్బు, రుణదాత వసూలు చేస్తున్న వడ్డీ రేటు మరియు తిరిగి చెల్లించే తేదీని పేర్కొంటుంది. Loan ణం రుణదాత మరియు రుణగ్రహీత మధ్య కొంతకాలం విషయ ఆస్తి (ల) ను తిరిగి కేటాయించడం. వడ్డీ రుణదాతకు రుణంలో పాల్గొనడానికి ప్రోత్సాహాన్ని అందిస్తుంది. చట్టబద్దమైన రుణంలో, ఈ బాధ్యతలు మరియు పరిమితులు ప్రతి ఒక్కటి కాంట్రాక్ట్ ద్వారా అమలు చేయబడతాయి, ఇది రుణగ్రహీతను రుణ ఒప్పందాలు అని పిలువబడే అదనపు పరిమితుల క్రింద ఉంచవచ్చు. ఈ వ్యాసం ద్రవ్య రుణాలపై దృష్టి సారించినప్పటికీ, ఆచరణలో ఏదైనా భౌతిక వస్తువు అప్పు ఇవ్వబడుతుంది.</string>
     <string name="got_it">అర్దం ఐంది</string>
     <string name="unpaidCollection">చెల్లించని సేకరణలు</string>
     <string name="labour_lable">లేబర్</string>
@@ -346,19 +346,19 @@
     <string name="logout">లాగ్అవుట్</string>
     <string name="confirmation">నిర్ధారణ</string>
     <string name="alert_logout">మీరు లాగ్ అవుట్ చేయాలనుకుంటున్నారా?</string>
-    <string name="no_plots">No Plots Available</string>
+    <string name="no_plots">ప్లాట్లు అందుబాటులో లేవు</string>
 
     <string name="loan_amount">అప్పు మొత్తం</string>
     <string name="reason_loan">రుణానికి కారణం</string>
     <string name="error">లోపం</string>
-    <string name="quick_pay">Quick Pay Fee</string>
-    <string name="issue_type">Type of Issue</string>
+    <string name="quick_pay">శీఘ్ర చెల్లింపు రుసుము</string>
+    <string name="issue_type">ఇష్యూ రకం</string>
     <string name="image">చిత్రం అప్‌లోడ్</string>
     <string name="digital_signature">డిజిటల్ సంతకం</string>
     <string name="Prunning">చక్కబెట్టుట</string>
     <string name="harvesting">Harvesting</string>
-    <string name="unkonown">UnKnown1</string>
-    <string name="unkonown2">UnKnown2</string>
+    <string name="unkonown">అన్కానన్ 1</string>
+    <string name="unkonown2">అన్కానన్ 2</string>
     <string name="request_rise">అభ్యర్థనను పెంచండి</string>
     <string name="clear">నిశ్చితమైన</string>
     <string name="datevalidation">దయచేసి తేదీ నుండి తేదీ కంటే తక్కువ</string>
@@ -376,21 +376,48 @@
     <string name="str_enter_loan_amount">దయచేసి రుణ మొత్తాన్ని నమోదు చేయండి</string>
     <string name="Valid_service">దయచేసి సేవా రకాన్ని ఎంచుకోండి</string>
     <string name="valid_pack">దయచేసి ప్యాకేజీని ఎంచుకోండి</string>
-    <string name="record">Voice Recording</string>
+    <string name="record">వాయిస్ రికార్డింగ్</string>
     <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
     <string name="total_amt">మొత్తం మొత్తం (రూ.)</string>
         <string name = "confirm">నిర్ధారించండి</string>
     <string name="Rs">\u20B9</string>
     <string name="select_product_toast">దయచేసి కనీసం ఒక ఉత్పత్తిని ఎంచుకోండి</string>
     <string name="valid_issue_type">దయచేసి ఇష్యూ రకాన్ని ఎంచుకోండి</string>
-    <string name="select_image">Please Attach At Least One Image or Voice Record</string>
+    <string name="select_image">దయచేసి కనీసం ఒక చిత్రం లేదా వాయిస్ రికార్డ్‌ను అటాచ్ చేయండి</string>
     <string name="str_select_plot">ప్లాట్ ఎంచుకోండి</string>
-    <string name="select_godown">Select Godown</string>
-    <string name="payment_mode">Payment Mode</string>
-    <string name="irrigation">Irrigation Details</string>
-    <string name="irrigation_name">Irrigation Name</string>
-    <string name="updated_by">UpdatedBy</string>
-    <string name="updated_date">Updated Date</string>
-    <string name="no_recommendations">No Recommendations</string>
+    <string name="select_godown">గోడౌన్ ఎంచుకోండి</string>
+    <string name="payment_mode">చెల్లింపు మోడ్</string>
+    <string name="irrigation">నీటిపారుదల వివరాలు</string>
+    <string name="irrigation_name">నీటిపారుదల పేరు</string>
+    <string name="updated_by">ద్వారా నవీకరించబడింది</string>
+    <string name="updated_date">నవీకరించబడిన తేదీ</string>
+    <string name="no_recommendations">సిఫార్సులు లేవు</string>
+
+    <string name="product">ఉత్పత్తి</string>
+    <string name="gst">జిఎస్టి (%)</string>
+    <string name="no_products"> ఉత్పత్తులు కనుగొనబడలేదు</string>
+    <string name="gst_amount">జీఎస్టీ (రూ.)</string>
+    <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
+
+    <string name="fertilizer_crop">ఎరువుల వివరాలు</string>
+
+
+    <string name="fertilizerSource">ఎరువుల మూలం</string>
+    <string name="fertilizer_name">ఎరువుల పేరు</string>
+
+    <string name="lastAppliedDate">చివరి అనువర్తిత తేదీ</string>
+    <string name="applyFertilizerFrequencyType">ఎరువుల ఫ్రీక్వెన్సీని వర్తించండి</string>
+    <string name="measurement">వయసు</string>
+    <string name="record_btn">రికార్డు</string>
+    <string name="stop">ఆపు</string>
+    <string name="play">ప్లే</string>
+    <string name="summary">సారాంశం</string>
+    <string name="record_voice">రికార్డ్ చేసిన వాయిస్</string>
+    <string name="product_req">ఉత్పత్తి అభ్యర్థన</string>
+    <string name="Frequency">Frequency</string>
+    <string name="static_data">We recommend harvesting every 10 days, when the loose fruitlets are seen on the ground for optimal yield</string>
+    <string name="Frequency_harvest">Frequency of Harvest</string>
+    <string name="date_selectiomn">Please Select the Date</string>
+    <string name="subcd_amt">Subsidy Amount</string>
 </resources>
 

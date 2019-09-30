@@ -177,8 +177,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 if (checkbox.isChecked()) {
                     PdfUtil.createPDF(Quickpay_SummaryActivity.this, CommonUtil.scaleDown(signatureView.getSignatureBitmap(), 200, true), text_quntity.getText().toString(), ffbCostTxt.getText().toString(), ffbCostTxt.getText().toString(), convenienceChargeTxt.getText().toString(), text_quickpay_fee.getText().toString(), closingBalanceTxt.getText().toString(), totalAmount.getText().toString());
                     submitReq();
-                } else {
-                    showDialog(Quickpay_SummaryActivity.this, "Please Agree Terms & Conditions");
+                }
+                      else {showDialog(Quickpay_SummaryActivity.this,getResources().getString(R.string.terms_agree));
                 }
 
             }

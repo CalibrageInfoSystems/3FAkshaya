@@ -70,16 +70,16 @@ CardView card_view;
         holder.amount.setText(dataa.getamount());
         holder.gst.setText(String.valueOf(dataa.getgst()));
 
-        holder.product_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name = dataa.getname();
-//                    Toast toast=Toast.makeText(context,superHero.getDescription(),Toast.LENGTH_SHORT);
-//                    toast.setMargin(50,50);
-//                    toast.show();
-                displayPopupWindow(view);
-            }
-        });
+//        holder.product_name.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                name = dataa.getname();
+////                    Toast toast=Toast.makeText(context,superHero.getDescription(),Toast.LENGTH_SHORT);
+////                    toast.setMargin(50,50);
+////                    toast.show();
+//                displayPopupWindow(view);
+//            }
+//        });
 //        if (dataa.getgst()==0) {
 //            //   Log.e("bbbbb",superHero.getmAmount());
 //            holder.gst.setText("0");

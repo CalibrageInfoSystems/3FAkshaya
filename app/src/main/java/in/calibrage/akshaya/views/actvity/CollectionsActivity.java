@@ -72,7 +72,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
     String currentDate;
     private ProgressDialog dialog;
     private RecyclerView.LayoutManager layoutManager;
-    String farmerCode, Farmer_code;
+    String  Farmer_code;
     LinearLayout noRecords;
     String last_30day;
     TextView collectionsWeight, collectionsCount, paidCollectionsWeight, unPaidCollectionsWeight;
@@ -88,6 +88,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
     LinearLayout date_linear;
     ImageView backImg, home_btn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,9 +98,11 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         setContentView(R.layout.activity_collections);
         init();
         setViews();
+
     }
 
     private void init() {
+
         noRecords = (LinearLayout) findViewById(R.id.text);
 
         collectionsWeight = (TextView) findViewById(R.id.collectionsWeight);

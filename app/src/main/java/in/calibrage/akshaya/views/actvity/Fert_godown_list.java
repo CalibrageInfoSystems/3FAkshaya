@@ -2,7 +2,11 @@ package in.calibrage.akshaya.views.actvity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,9 +23,29 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -30,7 +54,13 @@ import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ActiveGodownsModel;
+import in.calibrage.akshaya.models.FertRequest;
+import in.calibrage.akshaya.models.FertResponse;
+import in.calibrage.akshaya.models.LoanRequest;
+import in.calibrage.akshaya.models.LoanResponse;
+import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PaymentsType;
+import in.calibrage.akshaya.models.SubsidyResponse;
 import in.calibrage.akshaya.models.product;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -38,6 +68,7 @@ import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.GodownListAdapter;
 import in.calibrage.akshaya.views.Adapter.producut_Adapter;
 import lib.kingja.switchbutton.SwitchMultiButton;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -71,10 +102,11 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     ArrayList<Integer> product_gst=new ArrayList<Integer>();
     ArrayList<Integer> amount_final=new ArrayList<Integer>();
     ArrayList<Integer> gstvalues=new ArrayList<Integer>();
+    ArrayList<String> selects_product_size=new ArrayList<String>();
     String Amount;
-
+    String  Farmer_code,formattedDate,IsSuccess;
 ImageView home_btn;
-
+    String GodownId;
     private Spinner paymentspin;
     List<String> listdata = new ArrayList<>();
 
@@ -84,9 +116,10 @@ ImageView home_btn;
     private String final_amount,only_amount;
     int mealTotal = 0;
     int Gst_sum, Amount_,include_gst_amount;
-
+    Integer Paymode,Statusid;
     private producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
+    PaymentsType paymentsTypes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,20 +148,89 @@ ImageView home_btn;
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
-        txt_select_godown.setText(CommonUtil.getMultiColourString(getString(R.string.select_godown)));
-        txt_Payment_mode.setText(CommonUtil.getMultiColourString(getString(R.string.payment_mode)));
+//        txt_select_godown.setText(CommonUtil.getMultiColourString(getString(R.string.select_godown)));
+//        txt_Payment_mode.setText(CommonUtil.getMultiColourString(getString(R.string.payment_mode)));
         text_amount=(TextView)findViewById(R.id.amount) ;
         Final_amount=(TextView)findViewById(R.id.final_amount_gst) ;
         gst_amount=(TextView)findViewById(R.id.gst_amount) ;
         home_btn = (ImageView) findViewById(R.id.home_btn);
 
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
 
+        getFertilizerSubsidies();
         getActiveGodowns();
         getPaymentMods();
+
+
+        sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
+            @Override
+            public void onSwitch(int position, String tabText) {
+                Paymode= paymentsTypes.getListResult().get(position).getTypeCdId();
+                String name = paymentsTypes.getListResult().get(position).getDesc();
+   if (name.contains("Cash"))
+    {
+        Statusid= 16;
+    }
+   if (name.contains("Against FFB"))
+    {
+        Statusid= 15;
+    }
+
+                Log.d(TAG,"------------ analysis -------- >> Mahesh :"+Paymode);
+                Log.d(TAG,"------------ analysis -------- >> Mahesh :"+name);
+
+            }
+        });
         //sw_paymentMode.setText("one", "two", "three", "four");
     }
 
+    private void getFertilizerSubsidies() {
+        mdilogue.show();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.getpaymentModes(APIConstantURL.GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<PaymentsType>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onNext(PaymentsType paymentsType) {
+                        paymentsTypes= paymentsType;
+                        mdilogue.cancel();
+                        for (PaymentsType.ListResult string : paymentsType.getListResult()
+                        ) {
+                            listdata.add(string.getDesc());
+
+                        }
+
+
+                        char ch = '"';
+                        String finalstring = ch + arrayToString(listdata) + ch;
+                        finalstring = finalstring.replace(",", ch + "," + ch);
+                        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
+                        sw_paymentMode.setText(finalstring);
+                        // sw_paymentMode.setText("Cash", "Against FFB");
+                        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
+
+
+                    }
+                });
+    }
+
     private void setviews() {
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => "+c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        formattedDate = df.format(c.getTime());
 
 //        home_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -148,6 +250,8 @@ ImageView home_btn;
             product_names=(ArrayList<String>) getIntent().getSerializableExtra("item_names");
             amount_final=(ArrayList<Integer>) getIntent().getSerializableExtra("item_amount");
             product_gst=(ArrayList<Integer>) getIntent().getSerializableExtra("gst_per");
+
+            selects_product_size=(ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
             final_amount = getIntent().getExtras().getString("amount");
             String[] parts = final_amount.split(" "); // escape .
             String part1 = parts[0];
@@ -183,8 +287,8 @@ ImageView home_btn;
                     include_gst_amount = Gst_sum + Amount_;
                     Log.e("gst_Sum===", String.valueOf(Gst_sum));
 
-                    gst_amount.setText(":"+String.valueOf(Gst_sum));
-                    Final_amount.setText(":"+String.valueOf(include_gst_amount));
+                    gst_amount.setText(" "+String.valueOf(Gst_sum));
+                    Final_amount.setText(" "+String.valueOf(include_gst_amount));
 
                 }
                 mAdapter = new producut_Adapter(this, product_List);
@@ -198,6 +302,8 @@ ImageView home_btn;
             @Override
             public void onClick(View view) {
                 onSubmit();
+
+
             }
         });
 //        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -212,6 +318,134 @@ ImageView home_btn;
 //            }
 //        });
     }
+
+    private void FertilizerRequest() {
+
+
+        mdilogue.show();
+        JsonObject object = fertReuestobject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.postfert(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<FertResponse>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.cancel();
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void onNext(FertResponse fertResponse) {
+
+                        mdilogue.cancel();
+
+                        if (fertResponse.getIsSuccess()) {
+
+
+                            Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
+
+                           new Handler().postDelayed(new Runnable() {
+                                @RequiresApi(api = Build.VERSION_CODES.M)
+                                @Override
+                                public void run() {
+
+                                    List<MSGmodel> displayList = new ArrayList<>();
+
+                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
+
+//
+//                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
+
+                                    showSuccessDialog(displayList);
+                                }
+                            }, 300);
+                        } else {
+                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
+                        }
+
+
+
+
+                    }
+
+
+                });
+
+
+
+    }
+
+
+
+    private JsonObject fertReuestobject() {
+        FertRequest requestModel = new FertRequest();
+
+        requestModel.setId(0);
+        requestModel.setRequestTypeId(12);
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setPlotCode(null);
+        requestModel.setRequestCreatedDate(formattedDate);
+        requestModel.setStatusTypeId(Statusid);
+        requestModel.setIsFarmerRequest(true);
+        requestModel.setCreatedByUserId(null);
+        requestModel.setCreatedDate(formattedDate);
+        requestModel.setUpdatedByUserId(null);
+        requestModel.setUpdatedDate(formattedDate);
+        requestModel.setGodownId(GodownId);
+        requestModel.setPaymentModeType(Paymode);
+        requestModel.setFileName(null);
+        requestModel.setFileExtension(null);
+        requestModel.setFileLocation(null);
+
+        requestModel.setTotalCost(100.00);
+        requestModel.setSubcidyAmount(100.00);
+        requestModel.setPaybleAmount(100.00);
+        requestModel.setComments(null);
+        requestModel.setCropMaintainceDate(formattedDate);
+        requestModel.setIssueTypeId(1);
+
+        List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
+
+        for (int i = 0; i < selected_ids_lists.size(); i++) {
+
+
+
+            FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
+            products.setBagCost(amount_final.get(i).doubleValue());
+            products.setGstPersentage(product_gst.get(i).doubleValue());
+            products.setProductId(selected_ids_lists.get(i));
+            products.setQuantity(selected_quntity_list.get(i));
+            products.setSize(selects_product_size.get(i));
+
+
+            req_products.add(products);
+            }
+
+        requestModel.setRequestProductDetails(req_products);
+
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+
 
     private void settoolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -232,7 +466,7 @@ ImageView home_btn;
     private void getActiveGodowns() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns)
+        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns+"/"+"AP")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ActiveGodownsModel>() {
                     @Override
@@ -263,9 +497,9 @@ ImageView home_btn;
     private void getPaymentMods() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getpaymentModes(APIConstantURL.GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
+        mSubscription = service.getsubsidy(APIConstantURL.Getfarmersubsidy + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
                 .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<PaymentsType>() {
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<SubsidyResponse>() {
                     @Override
                     public void onCompleted() {
                         mdilogue.cancel();
@@ -277,23 +511,10 @@ ImageView home_btn;
                     }
 
                     @Override
-                    public void onNext(PaymentsType paymentsType) {
+                    public void onNext(SubsidyResponse subsidyResponse) {
                         mdilogue.cancel();
-                        for (PaymentsType.ListResult string : paymentsType.getListResult()
-                        ) {
-                            listdata.add(string.getDesc());
-
-                        }
-
-
-                        char ch = '"';
-                        String finalstring = ch + arrayToString(listdata) + ch;
-                        finalstring = finalstring.replace(",", ch + "," + ch);
-                        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
-                        //  sw_paymentMode.setText(finalstring);
-                        sw_paymentMode.setText("Cash", "Against FFB");
-                        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
                     }
+
                 });
     }
 
@@ -302,10 +523,7 @@ ImageView home_btn;
          * validate Fealds
          * */
         if (selectedGodown != null) {
-            Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
+            FertilizerRequest();
         } else {
             showDialog(this, "please Select Godown");
         }
@@ -314,5 +532,7 @@ ImageView home_btn;
     @Override
     public void onItemClick(ActiveGodownsModel.ListResult item) {
         selectedGodown = item;
+ GodownId =selectedGodown.getId().toString();
+       // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
 }

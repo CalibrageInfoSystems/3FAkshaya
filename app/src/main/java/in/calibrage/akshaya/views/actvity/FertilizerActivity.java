@@ -65,6 +65,8 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     List<String> selecteditem_List = new ArrayList<>();
     List<Integer> selectedgst_List = new ArrayList<>();
     List<Integer> amount_List = new ArrayList<>();
+
+    List<String> selectedsize_List = new ArrayList<>();
     String amount;
     String dis_price, Farmer_code;
     final Context context = this;
@@ -128,7 +130,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                             i.putExtra("item_names", (Serializable) selecteditem_List);
                             i.putExtra("item_amount", (Serializable) amount_List);
                             i.putExtra("gst_per", (Serializable) selectedgst_List);
+                            i.putExtra("procuct_size", (Serializable) selectedsize_List);
                             i.putExtra("amount", amount);
+
                             startActivity(i);
 
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
@@ -151,6 +155,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     i.putExtra("item_names", (Serializable) selecteditem_List);
                     i.putExtra("item_amount", (Serializable) amount_List);
                     i.putExtra("gst_per", (Serializable) selectedgst_List);
+                    i.putExtra("procuct_size", (Serializable) selectedsize_List);
                     i.putExtra("amount", amount);
                     startActivity(i);
 
@@ -162,7 +167,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         txt_recomandations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(FertilizerActivity.this, FertlizerRecomandationsActivity.class));
+                startActivity(new Intent(FertilizerActivity.this, RecommendationActivity.class));
             }
         });
     }
@@ -374,12 +379,15 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     selecteditem_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getName()));
                     amount_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getPrice()));
                     selectedgst_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getgst()));
+                    selectedsize_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getSize()));
+
                 } else {
                     selectedId_List.add(product_list.get(position).getId());
                     selectedQty_List.add(product_list.get(position).getmQuantity());
                     selecteditem_List.add(product_list.get(position).getName());
                     amount_List.add(product_list.get(position).getPrice());
                     selectedgst_List.add(product_list.get(position).getgst());
+                    selectedsize_List.add(product_list.get(position).getSize());
 
                 }
             } else {
@@ -388,6 +396,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 selecteditem_List.add(product_list.get(position).getName());
                 amount_List.add(product_list.get(position).getPrice());
                 selectedgst_List.add(product_list.get(position).getgst());
+                selectedsize_List.add(product_list.get(position).getSize());
             }
 
             Log.e(" add selectedId_List-==", selectedId_List.toString());

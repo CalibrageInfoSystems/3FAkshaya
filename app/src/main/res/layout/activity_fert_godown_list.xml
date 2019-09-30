@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
 
                 android:layout_toRightOf="@+id/back"
-                android:text="Product Request"
+                android:text="@string/product_req"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
             <ImageView
@@ -61,10 +61,12 @@
             <TextView
                 android:id="@+id/txt_select_godown"
                 style="@style/Common_textView_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_5"
                 android:paddingLeft="@dimen/margin_10"
+                android:drawableRight="@drawable/star"
+                android:drawablePadding="5dp"
                 android:text="@string/select_godown"
                 android:textAlignment="textStart"
                 android:textColor="@color/text_dark_gray" />
@@ -111,11 +113,12 @@
                     <TextView
                         android:id="@+id/txt_Payment_mode"
                         style="@style/Common_textView_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/margin_5"
                         android:text="@string/payment_mode"
-
+                        android:drawableRight="@drawable/star"
+                        android:drawablePadding="5dp"
                         android:textAlignment="textStart"
                         android:textColor="@color/text_dark_gray" />
 
@@ -174,6 +177,7 @@
                                 <TextView
                                     android:id="@+id/tvtext_item_four"
                                     style="@style/Common_textView"
+
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
@@ -181,14 +185,31 @@
                                     android:text="@string/amount"
                                     android:textAlignment="textStart" />
 
+
+                                <TextView
+                                    android:id="@+id/dot"
+                                    style="@style/Common_textView"
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.2"
+                                    android:paddingLeft="@dimen/margin_10"
+
+                                    android:textAlignment="textStart"
+                                    android:text=":"
+                                    />
+
                                 <TextView
                                     android:id="@+id/amount"
                                     style="@style/Common_textView"
+
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="0.6"
+                                    android:layout_weight="0.4"
+                                    android:paddingLeft="@dimen/margin_10"
                                     android:text=""
-                                    android:textAlignment="textStart" />
+                                    android:textAlignment="textStart"
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -205,6 +226,7 @@
                                 <TextView
                                     android:id="@+id/tvtext_item_six"
                                     style="@style/Common_textView"
+
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
@@ -212,14 +234,31 @@
                                     android:text="@string/gst_amount"
                                     android:textAlignment="textStart" />
 
+
+                                <TextView
+                                    android:id="@+id/dotg"
+                                    style="@style/Common_textView"
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.2"
+                                    android:paddingLeft="@dimen/margin_10"
+
+                                    android:textAlignment="textStart"
+                                    android:text=":"
+                                    />
+
                                 <TextView
                                     android:id="@+id/gst_amount"
                                     style="@style/Common_textView"
+
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="0.6"
+                                    android:layout_weight="0.4"
+                                    android:paddingLeft="@dimen/margin_10"
                                     android:text=""
-                                    android:textAlignment="textStart" />
+                                    android:textAlignment="textStart"
+                                    />
                             </LinearLayout>
 
                             <LinearLayout
@@ -232,10 +271,10 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:weightSum="1">
-
                                 <TextView
-                                    android:id="@+id/tvtext_item_eight"
+                                    android:id="@+id/text_final"
                                     style="@style/Common_textView"
+
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
@@ -243,14 +282,78 @@
                                     android:text="@string/total_amt"
                                     android:textAlignment="textStart" />
 
+
+                                <TextView
+                                    android:id="@+id/dotf"
+                                    style="@style/Common_textView"
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.2"
+                                    android:paddingLeft="@dimen/margin_10"
+
+                                    android:textAlignment="textStart"
+                                    android:text=":"
+                                    />
+
                                 <TextView
                                     android:id="@+id/final_amount_gst"
                                     style="@style/Common_textView"
+
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="0.6"
+                                    android:layout_weight="0.4"
+                                    android:paddingLeft="@dimen/margin_10"
                                     android:text=""
+                                    android:textAlignment="textStart"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:background="@drawable/devider_line" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/plotIdLabel"
+                                    style="@style/Common_textView"
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.4"
+                                    android:paddingLeft="@dimen/margin_10"
+                                    android:text="@string/subcd_amt"
                                     android:textAlignment="textStart" />
+
+
+                                <TextView
+                                    android:id="@+id/dots"
+                                    style="@style/Common_textView"
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.2"
+                                    android:paddingLeft="@dimen/margin_10"
+
+                                    android:textAlignment="textStart"
+                                    android:text=":"
+                                     />
+
+                                <TextView
+                                    android:id="@+id/subcdamount"
+                                    style="@style/Common_textView"
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.4"
+                                    android:paddingLeft="@dimen/margin_10"
+                                    android:text=""
+                                    android:textAlignment="textStart"
+                                    />
                             </LinearLayout>
 
                             <LinearLayout

@@ -8,6 +8,7 @@ import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
+import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.GetIssueModel;
@@ -26,6 +27,7 @@ import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.SpinnerModel;
 import in.calibrage.akshaya.models.Stand_recom_model;
+import in.calibrage.akshaya.models.SubsidyResponse;
 import in.calibrage.akshaya.models.VisitresponseModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
@@ -128,6 +130,15 @@ public interface ApiService {
 
     @GET
     Observable<BannerresponseModel> getbannerdetails(@Url String url);
+
+
+    @POST(APIConstantURL.Post_fert)
+    Observable<FertResponse> postfert(@Body JsonObject data);
+
+
+    @GET
+    Observable<SubsidyResponse> getsubsidy(@Url String url);
+
 
  /*
     // PASSWORD RESET

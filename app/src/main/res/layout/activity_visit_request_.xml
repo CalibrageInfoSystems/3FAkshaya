@@ -128,7 +128,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="@dimen/_8dp"
                 android:background="@drawable/spinner_bg"
-                android:gravity="center"
+
                 android:hint="@string/comments"
                 android:inputType="textMultiLine"
                 android:padding="5dp"
@@ -250,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".33"
 
-                android:text="Record"
+                android:text="@string/record_btn"
 
 
                 />
@@ -258,7 +258,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="STOP"
+                android:text="@string/stop"
                 android:layout_weight=".33"
                 android:id="@+id/button2"
 
@@ -271,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".33"
 
-                android:text="Play" />
+                android:text="@string/play" />
 
 <!--            <Button-->
 <!--                android:id="@+id/button4"-->

@@ -193,7 +193,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        edittext.setText(dateFormat.format(new Date()));
+      //  edittext.setText(dateFormat.format(new Date()));
 
         SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat output = new SimpleDateFormat("yyyy/MM/dd");
@@ -225,7 +225,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                                   int monthOfYear, int dayOfMonth) {
                                 int month = monthOfYear + 1;
                                 String formattedMonth = "" + month;
-                                String formattedDayOfMonth = "" + dayOfMonth;
+                                String formattedDayOfMonth = "" + dayOfMonth ;
 
                                 if (month < 10) {
 
@@ -256,7 +256,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             }
                         }, year, month, day);
                 datePickerDialog.show();
-                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()+(1000*60*60*24*3));
             }
 
         });
@@ -422,6 +422,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             // showDialog(LabourActivity.this, "Please Select Service Type ");
             return false;
         }
+        if (edittext.getText().toString().matches("")) {
+           // Toasty.error(LabourActivity.this, "Please Select the Date", Toast.LENGTH_SHORT).show();
+            showDialog(LabourActivity.this, getResources().getString(R.string.date_selectiomn));
+            return false;
+        }
         if (labourSpinner.getSelectedItemPosition() == 0) {
 
             showDialog(LabourActivity.this, getResources().getString(R.string.valid_pack));
@@ -484,7 +489,10 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
                                     displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), finalAmount));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), harv_amount.getText().toString()));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), prun_amount.getText().toString()));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
 
 
@@ -783,9 +791,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(reformattedDate);
         requestModel.setAmount(1.1);
-        requestModel.setHarvestingAmount(Double.parseDouble((String) prun_amount.getText()));
+        requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
         requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
-        requestModel.setUnKnown1Amount(Double.parseDouble((String) harv_amount.getText()));
+        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
         requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
 
         // TODO

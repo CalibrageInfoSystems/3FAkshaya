@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -118,9 +119,9 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private SpotsDialog mdilogue ;
     String datetimevalute;
-    TextView irrigation_text,uprootment_text,fert_rec_text,pest_text,diase_text,nut_text;
+    RelativeLayout irrigation_text,uprootment_text,fert_rec_text,pest_text,diase_text,nut_text,Fert_text,InterCrop_text;
     public TextView treesAppearance,treeGirth,treeHeight,fruitColor,fruitSize,fruitHyegiene,plantationType;
-    public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments,InterCrop_text,Fert_text;
+    public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
     // ImageView thumbnail;
     public TextView comment_label,reason_label;
     String plot_Age,location,landmarkCode;
@@ -157,44 +158,31 @@ public class CropMaintanceVisitActivity extends BaseActivity {
          backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         recycler_view_pest =(RecyclerView)findViewById(R.id.recyclerView_pest);
-        pest_text =(TextView) findViewById(R.id.pest_text);
+        pest_text =(RelativeLayout) findViewById(R.id.pest_text);
 
         recycler_view_desease =(RecyclerView)findViewById(R.id.recyclerView_dease);
-        diase_text =(TextView) findViewById(R.id.dease_text);
+        diase_text =(RelativeLayout) findViewById(R.id.dease_text);
 
         recyclerView_nut =(RecyclerView)findViewById(R.id.recyclerView_nut);
-        nut_text =(TextView) findViewById(R.id.nut_text);
+        nut_text =(RelativeLayout) findViewById(R.id.nut_text);
 
         recycler_view_fert_rec_Details =(RecyclerView)findViewById(R.id.recyclerView_fert_rec);
-        fert_rec_text =(TextView) findViewById(R.id.fert_rec_text);
+        fert_rec_text =(RelativeLayout) findViewById(R.id.fert_rec_text);
         recycler_view_fertilizer =(RecyclerView)findViewById(R.id.recycler_fertilizer);
-        Fert_text =(TextView) findViewById(R.id.fertlizer);
+        Fert_text =(RelativeLayout) findViewById(R.id.fertlizer);
 
         recycler_view_irrigation =(RecyclerView)findViewById(R.id.recyclerView_irrigation);
-        irrigation_text=(TextView) findViewById(R.id.irr_rec_text);
+        irrigation_text=(RelativeLayout) findViewById(R.id.irr_rec_text);
         treesAppearance = findViewById(R.id.treesAppearance);
-        treeGirth = findViewById(R.id.treeGirth);
-        treeHeight = findViewById(R.id.treeHeight);
-        fruitColor = findViewById(R.id.fruitColor);
-        fruitSize= findViewById(R.id.fruitSize);
-
-        fruitHyegiene = findViewById(R.id.fruitHyegiene);
-        plantationType= findViewById(R.id.plantationType);
-        thumbnail =findViewById(R.id.imageViewHero);
 
 
-        seedsPlanted = findViewById(R.id.seedsPlanted);
-        prevPalmsCount = findViewById(R.id.prevPalmsCount);
+
+
         plamsCount = findViewById(R.id.plamsCount);
-        isTreesMissing = findViewById(R.id.isTreesMissing);
-        missingTreesCount= findViewById(R.id.missingTreesCount);
+
         recycler_view_InterCrop =(RecyclerView)findViewById(R.id.recyclerView_InterCrop);
-        InterCrop_text =(TextView) findViewById(R.id.InterCrop_text);
-        reasonType = findViewById(R.id.reasonType);
-        expectedPlamsCount= findViewById(R.id.expectedPlamsCount);
-        comments =findViewById(R.id.comments);
-        comment_label=findViewById(R.id.commentsLabel);
-        reason_label=findViewById(R.id.reasonTypeLabel);
+        InterCrop_text =(RelativeLayout) findViewById(R.id.InterCrop_text);
+
 
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
@@ -266,7 +254,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private void GetCropMaintenanceHistoryDetailsByCode() {
         mdilogue.show();
-        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APAB0001000004";
+        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id;
         Log.e("url====",url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -287,18 +275,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
                     Log.e("data===",healthPlantation_Data.getString("treesAppearance"));
                     treesAppearance.setText(healthPlantation_Data.getString("treesAppearance"));
-                    treeGirth.setText(healthPlantation_Data.getString("treeGirth"));
-                    treeHeight.setText(healthPlantation_Data.getString("treeHeight"));
-                    fruitColor.setText(healthPlantation_Data.getString("fruitColor"));
-                    fruitSize.setText(healthPlantation_Data.getString("fruitSize"));
-                    fruitHyegiene.setText(healthPlantation_Data.getString("fruitHyegiene"));
-                    plantationType.setText(healthPlantation_Data.getString("plantationType"));
-                    Log.d(TAG, "healthPlantation_Data ======" + healthPlantation_Data);
 
-                    Picasso.with(CropMaintanceVisitActivity.this).load(healthPlantation_Data.getString("plantationPictureLocation")).fit().centerCrop()
-                            .placeholder(R.drawable.encylopedia)
-                            .error(R.drawable.pole)
-                            .into(thumbnail);
                     JSONArray nutrient_Data = jsonObject.getJSONArray("nutrientData");
                     if(nutrient_Data.length()==0){
                         recyclerView_nut.setVisibility(View.GONE);
@@ -366,37 +343,36 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
                     JSONObject uprootment_Data = jsonObject.getJSONObject("uprootmentData");
                   Log.e("uprootment_Data======", String.valueOf(uprootment_Data));
-                    seedsPlanted.setText(uprootment_Data.getString("seedsPlanted"));
-                    prevPalmsCount.setText(uprootment_Data.getString("prevPalmsCount"));
+
                     plamsCount.setText(uprootment_Data.getString("plamsCount"));
-                    isTreesMissing.setText(uprootment_Data.getString("isTreesMissing"));
-                    missingTreesCount.setText(uprootment_Data.getString("missingTreesCount"));
-                    reasonType.setText(uprootment_Data.getString("reasonType"));
-                    expectedPlamsCount.setText(uprootment_Data.getString("expectedPlamsCount"));
-                    comments.setText(uprootment_Data.getString("comments"));
-
-                    if (uprootment_Data.getString("reasonType").contains("null"))
-                    {
-                        //   Log.e("bbbbb",superHero.getmAmount());
-                        reasonType.setVisibility(View.GONE);
-                        reason_label.setVisibility(View.GONE);
-
-                    }
-                    else {
-                        reasonType.setVisibility(View.VISIBLE);
-                        reason_label.setVisibility(View.VISIBLE);
-                    }
-                    if (uprootment_Data.getString("comments").contains("null"))
-                    {
-                        //   Log.e("bbbbb",superHero.getmAmount());
-                        comments.setVisibility(View.GONE);
-                        comment_label.setVisibility(View.GONE);
-
-                    }
-                    else {
-                        comments.setVisibility(View.VISIBLE);
-                        comment_label.setVisibility(View.VISIBLE);
-                    }
+//                    isTreesMissing.setText(uprootment_Data.getString("isTreesMissing"));
+//                    missingTreesCount.setText(uprootment_Data.getString("missingTreesCount"));
+//                    reasonType.setText(uprootment_Data.getString("reasonType"));
+//                    expectedPlamsCount.setText(uprootment_Data.getString("expectedPlamsCount"));
+//                    comments.setText(uprootment_Data.getString("comments"));
+//
+//                    if (uprootment_Data.getString("reasonType").contains("null"))
+//                    {
+//                        //   Log.e("bbbbb",superHero.getmAmount());
+//                        reasonType.setVisibility(View.GONE);
+//                        reason_label.setVisibility(View.GONE);
+//
+//                    }
+//                    else {
+//                        reasonType.setVisibility(View.VISIBLE);
+//                        reason_label.setVisibility(View.VISIBLE);
+//                    }
+//                    if (uprootment_Data.getString("comments").contains("null"))
+//                    {
+//                        //   Log.e("bbbbb",superHero.getmAmount());
+//                        comments.setVisibility(View.GONE);
+//                        comment_label.setVisibility(View.GONE);
+//
+//                    }
+//                    else {
+//                        comments.setVisibility(View.VISIBLE);
+//                        comment_label.setVisibility(View.VISIBLE);
+//                    }
 
 
                     JSONArray pest_Data = jsonObject.getJSONArray("pestData");

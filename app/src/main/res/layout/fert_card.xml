@@ -60,7 +60,23 @@ android:background="@color/transparent"
                 android:text="600"
                 android:textColor="@color/red"
                 android:textSize="@dimen/album_title" />
-
+            <TextView
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_below="@id/selected_food_name"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="4dp"
+                android:layout_toRightOf="@+id/actual_amt"
+                android:gravity="center"
+                android:padding="2dp"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:text="100.0"
+                android:textColor="@color/colorOrange"
+                android:textSize="@dimen/album_title" />
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="wrap_content"
@@ -90,7 +106,7 @@ android:background="@color/transparent"
                 android:id="@+id/desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/size"
+                android:layout_below="@id/thumbnail"
                 android:ellipsize="end"
                 android:hint="desc"
                 android:paddingLeft="@dimen/album_title_padding"
@@ -99,22 +115,7 @@ android:background="@color/transparent"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title" />
 
-            <TextView
-                android:id="@+id/size"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_below="@id/thumbnail"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="@dimen/_8dp"
-                android:layout_marginBottom="4dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
-                android:text="sizedkjsdklcndjcnjkdsbvjsdbcjsdbcjsdbjbsvdbvsbvskbjsjbb"
-                android:textColor="@color/colorOrange"
-                android:textSize="@dimen/album_title" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

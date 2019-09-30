@@ -203,7 +203,7 @@
 
     <string name="str_standard">Standard</string>
     <string name="str_videos">Videos</string>
-    <string name="str_pdf">PDF</string>
+    <string name="str_pdf">Pdfs</string>
     <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
     <string name="Valid_service">Please Select Service Type</string>
     <string name="valid_pack">Please Select Package</string>
@@ -213,13 +213,13 @@
 
     <string name="confirm">Confirm</string>
     <string name="Rs">\u20B9</string>
-    <string name="Rs2">\u20B9 :</string>
+<!--    <string name="Rs2">\u20B9 :</string>-->
     <string name="select_product_toast">Please Select Atleast One Product</string>
     <string name="valid_issue_type">Please Select Issue Type</string>
     <string name="select_image">Please Attach At Least One Image or Voice Record</string>
     <string name="str_select_plot">Select Plot</string>
-    <string name="select_godown">Select Godown *</string>
-    <string name="payment_mode">Payment Mode *</string>
+    <string name="select_godown">Select Godown </string>
+    <string name="payment_mode">Payment Mode </string>
 
     <string name="product">Product</string>
     <string name="gst">GST(%)</string>
@@ -240,6 +240,17 @@
     <string name="lastAppliedDate">Last Applied Date</string>
     <string name="applyFertilizerFrequencyType">Apply Fertilizer Frequency</string>
     <string name="no_recommendations">No Recommendations</string>
+    <string name="record_btn">Record</string>
+    <string name="stop">STOP</string>
+    <string name="play">Play</string>
+    <string name="summary">Summary</string>
+    <string name="record_voice">Recorded Voice</string>
+    <string name="product_req">Product Request</string>
+    <string name="Frequency">Frequency</string>
+    <string name="static_data">We recommend harvesting every 10 days, when the loose fruitlets are seen on the ground for optimal yield</string>
+    <string name="Frequency_harvest">Frequency of Harvest</string>
+    <string name="date_selectiomn">Please Select the Date</string>
+    <string name="subcd_amt">Subsidy Amount</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
