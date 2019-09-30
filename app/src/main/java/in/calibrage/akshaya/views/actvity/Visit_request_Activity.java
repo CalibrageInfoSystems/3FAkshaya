@@ -292,8 +292,9 @@ public class Visit_request_Activity extends BaseActivity {
                     }
 
                     buttonStart.setEnabled(false);
+                    buttonStart.setBackgroundResource(R.drawable.button_bg_disable);
                     buttonStop.setEnabled(true);
-
+                    buttonStop.setBackgroundResource(R.drawable.button_bg);
                     Toast.makeText(Visit_request_Activity.this, "Recording started", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -311,8 +312,10 @@ public class Visit_request_Activity extends BaseActivity {
                 mediaRecorder.stop();
 
                 buttonStop.setEnabled(false);
+                buttonStop.setBackgroundResource(R.drawable.button_bg_disable);
                 buttonPlayLastRecordAudio.setEnabled(true);
                 buttonStart.setEnabled(true);
+                buttonStart.setBackgroundResource(R.drawable.button_bg);
                 // buttonStopPlayingRecording.setEnabled(false);
 
                 Toast.makeText(Visit_request_Activity.this, "Recording Completed", Toast.LENGTH_LONG).show();

@@ -20,7 +20,7 @@ public interface APIConstantURL {
     String labour_amount = "LabourServiceCost/GetLabourServiceCostCalculation";
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetLabourTermsandConditions ="LabourServiceCost/GetLabourServiceCost/null";
-    String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetails/";
+    String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetailsByFarmerCode/";
     String GetIssue = "TypeCdDmt/10";
     String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
     String post_visit = "RequestHeader/AddVisitRequest";

@@ -248,8 +248,9 @@
                 android:id="@+id/button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".33"
+                android:layout_weight=".5"
 
+       style="@style/Common_Button"
                 android:text="@string/record_btn"
 
 
@@ -259,19 +260,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/stop"
-                android:layout_weight=".33"
+                android:layout_marginLeft="20dp"
+                style="@style/Common_Button"
+                android:layout_weight=".5"
                 android:id="@+id/button2"
 
 
                 />
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-
-                android:text="@string/play" />
 
 <!--            <Button-->
 <!--                android:id="@+id/button4"-->
@@ -284,6 +280,13 @@
 
 <!--                />-->
         </LinearLayout>
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:visibility="gone"
+            android:text="@string/play" />
 
         <Button
             android:id="@+id/req_loan"

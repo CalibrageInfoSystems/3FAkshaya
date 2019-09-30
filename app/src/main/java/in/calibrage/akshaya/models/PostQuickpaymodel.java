@@ -27,18 +27,12 @@ public class PostQuickpaymodel {
     @SerializedName("collectionIds")
     @Expose
     private String collectionIds;
-    @SerializedName("fileName")
-    @Expose
-    private Object fileName;
     @SerializedName("fileLocation")
     @Expose
-    private Object fileLocation;
-    @SerializedName("fileExtension")
-    @Expose
-    private Object fileExtension;
+    private String fileLocation;
     @SerializedName("signatureName")
     @Expose
-    private Object signatureName;
+    private String signatureName;
     @SerializedName("signatureExtension")
     @Expose
     private String signatureExtension;
@@ -111,35 +105,19 @@ public class PostQuickpaymodel {
         this.collectionIds = collectionIds;
     }
 
-    public Object getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(Object fileName) {
-        this.fileName = fileName;
-    }
-
-    public Object getFileLocation() {
+    public String getFileLocation() {
         return fileLocation;
     }
 
-    public void setFileLocation(Object fileLocation) {
+    public void setFileLocation(String fileLocation) {
         this.fileLocation = fileLocation;
     }
 
-    public Object getFileExtension() {
-        return fileExtension;
-    }
-
-    public void setFileExtension(Object fileExtension) {
-        this.fileExtension = fileExtension;
-    }
-
-    public Object getSignatureName() {
+    public String getSignatureName() {
         return signatureName;
     }
 
-    public void setSignatureName(Object signatureName) {
+    public void setSignatureName(String signatureName) {
         this.signatureName = signatureName;
     }
 

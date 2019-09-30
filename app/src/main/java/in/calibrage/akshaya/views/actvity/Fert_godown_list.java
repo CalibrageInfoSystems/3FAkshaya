@@ -106,7 +106,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     String Amount;
     String  Farmer_code,formattedDate,IsSuccess;
 ImageView home_btn;
-    String GodownId;
+    Integer GodownId;
     private Spinner paymentspin;
     List<String> listdata = new ArrayList<>();
 
@@ -532,7 +532,7 @@ ImageView home_btn;
     @Override
     public void onItemClick(ActiveGodownsModel.ListResult item) {
         selectedGodown = item;
- GodownId =selectedGodown.getId().toString();
+ GodownId =selectedGodown.getId();
        // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
 }

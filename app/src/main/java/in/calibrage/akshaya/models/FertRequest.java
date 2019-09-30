@@ -171,7 +171,7 @@ public class FertRequest
         return godownId;
     }
 
-    public void setGodownId(String godownId) {
+    public void setGodownId(Integer godownId) {
         this.godownId = godownId;
     }
 

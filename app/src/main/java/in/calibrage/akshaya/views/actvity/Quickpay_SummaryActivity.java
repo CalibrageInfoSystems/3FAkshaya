@@ -189,8 +189,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File wallpaperDirectory = new File(
-                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+        File wallpaperDirectory = new File(Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
         // have the object build the directory structure, if needed.
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
@@ -220,7 +219,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     private void GetQuckPaySummary() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getquickpaydetails(APIConstantURL.GetQuickpayDetails + Farmer_code + "/" + 13)
+        mSubscription = service.getquickpaydetails(APIConstantURL.GetQuickpayDetails + Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<GetquickpayDetailsModel>() {
@@ -387,6 +386,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
     private JsonObject quickReuestobject() {
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
+
+
+
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
@@ -399,13 +401,10 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setCollectionIds("COL2019TAB027CCBDL01117-94,COL2019TAB140CCBDL01131-21");
         requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
-        requestModel.setFileName(null);
-        requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
-        requestModel.setFileExtension(".pdf");
-        requestModel.setSignatureExtension(".pdf");
-        requestModel.setSignatureName(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
+       // requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
+        requestModel.setSignatureExtension(".png");
+        requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
-
 
     }
 
