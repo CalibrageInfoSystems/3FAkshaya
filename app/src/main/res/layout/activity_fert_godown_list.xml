@@ -35,12 +35,13 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
             <ImageView
+
                 android:layout_weight="0.2"
                 style="@style/Common_image"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:padding="@dimen/margin_5"
-                android:id="@+id/home_btn"
+                android:id="@+id/home_btn1"
                 android:src="@drawable/home" />
         </LinearLayout>
     </android.support.v7.widget.Toolbar>

@@ -156,7 +156,17 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         text_amount = (TextView) findViewById(R.id.amount);
         Final_amount = (TextView) findViewById(R.id.final_amount_gst);
         gst_amount = (TextView) findViewById(R.id.gst_amount);
-        home_btn = (ImageView) findViewById(R.id.home_btn);
+        home_btn = (ImageView) findViewById(R.id.home_btn1);
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG,"---------- Finish ----------------");
+                Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
@@ -234,17 +244,6 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
 
-        home_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
-                Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
-        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             RequestType =extras.getInt("request_type");
