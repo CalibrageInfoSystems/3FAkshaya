@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,21 @@ import in.calibrage.akshaya.models.CollectionResponceModel;
 public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.ViewHolder> {
     String datetimevaluereq;
     public Context mContext;
-    private List<CollectionResponceModel.CollectioDatum> collection_Set;
+    private List<CollectionResponceModel.CollectioDatum> collection_Set=new ArrayList<>();
+
+    public Collection_Adapter(Context mContext) {
+        this.mContext = mContext;
+    }
+    public void updateData(List<CollectionResponceModel.CollectioDatum> viewModels) {
+        collection_Set.clear();
+        collection_Set.addAll(viewModels);
+        notifyDataSetChanged();
+    }
+    public void clearAllDataa()
+    {
+        collection_Set.clear();
+        notifyDataSetChanged();
+    }
 
     public Collection_Adapter(Context context, List<CollectionResponceModel.CollectioDatum> collection_Set) {
 

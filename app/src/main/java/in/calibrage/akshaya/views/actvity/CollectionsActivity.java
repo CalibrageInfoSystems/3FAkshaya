@@ -142,9 +142,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
-
             }
         });
         home_btn.setOnClickListener(new View.OnClickListener() {
@@ -202,6 +200,9 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         layoutManager = new LinearLayoutManager(this);
         collecton_data.setLayoutManager(layoutManager);
         spin.setOnItemSelectedListener(this);
+
+        collection_Adapter = new Collection_Adapter(CollectionsActivity.this);
+        collecton_data.setAdapter(collection_Adapter);
 
         ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, selection);
         aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
@@ -292,6 +293,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
 
                             showDialog(CollectionsActivity.this,getResources().getString(R.string.enter_Date));
+                            collection_Adapter.clearAllDataa();
                             date_linear.setVisibility(View.VISIBLE); //
                             collecton_data.setVisibility(View.GONE);
                         } else {
@@ -304,6 +306,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                                 Date date2 = formatter.parse(toString);
                                 if (date2.compareTo(date1) < 0) {
                                     showDialog(CollectionsActivity.this,getResources().getString(R.string.datevalidation));
+                                    collection_Adapter.clearAllDataa();
                                     //Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
                                 } else {
                                     collecton_data.invalidate();
@@ -390,9 +393,9 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                             Log.e("nodada====", "nodata===custom");
                             collecton_data.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
-
-                            collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
-                            collecton_data.setAdapter(collection_Adapter);
+                            collection_Adapter.updateData(collectionResponcemodel.getResult().getCollectioData());
+                          /*  collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
+                            collecton_data.setAdapter(collection_Adapter);*/
 
                             relativeLayoutCount.setVisibility(View.VISIBLE);
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
@@ -458,11 +461,12 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
                         if (collectionResponcemodel.getResult() != null) {
 
+                            collection_Adapter.updateData(collectionResponcemodel.getResult().getCollectioData());
                             Log.e("nodada====", "nodata===1year");
                             collecton_data.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
-                            collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
-                            collecton_data.setAdapter(collection_Adapter);
+                          /*  collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
+                            collecton_data.setAdapter(collection_Adapter);*/
                             relativeLayoutCount.setVisibility(View.VISIBLE);
 
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
@@ -524,6 +528,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        collection_Adapter.clearAllDataa();
                     }
 
                     @Override
@@ -533,10 +538,10 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
                         if (collectionResponcemodel.getResult() != null) {
 
-
+                            collection_Adapter.updateData(collectionResponcemodel.getResult().getCollectioData());
                             noRecords.setVisibility(View.GONE);
-                            collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
-                            collecton_data.setAdapter(collection_Adapter);
+                           /* collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
+                            collecton_data.setAdapter(collection_Adapter);*/
                             relativeLayoutCount.setVisibility(View.VISIBLE);
 
                             unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
@@ -555,7 +560,6 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
     }
 
-
     private JsonObject collectionObject() {
         collectionRequestModel requestModel = new collectionRequestModel();
         requestModel.setFarmerCode(Farmer_code);
@@ -564,7 +568,6 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
