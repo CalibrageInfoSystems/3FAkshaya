@@ -5,11 +5,15 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
@@ -19,6 +23,7 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Vi
 
     public Context mContext;
     List<Irrigation_Model> Irr_List;
+    String datetimevaluereq;
 
     public IrrigationAdapter(Context context, List<Irrigation_Model> Irr_List) {
         this.Irr_List = Irr_List;
@@ -40,7 +45,22 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Vi
         Irrigation_Model data = Irr_List.get(position);
         holder.name.setText(data.getName());
         holder.updatedBy.setText(data.getUpdatedBy());
-        holder.updatedbyDate.setText(data.getUpdatedbyDate());
+
+
+
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date oneWayTripDate = input.parse(data.getUpdatedbyDate());
+
+            datetimevaluereq = output.format(oneWayTripDate);
+            //datetimevalute.setText(output.format(oneWayTripDate));
+
+            Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        holder.updatedbyDate.setText(datetimevaluereq);
 
 //        if (position % 2 == 0) {
 //            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));

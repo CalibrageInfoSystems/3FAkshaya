@@ -376,7 +376,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             ImageView cartButtonIV = findViewById(R.id.cartButtonIV);
 
             makeFlyAnimation(img);
-            if (selectedId_List.size() > 0) {
+            if (selectedId_List.size() > 0 & position >0) {
 
                 if (selectedId_List.contains(product_list.get(position).getId())) {
                     selectedId_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getId());
@@ -419,8 +419,12 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             //    Toast.makeText(FertilizerActivity.this,selectedId_List.toString(),Toast.LENGTH_SHORT).show();
 
         } else {
+<<<<<<< HEAD
             if (selectedId_List.size() > 0 & product_list.size() >0 &  product_list.get(position).getmQuantity() >= 1 & position >0) {
 
+=======
+            if (selectedId_List.size() > 0 ) {
+>>>>>>> 0c2f54f507406d2b6c25f3d48cd8db9013ecc71b
 
 
                 if (product_list.size() >0 & product_list.get(position).getmQuantity() >= 1 & position >0) {
@@ -433,6 +437,8 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                         Count= Count-1;
                         txt_count.setText(Count+"");
                     }
+
+
                 } else {
 
                     int a = selectedId_List.indexOf(product_list.get(position).getId());
@@ -449,14 +455,14 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     selectedQty_List.remove(a);
 
                     selectedId_List.remove(selectedId_List.indexOf(product_list.get(position).getId()));
-                    Log.d(TAG, "--------- analysis ---->>(< 0) Item Count"+selectedId_List.size() );
-                    if(Count >0)
-                    {
-                        Count= Count-1;
-                        txt_count.setText(Count+"");
+                    Log.d(TAG, "--------- analysis ---->>(< 0) Item Count" + selectedId_List.size());
+                    if (Count > 0) {
+                        Count = Count - 1;
+                        txt_count.setText(Count + "");
                     }
-
                 }
+
+
 
 
 //                Log.e(" remove selectedId_List", selectedId_List.toString());

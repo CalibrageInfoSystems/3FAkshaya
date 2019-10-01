@@ -206,8 +206,8 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
-                                    android:paddingLeft="@dimen/margin_10"
-                                    android:text=""
+
+                                    android:text="100"
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -255,8 +255,8 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
-                                    android:paddingLeft="@dimen/margin_10"
-                                    android:text=""
+
+                                    android:text="100"
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -291,7 +291,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.2"
                                     android:paddingLeft="@dimen/margin_10"
-
                                     android:textAlignment="textStart"
                                     android:text=":"
                                     />
@@ -303,8 +302,8 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
-                                    android:paddingLeft="@dimen/margin_10"
-                                    android:text=""
+
+                                    android:text="100"
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -350,8 +349,8 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
-                                    android:paddingLeft="@dimen/margin_10"
-                                    android:text=""
+
+                                    android:text="10"
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>

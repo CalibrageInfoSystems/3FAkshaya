@@ -97,6 +97,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void init() {
+        ids_list=(ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
+
 
         backImg = (ImageView) findViewById(R.id.back);
 
@@ -410,7 +412,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setUpdatedDate(currentDate);
         requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
         //TODO make dynamic
-        requestModel.setCollectionIds("COL2019TAB027CCBDL01117-94,COL2019TAB140CCBDL01131-21");
+
+        String val = arrayTOstring(ids_list);
+        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
+
+
+        requestModel.setCollectionIds(val);
         requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
        // requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
@@ -418,6 +425,19 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
+    }
+
+    public String arrayTOstring(List<String> arrayList) {
+        StringBuilder string = new StringBuilder();
+        if (arrayList.size() > 0) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (i == 0)
+                    string.append("" + arrayList.get(i));
+                else
+                    string.append("," + arrayList.get(i));
+            }
+        }
+        return string.toString();
     }
 
     private void showCustomDialog() {

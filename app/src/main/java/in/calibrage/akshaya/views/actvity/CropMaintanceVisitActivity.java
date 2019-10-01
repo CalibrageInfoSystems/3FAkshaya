@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.views.actvity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -120,7 +121,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     private SpotsDialog mdilogue ;
     String datetimevalute;
     RelativeLayout irrigation_text,uprootment_text,fert_rec_text,pest_text,diase_text,nut_text,Fert_text,InterCrop_text;
-    public TextView treesAppearance,treeGirth,treeHeight,fruitColor,fruitSize,fruitHyegiene,plantationType;
+    public TextView treesAppearance,treeGirth,freq_harvest,fruitColor,fruitSize,fruitHyegiene,plantationType;
     public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
     // ImageView thumbnail;
     public TextView comment_label,reason_label;
@@ -154,8 +155,9 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     }
 
     private void intview() {
-
-         backImg = (ImageView) findViewById(R.id.back);
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
+        backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         recycler_view_pest =(RecyclerView)findViewById(R.id.recyclerView_pest);
         pest_text =(RelativeLayout) findViewById(R.id.pest_text);
@@ -175,7 +177,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         irrigation_text=(RelativeLayout) findViewById(R.id.irr_rec_text);
         treesAppearance = findViewById(R.id.treesAppearance);
 
-
+        freq_harvest=findViewById(R.id.freq_harvest);
 
 
         plamsCount = findViewById(R.id.plamsCount);
@@ -254,7 +256,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private void GetCropMaintenanceHistoryDetailsByCode() {
         mdilogue.show();
-        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id;
+        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id + "/"+ Farmer_code;
         Log.e("url====",url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -272,7 +274,8 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
 
                     JSONObject healthPlantation_Data = jsonObject.getJSONObject("healthPlantationData");
-
+                    String frequencyOfHarvest = jsonObject.getString("frequencyOfHarvest");
+                    freq_harvest.setText(frequencyOfHarvest);
                     Log.e("data===",healthPlantation_Data.getString("treesAppearance"));
                     treesAppearance.setText(healthPlantation_Data.getString("treesAppearance"));
 

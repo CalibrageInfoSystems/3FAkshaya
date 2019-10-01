@@ -306,7 +306,9 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                                 Date date2 = formatter.parse(toString);
                                 if (date2.compareTo(date1) < 0) {
                                     showDialog(CollectionsActivity.this,getResources().getString(R.string.datevalidation));
+                                    relativeLayoutCount.setVisibility(View.GONE);
                                     collection_Adapter.clearAllDataa();
+
                                     //Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
                                 } else {
                                     collecton_data.invalidate();

@@ -18,7 +18,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
-
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
@@ -42,9 +41,10 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
     //List of superHeroes
     List<ModelFert> list_products;
     LayoutInflater mInflater;
-    private OnClickAck onClickAck1 ;
-    String Description,ProductName;
-    public ModelFertAdapter(List<ModelFert> list_products, Context context){
+    private OnClickAck onClickAck1;
+    String Description, ProductName;
+
+    public ModelFertAdapter(List<ModelFert> list_products, Context context) {
         super();
         //Getting all the superheroes
         this.list_products = list_products;
@@ -62,7 +62,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        final ModelFert superHero =  list_products.get(position);
+        final ModelFert superHero = list_products.get(position);
 
         imageLoader = CustomVolleyRequest.getInstance(context).getImageLoader();
         imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
@@ -70,34 +70,31 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         holder.imageView2.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.currentFoodName.setText(superHero.getName());
-        holder.currentCost.setText(context.getString(R.string.Rs)+ (superHero.getPrice()));
+        holder.currentCost.setText(context.getString(R.string.Rs) + (superHero.getPrice()));
 //        holder.currentCost.setText(superHero.getDiscountedPrice());
         //   holder.actual_amt.setText(superHero.getDiscountedPrice());
         //  holder.disc.setText(superHero.getDescription());
         holder.disc.setText(superHero.getDescription());
-        if(!TextUtils.isEmpty(superHero.getSize()))
-        {
-            holder.size.setText(superHero.getSize()+" "+superHero.getUomType());
-        }else {
+        if (!TextUtils.isEmpty(superHero.getSize())) {
+            holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
+        } else {
             holder.size.setText("N/A");
         }
 
-        holder.quantityText.setText(""+ superHero.getmQuantity());
+        holder.quantityText.setText("" + superHero.getmQuantity());
 
         //holder.remove_text.setText(superHero.getId());
-        if (superHero.getDescription().equals("null"))
-        {
+        if (superHero.getDescription().equals("null")) {
 
             holder.disc.setVisibility(View.INVISIBLE);
 
-        }
-        else {
+        } else {
             holder.disc.setVisibility(View.VISIBLE);
 
             holder.disc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Description  = superHero.getDescription();
+                    Description = superHero.getDescription();
 //                    Toast toast=Toast.makeText(context,superHero.getDescription(),Toast.LENGTH_SHORT);
 //                    toast.setMargin(50,50);
 //                    toast.show();
@@ -120,15 +117,13 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         holder.actual_amt.setPaintFlags(holder.actual_amt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.actual_amt.setText(context.getString(R.string.Rs) + superHero.getDiscountedPrice());
 
-        Log.e("aaaaaaaaaaaa",superHero.getmAmount());
+        Log.e("aaaaaaaaaaaa", superHero.getmAmount());
 
-        if (superHero.getmAmount().equals("null"))
-        {
+        if (superHero.getmAmount().equals("null")) {
 
             holder.actual_amt.setVisibility(View.INVISIBLE);
 
-        }
-        else {
+        } else {
             holder.actual_amt.setVisibility(View.VISIBLE);
         }
 
@@ -142,10 +137,10 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
             @Override
             public void onClick(View view) {
                 superHero.addToQuantity();
-                holder.quantityText.setText("x "+ superHero.getmQuantity());
-                onClickAck1.setOnClickAckListener("add",holder.getAdapterPosition(),Boolean.TRUE,holder.imageView);
+                holder.quantityText.setText("x " + superHero.getmQuantity());
+                onClickAck1.setOnClickAckListener("add", holder.getAdapterPosition(), Boolean.TRUE, holder.imageView);
                 //     holder.currentCost.setText("GH"+ (superHero.getPrice() * superHero.getmQuantity()));
-                Log.e("product===1","" + superHero.getId() + superHero.getmQuantity());
+                Log.e("product===1", "" + superHero.getId() + superHero.getmQuantity());
                 notifyDataSetChanged();
             }
         });
@@ -154,22 +149,27 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
             @Override
             public void onClick(View view) {
                 superHero.removeFromQuantity();
-                holder.quantityText.setText("x "+superHero.getmQuantity());
-                onClickAck1.setOnClickAckListener("remove",holder.getAdapterPosition(),Boolean.FALSE,holder.imageView);
 
-                Log.e("product===2","id" + superHero.getId()+ " quantity " +  superHero.getmQuantity());
-                //     holder.currentCost.setText("GH"+ (superHero.getPrice() * superHero.getmQuantity()));
-                notifyDataSetChanged();
+                holder.quantityText.setText("x " + superHero.getmQuantity());
+                if (holder.quantityText.getText().toString().trim() != "0") {
+                    onClickAck1.setOnClickAckListener("remove", holder.getAdapterPosition(), Boolean.FALSE, holder.imageView);
+                    Log.e("product===2", "id" + superHero.getId() + " quantity " + superHero.getmQuantity());
+                    //     holder.currentCost.setText("GH"+ (superHero.getPrice() * superHero.getmQuantity()));
+                    notifyDataSetChanged();
+                }
+
+
             }
         });
         //  holder.textViewPowers.setText(powers);
     }
+
     private void displayPopupWindow(View anchorView) {
         PopupWindow popup = new PopupWindow(context);
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-        View layout = inflater.inflate( R.layout.popup_content, null );
-        TextView text =layout.findViewById(R.id.tvCaption);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.popup_content, null);
+        TextView text = layout.findViewById(R.id.tvCaption);
         text.setText(Description);
         popup.setContentView(layout);
         // Set content width and height
@@ -182,12 +182,13 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         popup.setBackgroundDrawable(new BitmapDrawable());
         popup.showAsDropDown(anchorView);
     }
+
     private void displayPopupWindow2(View anchorView) {
         PopupWindow popup = new PopupWindow(context);
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-        View layout = inflater.inflate( R.layout.popup_content, null );
-        TextView text =layout.findViewById(R.id.tvCaption);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.popup_content, null);
+        TextView text = layout.findViewById(R.id.tvCaption);
         text.setText(ProductName);
         popup.setContentView(layout);
         // Set content width and height
@@ -200,22 +201,23 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         popup.setBackgroundDrawable(new BitmapDrawable());
         popup.showAsDropDown(anchorView);
     }
+
     @Override
     public int getItemCount() {
         return list_products.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-        public NetworkImageView imageView,imageView2;
-        public  TextView currentFoodName,
+    class ViewHolder extends RecyclerView.ViewHolder {
+        public NetworkImageView imageView, imageView2;
+        public TextView currentFoodName,
                 currentCost,
                 quantityText,
                 actual_amt,
 
         remove_text;
-        public  ImageView addMeal,subtractMeal;
+        public ImageView addMeal, subtractMeal;
         public ImageView thumbnail;
-        public TextView disc,size;
+        public TextView disc, size;
 
         @SuppressLint("WrongViewCast")
         public ViewHolder(View itemView) {
@@ -241,7 +243,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
     }
 
     public interface OnClickAck {
-        void setOnClickAckListener(String status, int position, Boolean ischecked,NetworkImageView img);
+        void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img);
     }
 
 }

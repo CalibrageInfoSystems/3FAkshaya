@@ -234,17 +234,17 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
 
-//        home_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-//                startActivity(intent);*/
-//                Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             RequestType =extras.getInt("request_type");
@@ -367,30 +367,30 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
                         mdilogue.cancel();
 
-                        if (fertResponse.getIsSuccess()) {
-
-
-                           // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
-
-                            new Handler().postDelayed(new Runnable() {
-                                @RequiresApi(api = Build.VERSION_CODES.M)
-                                @Override
-                                public void run() {
-
-                                    List<MSGmodel> displayList = new ArrayList<>();
-
-//                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
-//                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
-
+//                        if (fertResponse.getIsSuccess()) {
 //
-//                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
-
-                                    showSuccessDialog(displayList, getString(R.string.success_fertilizer));
-                                }
-                            }, 300);
-                        } else {
-                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
-                        }
+//
+//                           // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
+//
+//                            new Handler().postDelayed(new Runnable() {
+//                                @RequiresApi(api = Build.VERSION_CODES.M)
+//                                @Override
+//                                public void run() {
+//
+//                                    List<MSGmodel> displayList = new ArrayList<>();
+//
+////                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
+////                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
+//
+////
+////                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
+//
+//                                    showSuccessDialog(displayList, getString(R.string.success_fertilizer));
+//                                }
+//                            }, 300);
+//                        } else {
+//                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
+//                        }
 
 
                     }
@@ -560,7 +560,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         if (selectedGodown != null) {
             FertilizerRequest();
         } else {
-            showDialog(this, "please Select Godown");
+            showDialog(this, getString(R.string.godown_valid));
         }
     }
 

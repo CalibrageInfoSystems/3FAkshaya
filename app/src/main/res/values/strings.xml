@@ -66,7 +66,7 @@
     <string name="village">Village</string>
     <string name="comments">Comments</string>
     <string name="plot_code">Plot Code</string>
-    <string name="select_labour_type">Labour Service Type</string>
+    <string name="select_labour_type">Labour Service</string>
     <string name="net_weight">Net weight</string>
     <string name="date_label">Date</string>
     <string name="location">Location</string>
@@ -106,7 +106,7 @@
     <string name="totalBalance">Total Balance (Rs)</string>
     <string name="balance">Balance (Rs)</string>
     <string name="collectionsWeight">Total Net Weight </string>
-    <string name="collectionsCount">Total Collection</string>
+    <string name="collectionsCount">Total Collections</string>
     <string name="unPaidCollectionsWeight">Unpaid Collections Weight </string>
     <string name="gr">GR Amount (Rs)</string>
     <string name="adjusted">Adjusted (Rs)</string>
@@ -177,7 +177,7 @@
     <string name="alert_logout">Are you sure you want to Logout?</string>
     <string name="no_plots">No Plots Available</string>
 
-    <string name="loan_amount">Loan Amount</string>
+    <string name="loan_amount">Loan Amount (Rs)</string>
     <string name="reason_loan">Reason for Loan</string>
 
     <string name="error">Error</string>
@@ -255,8 +255,9 @@
     <string name="success_labour">Labour Request Submitted Successfully</string>
     <string name="visit_success">Visit Request Submitted Successfully</string>
     <string name="success_Loan">Loan Request Submitted Successfully</string>
-    <string name="each_product">Each Item Cost(Rs)</string>
+    <string name="each_product">Each Item Cost (Rs)</string>
     <string name="server_error">Server Not Responding, Please Try Again</string>
+    <string name="godown_valid">Please Select Godown</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
