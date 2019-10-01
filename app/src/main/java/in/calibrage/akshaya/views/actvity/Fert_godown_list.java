@@ -95,7 +95,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
-
+      Integer RequestType;
     ArrayList<Integer> selected_quntity_list = new ArrayList<Integer>();
     ArrayList<Integer> selected_ids_lists = new ArrayList<Integer>();
     ArrayList<String> product_names = new ArrayList<String>();
@@ -120,6 +120,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
     PaymentsType paymentsTypes;
+    double payble_amount;
+    double subsidy_amountt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,12 +214,13 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         char ch = '"';
                         String finalstring = ch + arrayToString(listdata) + ch;
                         finalstring = finalstring.replace(",", ch + "," + ch);
-                       // sw_paymentMode.setText(finalstring);
+
                         String[] stockArr = new String[listdata.size()];
                         stockArr = listdata.toArray(stockArr);
-                       // String[] a = listdata.toArray(new String[0]);
-                       // Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + a);
-                         sw_paymentMode.setText(stockArr);
+                        // String[] a = listdata.toArray(new String[0]);
+                        // Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + a);
+                        sw_paymentMode.setText(stockArr);
+                        sw_paymentMode.setSelectedTab(0);
                         Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
 
                     }
@@ -244,6 +247,11 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 //        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+            RequestType =extras.getInt("request_type");
+            Log.e("RequestType==",RequestType+"");
+
+
+
             selected_ids_lists = (ArrayList<Integer>) getIntent().getSerializableExtra("Ids");
             selected_quntity_list = (ArrayList<Integer>) getIntent().getSerializableExtra("quantity");
             product_names = (ArrayList<String>) getIntent().getSerializableExtra("item_names");
@@ -252,6 +260,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
             selects_product_size = (ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
             final_amount = getIntent().getExtras().getString("amount");
+
+
             String[] parts = final_amount.split(" "); // escape .
             String part1 = parts[0];
             only_amount = parts[1];
@@ -269,7 +279,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     String quan = String.valueOf(quantity);
                     mealTotal = amount_product * quantity;
                     String product_amount = String.valueOf(mealTotal);
-                    product a = new product(name, quan, product_amount, gst);
+                    product a = new product(name, quantity, mealTotal, gst);
 
                     product_List.add(a);
 
@@ -360,7 +370,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         if (fertResponse.getIsSuccess()) {
 
 
-                            Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
 
                             new Handler().postDelayed(new Runnable() {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -369,8 +379,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
                                     List<MSGmodel> displayList = new ArrayList<>();
 
-                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
+//                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
+//                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
 
 //
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
@@ -400,21 +410,21 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
-        requestModel.setStatusTypeId(16);
+        requestModel.setStatusTypeId(Statusid);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setCreatedDate(formattedDate);
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(formattedDate);
         requestModel.setGodownId(GodownId);
-        requestModel.setPaymentModeType(25);
+        requestModel.setPaymentModeType(Paymode);
         requestModel.setFileName(null);
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
 
-        requestModel.setTotalCost(100.00);
-        requestModel.setSubcidyAmount(100.00);
-        requestModel.setPaybleAmount(100.00);
+        requestModel.setTotalCost(Double.parseDouble(String.valueOf(include_gst_amount)));
+        requestModel.setSubcidyAmount(subsidy_amountt);
+        requestModel.setPaybleAmount(payble_amount);
         requestModel.setComments(null);
         requestModel.setCropMaintainceDate(formattedDate);
         requestModel.setIssueTypeId(1);
@@ -430,7 +440,6 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
             products.setProductId(selected_ids_lists.get(i));
             products.setQuantity(selected_quntity_list.get(i));
             products.setSize(selects_product_size.get(i));
-
 
             req_products.add(products);
         }
@@ -510,6 +519,30 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         mdilogue.cancel();
                         if (subsidyResponse.getIsSuccess()) {
                             subsidy_amount.setText(subsidyResponse.getResult().getRemainingAmount().toString());
+                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
+
+
+                            if (subsidy_amountt > 0) {
+                                if (include_gst_amount < subsidy_amountt) {
+                                    Double remaining_subsidy_amountt = subsidy_amountt - include_gst_amount;
+                                    /*
+                                     * nothing to pay
+                                     * */
+                                    payble_amount =0.0;
+                                } else if (subsidy_amountt < include_gst_amount) {
+                                    Double remaining_Amoubt = include_gst_amount - subsidy_amountt;
+                                    /*
+                                     * payble amount
+                                     * */
+                                    payble_amount =remaining_Amoubt;
+                                } else if (include_gst_amount == subsidy_amountt) {
+                                    Double remaining_Amoubt = include_gst_amount - subsidy_amountt;
+                                    /*
+                                     * nothing to pay
+                                     * */
+                                    payble_amount =0.0;
+                                }
+                            }
 
                         }
                     }

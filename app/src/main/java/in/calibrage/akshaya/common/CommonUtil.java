@@ -514,6 +514,19 @@ public class CommonUtil {
         Log.d("Commonutil ","--- analysis ----->> List to string -->>"+result);
         return result;
     }
+    public static String arrayToStringwithoutDuplicates(List<String> array) {
+        String result = "";
+        if (array.size() > 0) {
+            StringBuilder sb = new StringBuilder();
+            for (String s : array) {
+
+                sb.append(s).append(",");
+            }
+            result = sb.deleteCharAt(sb.length() - 1).toString();
+        }
+        Log.d("Commonutil ","--- analysis ----->> List to string -->>"+result);
+        return result;
+    }
     public static int sum(List<Integer> list){
         if(list==null || list.size()<1)
             return 0;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
     String holiday_id,name;
     String  Enduser,IsSuccess;
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView product_name,quantity, amount,gst;
+        public TextView product_name,quantity, amount,gst,item_cost;
 CardView card_view;
         public MyViewHolder(View view) {
             super(view);
@@ -34,6 +35,7 @@ CardView card_view;
             quantity = view.findViewById(R.id.qun_tity);
             amount = view.findViewById(R.id.Value);
             gst = view.findViewById(R.id.per_gst);
+            item_cost=view.findViewById(R.id.item_cost);
             card_view = view.findViewById(R.id.card_view);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,6 +71,14 @@ CardView card_view;
         holder.quantity.setText(dataa.getquantity());
         holder.amount.setText(dataa.getamount());
         holder.gst.setText(String.valueOf(dataa.getgst()));
+        int quantity =dataa.getquantity();
+        int amount =dataa.getamount();
+
+        int value =amount / quantity;
+        Log.e("value===", String.valueOf(value));
+        holder.item_cost.setText(value);
+
+
 
 //        holder.product_name.setOnClickListener(new View.OnClickListener() {
 //            @Override

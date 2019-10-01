@@ -193,7 +193,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-      //  edittext.setText(dateFormat.format(new Date()));
+        //  edittext.setText(dateFormat.format(new Date()));
 
         SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat output = new SimpleDateFormat("yyyy/MM/dd");
@@ -225,7 +225,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                                   int monthOfYear, int dayOfMonth) {
                                 int month = monthOfYear + 1;
                                 String formattedMonth = "" + month;
-                                String formattedDayOfMonth = "" + dayOfMonth ;
+                                String formattedDayOfMonth = "" + dayOfMonth;
 
                                 if (month < 10) {
 
@@ -256,7 +256,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             }
                         }, year, month, day);
                 datePickerDialog.show();
-                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()+(1000*60*60*24*3));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 3));
             }
 
         });
@@ -423,7 +423,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             return false;
         }
         if (edittext.getText().toString().matches("")) {
-           // Toasty.error(LabourActivity.this, "Please Select the Date", Toast.LENGTH_SHORT).show();
+            // Toasty.error(LabourActivity.this, "Please Select the Date", Toast.LENGTH_SHORT).show();
             showDialog(LabourActivity.this, getResources().getString(R.string.date_selectiomn));
             return false;
         }
@@ -487,19 +487,36 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                     String date = edittext.getText().toString();
                                     List<MSGmodel> displayList = new ArrayList<>();
 
+
+
+
                                     displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+                                    if(selected_name.contains("Harvesting"))
+                                    {
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), harv_amount.getText().toString()));
+                                    }
+                                    if(selected_name.contains("Pruning"))
+                                    {
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), prun_amount.getText().toString()));
+                                    }
+                                    if(selected_name.contains("UnKnown1"))
+                                    {
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
+                                    }
+                                    if(selected_name.contains("UnKnown2"))
+                                    {
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
+                                    }
+
                                     displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), harv_amount.getText().toString()));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), prun_amount.getText().toString()));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
+
                                     displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
 
 
 //
                                     Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showSuccessDialog(displayList,getResources().getString(R.string.success_labour));
+                                    showSuccessDialog(displayList, getResources().getString(R.string.success_labour));
                                 }
                             }, 300);
                         } else {
@@ -630,6 +647,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         ids_list.clear();
         for (Integer values : indices) {
             Log.d(TAG, "---- analysis ---- > get selected labour ID :" + labour_uID.get(values));
+
             ids_list.add(labour_uID.get(values));
             Log.d(TAG, "---- analysis ---- > get selected labour ID :" + ids_list);
         }
@@ -642,34 +660,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         for (int i = 0; i < strings.size(); i++) {
             String name = strings.get(i);
             Log.d(TAG, "---- analysis ---- > get selected labour name :" + name);
-            selected_labour.add(name);
+            if (!selected_labour.contains(name))
+                selected_labour.add(name);
 
             Log.d(TAG, "---- analysis ---- > get selected labour name :" + selected_labour);
-             /*       if (name.equalsIgnoreCase("Pruning")) {
-            amount_Label.setVisibility(View.VISIBLE);
-        } else {
-            amount_Label.setVisibility(View.GONE);
-        }
 
-        if (name.equalsIgnoreCase("Harvesting")) {
-            harv_amount_label.setVisibility(View.VISIBLE);
-        } else {
-            harv_amount_label.setVisibility(View.GONE);
         }
-
-        if (name.equalsIgnoreCase("UnKnown1")) {
-            un_amount_label.setVisibility(View.VISIBLE);
-        } else {
-            un_amount_label.setVisibility(View.GONE);
-        }
-
-        if (name.equalsIgnoreCase("UnKnown2")) {
-            un2_amount_label.setVisibility(View.VISIBLE);
-        } else {
-            un2_amount_label.setVisibility(View.GONE);
-        }*/
-        }
-
 
         String name = CommonUtil.arrayToString(strings);
 
@@ -791,10 +787,29 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(reformattedDate);
         requestModel.setAmount(1.1);
-        requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
-        requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
-        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
-        requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
+        if (harv_amount.getVisibility() == View.VISIBLE)
+            requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
+        else
+            requestModel.setHarvestingAmount(0.0);
+        if (prun_amount.getVisibility() == View.VISIBLE)
+            requestModel.setHarvestingAmount(Double.parseDouble((String) prun_amount.getText()));
+        else
+            requestModel.setHarvestingAmount(0.0);
+
+        if (un_amount.getVisibility() == View.VISIBLE)
+            requestModel.setHarvestingAmount(Double.parseDouble((String) un_amount.getText()));
+        else
+            requestModel.setHarvestingAmount(0.0);
+
+
+        if (un2_amount.getVisibility() == View.VISIBLE)
+            requestModel.setHarvestingAmount(Double.parseDouble((String) un2_amount.getText()));
+        else
+            requestModel.setHarvestingAmount(0.0);
+
+
+//        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
+//        requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
 
         // TODO
         // clearalllists();
@@ -806,23 +821,23 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
     private String getAmount() {
 
-            Double finalAmount = 0.0;
-            if (harv_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(harv_amount.getText())) {
-                finalAmount = finalAmount + Double.parseDouble(String.valueOf(harv_amount.getText()));
-            }
-            if (prun_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(prun_amount.getText())) {
-                finalAmount = finalAmount + Double.parseDouble(String.valueOf(prun_amount.getText()));
-            }
+        Double finalAmount = 0.0;
+        if (harv_amount.getVisibility() == View.VISIBLE && !TextUtils.isEmpty(harv_amount.getText())) {
+            finalAmount = finalAmount + Double.parseDouble(String.valueOf(harv_amount.getText()));
+        }
+        if (prun_amount.getVisibility() == View.VISIBLE && !TextUtils.isEmpty(prun_amount.getText())) {
+            finalAmount = finalAmount + Double.parseDouble(String.valueOf(prun_amount.getText()));
+        }
 
-            if (un_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(un_amount.getText())) {
-                finalAmount = finalAmount + Double.parseDouble(String.valueOf(un_amount.getText()));
-            }
+        if (un_amount.getVisibility() == View.VISIBLE && !TextUtils.isEmpty(un_amount.getText())) {
+            finalAmount = finalAmount + Double.parseDouble(String.valueOf(un_amount.getText()));
+        }
 
-            if (un2_amount.getVisibility() == View.VISIBLE  && !TextUtils.isEmpty(un2_amount.getText())) {
-                finalAmount = finalAmount + Double.parseDouble(String.valueOf(un2_amount.getText()));
-            }
+        if (un2_amount.getVisibility() == View.VISIBLE && !TextUtils.isEmpty(un2_amount.getText())) {
+            finalAmount = finalAmount + Double.parseDouble(String.valueOf(un2_amount.getText()));
+        }
 
-            return "" + finalAmount;
+        return "" + finalAmount;
 
     }
 

@@ -255,6 +255,7 @@
     <string name="success_labour">Labour Request Submitted Successfully</string>
     <string name="visit_success">Visit Request Submitted Successfully</string>
     <string name="success_Loan">Loan Request Submitted Successfully</string>
+    <string name="each_product">Each Product Cost (Rs)</string>
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
