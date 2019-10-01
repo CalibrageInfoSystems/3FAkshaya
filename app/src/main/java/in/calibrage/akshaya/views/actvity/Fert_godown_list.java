@@ -4,48 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -56,8 +37,6 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.FertRequest;
 import in.calibrage.akshaya.models.FertResponse;
-import in.calibrage.akshaya.models.LoanRequest;
-import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PaymentsType;
 import in.calibrage.akshaya.models.SubsidyResponse;
@@ -156,7 +135,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         text_amount = (TextView) findViewById(R.id.amount);
         Final_amount = (TextView) findViewById(R.id.final_amount_gst);
         gst_amount = (TextView) findViewById(R.id.gst_amount);
-        home_btn = (ImageView) findViewById(R.id.home_btn1);
+        home_btn = (ImageView) findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,7 +146,23 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                 finish();
             }
         });
-
+       ImageView backImg = (ImageView) findViewById(R.id.back);
+       backImg.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               finish();
+           }
+       });
+       ImageView homeImg = (ImageView) findViewById(R.id.home_btn);
+       homeImg.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
+               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+               startActivity(intent);
+               finish();
+           }
+       });
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         getPaymentMods();
