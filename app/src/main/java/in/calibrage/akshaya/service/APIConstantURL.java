@@ -28,7 +28,7 @@ public interface APIConstantURL {
     String GetPaymentsTypeByFarmerCode = "Farmer/GetPaymentsTypeByFarmerCode/";
     String GetBannerByStateCode = "Banner/GetBannerByStateCode/AP";
     String Post_fert = "FertilizerRequest";
-    String Getfarmersubsidy= "Farmer/GetPaymentsTypeByFarmerCode/";
+    String Getfarmersubsidy= "FertilizerSubsidies/";
 
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 

@@ -415,7 +415,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
 
-        requestModel.setTotalCost(100.00);
+        requestModel.setTotalCost(Double.parseDouble(String.valueOf(include_gst_amount)));
         requestModel.setSubcidyAmount(100.00);
         requestModel.setPaybleAmount(100.00);
         requestModel.setComments(null);
@@ -513,7 +513,28 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         mdilogue.cancel();
                         if (subsidyResponse.getIsSuccess()) {
                             subsidy_amount.setText(subsidyResponse.getResult().getRemainingAmount().toString());
+                            double subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
 
+                            if (subsidy_amountt > 100) {
+
+                                double payble_amount = Double.parseDouble(null);
+                                double remain_subsidy_amount = include_gst_amount;
+                                Log.e("payble_amount===", String.valueOf(payble_amount));
+                                Log.e("subsidy_amount===", String.valueOf(remain_subsidy_amount));
+
+                            }
+
+
+                            Log.d("subsidy_amountt===", String.valueOf(subsidy_amountt));
+//                            if (subsidy_amountt < 100) {
+//
+//                                double payble_amount = include_gst_amount - subsidy_amountt;
+//
+//                                Log.e("payble_amount===", String.valueOf(payble_amount));
+//
+//                            }
+
+       // include_gst_amount
                         }
                     }
 
