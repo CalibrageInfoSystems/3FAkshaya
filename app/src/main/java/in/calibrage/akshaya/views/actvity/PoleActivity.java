@@ -259,7 +259,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 superHero.setDescription(json.getString("description"));
 
                 superHero.setgst(json.getInt("gstPercentage"));
-                superHero.setSize(json.getString("size"));
+                superHero.setSize(String.valueOf(json.getDouble("size")));
                 superHero.setId(json.getInt("id"));
                 superHero.setUomType(json.getString("uomType"));
                 Log.e("uom===", json.getString("uomType"));

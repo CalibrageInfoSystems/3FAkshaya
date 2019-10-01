@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
@@ -39,7 +40,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
     Button but;
     boolean click = true;
     //List of superHeroes
-    List<ModelFert> list_products;
+    List<ModelFert> list_products = new ArrayList<>();
     LayoutInflater mInflater;
     private OnClickAck onClickAck1;
     String Description, ProductName;
@@ -71,12 +72,15 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.currentFoodName.setText(superHero.getName());
         holder.currentCost.setText(context.getString(R.string.Rs) + (superHero.getPrice()));
+       // holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
+
+        Log.e("uom==76",superHero.getSize() + " " + superHero.getUomType());
 //        holder.currentCost.setText(superHero.getDiscountedPrice());
         //   holder.actual_amt.setText(superHero.getDiscountedPrice());
         //  holder.disc.setText(superHero.getDescription());
         holder.disc.setText(superHero.getDescription());
         if (!TextUtils.isEmpty(superHero.getSize())) {
-            holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
+            holder.size.setText(superHero.getSize() + "" + superHero.getUomType());
         } else {
             holder.size.setText("N/A");
         }

@@ -398,13 +398,13 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setUpdatedDate(formattedDate);
         requestModel.setGodownId(GodownId);
         requestModel.setPaymentModeType(Paymode);
-        requestModel.setFileName(null);
-        requestModel.setFileExtension(null);
-        requestModel.setFileLocation(null);
+        requestModel.setFileName("");
+        requestModel.setFileExtension("");
+        requestModel.setFileLocation("");
 
         requestModel.setTotalCost(Double.parseDouble(String.valueOf(include_gst_amount)));
-        requestModel.setSubcidyAmount(null);
-        requestModel.setPaybleAmount(null);
+        requestModel.setSubcidyAmount(0.0);
+        requestModel.setPaybleAmount(0.0);
         requestModel.setComments(null);
         requestModel.setCropMaintainceDate(formattedDate);
         requestModel.setIssueTypeId(null);
