@@ -537,5 +537,15 @@ public class CommonUtil {
 
         return sum;
     }
+//    public static double sum(List<Double> list){
+//        if(list==null || list.size()<1)
+//            return 0;
+//
+//        Double sum = 0.0;
+//        for(Double i: list)
+//            sum = sum+i;
+//
+//        return sum;
+//    }
 
 }

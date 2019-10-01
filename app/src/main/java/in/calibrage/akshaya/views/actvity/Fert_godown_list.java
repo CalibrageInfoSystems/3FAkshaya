@@ -366,30 +366,30 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
                         mdilogue.cancel();
 
-//                        if (fertResponse.getIsSuccess()) {
+                        if (fertResponse.getIsSuccess()) {
+
+
+                           // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
+
+                            new Handler().postDelayed(new Runnable() {
+                                @RequiresApi(api = Build.VERSION_CODES.M)
+                                @Override
+                                public void run() {
+
+                                    List<MSGmodel> displayList = new ArrayList<>();
+
+//                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
+//                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
+
 //
-//
-//                           // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
-//
-//                            new Handler().postDelayed(new Runnable() {
-//                                @RequiresApi(api = Build.VERSION_CODES.M)
-//                                @Override
-//                                public void run() {
-//
-//                                    List<MSGmodel> displayList = new ArrayList<>();
-//
-////                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
-////                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
-//
-////
-////                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
-//
-//                                    showSuccessDialog(displayList, getString(R.string.success_fertilizer));
-//                                }
-//                            }, 300);
-//                        } else {
-//                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
-//                        }
+//                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
+
+                                    showSuccessDialog(displayList, getString(R.string.success_fertilizer));
+                                }
+                            }, 300);
+                        } else {
+                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
+                        }
 
 
                     }
@@ -409,7 +409,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
-        requestModel.setStatusTypeId(Statusid);
+
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setCreatedDate(formattedDate);

@@ -365,7 +365,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 //
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showSuccessDialog(displayList, getString(R.string.success_fertilizer));
+                                    showSuccessDialog(displayList, getString(R.string.success_pole));
                                 }
                             }, 300);
                         } else {
@@ -390,7 +390,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
-        requestModel.setStatusTypeId(Statusid);
+
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setCreatedDate(formattedDate);
@@ -487,7 +487,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         if (selectedGodown != null) {
             FertilizerRequest();
         } else {
-            showDialog(this, "please Select Godown");
+            showDialog(this, getString(R.string.godown_valid));
         }
     }
 

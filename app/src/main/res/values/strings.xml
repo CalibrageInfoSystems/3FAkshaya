@@ -258,6 +258,7 @@
     <string name="each_product">Each Item Cost (Rs)</string>
     <string name="server_error">Server Not Responding, Please Try Again</string>
     <string name="godown_valid">Please Select Godown</string>
+    <string name="success_pole">Pole Request Submitted Successfully</string> />
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
