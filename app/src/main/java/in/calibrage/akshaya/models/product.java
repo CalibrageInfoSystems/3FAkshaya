@@ -3,13 +3,13 @@ package in.calibrage.akshaya.models;
 public class product {
 
     private String name;
-    private String quantity;
-    private String amount;
+    private int quantity;
+    private int amount;
     private String id;
     private int gst;
 
 
-    public product(String name, String quantity, String amount, int gst) {
+    public product(String name, int quantity, int amount, int gst) {
         this.name = name;
         this.quantity = quantity;
         this.amount = amount;
@@ -26,19 +26,19 @@ public class product {
         this.name = name;
     }
 
-    public String getquantity() {
+    public int getquantity() {
         return quantity;
     }
 
-    public void setquantity(String quantity) {
+    public void setquantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getamount() {
+    public int getamount() {
         return amount;
     }
 
-    public void setamount(String location) {
+    public void setamount(int location) {
         this.amount = location;
     }
 

@@ -290,6 +290,7 @@ public class BaseActivity extends AppCompatActivity {
             TextView txtitem = new TextView(this);
             txtitem.setText(msg.get(i).getValue());
             txtitem.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            txtitem.setPadding(10,0,0,0);
             txtitem.setLayoutParams(new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));

@@ -73,7 +73,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
 
-    private ImageButton cartButtonIV;
+    private ImageView cartButtonIV;
     Integer Id, quantity;
     int price_final;
     int Count=0;
@@ -128,7 +128,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                             i.putExtra("gst_per", (Serializable) selectedgst_List);
                             i.putExtra("procuct_size", (Serializable) selectedsize_List);
                             i.putExtra("amount", amount);
-
+                            i.putExtra("request_type", 10);
                             startActivity(i);
 
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
@@ -153,6 +153,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                     i.putExtra("gst_per", (Serializable) selectedgst_List);
                     i.putExtra("procuct_size", (Serializable) selectedsize_List);
                     i.putExtra("amount", amount);
+                    i.putExtra("request_type", 10);
                     startActivity(i);
 
                     overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
@@ -366,7 +367,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     @Override
     public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
         if (ischecked) {
-            ImageButton cartButtonIV = findViewById(R.id.cartButtonIV);
+             cartButtonIV = findViewById(R.id.cartButtonIV);
 
             makeFlyAnimation(img);
             if (selectedId_List.size() > 0) {

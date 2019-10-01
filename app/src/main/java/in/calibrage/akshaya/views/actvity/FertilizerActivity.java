@@ -133,6 +133,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                             i.putExtra("gst_per", (Serializable) selectedgst_List);
                             i.putExtra("procuct_size", (Serializable) selectedsize_List);
                             i.putExtra("amount", amount);
+                            i.putExtra("request_type", 12);
 
                             startActivity(i);
 
@@ -158,6 +159,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     i.putExtra("gst_per", (Serializable) selectedgst_List);
                     i.putExtra("procuct_size", (Serializable) selectedsize_List);
                     i.putExtra("amount", amount);
+                    i.putExtra("request_type", 12);
                     startActivity(i);
 
                     overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
