@@ -462,9 +462,10 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     }
 
     private void getActiveGodowns() {
+        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns + "/" + "AP")
+        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns + "/" + statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ActiveGodownsModel>() {
                     @Override

@@ -185,9 +185,10 @@ public class HomeFragment extends BaseFragment {
 
     private void GetBannerByStateCode() {
 
+        String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
-        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode )
+        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode+statecode )
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BannerresponseModel>() {
