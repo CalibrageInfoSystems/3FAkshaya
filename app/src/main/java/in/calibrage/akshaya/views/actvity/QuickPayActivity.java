@@ -109,7 +109,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
 
                         intent.putExtra("collection_ids", (Serializable) ids_list);
-
+                        startActivity(intent);
 
                         Log.e("ids_list===", String.valueOf(ids_list));
 
@@ -120,7 +120,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                 }, SPLASH_DISPLAY_DURATION);
 
                 //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //  startActivity(i);
+
             }
         });
 
@@ -171,6 +171,10 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                     @Override
                     public void onNext(QuickPayModel quickPayModel) {
 
+                        for (QuickPayModel.ListResult item : quickPayModel.getListResult()
+                        ) {
+                            ids_list.add(item.getUColnid());
+                        }
 
                         Log.d("", "onNext: " + quickPayModel);
                         mdilogue.dismiss();

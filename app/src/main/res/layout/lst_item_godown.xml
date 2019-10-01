@@ -45,6 +45,8 @@
             android:layout_marginTop="@dimen/margin_5"
             android:layout_marginBottom="@dimen/margin_5"
             android:text="Hindi"
+            android:layout_marginLeft="15dp"
+       android:textAlignment="textStart"
             android:textColor="@color/text_dark_gray"
 
             android:textStyle="bold" />

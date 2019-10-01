@@ -69,7 +69,8 @@ public class PaymentHistoryActivity extends BaseActivity {
     private RecyclerView Payment_recycle;
     private SpotsDialog mdilogue;
     private ImageView backImg, home_btn;
-    String  Farmer_code;
+    String Farmer_code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,8 +203,8 @@ public class PaymentHistoryActivity extends BaseActivity {
                 Log.d("toString==", toString);
 
                 if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
-                    showDialog(PaymentHistoryActivity.this,getResources().getString(R.string.enter_Date));
-                  // Toast.makeText(PaymentHistoryActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
+                    showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.enter_Date));
+                    // Toast.makeText(PaymentHistoryActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
 
                 } else {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -215,7 +216,7 @@ public class PaymentHistoryActivity extends BaseActivity {
                         Date date2 = formatter.parse(toString);
                         if (date2.compareTo(date1) < 0) {
 
-                            showDialog(PaymentHistoryActivity.this,getResources().getString(R.string.datevalidation));
+                            showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.datevalidation));
                             //Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
                         } else {
 
@@ -253,7 +254,7 @@ public class PaymentHistoryActivity extends BaseActivity {
                             if (isOnline())
                                 getPaymentDetails(fromString, toString);
                             else {
-                                showDialog(PaymentHistoryActivity.this,getResources().getString(R.string.Internet));
+                                showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.Internet));
                                 //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                             }
 
@@ -268,6 +269,8 @@ public class PaymentHistoryActivity extends BaseActivity {
 
             }
         });
+        pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this);
+        Payment_recycle.setAdapter(pay_adapter);
     }
 
 
@@ -315,7 +318,8 @@ public class PaymentHistoryActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
-                        showDialog(PaymentHistoryActivity.this,getString(R.string.server_error));
+                        pay_adapter.clearAllDataa();
+                        showDialog(PaymentHistoryActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -326,8 +330,9 @@ public class PaymentHistoryActivity extends BaseActivity {
 
                         if (paymentResponseModel.getResult().getPaymentResponce() != null) {
                             noRecords.setVisibility(View.GONE);
-                            pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
-                            Payment_recycle.setAdapter(pay_adapter);
+                           /* pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
+                            Payment_recycle.setAdapter(pay_adapter);*/
+                            pay_adapter.updateData(paymentResponseModel.getResult().getPaymentResponce());
                             totalLinear.setVisibility(View.VISIBLE);
                             //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
 
@@ -358,19 +363,20 @@ public class PaymentHistoryActivity extends BaseActivity {
          * */
 
         String text;
-        text=Farmer_code.substring(1);
-        text=text.substring(1);
+        text = Farmer_code.substring(1);
+        text = text.substring(1);
 
 
-                String finalstring= "V"+text;
+        String finalstring = "V" + text;
 
-        Log.i("VendorCode",finalstring);
+        Log.i("VendorCode", finalstring);
         requestModel.setVendorCode(finalstring);
         requestModel.setToDate(reformattedStrTo);
         requestModel.setFromDate(reformattedStrFrom);
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
