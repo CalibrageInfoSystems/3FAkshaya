@@ -208,22 +208,17 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                             listdata.add(string.getDesc());
 
                         }
-
-
+                        
                         char ch = '"';
                         String finalstring = ch + arrayToString(listdata) + ch;
                         finalstring = finalstring.replace(",", ch + "," + ch);
-
-
                        // sw_paymentMode.setText(finalstring);
-
                         String[] stockArr = new String[listdata.size()];
                         stockArr = listdata.toArray(stockArr);
                        // String[] a = listdata.toArray(new String[0]);
                        // Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + a);
                          sw_paymentMode.setText(stockArr);
                         Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
-
 
                     }
                 });
