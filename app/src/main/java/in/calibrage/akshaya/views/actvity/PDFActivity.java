@@ -9,6 +9,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -43,6 +44,8 @@ public class PDFActivity extends AppCompatActivity {
         if (getIntent() != null) {
             name = getIntent().getStringExtra("name");
             url = getIntent().getStringExtra("url");
+           TextView txt_name = findViewById(R.id.txt_name);
+           txt_name.setText(name);
         }
         webView = findViewById(R.id.webView);
 

@@ -148,10 +148,10 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         holder.subtractMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                superHero.removeFromQuantity();
 
-                holder.quantityText.setText("x " + superHero.getmQuantity());
-                if (holder.quantityText.getText().toString().trim() != "0") {
+                if (Integer.parseInt(holder.quantityText.getText().toString().trim()) > 0 & superHero.getmQuantity() >=1 & holder.getAdapterPosition()>=0) {
+                    superHero.removeFromQuantity();
+                    holder.quantityText.setText("x " + superHero.getmQuantity());
                     onClickAck1.setOnClickAckListener("remove", holder.getAdapterPosition(), Boolean.FALSE, holder.imageView);
                     Log.e("product===2", "id" + superHero.getId() + " quantity " + superHero.getmQuantity());
                     //     holder.currentCost.setText("GH"+ (superHero.getPrice() * superHero.getmQuantity()));

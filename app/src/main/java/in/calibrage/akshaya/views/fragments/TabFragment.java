@@ -66,7 +66,7 @@ import rx.schedulers.Schedulers;
 public class TabFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
     public static final String TAG = TabFragment.class.getSimpleName();
     int position;
-    private TextView textView,txt_no;
+    private TextView textView, txt_no;
     private RecyclerView rcv_video, rcv_pdf, rcv_recom;
     private LinearLayoutManager llmanagerVideo, llmanagerPDF, layoutManagerrecom;
     private SpotsDialog mdilogue;
@@ -222,26 +222,25 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         rcv_pdf.setAdapter(new PdfAdapter(listResultPDF));
 
 
-
                         if (count == 3 && position == 0) {
 
                             lyt_firstTab.setVisibility(View.VISIBLE);
                             rcv_video.setVisibility(View.GONE);
                             rcv_pdf.setVisibility(View.GONE);
-                        } else if (count == 3 && position == 1&& listResultVideo.size() == 0) {
+                        } else if (count == 3 && position == 1 && listResultVideo.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
                             noVedios.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
 
-                        } else if (count == 3 && position == 2&& listResultPDF.size() == 0) {
+                        } else if (count == 3 && position == 2 && listResultPDF.size() == 0) {
                             rcv_video.setVisibility(View.GONE);
                             noRecords.setVisibility(View.VISIBLE);
                             lyt_firstTab.setVisibility(View.GONE);
-                        } else if (count == 2 && position == 0&& listResultVideo.size() == 0) {
+                        } else if (count == 2 && position == 0 && listResultVideo.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
                             noVedios.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
-                        } else if (count == 2 && position == 1&& listResultPDF.size() == 0) {
+                        } else if (count == 2 && position == 1 && listResultPDF.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
                             rcv_video.setVisibility(View.GONE);
                             noRecords.setVisibility(View.VISIBLE);
@@ -446,6 +445,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 
             try {
                 final String videoId = CommonUtil.extractYoutubeId(listResultVideo.get(position).getEmbedUrl());
+                final String videoname = CommonUtil.extractYoutubeId(listResultVideo.get(position).getName());
                 Log.e("VideoId is->", "" + videoId);
                 String img_url = "http://img.youtube.com/vi/" + videoId + "/0.jpg"; // this is link which will give u thumnail image of that video
                 Picasso.with(getContext())
@@ -465,15 +465,16 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         Intent intent = new Intent(getContext(), PlayerActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("videoid", videoId);
+                        intent.putExtra("name", videoname);
                         getContext().startActivity(intent);
                     }
                 });
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-if(listResultVideo.size()==0){
-    txt_no.setText("Nodataa....");
-}
+            if (listResultVideo.size() == 0) {
+                txt_no.setText("Nodataa....");
+            }
         }
 
         @Override

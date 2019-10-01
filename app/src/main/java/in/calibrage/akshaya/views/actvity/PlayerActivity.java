@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -25,8 +26,10 @@ public class PlayerActivity extends BaseActivity implements YouTubePlayer.OnInit
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
         if (getIntent() != null) {
-
+           String name = getIntent().getStringExtra("name");
             videoid = getIntent().getStringExtra("videoid");
+            TextView txt_name = findViewById(R.id.txt_name);
+            txt_name.setText(name);
         }
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

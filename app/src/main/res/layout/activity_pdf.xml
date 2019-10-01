@@ -14,7 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/colorOrange_head" />
+        android:background="@color/colorOrange_head" >
+        <TextView
+            android:textAlignment="textStart"
+            android:id="@+id/txt_name"
+            style="@style/Common_textView_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v7.widget.Toolbar>
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"

@@ -266,7 +266,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
             String part1 = parts[0];
             only_amount = parts[1];
             Log.e("final_amount===", "=1===  " + part1 + " ===rs ===" + only_amount);
-            text_amount.setText("" + only_amount);
+            text_amount.setText(only_amount+"");
             Amount_ = Integer.parseInt(only_amount);
 
             try {
@@ -296,8 +296,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     include_gst_amount = Gst_sum + Amount_;
                     Log.e("gst_Sum===", String.valueOf(Gst_sum));
 
-                    gst_amount.setText(" " + String.valueOf(Gst_sum));
-                    Final_amount.setText(" " + String.valueOf(include_gst_amount));
+                    gst_amount.setText( String.valueOf(Gst_sum+" " ));
+                    Final_amount.setText(String.valueOf(include_gst_amount)+" " );
 
                 }
                 mAdapter = new producut_Adapter(this, product_List);

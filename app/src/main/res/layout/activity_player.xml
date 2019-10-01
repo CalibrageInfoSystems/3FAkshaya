@@ -14,8 +14,15 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorOrange_head" >
+        <TextView
+            android:textAlignment="textStart"
+            android:id="@+id/txt_name"
+            style="@style/Common_textView_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v7.widget.Toolbar>
 
-        android:background="@color/colorOrange_head" />
 
 
     <fragment

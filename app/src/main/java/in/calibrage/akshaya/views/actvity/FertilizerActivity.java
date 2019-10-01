@@ -419,30 +419,26 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             //    Toast.makeText(FertilizerActivity.this,selectedId_List.toString(),Toast.LENGTH_SHORT).show();
 
         } else {
-<<<<<<< HEAD
-            if (selectedId_List.size() > 0 & product_list.size() >0 &  product_list.get(position).getmQuantity() >= 1 & position >0) {
+            if (selectedId_List.size() > 0 & selectedQty_List.size() > 0 & product_list.size() >0) {
+                if(Count >0)
+                {
+                    Count= Count-1;
+                    txt_count.setText(Count+"");
+                }
+                int a1 = selectedId_List.indexOf(product_list.get(position).getId());
+                if (a1 < 0) {
+                    Log.e(" ===a1==", "negative");
 
-=======
-            if (selectedId_List.size() > 0 ) {
->>>>>>> 0c2f54f507406d2b6c25f3d48cd8db9013ecc71b
+                    return;
+                }
+                if (product_list.get(position).getmQuantity() >= 1) {
+                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
 
-
-                if (product_list.size() >0 & product_list.get(position).getmQuantity() >= 1 & position >0) {
-
-                    Integer i =selectedId_List.indexOf(product_list.get(position).getId());
-                    Log.d(TAG,"---- analysis -----"+"index :"+i);
-                    selectedQty_List.set(i, product_list.get(position).getmQuantity());
-                    if(Count >0)
-                    {
-                        Count= Count-1;
-                        txt_count.setText(Count+"");
-                    }
 
 
                 } else {
 
                     int a = selectedId_List.indexOf(product_list.get(position).getId());
-
                     if (a < 0) {
                         Log.e(" =====", "negative");
 
