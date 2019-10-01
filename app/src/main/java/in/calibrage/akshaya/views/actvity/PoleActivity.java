@@ -119,7 +119,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                     @Override
                     public void run() {
                         if (validations()) {
-                            Intent i = new Intent(PoleActivity.this, Fert_godown_list.class);
+                            Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
 
                             i.putExtra("Ids", (Serializable) selectedId_List);
                             i.putExtra("quantity", (Serializable) selectedQty_List);
@@ -145,7 +145,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
             @Override
             public void onClick(View view) {
                 if (validations()) {
-                    Intent i = new Intent(PoleActivity.this, Fert_godown_list.class);
+                    Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
                     i.putExtra("Ids", (Serializable) selectedId_List);
                     i.putExtra("quantity", (Serializable) selectedQty_List);
                     i.putExtra("item_names", (Serializable) selecteditem_List);

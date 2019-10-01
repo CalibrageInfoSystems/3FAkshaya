@@ -315,6 +315,7 @@ public class PaymentHistoryActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                        showDialog(PaymentHistoryActivity.this,getString(R.string.server_error));
                     }
 
                     @Override

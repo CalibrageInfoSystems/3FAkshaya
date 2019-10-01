@@ -414,16 +414,17 @@
     <string name="summary">సారాంశం</string>
     <string name="record_voice">రికార్డ్ చేసిన వాయిస్</string>
     <string name="product_req">ఉత్పత్తి అభ్యర్థన</string>
-    <string name="Frequency">Frequency</string>
-    <string name="static_data">We recommend harvesting every 10 days, when the loose fruitlets are seen on the ground for optimal yield</string>
-    <string name="Frequency_harvest">Frequency of Harvest</string>
-    <string name="date_selectiomn">Please Select the Date</string>
-    <string name="subcd_amt">Subsidy Amount</string>
-    <string name="success_fertilizer">Fertilizer Request Submitted Successfully</string>
-    <string name="success_labour">Labour Request Submitted Successfully</string>
-    <string name="visit_success">Visit Request Submitted Successfully</string>
-    <string name="success_Loan">Loan Request Submitted Successfully</string>
-    <string name="each_product">Each Product Cost (Rs)</string>
+    <string name="Frequency">తరచుదనం</string>
+    <string name="static_data">ప్రతి 10 రోజులకు పంట కోయమని మేము సిఫార్సు చేస్తున్నాము, వదులుగా ఉండే పండ్ల పండ్లు సరైన దిగుబడి కోసం నేలపై కనిపిస్తాయి</string>
+    <string name="Frequency_harvest">హార్వెస్ట్ యొక్క ఫ్రీక్వెన్సీ</string>
+    <string name="date_selectiomn">దయచేసి తేదీని ఎంచుకోండి</string>
+    <string name="subcd_amt">సబ్సిడీ మొత్తం</string>
+    <string name="success_fertilizer">ఎరువుల అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+    <string name="success_labour">కార్మిక అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+    <string name="visit_success">సమర్పించిన అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+    <string name="success_Loan">రుణ అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+    <string name="each_product">ప్రతి ఉత్పత్తి ఖర్చు (రూ.)</string>
+    <string name="server_error">సర్వర్ స్పందించడం లేదు, దయచేసి మళ్ళీ ప్రయత్నించండి</string>
     //test
 </resources>
 
