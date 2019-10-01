@@ -448,7 +448,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 
             try {
                 final String videoId = CommonUtil.extractYoutubeId(listResultVideo.get(position).getEmbedUrl());
-                final String videoname = CommonUtil.extractYoutubeId(listResultVideo.get(position).getName());
+                final String videoname = listResultVideo.get(position).getName();
                 Log.e("VideoId is->", "" + videoId);
                 String img_url = "http://img.youtube.com/vi/" + videoId + "/0.jpg"; // this is link which will give u thumnail image of that video
                 Picasso.with(getContext())
