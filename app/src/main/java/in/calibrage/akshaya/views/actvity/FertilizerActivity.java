@@ -419,12 +419,15 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             //    Toast.makeText(FertilizerActivity.this,selectedId_List.toString(),Toast.LENGTH_SHORT).show();
 
         } else {
-            if (selectedId_List.size() > 0) {
+            if (selectedId_List.size() > 0 & product_list.size() >0 &  product_list.get(position).getmQuantity() >= 1 & position >0) {
 
 
 
-                if (product_list.get(position).getmQuantity() >= 1) {
-                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
+                if (product_list.size() >0 & product_list.get(position).getmQuantity() >= 1 & position >0) {
+
+                    Integer i =selectedId_List.indexOf(product_list.get(position).getId());
+                    Log.d(TAG,"---- analysis -----"+"index :"+i);
+                    selectedQty_List.set(i, product_list.get(position).getmQuantity());
                     if(Count >0)
                     {
                         Count= Count-1;
@@ -433,6 +436,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 } else {
 
                     int a = selectedId_List.indexOf(product_list.get(position).getId());
+
                     if (a < 0) {
                         Log.e(" =====", "negative");
 

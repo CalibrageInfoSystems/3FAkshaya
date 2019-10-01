@@ -155,7 +155,6 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
             public void onClick(View view) {
                 superHero.removeFromQuantity();
                 holder.quantityText.setText("x "+superHero.getmQuantity());
-
                 onClickAck1.setOnClickAckListener("remove",holder.getAdapterPosition(),Boolean.FALSE,holder.imageView);
 
                 Log.e("product===2","id" + superHero.getId()+ " quantity " +  superHero.getmQuantity());
