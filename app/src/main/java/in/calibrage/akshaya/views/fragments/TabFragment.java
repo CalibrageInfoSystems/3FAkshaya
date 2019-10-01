@@ -211,7 +211,10 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                             if (listResult.getFileType().equalsIgnoreCase("PDF"))
                                 listResultPDF.add(listResult);
                             else
+                            {
                                 listResultVideo.add(listResult);
+                            }
+
                         }
 
                         Log.e(TAG, "--- analysis ---- >> :Result GetEncyclopediaDetails() --->  VideoSize :" + listResultVideo.size());

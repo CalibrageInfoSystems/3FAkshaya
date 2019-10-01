@@ -52,6 +52,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import in.calibrage.akshaya.R;
 
@@ -402,7 +404,7 @@ public class CommonUtil {
     }
 
     public static String extractYoutubeId(String url) throws MalformedURLException {
-        String query = new URL(url).getQuery();
+   /*     String query = new URL(url).getQuery();
         String[] param = query.split("&");
         String id = null;
         for (String row : param) {
@@ -412,6 +414,18 @@ public class CommonUtil {
             }
         }
         return id;
+    }*/
+        String vId = null;
+
+        String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
+
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(url);
+
+        if(matcher.find()){
+            vId= matcher.group();
+        }
+        return vId;
     }
 
 
