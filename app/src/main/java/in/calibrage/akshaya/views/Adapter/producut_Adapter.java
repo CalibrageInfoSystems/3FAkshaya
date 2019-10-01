@@ -68,15 +68,15 @@ CardView card_view;
         holder.card_view.setBackgroundResource(R.drawable.button_bg2);
         final product dataa = product_List.get(position);
         holder.product_name.setText(dataa.getname());
-        holder.quantity.setText(dataa.getquantity());
-        holder.amount.setText(dataa.getamount());
+        holder.quantity.setText(dataa.getquantity()+"");
+        holder.amount.setText(dataa.getamount()+"");
         holder.gst.setText(String.valueOf(dataa.getgst()));
         int quantity =dataa.getquantity();
         int amount =dataa.getamount();
 
         int value =amount / quantity;
         Log.e("value===", String.valueOf(value));
-        holder.item_cost.setText(value);
+        holder.item_cost.setText(value+"");
 
 
 
