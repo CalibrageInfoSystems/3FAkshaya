@@ -1,11 +1,9 @@
 package in.calibrage.akshaya.views.actvity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
@@ -15,37 +13,20 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -56,8 +37,6 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.FertRequest;
 import in.calibrage.akshaya.models.FertResponse;
-import in.calibrage.akshaya.models.LoanRequest;
-import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PaymentsType;
 import in.calibrage.akshaya.models.SubsidyResponse;
@@ -76,8 +55,9 @@ import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.arrayToString;
 
-public class Fert_godown_list extends BaseActivity implements GodownListAdapter.OnItemClickListener {
-    public static final String TAG = Fert_godown_list.class.getSimpleName();
+public class pole_godown_list extends BaseActivity implements GodownListAdapter.OnItemClickListener {
+
+    public static final String TAG = pole_godown_list.class.getSimpleName();
     /*
      *
      * this is shows godows and payment process also
@@ -95,7 +75,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
-      Integer RequestType;
+    Integer RequestType;
     ArrayList<Integer> selected_quntity_list = new ArrayList<Integer>();
     ArrayList<Integer> selected_ids_lists = new ArrayList<Integer>();
     ArrayList<String> product_names = new ArrayList<String>();
@@ -126,7 +106,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fert_godown_list);
+        setContentView(R.layout.activity_pole_godown_list);
         init();
         setviews();
         settoolbar();
@@ -161,7 +141,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         getPaymentMods();
-        getFertilizerSubsidies();
+       // getFertilizerSubsidies();
         getActiveGodowns();
 
 
@@ -210,7 +190,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                             listdata.add(string.getDesc());
 
                         }
-                        
+
                         char ch = '"';
                         String finalstring = ch + arrayToString(listdata) + ch;
                         finalstring = finalstring.replace(",", ch + "," + ch);
@@ -239,7 +219,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 //            public void onClick(View view) {
 //               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
 //                startActivity(intent);*/
-//                Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
+//                Intent intent = new Intent(.this, HomeActivity.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                startActivity(intent);
 //                finish();
@@ -370,7 +350,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         if (fertResponse.getIsSuccess()) {
 
 
-                           // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
 
                             new Handler().postDelayed(new Runnable() {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -389,7 +369,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                 }
                             }, 300);
                         } else {
-                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
+                            showDialog(pole_godown_list.this, fertResponse.getEndUserMessage());
                         }
 
 
@@ -406,7 +386,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         FertRequest requestModel = new FertRequest();
 
         requestModel.setId(0);
-        requestModel.setRequestTypeId(12);
+        requestModel.setRequestTypeId(10);
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
@@ -423,8 +403,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFileLocation(null);
 
         requestModel.setTotalCost(Double.parseDouble(String.valueOf(include_gst_amount)));
-        requestModel.setSubcidyAmount(Subsidy_amount);
-        requestModel.setPaybleAmount(payble_amount);
+        requestModel.setSubcidyAmount(null);
+        requestModel.setPaybleAmount(null);
         requestModel.setComments(null);
         requestModel.setCropMaintainceDate(formattedDate);
         requestModel.setIssueTypeId(null);
@@ -489,7 +469,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     public void onNext(ActiveGodownsModel activeGodownsModel) {
                         mdilogue.cancel();
                         Log.d(TAG, "---- analysis ---->GetActiveGodows-->> Responce size-->> :" + activeGodownsModel.getListResult().size());
-                        adapter = new GodownListAdapter(activeGodownsModel.getListResult(), ctx, Fert_godown_list.this);
+                        adapter = new GodownListAdapter(activeGodownsModel.getListResult(), ctx, pole_godown_list.this);
                         lst_godown_list.setAdapter(adapter);
 
 
@@ -498,60 +478,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
     }
 
-    private void getFertilizerSubsidies() {
-        mdilogue.show();
-        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getsubsidy(APIConstantURL.Getfarmersubsidy + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<SubsidyResponse>() {
-                    @Override
-                    public void onCompleted() {
-                        mdilogue.cancel();
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        mdilogue.cancel();
-                    }
-
-                    @Override
-                    public void onNext(SubsidyResponse subsidyResponse) {
-                        mdilogue.cancel();
-                        if (subsidyResponse.getIsSuccess()) {
-                            subsidy_amount.setText(subsidyResponse.getResult().getRemainingAmount().toString());
-                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
-
-
-                            if (subsidy_amountt > 0) {
-                                if (include_gst_amount < subsidy_amountt) {
-                                    Double remaining_subsidy_amountt = subsidy_amountt - include_gst_amount;
-                                    /*
-                                     * nothing to pay
-                                     * */
-                                    payble_amount =0.0;
-
-                                    Subsidy_amount=include_gst_amount;
-                                } else if (subsidy_amountt < include_gst_amount) {
-                                    Double remaining_Amoubt = include_gst_amount - subsidy_amountt;
-                                    /*
-                                     * payble amount
-                                     * */
-                                    payble_amount =remaining_Amoubt;
-                                    Subsidy_amount=include_gst_amount;
-                                } else if (include_gst_amount == subsidy_amountt) {
-                                    Double remaining_Amoubt = include_gst_amount - subsidy_amountt;
-                                    /*
-                                     * nothing to pay
-                                     * */
-                                    payble_amount =0.0;
-                                }
-                            }
-
-                        }
-                    }
-
-                });
-    }
 
     public void onSubmit() {
         /*
@@ -571,3 +498,5 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
 }
+
+

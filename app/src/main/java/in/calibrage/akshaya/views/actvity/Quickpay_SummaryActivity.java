@@ -81,8 +81,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     Button save;
     SignatureView signatureView;
     String path;
+    List<String> ids_list = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
-
+    String result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -321,7 +322,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onNext(QuickPayResponce quickPayResponce) {
+                    public void onNext(final QuickPayResponce quickPayResponce) {
 
 
                         if (quickPayResponce.getIsSuccess()) {
@@ -329,7 +330,10 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override
                                 public void run() {
+
+                                    String result =quickPayResponce.getResult();
                                     showSuccesspdf();
+                                    Log.e("result==",result);
 //                                    String selected_name = arrayyTOstring(selected_labour);
 //                                    String Amount = amount.getText().toString();
 //                                    String date = edittext.getText().toString();
@@ -364,7 +368,15 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         alert.setTitle("Title here");
 
         WebView wv = new WebView(this);
-        wv.loadUrl("http://183.82.111.111/3FFarmer/FileRepository/2019\\09\\27\\QuickpayPdf/20190927113441434.pdf");
+
+
+
+
+        wv.loadUrl("https://docs.google.com/gview?embedded=true&url="+result);
+
+
+
+    //    wv.loadUrl("http://183.82.111.111/3FFarmer/FileRepository/2019\\09\\27\\QuickpayPdf/20190927113441434.pdf");
 
         wv.setWebViewClient(new WebViewClient() {
             @Override

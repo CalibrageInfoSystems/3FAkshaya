@@ -3,6 +3,7 @@ package in.calibrage.akshaya.views.actvity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,10 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.QuickPayModel;
@@ -34,7 +38,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class QuickPayActivity extends AppCompatActivity {
+public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapter.quick_paylistener {
 
     private RecyclerView recyclerView;
     private RecyclerView mRecyclerView;
@@ -52,6 +56,9 @@ public class QuickPayActivity extends AppCompatActivity {
     LinearLayout noRecords;
     private SpotsDialog mdilogue;
     ImageView backImg, home_btn;
+    private List<QuickPayModel.ListResult> collection_list = new ArrayList<>();
+    List<String> ids_list = new ArrayList<>();
+    int SPLASH_DISPLAY_DURATION = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,7 @@ public class QuickPayActivity extends AppCompatActivity {
         init();
         setViews();
 
-      //Farmer_code = SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID);     // Saving string data of your e
+        //Farmer_code = SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID);     // Saving string data of your e
     }
 
     private void init() {
@@ -93,11 +100,30 @@ public class QuickPayActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Quickpay_SummaryActivity.class);
-                startActivity(intent);
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent intent = new Intent(getApplicationContext(), Quickpay_SummaryActivity.class);
+
+
+                        intent.putExtra("collection_ids", (Serializable) ids_list);
+
+
+                        Log.e("ids_list===", String.valueOf(ids_list));
+
+                        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+
+
+                    }
+                }, SPLASH_DISPLAY_DURATION);
+
+                //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //  startActivity(i);
             }
         });
+
 
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,16 +183,29 @@ public class QuickPayActivity extends AppCompatActivity {
                                 noRecords.setVisibility(View.GONE);
                             }
                         }
-                        adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult());
+                        adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);
                         recyclerView.setAdapter(adapter);
                     }
 
 
                 });
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
+    }
+
+    @Override
+    public void setOnClickAckListener(QuickPayModel.ListResult item) {
+
+        if (ids_list.size() > 0) {
+
+            if (ids_list.contains(item.getUColnid())) {
+                ids_list.set(ids_list.indexOf(item.getUColnid()), item.getUColnid());
+
+            }
+        }
     }
 }
