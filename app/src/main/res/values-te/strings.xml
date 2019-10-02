@@ -361,7 +361,8 @@
     <string name="unkonown2">అన్కానన్ 2</string>
     <string name="request_rise">అభ్యర్థనను పెంచండి</string>
     <string name="clear">స్పష్టమైన</string>
-    <string name="datevalidation">దయచేసి తేదీ నుండి తేదీ కంటే తక్కువ</string>
+
+    <string name="datevalidation">దయచేసి తేదీ నుండి  కంటే తక్కువ తేదీ ఎంచుకోండి</string>
     <string name="enter_Date">దయచేసి తేదీ నుండి మరియు తేది వరకు నమోదు చేయండి</string>
     <string name="farmar_id"> రైతు ఐడిని నమోదు చేయండి</string>
     <string name="Internet">దయచేసి ఇంటర్నెట్ కనెక్షన్‌ను తనిఖీ చేయండి</string>
@@ -426,6 +427,7 @@
     <string name="each_product">ప్రతి ఉత్పత్తి ఖర్చు (రూ.)</string>
     <string name="server_error">సర్వర్ స్పందించడం లేదు, దయచేసి మళ్ళీ ప్రయత్నించండి</string>
     <string name="godown_valid">దయచేసి గోడౌన్ ఎంచుకోండి</string>
+    <string name="success_pole">పోల్ అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     //test
 </resources>
 
