@@ -264,7 +264,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
 
-                superHero.setgst(json.getInt("gstPercentage"));
+
                 superHero.setSize(json.getString("size"));
                 superHero.setId(json.getInt("id"));
                 superHero.setUomType(json.getString("uomType"));
@@ -275,7 +275,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Log.e("final_price====", String.valueOf(final_price));
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
-
+                superHero.setgst(json.getInt("gstPercentage"));
 
                 ArrayList<String> powers = new ArrayList<String>();
 

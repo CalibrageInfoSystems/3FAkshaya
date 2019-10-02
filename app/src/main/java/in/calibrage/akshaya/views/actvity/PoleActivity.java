@@ -257,9 +257,13 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 superHero.setPrice(json.getInt("price"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
+                Double size = json.getDouble("size");
+                Log.d(TAG,"--- Size ----"+size);
+//                superHero.setSize(json.getString("size"));
+                superHero.setSize(String.valueOf(size));
 
-                superHero.setgst(json.getInt("gstPercentage"));
-                superHero.setSize(json.getString("size"));
+
+
                 superHero.setId(json.getInt("id"));
                 superHero.setUomType(json.getString("uomType"));
                 Log.e("uom===", json.getString("uomType"));
@@ -270,7 +274,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
 
-
+                superHero.setgst(json.getInt("gstPercentage"));
                 ArrayList<String> powers = new ArrayList<String>();
 
 

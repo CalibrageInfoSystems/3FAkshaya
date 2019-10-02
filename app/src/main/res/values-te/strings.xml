@@ -357,8 +357,8 @@
     <string name="digital_signature">డిజిటల్ సంతకం</string>
     <string name="Prunning">చక్కబెట్టుట</string>
     <string name="harvesting">Harvesting</string>
-    <string name="unkonown">అన్కానన్ 1</string>
-    <string name="unkonown2">అన్కానన్ 2</string>
+    <string name="unkonown">తెలియని 1</string>
+    <string name="unkonown2">తెలియని 2</string>
     <string name="request_rise">అభ్యర్థనను పెంచండి</string>
     <string name="clear">స్పష్టమైన</string>
 
@@ -379,7 +379,7 @@
     <string name="valid_pack">దయచేసి ప్యాకేజీని ఎంచుకోండి</string>
     <string name="record">వాయిస్ రికార్డింగ్</string>
     <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
-    <string name="total_amt">మొత్తం మొత్తం (రూ.)</string>
+    <string name="total_amt"> మొత్తం (రూ.)</string>
         <string name = "confirm">నిర్ధారించండి</string>
     <string name="Rs">\u20B9</string>
     <string name="select_product_toast">దయచేసి కనీసం ఒక ఉత్పత్తిని ఎంచుకోండి</string>

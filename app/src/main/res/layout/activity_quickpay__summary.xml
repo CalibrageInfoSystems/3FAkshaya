@@ -567,7 +567,7 @@
 android:layout_marginLeft="@dimen/margin_10"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="@dimen/margin_10"
-                    android:layout_height="150dp"
+                    android:layout_height="100dp"
                     android:layout_below="@+id/lin_five"
 
                     android:background="@drawable/terms_bg"
@@ -582,8 +582,8 @@ android:layout_marginLeft="@dimen/margin_10"
                         android:text="@string/terms_conditions"
                         android:textColor="@color/colorOrange2"
                         android:textSize="16dp" />
+
                     <EditText
-                        android:editable="false"
                         android:id="@+id/measurement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -592,11 +592,11 @@ android:layout_marginLeft="@dimen/margin_10"
                         android:layout_marginStart="@dimen/margin_5"
                         android:layout_marginLeft="6dp"
                         android:layout_marginTop="1dp"
+                        android:editable="false"
 
                         android:paddingLeft="@dimen/margin_10"
                         android:text="@string/loan_message"
                         android:textSize="14dp" />
-
 
 
                 </LinearLayout>
