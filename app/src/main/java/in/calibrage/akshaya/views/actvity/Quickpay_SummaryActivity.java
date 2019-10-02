@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Animatable;
 import android.media.MediaScannerConnection;
 import android.os.Build;
 import android.os.Environment;
@@ -16,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -178,6 +181,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (checkbox.isChecked()) {
+                   // showSuccesspdf();
                     PdfUtil.createPDF(Quickpay_SummaryActivity.this, CommonUtil.scaleDown(signatureView.getSignatureBitmap(), 200, true), text_quntity.getText().toString(), ffbCostTxt.getText().toString(), ffbCostTxt.getText().toString(), convenienceChargeTxt.getText().toString(), text_quickpay_fee.getText().toString(), closingBalanceTxt.getText().toString(), totalAmount.getText().toString());
                     submitReq();
                 }
@@ -333,7 +337,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                 @Override
                                 public void run() {
 
-                                    String result =quickPayResponce.getResult();
+                                 result =quickPayResponce.getResult();
+
                                     showSuccesspdf();
                                     Log.e("result==",result);
 //                                    String selected_name = arrayyTOstring(selected_labour);
@@ -355,6 +360,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                             }, 300);
                         } else {
                             showDialog(Quickpay_SummaryActivity.this, quickPayResponce.getEndUserMessage());
+                            //result="http://183.82.111.111/3FFarmer/FileRepository/2019//09//27//QuickpayPdf/20190927113441434.pdf";
                         }
 
                     }
@@ -366,37 +372,34 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void showSuccesspdf() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Title here");
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.pdf_dialog);
+          WebView webView=dialog.findViewById(R.id.webView);
+Button btn_dialog=dialog.findViewById(R.id.btn_dialog);
 
-        WebView wv = new WebView(this);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
 
 
 
 
-        wv.loadUrl("https://docs.google.com/gview?embedded=true&url="+result);
+        //---you need this to prevent the webview from
+        // launching another browser when a url
+        // redirection occurs---
+        webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
 
-
-
-    //    wv.loadUrl("http://183.82.111.111/3FFarmer/FileRepository/2019\\09\\27\\QuickpayPdf/20190927113441434.pdf");
-
-        wv.setWebViewClient(new WebViewClient() {
+        webView.loadUrl(
+                "http://docs.google.com/gview?embedded=true&url=" + result);
+        btn_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-
-                return true;
-            }
-        });
-
-        alert.setView(wv);
-        alert.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
+            public void onClick(View v) {
                 dialog.dismiss();
             }
         });
-        alert.show();
+        dialog.show();
+
     }
     private JsonObject quickReuestobject() {
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
@@ -470,5 +473,14 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
+    }
+
+
+    private class Callback extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(
+                WebView view, String url) {
+            return (false);
+        }
     }
 }

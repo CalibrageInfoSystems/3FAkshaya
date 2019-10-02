@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -99,7 +100,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     Button button_submit;
     private SpotsDialog mdilogue;
     CheckBox checkbox;
-    String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register;
+    String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register,currentDate;
     String plot_id, plot_Age, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString, plantationdate, finalAmount;
     EditText commentsTxt;
     ImageView backImg, home_btn;
@@ -133,6 +134,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     }
 
     private void intview() {
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        Log.i("LOG_RESPONSE date ", currentDate);
         Age = findViewById(R.id.age_plot);
         id_plot = findViewById(R.id.plot);
         area = findViewById(R.id.palmArea);
@@ -783,29 +786,29 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
         requestModel.setServiceTypes(val);
 
-        requestModel.setCreatedDate(reformattedDate);
+        requestModel.setCreatedDate(currentDate);
         requestModel.setUpdatedByUserId(null);
-        requestModel.setUpdatedDate(reformattedDate);
+        requestModel.setUpdatedDate(currentDate);
         requestModel.setAmount(1.1);
         if (harv_amount.getVisibility() == View.VISIBLE)
             requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
         else
             requestModel.setHarvestingAmount(0.0);
         if (prun_amount.getVisibility() == View.VISIBLE)
-            requestModel.setHarvestingAmount(Double.parseDouble((String) prun_amount.getText()));
+            requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
         else
-            requestModel.setHarvestingAmount(0.0);
+            requestModel.setPruningAmount(0.0);
 
         if (un_amount.getVisibility() == View.VISIBLE)
-            requestModel.setHarvestingAmount(Double.parseDouble((String) un_amount.getText()));
+            requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
         else
-            requestModel.setHarvestingAmount(0.0);
+            requestModel.setUnKnown1Amount(0.0);
 
 
         if (un2_amount.getVisibility() == View.VISIBLE)
-            requestModel.setHarvestingAmount(Double.parseDouble((String) un2_amount.getText()));
+            requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
         else
-            requestModel.setHarvestingAmount(0.0);
+            requestModel.setUnKnown2Amount(0.0);
 
 
 //        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
