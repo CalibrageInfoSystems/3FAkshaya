@@ -146,14 +146,14 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                 finish();
             }
         });
-       ImageView backImg = (ImageView) findViewById(R.id.back);
+      /* ImageView backImg = (ImageView) findViewById(R.id.back);
        backImg.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                finish();
            }
-       });
-       ImageView homeImg = (ImageView) findViewById(R.id.home_btn);
+       });*/
+       /*ImageView homeImg = (ImageView) findViewById(R.id.home_btn);
        homeImg.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -162,7 +162,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                startActivity(intent);
                finish();
            }
-       });
+       });*/
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         getPaymentMods();
@@ -462,7 +462,10 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     }
 
     private void getActiveGodowns() {
+<<<<<<< HEAD
         int typeid = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("postTypeId");
+=======
+>>>>>>> 2828930bd7efedcfe91e6ed97e9cb2d449dbe44a
         String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

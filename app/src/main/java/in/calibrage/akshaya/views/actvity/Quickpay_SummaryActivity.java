@@ -405,7 +405,6 @@ Button btn_dialog=dialog.findViewById(R.id.btn_dialog);
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
 
 
-
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
@@ -413,6 +412,7 @@ Button btn_dialog=dialog.findViewById(R.id.btn_dialog);
         requestModel.setCreatedDate(currentDate);
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
+        requestModel.setFileLocation("");
         requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
         //TODO make dynamic
 

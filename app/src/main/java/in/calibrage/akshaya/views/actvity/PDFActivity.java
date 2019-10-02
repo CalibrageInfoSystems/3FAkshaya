@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -44,6 +45,7 @@ public class PDFActivity extends AppCompatActivity {
         if (getIntent() != null) {
             name = getIntent().getStringExtra("name");
             url = getIntent().getStringExtra("url");
+            Log.d("PDF","---------- file URL :"+url);
            TextView txt_name = findViewById(R.id.txt_name);
            txt_name.setText(name);
         }
@@ -74,9 +76,10 @@ public class PDFActivity extends AppCompatActivity {
         // launching another browser when a url
         // redirection occurs---
         webView.setWebViewClient(new Callback());
-
+        String furl = "http://docs.google.com/gview?embedded=true&url=" + fileUrl;
+Log.d("PDF","final URL :"+furl);
         webView.loadUrl(
-                "http://docs.google.com/gview?embedded=true&url=" + fileUrl);
+                furl);
 
     }
 
