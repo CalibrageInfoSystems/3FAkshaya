@@ -70,7 +70,7 @@ public class HomeFragment extends BaseFragment {
     private FarmerOtpResponceModel catagoriesList;
     private TextView txt_banner;
     SliderView sliderView;
-    private SpotsDialog mdilogue ;
+    private SpotsDialog mdilogue;
     HashMap<String, String> HashMapForURL;
 
     public HomeFragment() {
@@ -168,8 +168,8 @@ public class HomeFragment extends BaseFragment {
         });
         GetBannerByStateCode();
         //Picasso.with(getContext()).load(catagoriesList.getResult().getBannerDetails().get(0).getImageURL()).into(img_banner);
-       // txt_banner.setText(catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription());
-         sliderView=  v.findViewById(R.id.imageSliderr);
+        // txt_banner.setText(catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription());
+        sliderView = v.findViewById(R.id.imageSliderr);
 //        final SlideAdapter adapter = new SlideAdapter(getContext());
 //        adapter.setCount(3);
 //
@@ -188,13 +188,7 @@ public class HomeFragment extends BaseFragment {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
-<<<<<<< HEAD
-        int typeid = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("postTypeId");
-        String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
-        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode + statecode )
-=======
-        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode+statecode )
->>>>>>> 2828930bd7efedcfe91e6ed97e9cb2d449dbe44a
+        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode + statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BannerresponseModel>() {
@@ -222,8 +216,8 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void onNext(BannerresponseModel bannerresponseModel) {
 
-                        if(bannerresponseModel.getListResult() != null) {
-                            final SlideAdapter adapter = new SlideAdapter(getContext(),bannerresponseModel.getListResult());
+                        if (bannerresponseModel.getListResult() != null) {
+                            final SlideAdapter adapter = new SlideAdapter(getContext(), bannerresponseModel.getListResult());
                             adapter.setCount(bannerresponseModel.getAffectedRecords());
 
                             sliderView.setSliderAdapter(adapter);
@@ -233,7 +227,7 @@ public class HomeFragment extends BaseFragment {
                             sliderView.setIndicatorSelectedColor(Color.WHITE);
                             sliderView.setIndicatorUnselectedColor(Color.GRAY);
                             sliderView.startAutoCycle();
-                            txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() +"                          "+bannerresponseModel.getListResult().get(0).getDescription()+"                          " );
+                            txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                          " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
                         }
                     }
 
@@ -271,7 +265,18 @@ public class HomeFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG,"----- analysis -- Life cycle :ON Resume()");
+        GetBannerByStateCode();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG,"----- analysis -- Life cycle :onPause()");
+    }
 }
 
 

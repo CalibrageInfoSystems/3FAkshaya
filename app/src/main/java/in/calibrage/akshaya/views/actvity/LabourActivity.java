@@ -100,7 +100,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     Button button_submit;
     private SpotsDialog mdilogue;
     CheckBox checkbox;
-    String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register,currentDate;
+    String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate;
     String plot_id, plot_Age, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString, plantationdate, finalAmount;
     EditText commentsTxt;
     ImageView backImg, home_btn;
@@ -153,7 +153,6 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         harv_amount_label = findViewById(R.id.harv_amount_label);
         un_amount_label = findViewById(R.id.un_amount_label);
         un2_amount_label = findViewById(R.id.un2_amount_label);
-
         prun_amount = findViewById(R.id.pruning_amount);
         harv_amount = findViewById(R.id.harv_amount);
         un_amount = findViewById(R.id.un_amount);
@@ -491,23 +490,17 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                     List<MSGmodel> displayList = new ArrayList<>();
 
 
-
-
                                     displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
-                                    if(selected_name.contains("Harvesting"))
-                                    {
+                                    if (selected_name.contains("Harvesting")) {
                                         displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), harv_amount.getText().toString()));
                                     }
-                                    if(selected_name.contains("Pruning"))
-                                    {
+                                    if (selected_name.contains("Pruning")) {
                                         displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), prun_amount.getText().toString()));
                                     }
-                                    if(selected_name.contains("UnKnown1"))
-                                    {
+                                    if (selected_name.contains("UnKnown1")) {
                                         displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
                                     }
-                                    if(selected_name.contains("UnKnown2"))
-                                    {
+                                    if (selected_name.contains("UnKnown2")) {
                                         displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
                                     }
 
@@ -754,11 +747,6 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         AmountRequest requestModel = new AmountRequest();
         requestModel.setDateOfPlanting(plantationdate);
 
-        // String val = arrayTOstring(ids_list);
-//        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
-//
-//        requestModel.setServiceTypeIds(val);
-
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
@@ -790,26 +778,58 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
         requestModel.setAmount(1.1);
-        if (harv_amount.getVisibility() == View.VISIBLE)
+
+        String selected_name = arrayyTOstring(selected_labour);
+
+        if (selected_name.contains("Harvesting")) {
             requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
-        else
+        }else {
             requestModel.setHarvestingAmount(0.0);
-        if (prun_amount.getVisibility() == View.VISIBLE)
-            requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
-        else
+        }
+
+        if (selected_name.contains("Pruning")) {
+            requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));}
+        else {
             requestModel.setPruningAmount(0.0);
+        }
 
-        if (un_amount.getVisibility() == View.VISIBLE)
+        if (selected_name.contains("UnKnown1")) {
             requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
-        else
-            requestModel.setUnKnown1Amount(0.0);
+        }else {  requestModel.setUnKnown1Amount(0.0);}
 
-
-        if (un2_amount.getVisibility() == View.VISIBLE)
+        if (selected_name.contains("UnKnown2")) {
             requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
-        else
-            requestModel.setUnKnown2Amount(0.0);
+        }else { requestModel.setUnKnown2Amount(0.0);}
 
+
+
+
+
+
+   /*     if (harv_amount.getVisibility() == View.VISIBLE) {
+            requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
+        } else {
+            requestModel.setHarvestingAmount(0.0);
+        }
+
+
+        if (prun_amount.getVisibility() == View.VISIBLE){
+            requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));}
+        else{
+            requestModel.setPruningAmount(0.0);}
+
+
+        if (un_amount.getVisibility() == View.VISIBLE){
+            requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));}
+        else{
+            requestModel.setUnKnown1Amount(0.0);}
+
+
+        if (un2_amount.getVisibility() == View.VISIBLE){
+            requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));}
+        else{
+            requestModel.setUnKnown2Amount(0.0);}
+*/
 
 //        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
 //        requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
