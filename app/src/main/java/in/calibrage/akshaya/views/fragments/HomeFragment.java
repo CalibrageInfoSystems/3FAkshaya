@@ -187,7 +187,9 @@ public class HomeFragment extends BaseFragment {
 
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
-        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode )
+        int typeid = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("postTypeId");
+        String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
+        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode + statecode )
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BannerresponseModel>() {

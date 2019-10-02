@@ -26,7 +26,7 @@ public interface APIConstantURL {
     String post_visit = "RequestHeader/AddVisitRequest";
     String GetActiveGodowns = "Godown/GetActiveGodowns";
     String GetPaymentsTypeByFarmerCode = "Farmer/GetPaymentsTypeByFarmerCode/";
-    String GetBannerByStateCode = "Banner/GetBannerByStateCode/AP";
+    String GetBannerByStateCode = "Banner/GetBannerByStateCode/";
     String Post_fert = "FertilizerRequest";
     String Getfarmersubsidy= "FertilizerSubsidies/";
 
