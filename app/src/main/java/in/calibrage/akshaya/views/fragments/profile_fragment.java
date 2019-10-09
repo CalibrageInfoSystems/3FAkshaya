@@ -39,7 +39,9 @@ public class profile_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
     ImageView img_profile;
+
     private FarmerOtpResponceModel catagoriesList;
     private OnFragmentInteractionListener mListener;
 

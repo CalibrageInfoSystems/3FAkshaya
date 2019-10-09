@@ -79,12 +79,13 @@ public class LabourRecommendationsActivity  extends BaseActivity {
 
         setViews();
 
-        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+         // Saving string data of your editext
 
     }
 
     private void init() {
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
         noRecords = (LinearLayout) findViewById(R.id.text);
         backImg = (ImageView) findViewById(R.id.back);
          home_btn = (ImageView) findViewById(R.id.home_btn);
@@ -129,7 +130,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
     private void GetLabourRequestDetails() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getrecommdetails(APIConstantURL.GetActivePlotsByFarmerCode +"APWGBDAB00010001")
+        mSubscription = service.getrecommdetails(APIConstantURL.GetActivePlotsByFarmerCode +Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<LabourRecommendationsModel>() {

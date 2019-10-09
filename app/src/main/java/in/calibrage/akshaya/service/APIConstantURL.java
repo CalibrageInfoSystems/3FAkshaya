@@ -35,6 +35,7 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String GetRequestHeaderDetails = "RequestHeader/GetRequestHeaderDetails";
     String GetContactInfo = "ContactInfo/GetContactInfo/";
     String Get3FInfo = "Farmer/Get3FInfo/";
+    String GetPlotDetailsByFarmerCode = "Farmer/GetPlotDetailsByFarmerCode/";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 

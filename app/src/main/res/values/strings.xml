@@ -289,6 +289,12 @@
     <string name="mobile">Mobile Number</string>
     <string name="alter_mobile">Alternate Mobile \n Number</string>
     <string name="email">Email ID</string>
+    <string name="plaod_hect">Plot Hectrage</string>
+    <string name="sur_num">Plot Survery \n Number</string>
+    <string name="yop">YOP</string>
+    <string name="fert_godown">Fertilizer Godowns</string>
+    <string name="collection_centres">Collection Centers</string>
+    <string name="Mills">Mills</string>
     />
 
     <!-- we need to use video ids instead of video link -->
