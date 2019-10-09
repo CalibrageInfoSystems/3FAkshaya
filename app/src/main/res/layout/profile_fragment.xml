@@ -14,313 +14,381 @@
 
 
         <ImageView
+            android:id="@+id/img_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/img_profile"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/ic_launcher_round" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
-                android:layout_weight="0.4"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/farmer_name"
                 android:textAlignment="textStart"
-                android:text="@string/farmer_name"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/farmerName"
-                android:layout_weight="0.6"
-                android:layout_width="0dp"
                 style="@style/Common_textView"
-                android:textAlignment="textStart"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Arun Raj"/>
+                android:layout_weight="0.6"
+                android:text="Arun Raj"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_fathername"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.4"
-                android:layout_height="wrap_content"
-             android:layout_marginTop="@dimen/margin_5"
-                android:textColor="@color/black"
                 style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_weight="0.4"
+                android:text="@string/fa_hu_name"
                 android:textAlignment="textStart"
-                android:text="@string/fa_hu_name"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/fatherName"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Father Arun"/>
+                android:layout_weight="0.6"
+                android:text="Father name"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <TextView
+            style="@style/Common_textView"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            style="@style/Common_textView"
+            android:text="@string/res_address"
             android:textAlignment="textStart"
-            android:textColor="@color/colorOrange"
-            android:text="@string/res_address"/>
+            android:textColor="@color/colorOrange" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
             android:layout_marginTop="5dp"
-            android:background="@color/gray" />
+            android:background="@drawable/devider_line" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/address"
                 android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:text="@string/address"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/address"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                style="@style/Common_textView"
+                android:layout_weight="0.6"
+                android:hint="Plot No: 132/A"
                 android:textAlignment="textStart"
-                android:hint="Plot No: 132/A"/>
+
+
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_landmark"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/land_mark"
                 android:textAlignment="textStart"
-                android:text="@string/land_mark"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/landmark"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text="@string/land_mark"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_village"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/village"
                 android:textAlignment="textStart"
-                android:text="@string/village"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/village"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text="@string/village"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_mandal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/mandal"
                 android:textAlignment="textStart"
-                android:text="@string/mandal"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/mandal"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text="@string/mandal"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_dist"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/dist"
                 android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:text="@string/dist"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/district"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text="@string/dist"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_state"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/state"
                 android:textAlignment="textStart"
-                android:text="@string/state"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/state"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text="@string/state"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_pin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/pin"
                 android:textAlignment="textStart"
-                android:text="@string/pin"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/pincode"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text="@string/ente_pin"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
             android:layout_marginTop="5dp"
-            android:background="@color/gray" />
+            android:background="@drawable/devider_line" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_mobile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/mobile"
                 android:textAlignment="textStart"
-                android:text="@string/mobile"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/mobilenumber"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text="@string/mobile"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_alt_mobile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/alter_mobile"
                 android:textAlignment="textStart"
-                android:text="@string/alter_mobile"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/alternatemobilenumber"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text=""
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:weightSum="1"
+            android:id="@+id/lyt_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
+                style="@style/Common_textView"
                 android:layout_width="0dp"
-                android:layout_weight="0.4"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                style="@style/Common_textView"
+                android:layout_weight="0.4"
+                android:text="@string/email"
                 android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:text="@string/email"/>
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/emailid"
-                android:layout_weight="0.6"
+                style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text=""/>
+                android:layout_weight="0.6"
+                android:text=""
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
         </LinearLayout>
 
     </LinearLayout>

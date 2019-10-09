@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -38,11 +39,12 @@ public class profile_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-ImageView img_profile;
+    ImageView img_profile;
     private FarmerOtpResponceModel catagoriesList;
     private OnFragmentInteractionListener mListener;
 
-private TextView farmer_name,father_name,res_address,land_mark,village,mandal,dist,state,pin,mobile,alt_mobile,email;
+    private TextView farmer_name, father_name, res_address, land_mark, village, mandal, dist, state, pin, mobile, alt_mobile, email;
+    private LinearLayout lyt_fathername, lyt_address, lyt_landmark, lyt_village, lyt_mandal, lyt_dist, lyt_state, lyt_pin, lyt_mobile, lyt_alt_mobile, lyt_email;
 
     public profile_fragment() {
         // Required empty public constructor
@@ -76,46 +78,111 @@ private TextView farmer_name,father_name,res_address,land_mark,village,mandal,di
         View view = inflater.inflate(R.layout.profile_fragment,
                 container, false);
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        img_profile = (ImageView)view.findViewById(R.id.img_profile);
-        farmer_name=(TextView) view.findViewById(R.id.farmerName);
-        father_name=(TextView)  view.findViewById(R.id.fatherName);
-        res_address=(TextView) view.findViewById(R.id.address);
-        land_mark=(TextView) view.findViewById(R.id.landmark);
-        village=(TextView) view.findViewById(R.id.village);
-        mandal=(TextView) view.findViewById(R.id.mandal);
-        dist=(TextView) view.findViewById(R.id.district);
-        state=(TextView) view.findViewById(R.id.state);
-        pin=(TextView) view.findViewById(R.id.pincode);
-        mobile=(TextView) view.findViewById(R.id.mobilenumber);
+        init(view);
 
-        alt_mobile=(TextView) view.findViewById(R.id.alternatemobilenumber);
-        email=(TextView) view.findViewById(R.id.emailid);
+        setviews();
 
+        return view;
+    }
+
+    private void setviews() {
         catagoriesList = SharedPrefsData.getCatagories(getContext());
 
         String name = catagoriesList.getResult().getFarmerDetails().get(0).getFirstName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getMiddleName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getLastName();
-        farmer_name.setText(name.replace("null", ""));
-        village.setText(catagoriesList.getResult().getFarmerDetails().get(0).getVillageName());
-        //Log.e("village_naME",catagoriesList.getResult().getFarmerDetails().get(0).getVillageName());
-        mandal.setText(catagoriesList.getResult().getFarmerDetails().get(0).getMandalName());
-        dist.setText(catagoriesList.getResult().getFarmerDetails().get(0).getDistrictName());
-        if (catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber() == null)
-            mobile.setVisibility(View.GONE);
+        farmer_name.setText(": " + name.replace("null", ""));
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getVillageName())
+            village.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getVillageName());
         else
+            lyt_village.setVisibility(View.GONE); // village.setText(": N/A");
+
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getAddress())
+            res_address.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
+        else
+            lyt_address.setVisibility(View.GONE);// res_address.setText(": N/A");
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getMandalName())
+            mandal.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getMandalName());
+        else
+            lyt_mandal.setVisibility(View.GONE);//mandal.setText(": N/A");
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getLandmark())
+            land_mark.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getLandmark());
+        else
+            lyt_landmark.setVisibility(View.GONE); // land_mark.setText(": N/A");
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber())
             mobile.setText(catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber().toString());
-        res_address.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
-        if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1()))
+        else
+            lyt_mobile.setVisibility(View.GONE);  // mobile.setText(": N/A");
+
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getDistrictName())
+            dist.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getDistrictName());
+        else
+            lyt_dist.setVisibility(View.GONE);// dist.setText(": N/A");
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getStateName())
+            state.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getStateName());
+        else
+           lyt_state.setVisibility(View.GONE);// state.setText(": N/A");
+
+        if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()))
             Picasso.with(getContext()).load(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()).error(R.drawable.ic_user).transform(new CircleTransform()).into(img_profile);
 
-        father_name.setText(catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName());
-        land_mark.setText(catagoriesList.getResult().getFarmerDetails().get(0).getLandmark());
-        state.setText(catagoriesList.getResult().getFarmerDetails().get(0).getStateName());
-        if (catagoriesList.getResult().getFarmerDetails().get(0).getPinCode() == null)
-            pin.setVisibility(View.GONE);
-        else
-        pin.setText(catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
 
-        return view;
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getPinCode())
+            pin.setText(catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
+        else
+           lyt_pin.setVisibility(View.GONE);//; pin.setText(": N/A");
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName())
+            father_name.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName());
+        else
+           lyt_fathername.setVisibility(View.GONE); // father_name.setText(": N/A");
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber())
+            alt_mobile.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber());
+        else
+           lyt_alt_mobile.setVisibility(View.GONE); // alt_mobile.setText(": N/A");
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getEmail())
+            email.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getEmail());
+        else
+          lyt_email.setVisibility(View.GONE) ;//;  email.setText(": N/A");
+
+
+    }
+
+    private void init(View view) {
+        img_profile = (ImageView) view.findViewById(R.id.img_profile);
+        farmer_name = (TextView) view.findViewById(R.id.farmerName);
+        father_name = (TextView) view.findViewById(R.id.fatherName);
+        res_address = (TextView) view.findViewById(R.id.address);
+        land_mark = (TextView) view.findViewById(R.id.landmark);
+        village = (TextView) view.findViewById(R.id.village);
+        mandal = (TextView) view.findViewById(R.id.mandal);
+        dist = (TextView) view.findViewById(R.id.district);
+        state = (TextView) view.findViewById(R.id.state);
+        pin = (TextView) view.findViewById(R.id.pincode);
+        mobile = (TextView) view.findViewById(R.id.mobilenumber);
+
+        alt_mobile = (TextView) view.findViewById(R.id.alternatemobilenumber);
+        email = (TextView) view.findViewById(R.id.emailid);
+
+
+        lyt_fathername = view.findViewById(R.id.lyt_fathername);
+        lyt_address = view.findViewById(R.id.lyt_address);
+        lyt_landmark = view.findViewById(R.id.lyt_landmark);
+        lyt_village = view.findViewById(R.id.lyt_village);
+        lyt_mandal = view.findViewById(R.id.lyt_mandal);
+        lyt_dist = view.findViewById(R.id.lyt_dist);
+        lyt_state = view.findViewById(R.id.lyt_state);
+        lyt_pin = view.findViewById(R.id.lyt_pin);
+        lyt_mobile = view.findViewById(R.id.lyt_mobile);
+        lyt_alt_mobile = view.findViewById(R.id.lyt_alt_mobile);
+        lyt_email = view.findViewById(R.id.lyt_email);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
