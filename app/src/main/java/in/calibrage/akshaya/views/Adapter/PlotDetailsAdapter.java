@@ -44,16 +44,16 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         //  LabourRecommendationsModel superHero =  superHeroes.get(position);
-        holder.textViewplotId.setText(recomm_Set.get(position).getSurveyNumber());
-        holder.textViewpalmArea.setText(recomm_Set.get(position).getTotalPalmArea()+" "+"Ha");
-        holder.textViewLocation.setText(recomm_Set.get(position).getAddress());
+        holder.textViewplotId.setText(": "+recomm_Set.get(position).getSurveyNumber());
+        holder.textViewpalmArea.setText(": "+recomm_Set.get(position).getTotalPalmArea()+" "+"Ha");
+        holder.textViewLocation.setText(": "+recomm_Set.get(position).getAddress());
 
-        holder.plotLandmark.setText(recomm_Set.get(position).getLandmark());
-        holder.plot_Mandal.setText(recomm_Set.get(position).getMandal());
-       holder.plotvillage.setText(recomm_Set.get(position).getVillage());
-        holder.plot_District.setText(recomm_Set.get(position).getDistrict());
+        holder.plotLandmark.setText(": "+recomm_Set.get(position).getLandmark());
+        holder.plot_Mandal.setText(": "+recomm_Set.get(position).getMandal());
+       holder.plotvillage.setText(": "+recomm_Set.get(position).getVillage());
+        holder.plot_District.setText(": "+recomm_Set.get(position).getDistrict());
 
-        holder.date_plantation.setText(recomm_Set.get(position).getDateofPlanting());
+        holder.date_plantation.setText(": "+recomm_Set.get(position).getDateofPlanting());
 
 
 

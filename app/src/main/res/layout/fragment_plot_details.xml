@@ -3,20 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".views.fragments.plot_details">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_marginRight="@dimen/margin_5"
         android:id="@+id/recycler_view"
         android:layout_below="@+id/backlinear"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:scrollbars="vertical"
         android:scrollbarThumbVertical="@color/colorPrimary"
         android:scrollbarSize="3dp"
         android:scrollbarStyle="outsideInset"
-        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginBottom="50dp"
         />
 
     <LinearLayout
