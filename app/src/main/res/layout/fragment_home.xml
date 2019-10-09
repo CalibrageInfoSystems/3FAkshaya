@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="1"
 
@@ -381,8 +381,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:layout_weight="0.25"
                 android:layout_margin="3dp"
+                android:layout_weight="0.25"
                 android:gravity="top"
                 android:orientation="vertical">
 
@@ -394,10 +394,10 @@
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/learning_list"
-                    android:layout_margin="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
+                    android:layout_margin="3dp"
                     android:numColumns="4" />
 
                 <LinearLayout
@@ -411,9 +411,9 @@
             </LinearLayout>
 
             <LinearLayout
-               android:gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="bottom"
                 android:orientation="vertical">
 
                 <TextView
@@ -431,10 +431,10 @@
                     android:textColor="@color/blue" />
 
                 <com.smarteist.autoimageslider.SliderView
-                    android:layout_weight="0.7"
                     android:id="@+id/imageSliderr"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:layout_weight="0.7"
                     app:sliderAnimationDuration="600"
                     app:sliderAutoCycleDirection="back_and_forth"
                     app:sliderAutoCycleEnabled="true"

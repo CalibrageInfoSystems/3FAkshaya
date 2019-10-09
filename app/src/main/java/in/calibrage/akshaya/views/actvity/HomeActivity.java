@@ -75,7 +75,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     private Button ok_btn, cancel_btn;
     String FragmentTAG;
     FloatingActionButton myFab;
-   Integer mSelectedItem;
+    Integer mSelectedItem;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +154,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
                         /*replaceFragment(HomeActivity.this,R.id.content_frame,new HomeFragment(),FragmentTAG,HomeFragment.TAG);
                         FragmentTAG = HomeFragment.TAG;*/
-                        mSelectedItem =item.getItemId();
+                        mSelectedItem = item.getItemId();
                         viewFragment(new HomeFragment(), HomeFragment.TAG);
                         break;
                     }
@@ -161,7 +162,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 //                        getSupportFragmentManager().beginTransaction()
 //                                .replace(R.id.content_frame, new ProfileFragment(), ProfileFragment.TAG)
 //                                .commit();
-                        mSelectedItem =item.getItemId();
+                        mSelectedItem = item.getItemId();
                         viewFragment(new ProfileFragment(), ProfileFragment.TAG);
                         break;
                     }
@@ -169,17 +170,17 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                         /*getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_frame, new My3FFragment(), My3FFragment.TAG)
                                 .commit();*/
-                        mSelectedItem =item.getItemId();
+                        mSelectedItem = item.getItemId();
                         viewFragment(new My3FFragment(), My3FFragment.TAG);
                         break;
                     }
                     case R.id.action_requests: {
-                        mSelectedItem =item.getItemId();
+                        mSelectedItem = item.getItemId();
                         viewFragment(new RequestsFragment(), RequestsFragment.TAG);
                         break;
                     }
                     case R.id.action_logout: {
-                        mSelectedItem =item.getItemId();
+                        mSelectedItem = item.getItemId();
                         bottom_navigation.setSelectedItemId(R.id.action_requests);
                         logOutDialog();
                         break;
@@ -239,21 +240,28 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             // Handle the camera action
         } else if (id == R.id.action_home) {
 
-
-            viewFragment(new HomeFragment(), HomeFragment.TAG);
-
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-            startActivity(intent);
+            HomeFragment homeFragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.content_frame, homeFragment, null)
+                    .commit();
+            // Select home item
+            bottom_navigation.setSelectedItemId(id);
             // finish();
+
+        } else if (id == R.id.action_profile) {
+
+
+            mSelectedItem = item.getItemId();
+            viewFragment(new RequestsFragment(), ProfileFragment.TAG);
+
+        } else if (id == R.id.action_3f) {
+
+            mSelectedItem = item.getItemId();
+            viewFragment(new RequestsFragment(), My3FFragment.TAG);
 
         } else if (id == R.id.My_request) {
-
-
-            viewFragment(new HomeFragment(), HomeFragment.TAG);
-
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-            startActivity(intent);
-            // finish();
+            mSelectedItem = item.getItemId();
+            viewFragment(new RequestsFragment(), RequestsFragment.TAG);
 
         } else if (id == R.id.nav_logout) {
 
@@ -262,6 +270,27 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         }
 
         return true;
+/*        case R.id.action_profile: {
+//                        getSupportFragmentManager().beginTransaction()
+//                                .replace(R.id.content_frame, new ProfileFragment(), ProfileFragment.TAG)
+//                                .commit();
+            mSelectedItem =item.getItemId();
+            viewFragment(new ProfileFragment(), ProfileFragment.TAG);
+            break;
+        }
+        case R.id.action_3f: {
+                        *//*getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.content_frame, new My3FFragment(), My3FFragment.TAG)
+                                .commit();*//*
+            mSelectedItem =item.getItemId();
+            viewFragment(new My3FFragment(), My3FFragment.TAG);
+            break;
+        }
+        case R.id.action_requests: {
+            mSelectedItem =item.getItemId();
+            viewFragment(new RequestsFragment(), RequestsFragment.TAG);
+            break;
+        }*/
     }
 
     private void logOutDialog() {
