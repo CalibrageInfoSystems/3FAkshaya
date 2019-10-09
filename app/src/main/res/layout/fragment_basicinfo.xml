@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.fragments.BasicinfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_gravity="center"
         android:id="@+id/lin_one"
         android:layout_width="match_parent"
@@ -18,15 +18,18 @@
         android:layout_marginEnd="@dimen/_8dp"
         android:layout_marginRight="@dimen/_8dp"
         android:layout_marginBottom="@dimen/_8dp"
-        android:background="@drawable/collect_bg">
+        android:background="@drawable/collect_bg">-->
 
     <TextView
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
         android:id="@+id/txt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-     android:textAlignment="center"
+        android:textAlignment="center"
         android:hint="@string/req_date"
-        android:layout_margin="@dimen/margin_10"
-        android:textColor="@android:color/white"/>
-    </RelativeLayout>
-</FrameLayout>
+        android:textColor="@color/light_gray"/>
+    <!--</RelativeLayout>-->
+</LinearLayout>
