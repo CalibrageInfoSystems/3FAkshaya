@@ -73,8 +73,9 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     private TextView txt_name, txt_phone, txt_adrs, dialogMessage;
     private FarmerOtpResponceModel catagoriesList;
     private Button ok_btn, cancel_btn;
-    String FragmentTAG ;
+    String FragmentTAG;
     FloatingActionButton myFab;
+   Integer mSelectedItem;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         nv = (NavigationView) findViewById(R.id.nv);
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.app_name);
-        myFab = (FloatingActionButton)findViewById(R.id.call_fb);
+        myFab = (FloatingActionButton) findViewById(R.id.call_fb);
         dl.addDrawerListener(t);
         t.syncState();
 
@@ -119,7 +120,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, homeFragment, "homeTag")
                 .commit();
-     //  viewFragment(new HomeFragment(),HomeFragment.TAG);
+        //  viewFragment(new HomeFragment(),HomeFragment.TAG);
 //        FragmentTAG = HomeFragment.TAG;
     }
 
@@ -152,28 +153,34 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
                         /*replaceFragment(HomeActivity.this,R.id.content_frame,new HomeFragment(),FragmentTAG,HomeFragment.TAG);
                         FragmentTAG = HomeFragment.TAG;*/
-                        viewFragment( new HomeFragment(),HomeFragment.TAG);
+                        mSelectedItem =item.getItemId();
+                        viewFragment(new HomeFragment(), HomeFragment.TAG);
                         break;
                     }
                     case R.id.action_profile: {
 //                        getSupportFragmentManager().beginTransaction()
 //                                .replace(R.id.content_frame, new ProfileFragment(), ProfileFragment.TAG)
 //                                .commit();
-                        viewFragment( new ProfileFragment(),ProfileFragment.TAG);
+                        mSelectedItem =item.getItemId();
+                        viewFragment(new ProfileFragment(), ProfileFragment.TAG);
                         break;
                     }
                     case R.id.action_3f: {
                         /*getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.content_frame, new My3FFragment(), My3FFragment.TAG)
                                 .commit();*/
-                        viewFragment( new My3FFragment(),My3FFragment.TAG);
+                        mSelectedItem =item.getItemId();
+                        viewFragment(new My3FFragment(), My3FFragment.TAG);
                         break;
                     }
                     case R.id.action_requests: {
-                        viewFragment( new RequestsFragment(),RequestsFragment.TAG);
+                        mSelectedItem =item.getItemId();
+                        viewFragment(new RequestsFragment(), RequestsFragment.TAG);
                         break;
                     }
                     case R.id.action_logout: {
+                        mSelectedItem =item.getItemId();
+                        bottom_navigation.setSelectedItemId(R.id.action_requests);
                         logOutDialog();
                         break;
                     }
@@ -189,15 +196,12 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
                 Intent i = new Intent(Intent.ACTION_DIAL, u);
 
-                try
-                {
+                try {
 
                     startActivity(i);
-                }
-                catch (SecurityException s)
-                {
+                } catch (SecurityException s) {
 
-                 Toast.makeText(HomeActivity.this, "SecurityException", Toast.LENGTH_LONG)
+                    Toast.makeText(HomeActivity.this, "SecurityException", Toast.LENGTH_LONG)
                             .show();
                 }
             }
@@ -236,25 +240,22 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.action_home) {
 
 
-            viewFragment( new HomeFragment(),HomeFragment.TAG);
-
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-            startActivity(intent);
-           // finish();
-
-        }
-
-
-        else if (id == R.id.My_request) {
-
-
-            viewFragment( new HomeFragment(),HomeFragment.TAG);
+            viewFragment(new HomeFragment(), HomeFragment.TAG);
 
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
             // finish();
 
-        }else if (id == R.id.nav_logout) {
+        } else if (id == R.id.My_request) {
+
+
+            viewFragment(new HomeFragment(), HomeFragment.TAG);
+
+            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+            startActivity(intent);
+            // finish();
+
+        } else if (id == R.id.nav_logout) {
 
             //popupdialog to show message to logout the application
             logOutDialog();
@@ -266,12 +267,12 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     private void logOutDialog() {
 
 
-        final Dialog dialog = new Dialog(HomeActivity.this,R.style.DialogSlideAnim);
+        final Dialog dialog = new Dialog(HomeActivity.this, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_logout);
 
-        dialogMessage =dialog.findViewById(R.id.dialogMessage);
+        dialogMessage = dialog.findViewById(R.id.dialogMessage);
         dialogMessage.setText(getString(R.string.alert_logout));
 
 
@@ -390,14 +391,15 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             }
         }
     }
-    private void viewFragment(Fragment fragment, String name){
-      final FragmentManager fragmentManager = getSupportFragmentManager();
+
+    private void viewFragment(Fragment fragment, String name) {
+        final FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);
         // 1. Know how many fragments there are in the stack
         final int count = fragmentManager.getBackStackEntryCount();
         // 2. If the fragment is **not** "home type", save it to the stack
-        if( name.equals( HomeFragment.TAG) ) {
+        if (name.equals(HomeFragment.TAG)) {
             fragmentTransaction.addToBackStack(name);
         }
         // Commit !
@@ -408,7 +410,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             @Override
             public void onBackStackChanged() {
                 // If the stack decreases it means I clicked the back button
-                if( fragmentManager.getBackStackEntryCount() <= count){
+                if (fragmentManager.getBackStackEntryCount() <= count) {
                     // pop all the fragment and remove the listener
                     fragmentManager.popBackStack(HomeFragment.TAG, POP_BACK_STACK_INCLUSIVE);
                     fragmentManager.removeOnBackStackChangedListener(this);
@@ -419,4 +421,20 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        MenuItem homeItem = bottom_navigation.getMenu().getItem(0);
+
+        if (mSelectedItem != homeItem.getItemId()) {
+
+            HomeFragment homeFragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.content_frame, homeFragment, null)
+                    .commit();
+            // Select home item
+            bottom_navigation.setSelectedItemId(homeItem.getItemId());
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

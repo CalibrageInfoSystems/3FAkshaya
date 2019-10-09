@@ -11,16 +11,23 @@
         android:enabled="true"
         android:icon="@drawable/ic_lang"
         android:title="@string/chooselanguage"/>
+
+    <item
+        android:id="@+id/My_request"
+        android:enabled="true"
+        android:icon="@drawable/ic_myprofile"
+        android:title="@string/profile" />
     <item
         android:enabled="true"
         android:icon="@drawable/ic_request"
         android:title="@string/requests"
         />
     <item
-        android:id="@+id/My_request"
+        android:id="@+id/action_3f"
         android:enabled="true"
-        android:icon="@drawable/ic_myprofile"
-        android:title="@string/profile" />
+        android:icon="@drawable/ic_my"
+        android:title="@string/my3F"
+        />
     <item
         android:enabled="true"
         android:icon="@drawable/ic_logout"
