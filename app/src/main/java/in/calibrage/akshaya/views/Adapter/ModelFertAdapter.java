@@ -79,7 +79,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         //   holder.actual_amt.setText(superHero.getDiscountedPrice());
         //  holder.disc.setText(superHero.getDescription());
         holder.disc.setText(superHero.getDescription());
-        if (!TextUtils.isEmpty(superHero.getSize())) {
+        if (!TextUtils.isEmpty(superHero.getSize().toString())) {
             holder.size.setText(superHero.getSize() + "" + superHero.getUomType());
         } else {
             holder.size.setText("N/A");
@@ -123,13 +123,13 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
 
         Log.e("aaaaaaaaaaaa", superHero.getmAmount());
 
-        if (superHero.getmAmount().equals("null")) {
-
-            holder.actual_amt.setVisibility(View.INVISIBLE);
-
-        } else {
-            holder.actual_amt.setVisibility(View.VISIBLE);
-        }
+//        if (superHero.getmAmount().equals("null")) {
+//
+//            holder.actual_amt.setVisibility(View.INVISIBLE);
+//
+//        } else {
+//            holder.actual_amt.setVisibility(View.VISIBLE);
+//        }
 
 
         String powers = "";
@@ -153,7 +153,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
             @Override
             public void onClick(View view) {
 
-                if (Integer.parseInt(holder.quantityText.getText().toString().trim()) > 0 & superHero.getmQuantity() >=1 & holder.getAdapterPosition()>=0) {
+                if (Integer.parseInt(holder.quantityText.getText().toString().trim()) > 0 & superHero.getmQuantity() >0 & holder.getAdapterPosition()>=0) {
                     superHero.removeFromQuantity();
                     holder.quantityText.setText("x " + superHero.getmQuantity());
                     onClickAck1.setOnClickAckListener("remove", holder.getAdapterPosition(), Boolean.FALSE, holder.imageView);

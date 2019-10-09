@@ -217,8 +217,7 @@ public class Visit_request_Activity extends BaseActivity {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         home_btn.setOnClickListener(new View.OnClickListener() {

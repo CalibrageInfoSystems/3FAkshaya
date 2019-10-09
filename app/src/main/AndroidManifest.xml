@@ -10,7 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.actvity.pole_godown_list"></activity>
+        <activity android:name=".views.actvity.RequestListctivity"></activity>
+        <activity android:name=".views.actvity.MyReqLoanActivity" />
+        <activity android:name=".views.actvity.MyReqVisitActivity" />
+        <activity android:name=".views.actvity.MyQuickPayRequests" />
+        <activity android:name=".views.actvity.MyReqFertilizerActivity" />
+        <activity android:name=".views.actvity.MyReqpoleActivity" />
+        <activity android:name=".views.actvity.MyReqDeatilsActivity" />
+        <activity android:name=".views.actvity.pole_godown_list" />
         <activity android:name=".views.actvity.FertlizerRecomandationsActivity" />
         <activity android:name=".views.actvity.ProductPaymentActivity" />
         <activity

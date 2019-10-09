@@ -258,7 +258,15 @@
     <string name="each_product">Each Item Cost (Rs)</string>
     <string name="server_error">Server Not Responding, Please Try Again</string>
     <string name="godown_valid">Please Select Godown</string>
-    <string name="success_pole">Pole Request Submitted Successfully</string> />
+    <string name="success_pole">Pole Request Submitted Successfully</string>
+    <string name="product_details">Product Details</string>
+    <string name="signature">Please Write Signature</string>
+    <string name="requestCodeLabel">Request Id</string>
+    <string name="reqDatee">Requested Date</string>
+    <string name="paymentMode">Payment Mode</string>
+    <string name="req_date">Requested Date</string>
+    <string name="serviceType">Service Type</string>
+    />
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

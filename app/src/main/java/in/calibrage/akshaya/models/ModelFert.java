@@ -10,7 +10,7 @@ public class ModelFert {
     private int price;
     private String imageUrl;
     private String description;
-    private String size;
+    private Double size;
     private String uomType;
     private ArrayList<String> powers;
     private int mQuantity;
@@ -32,6 +32,10 @@ public class ModelFert {
         this.Id=Id;
         this.gst=gst;
 
+    }
+
+    public void setmQuantity(int mQuantity) {
+        this.mQuantity = mQuantity;
     }
 
     public String getName() {
@@ -74,11 +78,11 @@ public class ModelFert {
         this.description = description;
     }
 
-    public String getSize() {
+    public Double getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Double size) {
         this.size = size;
     }
 

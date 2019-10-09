@@ -455,7 +455,7 @@
 
 
             android:layout_margin="@dimen/margin_10"
-            android:paddingLeft="@dimen/margin_10"
+            android:paddingLeft="15dp"
             android:background="@drawable/spinner_bg"
             android:editable="false"
             android:ems="10"
@@ -518,24 +518,6 @@
             android:textColor="@color/white_new"
             android:textSize="@dimen/album_title" />
 
-            <EditText
-                android:inputType="text"
-                android:lines="1"
-                android:hint="@string/comments"
-              android:layout_margin="@dimen/margin_10"
-                android:paddingLeft="@dimen/margin_10"
-                android:textColorHint="@color/white"
-                android:maxLines="1"
-
-                android:textSize="@dimen/album_title"
-                android:id="@+id/commentTxt"
-               android:background="@drawable/edt_bg"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:maxLength="1000"
-                android:textColor="@color/white_new"></EditText>
-
-
 
         <!--            <android.support.design.widget.TextInputLayout-->
         <!--                android:layout_width="match_parent"-->
@@ -555,6 +537,23 @@
         <!--                    android:maxLength="1000"-->
         <!--                    />-->
         <!--            </android.support.design.widget.TextInputLayout>-->
+        <EditText
+            android:id="@+id/commentTxt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@drawable/edt_bg"
+            android:hint="@string/comments"
+            android:inputType="text"
+
+            android:lines="1"
+            android:maxLength="1000"
+            android:maxLines="1"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white_new"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/album_title"></EditText>
+
         <LinearLayout
             android:id="@+id/linearLayou"
             android:layout_width="fill_parent"

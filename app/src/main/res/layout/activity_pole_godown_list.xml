@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_5"
                         android:paddingLeft="@dimen/margin_5"
-                        android:text="Product Details"
+                        android:text="@string/product_details"
                         android:textAlignment="textStart"
                         android:textColor="@color/text_dark_gray" />
 

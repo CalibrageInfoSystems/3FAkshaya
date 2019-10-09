@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -48,20 +49,24 @@ import java.util.List;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleAnimationUtil;
+import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
+import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
 
-public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnClickAck {
+public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner {
 
     private RecyclerView recyclerView;
-    private ModelFertAdapter adapter;
+    //private ModelFertAdapter adapter;
+    private ModelFertAdapterNew adapter;
     List<Integer> selectedId_List = new ArrayList<>();
     List<Integer> selectedQty_List = new ArrayList<>();
     List<String> selecteditem_List = new ArrayList<>();
     List<Integer> selectedgst_List = new ArrayList<>();
-    List<Integer> amount_List = new ArrayList<>();
-
+    List<Double> amount_List = new ArrayList<>();
+    static ArrayList<Product_new> myProductsList = new ArrayList<>();
     List<String> selectedsize_List = new ArrayList<>();
     String amount;
     String dis_price, Farmer_code;
@@ -69,14 +74,15 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     Button button, btn_next;
     TextView mealTotalText, txt_recomandations, txt_count;
     private String TAG = "PoleActivity";
-    private List<ModelFert> product_list = new ArrayList<>();
+     List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
 
     private ImageView cartButtonIV;
-    Integer Id, quantity;
-    int price_final;
-    int Count=0;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +117,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
 //        Button buttonBarCodeScan = findViewById(R.id.confirm);
 
         Getstate();
-        cartButtonIV.setOnClickListener(new View.OnClickListener() {
+    /*    cartButtonIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -121,14 +127,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                         if (validations()) {
                             Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
 
-                            i.putExtra("Ids", (Serializable) selectedId_List);
-                            i.putExtra("quantity", (Serializable) selectedQty_List);
-                            i.putExtra("item_names", (Serializable) selecteditem_List);
-                            i.putExtra("item_amount", (Serializable) amount_List);
-                            i.putExtra("gst_per", (Serializable) selectedgst_List);
-                            i.putExtra("procuct_size", (Serializable) selectedsize_List);
-                            i.putExtra("amount", amount);
-                            i.putExtra("request_type", 10);
+
                             startActivity(i);
 
                             overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
@@ -140,26 +139,25 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //  startActivity(i);
             }
-        });
+        });*/
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validations()) {
-                    Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
-                    i.putExtra("Ids", (Serializable) selectedId_List);
-                    i.putExtra("quantity", (Serializable) selectedQty_List);
-                    i.putExtra("item_names", (Serializable) selecteditem_List);
-                    i.putExtra("item_amount", (Serializable) amount_List);
-                    i.putExtra("gst_per", (Serializable) selectedgst_List);
-                    i.putExtra("procuct_size", (Serializable) selectedsize_List);
-                    i.putExtra("amount", amount);
-                    i.putExtra("request_type", 10);
-                    startActivity(i);
 
-                    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                    if (myProductsList.size() > 0) {
+
+
+                        Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
+                        i.putExtra("Total_amount", mealTotalText.getText());
+                        startActivity(i);
+                        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                    }
+                    else{
+                        showDialog(PoleActivity.this, getResources().getString(R.string.select_product_toast));
+                    }
 
                 }
-            }
+
         });
 //        txt_recomandations.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -258,10 +256,9 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
                 Double size = json.getDouble("size");
-                Log.d(TAG,"--- Size ----"+size);
+                Log.d(TAG, "--- Size ----" + size);
 //                superHero.setSize(json.getString("size"));
-                superHero.setSize(String.valueOf(size));
-
+                superHero.setSize(size);
 
 
                 superHero.setId(json.getInt("id"));
@@ -278,7 +275,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 ArrayList<String> powers = new ArrayList<String>();
 
 
-                superHero.setPowers(powers);
+
                 // superHero.setfarmerCode(labourDetails.getString("farmerCode"));
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -292,173 +289,50 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                                 Log.d(TAG,"RESPONSE plotCode======"+ plotCode);
                                 Log.d(TAG,"RESPONSE plotMandalName======"+ plotMandalName);*/
 
-            adapter = new ModelFertAdapter(product_list, this);
+            adapter = new ModelFertAdapterNew(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
             //Adding adapter to recyclerview
             recyclerView.setAdapter(adapter);
-            adapter.setOnListener(PoleActivity.this);
-            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-                @Override
-                public void onChanged() {
-                    super.onChanged();
-                    setMealTotal();
-                }
-            });
+//            adapter.setOnListener(PoleActivity.this);
+//            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+//                @Override
+//                public void onChanged() {
+//                    super.onChanged();
+//                    setMealTotal();
+//                }
+//            });
+
         }
     }
 
-
-    public long calculateMealTotal() {
-        try {
-            long mealTotal = 0;
-            for (ModelFert order : product_list) {
-
-                mealTotal = mealTotal + order.getmQuantity() * order.getPrice();
-
-
-                quantity = order.getmQuantity();
-                Id = order.getId();
-                Log.e("quantity kk===", quantity.toString());
-                Log.e("Id-=== kk", Id.toString());
-//            selectedId_List = new ArrayList<>();
-//            selectedQty_List = new ArrayList<>();
-
-            /*if (order.getmQuantity() > 0 ){
-
-                int pos = -1;
-
-                for (int i = 0; i< selectedId_List.size(); i++){
-                    if (selectedId_List.get(i) == Id){
-                        pos = i;
-                    }else{
-                        pos = i++;
-                    }
-
-                }
-
-                if (pos != -1){
-                    selectedId_List.set(pos, Id);
-                    selectedQty_List.set(pos, quantity);
-                }else {
-                    selectedId_List.add(Id);
-                    selectedQty_List.add(quantity);
-                }
-
-
-                Log.e("product===357","id===  " + selectedId_List + " quantity ===" +  selectedQty_List);
-                Log.e("product===339","id===  " + Id + " quantity ===" +  quantity);
-
-            }*/
-            }
-
-//
-
-            return mealTotal;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return 0;
-    }
-
-    public void setMealTotal() {
-        mealTotalText.setText(" " + calculateMealTotal());
-        // mealTotalText.setText("Rs"+" "+ calculateMealTotal());
-        amount = mealTotalText.getText().toString();
-        Log.e("amount-===", mealTotalText.getText().toString());
-    }
 
     @Override
     public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
-        if (ischecked) {
-             cartButtonIV = findViewById(R.id.cartButtonIV);
+    }
 
-            makeFlyAnimation(img);
-            if (selectedId_List.size() > 0) {
-
-                if (selectedId_List.contains(product_list.get(position).getId())) {
-                    selectedId_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getId());
-                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
-                    selecteditem_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getName()));
-                    amount_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getPrice()));
-                    selectedgst_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getgst()));
-                    selectedsize_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getSize()));
-                    Count= Count+1;
-                    txt_count.setText(Count+"");
-
-                } else {
-                    selectedId_List.add(product_list.get(position).getId());
-                    selectedQty_List.add(product_list.get(position).getmQuantity());
-                    selecteditem_List.add(product_list.get(position).getName());
-                    amount_List.add(product_list.get(position).getPrice());
-                    selectedgst_List.add(product_list.get(position).getgst());
-                    selectedsize_List.add(product_list.get(position).getSize());
-                    Count= Count+1;
-                    txt_count.setText(Count+"");
-
-                }
-            } else {
-
-                selectedId_List.add(product_list.get(position).getId());
-                selectedQty_List.add(product_list.get(position).getmQuantity());
-                selecteditem_List.add(product_list.get(position).getName());
-                amount_List.add(product_list.get(position).getPrice());
-                selectedgst_List.add(product_list.get(position).getgst());
-                selectedsize_List.add(product_list.get(position).getSize());
-
-                Count= Count+1;
-                txt_count.setText(Count+"");
-            }
-
-            Log.e(" add selectedId_List-==", selectedId_List.toString());
-            Log.e("add selectedQty_List-==", selectedQty_List.toString());
-            Log.e("add selectedQty_List-==", selecteditem_List.toString());
-            Log.e("amount_List_List-==", amount_List.toString());
-            //    Toast.makeText(FertilizerActivity.this,selectedId_List.toString(),Toast.LENGTH_SHORT).show();
-
-        } else {
-            if (selectedId_List.size() > 0) {
+    @Override
+    public void updated(int po, ArrayList<Product_new> myProducts) {
+        SharedPrefsData.saveCartitems(context,myProducts);
 
 
+        myProductsList = myProducts;
+        CommonUtil.Productitems =myProductsList;
+        Double allitemscost = 0.0;
+        int allproducts = 0;
 
-                if (product_list.get(position).getmQuantity() >= 1) {
-                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
-                    if(Count >0)
-                    {
-                        Count= Count-1;
-                        txt_count.setText(Count+"");
-                    }
-                } else {
-
-                    int a = selectedId_List.indexOf(product_list.get(position).getId());
-                    if (a < 0) {
-                        Log.e(" =====", "negative");
-
-                        return;
-                    }
-                    Log.e(TAG, "test " + a);
-                    Log.e(TAG, "test " + selectedQty_List.size());
-                    Log.e(TAG, "test " + selectedQty_List.toString());
-
-                    selectedQty_List.remove(a);
-
-                    selectedId_List.remove(selectedId_List.indexOf(product_list.get(position).getId()));
-                    Log.d(TAG, "--------- analysis ---->>(< 0) Item Count"+selectedId_List.size() );
-                    if(Count >0)
-                    {
-                        Count= Count-1;
-                        txt_count.setText(Count+"");
-                    }
-
-                }
-
-
-//                Log.e(" remove selectedId_List", selectedId_List.toString());
-//                Log.e("remove selectedQty_List", selectedQty_List.toString());
-            }
+        for (Product_new product : myProducts) {
+            Double oneitem = product.getQuandity() *  Double.parseDouble(product.getWithGSTamount());
+            allitemscost = oneitem + allitemscost;
+            Log.d("Product", "total Proce :" + allitemscost);
+            int onitem = product.getQuandity();
+            allproducts = allproducts + onitem;
+            Log.d("Product", "totalitems :" + allproducts);
 
 
         }
+        txt_count.setText(allproducts + "");
+        String total_amount = allitemscost.toString();
+        mealTotalText.setText(total_amount);
     }
 
 
@@ -535,5 +409,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
 
 
     }
-
+    public static ArrayList<Product_new> getProducts(){
+        return myProductsList;
+    }
 }

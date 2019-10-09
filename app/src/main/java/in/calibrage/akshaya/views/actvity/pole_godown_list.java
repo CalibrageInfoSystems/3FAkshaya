@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,7 +39,6 @@ import in.calibrage.akshaya.models.FertRequest;
 import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PaymentsType;
-import in.calibrage.akshaya.models.SubsidyResponse;
 import in.calibrage.akshaya.models.product;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -77,6 +75,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
     Integer RequestType;
+    int Gst_total;
     ArrayList<Integer> selected_quntity_list = new ArrayList<Integer>();
     ArrayList<Integer> selected_ids_lists = new ArrayList<Integer>();
     ArrayList<String> product_names = new ArrayList<String>();
@@ -94,20 +93,25 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     SwitchMultiButton sw_paymentMode;
     private ActiveGodownsModel.ListResult selectedGodown;
     private List<product> product_List = new ArrayList<>();
+
     private String final_amount, only_amount;
     int mealTotal = 0;
-    int Gst_sum, Amount_, include_gst_amount;
+    String Gst_sum, Amount_, include_gst_amount;
     Integer Paymode, Statusid;
     private producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
     PaymentsType paymentsTypes;
     double payble_amount;
-    double Subsidy_amount,subsidy_amountt;
+    double Subsidy_amount, subsidy_amountt;
+    private List<String> selected_list = new ArrayList<String>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pole_godown_list);
+
         init();
         setviews();
         settoolbar();
@@ -142,7 +146,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         getPaymentMods();
-       // getFertilizerSubsidies();
+        // getFertilizerSubsidies();
         getActiveGodowns();
 
 
@@ -209,6 +213,9 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     }
 
     private void setviews() {
+
+
+
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => " + c.getTime());
 
@@ -226,32 +233,92 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                 finish();
             }
         });
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSubmit();
+
+
+            }
+        });
+       // ArrayList<Product_new> myProductsList = SharedPrefsData.getCartData(ctx);
+
+        mAdapter = new producut_Adapter(this, SharedPrefsData.getCartData(this));
+        recycler_view_products.setAdapter(mAdapter);
+
+        for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
+            int gst =SharedPrefsData.getCartData(this).get(i).getGst();
+
+            Double amount_product = SharedPrefsData.getCartData(this).get(i).getAmount();
+            int quantity = SharedPrefsData.getCartData(this).get(i).getQuandity();
+            String quan = String.valueOf(quantity);
+          //  mealTotal = amount_product * quantity;
+            String product_amount = String.valueOf(mealTotal);
+
+            int percentage = quantity * gst;
+
+            Log.e("percentage_value===", String.valueOf(percentage));
+            //  int k = (int)(product_amount*(percentage/100.0f));
+            int k = (int) (percentage * amount_product) / 100;
+
+            gstvalues.add(k);
+
+            Log.e("percentage_value===", String.valueOf(gstvalues));
+          Gst_total = CommonUtil.sum(gstvalues);
+           // include_gst_amount = Gst_sum + Amount_;
+            Log.e("gst_Sum===", String.valueOf(Gst_total));
+
+            gst_amount.setText(Gst_total+"");
+          //  Final_amount.setText("" + String.valueOf(include_gst_amount));
+
+        }
+
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            RequestType =extras.getInt("request_type");
-            Log.e("RequestType==",RequestType+"");
+            include_gst_amount = extras.getString("Total_amount");
+          //  text_amount.setText("" + only_amount);
+           // gst_amount.setText("" + String.valueOf(Gst_sum));
+
+        }
+        Final_amount.setText("" + String.valueOf(include_gst_amount));
+
+    double products_amount =Double.parseDouble(include_gst_amount)- Double.parseDouble(String.valueOf(Gst_total));
+    Log.e("products_amount===", String.valueOf(products_amount));
+        text_amount.setText("" + products_amount);
+/*
+
+        for (int i = 0; i < selected_productlist.length(); i++) {
+           // String name = selected_productlist.get(i);
+
+        }
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+        Total_amount
 
 
+//
+//            selected_ids_lists = (ArrayList<Integer>) getIntent().getSerializableExtra("Ids");
+//            selected_quntity_list = (ArrayList<Integer>) getIntent().getSerializableExtra("quantity");
+//            product_names = (ArrayList<String>) getIntent().getSerializableExtra("item_names");
+//            amount_final = (ArrayList<Integer>) getIntent().getSerializableExtra("item_amount");
+//            product_gst = (ArrayList<Integer>) getIntent().getSerializableExtra("gst_per");
+//
+//            selects_product_size = (ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
+//            final_amount = getIntent().getExtras().getString("Total_amount");
+//
+//
+//            String[] parts = final_amount.split(" "); // escape .
+//            String part1 = parts[0];
+//            only_amount = parts[1];
+//            Log.e("final_amount===", "=1===  " + part1 + " ===rs ===" + only_amount);
+//            text_amount.setText("" + only_amount);
+//            Amount_ = Integer.parseInt(only_amount);
 
-            selected_ids_lists = (ArrayList<Integer>) getIntent().getSerializableExtra("Ids");
-            selected_quntity_list = (ArrayList<Integer>) getIntent().getSerializableExtra("quantity");
-            product_names = (ArrayList<String>) getIntent().getSerializableExtra("item_names");
-            amount_final = (ArrayList<Integer>) getIntent().getSerializableExtra("item_amount");
-            product_gst = (ArrayList<Integer>) getIntent().getSerializableExtra("gst_per");
 
-            selects_product_size = (ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
-            final_amount = getIntent().getExtras().getString("amount");
-
-
-            String[] parts = final_amount.split(" "); // escape .
-            String part1 = parts[0];
-            only_amount = parts[1];
-            Log.e("final_amount===", "=1===  " + part1 + " ===rs ===" + only_amount);
-            text_amount.setText("" + only_amount);
-            Amount_ = Integer.parseInt(only_amount);
-
-            try {
-                for (int i = 0; i < product_names.size(); i++) {
+               // for (int i = 0; i < product_names.size(); i++) {
+                for (int i = 0; i < selected_quntity_list.size(); i++) {
                     String name = product_names.get(i);
                     int gst = product_gst.get(i);
                     // String gst = String.valueOf(gstt);
@@ -260,6 +327,18 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                     String quan = String.valueOf(quantity);
                     mealTotal = amount_product * quantity;
                     String product_amount = String.valueOf(mealTotal);
+
+
+
+
+
+//                    selectedId_List.set(i, product.getProductID());
+//
+//                    selectedQty_List.set(i, product.getQuandity());
+//                    selecteditem_List.set(i, product.getProductname());
+//                    selectedgst_List.set(i, product.getGst());
+//                    amount_List.set(i, product.getAmount());
+
                     product a = new product(name, quantity, mealTotal, gst);
 
                     product_List.add(a);
@@ -277,27 +356,19 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                     include_gst_amount = Gst_sum + Amount_;
                     Log.e("gst_Sum===", String.valueOf(Gst_sum));
 
-                    gst_amount.setText(" " + String.valueOf(Gst_sum));
-                    Final_amount.setText(" " + String.valueOf(include_gst_amount));
+                    gst_amount.setText("" + String.valueOf(Gst_sum));
+                    Final_amount.setText("" + String.valueOf(include_gst_amount));
 
                 }
                 mAdapter = new producut_Adapter(this, product_List);
                 recycler_view_products.setAdapter(mAdapter);
 
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onSubmit();
+*/
 
 
-            }
-        });
+    }
+
+
 //        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 //            @Override
 //            public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -309,7 +380,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 //                // React to dragging events
 //            }
 //        });
-    }
+
 
     private void FertilizerRequest() {
 
@@ -403,7 +474,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFileExtension("");
         requestModel.setFileLocation("");
 
-        requestModel.setTotalCost(Double.parseDouble(String.valueOf(include_gst_amount)));
+        requestModel.setTotalCost(Double.parseDouble(SharedPrefsData.getInstance(ctx).getStringFromSharedPrefs("amount")));
         requestModel.setSubcidyAmount(0.0);
         requestModel.setPaybleAmount(0.0);
         requestModel.setComments(null);
@@ -412,15 +483,15 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
 
-        for (int i = 0; i < selected_ids_lists.size(); i++) {
+        for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost(amount_final.get(i).doubleValue());
-            products.setGstPersentage(product_gst.get(i).doubleValue());
-            products.setProductId(selected_ids_lists.get(i));
-            products.setQuantity(selected_quntity_list.get(i));
-            products.setSize(selects_product_size.get(i));
+            products.setBagCost( Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
+            products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
+            products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
+            products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
+            products.setSize(String.valueOf(SharedPrefsData.getCartData(this).get(i).getSize()));
 
             req_products.add(products);
         }
@@ -480,7 +551,6 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     }
 
 
-
     public void onSubmit() {
         /*
          * validate Fealds
@@ -498,6 +568,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         GodownId = selectedGodown.getId();
         // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
+
 }
 
 

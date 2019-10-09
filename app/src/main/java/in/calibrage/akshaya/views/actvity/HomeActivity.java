@@ -242,7 +242,19 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             startActivity(intent);
            // finish();
 
-        } else if (id == R.id.nav_logout) {
+        }
+
+
+        else if (id == R.id.My_request) {
+
+
+            viewFragment( new HomeFragment(),HomeFragment.TAG);
+
+            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+            startActivity(intent);
+            // finish();
+
+        }else if (id == R.id.nav_logout) {
 
             //popupdialog to show message to logout the application
             logOutDialog();
@@ -379,7 +391,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
     private void viewFragment(Fragment fragment, String name){
-  /*      final FragmentManager fragmentManager = getSupportFragmentManager();
+      final FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);
         // 1. Know how many fragments there are in the stack
@@ -404,7 +416,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                     bottom_navigation.getMenu().getItem(0).setChecked(true);
                 }
             }
-        });*/
+        });
     }
 
 }

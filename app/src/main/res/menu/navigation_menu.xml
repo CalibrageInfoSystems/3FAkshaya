@@ -17,6 +17,7 @@
         android:title="@string/requests"
         />
     <item
+        android:id="@+id/My_request"
         android:enabled="true"
         android:icon="@drawable/ic_myprofile"
         android:title="@string/profile" />

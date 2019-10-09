@@ -25,12 +25,17 @@ import in.calibrage.akshaya.models.PaymentsType;
 import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.models.RecomPlotcodes;
+import in.calibrage.akshaya.models.ResLoan;
+import in.calibrage.akshaya.models.ResPole;
+import in.calibrage.akshaya.models.Resfert;
+import in.calibrage.akshaya.models.Resquickpay;
 import in.calibrage.akshaya.models.SpinnerModel;
 import in.calibrage.akshaya.models.Stand_recom_model;
 import in.calibrage.akshaya.models.SubsidyResponse;
 import in.calibrage.akshaya.models.VisitresponseModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
+import in.calibrage.akshaya.models.labour_req_response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -139,6 +144,23 @@ public interface ApiService {
     @GET
     Observable<SubsidyResponse> getsubsidy(@Url String url);
 
+
+    @POST(APIConstantURL.labour_response)
+    Observable<labour_req_response> postLabour_request(@Body JsonObject data);
+
+
+    @POST(APIConstantURL.GetPoleRequestDetails)
+    Observable<ResPole> GetPoleRequestDetails(@Body JsonObject data);
+
+
+    @POST(APIConstantURL.GetFertilizerDetails)
+    Observable<Resfert> GetfertRequestDetails(@Body JsonObject data);
+
+
+    @POST(APIConstantURL.GetRequestHeaderDetails)
+    Observable<Resquickpay> GetRequestheaderDetails(@Body JsonObject data);
+    @POST(APIConstantURL.GetRequestHeaderDetails)
+    Observable<ResLoan> GetRequestheaderLoanDetails(@Body JsonObject data);
 
  /*
     // PASSWORD RESET

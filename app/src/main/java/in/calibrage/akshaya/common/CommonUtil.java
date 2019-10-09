@@ -49,6 +49,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -56,6 +57,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.views.actvity.Product_new;
 
 
 
@@ -67,6 +69,16 @@ import in.calibrage.akshaya.R;
 
 
 public class CommonUtil {
+    public static   ArrayList<Product_new> Productitems;
+
+    public  ArrayList<Product_new> getProductitems() {
+        return Productitems;
+    }
+
+    public  void setProductitems(ArrayList<Product_new> productitems) {
+        Productitems = productitems;
+    }
+
     private static Date convertedDate;
     private static String outputDateStr, fileUrl, fileName, nameOFfile;
     private static boolean alertType = false, viewPdfVar;
@@ -561,5 +573,9 @@ public class CommonUtil {
 //
 //        return sum;
 //    }
-
+float Calculate_GST(float org_cost, float N_price)
+{
+    // return value after calculate GST%
+    return (((N_price - org_cost) * 100) / org_cost);
+}
 }

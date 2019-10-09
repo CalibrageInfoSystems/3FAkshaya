@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -91,17 +92,17 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
     SwitchMultiButton sw_paymentMode;
     private ActiveGodownsModel.ListResult selectedGodown;
-    private List<product> product_List = new ArrayList<>();
+    private ArrayList<product> product_List = new ArrayList<>();
     private String final_amount, only_amount;
     int mealTotal = 0;
-    int Gst_sum, Amount_, include_gst_amount;
+    String Gst_sum, Amount_, include_gst_amount;
     Integer Paymode, Statusid;
     private producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
     PaymentsType paymentsTypes;
     double payble_amount;
     double Subsidy_amount,subsidy_amountt;
-
+    int Gst_total;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -238,70 +239,53 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
+        for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
+            int gst =SharedPrefsData.getCartData(this).get(i).getGst();
 
+            Double amount_product = SharedPrefsData.getCartData(this).get(i).getAmount();
+            int quantity = SharedPrefsData.getCartData(this).get(i).getQuandity();
+            String quan = String.valueOf(quantity);
+            //  mealTotal = amount_product * quantity;
+            String product_amount = String.valueOf(mealTotal);
+
+            int percentage = quantity * gst;
+
+            Log.e("percentage_value===", String.valueOf(percentage));
+            //  int k = (int)(product_amount*(percentage/100.0f));
+            int k = (int) (percentage * amount_product) / 100;
+
+            gstvalues.add(k);
+
+            Log.e("percentage_value===", String.valueOf(gstvalues));
+            Gst_total = CommonUtil.sum(gstvalues);
+            // include_gst_amount = Gst_sum + Amount_;
+            Log.e("gst_Sum===", String.valueOf(Gst_total));
+
+            gst_amount.setText(Gst_total+"");
+            //  Final_amount.setText("" + String.valueOf(include_gst_amount));
+
+        }
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            RequestType =extras.getInt("request_type");
-            Log.e("RequestType==",RequestType+"");
+            include_gst_amount = extras.getString("Total_amount");
+            //  text_amount.setText("" + only_amount);
+            // gst_amount.setText("" + String.valueOf(Gst_sum));
 
-
-
-            selected_ids_lists = (ArrayList<Integer>) getIntent().getSerializableExtra("Ids");
-            selected_quntity_list = (ArrayList<Integer>) getIntent().getSerializableExtra("quantity");
-            product_names = (ArrayList<String>) getIntent().getSerializableExtra("item_names");
-            amount_final = (ArrayList<Integer>) getIntent().getSerializableExtra("item_amount");
-            product_gst = (ArrayList<Integer>) getIntent().getSerializableExtra("gst_per");
-
-            selects_product_size = (ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
-            final_amount = getIntent().getExtras().getString("amount");
-
-
-            String[] parts = final_amount.split(" "); // escape .
-            String part1 = parts[0];
-            only_amount = parts[1];
-            Log.e("final_amount===", "=1===  " + part1 + " ===rs ===" + only_amount);
-            text_amount.setText(only_amount+"");
-            Amount_ = Integer.parseInt(only_amount);
-
-            try {
-                for (int i = 0; i < product_names.size(); i++) {
-                    String name = product_names.get(i);
-                    int gst = product_gst.get(i);
-                    // String gst = String.valueOf(gstt);
-                    int amount_product = amount_final.get(i);
-                    int quantity = selected_quntity_list.get(i);
-                    String quan = String.valueOf(quantity);
-                    mealTotal = amount_product * quantity;
-                    String product_amount = String.valueOf(mealTotal);
-                    product a = new product(name, quantity, mealTotal, gst);
-
-                    product_List.add(a);
-
-                    int percentage = quantity * gst;
-
-                    Log.e("percentage_value===", String.valueOf(percentage));
-                    //  int k = (int)(product_amount*(percentage/100.0f));
-                    int k = (int) (percentage * amount_product) / 100;
-
-                    gstvalues.add(k);
-
-                    Log.e("percentage_value===", String.valueOf(gstvalues));
-                    Gst_sum = CommonUtil.sum(gstvalues);
-                    include_gst_amount = Gst_sum + Amount_;
-                    Log.e("gst_Sum===", String.valueOf(Gst_sum));
-
-                    gst_amount.setText( String.valueOf(Gst_sum+" " ));
-                    Final_amount.setText(String.valueOf(include_gst_amount)+" " );
-
-                }
-                mAdapter = new producut_Adapter(this, product_List);
-                recycler_view_products.setAdapter(mAdapter);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
+        Final_amount.setText(include_gst_amount+"");
+        DecimalFormat dff = new DecimalFormat("####0.00");
+        DecimalFormat form = new DecimalFormat("0.00");
+
+       // Final_amount.setText(""+form.format( include_gst_amount));
+
+//        double products_amount =Double.parseDouble(include_gst_amount)- Double.parseDouble(String.valueOf(Gst_total));
+//        Log.e("products_amount===", String.valueOf(products_amount));
+//        text_amount.setText("" + products_amount);
+
+        double products_amount = Double.parseDouble(include_gst_amount) - Double.parseDouble(String.valueOf(Gst_total));
+        Log.e("products_amount===", String.valueOf(products_amount));
+        text_amount.setText("" +dff.format(products_amount));
+
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -311,6 +295,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
             }
         });
+        mAdapter = new producut_Adapter(this, SharedPrefsData.getCartData(this));
+        recycler_view_products.setAdapter(mAdapter);
 //        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 //            @Override
 //            public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -416,7 +402,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
 
-        requestModel.setTotalCost(Double.parseDouble(String.valueOf(include_gst_amount)));
+        requestModel.setTotalCost(Double.parseDouble(SharedPrefsData.getInstance(ctx).getStringFromSharedPrefs("amount")));
         requestModel.setSubcidyAmount(Subsidy_amount);
         requestModel.setPaybleAmount(payble_amount);
         requestModel.setComments(null);
@@ -425,18 +411,19 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
 
-        for (int i = 0; i < selected_ids_lists.size(); i++) {
+        for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost(amount_final.get(i).doubleValue());
-            products.setGstPersentage(product_gst.get(i).doubleValue());
-            products.setProductId(selected_ids_lists.get(i));
-            products.setQuantity(selected_quntity_list.get(i));
-            products.setSize(selects_product_size.get(i));
+            products.setBagCost( Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
+            products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
+            products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
+            products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
+            products.setSize(String.valueOf(SharedPrefsData.getCartData(this).get(i).getSize()));
 
             req_products.add(products);
         }
+
 
         requestModel.setRequestProductDetails(req_products);
 
@@ -521,23 +508,23 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
 
                             if (subsidy_amountt > 0) {
-                                if (include_gst_amount < subsidy_amountt) {
-                                    Double remaining_subsidy_amountt = subsidy_amountt - include_gst_amount;
+                                if ( Double.parseDouble(include_gst_amount) < subsidy_amountt) {
+                                    Double remaining_subsidy_amountt = subsidy_amountt -  Double.parseDouble(include_gst_amount);
                                     /*
                                      * nothing to pay
                                      * */
                                     payble_amount =0.0;
 
-                                    Subsidy_amount=include_gst_amount;
-                                } else if (subsidy_amountt < include_gst_amount) {
-                                    Double remaining_Amoubt = include_gst_amount - subsidy_amountt;
+                                    Subsidy_amount=Double.parseDouble(include_gst_amount);
+                                } else if (subsidy_amountt < Double.parseDouble(include_gst_amount)) {
+                                    Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     /*
                                      * payble amount
                                      * */
                                     payble_amount =remaining_Amoubt;
-                                    Subsidy_amount=include_gst_amount;
-                                } else if (include_gst_amount == subsidy_amountt) {
-                                    Double remaining_Amoubt = include_gst_amount - subsidy_amountt;
+                                    Subsidy_amount=Double.parseDouble(include_gst_amount);
+                                } else if (Double.parseDouble(include_gst_amount) == subsidy_amountt) {
+                                    Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     /*
                                      * nothing to pay
                                      * */
@@ -564,6 +551,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
     @Override
     public void onItemClick(ActiveGodownsModel.ListResult item) {
+
         selectedGodown = item;
         GodownId = selectedGodown.getId();
         // Log.e("selectedGodown===",selectedGodown.getId().toString());

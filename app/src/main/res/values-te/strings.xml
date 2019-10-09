@@ -255,7 +255,7 @@
         
         
     ]]>
-    <string name="log_off">లాగ్ ఆఫ్</string>
+    <string name="log_off">లాగ్అవుట్</string>
     <string name="tap_text">దిగువ ఏదైనా భాషను ఎంచుకోండి:</string>
     <string name="btn_en">English</string>
         
@@ -270,7 +270,7 @@
     <string name="adhoc_rate">ఎమ్‌టికి అడోక్ రేటు (రూ)</string>
     <string name="invoice_rate">MT కి ఇన్వాయిస్ రేటు</string>
     <string name="memo">మెమో</string>
-    <string name="amount">మొత్తం (రూ.)</string>
+    <string name="amount">డబ్బు (రూ.)</string>
     <string name="harv_amount">హార్వెస్టింగ్ మొత్తం / టన్ను</string>
     <string name="pru_amount">కత్తిరింపు మొత్తం / చెట్టు</string>
     <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
@@ -379,7 +379,7 @@
     <string name="valid_pack">దయచేసి ప్యాకేజీని ఎంచుకోండి</string>
     <string name="record">వాయిస్ రికార్డింగ్</string>
     <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
-    <string name="total_amt"> మొత్తం (రూ.)</string>
+    <string name="total_amt"> మొత్తం డబ్బు (రూ.)</string>
         <string name = "confirm">నిర్ధారించండి</string>
     <string name="Rs">\u20B9</string>
     <string name="select_product_toast">దయచేసి కనీసం ఒక ఉత్పత్తిని ఎంచుకోండి</string>
@@ -428,6 +428,13 @@
     <string name="server_error">సర్వర్ స్పందించడం లేదు, దయచేసి మళ్ళీ ప్రయత్నించండి</string>
     <string name="godown_valid">దయచేసి గోడౌన్ ఎంచుకోండి</string>
     <string name="success_pole">పోల్ అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+    <string name="product_details">వస్తువు వివరాలు</string>
+    <string name="signature">దయచేసి సంతకం రాయండి</string>
+    <string name="requestCodeLabel">Requested Date</string>
+    <string name="reqDatee">Requested Date</string>
+    <string name="paymentMode">Payment Mode</string>
+    <string name="req_date">Requested Date</string>
+    <string name="serviceType">Service Type</string>
     //test
 </resources>
 

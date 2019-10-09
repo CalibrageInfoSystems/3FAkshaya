@@ -5,10 +5,14 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
+import in.calibrage.akshaya.views.actvity.Product_new;
 
 
 public class SharedPrefsData {
@@ -47,6 +51,7 @@ public class SharedPrefsData {
     public int getIntFromSharedPrefs(String key) {
         return ChurchSharedPrefs.getInt(key, DEFAULTVALUINT);
     }
+
 
     public void updateMultiValue(Context context, List<SharedPrefsBean> sharedPrefsBeans) {
         //getPitchItSharedPrefs(context);
@@ -115,6 +120,7 @@ public class SharedPrefsData {
 
         }
     }
+
 
     public static String getString(Context context, String key, String pref) {
         return context != null && key != null ? (pref != null && !pref.isEmpty() ?
@@ -188,5 +194,34 @@ public class SharedPrefsData {
            return obj;
 
    }
+
+
+   public static void saveCartitems(Context mContext, ArrayList<Product_new> myProducts){
+       Gson gson = new Gson();
+
+       if (mContext != null) {
+           String json = gson.toJson(myProducts);
+           SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
+           SharedPreferences.Editor editor = profilePref.edit();
+           editor.putString("cart", json);
+
+           // Commit the edits!
+           editor.apply();
+
+       }
+   }
+
+    public static ArrayList<Product_new> getCartData(Context mContext)
+    {
+        Gson gson = new Gson();
+
+        SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
+                Context.MODE_PRIVATE);
+        String json = profilePref.getString("cart", "");
+        Type type = new TypeToken<List<Product_new>>() {}.getType();
+        ArrayList<Product_new> obj = gson.fromJson(json,type );
+        return obj;
+
+    }
 
 }

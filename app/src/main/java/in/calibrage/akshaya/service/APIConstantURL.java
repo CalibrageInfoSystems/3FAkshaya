@@ -1,8 +1,8 @@
 package in.calibrage.akshaya.service;
 
 public interface APIConstantURL {
-   // public static  final  String LOCAL_URL="http://183.82.103.171:9096/api/";
-    public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
+   public static  final  String LOCAL_URL="http://10.10.144.240:9096/api/";
+//public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String LookUpCategory = "GetActiveLookUp/9";
     String banner ="Banner";
     String Collection ="Collection";
@@ -29,7 +29,10 @@ public interface APIConstantURL {
     String GetBannerByStateCode = "Banner/GetBannerByStateCode/";
     String Post_fert = "FertilizerRequest";
     String Getfarmersubsidy= "FertilizerSubsidies/";
-
+    String labour_response = "GetLabourRequestDetails";
+    String GetPoleRequestDetails = "FertilizerRequest/GetPoleRequestDetails";
+    String GetFertilizerDetails = "GetFertilizerDetails";
+    String GetRequestHeaderDetails = "RequestHeader/GetRequestHeaderDetails";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 

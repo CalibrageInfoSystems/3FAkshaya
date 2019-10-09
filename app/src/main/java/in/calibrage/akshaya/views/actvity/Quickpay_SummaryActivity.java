@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.kyanogen.signatureview.SignatureView;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -48,6 +48,7 @@ import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.common.PdfUtil;
+import in.calibrage.akshaya.common.SignatureView;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
@@ -82,6 +83,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     private SpotsDialog mdilogue;
     Bitmap bitmap;
     Button save;
+    private boolean isSignatured = false;
     SignatureView signatureView;
     String path;
     List<String> ids_list = new ArrayList<>();
@@ -153,10 +155,13 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 finish();
             }
         });
+
+
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signatureView.clearCanvas();
+
             }
         });
 
@@ -167,6 +172,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 path = saveImage(bitmap);
             }
         });
+
 
 //        terms.setOnClickListener(new View.OnClickListener() {
 //
@@ -180,17 +186,42 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkbox.isChecked()) {
-                   // showSuccesspdf();
-                    PdfUtil.createPDF(Quickpay_SummaryActivity.this, CommonUtil.scaleDown(signatureView.getSignatureBitmap(), 200, true), text_quntity.getText().toString(), ffbCostTxt.getText().toString(), ffbCostTxt.getText().toString(), convenienceChargeTxt.getText().toString(), text_quickpay_fee.getText().toString(), closingBalanceTxt.getText().toString(), totalAmount.getText().toString());
-                    submitReq();
+
+                if (validations()) {
+
+                    if (isOnline()){
+                        PdfUtil.createPDF(Quickpay_SummaryActivity.this, CommonUtil.scaleDown(signatureView.getSignatureBitmap(), 200, true), text_quntity.getText().toString(), ffbCostTxt.getText().toString(), ffbCostTxt.getText().toString(), convenienceChargeTxt.getText().toString(), text_quickpay_fee.getText().toString(), closingBalanceTxt.getText().toString(), totalAmount.getText().toString());
+                        submitReq();
+                        }
+                    else {
+                        showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
+                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+                    }
+
+                    //
                 }
-                      else {showDialog(Quickpay_SummaryActivity.this,getResources().getString(R.string.terms_agree));
-                }
+
 
             }
         });
         GetQuckPaySummary();
+    }
+
+    private boolean validations() {
+        if (checkbox.isChecked()) {
+            // showCustomDialog();
+
+            checkbox.setChecked(true);
+        } else {
+            //Toasty.error(getApplicationContext(),R.string.terms_agree, Toast.LENGTH_LONG).show();
+            showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.terms_agree));
+            return false;
+        }
+        if(signatureView.isBitmapEmpty()){
+            showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
+            return false;
+        }
+        return true;
     }
 
     public String saveImage(Bitmap myBitmap) {

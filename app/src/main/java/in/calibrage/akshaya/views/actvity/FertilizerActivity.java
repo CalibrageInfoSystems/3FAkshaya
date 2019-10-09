@@ -52,14 +52,19 @@ import java.util.List;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleAnimationUtil;
+import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
+import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
 
-public class FertilizerActivity extends BaseActivity implements ModelFertAdapter.OnClickAck {
+import static in.calibrage.akshaya.views.actvity.PoleActivity.myProductsList;
+
+public class FertilizerActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner  {
 
     private RecyclerView recyclerView;
-    private ModelFertAdapter adapter;
+    private ModelFertAdapterNew adapter;
     List<Integer> selectedId_List = new ArrayList<>();
     List<Integer> selectedQty_List = new ArrayList<>();
     List<String> selecteditem_List = new ArrayList<>();
@@ -116,56 +121,57 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 //        Button buttonBarCodeScan = findViewById(R.id.confirm);
 
         Getstate();
-        cartButtonIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (validations()) {
-                            Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
-
-                            i.putExtra("Ids", (Serializable) selectedId_List);
-                            i.putExtra("quantity", (Serializable) selectedQty_List);
-                            i.putExtra("item_names", (Serializable) selecteditem_List);
-                            i.putExtra("item_amount", (Serializable) amount_List);
-                            i.putExtra("gst_per", (Serializable) selectedgst_List);
-                            i.putExtra("procuct_size", (Serializable) selectedsize_List);
-                            i.putExtra("amount", amount);
-                            i.putExtra("request_type", 12);
-
-                            startActivity(i);
-
-                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-
-                        }
-                    }
-                }, SPLASH_DISPLAY_DURATION);
-
-                //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //  startActivity(i);
-            }
-        });
+//        cartButtonIV.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (validations()) {
+//                            Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
+//
+//                            i.putExtra("Ids", (Serializable) selectedId_List);
+//                            i.putExtra("quantity", (Serializable) selectedQty_List);
+//                            i.putExtra("item_names", (Serializable) selecteditem_List);
+//                            i.putExtra("item_amount", (Serializable) amount_List);
+//                            i.putExtra("gst_per", (Serializable) selectedgst_List);
+//                            i.putExtra("procuct_size", (Serializable) selectedsize_List);
+//                            i.putExtra("amount", amount);
+//                            i.putExtra("request_type", 12);
+//
+//                            startActivity(i);
+//
+//                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+//
+//                        }
+//                    }
+//                }, SPLASH_DISPLAY_DURATION);
+//
+//                //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                //  startActivity(i);
+//            }
+//        });
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validations()) {
+
+                if (myProductsList.size() > 0) {
+
+
+
+
                     Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
-                    i.putExtra("Ids", (Serializable) selectedId_List);
-                    i.putExtra("quantity", (Serializable) selectedQty_List);
-                    i.putExtra("item_names", (Serializable) selecteditem_List);
-                    i.putExtra("item_amount", (Serializable) amount_List);
-                    i.putExtra("gst_per", (Serializable) selectedgst_List);
-                    i.putExtra("procuct_size", (Serializable) selectedsize_List);
-                    i.putExtra("amount", amount);
-                    i.putExtra("request_type", 12);
+                    i.putExtra("Total_amount", mealTotalText.getText());
                     startActivity(i);
-
                     overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-
                 }
+                else{
+                    showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
+                }
+
             }
+
         });
         txt_recomandations.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,9 +269,12 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 superHero.setPrice(json.getInt("price"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
+                Double size = json.getDouble("size");
+                Log.d(TAG, "--- Size ----" + size);
+//                superHero.setSize(json.getString("size"));
+                superHero.setSize(size);
 
 
-                superHero.setSize(json.getString("size"));
                 superHero.setId(json.getInt("id"));
                 superHero.setUomType(json.getString("uomType"));
                 Log.e("uom===", json.getString("uomType"));
@@ -275,13 +284,11 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Log.e("final_price====", String.valueOf(final_price));
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
+
                 superHero.setgst(json.getInt("gstPercentage"));
 
-                ArrayList<String> powers = new ArrayList<String>();
 
 
-                superHero.setPowers(powers);
-                // superHero.setfarmerCode(labourDetails.getString("farmerCode"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -294,18 +301,18 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                                 Log.d(TAG,"RESPONSE plotCode======"+ plotCode);
                                 Log.d(TAG,"RESPONSE plotMandalName======"+ plotMandalName);*/
 
-            adapter = new ModelFertAdapter(product_list, this);
+            adapter = new ModelFertAdapterNew(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
             //Adding adapter to recyclerview
             recyclerView.setAdapter(adapter);
-            adapter.setOnListener(FertilizerActivity.this);
-            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-                @Override
-                public void onChanged() {
-                    super.onChanged();
-                    setMealTotal();
-                }
-            });
+//            adapter.setOnListener(FertilizerActivity.this);
+//            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+//                @Override
+//                public void onChanged() {
+//                    super.onChanged();
+//                    setMealTotal();
+//                }
+//            });
         }
     }
 
@@ -376,41 +383,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             ImageView cartButtonIV = findViewById(R.id.cartButtonIV);
 
             makeFlyAnimation(img);
-            if (selectedId_List.size() > 0 & position >0) {
 
-                if (selectedId_List.contains(product_list.get(position).getId())) {
-                    selectedId_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getId());
-                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
-                    selecteditem_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getName()));
-                    amount_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getPrice()));
-                    selectedgst_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getgst()));
-                    selectedsize_List.set(selectedId_List.indexOf(product_list.get(position).getId()), (product_list.get(position).getSize()));
-                    Count= Count+1;
-                    txt_count.setText(Count+"");
-
-                } else {
-                    selectedId_List.add(product_list.get(position).getId());
-                    selectedQty_List.add(product_list.get(position).getmQuantity());
-                    selecteditem_List.add(product_list.get(position).getName());
-                    amount_List.add(product_list.get(position).getPrice());
-                    selectedgst_List.add(product_list.get(position).getgst());
-                    selectedsize_List.add(product_list.get(position).getSize());
-                    Count= Count+1;
-                    txt_count.setText(Count+"");
-
-                }
-            } else {
-
-                selectedId_List.add(product_list.get(position).getId());
-                selectedQty_List.add(product_list.get(position).getmQuantity());
-                selecteditem_List.add(product_list.get(position).getName());
-                amount_List.add(product_list.get(position).getPrice());
-                selectedgst_List.add(product_list.get(position).getgst());
-                selectedsize_List.add(product_list.get(position).getSize());
-
-                Count= Count+1;
-                txt_count.setText(Count+"");
-            }
 
             Log.e(" add selectedId_List-==", selectedId_List.toString());
             Log.e("add selectedQty_List-==", selectedQty_List.toString());
@@ -468,6 +441,32 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
         }
     }
+
+    @Override
+    public void updated(int po, ArrayList<Product_new> myProducts) {
+        SharedPrefsData.saveCartitems(context,myProducts);
+
+
+        myProductsList = myProducts;
+        CommonUtil.Productitems =myProductsList;
+        Double allitemscost = 0.0;
+        int allproducts = 0;
+
+        for (Product_new product : myProducts) {
+            Double oneitem = product.getQuandity() *  Double.parseDouble(product.getWithGSTamount());
+            allitemscost = oneitem + allitemscost;
+            Log.d("Product", "total Proce :" + allitemscost);
+            int onitem = product.getQuandity();
+            allproducts = allproducts + onitem;
+            Log.d("Product", "totalitems :" + allproducts);
+
+
+        }
+        txt_count.setText(allproducts + "");
+        String total_amount = allitemscost.toString();
+        mealTotalText.setText(total_amount);
+    }
+
 
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

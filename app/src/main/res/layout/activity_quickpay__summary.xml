@@ -156,7 +156,8 @@
                 </LinearLayout>
 
 
-                <com.kyanogen.signatureview.SignatureView xmlns:sign="http://schemas.android.com/apk/res-auto"
+                <in.calibrage.akshaya.common.SignatureView
+                    xmlns:sign="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/signature_view"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
