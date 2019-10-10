@@ -357,7 +357,7 @@ public  class resGet3FInfo {
 
     public class Mill {
 
-        @SerializedName("mill")
+        @SerializedName("collectionCenter")
         @Expose
         private String mill;
         @SerializedName("villageName")
