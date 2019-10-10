@@ -1,28 +1,29 @@
 package in.calibrage.akshaya.views.fragments;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -52,20 +53,12 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
     private String mParam2;
     private SpotsDialog mdilogue;
     private OnFragmentInteractionListener mListener;
-    private RecyclerView fert_recyclerView, collection_recycleview, mill_recycleview;
-    RelativeLayout fert_text, collection_text, mill_text;
+    private RecyclerView fert_recyclerView,collection_recycleview,mill_recycleview;
+    RelativeLayout fert_text,collection_text,mill_text;
     SwitchMultiButton sw_paymentMode;
     private Subscription mSubscription;
-    private SupportMapFragment supportMapFragment;
-    private GoogleMap map;
-    private GoogleMap googleMap;
-    private Button btn_map;
-    LinearLayout lyt_maps;
-    int selectedPO;
-    private List<latlongModel> latlongModels;
-    private List<latlongModel> latlongModels2;
-    private List<latlongModel> latlongModels3;
 
+    private GoogleMap googleMap;
     public placesfragment() {
         // Required empty public constructor
     }
@@ -106,28 +99,27 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
                 .setContext(getContext())
                 .setTheme(R.style.Custom)
                 .build();
-        lyt_maps = view.findViewById(R.id.lyt_maps);
-        lyt_maps.setVisibility(View.GONE);
-        sw_paymentMode = (SwitchMultiButton) view.findViewById(R.id.sw_paymentMode);
-        fert_recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_fert);
+
+        sw_paymentMode = (SwitchMultiButton)view.findViewById(R.id.sw_paymentMode);
+        fert_recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_fert);
 
         fert_recyclerView.setHasFixedSize(true);
-        // fert_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+       // fert_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         RecyclerView.LayoutManager fert = new LinearLayoutManager(getContext());
         fert_recyclerView.setLayoutManager(fert);
         // recyclerView.setAdapter(adapter);
 
 
-        collection_recycleview = (RecyclerView) view.findViewById(R.id.recyclerView_collection);
-        btn_map = view.findViewById(R.id.btn_map);
+
+        collection_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_collection);
 
         collection_recycleview.setHasFixedSize(true);
         RecyclerView.LayoutManager collection = new LinearLayoutManager(getContext());
         collection_recycleview.setLayoutManager(collection);
 
 
-        mill_recycleview = (RecyclerView) view.findViewById(R.id.recyclerView_mill);
+        mill_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_mill);
 
         mill_recycleview.setHasFixedSize(true);
         RecyclerView.LayoutManager mill = new LinearLayoutManager(getContext());
@@ -138,18 +130,16 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
         sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
             @Override
             public void onSwitch(int position, String tabText) {
-                //  Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-                selectedPO = position;
-                if (position == 0) {
-
+              //  Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+                if(position==0){
                     fert_recyclerView.setVisibility(View.VISIBLE);
                     collection_recycleview.setVisibility(View.GONE);
                     mill_recycleview.setVisibility(View.GONE);
-                } else if (position == 1) {
+                }else  if(position==1){
                     fert_recyclerView.setVisibility(View.GONE);
                     collection_recycleview.setVisibility(View.VISIBLE);
                     mill_recycleview.setVisibility(View.GONE);
-                } else if (position == 2) {
+                } else if(position==2){
                     fert_recyclerView.setVisibility(View.GONE);
                     collection_recycleview.setVisibility(View.GONE);
                     mill_recycleview.setVisibility(View.VISIBLE);
@@ -157,30 +147,7 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        // initilizeMap();
 
-
-        btn_map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (btn_map.getText().toString().equalsIgnoreCase(getString(R.string.map))) {
-                    btn_map.setText(getString(R.string.list));
-                    lyt_maps.setVisibility(View.VISIBLE);
-                    FragmentManager fm = getActivity().getSupportFragmentManager();/// getChildFragmentManager();
-                    supportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map_container);
-                    if (supportMapFragment == null) {
-                        supportMapFragment = SupportMapFragment.newInstance();
-                        fm.beginTransaction().replace(R.id.map_container, supportMapFragment).commit();
-                    }
-                    supportMapFragment.getMapAsync(placesfragment.this);
-
-                } else {
-                    btn_map.setText(getString(R.string.map));
-                    lyt_maps.setVisibility(View.GONE);
-
-                }
-            }
-        });
 
         return view;
     }
@@ -206,52 +173,46 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
 
                     @Override
                     public void onNext(resGet3FInfo resGet3FInfo) {
-                        if (resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null) {
+                        if(resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null)
+                        {
                           /*  fert_text.setVisibility(View.VISIBLE);
                             fert_recyclerView.setVisibility(View.VISIBLE);*/
-                            Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(), getContext());
+                            Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(),getContext());
                             fert_recyclerView.setAdapter(adapter);
-                            latlongModels = new ArrayList<>();
-                            for (in.calibrage.akshaya.models.resGet3FInfo.Godown godwm : resGet3FInfo.getResult().getImportantPlaces().getGodowns()
-                            ) {
-                                latlongModels.add(new latlongModel(godwm.getLatitude(), godwm.getLongitude(), godwm.getGodown()));
-                            }
 
-                        } else {
+
+                        }
+                        else{
                            /* fert_text.setVisibility(View.GONE);
                             fert_recyclerView.setVisibility(View.GONE);
 */
                         }
 
-                        if (resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null) {
+                        if(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null)
+                        {
                           /*  collection_text.setVisibility(View.VISIBLE);
                             collection_recycleview.setVisibility(View.VISIBLE);*/
-                            collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(), getContext());
+                            collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(),getContext());
                             collection_recycleview.setAdapter(adapter);
-                            latlongModels = new ArrayList<>();
-                            for (in.calibrage.akshaya.models.resGet3FInfo.CollectionCenter godwm : resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters()
-                            ) {
-                                latlongModels2.add(new latlongModel(godwm.getLatitude(), godwm.getLongitude(), godwm.getCollectionCenter()));
-                            }
 
-                        } else {
+
+                        }
+                        else{
                            /* collection_text.setVisibility(View.GONE);
                             collection_recycleview.setVisibility(View.GONE);*/
 
                         }
-                        if (resGet3FInfo.getResult().getImportantPlaces().getMills() != null) {
+                        if(resGet3FInfo.getResult().getImportantPlaces().getMills() != null)
+                        {
                            /* mill_text.setVisibility(View.VISIBLE);
                             mill_recycleview.setVisibility(View.VISIBLE);*/
 
-                            Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(), getContext());
+                            Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(),getContext());
                             mill_recycleview.setAdapter(adapter);
-                            for (in.calibrage.akshaya.models.resGet3FInfo.Mill godwm : resGet3FInfo.getResult().getImportantPlaces().getMills()
-                            ) {
-                                latlongModels.add(new latlongModel(godwm.getLatitude(), godwm.getLongitude(), godwm.getMill()));
-                            }
 
 
-                        } else {
+                        }
+                        else{
                            /* mill_text.setVisibility(View.GONE);
                             mill_recycleview.setVisibility(View.GONE);*/
 
@@ -260,6 +221,7 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
                     }
                 });
     }
+
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -288,22 +250,6 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        this.map = googleMap;
-     /*   Circle circle = googleMap.addCircle(new CircleOptions()
-                .center(new LatLng(-33.87365, 151.20689))
-                .radius(10000)
-                .strokeColor(Color.RED)
-                .fillColor(Color.BLUE));
-*/
-        for (latlongModel location : latlongModels
-        ) {
-            Log.d(TAG,"--- analysis --- Locations()-->> lat and Long :"+location.lat +"  AND  "+location.log);
-            if(null != location.lat & null != location.log){
-            LatLng sydney = new LatLng(location.lat, location.log);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title(location.name));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-            googleMap.setMinZoomPreference(11);}
-        }
 
     }
 
@@ -320,80 +266,5 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    class latlongModel {
-        Double lat;
-        Double log;
-        String name;
-
-        public latlongModel(Double lat, Double log, String name) {
-            this.lat = lat;
-            this.log = log;
-            this.name = name;
-        }
-
-        public Double getLat() {
-            return lat;
-        }
-
-        public void setLat(Double lat) {
-            this.lat = lat;
-        }
-
-        public Double getLog() {
-            return log;
-        }
-
-        public void setLog(Double log) {
-            this.log = log;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
-
-    private void addmarkersinmap(int po)
-    {
-        map.clear();
-        if(po== 0)
-        {
-            for (latlongModel location : latlongModels
-            ) {
-                Log.d(TAG,"--- analysis --- Locations()-->> lat and Long :"+location.lat +"  AND  "+location.log);
-                if(null != location.lat & null != location.log){
-                    LatLng sydney = new LatLng(location.lat, location.log);
-                    googleMap.addMarker(new MarkerOptions().position(sydney).title(location.name));
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                    googleMap.setMinZoomPreference(11);}
-            }
-        }else   if(po== 1)
-        {
-            for (latlongModel location : latlongModels
-            ) {
-                Log.d(TAG,"--- analysis --- Locations()-->> lat and Long :"+location.lat +"  AND  "+location.log);
-                if(null != location.lat & null != location.log){
-                    LatLng sydney = new LatLng(location.lat, location.log);
-                    googleMap.addMarker(new MarkerOptions().position(sydney).title(location.name));
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                    googleMap.setMinZoomPreference(11);}
-            }
-        }else   if(po== 2)
-        {
-            for (latlongModel location : latlongModels
-            ) {
-                Log.d(TAG,"--- analysis --- Locations()-->> lat and Long :"+location.lat +"  AND  "+location.log);
-                if(null != location.lat & null != location.log){
-                    LatLng sydney = new LatLng(location.lat, location.log);
-                    googleMap.addMarker(new MarkerOptions().position(sydney).title(location.name));
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                    googleMap.setMinZoomPreference(11);}
-            }
-        }
     }
 }
