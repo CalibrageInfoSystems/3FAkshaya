@@ -2,6 +2,7 @@ package in.calibrage.akshaya.views.actvity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,7 +53,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
     String name;
-
+    String  Farmer_code;
+    TextView no_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,11 +137,15 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         ctx = this;
         lytManager = new LinearLayoutManager(this);
         rcv_requests = findViewById(R.id.rcv_requests);
+        no_data=findViewById(R.id.no_data);
         rcv_requests.setLayoutManager(lytManager);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
+       // no_data.setText("No" + name);
     }
 
     private void setuptoolbar() {
@@ -190,8 +196,18 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                     @Override
                     public void onNext(ResPole poleResponce) {
-                        GetPoleAdapter adapter = new GetPoleAdapter(poleResponce.getListResult(), ctx, RequestListctivity.this);
-                        rcv_requests.setAdapter(adapter);
+                        if(poleResponce.getListResult() != null)
+                        {
+                            no_data.setVisibility(View.GONE);
+                            GetPoleAdapter adapter = new GetPoleAdapter(poleResponce.getListResult(), ctx, RequestListctivity.this);
+                            rcv_requests.setAdapter(adapter);
+
+                        }
+                        else{
+                            no_data.setVisibility(View.VISIBLE);
+
+                        }
+
                     }
 
 
@@ -230,8 +246,19 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                     @Override
                     public void onNext(Resfert fertResponce) {
-                        GetfertAdapter adapter = new GetfertAdapter(fertResponce.getListResult(), ctx, RequestListctivity.this);
-                        rcv_requests.setAdapter(adapter);
+
+
+                        if(fertResponce.getListResult() != null)
+                        {
+                            no_data.setVisibility(View.GONE);
+                            GetfertAdapter adapter = new GetfertAdapter(fertResponce.getListResult(), ctx, RequestListctivity.this);
+                            rcv_requests.setAdapter(adapter);
+                        }
+                        else{
+                            no_data.setVisibility(View.VISIBLE);
+
+                        }
+
                     }
 
 
@@ -270,8 +297,19 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                     @Override
                     public void onNext(Resquickpay resquickpay) {
-                        MyQuickPayDataAdapter adapter = new MyQuickPayDataAdapter(resquickpay.getListResult(), ctx);
-                        rcv_requests.setAdapter(adapter);
+
+
+                        if(resquickpay.getListResult() != null)
+                        {
+                            no_data.setVisibility(View.GONE);
+                            MyQuickPayDataAdapter adapter = new MyQuickPayDataAdapter(resquickpay.getListResult(), ctx);
+                            rcv_requests.setAdapter(adapter);
+                        }
+                        else{
+                            no_data.setVisibility(View.VISIBLE);
+
+                        }
+
                     }
 
 
@@ -283,9 +321,9 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
     private JsonObject getheadervisitobject() {
         ReqPole requestModel = new ReqPole();
-        requestModel.setFarmerCode("APWGBDAB00010001");
-        requestModel.setToDate("2019-10-04T17:01:31.650756+05:30");
-        requestModel.setFromDate("2019-10-04T17:01:31.650756+05:30");
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setToDate(null);
+        requestModel.setFromDate(null);
         requestModel.setRequestTypeId(14);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
@@ -321,10 +359,18 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                     @Override
                     public void onNext(ResLoan resLoan) {
+                        if(resLoan.getListResult() != null)
+                        {
+                            no_data.setVisibility(View.GONE);
+                            GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
+                            rcv_requests.setAdapter(adapter);
+                        }
+                        else{
+                            no_data.setVisibility(View.VISIBLE);
+
+                        }
 
 
-                        GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
-                        rcv_requests.setAdapter(adapter);
                     }
 
 
@@ -365,9 +411,19 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         @Override
                         public void onNext(ResLoan resLoan) {
 
+                            if(resLoan.getListResult() != null)
+                            {
+                                no_data.setVisibility(View.GONE);
+                                GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
+                                rcv_requests.setAdapter(adapter);
+                            }
+                            else{
+                                no_data.setVisibility(View.VISIBLE);
 
-                            GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
-                            rcv_requests.setAdapter(adapter);
+                            }
+
+//                            GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
+//                            rcv_requests.setAdapter(adapter);
                         }
 
 
@@ -380,9 +436,9 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
     private JsonObject getLoanheaderobject() {
         ReqPole requestModel = new ReqPole();
-        requestModel.setFarmerCode("APWGBDAB00010001");
-        requestModel.setToDate("2019-10-04T17:01:31.650756+05:30");
-        requestModel.setFromDate("2019-10-04T17:01:31.650756+05:30");
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setToDate(null);
+        requestModel.setFromDate(null);
         requestModel.setRequestTypeId(28);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
@@ -390,18 +446,18 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
     private JsonObject getheaderobject() {
         ReqPole requestModel = new ReqPole();
-        requestModel.setFarmerCode("APWGBDAB00010001");
-        requestModel.setToDate("2019-10-04T17:01:31.650756+05:30");
-        requestModel.setFromDate("2019-10-04T17:01:31.650756+05:30");
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setToDate(null);
+        requestModel.setFromDate(null);
         requestModel.setRequestTypeId(13);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
     private JsonObject getPoleobject() {
         ReqPole requestModel = new ReqPole();
-        requestModel.setFarmerCode("APWGBDAB00010001");
-        requestModel.setToDate("2019-10-04T17:01:31.650756+05:30");
-        requestModel.setFromDate("2019-10-04T17:01:31.650756+05:30");
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setToDate(null);
+        requestModel.setFromDate(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
