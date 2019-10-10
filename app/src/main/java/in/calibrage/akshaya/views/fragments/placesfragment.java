@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import dmax.dialog.SpotsDialog;
@@ -20,6 +21,8 @@ import in.calibrage.akshaya.models.resGet3FInfo;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.Adapter.Godown_adapter;
+import in.calibrage.akshaya.views.Adapter.PlotDetailsAdapter;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -38,7 +41,7 @@ public class placesfragment extends Fragment {
     private SpotsDialog mdilogue;
     private OnFragmentInteractionListener mListener;
     private RecyclerView fert_recyclerView,collection_recycleview,mill_recycleview;
-    TextView fert_text,collection_text,mill_text;
+    RelativeLayout fert_text,collection_text,mill_text;
 
     private Subscription mSubscription;
     public placesfragment() {
@@ -82,7 +85,7 @@ public class placesfragment extends Fragment {
                 .setTheme(R.style.Custom)
                 .build();
         fert_recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_fert);
-       // noRecords = (LinearLayout) view.findViewById(R.id.text);
+        fert_text = (RelativeLayout) view.findViewById(R.id.fert_text);
         fert_recyclerView.setHasFixedSize(true);
         fert_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // recyclerView.setAdapter(adapter);
@@ -90,13 +93,13 @@ public class placesfragment extends Fragment {
 
 
         collection_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_collection);
-        // noRecords = (LinearLayout) view.findViewById(R.id.text);
+        collection_text = (RelativeLayout) view.findViewById(R.id.collection_text);
         collection_recycleview.setHasFixedSize(true);
         collection_recycleview.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         mill_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_mill);
-        // noRecords = (LinearLayout) view.findViewById(R.id.text);
+        mill_text = (RelativeLayout) view.findViewById(R.id.collection_text);
         mill_recycleview.setHasFixedSize(true);
         mill_recycleview.setLayoutManager(new LinearLayoutManager(getContext()));
         Get3FInfoo();
@@ -124,7 +127,31 @@ public class placesfragment extends Fragment {
 
                     @Override
                     public void onNext(resGet3FInfo resGet3FInfo) {
+                        if(resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null)
+                        {
+                            fert_text.setVisibility(View.GONE);
+                            Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(),getContext());
+                            fert_recyclerView.setAdapter(adapter);
 
+
+                        }
+                        else{
+                            fert_text.setVisibility(View.VISIBLE);
+
+                        }
+
+                        if(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null)
+                        {
+                            fert_text.setVisibility(View.GONE);
+                            Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(),getContext());
+                            fert_recyclerView.setAdapter(adapter);
+
+
+                        }
+                        else{
+                            fert_text.setVisibility(View.VISIBLE);
+
+                        }
                     }
                 });
     }

@@ -6,7 +6,7 @@
     tools:context=".views.fragments.placesfragment">
 
     <RelativeLayout
-        android:id="@+id/pest_text"
+        android:id="@+id/fert_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_8dp"
@@ -27,7 +27,7 @@
             android:text="@string/fert_godown"
             android:textColor="@color/white_new"
             android:textSize="16dp"
-            android:visibility="gone" />
+            />
 
 
     </RelativeLayout>
@@ -39,10 +39,10 @@
         android:layout_below="@+id/pagerHomeLay"
 
         android:layout_marginBottom="3dp"
-        android:visibility="gone" />
+      />
 
     <RelativeLayout
-        android:id="@+id/dease_text"
+        android:id="@+id/collection_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_8dp"
@@ -62,7 +62,7 @@
             android:layout_gravity="center_vertical"
             android:text="@string/collection_centres"
             android:textColor="@color/white_new"
-            android:visibility="gone"
+
             android:textSize="16dp" />
 
     </RelativeLayout>
@@ -78,7 +78,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/nut_text"
+        android:id="@+id/mill_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_8dp"
@@ -98,7 +98,7 @@
             android:layout_gravity="center_vertical"
             android:text="@string/Mills"
             android:textColor="@color/white_new"
-            android:visibility="gone"
+
             android:textSize="16dp" />
 
     </RelativeLayout>
