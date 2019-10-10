@@ -1,5 +1,7 @@
 package in.calibrage.akshaya.views.Adapter;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -11,9 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -28,6 +34,7 @@ import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.DeleteObject;
 import in.calibrage.akshaya.models.ReqPole;
 import in.calibrage.akshaya.models.ResPole;
+import in.calibrage.akshaya.models.Resdelete;
 import in.calibrage.akshaya.models.labour_req_response;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
@@ -42,7 +49,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
-    String request_date, prefferdate;
+    String request_date, prefferdate,currentDate;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
 
@@ -106,14 +113,18 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
         }
-
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         holder.cancel.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-               /* selectedItemID = labourlist_Set.get(position).getLabourDetails().getRequestCode();
-                selectedPO = position;
-                delete_request();*/
+                selectedItemID = labourlist_Set.get(position).getLabourDetails().getRequestCode();
+               selectedPO = position;
+                try {
+                    delete_request();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -121,16 +132,17 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         AnimationUtil.animate(holder, true);
     }
 
-    private void delete_request() {
+    private void delete_request()  throws JSONException {
+
         JsonObject object = Requestobject();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
-        mSubscription = service.postLabour_request(object)
+        mSubscription = service.postdelete(object)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<labour_req_response>() {
+                .subscribe(new Subscriber<Resdelete>() {
                     @Override
                     public void onCompleted() {
-                        mdilogue.dismiss();
+
                     }
 
                     @Override
@@ -146,16 +158,17 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+
                     }
 
                     @Override
-                    public void onNext(labour_req_response labour_req_response) {
-
+                    public void onNext(Resdelete resdelete) {
                         labourlist_Set.remove(selectedPO);
-                        notifyDataSetChanged();
+                        Toast.makeText(mContext,"Cancelled Successfully",Toast.LENGTH_LONG).show();
+                        recreateActivityCompat((Activity) mContext);
 
-                    }
+                        }
+
 
 
                 });
@@ -166,7 +179,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         requestModel.setRequestCode(selectedItemID);
         requestModel.setStatusTypeId(32);
         requestModel.setUpdatedByUserId(null);
-        requestModel.setUpdatedDate("2019-10-09T17:01:31.650756+05:30");
+        requestModel.setUpdatedDate(currentDate);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
 
@@ -220,7 +233,22 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         void onContactSelected(labour_req_response.ListResult selectedItem);
     }
 
+
+    @SuppressLint("NewApi")
+    public static final void recreateActivityCompat(final Activity a) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            a.recreate();
+        } else {
+            final Intent intent = a.getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            a.finish();
+            a.overridePendingTransition(0, 0);
+            a.startActivity(intent);
+            a.overridePendingTransition(0, 0);
+        }
+    }
 }
+
 
 
 

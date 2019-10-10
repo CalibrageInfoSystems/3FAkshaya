@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.views.actvity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,7 +42,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class RequestListctivity extends BaseActivity implements GetPoleAdapter.GetPoleAdapterListener, GetfertAdapter.GetPoleAdapterListener{
+public class RequestListctivity extends BaseActivity implements GetPoleAdapter.GetPoleAdapterListener1, GetfertAdapter.GetPoleAdapterListener{
 
     public static final String TAG = RequestListctivity.class.getSimpleName();
 
@@ -405,10 +406,24 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     }
 
     @Override
-    public void onContactSelected(ResPole.ListResult products) {
-        Toast.makeText(ctx, "products :" + products.getFarmerName(), Toast.LENGTH_SHORT).show();
+    public void onContactSelected(String products) {
+
+        Intent intent = new Intent(RequestListctivity.this, product_list.class);
+
+//                    // Sending Student Id, Name, Number and Class to next UpdateActivity.
+        intent.putExtra("Name",  products);
+
+        startActivity(intent);
     }
 
 
+    @Override
+    public void onContactSelected1(String products) {
+        Intent intent = new Intent(RequestListctivity.this, product_list.class);
 
+//                    // Sending Student Id, Name, Number and Class to next UpdateActivity.
+        intent.putExtra("Name",  products);
+
+        startActivity(intent);
+    }
 }
