@@ -297,8 +297,9 @@
     <string name="Mills">Mills</string>
     <string name="name">Name</string>
     <string name="link">Link to Google Maps</string>
+    <string name="map">maps</string>
+    <string name="list">list</string>
     />
-
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
         <item>Godowns</item>
