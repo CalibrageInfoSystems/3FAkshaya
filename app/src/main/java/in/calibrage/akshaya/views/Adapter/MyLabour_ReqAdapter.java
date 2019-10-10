@@ -187,8 +187,13 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
     @Override
     public int getItemCount() {
-        return labourlist_Set.size();
+        if (null != labourlist_Set)
+            return labourlist_Set.size();
+        else
+            return 0;
     }
+       // return labourlist_Set.size();
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

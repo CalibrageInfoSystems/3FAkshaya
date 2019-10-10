@@ -192,6 +192,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        no_data.setVisibility(View.VISIBLE);
                     }
 
                     @Override
@@ -204,7 +205,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                         }
                         else{
-                            no_data.setVisibility(View.VISIBLE);
+
+                            no_data.setText(poleResponce.getEndUserMessage());
 
                         }
 
@@ -242,6 +244,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        no_data.setVisibility(View.VISIBLE);
                     }
 
                     @Override
@@ -293,6 +296,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        no_data.setVisibility(View.VISIBLE);
                     }
 
                     @Override
