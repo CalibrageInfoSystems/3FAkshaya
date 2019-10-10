@@ -4,11 +4,32 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import java.io.IOException;
+
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.models.LabourRecommendationsModel;
+import in.calibrage.akshaya.models.res_plotdetails;
+import in.calibrage.akshaya.service.APIConstantURL;
+import in.calibrage.akshaya.service.ApiService;
+import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.Adapter.LabourRecommendationAdapter;
+import in.calibrage.akshaya.views.Adapter.PlotDetailsAdapter;
+import in.calibrage.akshaya.views.actvity.LabourRecommendationsActivity;
+import retrofit2.adapter.rxjava.HttpException;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,13 +41,18 @@ import in.calibrage.akshaya.R;
  */
 public class plot_details extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    public static String TAG = plot_details.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private RecyclerView recyclerView;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    View view;
+    String Farmer_code;
+    LinearLayout noRecords;
+    private Subscription mSubscription;
+    private SpotsDialog mdilogue ;
 
     private OnFragmentInteractionListener mListener;
 
@@ -34,15 +60,7 @@ public class plot_details extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment plot_details.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static plot_details newInstance(String param1, String param2) {
         plot_details fragment = new plot_details();
         Bundle args = new Bundle();
@@ -65,7 +83,78 @@ public class plot_details extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_plot_details, container, false);
+
+         view = inflater.inflate(R.layout.fragment_plot_details,
+                container, false);
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(getContext())
+                .setTheme(R.style.Custom)
+                .build();
+        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        noRecords = (LinearLayout) view.findViewById(R.id.text);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // recyclerView.setAdapter(adapter);
+
+        GetPlotDetailsByFarmerCode();
+
+        return view;
+    }
+
+
+
+    private void GetPlotDetailsByFarmerCode() {
+
+            mdilogue.show();
+            ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
+            mSubscription = service.getplotinfo(APIConstantURL.GetPlotDetailsByFarmerCode +"APWGBDAB00010001")
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<res_plotdetails>() {
+                        @Override
+                        public void onCompleted() {
+                            mdilogue.dismiss();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            if (e instanceof HttpException) {
+                                ((HttpException) e).code();
+                                ((HttpException) e).message();
+                                ((HttpException) e).response().errorBody();
+                                try {
+                                    ((HttpException) e).response().errorBody().string();
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                }
+                                e.printStackTrace();
+                            }
+                            mdilogue.dismiss();
+                        }
+
+                        @Override
+                        public void onNext(res_plotdetails res_plotdetails) {
+
+
+
+
+                            if(res_plotdetails.getListResult() != null)
+                            {
+                                noRecords.setVisibility(View.GONE);
+                                PlotDetailsAdapter adapter = new PlotDetailsAdapter(res_plotdetails.getListResult(),getContext() );
+                                recyclerView.setAdapter(adapter);
+
+
+                            }
+                            else{
+                                noRecords.setVisibility(View.VISIBLE);
+
+                            }
+                        }
+
+
+                    });
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

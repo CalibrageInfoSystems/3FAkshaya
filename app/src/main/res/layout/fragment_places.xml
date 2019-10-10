@@ -5,10 +5,112 @@
     android:layout_height="match_parent"
     tools:context=".views.fragments.placesfragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/pest_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:background="@drawable/collect_bg"
+        android:visibility="gone"
+        android:padding="2dp">
+
+
+        <TextView
+            android:id="@+id/pest_text1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:layout_gravity="center_vertical"
+
+            android:gravity="center"
+            android:text="@string/fert_godown"
+            android:textColor="@color/white_new"
+            android:textSize="16dp"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_fert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pagerHomeLay"
+
+        android:layout_marginBottom="3dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/dease_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:background="@drawable/collect_bg"
+        android:visibility="gone"
+        android:padding="2dp">
+
+
+        <TextView
+            android:id="@+id/dease_text1"
+            android:gravity="center"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/collection_centres"
+            android:textColor="@color/white_new"
+            android:visibility="gone"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_collection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pagerHomeLay"
+
+        android:layout_marginBottom="3dp"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/nut_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:background="@drawable/collect_bg"
+        android:visibility="gone"
+        android:padding="2dp">
+
+
+        <TextView
+            android:id="@+id/nut_text1"
+            android:gravity="center"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/Mills"
+            android:textColor="@color/white_new"
+            android:visibility="gone"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_mill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pagerHomeLay"
+
+        android:layout_marginBottom="3dp"
+        android:visibility="gone" />
+
 
 </FrameLayout>

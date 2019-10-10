@@ -38,6 +38,7 @@ import in.calibrage.akshaya.models.collectionRequestModel;
 
 import in.calibrage.akshaya.models.labour_req_response;
 import in.calibrage.akshaya.models.resGet3FInfo;
+import in.calibrage.akshaya.models.res_plotdetails;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -168,6 +169,9 @@ public interface ApiService {
     Observable<Resbasicinfo> getbasicinfo(@Url String url);
     @GET
     Observable<resGet3FInfo> get3finfo(@Url String url);
+
+    @GET
+    Observable<res_plotdetails> getplotinfo(@Url String url);
 
  /*
     // PASSWORD RESET
