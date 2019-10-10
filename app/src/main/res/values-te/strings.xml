@@ -380,7 +380,8 @@
     <string name="record">వాయిస్ రికార్డింగ్</string>
     <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
     <string name="total_amt"> మొత్తం డబ్బు (రూ.)</string>
-        <string name = "confirm">నిర్ధారించండి</string>
+        
+    <string name="confirm">నిర్ధారించండి</string>
     <string name="Rs">\u20B9</string>
     <string name="select_product_toast">దయచేసి కనీసం ఒక ఉత్పత్తిని ఎంచుకోండి</string>
     <string name="valid_issue_type">దయచేసి ఇష్యూ రకాన్ని ఎంచుకోండి</string>
@@ -469,6 +470,7 @@
     <string name="map">పటాలు</string>
     <string name="list">వరుస</string>
     <string name="view_in_map">మ్యాప్‌లో చూడండి</string>
+    <string name="important_contacts">ముఖ్యమైన పరిచయాలు</string>
     //test
 </resources>
 

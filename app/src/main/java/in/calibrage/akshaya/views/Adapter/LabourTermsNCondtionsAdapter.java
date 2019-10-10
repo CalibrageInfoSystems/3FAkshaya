@@ -41,8 +41,8 @@ public class LabourTermsNCondtionsAdapter extends RecyclerView.Adapter<LabourTer
             holder.age.setText(position + 1 + " Year");
             holder.purning.setText(String.valueOf(listdata.getListResult().get(0).getC1()));
             holder.harv.setText(String.valueOf(listdata.getListResult().get(1).getC1()));
-            holder.unknown1.setText(String.valueOf(listdata.getListResult().get(2).getC1()));
-            holder.unknow2.setText(String.valueOf(listdata.getListResult().get(3).getC1()));
+            holder.unknown1.setText(""+listdata.getListResult().get(2).getC1());
+            holder.unknow2.setText(""+listdata.getListResult().get(3).getC1());
         } else if (position == 1 & listdata.getListResult().size() >1) {
             holder.age.setText(position + 1 + " Years");
             holder.purning.setText(String.valueOf(listdata.getListResult().get(0).getC2()));

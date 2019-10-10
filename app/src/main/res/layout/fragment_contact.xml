@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.fragments.contactfragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:layout_gravity="center"
+        android:src="@drawable/ic_imp_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        style="@style/Common_textView_title"
+        android:textColor="@color/colorOrange_head"
+        android:gravity="center"
+        android:id="@+id/head"
+        android:text="@string/important_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <RelativeLayout
 
         android:layout_gravity="top"
@@ -15,7 +30,6 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_8dp"
         android:layout_marginLeft="@dimen/_8dp"
-        android:layout_marginTop="@dimen/_8dp"
         android:layout_marginEnd="@dimen/_8dp"
         android:layout_marginRight="@dimen/_8dp"
         android:layout_marginBottom="@dimen/_8dp"
@@ -315,4 +329,4 @@
 
     </RelativeLayout>
 
-</FrameLayout>
+</LinearLayout>

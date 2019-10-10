@@ -285,7 +285,7 @@
     <string name="mandal">Mandal</string>
     <string name="dist">District</string>
     <string name="state">State</string>
-    <string name="pin">PinCode</string>
+    <string name="pin">Pin Code</string>
     <string name="mobile">Mobile Number</string>
     <string name="alter_mobile">Alternate Mobile \nNumber</string>
     <string name="email">Email ID</string>
@@ -300,6 +300,7 @@
     <string name="map">maps</string>
     <string name="list">list</string>
     <string name="view_in_map">View in Map</string>
+    <string name="important_contacts">Important Contacts</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

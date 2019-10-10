@@ -127,7 +127,8 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         holder.req_date.setText(datetimevaluereq);
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
-        holder.amount.setText(list.get(position).getUsageAmount().toString());
+        if(null != list.get(position).getUsageAmount())
+            holder.amount.setText(list.get(position).getUsageAmount()+"");
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (!"Closed".equals(holder.statusType.getText()))
