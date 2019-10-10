@@ -295,13 +295,15 @@
     <string name="fert_godown">Fertilizer Godowns</string>
     <string name="collection_centres">Collection Centers</string>
     <string name="Mills">Mills</string>
+    <string name="name">Name</string>
+    <string name="link">Link to Google Maps</string>
     />
 
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
-        <item>Cash </item>
-        <item>Againest FFB </item>
-
+        <item>Godowns</item>
+        <item>Collection Centers</item>
+        <item>Mills</item>
     </string-array>
     //test
 </resources>

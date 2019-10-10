@@ -13,24 +13,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
-import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.resGet3FInfo;
 
-public class Godown_adapter extends RecyclerView.Adapter<Godown_adapter.viewHolder> {
 
-    private List<resGet3FInfo.Godown> godownlistResults = new ArrayList<>();
+public class Mills_adapter extends RecyclerView.Adapter<Mills_adapter.viewHolder> {
+
+    private List<resGet3FInfo.Mill> milllistResults = new ArrayList<>();
     private LayoutInflater inflater;
     GodownListAdapter.OnItemClickListener listener;
-    public Godown_adapter(List<resGet3FInfo.Godown> godownlistResults, Context ctx) {
-        this.godownlistResults = godownlistResults;
+    public Mills_adapter(List<resGet3FInfo.Mill> milllistResults, Context ctx) {
+        this.milllistResults = milllistResults;
         inflater = (LayoutInflater.from(ctx));
-        this.listener =listener;
+
     }
 
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lst_item_godown, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lst_collection_centres, parent, false);
         return new viewHolder(view);
     }
 
@@ -38,41 +38,41 @@ public class Godown_adapter extends RecyclerView.Adapter<Godown_adapter.viewHold
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
 
-
-        holder.txt_name.setText(godownlistResults.get(position).getGodown());
-        holder.txt_address.setText(godownlistResults.get(position).getAddress());
-        holder.txt_Location.setText(godownlistResults.get(position).getLocation());
-
+        holder.txt_name.setText(": "+milllistResults.get(position).getMill());
+        holder.collectioncentervillage.setText(": "+milllistResults.get(position).getVillageName());
+        holder.collectioncentermandal.setText(": "+milllistResults.get(position).getMandalName());
+        holder.collectioncenterdistrict.setText(": "+milllistResults.get(position).getDistrictName());
 
 
     }
 
     @Override
     public int getItemCount() {
-        if (godownlistResults != null)
-            return godownlistResults.size();
+        if (milllistResults != null)
+            return milllistResults.size();
         else
             return 0;
     }
 
     class viewHolder extends RecyclerView.ViewHolder {
-        TextView txt_name, txt_Location, txt_address;
+        TextView txt_name, collectioncentervillage, collectioncentermandal,collectioncenterdistrict,map;
         CardView cardView;
 
         public viewHolder(View itemView) {
             super(itemView);
 
             txt_name = itemView.findViewById(R.id.txt_name);
-            txt_Location = itemView.findViewById(R.id.txt_Location);
-            txt_address = itemView.findViewById(R.id.txt_address);
+            collectioncentervillage = itemView.findViewById(R.id.collectioncentervillage);
+            collectioncentermandal = itemView.findViewById(R.id.collectioncentermandal);
+            collectioncenterdistrict = itemView.findViewById(R.id.collectioncenterdistrict);
             cardView = itemView.findViewById(R.id.cardView);
         }
 
     }
 
 
-    public interface OnItemClickListener {
-        void onItemClick(ActiveGodownsModel.ListResult item);
-    }
+
 }
+
+
 

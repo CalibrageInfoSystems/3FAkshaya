@@ -173,6 +173,10 @@ public interface ApiService {
     @GET
     Observable<res_plotdetails> getplotinfo(@Url String url);
 
+  /*  @POST(APIConstantURL.labour_response)
+    Observable<labour_req_response> postLabour_request(@Body JsonObject data);
+*/
+
  /*
     // PASSWORD RESET
     @PUT(APIConstantURL.PASSWORDRESET)

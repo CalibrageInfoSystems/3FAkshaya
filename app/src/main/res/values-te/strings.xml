@@ -464,6 +464,8 @@
     <string name="fert_godown">Fertilizer Godowns</string>
     <string name="collection_centres">Collection Centers</string>
     <string name="Mills">Mills</string>
+    <string name="name">Name</string>
+    <string name="link">Link to Google Maps</string>
     //test
 </resources>
 

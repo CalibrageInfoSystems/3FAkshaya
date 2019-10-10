@@ -25,7 +25,9 @@ import java.util.List;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.AnimationUtil;
+import in.calibrage.akshaya.models.DeleteObject;
 import in.calibrage.akshaya.models.ReqPole;
+import in.calibrage.akshaya.models.ResPole;
 import in.calibrage.akshaya.models.labour_req_response;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
@@ -40,13 +42,19 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
-String request_date,prefferdate;
+    String request_date, prefferdate;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
+
+    private Reqlister reqlister;
     // RecyclerView recyclerView;
+    String selectedItemID;
+    int selectedPO;
+
     public MyLabour_ReqAdapter(List<labour_req_response.ListResult> labourlist_Set, Context ctx) {
         this.labourlist_Set = labourlist_Set;
         this.mContext = ctx;
+
     }
 
     @Override
@@ -59,15 +67,16 @@ String request_date,prefferdate;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+
         holder.txtPlotId.setText(labourlist_Set.get(position).getPlotDetails().getPlotCode());
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date oneWayTripDate = input.parse(labourlist_Set.get(position).getLabourDetails().getStartDate());
             Date prefferdatee = input.parse(labourlist_Set.get(position).getLabourDetails().getUpdatedDate());
-            prefferdate  = output.format(oneWayTripDate);
-            request_date=output.format(prefferdatee);
+            prefferdate = output.format(oneWayTripDate);
+            request_date = output.format(prefferdatee);
             //datetimevalute.setText(output.format(oneWayTripDate));
 
             Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
@@ -76,18 +85,16 @@ String request_date,prefferdate;
         }
         holder.txtDate.setText(request_date);
         //   holder.txtTime.setText(superHero.getTime());
-        holder.txtDateNTime.setText(labourlist_Set.get(position).getPlotDetails().getPlotSize()+" "+"Ha");
+        holder.txtDateNTime.setText(labourlist_Set.get(position).getPlotDetails().getPlotSize() + " " + "Ha");
         holder.txtReqDate.setText(labourlist_Set.get(position).getPlotDetails().getPlotVillageName());
         holder.txtApproveDate.setText(prefferdate);
 
         holder.req_code.setText(labourlist_Set.get(position).getLabourDetails().getRequestCode());
         holder.txtStatus.setText(labourlist_Set.get(position).getLabourDetails().getStatusType());
-        if (!"Closed".equals(holder.txtStatus.getText()))
-        {
+        if (!"Closed".equals(holder.txtStatus.getText())) {
             holder.cancel.setVisibility(View.VISIBLE);
 
-        }
-        else {
+        } else {
             holder.cancel.setVisibility(View.GONE);
         }
         holder.txtname.setText(labourlist_Set.get(position).getLabourDetails().getServiceTypes());
@@ -104,8 +111,9 @@ String request_date,prefferdate;
 
             @Override
             public void onClick(View view) {
-
-         delete_request();
+               /* selectedItemID = labourlist_Set.get(position).getLabourDetails().getRequestCode();
+                selectedPO = position;
+                delete_request();*/
 
             }
 
@@ -144,6 +152,8 @@ String request_date,prefferdate;
                     @Override
                     public void onNext(labour_req_response labour_req_response) {
 
+                        labourlist_Set.remove(selectedPO);
+                        notifyDataSetChanged();
 
                     }
 
@@ -152,16 +162,15 @@ String request_date,prefferdate;
     }
 
     private JsonObject Requestobject() {
-        ReqPole requestModel = new ReqPole();
-        requestModel.setFarmerCode("APWGBDAB00010001");
-        requestModel.setToDate("2019-10-04T17:01:31.650756+05:30");
-        requestModel.setFromDate("2019-10-04T17:01:31.650756+05:30");
-        requestModel.setRequestTypeId(13);
+        DeleteObject requestModel = new DeleteObject();
+        requestModel.setRequestCode(selectedItemID);
+        requestModel.setStatusTypeId(32);
+        requestModel.setUpdatedByUserId(null);
+        requestModel.setUpdatedDate("2019-10-09T17:01:31.650756+05:30");
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
 
-
-}
+    }
 
     @Override
     public int getItemCount() {
@@ -191,8 +200,8 @@ String request_date,prefferdate;
 
             txtPlotId = itemView.findViewById(R.id.plotId);
             txtDate = itemView.findViewById(R.id.req_date);
-             req_code = itemView.findViewById(R.id.req_code);
-          cancel = itemView.findViewById(R.id.cancel);
+            req_code = itemView.findViewById(R.id.req_code);
+            cancel = itemView.findViewById(R.id.cancel);
             txtDateNTime = itemView.findViewById(R.id.dateNTime);
             txtReqDate = itemView.findViewById(R.id.village_name);
             txtApproveDate = itemView.findViewById(R.id.status_type);
@@ -206,6 +215,11 @@ String request_date,prefferdate;
 
 
     }
+
+    public interface Reqlister {
+        void onContactSelected(labour_req_response.ListResult selectedItem);
+    }
+
 }
 
 

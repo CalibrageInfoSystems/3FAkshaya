@@ -54,7 +54,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
         holder.plot_District.setText(": "+recomm_Set.get(position).getDistrict());
 
         holder.date_plantation.setText(": "+recomm_Set.get(position).getDateofPlanting());
-
+        holder.plot_code.setText(": "+recomm_Set.get(position).getCode());
 
 
         if (position % 2 == 0) {
@@ -78,7 +78,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation,plotvillage;
-        public TextView textViewstatus,date_plantation;
+        public TextView plot_code,date_plantation;
         public CardView card_view;
         public TextView plotLandmark,plot_Mandal,plot_State,plot_District;
         public ViewHolder(View itemView) {
@@ -93,7 +93,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
             this.plotvillage = (TextView) itemView.findViewById(R.id.plotvillage);
             this.plot_District = (TextView) itemView.findViewById(R.id.plotdistrict);
             this.date_plantation = (TextView) itemView.findViewById(R.id.yop);
-
+            this.plot_code = (TextView) itemView.findViewById(R.id.plot_code);
             this.card_view =  (CardView) itemView.findViewById(R.id.card_view);
 
         }

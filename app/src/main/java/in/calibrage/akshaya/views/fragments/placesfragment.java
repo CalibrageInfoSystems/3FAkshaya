@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -22,7 +23,9 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.Godown_adapter;
+import in.calibrage.akshaya.views.Adapter.Mills_adapter;
 import in.calibrage.akshaya.views.Adapter.PlotDetailsAdapter;
+import lib.kingja.switchbutton.SwitchMultiButton;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -42,7 +45,7 @@ public class placesfragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private RecyclerView fert_recyclerView,collection_recycleview,mill_recycleview;
     RelativeLayout fert_text,collection_text,mill_text;
-
+    SwitchMultiButton sw_paymentMode;
     private Subscription mSubscription;
     public placesfragment() {
         // Required empty public constructor
@@ -84,25 +87,54 @@ public class placesfragment extends Fragment {
                 .setContext(getContext())
                 .setTheme(R.style.Custom)
                 .build();
+
+        sw_paymentMode = (SwitchMultiButton)view.findViewById(R.id.sw_paymentMode);
         fert_recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_fert);
-        fert_text = (RelativeLayout) view.findViewById(R.id.fert_text);
+
         fert_recyclerView.setHasFixedSize(true);
-        fert_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+       // fert_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        RecyclerView.LayoutManager fert = new LinearLayoutManager(getContext());
+        fert_recyclerView.setLayoutManager(fert);
         // recyclerView.setAdapter(adapter);
 
 
 
         collection_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_collection);
-        collection_text = (RelativeLayout) view.findViewById(R.id.collection_text);
+
         collection_recycleview.setHasFixedSize(true);
-        collection_recycleview.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView.LayoutManager collection = new LinearLayoutManager(getContext());
+        collection_recycleview.setLayoutManager(collection);
 
 
         mill_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_mill);
-        mill_text = (RelativeLayout) view.findViewById(R.id.collection_text);
+
         mill_recycleview.setHasFixedSize(true);
-        mill_recycleview.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView.LayoutManager mill = new LinearLayoutManager(getContext());
+        mill_recycleview.setLayoutManager(mill);
         Get3FInfoo();
+
+
+        sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
+            @Override
+            public void onSwitch(int position, String tabText) {
+                Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+                if(position==0){
+                    fert_recyclerView.setVisibility(View.VISIBLE);
+                    collection_recycleview.setVisibility(View.GONE);
+                    mill_recycleview.setVisibility(View.GONE);
+                }else  if(position==1){
+                    fert_recyclerView.setVisibility(View.GONE);
+                    collection_recycleview.setVisibility(View.VISIBLE);
+                    mill_recycleview.setVisibility(View.GONE);
+                } else if(position==2){
+                    fert_recyclerView.setVisibility(View.GONE);
+                    collection_recycleview.setVisibility(View.GONE);
+                    mill_recycleview.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         return view;
     }
 
@@ -129,29 +161,49 @@ public class placesfragment extends Fragment {
                     public void onNext(resGet3FInfo resGet3FInfo) {
                         if(resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null)
                         {
-                            fert_text.setVisibility(View.GONE);
+                          /*  fert_text.setVisibility(View.VISIBLE);
+                            fert_recyclerView.setVisibility(View.VISIBLE);*/
                             Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(),getContext());
                             fert_recyclerView.setAdapter(adapter);
 
 
                         }
                         else{
-                            fert_text.setVisibility(View.VISIBLE);
-
+                           /* fert_text.setVisibility(View.GONE);
+                            fert_recyclerView.setVisibility(View.GONE);
+*/
                         }
 
                         if(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null)
                         {
-                            fert_text.setVisibility(View.GONE);
-                            Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(),getContext());
-                            fert_recyclerView.setAdapter(adapter);
+                          /*  collection_text.setVisibility(View.VISIBLE);
+                            collection_recycleview.setVisibility(View.VISIBLE);*/
+                            collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(),getContext());
+                            collection_recycleview.setAdapter(adapter);
 
 
                         }
                         else{
-                            fert_text.setVisibility(View.VISIBLE);
+                           /* collection_text.setVisibility(View.GONE);
+                            collection_recycleview.setVisibility(View.GONE);*/
 
                         }
+                        if(resGet3FInfo.getResult().getImportantPlaces().getMills() != null)
+                        {
+                           /* mill_text.setVisibility(View.VISIBLE);
+                            mill_recycleview.setVisibility(View.VISIBLE);*/
+
+                            Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(),getContext());
+                            mill_recycleview.setAdapter(adapter);
+
+
+                        }
+                        else{
+                           /* mill_text.setVisibility(View.GONE);
+                            mill_recycleview.setVisibility(View.GONE);*/
+
+                        }
+                        sw_paymentMode.setSelectedTab(0);
                     }
                 });
     }
