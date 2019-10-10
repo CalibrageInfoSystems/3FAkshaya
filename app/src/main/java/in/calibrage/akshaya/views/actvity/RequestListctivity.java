@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -64,20 +65,20 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         setuptoolbar();
         init();
 
-        if (name.equalsIgnoreCase("labour")) {
+        if (name.equalsIgnoreCase(getResources().getString(R.string.lab_req))) {
             GetLabourRequestDetails();
 
-        } else if (name.equalsIgnoreCase("pole")) {
+        } else if (name.equalsIgnoreCase(getResources().getString(R.string.pole_req))) {
             getPole();
-        } else if (name.equalsIgnoreCase("Fertilizer")) {
+        } else if (name.equalsIgnoreCase(getResources().getString(R.string.fert_req))) {
             getfertilizer();
 
-        } else if (name.equalsIgnoreCase("QuickPay")) {
+        } else if (name.equalsIgnoreCase(getResources().getString(R.string.quick_req))) {
             getquickpay();
 
-        } else if (name.equalsIgnoreCase("Visit")) {
+        } else if (name.equalsIgnoreCase(getResources().getString(R.string.visit_req))) {
             getvisit();
-        } else if (name.equalsIgnoreCase("Loan")) {
+        } else if (name.equalsIgnoreCase( getResources().getString(R.string.Loan_req))) {
             getLoan();
 
         }
@@ -142,7 +143,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
     private void setuptoolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(name);
+        TextView title =(TextView) findViewById(R.id.txt_name);
+        title.setText(name);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

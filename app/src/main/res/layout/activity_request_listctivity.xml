@@ -10,12 +10,14 @@
         android:visibility="visible"
         style="@style/ToolBarTheme.ToolBarStyle"
         android:id="@+id/toolbar"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorOrange_head" >
         <TextView
             android:textColor="@color/white_new"
             android:textAlignment="textStart"
+
             android:id="@+id/txt_name"
             style="@style/Common_textView_title"
             android:layout_width="match_parent"

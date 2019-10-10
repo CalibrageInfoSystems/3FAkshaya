@@ -27,6 +27,7 @@ import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.ResLoan;
 import in.calibrage.akshaya.models.ResPole;
+import in.calibrage.akshaya.models.Resbasicinfo;
 import in.calibrage.akshaya.models.Resfert;
 import in.calibrage.akshaya.models.Resquickpay;
 import in.calibrage.akshaya.models.SpinnerModel;
@@ -36,6 +37,7 @@ import in.calibrage.akshaya.models.VisitresponseModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
 import in.calibrage.akshaya.models.labour_req_response;
+import in.calibrage.akshaya.models.resGet3FInfo;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -161,6 +163,11 @@ public interface ApiService {
     Observable<Resquickpay> GetRequestheaderDetails(@Body JsonObject data);
     @POST(APIConstantURL.GetRequestHeaderDetails)
     Observable<ResLoan> GetRequestheaderLoanDetails(@Body JsonObject data);
+
+    @GET
+    Observable<Resbasicinfo> getbasicinfo(@Url String url);
+    @GET
+    Observable<resGet3FInfo> get3finfo(@Url String url);
 
  /*
     // PASSWORD RESET

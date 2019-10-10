@@ -55,12 +55,14 @@ String datetimevaluereq;
         holder.req_date.setText(datetimevaluereq);
         holder.statusType.setText(list.get(position).getStatusType());
         holder.amount.setText(list.get(position).getTotalCost()+"");
-// holder.txtPin.setText(superHero.getPin());
-        String powers = "";
+        if (!"Closed".equals(holder.statusType.getText()))
+        {
+            holder.cancel.setVisibility(View.VISIBLE);
 
-/* for(int i = 0; i<superHero.getPowers().size(); i++){
-powers+= superHero.getPowers().get(i);
-}*/
+        }
+        else {
+            holder.cancel.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -74,7 +76,7 @@ powers+= superHero.getPowers().get(i);
         public TextView requestCode;
         public TextView req_date;
         public TextView statusType;
-        public TextView amount;
+        public TextView amount,cancel;
 
 
         public ViewHolder(View itemView) {
@@ -86,7 +88,7 @@ powers+= superHero.getPowers().get(i);
             req_date = itemView.findViewById(R.id.reqCreatedDate);
             statusType = itemView.findViewById(R.id.statusType);
             amount = itemView.findViewById(R.id.amount);
-// txtMobileNo = itemView.findViewById(R.id.mobileNo);
+cancel = itemView.findViewById(R.id.cancel);
 // txtPin = itemView.findViewById(R.id.pin);
 
 

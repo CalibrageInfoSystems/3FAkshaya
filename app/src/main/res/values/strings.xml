@@ -266,6 +266,29 @@
     <string name="paymentMode">Payment Mode</string>
     <string name="req_date">Requested Date</string>
     <string name="serviceType">Service Type</string>
+    <string name="lab_req">Labour Request</string>
+    <string name="pole_req">Pole Request</string>
+    <string name="fert_req">Fertilizer Request</string>
+    <string name="quick_req">QuickPay Request</string>
+    <string name="visit_req">Visit Request</string>
+    <string name="Loan_req">Loan Request</string>
+    <string name="officer_name">Cluster Officer Name</string>
+    <string name="officer_mobile">Cluster Officer Mobile</string>
+    <string name="manager_name">Cluster Manager Name </string>
+    <string name="head_name">State Head Name</string>
+    <string name="whats_number">Whatsapp Number</string>
+    <string name="customer_care">Customer Care Number</string>
+    <string name="farmer_name">Farmer Name</string>
+    <string name="fa_hu_name">Father/Husband</string>
+    <string name="res_address">Residential Address</string>
+    <string name="address">Address</string>
+    <string name="mandal">Mandal</string>
+    <string name="dist">District</string>
+    <string name="state">State</string>
+    <string name="pin">PinCode</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="alter_mobile">Alternate Mobile \n Number</string>
+    <string name="email">Email ID</string>
     />
 
     <!-- we need to use video ids instead of video link -->

@@ -154,6 +154,18 @@ public class FarmerOtpResponceModel {
         @SerializedName("email")
         @Expose
         private Object email;
+        @SerializedName("villageName")
+        @Expose
+        private String villageName;
+        @SerializedName("pinCode")
+        @Expose
+        private Integer pinCode;
+        @SerializedName("mandalName")
+        @Expose
+        private String mandalName;
+        @SerializedName("districtName")
+        @Expose
+        private String districtName;
         @SerializedName("stateName")
         @Expose
         private String stateName;
@@ -193,130 +205,161 @@ public class FarmerOtpResponceModel {
             this.code = code;
         }
 
-        public Integer getId(){
+        public Integer getId() {
             return id;
-    }
+        }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
-    public String getTitle() {
-        return title;
-    }
+        public String getTitle() {
+            return title;
+        }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        public void setTitle(String title) {
+            this.title = title;
+        }
 
-    public String getFirstName() {
-        return firstName;
-    }
+        public String getFirstName() {
+            return firstName;
+        }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
 
-    public Object getMiddleName() {
-        return middleName;
-    }
+        public Object getMiddleName() {
+            return middleName;
+        }
 
-    public void setMiddleName(Object middleName) {
-        this.middleName = middleName;
-    }
+        public void setMiddleName(Object middleName) {
+            this.middleName = middleName;
+        }
 
-    public String getLastName() {
-        return lastName;
-    }
+        public String getLastName() {
+            return lastName;
+        }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
 
-    public String getGuardianName() {
-        return guardianName;
-    }
+        public String getGuardianName() {
+            return guardianName;
+        }
 
-    public void setGuardianName(String guardianName) {
-        this.guardianName = guardianName;
-    }
+        public void setGuardianName(String guardianName) {
+            this.guardianName = guardianName;
+        }
 
-    public String getMotherName() {
-        return motherName;
-    }
+        public String getMotherName() {
+            return motherName;
+        }
 
-    public void setMotherName(String motherName) {
-        this.motherName = motherName;
-    }
+        public void setMotherName(String motherName) {
+            this.motherName = motherName;
+        }
 
-    public String getContactNumber() {
-        return contactNumber;
-    }
+        public String getContactNumber() {
+            return contactNumber;
+        }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
+        public void setContactNumber(String contactNumber) {
+            this.contactNumber = contactNumber;
+        }
 
-    public Object getMobileNumber() {
-        return mobileNumber;
-    }
+        public Object getMobileNumber() {
+            return mobileNumber;
+        }
 
-    public void setMobileNumber(Object mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
+        public void setMobileNumber(Object mobileNumber) {
+            this.mobileNumber = mobileNumber;
+        }
 
-    public String getContactNumbers() {
-        return contactNumbers;
-    }
+        public String getContactNumbers() {
+            return contactNumbers;
+        }
 
-    public void setContactNumbers(String contactNumbers) {
-        this.contactNumbers = contactNumbers;
-    }
+        public void setContactNumbers(String contactNumbers) {
+            this.contactNumbers = contactNumbers;
+        }
 
-    public String getDob() {
-        return dob;
-    }
+        public String getDob() {
+            return dob;
+        }
 
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
+        public void setDob(String dob) {
+            this.dob = dob;
+        }
 
-    public Integer getAge() {
-        return age;
-    }
+        public Integer getAge() {
+            return age;
+        }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+        public void setAge(Integer age) {
+            this.age = age;
+        }
 
-    public Object getEmail() {
-        return email;
-    }
+        public Object getEmail() {
+            return email;
+        }
 
-    public void setEmail(Object email) {
-        this.email = email;
-    }
+        public void setEmail(Object email) {
+            this.email = email;
+        }
 
-    public String getStateName() {
-        return stateName;
-    }
+        public String getVillageName() {
+            return villageName;
+        }
 
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
-    }
+        public void setVillageName(String villageName) {
+            this.villageName = villageName;
+        }
 
-    public String getStateCode() {
-        return stateCode;
-    }
+        public Integer getPinCode() {
+            return pinCode;
+        }
 
-    public void setStateCode(String stateCode) {
-        this.stateCode = stateCode;
-    }
+        public void setPinCode(Integer pinCode) {
+            this.pinCode = pinCode;
+        }
 
-    public Integer getStateId() {
+        public String getMandalName() {
+            return mandalName;
+        }
 
-        return stateId;
-    }
+        public void setMandalName(String mandalName) {
+            this.mandalName = mandalName;
+        }
+
+        public String getDistrictName() {
+            return districtName;
+        }
+
+        public void setDistrictName(String districtName) {
+            this.districtName = districtName;
+        }
+
+        public String getStateName() {
+            return stateName;
+        }
+
+        public void setStateName(String stateName) {
+            this.stateName = stateName;
+        }
+
+        public String getStateCode() {
+            return stateCode;
+        }
+
+        public void setStateCode(String stateCode) {
+            this.stateCode = stateCode;
+        }
+
+        public Integer getStateId() {
+            return stateId;
+        }
 
         public void setStateId(Integer stateId) {
             this.stateId = stateId;

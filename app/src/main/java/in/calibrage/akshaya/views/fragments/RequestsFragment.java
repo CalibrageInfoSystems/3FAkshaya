@@ -85,32 +85,32 @@ public class RequestsFragment extends Fragment implements MyReqListAdapter.Reque
     public void onContactSelected(Request_settings request) {
         if (request.getName().contains("Labour Request")) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
-            intent.putExtra("key", "labour");
+            intent.putExtra("key", getResources().getString(R.string.lab_req));
             startActivity(intent);
         }
         if (request.getName().contains("Pole Request")) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
-            intent.putExtra("key", "pole");
+            intent.putExtra("key", getResources().getString(R.string.pole_req));
             startActivity(intent);
         }
         if (request.getName().contains("Fertilizer Request")) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
-            intent.putExtra("key", "Fertilizer");
+            intent.putExtra("key", getResources().getString(R.string.fert_req));
             startActivity(intent);
         }
         if (request.getName().contains("QuickPay Request")) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
-            intent.putExtra("key", "QuickPay");
+            intent.putExtra("key", getResources().getString(R.string.quick_req));
             startActivity(intent);
         }
         if (request.getName().contains("Visit Request")) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
-            intent.putExtra("key", "Visit");
+            intent.putExtra("key", getResources().getString(R.string.visit_req));
             startActivity(intent);
         }
         if (request.getName().contains("Loan Request")) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
-            intent.putExtra("key", "Loan");
+            intent.putExtra("key", getResources().getString(R.string.Loan_req));
             startActivity(intent);
         }
 

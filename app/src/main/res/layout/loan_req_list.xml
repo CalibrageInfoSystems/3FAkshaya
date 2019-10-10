@@ -93,6 +93,17 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="150dp"
                 android:layout_alignBaseline="@id/statusTypeLabel"/>
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/statusTypeLabel"
+                android:text="X"
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_10"
+                android:textColor="@color/Red"
+                android:textSize="20dp" />
 
          <!--   <TextView
 

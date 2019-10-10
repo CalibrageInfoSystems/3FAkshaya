@@ -61,13 +61,16 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
         holder.requestCode.setText(list_loan.get(position).getRequestCode());
         holder.req_date.setText(datetimevaluereq);
           holder.statusType.setText(list_loan.get(position).getStatusType());
+        if (!"Closed".equals(holder.statusType.getText()))
+        {
+            holder.cancel.setVisibility(View.VISIBLE);
 
-        //  holder.txtPin.setText(superHero.getPin());
-        String powers = "";
+        }
+        else {
+            holder.cancel.setVisibility(View.GONE);
+        }
 
-       /* for(int i = 0; i<superHero.getPowers().size(); i++){
-            powers+= superHero.getPowers().get(i);
-        }*/
+
     }
 
     @Override
@@ -80,7 +83,7 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
 
         public TextView requestCode;
         public TextView req_date;
-        public TextView statusType;
+        public TextView statusType,cancel;
 
 
 
@@ -93,7 +96,7 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
             req_date = itemView.findViewById(R.id.reqCreatedDate);
             statusType = itemView.findViewById(R.id.statusType);
 
-            //  txtMobileNo = itemView.findViewById(R.id.mobileNo);
+              cancel = itemView.findViewById(R.id.cancel);
             //   txtPin = itemView.findViewById(R.id.pin);
 
 

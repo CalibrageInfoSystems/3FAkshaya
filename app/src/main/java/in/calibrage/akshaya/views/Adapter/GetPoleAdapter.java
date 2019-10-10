@@ -53,7 +53,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         public TextView statusType;
         public TextView paymentMode, amount;
         public ImageView showMore;
-
+        public TextView cancel;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -66,7 +66,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
             paymentMode = itemView.findViewById(R.id.paymentMode);
           card_view =   itemView.findViewById(R.id.card_view);
           amount=itemView.findViewById(R.id.amount);
-            //  txtMobileNo = itemView.findViewById(R.id.mobileNo);
+            cancel = itemView.findViewById(R.id.cancel);
             //   txtPin = itemView.findViewById(R.id.pin);
 
             card_view.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +110,15 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
         holder.amount.setText(list.get(position).getUsageAmount().toString());
+
+        if (!"Closed".equals(holder.statusType.getText()))
+        {
+            holder.cancel.setVisibility(View.VISIBLE);
+
+        }
+        else {
+            holder.cancel.setVisibility(View.GONE);
+        }
 
         //      holder.imageView.setImageResource(listdata[position].getImgId());
 

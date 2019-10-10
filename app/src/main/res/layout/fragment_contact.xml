@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.fragments.contactfragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_gravity="center"
+        android:id="@+id/lin_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:layout_marginBottom="@dimen/_8dp"
+        android:background="@drawable/collect_bg">
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/lin_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_head"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tvtext_item_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15sp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/officer_name"
+                android:textColor="@color/white"
+                
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/dot2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15sp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/officer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15sp"
+                android:layout_toRightOf="@+id/dot2"
+                android:fontFamily="@font/roboto_regular"
+                android:hint=""
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_two"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tvtext_item_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/officer_mobile"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/officer_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot3"
+                android:fontFamily="@font/roboto_regular"
+                android:hint=""
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_three"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tvtext_item_six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/manager_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/manager_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot4"
+                android:fontFamily="@font/roboto_regular"
+                android:hint=""
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_four"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tvtext_item_eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:text="@string/head_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/head_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot5"
+                android:fontFamily="@font/roboto_regular"
+                android:hint=""
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lin_six"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_five"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tvtext_item_ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/customer_care"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/care_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot6"
+                android:fontFamily="@font/roboto_regular"
+                android:hint=""
+                android:textColor="@color/green"
+                android:text=""
+
+                android:textSize="@dimen/album_title" />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lin_seven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_six"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/whats_number"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dot7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/whatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="5sp"
+                android:layout_toRightOf="@+id/dot7"
+                android:fontFamily="@font/roboto_regular"
+                android:hint=""
+                android:text="999"
+                android:textColor="@color/green"
+
+                android:textSize="@dimen/album_title" />
+
+            -->
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
