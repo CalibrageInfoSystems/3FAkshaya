@@ -468,6 +468,7 @@
     <string name="link">Link to Google Maps</string>
     <string name="map">పటాలు</string>
     <string name="list">వరుస</string>
+    <string name="view_in_map">మ్యాప్‌లో చూడండి</string>
     //test
 </resources>
 

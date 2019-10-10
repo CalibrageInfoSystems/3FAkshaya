@@ -40,7 +40,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
         ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getName());
-        holder.learn_relative.setOnClickListener(new View.OnClickListener() {
+         holder.learn_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, EncyclopediaActivity.class);

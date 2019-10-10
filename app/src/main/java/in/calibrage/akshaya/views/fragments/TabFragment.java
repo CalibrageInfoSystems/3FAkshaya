@@ -78,7 +78,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private GetRecommendationsByAgeAdapter adapter;
     private List<GetRecommendationsByAgeModel> recom_list = new ArrayList<>();
     private LinearLayout lyt_firstTab;
-    LinearLayout noRecords, noVedios;
+    LinearLayout noRecords, noVedios, no_data;
 
     public static Fragment getInstance(int position, int count) {
         Bundle bundle = new Bundle();
@@ -124,6 +124,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
         textView.setVisibility(View.GONE);
         rcv_pdf = view.findViewById(R.id.rcv_pdf);
         rcv_video = view.findViewById(R.id.rcv_video);
+        no_data = view.findViewById(R.id.no_data);
         rcv_recom = view.findViewById(R.id.rcv_recom);
         spinner = (Spinner) view.findViewById(R.id.spinner);
         llmanagerPDF = new GridLayoutManager(getContext(), 2);
@@ -210,8 +211,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                                 mGetEncyclopediaDetails.getListResult()) {
                             if (listResult.getFileType().equalsIgnoreCase("PDF"))
                                 listResultPDF.add(listResult);
-                            else
-                            {
+                            else {
                                 listResultVideo.add(listResult);
                             }
 
@@ -229,23 +229,28 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
 
                             lyt_firstTab.setVisibility(View.VISIBLE);
                             rcv_video.setVisibility(View.GONE);
+                            no_data.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
                         } else if (count == 3 && position == 1 && listResultVideo.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
                             noVedios.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
+                            no_data.setVisibility(View.GONE);
 
                         } else if (count == 3 && position == 2 && listResultPDF.size() == 0) {
                             rcv_video.setVisibility(View.GONE);
                             noRecords.setVisibility(View.VISIBLE);
                             lyt_firstTab.setVisibility(View.GONE);
+                            no_data.setVisibility(View.GONE);
                         } else if (count == 2 && position == 0 && listResultVideo.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
                             noVedios.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
+                            no_data.setVisibility(View.GONE);
                         } else if (count == 2 && position == 1 && listResultPDF.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
                             rcv_video.setVisibility(View.GONE);
+                            no_data.setVisibility(View.GONE);
                             noRecords.setVisibility(View.VISIBLE);
                         }
 

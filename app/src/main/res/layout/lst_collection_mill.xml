@@ -37,7 +37,7 @@
                     android:layout_weight="0.3"
                     android:padding="23dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_collection_list" />
+                    android:src="@drawable/ic_mill_list" />
 
 
                 <LinearLayout
@@ -181,7 +181,7 @@
                             android:layout_height="30dp"
                             android:layout_weight="0.4"
                             android:gravity="center"
-                            android:text="@string/view_in_map"
+                            android:text="View in Map"
 
                             android:textColor="@color/text_dark_gray"
                             android:textStyle="bold" />

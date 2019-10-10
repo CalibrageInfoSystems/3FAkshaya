@@ -299,6 +299,7 @@
     <string name="link">Link to Google Maps</string>
     <string name="map">maps</string>
     <string name="list">list</string>
+    <string name="view_in_map">View in Map</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

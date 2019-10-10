@@ -144,4 +144,26 @@
             android:textColor="@color/colorOrange"
             android:textSize="@dimen/margin_20" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="230dp"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center|bottom"
+            android:text="No Data Found"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/margin_20" />
+    </LinearLayout>
 </LinearLayout>
