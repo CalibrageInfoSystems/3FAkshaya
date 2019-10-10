@@ -118,10 +118,10 @@ public  class resGet3FInfo {
         private String districtName;
         @SerializedName("latitude")
         @Expose
-        private Object latitude;
+        private Double latitude;
         @SerializedName("longitude")
         @Expose
-        private Object longitude;
+        private Double longitude;
         @SerializedName("isMill")
         @Expose
         private Boolean isMill;
@@ -158,19 +158,19 @@ public  class resGet3FInfo {
             this.districtName = districtName;
         }
 
-        public Object getLatitude() {
+        public Double getLatitude() {
             return latitude;
         }
 
-        public void setLatitude(Object latitude) {
+        public void setLatitude(Double latitude) {
             this.latitude = latitude;
         }
 
-        public Object getLongitude() {
+        public Double getLongitude() {
             return longitude;
         }
 
-        public void setLongitude(Object longitude) {
+        public void setLongitude(Double longitude) {
             this.longitude = longitude;
         }
 
@@ -198,10 +198,10 @@ public  class resGet3FInfo {
         private String address;
         @SerializedName("latitude")
         @Expose
-        private Object latitude;
+        private Double latitude;
         @SerializedName("longitude")
         @Expose
-        private Object longitude;
+        private Double longitude;
 
         public String getGodown() {
             return godown;
@@ -227,19 +227,19 @@ public  class resGet3FInfo {
             this.address = address;
         }
 
-        public Object getLatitude() {
+        public Double getLatitude() {
             return latitude;
         }
 
-        public void setLatitude(Object latitude) {
+        public void setLatitude(Double latitude) {
             this.latitude = latitude;
         }
 
-        public Object getLongitude() {
+        public Double getLongitude() {
             return longitude;
         }
 
-        public void setLongitude(Object longitude) {
+        public void setLongitude(Double longitude) {
             this.longitude = longitude;
         }
 
@@ -371,10 +371,10 @@ public  class resGet3FInfo {
         private String districtName;
         @SerializedName("latitude")
         @Expose
-        private Object latitude;
+        private Double latitude;
         @SerializedName("longitude")
         @Expose
-        private Object longitude;
+        private Double longitude;
         @SerializedName("isMill")
         @Expose
         private Boolean isMill;
@@ -411,19 +411,19 @@ public  class resGet3FInfo {
             this.districtName = districtName;
         }
 
-        public Object getLatitude() {
+        public Double getLatitude() {
             return latitude;
         }
 
-        public void setLatitude(Object latitude) {
+        public void setLatitude(Double latitude) {
             this.latitude = latitude;
         }
 
-        public Object getLongitude() {
+        public Double getLongitude() {
             return longitude;
         }
 
-        public void setLongitude(Object longitude) {
+        public void setLongitude(Double longitude) {
             this.longitude = longitude;
         }
 

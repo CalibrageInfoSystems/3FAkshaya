@@ -126,6 +126,13 @@
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyC7x_V4w0B1Je8ADtcovKi-Zpm5TTHwmJU" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
     </application>
     <uses-feature android:name="android.hardware.camera.autofocus" />
 

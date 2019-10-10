@@ -466,6 +466,8 @@
     <string name="Mills">Mills</string>
     <string name="name">Name</string>
     <string name="link">Link to Google Maps</string>
+    <string name="map">పటాలు</string>
+    <string name="list">వరుస</string>
     //test
 </resources>
 
