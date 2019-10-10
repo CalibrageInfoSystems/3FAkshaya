@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,17 +12,36 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.models.DeleteObject;
 import in.calibrage.akshaya.models.ResPole;
+import in.calibrage.akshaya.models.Resdelete;
 import in.calibrage.akshaya.models.Resfert;
+import in.calibrage.akshaya.service.ApiService;
+import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.actvity.RequestListctivity;
+import retrofit2.adapter.rxjava.HttpException;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+import static in.calibrage.akshaya.views.Adapter.MyLabour_ReqAdapter.recreateActivityCompat;
 
 
 public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHolder> {
@@ -30,13 +50,16 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
     public Context mContext;
     private Animation animationUp, animationDown;
     private final int COUNTDOWN_RUNNING_TIME = 500;
-    private GetPoleAdapterListener listener;
+    private GetPoleAdapterListener1 listener;
     public CardView card_view;
-    String datetimevaluereq;
+    String datetimevaluereq,currentDate;
     // RecyclerView recyclerView;
+    String selectedItemID;
+    int selectedPO;
+    private Subscription mSubscription;
 
 
-    public GetPoleAdapter(List<ResPole.ListResult> list, Context ctx, GetPoleAdapterListener listener) {
+    public GetPoleAdapter(List<ResPole.ListResult> list, Context ctx, GetPoleAdapterListener1 listener) {
         this.mContext = ctx;
         this.listener = listener;
         this.list = list;
@@ -69,14 +92,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
             cancel = itemView.findViewById(R.id.cancel);
             //   txtPin = itemView.findViewById(R.id.pin);
 
-            card_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // send selected contact in callback
-                    listener.onContactSelected(list.get(getAdapterPosition()));
 
-                }
-            });
         }
 
 
@@ -91,7 +107,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
@@ -110,7 +126,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
         holder.amount.setText(list.get(position).getUsageAmount().toString());
-
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (!"Closed".equals(holder.statusType.getText()))
         {
             holder.cancel.setVisibility(View.VISIBLE);
@@ -120,6 +136,27 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
             holder.cancel.setVisibility(View.GONE);
         }
 
+        holder.cancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                selectedItemID = list.get(position).getRequestCode();
+                selectedPO = position;
+                try {
+                    delete_request();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onContactSelected1(list.get(position).getRequestCode().toString());
+            }
+        });
         //      holder.imageView.setImageResource(listdata[position].getImgId());
 
 
@@ -168,6 +205,58 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
 //        });
     }
 
+    private void delete_request()  throws JSONException {
+
+        JsonObject object = Requestobject();
+        ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
+        mSubscription = service.postdelete(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Resdelete>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onNext(Resdelete resdelete) {
+                        list.remove(selectedPO);
+                        Toast.makeText(mContext,"Cancelled Successfully",Toast.LENGTH_LONG).show();
+                        recreateActivityCompat((Activity) mContext);
+
+                    }
+
+
+
+                });
+    }
+
+    private JsonObject Requestobject() {
+        DeleteObject requestModel = new DeleteObject();
+        requestModel.setRequestCode(selectedItemID);
+        requestModel.setStatusTypeId(32);
+        requestModel.setUpdatedByUserId(null);
+        requestModel.setUpdatedDate(currentDate);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+
+
+    }
 
     @Override
     public int getItemCount() {
@@ -178,8 +267,8 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
     }
 
 
-    public interface GetPoleAdapterListener {
-        void onContactSelected(ResPole.ListResult products);
+    public interface GetPoleAdapterListener1 {
+        void onContactSelected1(String products);
     }
 
 }

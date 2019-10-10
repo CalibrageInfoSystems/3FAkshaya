@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.actvity.RequestListctivity"></activity>
+        <activity android:name=".views.actvity.product_list"></activity>
+        <activity android:name=".views.actvity.RequestListctivity" />
         <activity android:name=".views.actvity.MyReqLoanActivity" />
         <activity android:name=".views.actvity.MyReqVisitActivity" />
         <activity android:name=".views.actvity.MyQuickPayRequests" />

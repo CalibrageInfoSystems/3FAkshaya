@@ -28,7 +28,9 @@ import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.ResLoan;
 import in.calibrage.akshaya.models.ResPole;
 import in.calibrage.akshaya.models.Resbasicinfo;
+import in.calibrage.akshaya.models.Resdelete;
 import in.calibrage.akshaya.models.Resfert;
+import in.calibrage.akshaya.models.Resproduct;
 import in.calibrage.akshaya.models.Resquickpay;
 import in.calibrage.akshaya.models.SpinnerModel;
 import in.calibrage.akshaya.models.Stand_recom_model;
@@ -173,9 +175,12 @@ public interface ApiService {
     @GET
     Observable<res_plotdetails> getplotinfo(@Url String url);
 
-  /*  @POST(APIConstantURL.labour_response)
-    Observable<labour_req_response> postLabour_request(@Body JsonObject data);
-*/
+  @POST(APIConstantURL.delete)
+    Observable<Resdelete> postdelete(@Body JsonObject data);
+    @GET
+    Observable<Resproduct>getLoan(@Url String url);
+
+
 
  /*
     // PASSWORD RESET
