@@ -2,6 +2,7 @@ package in.calibrage.akshaya.views.fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.smarteist.autoimageslider.IndicatorAnimations;
@@ -27,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import dmax.dialog.SpotsDialog;
+import in.calibrage.akshaya.BottomLinster;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.localData.SharedPrefsData;
@@ -183,6 +186,14 @@ public class HomeFragment extends BaseFragment {
         return v;
     }
 
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public static void setTAG(String TAG) {
+        HomeFragment.TAG = TAG;
+    }
+
     private void GetBannerByStateCode() {
 
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
@@ -268,15 +279,27 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG,"----- analysis -- Life cycle :ON Resume()");
+        Log.d(TAG, "----- analysis -- Life cycle :ON Resume()");
         GetBannerByStateCode();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(TAG,"----- analysis -- Life cycle :onPause()");
+        Log.d(TAG, "----- analysis -- Life cycle :onPause()");
     }
+
+    public class MyReceiver extends BroadcastReceiver {
+        public MyReceiver() {
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Toast.makeText(context, "Action: " + intent.getAction(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
 
 

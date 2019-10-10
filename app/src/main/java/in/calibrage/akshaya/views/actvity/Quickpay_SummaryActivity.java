@@ -74,7 +74,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     String currentDate;
     String total;
     TextView terms;
-    TextView ok, getTerms,clear;
+    TextView ok, getTerms, clear;
     TextView ffbCostTxt, convenienceChargeTxt, closingBalanceTxt, totalAmount, text_flat_charge, text_quntity, text_quickpay_fee;
     String Farmer_code;
     private Subscription mSubscription;
@@ -89,6 +89,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     List<String> ids_list = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
     String result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +103,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void init() {
-        ids_list=(ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
+        ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
 
 
         backImg = (ImageView) findViewById(R.id.back);
@@ -112,7 +113,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         save = (Button) findViewById(R.id.save);
 
 
-      //  terms = (TextView) findViewById(R.id.terms);
+        //  terms = (TextView) findViewById(R.id.terms);
 
         ffbCostTxt = (TextView) findViewById(R.id.tvtext_item_five);
         convenienceChargeTxt = (TextView) findViewById(R.id.tvtext_item_seven);
@@ -189,11 +190,10 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                 if (validations()) {
 
-                    if (isOnline()){
+                    if (isOnline()) {
                         PdfUtil.createPDF(Quickpay_SummaryActivity.this, CommonUtil.scaleDown(signatureView.getSignatureBitmap(), 200, true), text_quntity.getText().toString(), ffbCostTxt.getText().toString(), ffbCostTxt.getText().toString(), convenienceChargeTxt.getText().toString(), text_quickpay_fee.getText().toString(), closingBalanceTxt.getText().toString(), totalAmount.getText().toString());
                         submitReq();
-                        }
-                    else {
+                    } else {
                         showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
@@ -217,7 +217,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.terms_agree));
             return false;
         }
-        if(signatureView.isBitmapEmpty()){
+        if (signatureView.isBitmapEmpty()) {
             showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
             return false;
         }
@@ -330,48 +330,50 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
 
     private void submitReq() {
-        mdilogue.show();
-        JsonObject object = quickReuestobject();
-        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.postquickpay(object)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<QuickPayResponce>() {
-                    @Override
-                    public void onCompleted() {
-                        mdilogue.dismiss();
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            ((HttpException) e).code();
-                            ((HttpException) e).message();
-                            ((HttpException) e).response().errorBody();
-                            try {
-                                ((HttpException) e).response().errorBody().string();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            e.printStackTrace();
+        if (null != closingBalanceTxt.getText().toString()) {
+            mdilogue.show();
+            JsonObject object = quickReuestobject();
+            ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+            mSubscription = service.postquickpay(object)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<QuickPayResponce>() {
+                        @Override
+                        public void onCompleted() {
+                            mdilogue.dismiss();
                         }
-                        mdilogue.cancel();
-                    }
 
-                    @Override
-                    public void onNext(final QuickPayResponce quickPayResponce) {
+                        @Override
+                        public void onError(Throwable e) {
+                            if (e instanceof HttpException) {
+                                ((HttpException) e).code();
+                                ((HttpException) e).message();
+                                ((HttpException) e).response().errorBody();
+                                try {
+                                    ((HttpException) e).response().errorBody().string();
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                }
+                                e.printStackTrace();
+                            }
+                            mdilogue.cancel();
+                        }
+
+                        @Override
+                        public void onNext(final QuickPayResponce quickPayResponce) {
 
 
-                        if (quickPayResponce.getIsSuccess()) {
-                            new Handler().postDelayed(new Runnable() {
-                                @RequiresApi(api = Build.VERSION_CODES.M)
-                                @Override
-                                public void run() {
+                            if (quickPayResponce.getIsSuccess()) {
+                                new Handler().postDelayed(new Runnable() {
+                                    @RequiresApi(api = Build.VERSION_CODES.M)
+                                    @Override
+                                    public void run() {
 
-                                 result =quickPayResponce.getResult();
+                                        result = quickPayResponce.getResult();
 
-                                    showSuccesspdf();
-                                    Log.e("result==",result);
+                                        showSuccesspdf();
+                                        Log.e("result==", result);
 //                                    String selected_name = arrayyTOstring(selected_labour);
 //                                    String Amount = amount.getText().toString();
 //                                    String date = edittext.getText().toString();
@@ -387,18 +389,20 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 //
 //                                    showSuccessDialog(displayList);
-                                }
-                            }, 300);
-                        } else {
-                            showDialog(Quickpay_SummaryActivity.this, quickPayResponce.getEndUserMessage());
-                            //result="http://183.82.111.111/3FFarmer/FileRepository/2019//09//27//QuickpayPdf/20190927113441434.pdf";
+                                    }
+                                }, 300);
+                            } else {
+                                showDialog(Quickpay_SummaryActivity.this, quickPayResponce.getEndUserMessage());
+                                //result="http://183.82.111.111/3FFarmer/FileRepository/2019//09//27//QuickpayPdf/20190927113441434.pdf";
+                            }
+
                         }
 
-                    }
 
-
-                });
-
+                    });
+        }else {
+            Toast.makeText(this, "unable to process request now", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -407,13 +411,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.pdf_dialog);
-          WebView webView=dialog.findViewById(R.id.webView);
-Button btn_dialog=dialog.findViewById(R.id.btn_dialog);
+        WebView webView = dialog.findViewById(R.id.webView);
+        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-
-
 
 
         //---you need this to prevent the webview from
@@ -432,6 +434,7 @@ Button btn_dialog=dialog.findViewById(R.id.btn_dialog);
         dialog.show();
 
     }
+
     private JsonObject quickReuestobject() {
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
 
@@ -454,7 +457,7 @@ Button btn_dialog=dialog.findViewById(R.id.btn_dialog);
         requestModel.setCollectionIds(val);
         requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
-       // requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
+        // requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
         requestModel.setSignatureExtension(".png");
         requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();

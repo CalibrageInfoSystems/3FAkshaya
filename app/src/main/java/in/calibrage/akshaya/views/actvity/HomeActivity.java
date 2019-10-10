@@ -42,6 +42,7 @@ import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Field;
 
+import in.calibrage.akshaya.BottomLinster;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleTransform;
@@ -76,6 +77,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     String FragmentTAG;
     FloatingActionButton myFab;
     Integer mSelectedItem;
+    private BottomLinster linster;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -150,6 +152,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
 
                 switch (item.getItemId()) {
+
                     case R.id.action_home: {
 
                         /*replaceFragment(HomeActivity.this,R.id.content_frame,new HomeFragment(),FragmentTAG,HomeFragment.TAG);
@@ -247,50 +250,38 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             // Select home item
             bottom_navigation.setSelectedItemId(id);
             // finish();
+            bottom_navigation.setSelectedItemId(R.id.action_home);
+            if (this.dl.isDrawerOpen(GravityCompat.START))
+                this.dl.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.action_profile) {
 
 
             mSelectedItem = item.getItemId();
             viewFragment(new RequestsFragment(), ProfileFragment.TAG);
+            bottom_navigation.setSelectedItemId(R.id.action_profile);
+            if (this.dl.isDrawerOpen(GravityCompat.START))
+                this.dl.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.action_3f) {
 
             mSelectedItem = item.getItemId();
             viewFragment(new RequestsFragment(), My3FFragment.TAG);
-
+            bottom_navigation.setSelectedItemId(R.id.action_3f);
+            if (this.dl.isDrawerOpen(GravityCompat.START))
+                this.dl.closeDrawer(GravityCompat.START);
         } else if (id == R.id.My_request) {
             mSelectedItem = item.getItemId();
             viewFragment(new RequestsFragment(), RequestsFragment.TAG);
-
+            bottom_navigation.setSelectedItemId(R.id.action_requests);
+            if (this.dl.isDrawerOpen(GravityCompat.START))
+                this.dl.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_logout) {
-
+            bottom_navigation.setSelectedItemId(R.id.action_requests);
             //popupdialog to show message to logout the application
             logOutDialog();
         }
-
         return true;
-/*        case R.id.action_profile: {
-//                        getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.content_frame, new ProfileFragment(), ProfileFragment.TAG)
-//                                .commit();
-            mSelectedItem =item.getItemId();
-            viewFragment(new ProfileFragment(), ProfileFragment.TAG);
-            break;
-        }
-        case R.id.action_3f: {
-                        *//*getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.content_frame, new My3FFragment(), My3FFragment.TAG)
-                                .commit();*//*
-            mSelectedItem =item.getItemId();
-            viewFragment(new My3FFragment(), My3FFragment.TAG);
-            break;
-        }
-        case R.id.action_requests: {
-            mSelectedItem =item.getItemId();
-            viewFragment(new RequestsFragment(), RequestsFragment.TAG);
-            break;
-        }*/
     }
 
     private void logOutDialog() {

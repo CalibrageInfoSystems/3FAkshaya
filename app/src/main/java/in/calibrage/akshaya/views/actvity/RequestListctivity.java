@@ -61,7 +61,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
          *
          * */
          name = getIntent().getStringExtra("key");
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
         setuptoolbar();
         init();
 

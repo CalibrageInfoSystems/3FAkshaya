@@ -31,6 +31,7 @@ import in.calibrage.akshaya.views.actvity.HomeActivity;
  * create an instance of this fragment.
  */
 public class profile_fragment extends Fragment {
+    public static final String TAG= profile_fragment.class.getSimpleName();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -134,10 +135,12 @@ public class profile_fragment extends Fragment {
             Picasso.with(getContext()).load(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()).error(R.drawable.ic_user).transform(new CircleTransform()).into(img_profile);
 
 
+        Log.d(TAG,"--- >> Bind ----->> PIN :"+catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getPinCode())
-            pin.setText(catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
+            pin.setText(": "+catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
         else
            lyt_pin.setVisibility(View.GONE);//; pin.setText(": N/A");
+
 
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName())
             father_name.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName());
@@ -169,7 +172,6 @@ public class profile_fragment extends Fragment {
         state = (TextView) view.findViewById(R.id.state);
         pin = (TextView) view.findViewById(R.id.pincode);
         mobile = (TextView) view.findViewById(R.id.mobilenumber);
-
         alt_mobile = (TextView) view.findViewById(R.id.alternatemobilenumber);
         email = (TextView) view.findViewById(R.id.emailid);
 
