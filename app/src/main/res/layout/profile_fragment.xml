@@ -77,7 +77,92 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lyt_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
+            <TextView
+                style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.4"
+                android:text="@string/mobile"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/mobilenumber"
+                style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.6"
+                android:text="@string/mobile"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyt_alt_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.4"
+                android:text="@string/alter_mobile"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/alternatemobilenumber"
+                style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.6"
+                android:text=""
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.4"
+                android:text="@string/email"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/emailid"
+                style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.6"
+                android:text=""
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
+        </LinearLayout>
         <TextView
             style="@style/Common_textView"
             android:layout_width="150dp"
@@ -304,92 +389,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/devider_line" />
 
-        <LinearLayout
-            android:id="@+id/lyt_mobile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
 
-            <TextView
-                style="@style/Common_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="0.4"
-                android:text="@string/mobile"
-                android:textAlignment="textStart"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/mobilenumber"
-                style="@style/Common_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="0.6"
-                android:text="@string/mobile"
-                android:textAlignment="textStart"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lyt_alt_mobile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                style="@style/Common_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="0.4"
-                android:text="@string/alter_mobile"
-                android:textAlignment="textStart"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/alternatemobilenumber"
-                style="@style/Common_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_weight="0.6"
-                android:text=""
-                android:textAlignment="textStart"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lyt_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                style="@style/Common_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="0.4"
-                android:text="@string/email"
-                android:textAlignment="textStart"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/emailid"
-                style="@style/Common_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="0.6"
-                android:text=""
-                android:textAlignment="textStart"
-                android:textColor="@color/black" />
-        </LinearLayout>
 
     </LinearLayout>
 

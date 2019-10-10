@@ -182,6 +182,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
                             if (quickPayModel.getListResult().isEmpty()) {
                                 noRecords.setVisibility(View.VISIBLE);
+                                nextButton.setVisibility(View.GONE);
 
                             } else {
                                 noRecords.setVisibility(View.GONE);
