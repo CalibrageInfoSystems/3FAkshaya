@@ -262,15 +262,10 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         }
                         else{
                             no_data.setVisibility(View.VISIBLE);
-
                             rcv_requests.setVisibility(View.GONE);
                         }
 
                     }
-
-
-
-
 
                 });
 
