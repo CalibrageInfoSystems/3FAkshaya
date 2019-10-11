@@ -96,7 +96,7 @@ public class Visit_request_Activity extends BaseActivity {
     private ImageView imageview, imageview2, imageview3;
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
-
+TextView deleteIcon;
     private List<Bitmap> images = new ArrayList<>();
 
     String currentDate;
@@ -111,7 +111,7 @@ public class Visit_request_Activity extends BaseActivity {
 
     EditText comments;
 
-
+    int  pos;
 
 
     @Override
@@ -139,6 +139,7 @@ public class Visit_request_Activity extends BaseActivity {
         backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         btn_addIMG = findViewById(R.id.btn_addIMG);
+        deleteIcon=findViewById(R.id.delete_icon);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
@@ -267,7 +268,14 @@ public class Visit_request_Activity extends BaseActivity {
 
             }
         });
+        deleteIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                // selected file to be remove
+                showConformationDialog(pos);
+            }
+        });
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -366,6 +374,9 @@ public class Visit_request_Activity extends BaseActivity {
 //
 //            }
 //        });
+
+
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -382,6 +393,38 @@ public class Visit_request_Activity extends BaseActivity {
             }
         });
     }
+
+
+        private void showConformationDialog(final int pos) {
+            android.app.AlertDialog.Builder builder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+            } else {
+                builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this);
+            }
+
+
+            builder.setTitle("delete_entry")
+                    .setMessage("are_you_sure_you_want_to_delete_this_entry")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            imageview.setImageBitmap(null);
+
+                            deleteIcon.setVisibility(View.GONE);
+
+
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+
+
 
     private boolean validations() {
         if (Select_Issue.getSelectedItemPosition() == 0) {

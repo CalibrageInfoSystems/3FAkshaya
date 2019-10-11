@@ -104,6 +104,12 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         } else {
             holder.cancel.setVisibility(View.GONE);
         }
+        if (!"Cancelled".equals(holder.txtStatus.getText())) {
+            holder.cancel.setVisibility(View.VISIBLE);
+
+        } else {
+            holder.cancel.setVisibility(View.GONE);
+        }
         holder.txtname.setText(labourlist_Set.get(position).getLabourDetails().getServiceTypes());
 
 

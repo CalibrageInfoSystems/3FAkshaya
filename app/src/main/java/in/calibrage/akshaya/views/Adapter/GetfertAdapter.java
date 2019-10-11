@@ -138,7 +138,12 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         else {
             holder.cancel.setVisibility(View.GONE);
         }
+        if (!"Cancelled".equals(holder.statusType.getText())) {
+            holder.cancel.setVisibility(View.VISIBLE);
 
+        } else {
+            holder.cancel.setVisibility(View.GONE);
+        }
         holder.cancel.setOnClickListener(new View.OnClickListener() {
 
             @Override

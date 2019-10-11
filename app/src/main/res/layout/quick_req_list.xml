@@ -118,10 +118,13 @@
                 android:layout_alignBaseline="@id/amountLabel"/>
             <TextView
                 android:id="@+id/cancel"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/statusTypeLabel"
-           android:background="@drawable/cancel"
+                android:background="@drawable/button_bg"
+                android:text="@string/cancel"
+                android:gravity="center"
+                android:visibility="gone"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_10"
                 android:textColor="@color/Red"

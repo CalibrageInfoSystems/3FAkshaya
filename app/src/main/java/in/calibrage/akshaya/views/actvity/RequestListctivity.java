@@ -145,7 +145,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                 .build();
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
-       // no_data.setText("No" + name);
+
     }
 
     private void setuptoolbar() {
@@ -200,14 +200,15 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         if(poleResponce.getListResult() != null)
                         {
                             no_data.setVisibility(View.GONE);
+                            rcv_requests.setVisibility(View.VISIBLE);
                             GetPoleAdapter adapter = new GetPoleAdapter(poleResponce.getListResult(), ctx, RequestListctivity.this);
                             rcv_requests.setAdapter(adapter);
 
-                        }
+                    }
                         else{
-
-                            no_data.setText(poleResponce.getEndUserMessage());
-
+                            no_data.setVisibility(View.VISIBLE);
+                            no_data.setText("No " + name + " Found");
+                            rcv_requests.setVisibility(View.GONE);
                         }
 
                     }
@@ -254,15 +255,21 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         if(fertResponce.getListResult() != null)
                         {
                             no_data.setVisibility(View.GONE);
+                            rcv_requests.setVisibility(View.VISIBLE);
                             GetfertAdapter adapter = new GetfertAdapter(fertResponce.getListResult(), ctx, RequestListctivity.this);
                             rcv_requests.setAdapter(adapter);
+
                         }
                         else{
                             no_data.setVisibility(View.VISIBLE);
 
+                            rcv_requests.setVisibility(View.GONE);
                         }
 
                     }
+
+
+
 
 
                 });
@@ -306,11 +313,13 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         if(resquickpay.getListResult() != null)
                         {
                             no_data.setVisibility(View.GONE);
+                            rcv_requests.setVisibility(View.VISIBLE);;
                             MyQuickPayDataAdapter adapter = new MyQuickPayDataAdapter(resquickpay.getListResult(), ctx);
                             rcv_requests.setAdapter(adapter);
                         }
                         else{
                             no_data.setVisibility(View.VISIBLE);
+                            rcv_requests.setVisibility(View.GONE);;
 
                         }
 
@@ -366,11 +375,13 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         if(resLoan.getListResult() != null)
                         {
                             no_data.setVisibility(View.GONE);
+                            rcv_requests.setVisibility(View.VISIBLE);;
                             GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
                             rcv_requests.setAdapter(adapter);
                         }
                         else{
                             no_data.setVisibility(View.VISIBLE);
+                            rcv_requests.setVisibility(View.GONE);;
 
                         }
 
