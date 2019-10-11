@@ -50,6 +50,7 @@ import java.util.Locale;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.Reqinstall;
 import in.calibrage.akshaya.models.Resinstall;
@@ -68,10 +69,11 @@ public class LoginActivity extends BaseActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Button loginBtn, Qr_scan;
     private EditText farmerId;
-    private String Farmer_code,Device_id,currentDate;
+    private String Farmer_code, Device_id, currentDate;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     TelephonyManager tel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,9 +99,9 @@ public class LoginActivity extends BaseActivity {
         tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
 
-         tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-         Log.e("deviece==id",tel.getDeviceId().toString());
-        Device_id=tel.getDeviceId().toString();
+        tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        Log.e("deviece==id", tel.getDeviceId().toString());
+        Device_id = tel.getDeviceId().toString();
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         //  imei = (TextView) findViewById(R.id.textView2);
 
@@ -108,7 +110,10 @@ public class LoginActivity extends BaseActivity {
                 .setTheme(R.style.Custom)
                 .build();
         validationPopShow();
-        AddAppInstallation();
+        if (!SharedPrefsData.getBool(this, "installed")) {
+            AddAppInstallation();
+        }
+
 
     }
 
@@ -142,9 +147,8 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onNext(Resinstall resinstall) {
-
+                        SharedPrefsData.putBool(LoginActivity.this, "installed", true);
                     }
-
 
 
                 });
@@ -157,8 +161,8 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if (farmerId.getText() != null & farmerId.getText().toString().trim() != "" & !TextUtils.isEmpty(farmerId.getText())) {
-                    Farmer_code =farmerId.getText().toString();
-                    Log.e("former==id",Farmer_code);
+                    Farmer_code = farmerId.getText().toString();
+                    Log.e("former==id", Farmer_code);
 
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("FARMER", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
@@ -167,13 +171,13 @@ public class LoginActivity extends BaseActivity {
                     if (isOnline())
                         GetLogin();
                     else {
-                        showDialog(LoginActivity.this,getResources().getString(R.string.Internet));
+                        showDialog(LoginActivity.this, getResources().getString(R.string.Internet));
                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                   // validationPopShow();
-                   // farmerId.setError("Please Enter Farmer Id");
-                    showDialog(LoginActivity.this,getResources().getString(R.string.farmar_id));
+                    // validationPopShow();
+                    // farmerId.setError("Please Enter Farmer Id");
+                    showDialog(LoginActivity.this, getResources().getString(R.string.farmar_id));
                     //showDialog(LoginActivity.this,"Please Enter Farmer Id");
                 }
             }
@@ -194,6 +198,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+
     private void GetLogin() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -231,20 +236,18 @@ public class LoginActivity extends BaseActivity {
                                 public void run() {
                                     /* Create an Intent that will start the Menu-Activity. */
 
-                                    startActivity( new Intent(getApplicationContext(), OtpActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), OtpActivity.class));
                                     finish();
                                 }
                             }, 300);
                         } else {
-                            showDialog(LoginActivity.this,farmerResponceModel.getEndUserMessage());
+                            showDialog(LoginActivity.this, farmerResponceModel.getEndUserMessage());
                         }
                     }
                 });
 
 
     }
-
-
 
 
     private JsonObject getinstallobject() {
