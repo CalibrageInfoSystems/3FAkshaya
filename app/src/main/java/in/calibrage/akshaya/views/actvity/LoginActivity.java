@@ -109,7 +109,7 @@ public class LoginActivity extends BaseActivity {
 
 
 
-        
+
         //farmerId.setText("APWGBDAB00010001");
 
         tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
