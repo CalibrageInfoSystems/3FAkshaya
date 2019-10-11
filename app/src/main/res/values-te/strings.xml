@@ -431,46 +431,50 @@
     <string name="success_pole">పోల్ అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     <string name="product_details">వస్తువు వివరాలు</string>
     <string name="signature">దయచేసి సంతకం రాయండి</string>
-    <string name="requestCodeLabel">Requested Date</string>
-    <string name="reqDatee">Requested Date</string>
-    <string name="paymentMode">Payment Mode</string>
-    <string name="req_date">Requested Date</string>
-    <string name="serviceType">Service Type</string>
-    <string name="lab_req">Labour Request</string>
-    <string name="pole_req">Pole Request</string>
-    <string name="fert_req">Fertilizer Request</string>
-    <string name="quick_req">QuickPay Request</string>
-    <string name="visit_req">Visit Request</string>
-    <string name="Loan_req">Loan Request</string>
-    <string name="officer_name">Cluster Officer Name</string>
-    <string name="officer_mobile">Cluster Officer Mobile</string>
-    <string name="manager_name" />
-    <string name="head_name">State Head Name</string>
-    <string name="whats_number">Whatsapp Number</string>
-    <string name="customer_care">Customer Care Number</string>
-    <string name="farmer_name">Farmer Name</string>
-    <string name="fa_hu_name">Father/Husband</string>
-    <string name="res_address">Residential Address</string>
-    <string name="address">Address</string>
-    <string name="mandal">Mandal</string>
-    <string name="dist">District</string>
-    <string name="state">State</string>
-    <string name="pin">PinCode</string>
-    <string name="mobile">Mobile Number</string>
-    <string name="alter_mobile">Alternate Mobile \nNumber</string>
-    <string name="email">Email ID</string>
-    <string name="plaod_hect">Plot Hectrage</string>
-    <string name="sur_num">Plot Survery \nNumber</string>
-    <string name="yop">YOP</string>
-    <string name="fert_godown">Fertilizer Godowns</string>
-    <string name="collection_centres">Collection Centers</string>
-    <string name="Mills">Mills</string>
-    <string name="name">Name</string>
-    <string name="link">Link to Google Maps</string>
+    <string name="requestCodeLabel">అభ్యర్థించిన తేదీ</string>
+    <string name="reqDatee">అభ్యర్థించిన తేదీ</string>
+    <string name="paymentMode">చెల్లింపు మోడ్</string>
+    <string name="req_date">అభ్యర్థించిన తేదీ</string>
+    <string name="serviceType">సేవా రకం</string>
+    <string name="lab_req">కార్మిక అభ్యర్థన</string>
+    <string name="pole_req">పోల్ అభ్యర్థన</string>
+    <string name="fert_req">ఎరువుల అభ్యర్థన</string>
+    <string name="quick_req">శీఘ్రచెల్లింపు అభ్యర్థన</string>
+    <string name="visit_req">అభ్యర్థనను సందర్శించండి</string>
+    <string name="Loan_req">రుణ అభ్యర్థన</string>
+    <string name="officer_name">క్లస్టర్ ఆఫీసర్ పేరు</string>
+    <string name="officer_mobile">క్లస్టర్ ఆఫీసర్ మొబైల్</string>
+    <string name="manager_name">క్లస్టర్ మేనేజర్ పేరు </string>
+    <string name="head_name">రాష్ట్ర హెడ్ పేరు</string>
+    <string name="whats_number">వాట్సాప్ నెంబర్</string>
+    <string name="customer_care">కస్టమర్ కేర్ నంబర్</string>
+    <string name="farmer_name">రైతు పేరు</string>
+    <string name="fa_hu_name">తండ్రి / భర్త</string>
+    <string name="res_address">నివాస చిరునామా</string>
+    <string name="address">చిరునామా</string>
+    <string name="mandal">మండల</string>
+    <string name="dist">జిల్లా</string>
+    <string name="state">రాష్ట్రం</string>
+    <string name="pin">పిన్ కోడ్</string>
+    <string name="mobile">మొబైల్ సంఖ్య</string>
+    <string name="alter_mobile">ప్రత్యామ్నాయ మొబైల్ \n  సంఖ్య</string>
+    <string name="email">ఇమెయిల్ ఐడి</string>
+    <string name="plaod_hect">ప్లాట్ హెక్ట్రేజ్</string>
+    <string name="sur_num">ప్లాట్ సర్వే \n సంఖ్య</string>
+    <string name="yop">యోప్</string>
+    <string name="fert_godown">ఎరువుల గోడౌన్లు</string>
+    <string name="collection_centres">సేకరణ కేంద్రాలు</string>
+    <string name="Mills">మిల్స్</string>
+    <string name="name">పేరు</string>
+    <string name="link">గూగుల్ మ్యాప్‌లకు లింక్ చేయండి</string>
     <string name="map">పటాలు</string>
     <string name="list">వరుస</string>
-    <string name="view_in_map">మ్యాప్‌లో చూడండి</string>
     <string name="important_contacts">ముఖ్యమైన పరిచయాలు</string>
-    //test
+    <string-array name="switch_tabs">
+        <item>గోదాముల</item>
+        <item>సేకరణ కేంద్రాలు</item>
+        <item>మిల్స్</item>
+    </string-array>
+
 </resources>
 

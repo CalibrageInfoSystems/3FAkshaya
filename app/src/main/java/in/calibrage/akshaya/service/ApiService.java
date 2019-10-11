@@ -30,6 +30,7 @@ import in.calibrage.akshaya.models.ResPole;
 import in.calibrage.akshaya.models.Resbasicinfo;
 import in.calibrage.akshaya.models.Resdelete;
 import in.calibrage.akshaya.models.Resfert;
+import in.calibrage.akshaya.models.Resinstall;
 import in.calibrage.akshaya.models.Resproduct;
 import in.calibrage.akshaya.models.Resquickpay;
 import in.calibrage.akshaya.models.SpinnerModel;
@@ -179,6 +180,11 @@ public interface ApiService {
     Observable<Resdelete> postdelete(@Body JsonObject data);
     @GET
     Observable<Resproduct>getLoan(@Url String url);
+
+
+
+    @POST(APIConstantURL.AddAppInstallation)
+    Observable<Resinstall> post_install(@Body JsonObject data);
 
 
 

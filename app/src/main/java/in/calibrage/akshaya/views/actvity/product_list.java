@@ -79,17 +79,19 @@ public class product_list extends BaseActivity {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),MyReqpoleActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
+               finish();
             }
         });
         ImageView home_btn=(ImageView)findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         });
 

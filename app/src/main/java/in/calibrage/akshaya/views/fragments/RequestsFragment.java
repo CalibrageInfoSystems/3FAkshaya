@@ -65,17 +65,17 @@ public class RequestsFragment extends Fragment implements MyReqListAdapter.Reque
                 R.drawable.ic_bank,
 
         };
-        Request_settings a = new Request_settings("Labour Request", covers[0]);
+        Request_settings a = new Request_settings( getResources().getString(R.string.lab_req), covers[0]);
         request_List.add(a);
-        a = new Request_settings("Pole Request", covers[1]);
+        a = new Request_settings( getResources().getString(R.string.pole_req), covers[1]);
         request_List.add(a);
-        a = new Request_settings("Fertilizer Request", covers[2]);
+        a = new Request_settings( getResources().getString(R.string.fert_req), covers[2]);
         request_List.add(a);
-        a = new Request_settings("QuickPay Request", covers[3]);
+        a = new Request_settings(getResources().getString(R.string.quick_req), covers[3]);
         request_List.add(a);
-        a = new Request_settings("Visit Request", covers[4]);
+        a = new Request_settings(getResources().getString(R.string.visit_req), covers[4]);
         request_List.add(a);
-        a = new Request_settings("Loan Request", covers[5]);
+        a = new Request_settings(getResources().getString(R.string.Loan_req), covers[5]);
         request_List.add(a);
 
 
@@ -83,32 +83,32 @@ public class RequestsFragment extends Fragment implements MyReqListAdapter.Reque
 
     @Override
     public void onContactSelected(Request_settings request) {
-        if (request.getName().contains("Labour Request")) {
+        if (request.getName().contains( getResources().getString(R.string.lab_req))) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
             intent.putExtra("key", getResources().getString(R.string.lab_req));
             startActivity(intent);
         }
-        if (request.getName().contains("Pole Request")) {
+        if (request.getName().contains( getResources().getString(R.string.pole_req))) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
             intent.putExtra("key", getResources().getString(R.string.pole_req));
             startActivity(intent);
         }
-        if (request.getName().contains("Fertilizer Request")) {
+        if (request.getName().contains( getResources().getString(R.string.fert_req))) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
             intent.putExtra("key", getResources().getString(R.string.fert_req));
             startActivity(intent);
         }
-        if (request.getName().contains("QuickPay Request")) {
+        if (request.getName().contains(getResources().getString(R.string.quick_req))) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
             intent.putExtra("key", getResources().getString(R.string.quick_req));
             startActivity(intent);
         }
-        if (request.getName().contains("Visit Request")) {
+        if (request.getName().contains(getResources().getString(R.string.visit_req))) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
             intent.putExtra("key", getResources().getString(R.string.visit_req));
             startActivity(intent);
         }
-        if (request.getName().contains("Loan Request")) {
+        if (request.getName().contains(getResources().getString(R.string.Loan_req))) {
             Intent intent = new Intent(getContext(), RequestListctivity.class);
             intent.putExtra("key", getResources().getString(R.string.Loan_req));
             startActivity(intent);

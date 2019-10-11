@@ -84,7 +84,8 @@ public class contactfragment extends Fragment {
         head_name=(TextView)view.findViewById(R.id.head_name);
         care_number=(TextView)view.findViewById(R.id.care_number);
         whatsapp_number=(TextView)view.findViewById(R.id.whatsapp);
-
+        care_number.setText("1234567890");
+        whatsapp_number.setText("9876543210");
         Get3FInfo();
         return view;
 
@@ -125,8 +126,8 @@ public class contactfragment extends Fragment {
                         head_name.setText(resGet3FInfo.getResult().getImportantContacts().getStateHeadName());
 
                         Log.d(TAG, "---- analysis ---->GetContactInfo -->> :" + resGet3FInfo.getResult().getImportantContacts());
-                        care_number.setText("1234567890");
-                        whatsapp_number.setText("9876543210");
+//                        care_number.setText("1234567890");
+//                        whatsapp_number.setText("9876543210");
                         care_number.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 Uri u = Uri.parse("tel:" + "1234567890");

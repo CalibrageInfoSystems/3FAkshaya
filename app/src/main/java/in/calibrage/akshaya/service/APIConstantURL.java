@@ -43,6 +43,8 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String GetPlotDetailsByFarmerCode = "Farmer/GetPlotDetailsByFarmerCode/";
     String GetProductDetailsByRequestCode = "GetProductDetailsByRequestCode/";
     String delete  = "AppOrDecFertilizerRequest";
+
+    String AddAppInstallation = "AppInstall/AddAppInstallation";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 
