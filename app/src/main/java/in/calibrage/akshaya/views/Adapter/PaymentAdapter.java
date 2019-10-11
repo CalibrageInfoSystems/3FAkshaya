@@ -26,7 +26,7 @@ import in.calibrage.akshaya.models.PaymentResponseModel;
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHolder> {
     String datetimevaluereq;
     public Context mContext;
-    private List<PaymentResponseModel.PaymentResponce> payment_Set=new ArrayList<>();
+    private List<PaymentResponseModel.PaymentResponce> payment_Set = new ArrayList<>();
 
     public PaymentAdapter(Context mContext) {
         this.mContext = mContext;
@@ -61,7 +61,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     @Override
     public void onBindViewHolder(PaymentAdapter.ViewHolder holder, int position) {
 
-        ((ViewHolder) holder).memo_text.setText("" + payment_Set.get(position).getMemo());
+        ((ViewHolder) holder).memo_text.setText(": " + payment_Set.get(position).getMemo());
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -73,14 +73,14 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        ((ViewHolder) holder).date.setText(datetimevaluereq);
+        ((ViewHolder) holder).date.setText(": " + datetimevaluereq);
         ((ViewHolder) holder).dateLabel.setText(datetimevaluereq);
-        ((ViewHolder) holder).quantity_ffb.setText("" + payment_Set.get(position).getQuantity());
-        ((ViewHolder) holder).adhoc_value.setText("" + payment_Set.get(position).getAdhocRate());
-        ((ViewHolder) holder).txt_invoice.setText("" + payment_Set.get(position).getInvoiceRate());
-        ((ViewHolder) holder).txt_gr_rate.setText("" + payment_Set.get(position).getGRAmount());
-        ((ViewHolder) holder).adjustTxt.setText("" + payment_Set.get(position).getAdjusted());
-        ((ViewHolder) holder).finalAmount.setText("" + payment_Set.get(position).getAmount());
+        ((ViewHolder) holder).quantity_ffb.setText(": " + payment_Set.get(position).getQuantity());
+        ((ViewHolder) holder).adhoc_value.setText(": " + payment_Set.get(position).getAdhocRate());
+        ((ViewHolder) holder).txt_invoice.setText(": " + payment_Set.get(position).getInvoiceRate());
+        ((ViewHolder) holder).txt_gr_rate.setText(": " + payment_Set.get(position).getGRAmount());
+        ((ViewHolder) holder).adjustTxt.setText(": " + payment_Set.get(position).getAdjusted());
+        ((ViewHolder) holder).finalAmount.setText(": " + payment_Set.get(position).getAmount());
 
 
 //        if ((payment_Set.get(position).getBalance()) < 0) {
@@ -113,9 +113,9 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         }*/
         if ((payment_Set.get(position).getBalance()) < 0) {
             String balance1 = payment_Set.get(position).getBalance() + "" + ")";
-            ((ViewHolder) holder).balance.setText(balance1.toString().replace("-", "("));
+            ((ViewHolder) holder).balance.setText(": " + balance1.toString().replace("-", "("));
         } else {
-            ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
+            ((ViewHolder) holder).balance.setText(": " + payment_Set.get(position).getBalance());
         }
 
 

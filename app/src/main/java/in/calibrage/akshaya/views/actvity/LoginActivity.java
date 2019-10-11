@@ -190,7 +190,7 @@ public class LoginActivity extends BaseActivity {
 
                 if (ContextCompat.checkSelfPermission(LoginActivity.this,
                         Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    
+
                     startActivity(new Intent(LoginActivity.this, QRScannerActivity.class));
 
                 } else {

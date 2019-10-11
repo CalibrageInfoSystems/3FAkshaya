@@ -155,10 +155,12 @@ public class OtpActivity extends BaseActivity {
 
         Reqinstall requestModel = new Reqinstall();
         requestModel.setId(0);
+        requestModel.setImeiNumber("d7dd63ba7aceda5d");
+        //TODO
         requestModel.setFarmerCode("APWGBDAB00010001");
-        requestModel.setInstalledOn(currentDate);
-        requestModel.setLastLoginDate(currentDate);
-        requestModel.getImeiNumber("d7dd63ba7aceda5d");
+        requestModel.setInstalledOn("2019-10-02T15:02:26.5224539+05:30");
+        requestModel.setLastLoginDate("2019-10-02T15:02:26.5224539+05:30");
+
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
     }

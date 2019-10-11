@@ -45,7 +45,7 @@ public class Reqinstall {
         this.installedOn = installedOn;
     }
 
-    public String getImeiNumber(String device_id) {
+    public String getImeiNumber() {
         return imeiNumber;
     }
 
@@ -60,5 +60,6 @@ public class Reqinstall {
     public void setLastLoginDate(String lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
     }
+
 
 }
