@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +52,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
+import in.calibrage.akshaya.MainActivity;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.localData.SharedPrefsData;
@@ -63,6 +65,7 @@ import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.MyLabour_ReqAdapter;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -79,6 +82,7 @@ public class LoginActivity extends BaseActivity {
     private SpotsDialog mdilogue;
     TelephonyManager tel;
     ZXingScannerView scannerView;
+    private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +114,7 @@ public class LoginActivity extends BaseActivity {
         tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
 
-
-      //  Device_id = tel.getDeviceId().toString();
+        //  Device_id = tel.getDeviceId().toString();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -136,9 +139,7 @@ public class LoginActivity extends BaseActivity {
         validationPopShow();
 
 
-
     }
-
 
 
     private void setview() {
@@ -187,10 +188,19 @@ public class LoginActivity extends BaseActivity {
                     farmerId.setError("Please Enter Farmer Id");
                 }*/
 
-                Log.d(TAG, "----------- arun -------------");
-                startActivity(new Intent(LoginActivity.this, QRScannerActivity.class));
+                if (ContextCompat.checkSelfPermission(LoginActivity.this,
+                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    
+                    startActivity(new Intent(LoginActivity.this, QRScannerActivity.class));
+
+                } else {
+                    ActivityCompat.requestPermissions((LoginActivity) LoginActivity.this,
+                            new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+                }
+
 
             }
+
         });
     }
 
@@ -255,9 +265,14 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            startActivity(new Intent(LoginActivity.this, QRScannerActivity.class));
+        }
     }
+}
 
 
 
