@@ -32,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,7 +81,7 @@ import rx.schedulers.Schedulers;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-public class Visit_request_Activity extends BaseActivity {
+public class Visit_request_Activity extends BaseActivity implements View.OnClickListener {
     String plot_Age, location, landmarkCode, plot_id, Farmer_code;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
@@ -94,9 +95,11 @@ public class Visit_request_Activity extends BaseActivity {
     ImageButton btn_addIMG;
     private Button btn;
     private ImageView imageview, imageview2, imageview3;
+    private ImageView img_delete1, img_delete2, img_delete3;
+    private RelativeLayout lyt_img, lyt_img2, lyt_img3;
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
-TextView deleteIcon;
+
     private List<Bitmap> images = new ArrayList<>();
 
     String currentDate;
@@ -111,7 +114,7 @@ TextView deleteIcon;
 
     EditText comments;
 
-    int  pos;
+    int pos;
 
 
     @Override
@@ -121,12 +124,10 @@ TextView deleteIcon;
         requestMultiplePermissions();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-
             plot_id = extras.getString("plotid");
             plot_Age = extras.getString("plotAge");
             location = extras.getString("plotVillage");
             landmarkCode = extras.getString("landMark");
-
         }
         intview();
         setViews();
@@ -139,7 +140,6 @@ TextView deleteIcon;
         backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         btn_addIMG = findViewById(R.id.btn_addIMG);
-        deleteIcon=findViewById(R.id.delete_icon);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
@@ -169,7 +169,25 @@ TextView deleteIcon;
         submit = (Button) findViewById(R.id.req_loan);
         buttonStop.setEnabled(false);
         buttonPlayLastRecordAudio.setEnabled(false);
+
+
+        /*
+         * Images disable enable when select from Camera
+         * */
         // buttonStopPlayingRecording.setEnabled(false);
+        lyt_img = findViewById(R.id.lyt_img1);
+        lyt_img2 = findViewById(R.id.lyt_img2);
+        lyt_img3 = findViewById(R.id.lyt_img3);
+
+        img_delete1 = findViewById(R.id.img_delete1);
+        img_delete2 = findViewById(R.id.img_delete2);
+        img_delete3 = findViewById(R.id.img_delete3);
+
+        /*Initially Disbale images */
+        lyt_img.setVisibility(View.GONE);
+        lyt_img2.setVisibility(View.GONE);
+        lyt_img3.setVisibility(View.GONE);
+
 
         random = new Random();
 
@@ -215,6 +233,10 @@ TextView deleteIcon;
     }
 
     private void setViews() {
+        img_delete1.setOnClickListener(this);
+        img_delete2.setOnClickListener(this);
+        img_delete3.setOnClickListener(this);
+
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -268,14 +290,14 @@ TextView deleteIcon;
 
             }
         });
-        deleteIcon.setOnClickListener(new View.OnClickListener() {
+   /*     deleteIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 // selected file to be remove
                 showConformationDialog(pos);
             }
-        });
+        });*/
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -376,7 +398,6 @@ TextView deleteIcon;
 //        });
 
 
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -395,35 +416,34 @@ TextView deleteIcon;
     }
 
 
-        private void showConformationDialog(final int pos) {
-            android.app.AlertDialog.Builder builder;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this, android.R.style.Theme_DeviceDefault_Dialog_Alert);
-            } else {
-                builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this);
-            }
-
-
-            builder.setTitle("delete_entry")
-                    .setMessage("are_you_sure_you_want_to_delete_this_entry")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            imageview.setImageBitmap(null);
-
-                            deleteIcon.setVisibility(View.GONE);
-
-
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+    private void showConformationDialog(final int pos) {
+        android.app.AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this, android.R.style.Theme_DeviceDefault_Dialog_Alert);
+        } else {
+            builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this);
         }
 
+
+        builder.setTitle("delete_entry")
+                .setMessage("are_you_sure_you_want_to_delete_this_entry")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        imageview.setImageBitmap(null);
+
+                        // deleteIcon.setVisibility(View.GONE);
+
+
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
 
 
     private boolean validations() {
@@ -504,7 +524,7 @@ TextView deleteIcon;
 //
                                     // Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
-                                    showvisitSuccessDialog(displayList,getResources().getString(R.string.visit_success));
+                                    showvisitSuccessDialog(displayList, getResources().getString(R.string.visit_success));
                                 }
                             }, 300);
                         } else {
@@ -518,46 +538,42 @@ TextView deleteIcon;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    protected void showvisitSuccessDialog(List<MSGmodel> displayList,String summary) {
+    protected void showvisitSuccessDialog(List<MSGmodel> displayList, String summary) {
 
-final Button play;
+        final Button play;
         ImageView iv1, iv2, iv3;
         LinearLayout voice_layout;
         ViewGroup viewGroup = findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.visit_dialog, viewGroup, false);
-        TextView summary_text =dialogView.findViewById(R.id.summary_text);
+        TextView summary_text = dialogView.findViewById(R.id.summary_text);
         summary_text.setText(summary);
 
         iv1 = dialogView.findViewById(R.id.iv);
         iv2 = dialogView.findViewById(R.id.iv2);
         iv3 = dialogView.findViewById(R.id.iv3);
-        voice_layout=dialogView.findViewById(R.id.voice_layout);
-        play=dialogView.findViewById(R.id.play);
+        voice_layout = dialogView.findViewById(R.id.voice_layout);
+        play = dialogView.findViewById(R.id.play);
         iv1.setVisibility(View.GONE);
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
         voice_layout.setVisibility(View.GONE);
 
-        File file =new File(AudioSavePathInDevice);
-if(file.exists())
-{
-    voice_layout.setVisibility(View.VISIBLE);
-}
+        File file = new File(AudioSavePathInDevice);
+        if (file.exists()) {
+            voice_layout.setVisibility(View.VISIBLE);
+        }
 
-        for(int i=0; i<images.size();i++)
-        {
-            if(i== 0 )
-            {
+        for (int i = 0; i < images.size(); i++) {
+            if (i == 0) {
                 iv1.setVisibility(View.VISIBLE);
                 iv1.setImageBitmap(images.get(i));
             }
-            if(i== 1){
+            if (i == 1) {
                 iv2.setVisibility(View.VISIBLE);
                 iv2.setImageBitmap(images.get(i));
             }
 
-            if(i==2)
-            {
+            if (i == 2) {
                 iv3.setVisibility(View.VISIBLE);
                 iv3.setImageBitmap(images.get(i));
             }
@@ -854,7 +870,7 @@ if(file.exists())
         } else if (requestCode == CAMERA) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             images.add(thumbnail);
-            saveImage(thumbnail);
+          //  saveImage(thumbnail);
             displayImages();
             //Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
@@ -862,19 +878,25 @@ if(file.exists())
 
     private void displayImages() {
 
+        lyt_img.setVisibility(View.GONE);
+        lyt_img2.setVisibility(View.GONE);
+        lyt_img3.setVisibility(View.GONE);
         if (images.size() > 0) {
             if (images.size() > 0 && images.get(0) != null) {
                 imageview.setImageBitmap(images.get(0));
                 imageview.setVisibility(View.VISIBLE);
+                lyt_img.setVisibility(View.VISIBLE);
 
             }
             if (images.size() > 1 && images.get(1) != null) {
                 imageview2.setImageBitmap(images.get(1));
                 imageview2.setVisibility(View.VISIBLE);
+                lyt_img2.setVisibility(View.VISIBLE);
             }
             if (images.size() > 2 && images.get(2) != null) {
                 imageview3.setImageBitmap(images.get(2));
                 imageview3.setVisibility(View.VISIBLE);
+                lyt_img3.setVisibility(View.VISIBLE);
                 btn_addIMG.setVisibility(View.GONE);
             }
         }
@@ -986,4 +1008,24 @@ if(file.exists())
         this.finish();
     }
 
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.img_delete1:
+                images.remove(0);
+                displayImages();
+                break;
+            case R.id.img_delete2:
+                images.remove(1);
+                displayImages();
+                break;
+            case R.id.img_delete3:
+                images.remove(2);
+                displayImages();
+                break;
+
+
+        }
+    }
 }

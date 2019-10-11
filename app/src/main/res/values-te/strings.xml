@@ -124,27 +124,7 @@
         
     <string name="req_visit">సందర్శనను అభ్యర్థించండి</string>
         
-    <string name="learning">నేర్చుకోవడం</string><![CDATA[
-        
-
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-        
-    ]]>
+    <string name="learning">నేర్చుకోవడం</string><![CDATA[]]>
     <string name="time_peroid">టైమ్ పెరాయిడ్</string>
         
     <string name="from_date">తేదీ నుండి * </string>
@@ -211,11 +191,7 @@
 
         
 
-        
-
-        
-        
-    ]]>
+       ]]>
     <string name="net_weight">నికర బరువు</string>
         
     <string name="date_label">తేదీ</string>
@@ -226,17 +202,7 @@
     ]]>
     <string name="collection">కలెక్షన్స్</string>
         
-    <string name="land_mark">మైలురాయి</string><![CDATA[
-        
-
-        
-
-        
-
-        
-
-
-    />
+    <string name="land_mark">మైలురాయి</string><![CDATA[/>
      
     ]]>
     <string name="convenience_charge">సౌలభ్యం ఛార్జ్ (రూ.)</string>
@@ -394,19 +360,14 @@
     <string name="updated_by">ద్వారా నవీకరించబడింది</string>
     <string name="updated_date">నవీకరించబడిన తేదీ</string>
     <string name="no_recommendations">సిఫార్సులు లేవు</string>
-
     <string name="product">ఉత్పత్తి</string>
     <string name="gst">జిఎస్టి (%)</string>
     <string name="no_products"> ఉత్పత్తులు కనుగొనబడలేదు</string>
     <string name="gst_amount">జీఎస్టీ (రూ.)</string>
     <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
-
     <string name="fertilizer_crop">ఎరువుల వివరాలు</string>
-
-
     <string name="fertilizerSource">ఎరువుల మూలం</string>
     <string name="fertilizer_name">ఎరువుల పేరు</string>
-
     <string name="lastAppliedDate">చివరి అనువర్తిత తేదీ</string>
     <string name="applyFertilizerFrequencyType">ఎరువుల ఫ్రీక్వెన్సీని వర్తించండి</string>
     <string name="measurement">వయసు</string>
