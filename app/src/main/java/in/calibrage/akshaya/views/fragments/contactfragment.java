@@ -2,6 +2,7 @@ package in.calibrage.akshaya.views.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,8 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class contactfragment extends Fragment {
@@ -92,9 +95,11 @@ public class contactfragment extends Fragment {
 
     private void Get3FInfo() {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
+        SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
+     String   Farmer_code = pref.getString("farmerid", "");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
-        mSubscription = service.get3finfo(APIConstantURL.Get3FInfo  + "APWGBDAB00010001"+"/"+statecode)
+        mSubscription = service.get3finfo(APIConstantURL.Get3FInfo  + Farmer_code+"/"+statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<resGet3FInfo>() {
                     @Override
