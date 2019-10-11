@@ -124,27 +124,7 @@
         
     <string name="req_visit">సందర్శనను అభ్యర్థించండి</string>
         
-    <string name="learning">నేర్చుకోవడం</string><![CDATA[
-        
-
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-        
-    ]]>
+    <string name="learning">నేర్చుకోవడం</string><![CDATA[]]>
     <string name="time_peroid">టైమ్ పెరాయిడ్</string>
         
     <string name="from_date">తేదీ నుండి * </string>
@@ -211,11 +191,7 @@
 
         
 
-        
-
-        
-        
-    ]]>
+       ]]>
     <string name="net_weight">నికర బరువు</string>
         
     <string name="date_label">తేదీ</string>
@@ -226,17 +202,7 @@
     ]]>
     <string name="collection">కలెక్షన్స్</string>
         
-    <string name="land_mark">మైలురాయి</string><![CDATA[
-        
-
-        
-
-        
-
-        
-
-
-    />
+    <string name="land_mark">మైలురాయి</string><![CDATA[/>
      
     ]]>
     <string name="convenience_charge">సౌలభ్యం ఛార్జ్ (రూ.)</string>
