@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,11 +27,16 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -40,6 +46,8 @@ import in.calibrage.akshaya.common.PinEntryEditText;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
+import in.calibrage.akshaya.models.Reqinstall;
+import in.calibrage.akshaya.models.Resinstall;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
@@ -49,6 +57,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.service.APIConstantURL.AddAppInstallation;
+
 public class OtpActivity extends BaseActivity {
     public static final String TAG = OtpActivity.class.getSimpleName();
     private Subscription mSubscription;
@@ -56,7 +66,7 @@ public class OtpActivity extends BaseActivity {
 
     private Button sub_Btn;
 
-    private String Pin_text;
+    private String currentDate;
     public String Farmer_code;
 
     private PinEntryEditText pinEntry;
@@ -83,7 +93,10 @@ public class OtpActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void init() {
         // TextView otpDesc = (TextView) findViewById(R.id.otp_desc);
-
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String  Device_id= Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        Log.e("deviece==id", Device_id);
         sub_Btn = (Button) findViewById(R.id.btn_otp_login);
 
         backImg = (ImageView) findViewById(R.id.back);
@@ -95,6 +108,59 @@ public class OtpActivity extends BaseActivity {
                 .build();
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
+        AddAppInstallation();
+//        if (!SharedPrefsData.getBool(OtpActivity.this, "installed")) {
+//            AddAppInstallation();
+//        }
+    }
+
+    private void AddAppInstallation() {
+        JsonObject object = getinstallobject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.post_install(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Resinstall>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onNext(Resinstall resinstall) {
+                        SharedPrefsData.putBool(OtpActivity.this, "installed", true);
+                    }
+
+
+                });
+    }
+
+    private JsonObject getinstallobject() {
+
+        Reqinstall requestModel = new Reqinstall();
+        requestModel.setId(0);
+        requestModel.setFarmerCode("APWGBDAB00010001");
+        requestModel.setInstalledOn(currentDate);
+        requestModel.setLastLoginDate(currentDate);
+        requestModel.getImeiNumber("d7dd63ba7aceda5d");
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+
     }
     //  submitBtn.setTypeface(faceBold);
 

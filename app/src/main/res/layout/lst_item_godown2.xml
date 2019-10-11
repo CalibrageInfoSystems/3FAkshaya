@@ -68,7 +68,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="Location :"
+                android:text="@string/location"
                 android:textColor="@color/text_dark_gray"
                 android:textStyle="bold" />
 
@@ -102,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="Address :"
+                android:text="@string/address"
                 android:textColor="@color/text_dark_gray"
                 android:textStyle="bold" />
 

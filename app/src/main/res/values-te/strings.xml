@@ -431,6 +431,13 @@
     <string name="map">పటాలు</string>
     <string name="list">వరుస</string>
     <string name="important_contacts">ముఖ్యమైన పరిచయాలు</string>
+    <string name="basic_info">ప్రాథమిక సమాచారం</string>
+    <string name="Invalid">చెల్లని రైతు ఐడి</string>
+    <string name="contact">ముఖ్యమైన పరిచయాలు</string>
+    <string name="places">ముఖ్యమైన ప్రదేశాలు</string>
+    <string name="farmer_profile">రైతు ప్రొఫైల్</string>
+    <string name="plot_details">ప్లాట్ వివరాలు</string>
+    <string name="cancel_success">Cancelled Successfully</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>

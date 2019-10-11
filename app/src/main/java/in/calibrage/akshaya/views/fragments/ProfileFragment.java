@@ -84,8 +84,8 @@ public class ProfileFragment extends BaseFragment {
     private void setupViewPager(ViewPager viewPager) {
 
         My3FFragment.Adapter adapter = new My3FFragment.Adapter(getChildFragmentManager());
-        adapter.addFragment(new profile_fragment(), "Farmer Profile");
-        adapter.addFragment(new plot_details(), "Plot Details");
+        adapter.addFragment(new profile_fragment(),  getResources().getString(R.string.farmer_profile));
+        adapter.addFragment(new plot_details(), getResources().getString(R.string.plot_details));
 
 
         viewPager.setAdapter(adapter);

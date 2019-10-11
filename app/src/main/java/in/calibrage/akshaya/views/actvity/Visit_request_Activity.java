@@ -496,12 +496,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
                     }
 
                     @Override
                     public void onNext(VisitresponseModel visitresponseModel) {
-
+                        mdilogue.dismiss();
 
                         if (visitresponseModel.getIsSuccess()) {
                             new Handler().postDelayed(new Runnable() {

@@ -301,6 +301,13 @@
     <string name="list">list</string>
     <string name="view_in_map">View in Map</string>
     <string name="important_contacts">Important Contacts</string>
+    <string name="basic_info">Basic Info</string>
+    <string name="Invalid">Invalid Farmer Id</string>
+    <string name="contact">Important Contacts</string>
+    <string name="places">Important Places</string>
+    <string name="farmer_profile">Farmer Profile</string>
+    <string name="plot_details">Plot Details</string>
+    <string name="cancel_success">Cancelled Successfully</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

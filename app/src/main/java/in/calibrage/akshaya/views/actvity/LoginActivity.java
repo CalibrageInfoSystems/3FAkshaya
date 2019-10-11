@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -67,6 +69,7 @@ import rx.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final int REQUEST_READ_PHONE_STATE = 1;
     private Button loginBtn, Qr_scan;
     private EditText farmerId;
     private String Farmer_code, Device_id, currentDate;
@@ -85,6 +88,8 @@ public class LoginActivity extends BaseActivity {
 
         init();
         setview();
+
+
     }
 
     private void init() {
@@ -100,8 +105,9 @@ public class LoginActivity extends BaseActivity {
 
 
         tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        Log.e("deviece==id", tel.getDeviceId().toString());
-        Device_id = tel.getDeviceId().toString();
+
+
+      //  Device_id = tel.getDeviceId().toString();
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         //  imei = (TextView) findViewById(R.id.textView2);
 
@@ -110,49 +116,12 @@ public class LoginActivity extends BaseActivity {
                 .setTheme(R.style.Custom)
                 .build();
         validationPopShow();
-        if (!SharedPrefsData.getBool(this, "installed")) {
-            AddAppInstallation();
-        }
+
 
 
     }
 
-    private void AddAppInstallation() {
-        JsonObject object = getinstallobject();
-        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.post_install(object)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Resinstall>() {
-                    @Override
-                    public void onCompleted() {
-                        mdilogue.dismiss();
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            ((HttpException) e).code();
-                            ((HttpException) e).message();
-                            ((HttpException) e).response().errorBody();
-                            try {
-                                ((HttpException) e).response().errorBody().string();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            e.printStackTrace();
-                        }
-                        mdilogue.cancel();
-                    }
-
-                    @Override
-                    public void onNext(Resinstall resinstall) {
-                        SharedPrefsData.putBool(LoginActivity.this, "installed", true);
-                    }
-
-
-                });
-    }
 
     private void setview() {
 
@@ -168,8 +137,11 @@ public class LoginActivity extends BaseActivity {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("farmerid", Farmer_code);  // Saving string data of your editext
                     editor.commit();
+//
+
                     if (isOnline())
                         GetLogin();
+
                     else {
                         showDialog(LoginActivity.this, getResources().getString(R.string.Internet));
                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
@@ -190,7 +162,7 @@ public class LoginActivity extends BaseActivity {
                /* Intent intent = new Intent(getApplicationContext(), ScannedBarcodeActivity.class);
                 st(intent);
                 if (validations()) {
-                    GetLogin();
+                    GetLogin(); Invalid Farmer Id
                 }else
                 {
                     farmerId.setError("Please Enter Farmer Id");
@@ -240,8 +212,9 @@ public class LoginActivity extends BaseActivity {
                                     finish();
                                 }
                             }, 300);
+
                         } else {
-                            showDialog(LoginActivity.this, farmerResponceModel.getEndUserMessage());
+                            showDialog(LoginActivity.this, getResources().getString(R.string.Invalid));
                         }
                     }
                 });
@@ -250,13 +223,5 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    private JsonObject getinstallobject() {
-        Reqinstall requestModel = new Reqinstall();
-        requestModel.setFarmerCode(Farmer_code);
-        requestModel.setInstalledOn(currentDate);
-        requestModel.setLastLoginDate(null);
-        requestModel.getImeiNumber(Device_id);
-        return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
-    }
 }
