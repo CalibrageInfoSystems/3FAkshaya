@@ -394,19 +394,14 @@
     <string name="updated_by">ద్వారా నవీకరించబడింది</string>
     <string name="updated_date">నవీకరించబడిన తేదీ</string>
     <string name="no_recommendations">సిఫార్సులు లేవు</string>
-
     <string name="product">ఉత్పత్తి</string>
     <string name="gst">జిఎస్టి (%)</string>
     <string name="no_products"> ఉత్పత్తులు కనుగొనబడలేదు</string>
     <string name="gst_amount">జీఎస్టీ (రూ.)</string>
     <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
-
     <string name="fertilizer_crop">ఎరువుల వివరాలు</string>
-
-
     <string name="fertilizerSource">ఎరువుల మూలం</string>
     <string name="fertilizer_name">ఎరువుల పేరు</string>
-
     <string name="lastAppliedDate">చివరి అనువర్తిత తేదీ</string>
     <string name="applyFertilizerFrequencyType">ఎరువుల ఫ్రీక్వెన్సీని వర్తించండి</string>
     <string name="measurement">వయసు</string>
