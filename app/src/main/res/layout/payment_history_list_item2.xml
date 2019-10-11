@@ -241,7 +241,7 @@
                     android:id="@+id/invoice_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:gravity="center_vertical"
                     android:text="@string/invoice_rate"
                     android:textSize="@dimen/album_title"
@@ -254,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/adhocLabel"
                     android:layout_alignBaseline="@id/invoice_label"
-                    android:layout_weight="0.6"
+                    android:layout_weight="0.4"
 
 
                     />
@@ -273,7 +273,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/adjustedLabel"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.5"
                     android:gravity="center_vertical"
                     android:text="@string/memo"
                     android:textSize="@dimen/album_title" />
@@ -284,7 +284,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/gr_amount_label"
                     android:layout_alignBaseline="@id/memo_label"
-                    android:layout_weight="0.6" />
+                    android:layout_weight="0.5" />
             </LinearLayout>
 
             <LinearLayout

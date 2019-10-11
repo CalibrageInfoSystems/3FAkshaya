@@ -119,16 +119,28 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        no_data.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onNext(labour_req_response labour_req_response) {
-                        MyLabour_ReqAdapter adapter = new MyLabour_ReqAdapter(labour_req_response.getListResult(), ctx);
-                        rcv_requests.setAdapter(adapter);
+                        if ( labour_req_response.getListResult().size() != 0) {
+
+                                no_data.setVisibility(View.VISIBLE);
+                                Log.e("labourdata===", "Data");
+                                rcv_requests.setVisibility(View.VISIBLE);
+                                MyLabour_ReqAdapter adapter = new MyLabour_ReqAdapter(labour_req_response.getListResult(), ctx);
+                                rcv_requests.setAdapter(adapter);
+
+
+                        } else {
+                            no_data.setVisibility(View.VISIBLE);
+                            Log.e("labourdata===","No===Data");
+                          //  no_data.setText("No " + name + " Found");
+                            rcv_requests.setVisibility(View.GONE);
+                        }
 
                     }
-
-
                 });
     }
 
@@ -207,7 +219,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                     }
                         else{
                             no_data.setVisibility(View.VISIBLE);
-                            no_data.setText("No " + name + " Found");
+                           // no_data.setText("No " + name + " Found");
                             rcv_requests.setVisibility(View.GONE);
                         }
 
@@ -252,7 +264,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                     public void onNext(Resfert fertResponce) {
 
 
-                        if(fertResponce.getListResult() != null)
+                        if(fertResponce.getListResult() .size() != 0)
                         {
                             no_data.setVisibility(View.GONE);
                             rcv_requests.setVisibility(View.VISIBLE);
@@ -310,7 +322,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                     public void onNext(Resquickpay resquickpay) {
 
 
-                        if(resquickpay.getListResult() != null)
+                        if(resquickpay.getListResult().size() != 0)
                         {
                             no_data.setVisibility(View.GONE);
                             rcv_requests.setVisibility(View.VISIBLE);;
@@ -372,7 +384,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                     @Override
                     public void onNext(ResLoan resLoan) {
-                        if(resLoan.getListResult() != null)
+                        if(resLoan.getListResult().size() != 0)
                         {
                             no_data.setVisibility(View.GONE);
                             rcv_requests.setVisibility(View.VISIBLE);;
@@ -426,7 +438,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         @Override
                         public void onNext(ResLoan resLoan) {
 
-                            if(resLoan.getListResult() != null)
+                            if(resLoan.getListResult().size()!= 0)
                             {
                                 no_data.setVisibility(View.GONE);
                                 GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);

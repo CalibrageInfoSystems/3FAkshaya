@@ -170,7 +170,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
                     @Override
                     public void onNext(Resdelete resdelete) {
                         labourlist_Set.remove(selectedPO);
-                        Toast.makeText(mContext,"Cancelled Successfully",Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext,mContext.getString(R.string.cancel_success),Toast.LENGTH_LONG).show();
                         recreateActivityCompat((Activity) mContext);
 
                         }

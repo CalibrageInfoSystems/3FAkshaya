@@ -247,7 +247,7 @@
 
     <string name="paidCollectionsWeight">చెల్లింపు సేకరణల బరువు</string>
     <string name="unPaidCollectionsWeight">చెల్లించని సేకరణల బరువు</string>
-    <string name="totalBalance">మొత్తం బ్యాలెన్స్ (రూ.)</string>
+    <string name="totalBalance">ముగింపు బ్యాలెన్స్ (రూ.)</string>
     <string name="balance">బ్యాలెన్స్ (రూ.)</string>
     <string name="collectionsWeight">మొత్తం సేకరణల బరువు</string>
     <string name="collectionsCount">మొత్తం సేకరణల సంఖ్య</string>
@@ -437,7 +437,7 @@
     <string name="places">ముఖ్యమైన ప్రదేశాలు</string>
     <string name="farmer_profile">రైతు ప్రొఫైల్</string>
     <string name="plot_details">ప్లాట్ వివరాలు</string>
-    <string name="cancel_success">Cancelled Successfully</string>
+    <string name="cancel_success">రద్దు చేయబడింది</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>

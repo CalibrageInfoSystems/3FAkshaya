@@ -63,6 +63,7 @@ import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.MyLabour_ReqAdapter;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;

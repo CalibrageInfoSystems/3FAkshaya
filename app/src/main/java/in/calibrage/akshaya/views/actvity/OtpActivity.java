@@ -152,13 +152,14 @@ public class OtpActivity extends BaseActivity {
     }
 
     private JsonObject getinstallobject() {
-
+        String android_id = Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
         Reqinstall requestModel = new Reqinstall();
         requestModel.setId(0);
-        requestModel.setFarmerCode("APWGBDAB00010001");
+        requestModel.setFarmerCode(Farmer_code);
         requestModel.setInstalledOn(currentDate);
         requestModel.setLastLoginDate(currentDate);
-        requestModel.getImeiNumber("d7dd63ba7aceda5d");
+        requestModel.setImeiNumber(android_id);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
     }
