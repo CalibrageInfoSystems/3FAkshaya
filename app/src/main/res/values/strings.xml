@@ -103,7 +103,7 @@
     <string name="i_have_agree">I Agree</string>
     <string name="measurement">Age</string>
     <string name="startDate">Preferred Date</string>
-    <string name="totalBalance">Total Balance (Rs)</string>
+    <string name="totalBalance">Closing Balance (Rs)</string>
     <string name="balance">Balance (Rs)</string>
     <string name="collectionsWeight">Total Net Weight </string>
     <string name="collectionsCount">Total Collections</string>

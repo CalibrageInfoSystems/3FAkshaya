@@ -541,19 +541,25 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                         if (collectionResponcemodel.getResult() != null) {
 
                             collection_Adapter.updateData(collectionResponcemodel.getResult().getCollectioData());
+                            Log.e("nodada====", "nodata===1year");
+                            collecton_data.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
-                           /* collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
+                          /*  collection_Adapter = new Collection_Adapter(CollectionsActivity.this, collectionResponcemodel.getResult().getCollectioData());
                             collecton_data.setAdapter(collection_Adapter);*/
                             relativeLayoutCount.setVisibility(View.VISIBLE);
+
+                            // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
 
                             unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
                             collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kgs");
                             collectionsCount.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
                             paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kgs");
+
+
                         } else {
+                            Log.e("nodada====", "nodata===1year2");
                             noRecords.setVisibility(View.VISIBLE);
                             relativeLayoutCount.setVisibility(View.GONE);
-
                         }
 
                     }
