@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.views.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,8 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -107,7 +110,9 @@ public class plot_details extends Fragment {
 
             mdilogue.show();
             ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
-            mSubscription = service.getplotinfo(APIConstantURL.GetPlotDetailsByFarmerCode +"APWGBDAB00010001")
+        SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
+        String   Farmer_code = pref.getString("farmerid", "");
+            mSubscription = service.getplotinfo(APIConstantURL.GetPlotDetailsByFarmerCode +Farmer_code)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Subscriber<res_plotdetails>() {
