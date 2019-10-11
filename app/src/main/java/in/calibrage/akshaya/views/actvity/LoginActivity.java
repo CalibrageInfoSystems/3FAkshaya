@@ -41,6 +41,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -61,6 +62,7 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.MyLabour_ReqAdapter;
+
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -71,11 +73,12 @@ public class LoginActivity extends BaseActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private static final int REQUEST_READ_PHONE_STATE = 1;
     private Button loginBtn, Qr_scan;
-    private EditText farmerId;
+    public static EditText farmerId;
     private String Farmer_code, Device_id, currentDate;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     TelephonyManager tel;
+    ZXingScannerView scannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +98,7 @@ public class LoginActivity extends BaseActivity {
     private void init() {
 
         loginBtn = (Button) findViewById(R.id.btn_login);
-        Qr_scan = (Button) findViewById(R.id.btn_qrscan);
+        Qr_scan = (Button) findViewById(R.id.btn_qrscan1);
 
         farmerId = findViewById(R.id.farmer_id_edittxt);
         //
@@ -107,7 +110,22 @@ public class LoginActivity extends BaseActivity {
         tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
 
+
       //  Device_id = tel.getDeviceId().toString();
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Log.e("deviece==id", tel.getDeviceId().toString());
+        Device_id = tel.getDeviceId().toString();
+
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         //  imei = (TextView) findViewById(R.id.textView2);
 
@@ -159,6 +177,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
+
                /* Intent intent = new Intent(getApplicationContext(), ScannedBarcodeActivity.class);
                 st(intent);
                 if (validations()) {
@@ -167,12 +186,25 @@ public class LoginActivity extends BaseActivity {
                 {
                     farmerId.setError("Please Enter Farmer Id");
                 }*/
+
+                Log.d(TAG, "----------- arun -------------");
+                startActivity(new Intent(LoginActivity.this, QRScannerActivity.class));
+
             }
         });
     }
 
     private void GetLogin() {
-        mdilogue.show();
+        if (null != mdilogue)
+            mdilogue.show();
+        else {
+
+            mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                    .setContext(this)
+                    .setTheme(R.style.Custom)
+                    .build();
+            mdilogue.show();
+        }
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getFormerOTP(APIConstantURL.Farmer_ID_CHECK + farmerId.getText().toString())
                 .subscribeOn(Schedulers.newThread())
@@ -224,4 +256,8 @@ public class LoginActivity extends BaseActivity {
 
 
 
-}
+
+    }
+
+
+
