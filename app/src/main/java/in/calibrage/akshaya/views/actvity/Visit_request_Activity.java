@@ -881,6 +881,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         lyt_img.setVisibility(View.GONE);
         lyt_img2.setVisibility(View.GONE);
         lyt_img3.setVisibility(View.GONE);
+        btn_addIMG.setVisibility(View.VISIBLE);
         if (images.size() > 0) {
             if (images.size() > 0 && images.get(0) != null) {
                 imageview.setImageBitmap(images.get(0));
