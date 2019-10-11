@@ -78,7 +78,7 @@ public class LoginActivity extends BaseActivity {
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     TelephonyManager tel;
-    ZXingScannerView scannerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,7 +246,7 @@ public class LoginActivity extends BaseActivity {
                             }, 300);
 
                         } else {
-                            showDialog(LoginActivity.this, getResources().getString(R.string.Invalid));
+                            showDialog(LoginActivity.this, farmerResponceModel.getEndUserMessage());
                         }
                     }
                 });
