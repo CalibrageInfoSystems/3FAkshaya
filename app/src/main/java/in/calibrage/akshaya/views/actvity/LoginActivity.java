@@ -106,6 +106,10 @@ public class LoginActivity extends BaseActivity {
 
         farmerId = findViewById(R.id.farmer_id_edittxt);
         //
+
+
+
+        
         //farmerId.setText("APWGBDAB00010001");
 
         tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
