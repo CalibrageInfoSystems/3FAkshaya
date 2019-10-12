@@ -452,18 +452,19 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             showDialog(Visit_request_Activity.this, getResources().getString(R.string.valid_issue_type));
             return false;
         }
-        if (selected_issue.contains("Others")) {
 
-            showDialog(Visit_request_Activity.this, getResources().getString(R.string.comments_valid));
-            return false;
-        }
         if (images.size() == 0 && AudioSavePathInDevice.length() == 0) {
 
             Log.d(TAG, "---- analysis ---->> base64 :" + images.size() + AudioSavePathInDevice);
             showDialog(Visit_request_Activity.this, getResources().getString(R.string.select_image));
             return false;
         }
-
+        if (selected_issue.contains("Others")) {
+            if(comments.getText().toString().trim().length() == 0) {
+                showDialog(Visit_request_Activity.this, getResources().getString(R.string.comments_valid));
+                return false;
+            }
+        }
 
 
 //        if (AudioSavePathInDevice.length()==0 ){

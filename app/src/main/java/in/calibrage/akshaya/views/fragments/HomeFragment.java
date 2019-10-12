@@ -292,7 +292,7 @@ public class HomeFragment extends BaseFragment {
         if (isOnline(getContext()))
             GetBannerByStateCode();
         else {
-            showDialog(getActivity(), getResources().getString(R.string.Internet));
+          //  showDialog(getActivity(), getResources().getString(R.string.Internet));
 
         }
        // GetBannerByStateCode();
