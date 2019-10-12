@@ -67,15 +67,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment placesfragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static placesfragment newInstance(String param1, String param2) {
         placesfragment fragment = new placesfragment();
         Bundle args = new Bundle();
@@ -108,11 +100,9 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
         fert_recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_fert);
 
         fert_recyclerView.setHasFixedSize(true);
-       // fert_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         RecyclerView.LayoutManager fert = new LinearLayoutManager(getContext());
         fert_recyclerView.setLayoutManager(fert);
-        // recyclerView.setAdapter(adapter);
+
 
 
 
@@ -139,7 +129,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
         sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
             @Override
             public void onSwitch(int position, String tabText) {
-              //  Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+
                 if(position==0){
                     fert_recyclerView.setVisibility(View.VISIBLE);
                     collection_recycleview.setVisibility(View.GONE);
@@ -186,37 +176,32 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                     public void onNext(resGet3FInfo resGet3FInfo) {
                         if(resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null)
                         {
-                          /*  fert_text.setVisibility(View.VISIBLE);
-                            fert_recyclerView.setVisibility(View.VISIBLE);*/
+
                             Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(),getContext());
                             fert_recyclerView.setAdapter(adapter);
 
 
                         }
                         else{
-                           /* fert_text.setVisibility(View.GONE);
-                            fert_recyclerView.setVisibility(View.GONE);
-*/
+
+
                         }
 
                         if(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null)
                         {
-                          /*  collection_text.setVisibility(View.VISIBLE);
-                            collection_recycleview.setVisibility(View.VISIBLE);*/
+
                             collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(),getContext());
                             collection_recycleview.setAdapter(adapter);
 
 
                         }
                         else{
-                           /* collection_text.setVisibility(View.GONE);
-                            collection_recycleview.setVisibility(View.GONE);*/
+
 
                         }
                         if(resGet3FInfo.getResult().getImportantPlaces().getMills() != null)
                         {
-                           /* mill_text.setVisibility(View.VISIBLE);
-                            mill_recycleview.setVisibility(View.VISIBLE);*/
+
 
                             Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(),getContext());
                             mill_recycleview.setAdapter(adapter);

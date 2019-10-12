@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,20 +25,19 @@ import in.calibrage.akshaya.models.QuickPayModel;
 
 public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapter.ViewHolder> {
     public Context mContext;
-    private List<QuickPayModel.ListResult> stList=new ArrayList<>();
+    private List<QuickPayModel.ListResult> stList = new ArrayList<>();
 
     String datetimevaluereq;
 
     private quick_paylistener listener;
 
-    public QuickPayDataAdapter(Context context, List<QuickPayModel.ListResult> superHeroes,quick_paylistener listener) {
+    public QuickPayDataAdapter(Context context, List<QuickPayModel.ListResult> superHeroes, quick_paylistener listener) {
         this.stList = superHeroes;
         this.mContext = context;
-        this.listener =listener;
+        this.listener = listener;
     }
 
 
-    // Create new views
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                          int viewType) {

@@ -28,8 +28,6 @@ public class InterCrop_Adapter extends RecyclerView.Adapter<InterCrop_Adapter.My
             super(view);
             crop = view.findViewById(R.id.crop);
 
-
-
         }
     }
 

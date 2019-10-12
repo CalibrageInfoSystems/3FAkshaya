@@ -36,7 +36,7 @@ public class healthPlantation_Adapter extends RecyclerView.Adapter<healthPlantat
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final healthPlantation dataa = Plantation_List.get(position);
-        //  holder.txtPlotCode.setText(dataa.getPloteCode());
+
         holder.treesAppearance.setText(dataa.getTreesAppearance());
         holder.treeGirth.setText(dataa.getTreeGirth());
         holder.treeHeight.setText(dataa.getTreeHeight());
@@ -46,7 +46,7 @@ public class healthPlantation_Adapter extends RecyclerView.Adapter<healthPlantat
         holder.plantationType.setText(dataa.getPlantationType());
 
 
-        //      holder.imageView.setImageResource(listdata[position].getImgId());
+
         Picasso.with(mContext).load(dataa.getImage()).fit().centerCrop()
                 .placeholder(R.drawable.encylopedia)
                 .error(R.drawable.pole)
@@ -69,12 +69,12 @@ public class healthPlantation_Adapter extends RecyclerView.Adapter<healthPlantat
 
 
         public TextView treesAppearance,treeGirth,treeHeight,fruitColor,fruitSize,fruitHyegiene,plantationType;
-ImageView thumbnail;
+        ImageView thumbnail;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            //   txtPlotCode = itemView.findViewById(R.id.plot_code);
+
             treesAppearance = itemView.findViewById(R.id.treesAppearance);
             treeGirth = itemView.findViewById(R.id.treeGirth);
             treeHeight = itemView.findViewById(R.id.treeHeight);

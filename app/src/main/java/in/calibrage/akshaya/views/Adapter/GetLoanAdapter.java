@@ -65,7 +65,6 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        //      holder.imageView.setImageResource(listdata[position].getImgId());
 
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
@@ -73,7 +72,7 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
             Date oneWayTripDate = input.parse(list_loan.get(position).getReqCreatedDate());
 
             datetimevaluereq = output.format(oneWayTripDate);
-            //datetimevalute.setText(output.format(oneWayTripDate));
+
 
             Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
         } catch (ParseException e) {
@@ -203,7 +202,7 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
             statusType = itemView.findViewById(R.id.statusType);
 
               cancel = itemView.findViewById(R.id.cancel);
-            //   txtPin = itemView.findViewById(R.id.pin);
+
 
 
         }

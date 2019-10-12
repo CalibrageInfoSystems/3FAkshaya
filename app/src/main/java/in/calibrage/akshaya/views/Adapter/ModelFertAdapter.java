@@ -47,7 +47,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
 
     public ModelFertAdapter(List<ModelFert> list_products, Context context) {
         super();
-        //Getting all the superheroes
+
         this.list_products = list_products;
         this.context = context;
     }
@@ -75,9 +75,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
        // holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
 
         Log.e("uom==76",superHero.getSize() + " " + superHero.getUomType());
-//        holder.currentCost.setText(superHero.getDiscountedPrice());
-        //   holder.actual_amt.setText(superHero.getDiscountedPrice());
-        //  holder.disc.setText(superHero.getDescription());
+//
         holder.disc.setText(superHero.getDescription());
         if (!TextUtils.isEmpty(superHero.getSize().toString())) {
             holder.size.setText(superHero.getSize() + "" + superHero.getUomType());
@@ -99,9 +97,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
                 @Override
                 public void onClick(View view) {
                     Description = superHero.getDescription();
-//                    Toast toast=Toast.makeText(context,superHero.getDescription(),Toast.LENGTH_SHORT);
-//                    toast.setMargin(50,50);
-//                    toast.show();
+//
                     displayPopupWindow(view);
                 }
             });
@@ -116,27 +112,12 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         }
 
 
-        //  holder.textViewCreatedBy.setText(superHero.getCreatedBy());
-        //  holder.textViewFirstAppearance.setText(superHero.getFirstAppearance());
         holder.actual_amt.setPaintFlags(holder.actual_amt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.actual_amt.setText(context.getString(R.string.Rs) + superHero.getDiscountedPrice());
 
         Log.e("aaaaaaaaaaaa", superHero.getmAmount());
 
-//        if (superHero.getmAmount().equals("null")) {
-//
-//            holder.actual_amt.setVisibility(View.INVISIBLE);
-//
-//        } else {
-//            holder.actual_amt.setVisibility(View.VISIBLE);
-//        }
 
-
-        String powers = "";
-
-//        for(int i = 0; i<superHero.getPowers().size(); i++){
-//            powers+= superHero.getPowers().get(i);
-//        }
         holder.addMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +146,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
 
             }
         });
-        //  holder.textViewPowers.setText(powers);
+
     }
 
     private void displayPopupWindow(View anchorView) {
@@ -195,13 +176,13 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         TextView text = layout.findViewById(R.id.tvCaption);
         text.setText(ProductName);
         popup.setContentView(layout);
-        // Set content width and height
+
         popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
-        // Closes the popup window when touch outside of it - when looses focus
+
         popup.setOutsideTouchable(true);
         popup.setFocusable(true);
-        // Show anchored to button
+
         popup.setBackgroundDrawable(new BitmapDrawable());
         popup.showAsDropDown(anchorView);
     }

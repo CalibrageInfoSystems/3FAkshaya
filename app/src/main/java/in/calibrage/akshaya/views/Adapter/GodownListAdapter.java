@@ -44,9 +44,7 @@ public class GodownListAdapter extends RecyclerView.Adapter<GodownListAdapter.vi
             holder.cardView.setBackgroundResource(R.drawable.button_bg2);
 
 
-//        holder.txt_name.setText(godownlistResults.get(position).getName());
-//        holder.txt_address.setText(godownlistResults.get(position).getAddress());
-//        holder.txt_Location.setText(godownlistResults.get(position).getLocation());
+
         holder.txt_name.setText(""+godownlistResults.get(position).getName());
         holder.txt_address.setText(""+godownlistResults.get(position).getAddress());
         holder.txt_Location.setText(""+godownlistResults.get(position).getLocation());

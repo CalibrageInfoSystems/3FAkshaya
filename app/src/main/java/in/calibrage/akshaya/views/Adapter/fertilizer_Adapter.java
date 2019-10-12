@@ -33,14 +33,14 @@ public class fertilizer_Adapter extends RecyclerView.Adapter<fertilizer_Adapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final fertilizer dataa = fertilizer_List.get(position);
-      //  holder.txtPlotCode.setText(dataa.getPloteCode());
+
         holder.fertilizerSource.setText(dataa.getfertilizer_sourse());
         holder.fertilizer_name.setText(dataa.getfertilizer_name());
         holder.dosage.setText(dataa.getDosage());
         holder.lastAppliedDate.setText(dataa.getdate());
         holder.applyFertilizerFrequencyType.setText(dataa.getfrequency());
 
-        //      holder.imageView.setImageResource(listdata[position].getImgId());
+
 
     }
 
@@ -71,7 +71,7 @@ public class fertilizer_Adapter extends RecyclerView.Adapter<fertilizer_Adapter.
         public ViewHolder(View itemView) {
             super(itemView);
 
-         //   txtPlotCode = itemView.findViewById(R.id.plot_code);
+
             fertilizerSource = itemView.findViewById(R.id.fertilizerSource);
             dosage = itemView.findViewById(R.id.dosage);
             lastAppliedDate = itemView.findViewById(R.id.lastAppliedDate);

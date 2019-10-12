@@ -20,11 +20,10 @@ import in.calibrage.akshaya.views.actvity.LabourActivity;
 
 
 public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourRecommendationAdapter.ViewHolder>{
-    //private RecommendationModel[] listdata;
+
     List<LabourRecommendationsModel.ListResult> recomm_Set;
     public Context mContext;
 
-    // RecyclerView recyclerView;
     public LabourRecommendationAdapter(    List<LabourRecommendationsModel.ListResult> recomm_Set, Context context) {
         this.recomm_Set = recomm_Set;
         this.mContext=context;
@@ -40,7 +39,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
-      //  LabourRecommendationsModel superHero =  superHeroes.get(position);
+
         holder.textViewplotId.setText(recomm_Set.get(position).getFPlotcode());
         holder.textViewpalmArea.setText(recomm_Set.get(position).getPalmArea()+" "+"Ha");
         holder.textViewLocation.setText(recomm_Set.get(position).getVillageName());

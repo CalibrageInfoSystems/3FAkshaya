@@ -20,7 +20,6 @@ public class LabourTermsNCondtionsAdapter extends RecyclerView.Adapter<LabourTer
     public Context mContext;
     private LabourTermsNCondtionsModel listdata;
 
-    // RecyclerView recyclerView;
     public LabourTermsNCondtionsAdapter(Context ctx, LabourTermsNCondtionsModel listdata) {
         this.listdata = listdata;
         this.mContext = ctx;
@@ -272,14 +271,7 @@ public class LabourTermsNCondtionsAdapter extends RecyclerView.Adapter<LabourTer
             holder.unknow2.setText(String.valueOf(listdata.getListResult().get(3).getC30()));
 
         }
-//        else if (position == 20) {
-//            holder.age.setText(position + 20 + " Years");
-//            holder.purning.setText(String.valueOf(listdata.getListResult().get(0).getC21()));
-//            holder.harv.setText(String.valueOf(listdata.getListResult().get(1).getC21()));
-//            holder.unknown1.setText(String.valueOf(listdata.getListResult().get(2).getC21()));
-//            holder.unknow2.setText(String.valueOf(listdata.getListResult().get(3).getC21()));
-//
-//        }
+
 
             else {
             holder.age.setText(position + 1 + " Years");
@@ -290,7 +282,7 @@ public class LabourTermsNCondtionsAdapter extends RecyclerView.Adapter<LabourTer
         }
 
 
-        //      holder.imageView.setImageResource(listdata[position].getImgId());
+
 
     }
 

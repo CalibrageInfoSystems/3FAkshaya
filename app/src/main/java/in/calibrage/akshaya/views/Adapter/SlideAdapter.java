@@ -22,10 +22,11 @@ public class SlideAdapter extends SliderViewAdapter<SlideAdapter.SliderAdapterVH
 
     private Context context;
     private int mCount;
-    private List<BannerresponseModel.ListResult>Banner_set;
-    public SlideAdapter(Context context,List<BannerresponseModel.ListResult>Banner_set) {
+    private List<BannerresponseModel.ListResult> Banner_set;
+
+    public SlideAdapter(Context context, List<BannerresponseModel.ListResult> Banner_set) {
         this.context = context;
-        this.Banner_set=Banner_set;
+        this.Banner_set = Banner_set;
     }
 
     public void setCount(int count) {
@@ -50,57 +51,18 @@ public class SlideAdapter extends SliderViewAdapter<SlideAdapter.SliderAdapterVH
         });
 
 
-      //  viewHolder.textViewDescription.setText(Banner_set.get(position).getDescription() + position);
         viewHolder.textViewDescription.setTextSize(16);
         viewHolder.textViewDescription.setTextColor(Color.WHITE);
         viewHolder.imageGifContainer.setVisibility(View.GONE);
-        Log.e("value-===",Banner_set.get(position).getImageName());
+        Log.e("value-===", Banner_set.get(position).getImageName());
         Picasso.with(context).load(Banner_set.get(position).getImageName()).into(viewHolder.imageViewBackground);
 
-       /* switch (position) {
-            case 0:
-                viewHolder.textViewDescription.setText(Banner_set.get(position).getDescription() + position);
-                viewHolder.textViewDescription.setTextSize(16);
-                viewHolder.textViewDescription.setTextColor(Color.WHITE);
-                viewHolder.imageGifContainer.setVisibility(View.GONE);
-                Log.e("value-===",Banner_set.get(position).getImageName());
-               Picasso.with(context).load(Banner_set.get(position).getImageName()).into(viewHolder.imageViewBackground);
-               *//* Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
-                        .fitCenter()
-                        .into(viewHolder.imageViewBackground);*//*
-                break;
-            case 1:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
-                viewHolder.textViewDescription.setTextSize(16);
-                viewHolder.textViewDescription.setTextColor(Color.WHITE);
-                viewHolder.imageGifContainer.setVisibility(View.GONE);
-                Picasso.with(context).load("https://i.pinimg.com/originals/7a/6a/76/7a6a7635b57e7ef4332e38176c7152fc.jpg").into(viewHolder.imageViewBackground);
-             *//*   Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260")
-                        .fitCenter()
-                        .into(viewHolder.imageViewBackground);*//*
-                break;
-            case 2:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
-                viewHolder.textViewDescription.setTextSize(16);
-                viewHolder.textViewDescription.setTextColor(Color.WHITE);
-                viewHolder.imageGifContainer.setVisibility(View.GONE);
-                Picasso.with(context).load("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260").into(viewHolder.imageViewBackground);
-               *//* Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
-                        .fitCenter()
-                        .into(viewHolder.imageViewBackground);*//*
-                break;
 
-
-        }
-*/
     }
 
     @Override
     public int getCount() {
-        //slider view count could be dynamic size
+
         return mCount;
     }
 

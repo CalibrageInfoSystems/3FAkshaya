@@ -21,8 +21,6 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
     private Context context;
     private ArrayList<Product_new> product_Listitems = new ArrayList<>();
 
-    String holiday_id, name;
-    String Enduser, IsSuccess;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView product_name, quantity, amount, gst, item_cost;
@@ -39,20 +37,12 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // send selected contact in callback
-                    //  holidaylistener.onContactSelected(product_List.get(getAdapterPosition()));
+
                 }
             });
         }
     }
 
-/*
-    public producut_Adapter(Context context, List<product> product_List) {
-        this.context = context;
-
-        this.product_List = product_List;
-
-    }*/
 
     public producut_Adapter(Context context, ArrayList<Product_new> myProductsList) {
         this.context = context;
@@ -75,36 +65,14 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
         final Product_new dataa = product_Listitems.get(position);
         holder.product_name.setText(dataa.getProductname());
         holder.quantity.setText(dataa.getQuandity() + "");
-        holder.amount.setText( Double.parseDouble(dataa.getWithGSTamount()) * dataa.getQuandity() + "");
+        holder.amount.setText(Double.parseDouble(dataa.getWithGSTamount()) * dataa.getQuandity() + "");
         holder.gst.setText(String.valueOf(dataa.getGst() + ""));
-    /*    int quantity =dataa.getquantity();
-        int amount =dataa.getamount();
 
-        int value =amount / quantity;
-        Log.e("value===", String.valueOf(value));*/
         holder.item_cost.setText(dataa.getAmount() + "");
 
 
     }
 
-    private void displayPopupWindow(View anchorView) {
-        PopupWindow popup = new PopupWindow(context);
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.popup_content, null);
-        TextView text = layout.findViewById(R.id.tvCaption);
-        text.setText(name);
-        popup.setContentView(layout);
-        // Set content width and height
-        popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
-        // Closes the popup window when touch outside of it - when looses focus
-        popup.setOutsideTouchable(true);
-        popup.setFocusable(true);
-        // Show anchored to button
-        popup.setBackgroundDrawable(new BitmapDrawable());
-        popup.showAsDropDown(anchorView);
-    }
 
     @Override
     public int getItemCount() {

@@ -87,14 +87,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
             amount=itemView.findViewById(R.id.amount);
           cancel = itemView.findViewById(R.id.cancel);
 
-            //   txtPin = itemView.findViewById(R.id.pin);
 
-           /* card_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onContactSelected(list);
-                }
-            });*/
         }
 
 
@@ -117,7 +110,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
             Date oneWayTripDate = input.parse(list.get(position).getReqCreatedDate());
 
             datetimevaluereq = output.format(oneWayTripDate);
-            //datetimevalute.setText(output.format(oneWayTripDate));
+
 
             Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
         } catch (ParseException e) {

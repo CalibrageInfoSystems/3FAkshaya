@@ -38,25 +38,26 @@ import rx.schedulers.Schedulers;
 import static in.calibrage.akshaya.views.Adapter.MyLabour_ReqAdapter.recreateActivityCompat;
 
 
-public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAdapter.ViewHolder>{
+public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAdapter.ViewHolder> {
 
     List<Resquickpay.ListResult> list;
     public Context mContext;
-    String datetimevaluereq,currentDate;
+    String datetimevaluereq, currentDate;
     // RecyclerView recyclerView;
     String selectedItemID;
     int selectedPO;
     private Subscription mSubscription;
 
-    // RecyclerView recyclerView;
-    public MyQuickPayDataAdapter(  List<Resquickpay.ListResult> list, Context ctx) {
+
+    public MyQuickPayDataAdapter(List<Resquickpay.ListResult> list, Context ctx) {
         this.list = list;
-        this.mContext=ctx;
+        this.mContext = ctx;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.quick_req_list, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.quick_req_list, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -70,7 +71,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
             Date oneWayTripDate = input.parse(list.get(position).getReqCreatedDate());
 
             datetimevaluereq = output.format(oneWayTripDate);
-            //datetimevalute.setText(output.format(oneWayTripDate));
+
 
             Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
         } catch (ParseException e) {
@@ -79,14 +80,12 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         holder.requestCode.setText(list.get(position).getRequestCode());
         holder.req_date.setText(datetimevaluereq);
         holder.statusType.setText(list.get(position).getStatusType());
-        holder.amount.setText(list.get(position).getTotalCost()+"");
+        holder.amount.setText(list.get(position).getTotalCost() + "");
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        if (!"Closed".equals(holder.statusType.getText()))
-        {
+        if (!"Closed".equals(holder.statusType.getText())) {
             holder.cancel.setVisibility(View.VISIBLE);
 
-        }
-        else {
+        } else {
             holder.cancel.setVisibility(View.GONE);
         }
         if (!"Cancelled".equals(holder.statusType.getText())) {
@@ -112,7 +111,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         });
     }
 
-    private void delete_request()  throws JSONException {
+    private void delete_request() throws JSONException {
 
         JsonObject object = Requestobject();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
@@ -144,11 +143,10 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
                     @Override
                     public void onNext(Resdelete resdelete) {
                         list.remove(selectedPO);
-                        Toast.makeText(mContext,mContext.getString(R.string.cancel_success),Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
                         recreateActivityCompat((Activity) mContext);
 
                     }
-
 
 
                 });
@@ -177,24 +175,22 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 
-
         public TextView requestCode;
         public TextView req_date;
         public TextView statusType;
-        public TextView amount,cancel;
+        public TextView amount, cancel;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
 
 
-
             requestCode = itemView.findViewById(R.id.requestCode);
             req_date = itemView.findViewById(R.id.reqCreatedDate);
             statusType = itemView.findViewById(R.id.statusType);
             amount = itemView.findViewById(R.id.amount);
-cancel = itemView.findViewById(R.id.cancel);
-// txtPin = itemView.findViewById(R.id.pin);
+            cancel = itemView.findViewById(R.id.cancel);
+
 
 
         }

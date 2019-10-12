@@ -83,7 +83,6 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         ((ViewHolder) holder).finalAmount.setText(": " + payment_Set.get(position).getAmount());
 
 
-
         if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
@@ -165,15 +164,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             holder.finalAmount.setVisibility(View.VISIBLE);
             holder.text_seven.setVisibility(View.VISIBLE);
         }
-     /*   if (payment_Set.get(position).getBalance()==0.0)
-        {
-            //   Log.e("bbbbb",superHero.getmAmount());
-            holder.balance.setText("0");
-          //  holder.text_eight.setVisibility(View.GONE);
-        }
-        else {
-            holder.balance.setVisibility(View.VISIBLE);
-//            holder.text_eight.setVisibility(View.VISIBLE);*/
+
         if (holder.memo_text.getVisibility() == View.VISIBLE) {
             if (TextUtils.isEmpty(holder.memo_text.getText()) || holder.memo_text.getText() == "null") {
                 holder.memo_text.setVisibility(View.GONE);
@@ -211,7 +202,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
 
-            //   txtLedgerItem = itemView.findViewById(R.id.ledgerItem);
+
             quantity_ffb = itemView.findViewById(R.id.quantity_ffb);
             adhoc_value = itemView.findViewById(R.id.adhoc_value);
             txt_invoice = itemView.findViewById(R.id.invoice);
@@ -220,7 +211,6 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             finalAmount = itemView.findViewById(R.id.amount);
             adjustTxt = itemView.findViewById(R.id.adjusted);
 
-            //contentLayout = (LinearLayout)itemView.findViewById(R.id.content);
 
             date = (TextView) itemView.findViewById(R.id.date);
             dateLabel = (TextView) itemView.findViewById(R.id.dateLabel);

@@ -33,22 +33,21 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class contactfragment extends BaseFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public static String TAG = contactfragment.class.getSimpleName();
 
     private String mParam1;
     private String mParam2;
-    private  TextView officer_name,officer_mobile,manager_mobile,head_name,care_number,whatsapp_number;
+    private TextView officer_name, officer_mobile, manager_mobile, head_name, care_number, whatsapp_number;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
 
     private OnFragmentInteractionListener mListener;
 
     public contactfragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -79,12 +78,12 @@ public class contactfragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact,
                 container, false);
-        officer_name=(TextView)view.findViewById(R.id.officer_name);
-        officer_mobile=(TextView)view.findViewById(R.id.officer_mobile);
-        manager_mobile=(TextView)view.findViewById(R.id.manager_name);
-        head_name=(TextView)view.findViewById(R.id.head_name);
-        care_number=(TextView)view.findViewById(R.id.care_number);
-        whatsapp_number=(TextView)view.findViewById(R.id.whatsapp);
+        officer_name = (TextView) view.findViewById(R.id.officer_name);
+        officer_mobile = (TextView) view.findViewById(R.id.officer_mobile);
+        manager_mobile = (TextView) view.findViewById(R.id.manager_name);
+        head_name = (TextView) view.findViewById(R.id.head_name);
+        care_number = (TextView) view.findViewById(R.id.care_number);
+        whatsapp_number = (TextView) view.findViewById(R.id.whatsapp);
         care_number.setText("1234567890");
         whatsapp_number.setText("9876543210");
         if (isOnline(getContext()))
@@ -97,17 +96,15 @@ public class contactfragment extends BaseFragment {
         return view;
 
 
-
-
     }
 
     private void Get3FInfo() {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-     String   Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
-        mSubscription = service.get3finfo(APIConstantURL.Get3FInfo  + Farmer_code+"/"+statecode)
+        mSubscription = service.get3finfo(APIConstantURL.Get3FInfo + Farmer_code + "/" + statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<resGet3FInfo>() {
                     @Override
@@ -133,8 +130,7 @@ public class contactfragment extends BaseFragment {
                         head_name.setText(resGet3FInfo.getResult().getImportantContacts().getStateHeadName());
 
                         Log.d(TAG, "---- analysis ---->GetContactInfo -->> :" + resGet3FInfo.getResult().getImportantContacts());
-//                        care_number.setText("1234567890");
-//                        whatsapp_number.setText("9876543210");
+//
                         care_number.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 Uri u = Uri.parse("tel:" + "1234567890");
@@ -142,13 +138,10 @@ public class contactfragment extends BaseFragment {
 
                                 Intent i = new Intent(Intent.ACTION_DIAL, u);
 
-                                try
-                                {
+                                try {
 
                                     startActivity(i);
-                                }
-                                catch (SecurityException s)
-                                {
+                                } catch (SecurityException s) {
 
                                     Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
                                             .show();
@@ -159,7 +152,8 @@ public class contactfragment extends BaseFragment {
                         whatsapp_number.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                String url = "https://api.whatsapp.com/send?phone="+"+91 9876543210";;
+                                String url = "https://api.whatsapp.com/send?phone=" + "+91 9876543210";
+                                ;
                                 Intent i = new Intent(Intent.ACTION_VIEW);
                                 i.setData(Uri.parse(url));
                                 startActivity(i);
@@ -188,16 +182,7 @@ public class contactfragment extends BaseFragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

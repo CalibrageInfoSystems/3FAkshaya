@@ -76,6 +76,5 @@ public class producut_AdapterNew extends RecyclerView.Adapter<producut_AdapterNe
     }
 
 
-
 }
 

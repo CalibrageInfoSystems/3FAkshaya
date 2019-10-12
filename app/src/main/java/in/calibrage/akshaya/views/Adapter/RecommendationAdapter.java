@@ -23,7 +23,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
     public Context mContext;
     private List<RecomPlotcodes.ListResult> plot_Set;
-    // RecyclerView recyclerView;
+
 
     public RecommendationAdapter(Context context, List<RecomPlotcodes.ListResult> plot_Set) {
 

@@ -27,18 +27,19 @@ import in.calibrage.akshaya.models.CollectionResponceModel;
 public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.ViewHolder> {
     String datetimevaluereq;
     public Context mContext;
-    private List<CollectionResponceModel.CollectioDatum> collection_Set=new ArrayList<>();
+    private List<CollectionResponceModel.CollectioDatum> collection_Set = new ArrayList<>();
 
     public Collection_Adapter(Context mContext) {
         this.mContext = mContext;
     }
+
     public void updateData(List<CollectionResponceModel.CollectioDatum> viewModels) {
         collection_Set.clear();
         collection_Set.addAll(viewModels);
         notifyDataSetChanged();
     }
-    public void clearAllDataa()
-    {
+
+    public void clearAllDataa() {
         collection_Set.clear();
         notifyDataSetChanged();
     }
@@ -70,7 +71,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
             Date oneWayTripDate = input.parse(collection_Set.get(position).getDocDate());
 
             datetimevaluereq = output.format(oneWayTripDate);
-            //datetimevalute.setText(output.format(oneWayTripDate));
+
 
             Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
         } catch (ParseException e) {
@@ -101,11 +102,6 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
     }
 
 
-    /*  @Override
-      public int getItemCount() {
-          return listdata.length;
-      }
-  */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtCollectionId;

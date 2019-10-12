@@ -49,7 +49,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
-    String request_date, prefferdate,currentDate;
+    String request_date, prefferdate, currentDate;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
 
@@ -125,7 +125,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             @Override
             public void onClick(View view) {
                 selectedItemID = labourlist_Set.get(position).getLabourDetails().getRequestCode();
-               selectedPO = position;
+                selectedPO = position;
                 try {
                     delete_request();
                 } catch (JSONException e) {
@@ -138,7 +138,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         AnimationUtil.animate(holder, true);
     }
 
-    private void delete_request()  throws JSONException {
+    private void delete_request() throws JSONException {
 
         JsonObject object = Requestobject();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
@@ -170,11 +170,10 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
                     @Override
                     public void onNext(Resdelete resdelete) {
                         labourlist_Set.remove(selectedPO);
-                        Toast.makeText(mContext,mContext.getString(R.string.cancel_success),Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
                         recreateActivityCompat((Activity) mContext);
 
-                        }
-
+                    }
 
 
                 });
@@ -198,7 +197,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         else
             return 0;
     }
-       // return labourlist_Set.size();
+    // return labourlist_Set.size();
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

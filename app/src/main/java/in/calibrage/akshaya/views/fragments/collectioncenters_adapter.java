@@ -23,15 +23,16 @@ import in.calibrage.akshaya.views.Adapter.Godown_adapter;
 import in.calibrage.akshaya.views.actvity.MapActivity;
 
 class collectioncenters_adapter extends RecyclerView.Adapter<collectioncenters_adapter.viewHolder> {
-private Context ctx;
+    private Context ctx;
     private List<resGet3FInfo.CollectionCenter> centerslistResults = new ArrayList<>();
     private LayoutInflater inflater;
     GodownListAdapter.OnItemClickListener listener;
+
     public collectioncenters_adapter(List<resGet3FInfo.CollectionCenter> centerslistResults, Context ctx) {
         this.centerslistResults = centerslistResults;
         inflater = (LayoutInflater.from(ctx));
-        this.listener =listener;
-        this.ctx =ctx;
+        this.listener = listener;
+        this.ctx = ctx;
     }
 
     @NonNull
@@ -45,22 +46,21 @@ private Context ctx;
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
 
-      holder.txt_name.setText(centerslistResults.get(position).getCollectionCenter());
-      holder.collectioncentervillage.setText(": "+centerslistResults.get(position).getVillageName());
-        holder.collectioncentermandal.setText(": "+centerslistResults.get(position).getMandalName());
-        holder.collectioncenterdistrict.setText(": "+centerslistResults.get(position).getDistrictName());
+        holder.txt_name.setText(centerslistResults.get(position).getCollectionCenter());
+        holder.collectioncentervillage.setText(": " + centerslistResults.get(position).getVillageName());
+        holder.collectioncentermandal.setText(": " + centerslistResults.get(position).getMandalName());
+        holder.collectioncenterdistrict.setText(": " + centerslistResults.get(position).getDistrictName());
         holder.mapview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(null != centerslistResults.get(position).getLatitude())
-                {
+                if (null != centerslistResults.get(position).getLatitude()) {
                     Intent intent = new Intent(ctx, MapActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("name", centerslistResults.get(position).getCollectionCenter());
                     intent.putExtra("lat", centerslistResults.get(position).getLatitude());
                     intent.putExtra("log", centerslistResults.get(position).getLongitude());
                     ctx.startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
                 }
 
@@ -78,9 +78,10 @@ private Context ctx;
     }
 
     class viewHolder extends RecyclerView.ViewHolder {
-        TextView txt_name, collectioncentervillage, collectioncentermandal,collectioncenterdistrict,map;
+        TextView txt_name, collectioncentervillage, collectioncentermandal, collectioncenterdistrict, map;
         CardView cardView;
         ImageView mapview;
+
         public viewHolder(View itemView) {
             super(itemView);
 
@@ -93,7 +94,6 @@ private Context ctx;
         }
 
     }
-
 
 
 }

@@ -54,7 +54,7 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Vi
             Date oneWayTripDate = input.parse(data.getUpdatedbyDate());
 
             datetimevaluereq = output.format(oneWayTripDate);
-            //datetimevalute.setText(output.format(oneWayTripDate));
+
 
             Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
         } catch (ParseException e) {
@@ -62,12 +62,7 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Vi
         }
         holder.updatedbyDate.setText(datetimevaluereq);
 
-//        if (position % 2 == 0) {
-//            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
-//        } else {
-//            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 //
-//        }
     }
 
     @Override
@@ -88,7 +83,7 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Vi
 
         public ViewHolder(View itemView) {
             super(itemView);
-           // plotCode = itemView.findViewById(R.id.Disease);
+
             name = itemView.findViewById(R.id.irrigation_name);
             updatedBy = itemView.findViewById(R.id.updated_by);
             updatedbyDate = itemView.findViewById(R.id.updated_date);

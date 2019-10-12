@@ -189,14 +189,14 @@ else{
                     Double finalwithGST = itemcost + onlygst;
 
                     DecimalFormat df = new DecimalFormat("####0.00");
-           //   String itemcost= df.format(itemcostt);
+
 
                     String total_amount =   df.format(finalwithGST);
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
                     myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(),superHero.getSize()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);
-                    // holder.quantityText.setText("x " + product_new.getQuandity());
+
                     notifyItemChanged(position);
                 }
                 caliculateTotalAmount();
@@ -218,7 +218,7 @@ else{
                                 product_new.setQuandity(currentQTY - 1);
                                 myProducts.set(i,product_new);
                                 superHero.setmQuantity(product_new.getQuandity());
-                                // holder.quantityText.setText("x " + product_new.getQuandity());
+
                                 notifyItemChanged(position);
                             }
                             else {

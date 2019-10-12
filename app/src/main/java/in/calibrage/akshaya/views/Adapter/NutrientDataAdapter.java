@@ -13,19 +13,21 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.Nutrient_Model;
 
 
-public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapter.ViewHolder>{
+public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapter.ViewHolder> {
 
     public Context mContext;
-    private List<Nutrient_Model> nut_List ;
+    private List<Nutrient_Model> nut_List;
+
     // RecyclerView recyclerView;
-    public NutrientDataAdapter(Context ctx, List<Nutrient_Model>nut_List  ) {
+    public NutrientDataAdapter(Context ctx, List<Nutrient_Model> nut_List) {
         this.nut_List = nut_List;
-        this.mContext=ctx;
+        this.mContext = ctx;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.nuet_list, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.nuet_list, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -33,7 +35,7 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Nutrient_Model dataa = nut_List.get(position);
-        //  holder.txtPlotCode.setText(dataa.getPloteCode());
+
         holder.NutrientDeficiencyName.setText(dataa.getNutrientDeficiencyName());
         holder.Nameofchemicalapplied.setText(dataa.getNameofchemicalapplied());
         holder.RecommendedFertilizer.setText(dataa.getRecommendedFertilizer());
@@ -43,38 +45,32 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
 
         holder.comments.setText(dataa.getComments());
 
-        if (dataa.getDosage().contains("null"))
-        {
-            //   Log.e("bbbbb",superHero.getmAmount());
+        if (dataa.getDosage().contains("null")) {
+
             holder.Dosage.setVisibility(View.GONE);
             holder.dosage_label.setVisibility(View.GONE);
             holder.UOMName.setVisibility(View.GONE);
 
-        }
-        else {
+        } else {
             holder.Dosage.setVisibility(View.VISIBLE);
             holder.dosage_label.setVisibility(View.VISIBLE);
             holder.UOMName.setVisibility(View.VISIBLE);
         }
-        if (dataa.getComments().contains("null"))
-        {
+        if (dataa.getComments().contains("null")) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.comments.setVisibility(View.GONE);
             holder.comment_label.setVisibility(View.GONE);
 
-        }
-        else {
+        } else {
             holder.comments.setVisibility(View.VISIBLE);
             holder.comment_label.setVisibility(View.VISIBLE);
         }
-        if (dataa.getRecommendedFertilizer().contains("null"))
-        {
+        if (dataa.getRecommendedFertilizer().contains("null")) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.RecommendedFertilizer.setVisibility(View.GONE);
             holder.RecommendedFertilizer_label.setVisibility(View.GONE);
 
-        }
-        else {
+        } else {
             holder.RecommendedFertilizer.setVisibility(View.VISIBLE);
             holder.RecommendedFertilizer_label.setVisibility(View.VISIBLE);
         }
@@ -96,11 +92,12 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        public TextView NutrientDeficiencyName,Nameofchemicalapplied,RecommendedFertilizer,UOMName,Dosage,RegisteredDate,comments,dosage_label,
+        public TextView NutrientDeficiencyName, Nameofchemicalapplied, RecommendedFertilizer, UOMName, Dosage, RegisteredDate, comments, dosage_label,
                 RecommendedFertilizer_label;
 
         // ImageView thumbnail;
-        public TextView comment_label,reason_label;
+        public TextView comment_label, reason_label;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -109,13 +106,13 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
             Nameofchemicalapplied = itemView.findViewById(R.id.Nameofchemicalapplied);
             RecommendedFertilizer = itemView.findViewById(R.id.RecommendedFertilizer);
             UOMName = itemView.findViewById(R.id.UOMName);
-            Dosage= itemView.findViewById(R.id.Dosage);
+            Dosage = itemView.findViewById(R.id.Dosage);
 
             RegisteredDate = itemView.findViewById(R.id.RegisteredDate);
-            dosage_label=itemView.findViewById(R.id.DosageLabel);
-            comments =itemView.findViewById(R.id.Comments);
-            comment_label=itemView.findViewById(R.id.commentsLabel);
-            RecommendedFertilizer_label=itemView.findViewById(R.id.RecommendedFertilizerLabel);
+            dosage_label = itemView.findViewById(R.id.DosageLabel);
+            comments = itemView.findViewById(R.id.Comments);
+            comment_label = itemView.findViewById(R.id.commentsLabel);
+            RecommendedFertilizer_label = itemView.findViewById(R.id.RecommendedFertilizerLabel);
 
         }
 

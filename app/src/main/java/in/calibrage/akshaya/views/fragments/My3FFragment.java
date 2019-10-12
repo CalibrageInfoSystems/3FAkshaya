@@ -31,13 +31,11 @@ public class My3FFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
 
-   private BasicinfoFragment.OnFragmentInteractionListener mListener;
+    private BasicinfoFragment.OnFragmentInteractionListener mListener;
 
     public My3FFragment() {
-        // Required empty public constructor
+
     }
-
-
 
 
     @Override
@@ -52,16 +50,16 @@ public class My3FFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
 
         View view = inflater.inflate(R.layout.fragment_my3_f,
                 container, false);
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-        // Set Tabs inside Toolbar
+
         TabLayout tabs = (TabLayout) view.findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-       // tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+
 
         return view;
 
@@ -77,7 +75,6 @@ public class My3FFragment extends BaseFragment {
         adapter.addFragment(new placesfragment(), getResources().getString(R.string.places));
 
         viewPager.setAdapter(adapter);
-
 
 
     }
@@ -110,7 +107,6 @@ public class My3FFragment extends BaseFragment {
             return mFragmentTitleList.get(position);
         }
     }
-
 
 
 }

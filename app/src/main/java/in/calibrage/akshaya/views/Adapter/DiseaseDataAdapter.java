@@ -41,7 +41,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         holder.Disease.setText(superHero.getDisease());
         holder.Chemical.setText(superHero.getChemical());
         holder.Dosage.setText(superHero.getDosage());
-// holder.txtWeight.setText(String.valueOf(superHero.getWeight()+" "+"KGs"));
+
         holder.UOMName.setText(superHero.getUOMName());
         holder.Comments.setText(superHero.getComments());
 
@@ -54,7 +54,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         }
         if (superHero.getDosage().contains("null"))
         {
-            //   Log.e("bbbbb",superHero.getmAmount());
+
             holder.Dosage.setVisibility(View.GONE);
             holder.dosage_label.setVisibility(View.GONE);
             holder.UOMName.setVisibility(View.GONE);
@@ -65,7 +65,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             holder.dosage_label.setVisibility(View.VISIBLE);
             holder.UOMName.setVisibility(View.VISIBLE);
         }
-        String powers = "";
+
     }
 
     @Override

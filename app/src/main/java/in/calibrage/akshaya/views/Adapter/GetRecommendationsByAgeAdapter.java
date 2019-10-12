@@ -83,7 +83,7 @@ public class GetRecommendationsByAgeAdapter extends RecyclerView.Adapter<Recycle
         public TextView year;
 
         public TextView  remarks,textViewPowers;
- CardView cardView;
+        CardView cardView;
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -116,10 +116,10 @@ public class GetRecommendationsByAgeAdapter extends RecyclerView.Adapter<Recycle
         GetRecommendationsByAgeModel list =  reccom_list.get(position);
         if(list!=null){
             holder.fertilizer.setText(list.getFertilizer());
-         //   holder.uoM.setText(superHero.getUoM());
+
             holder.year.setText(list.getYear());
             holder.remarks.setText(list.getRemarks());
-            String powers = "";
+
         }
 
         if(position%2 == 0){

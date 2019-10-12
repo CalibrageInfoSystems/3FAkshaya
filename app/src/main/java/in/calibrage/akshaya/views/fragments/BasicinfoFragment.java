@@ -75,7 +75,7 @@ public class BasicinfoFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_basicinfo,
                 container, false);
-        webView=(WebView)view.findViewById(R.id.webView1);
+        webView = (WebView) view.findViewById(R.id.webView1);
         WebSettings webSetting = webView.getSettings();
         webSetting.setBuiltInZoomControls(true);
         webSetting.setJavaScriptEnabled(true);
@@ -94,10 +94,10 @@ public class BasicinfoFragment extends BaseFragment {
     private void GetContactInfo() {
         String farmer_code = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String   Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
-        mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo  + Farmer_code)
+        mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo + Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Resbasicinfo>() {
                     @Override
@@ -117,12 +117,11 @@ public class BasicinfoFragment extends BaseFragment {
 
                         mdilogue.cancel();
 
-                     String discription = resbasicinfo.getListResult().get(0).getDescription();
-                     //   String summary = "<p class=\\\"ql-align-center\\\">we feed the worldoiu</p>\",\"contactInfo\":\"<p class=\\\"ql-align-center\\\">we feed the worldoiu</p>";
-                       // webView.loadData(summary, "text/html", null);
-                       webView.loadData(discription, "text/html", null);
-                      //  txt.setText(Html.fromHtml(discription));
-                       Log.d(TAG, "---- analysis ---->discription -->> :" + discription);
+                        String discription = resbasicinfo.getListResult().get(0).getDescription();
+
+                        webView.loadData(discription, "text/html", null);
+
+                        Log.d(TAG, "---- analysis ---->discription -->> :" + discription);
                     }
                 });
     }
@@ -137,12 +136,7 @@ public class BasicinfoFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+
     }
 
     @Override
@@ -151,26 +145,15 @@ public class BasicinfoFragment extends BaseFragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
-    private class WebViewClient extends android.webkit.WebViewClient
-    {
+    private class WebViewClient extends android.webkit.WebViewClient {
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url)
-        {
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
             return super.shouldOverrideUrlLoading(view, url);
         }
     }
