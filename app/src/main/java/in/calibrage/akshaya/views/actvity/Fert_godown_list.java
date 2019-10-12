@@ -57,6 +57,7 @@ import rx.schedulers.Schedulers;
 import static in.calibrage.akshaya.common.CommonUtil.arrayToString;
 
 public class Fert_godown_list extends BaseActivity implements GodownListAdapter.OnItemClickListener {
+    //region variables
     public static final String TAG = Fert_godown_list.class.getSimpleName();
     /*
      *
@@ -68,14 +69,14 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
     private EditText editText;
-    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount,paybleamount;
+    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount;
     private BottomSheetBehavior behavior;
 
     private Toolbar toolbar;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
-      Integer RequestType;
+    Integer RequestType;
     ArrayList<Integer> selected_quntity_list = new ArrayList<Integer>();
     ArrayList<Integer> selected_ids_lists = new ArrayList<Integer>();
     ArrayList<String> product_names = new ArrayList<String>();
@@ -101,8 +102,10 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     RecyclerView recycler_view_products;
     PaymentsType paymentsTypes;
     double payble_amount;
-    double Subsidy_amount,subsidy_amountt;
+    double Subsidy_amount, subsidy_amountt;
     int Gst_total;
+    //endregion
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,8 +115,6 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         settoolbar();
 
     }
-
-
     private void init() {
         ctx = this;
         recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
@@ -141,43 +142,23 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG,"---------- Finish ----------------");
+                Log.d(TAG, "---------- Finish ----------------");
                 Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
         });
-      /* ImageView backImg = (ImageView) findViewById(R.id.back);
-       backImg.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               finish();
-           }
-       });*/
-       /*ImageView homeImg = (ImageView) findViewById(R.id.home_btn);
-       homeImg.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent = new Intent(Fert_godown_list.this, HomeActivity.class);
-               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-               startActivity(intent);
-               finish();
-           }
-       });*/
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         if (isOnline()) {
             getPaymentMods();
             getFertilizerSubsidies();
             getActiveGodowns();
-        }
-        else {
-            showDialog(Fert_godown_list.this,getResources().getString(R.string.Internet));
+        } else {
+            showDialog(Fert_godown_list.this, getResources().getString(R.string.Internet));
 
         }
-
-
 
         sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
             @Override
@@ -198,7 +179,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         });
 
     }
-
+    //region API Requests
     private void getPaymentMods() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -225,7 +206,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                             listdata.add(string.getDesc());
 
                         }
-                        
+
                         char ch = '"';
                         String finalstring = ch + arrayToString(listdata) + ch;
                         finalstring = finalstring.replace(",", ch + "," + ch);
@@ -249,7 +230,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
         for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
-            int gst =SharedPrefsData.getCartData(this).get(i).getGst();
+            int gst = SharedPrefsData.getCartData(this).get(i).getGst();
 
             Double amount_product = SharedPrefsData.getCartData(this).get(i).getAmount();
             int quantity = SharedPrefsData.getCartData(this).get(i).getQuandity();
@@ -270,7 +251,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
             // include_gst_amount = Gst_sum + Amount_;
             Log.e("gst_Sum===", String.valueOf(Gst_total));
 
-            gst_amount.setText(Gst_total+"");
+            gst_amount.setText(Gst_total + "");
             //  Final_amount.setText("" + String.valueOf(include_gst_amount));
 
         }
@@ -281,11 +262,11 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
             // gst_amount.setText("" + String.valueOf(Gst_sum));
 
         }
-        Final_amount.setText(include_gst_amount+"");
+        Final_amount.setText(include_gst_amount + "");
         DecimalFormat dff = new DecimalFormat("####0.00");
         DecimalFormat form = new DecimalFormat("0.00");
 
-       // Final_amount.setText(""+form.format( include_gst_amount));
+        // Final_amount.setText(""+form.format( include_gst_amount));
 
 //        double products_amount =Double.parseDouble(include_gst_amount)- Double.parseDouble(String.valueOf(Gst_total));
 //        Log.e("products_amount===", String.valueOf(products_amount));
@@ -293,7 +274,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
         double products_amount = Double.parseDouble(include_gst_amount) - Double.parseDouble(String.valueOf(Gst_total));
         Log.e("products_amount===", String.valueOf(products_amount));
-        text_amount.setText("" +dff.format(products_amount));
+        text_amount.setText("" + dff.format(products_amount));
 
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
@@ -318,7 +299,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 //            }
 //        });
 
-        paybleamount.setText(payble_amount+"");
+        paybleamount.setText(payble_amount + "");
     }
 
     private void FertilizerRequest() {
@@ -361,7 +342,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         if (fertResponse.getIsSuccess()) {
 
 
-                           // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
 
                             new Handler().postDelayed(new Runnable() {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
@@ -391,7 +372,6 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
 
     }
-
 
     private JsonObject fertReuestobject() {
         FertRequest requestModel = new FertRequest();
@@ -426,7 +406,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost( Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
+            products.setBagCost(Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
             products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
             products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
             products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
@@ -441,7 +421,6 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
-
 
     private void settoolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -461,7 +440,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
     private void getActiveGodowns() {
 
-                int typeid = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("postTypeId");
+        int typeid = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("postTypeId");
 
         String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
         mdilogue.show();
@@ -515,31 +494,31 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         mdilogue.cancel();
                         if (subsidyResponse.getIsSuccess()) {
                             subsidy_amount.setText(subsidyResponse.getResult().getRemainingAmount().toString());
-                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
+                            subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
 
 
                             if (subsidy_amountt > 0) {
-                                if ( Double.parseDouble(include_gst_amount) < subsidy_amountt) {
-                                    Double remaining_subsidy_amountt = subsidy_amountt -  Double.parseDouble(include_gst_amount);
+                                if (Double.parseDouble(include_gst_amount) < subsidy_amountt) {
+                                    Double remaining_subsidy_amountt = subsidy_amountt - Double.parseDouble(include_gst_amount);
                                     /*
                                      * nothing to pay
                                      * */
-                                    payble_amount =0.0;
+                                    payble_amount = 0.0;
 
-                                    Subsidy_amount=Double.parseDouble(include_gst_amount);
+                                    Subsidy_amount = Double.parseDouble(include_gst_amount);
                                 } else if (subsidy_amountt < Double.parseDouble(include_gst_amount)) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     /*
                                      * payble amount
                                      * */
-                                    payble_amount =remaining_Amoubt;
-                                    Subsidy_amount=Double.parseDouble(include_gst_amount);
+                                    payble_amount = remaining_Amoubt;
+                                    Subsidy_amount = Double.parseDouble(include_gst_amount);
                                 } else if (Double.parseDouble(include_gst_amount) == subsidy_amountt) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     /*
                                      * nothing to pay
                                      * */
-                                    payble_amount =0.0;
+                                    payble_amount = 0.0;
                                 }
                             }
 
@@ -557,7 +536,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
             if (isOnline())
                 FertilizerRequest();
             else {
-                showDialog(Fert_godown_list.this,getResources().getString(R.string.Internet));
+                showDialog(Fert_godown_list.this, getResources().getString(R.string.Internet));
 
             }
 
@@ -566,6 +545,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         }
     }
 
+    //endregion
     @Override
     public void onItemClick(ActiveGodownsModel.ListResult item) {
 

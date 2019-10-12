@@ -25,18 +25,18 @@ import android.widget.Toast;
 import in.calibrage.akshaya.R;
 
 
-
-
-
-
-/*   this frgamenbt usefull for adding and back caling fragemnt*/
-
+/*
+* This class is Common For ALL Fragments in this class we defined common methods related to each fragment
+*
+*
+*
+* */
 public class BaseFragment extends Fragment {
     private ProgressDialog mProgressDialog;
     private int LoginStatus = 0;
     //public static final int MAIN_CONTAINER = R.id.content_frame;
 
-
+    //region Common methods
     protected void popUpFromBackStack(FragmentActivity activity) {
         activity.getSupportFragmentManager().popBackStack();
     }
@@ -96,18 +96,6 @@ public class BaseFragment extends Fragment {
         inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 
-//    public void showDialog(FragmentActivity activity, String message) {
-//        if (mProgressDialog == null) {
-//            mProgressDialog = new ProgressDialog(activity);
-//            mProgressDialog.setIndeterminate(true);
-//            mProgressDialog.setMessage(message);
-//            mProgressDialog.setCanceledOnTouchOutside(false);
-//            mProgressDialog.setCancelable(false);
-//        }
-//        if (mProgressDialog != null && !mProgressDialog.isShowing())
-//            mProgressDialog.show();
-//    }
-
     public void showDialog(FragmentActivity activity, String msg) {
         final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -137,21 +125,7 @@ public class BaseFragment extends Fragment {
         if (mProgressDialog != null && mProgressDialog.isShowing())
             mProgressDialog.dismiss();
     }
+    //endregion
 
-
-
-
-
-   /* public void ShowImagePopUp(String Img_url, String msg_str, String TAG) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-        dialog.setContentView(R.layout.alert_image_alert);
-
-        dialog.show();
-
-    }*/
 
 }

@@ -51,7 +51,6 @@ import rx.Observable;
 public interface ApiService {
 
 
-
     @GET
     Observable<LerningsModel> getlernings(@Url String url);
 
@@ -129,7 +128,6 @@ public interface ApiService {
     Observable<QuickPayResponce> postquickpay(@Body JsonObject data);
 
 
-
     @POST(APIConstantURL.post_visit)
     Observable<VisitresponseModel> postvisit(@Body JsonObject data);
 
@@ -165,49 +163,27 @@ public interface ApiService {
 
     @POST(APIConstantURL.GetRequestHeaderDetails)
     Observable<Resquickpay> GetRequestheaderDetails(@Body JsonObject data);
+
     @POST(APIConstantURL.GetRequestHeaderDetails)
     Observable<ResLoan> GetRequestheaderLoanDetails(@Body JsonObject data);
 
     @GET
     Observable<Resbasicinfo> getbasicinfo(@Url String url);
+
     @GET
     Observable<resGet3FInfo> get3finfo(@Url String url);
 
     @GET
     Observable<res_plotdetails> getplotinfo(@Url String url);
 
-  @POST(APIConstantURL.delete)
+    @POST(APIConstantURL.delete)
     Observable<Resdelete> postdelete(@Body JsonObject data);
+
     @GET
-    Observable<Resproduct>getLoan(@Url String url);
-
-
+    Observable<Resproduct> getLoan(@Url String url);
 
     @POST(APIConstantURL.AddAppInstallation)
     Observable<Resinstall> post_install(@Body JsonObject data);
 
 
-
- /*
-    // PASSWORD RESET
-    @PUT(APIConstantURL.PASSWORDRESET)
-    Observable<String> putpassword(@Body JsonObject data);
-
-
-    // Login
-    @POST(APIConstantURL.RegisterAccount)
-    Observable<String> postRegisterAccount(@Body JsonObject data);
-
-    *//*
-     * GetAccountOwnerDetails
-     * *//*
-    @GET
-    Observable<GetAccountOwnerDetailsAPIResponse> GetAccountOwnerDetails(@Url String url, @Header("Authorization") String Authorization);
-
-    *//*
-     * GetAllStates
-     * *//*
-    @GET
-    Observable<ArrayList<GetAllStatesAPIResponse>> GetAllStates(@Url String url, @Header("Authorization") String Authorization);
-*/
 }

@@ -1,20 +1,16 @@
 package in.calibrage.akshaya.views.actvity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Animatable;
 import android.media.MediaScannerConnection;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -29,7 +25,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,21 +41,13 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
-import in.calibrage.akshaya.common.Constants;
-import in.calibrage.akshaya.common.PdfUtil;
 import in.calibrage.akshaya.common.SignatureView;
-import in.calibrage.akshaya.localData.SharedPrefsData;
-import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
-import in.calibrage.akshaya.models.LobourResponse;
-import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PostQuickpaymodel;
-import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
-import in.calibrage.akshaya.views.Adapter.Collection_Adapter;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -191,7 +178,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 if (validations()) {
 
                     if (isOnline()) {
-                        PdfUtil.createPDF(Quickpay_SummaryActivity.this, CommonUtil.scaleDown(signatureView.getSignatureBitmap(), 200, true), text_quntity.getText().toString(), ffbCostTxt.getText().toString(), ffbCostTxt.getText().toString(), convenienceChargeTxt.getText().toString(), text_quickpay_fee.getText().toString(), closingBalanceTxt.getText().toString(), totalAmount.getText().toString());
+
                         submitReq();
                     } else {
                         showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
@@ -458,7 +445,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setCollectionIds(val);
         requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
-        // requestModel.setFileLocation(CommonUtil.getStringFile(new File(PdfUtil.TAG)));
         requestModel.setSignatureExtension(".png");
         requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();

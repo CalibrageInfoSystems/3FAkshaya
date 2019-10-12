@@ -5,6 +5,9 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 
+/*
+* This util helpfull For Help Loading Animations in Lists
+* */
 public class AnimationUtil {
 
     public static void animate(RecyclerView.ViewHolder holder, boolean goesdown) {
@@ -13,7 +16,7 @@ public class AnimationUtil {
         @SuppressLint("ObjectAnimatorBinding") ObjectAnimator animatorTransilateY = ObjectAnimator.ofFloat(holder.itemView, "translationY", goesdown == true ? 200 : -200, 0);
         animatorTransilateY.setDuration(1500);
 
-// Animate from left
+       // Animate from left
         @SuppressLint("ObjectAnimatorBinding") ObjectAnimator animatorTransilateX = ObjectAnimator.ofFloat(holder.itemView, "translationX", 200, 0);
         animatorTransilateX.setDuration(1500);
 

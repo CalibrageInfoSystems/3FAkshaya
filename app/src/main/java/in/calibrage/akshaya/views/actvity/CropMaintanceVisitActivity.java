@@ -78,6 +78,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class CropMaintanceVisitActivity extends BaseActivity {
+    //region variables
     private RecyclerView recyclerView;
 
     private Subscription mSubscription;
@@ -127,6 +128,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     public TextView comment_label,reason_label;
     String plot_Age,location,landmarkCode;
     ImageView backImg,home_btn;
+    //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

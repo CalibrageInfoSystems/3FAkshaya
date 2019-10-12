@@ -44,101 +44,16 @@ import in.calibrage.akshaya.views.actvity.HomeActivity;
 import in.calibrage.akshaya.views.actvity.PDFActivity;
 import in.calibrage.akshaya.views.actvity.Visit_request_Activity;
 
-
+/*
+ * This class base For all Activitys , here we declared all common activity related Methods
+ * */
 public class BaseActivity extends AppCompatActivity {
-
     Button showPopupBtn, closePopupBtn;
     PopupWindow popupWindow;
     LinearLayout linearLayout1;
     private ProgressDialog mProgressDialog;
 
-
-    // to intialize the Progress Dialog
-
-    private void initProgressDialog() {
-
-        if (mProgressDialog == null) {
-
-            mProgressDialog = new ProgressDialog(this);
-
-        }
-
-        mProgressDialog.setMessage("Please Wait...");
-
-        mProgressDialog.setCancelable(false);
-
-        mProgressDialog.setCanceledOnTouchOutside(false);
-
-    }
-
-
-    // to start the Progress Dialog
-
-    public void showProgressDialog() {
-
-
-        runOnUiThread(new Runnable() {
-
-            @Override
-
-            public void run() {
-
-                try {
-
-                    if (mProgressDialog == null)
-
-                        initProgressDialog();
-
-                    if (!mProgressDialog.isShowing())
-
-                        mProgressDialog.show();
-
-                } catch (Exception e) {
-
-                    e.printStackTrace();
-
-                }
-
-            }
-
-        });
-
-    }
-
-
-    // to hide the Progress Dialog
-
-    public void hideProgressDialog() {
-
-        runOnUiThread(new Runnable() {
-
-            @Override
-
-            public void run() {
-
-                try {
-
-                    if (mProgressDialog != null && mProgressDialog.isShowing())
-
-                        mProgressDialog.dismiss();
-
-                } catch (Exception e) {
-
-                    e.printStackTrace();
-
-                } finally {
-
-                    mProgressDialog = null;
-
-                }
-
-            }
-
-        });
-
-    }
-
-
+    //region Check user Online or not
     public boolean isOnline() {
         ConnectivityManager manager =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -150,41 +65,8 @@ public class BaseActivity extends AppCompatActivity {
         }
         return isAvailable;
     }
-
-    public static void showToast(Context context, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void replaceFragment(final FragmentActivity activity, final int container, final Fragment
-            fragment, final String cuurentFragmentTag, final String newFragmentTag) {
-        Runnable mPendingRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (activity != null)// update the main content by replacing fragments
-                {
-
-                    FragmentTransaction fragmentTransaction = activity
-                            .getSupportFragmentManager()
-                            .beginTransaction();
-                    fragmentTransaction
-                            .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-                    fragmentTransaction
-                            .addToBackStack(cuurentFragmentTag)
-                            .replace(container, fragment, newFragmentTag);
-                    fragmentTransaction.commitAllowingStateLoss();
-                }
-
-
-                /*  closeTab(cuurentFragmentTag);*/
-
-            }
-        };
-        // If mPendingRunnable is not null, then add to the message queue
-        if (mPendingRunnable != null) {
-            new Handler().post(mPendingRunnable);
-        }
-    }
-
+    //endregion
+    //region Validation Check Dialog
     public void validationPopShow() {
 
         LayoutInflater layoutInflater = (LayoutInflater) BaseActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -208,7 +90,8 @@ public class BaseActivity extends AppCompatActivity {
         });
 
     }
-
+    //endregion
+    //region Error Dialog
     public void showDialog(Activity activity, String msg) {
         final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -233,6 +116,8 @@ public class BaseActivity extends AppCompatActivity {
             }
         }, 500);
     }
+    //endregion
+    //region KeyBorad Show & Hide
     /**
      * Hides the soft keyboard
      */
@@ -243,6 +128,7 @@ public class BaseActivity extends AppCompatActivity {
             inputMethodManager.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0);
         }
     }
+
     /**
      * Shows the soft keyboard
      */
@@ -253,20 +139,19 @@ public class BaseActivity extends AppCompatActivity {
 
 
     }
-
-
+    //endregion
+    //region Common Dialog For Sucess Message
     @RequiresApi(api = Build.VERSION_CODES.M)
-    protected void showSuccessDialog(List<MSGmodel> msg,String summary) {
+    protected void showSuccessDialog(List<MSGmodel> msg, String summary) {
         ViewGroup viewGroup = findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
 
 
         //TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
         LinearLayout layout = dialogView.findViewById(R.id.linear_text);
-        TextView summary_text =dialogView.findViewById(R.id.summary_text);
+        TextView summary_text = dialogView.findViewById(R.id.summary_text);
         summary_text.setText(summary);
         final ImageView img = dialogView.findViewById(R.id.img);
-
 
 
         for (int i = 0; i < msg.size(); i++) {
@@ -283,27 +168,24 @@ public class BaseActivity extends AppCompatActivity {
             txtTitle.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             txtTitle.setLayoutParams(new LinearLayout.LayoutParams(
                     0,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
             txtTitle.setTextColor(getColor(R.color.red));
             lty.addView(txtTitle);
 
             TextView txtitem = new TextView(this);
             txtitem.setText(msg.get(i).getValue());
             txtitem.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
-            txtitem.setPadding(10,0,0,0);
+            txtitem.setPadding(10, 0, 0, 0);
             txtitem.setLayoutParams(new LinearLayout.LayoutParams(
                     0,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,0.5f));
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
 
 
             lty.addView(txtitem);
-          //  lty.setGravity(View.FOCUS_LEFT);
+            //  lty.setGravity(View.FOCUS_LEFT);
 
             layout.addView(lty);
         }
-
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogView);
         final AlertDialog alertDialog = builder.create();
@@ -320,22 +202,9 @@ public class BaseActivity extends AppCompatActivity {
                 finish();
             }
         });
-      /*  new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ((Animatable) img.getDrawable()).start();
-            }
-        }, 500);*/
-//        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
-//        ((Animatable) mImgCheck.getDrawable()).start();
-    }
-
-
-    private void pdfOpen(String fileUrl) {
-
-
 
     }
+    //endregion
 
 }
 

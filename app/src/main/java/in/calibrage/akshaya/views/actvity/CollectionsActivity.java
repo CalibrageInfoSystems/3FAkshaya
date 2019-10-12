@@ -59,6 +59,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class CollectionsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
+    //region variables
     DatePickerDialog picker;
     public static String TAG = "CollectionsActivity";
     EditText fromText, toText;
@@ -87,24 +88,20 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
     private SpotsDialog mdilogue;
     LinearLayout date_linear;
     ImageView backImg, home_btn;
-
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_collections);
         init();
         setViews();
 
     }
-
+    //region InitViews
     private void init() {
 
         noRecords = (LinearLayout) findViewById(R.id.text);
-
         collectionsWeight = (TextView) findViewById(R.id.collectionsWeight);
         collectionsCount = (TextView) findViewById(R.id.collectionsCount);
         paidCollectionsWeight = (TextView) findViewById(R.id.paidCollectionsWeight);
@@ -124,20 +121,17 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
 
         relativeLayoutCount = (RelativeLayout) findViewById(R.id.top_linear);
-        String from_date = "<font color='#000000'>From Date </font>" + "<font color='#FF0000'>*</font>" + "<font color='#000000'></font>";
-        //   fromText.setText(Html.fromHtml(from_date));
+
         toText = (EditText) findViewById(R.id.to_date);
-        String to_date = "<font color='#000000'>To Date </font>" + "<font color='#FF0000'>*</font>" + "<font color='#000000'></font>";
-        //  toText.setText(Html.fromHtml(to_date));
         collecton_data = (RecyclerView) findViewById(R.id.collection_recycler_view);
         spin = (Spinner) findViewById(R.id.spinner);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
         fromText.setHint(CommonUtil.getMultiColourString(getString(R.string.from_date)));
         toText.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
-        //  timePeroidLinear=(RelativeLayout) findViewById(R.id.new_relative);
     }
-
+    //endregion
+    //region SetViews
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,8 +142,6 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
                 Intent intent = new Intent(CollectionsActivity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -237,12 +229,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         }
 
     }
-
-
-//        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-//        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
-
-
+    //endregion
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -367,7 +354,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         }
 
     }
-
+    //region API Requests
     private void getCustomCollections(String fromString, String toString) {
         collection_list.clear();
         mdilogue.show();
@@ -595,7 +582,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
+    //endregion
     @Override
     public void onBackPressed() {
         super.onBackPressed();
