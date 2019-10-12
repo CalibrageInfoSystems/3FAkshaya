@@ -73,8 +73,13 @@ public class uprootment_Adapter extends RecyclerView.Adapter<uprootment_Adapter.
 
     @Override
     public int getItemCount() {
-        return uprootment_List.size();
+
+        if (uprootment_List != null)
+            return uprootment_List.size();
+        else
+            return 0;
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

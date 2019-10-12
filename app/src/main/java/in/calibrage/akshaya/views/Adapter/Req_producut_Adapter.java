@@ -1,14 +1,11 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,8 +13,6 @@ import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.Resproduct;
-import in.calibrage.akshaya.views.actvity.Product_new;
-import in.calibrage.akshaya.views.actvity.product_list;
 
 public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adapter.MyViewHolder> {
 private Context context;

@@ -221,7 +221,8 @@ public class OtpActivity extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
+                        showDialog(OtpActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

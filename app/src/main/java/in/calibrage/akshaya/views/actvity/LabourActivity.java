@@ -162,7 +162,13 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
-        Getterms_conditions();
+        if (isOnline())
+            Getterms_conditions();
+        else {
+            showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void setViews() {
@@ -263,7 +269,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
         });
 
-        Getterms_conditions();
+        if (isOnline())
+            Getterms_conditions();
+        else {
+            showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -313,7 +324,13 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
             }
         });
-        Getlabour_duration();
+        if (isOnline())
+            Getlabour_duration();
+        else {
+            showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
+
         labourSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -394,6 +411,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                        showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -550,6 +568,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -607,6 +626,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

@@ -168,8 +168,12 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if (list != null)
+            return list.size();
+        else
+            return 0;
     }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 

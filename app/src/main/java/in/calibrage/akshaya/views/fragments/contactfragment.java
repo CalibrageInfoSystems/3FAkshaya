@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.Resbasicinfo;
 import in.calibrage.akshaya.models.resGet3FInfo;
@@ -31,7 +32,7 @@ import rx.schedulers.Schedulers;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class contactfragment extends Fragment {
+public class contactfragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -86,7 +87,13 @@ public class contactfragment extends Fragment {
         whatsapp_number=(TextView)view.findViewById(R.id.whatsapp);
         care_number.setText("1234567890");
         whatsapp_number.setText("9876543210");
-        Get3FInfo();
+        if (isOnline(getContext()))
+            Get3FInfo();
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
+
+        }
+
         return view;
 
 
@@ -112,7 +119,7 @@ public class contactfragment extends Fragment {
                     public void onError(Throwable e) {
                         mdilogue.cancel();
                         Log.d(TAG, "---- analysis ---->GetContactInfo -->> error -->> :" + e.getLocalizedMessage());
-
+                        showDialog(getActivity(), getString(R.string.server_error));
                     }
 
                     @Override

@@ -5,26 +5,23 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.localData.SharedPrefsData;
-import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.Resbasicinfo;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
-import in.calibrage.akshaya.views.Adapter.GodownListAdapter;
-import in.calibrage.akshaya.views.actvity.fert_gowdn;
+import in.calibrage.akshaya.views.actvity.LabourActivity;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -33,7 +30,7 @@ import rx.schedulers.Schedulers;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class BasicinfoFragment extends Fragment {
+public class BasicinfoFragment extends BaseFragment {
     public static String TAG = BasicinfoFragment.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -84,7 +81,13 @@ public class BasicinfoFragment extends Fragment {
         webSetting.setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient());
-        GetContactInfo();
+        if (isOnline(getContext()))
+            GetContactInfo();
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
+
+        }
+
         return view;
     }
 
@@ -106,7 +109,7 @@ public class BasicinfoFragment extends Fragment {
                     public void onError(Throwable e) {
                         mdilogue.cancel();
                         Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
-
+                        showDialog(getActivity(), getString(R.string.server_error));
                     }
 
                     @Override

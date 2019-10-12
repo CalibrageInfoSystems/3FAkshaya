@@ -56,8 +56,14 @@ public class healthPlantation_Adapter extends RecyclerView.Adapter<healthPlantat
 
     @Override
     public int getItemCount() {
-        return Plantation_List.size();
-    }
+
+
+        if (Plantation_List != null)
+            return Plantation_List.size();
+        else
+            return 0;
+
+}
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -280,6 +280,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                        showDialog(Quickpay_SummaryActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

@@ -97,8 +97,13 @@ public class RequestVisitActivity extends BaseActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        if (isOnline())
+            GetLabourRequestDetails();
+        else {
+            showDialog(RequestVisitActivity.this,getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
 
-        GetLabourRequestDetails();
 
     }
 

@@ -14,15 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
-import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.models.Request_settings;
 import in.calibrage.akshaya.views.Adapter.MyReqListAdapter;
-import in.calibrage.akshaya.views.actvity.MyQuickPayRequests;
-import in.calibrage.akshaya.views.actvity.MyReqDeatilsActivity;
-import in.calibrage.akshaya.views.actvity.MyReqFertilizerActivity;
-import in.calibrage.akshaya.views.actvity.MyReqLoanActivity;
-import in.calibrage.akshaya.views.actvity.MyReqVisitActivity;
-import in.calibrage.akshaya.views.actvity.MyReqpoleActivity;
 import in.calibrage.akshaya.views.actvity.RequestListctivity;
 
 /**

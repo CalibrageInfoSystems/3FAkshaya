@@ -27,7 +27,7 @@ import java.util.List;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
-import in.calibrage.akshaya.views.actvity.Product_new;
+import in.calibrage.akshaya.models.Product_new;
 
 
 public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNew.ViewHolder> {

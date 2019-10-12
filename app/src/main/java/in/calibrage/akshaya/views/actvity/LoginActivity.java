@@ -241,7 +241,8 @@ public class LoginActivity extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
+                        showDialog(LoginActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

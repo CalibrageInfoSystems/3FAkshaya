@@ -19,8 +19,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.ParcelFileDescriptor;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.text.Html;
 import android.text.SpannableString;
@@ -36,9 +34,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.shockwave.pdfium.PdfDocument;
-import com.shockwave.pdfium.PdfiumCore;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,7 +41,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,7 +51,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import in.calibrage.akshaya.R;
-import in.calibrage.akshaya.views.actvity.Product_new;
+import in.calibrage.akshaya.models.Product_new;
 
 
 

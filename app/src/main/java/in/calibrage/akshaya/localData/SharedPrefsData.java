@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
-import in.calibrage.akshaya.views.actvity.Product_new;
+import in.calibrage.akshaya.models.Product_new;
 
 
 public class SharedPrefsData {

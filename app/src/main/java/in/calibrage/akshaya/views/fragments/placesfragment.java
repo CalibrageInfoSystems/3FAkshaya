@@ -28,6 +28,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.resGet3FInfo;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -45,7 +46,7 @@ import rx.schedulers.Schedulers;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class placesfragment extends Fragment implements OnMapReadyCallback {
+public class placesfragment extends BaseFragment implements OnMapReadyCallback {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -127,7 +128,12 @@ public class placesfragment extends Fragment implements OnMapReadyCallback {
         mill_recycleview.setHasFixedSize(true);
         RecyclerView.LayoutManager mill = new LinearLayoutManager(getContext());
         mill_recycleview.setLayoutManager(mill);
-        Get3FInfoo();
+        if (isOnline(getContext()))
+            Get3FInfoo();
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
+
+        }
 
 
         sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {

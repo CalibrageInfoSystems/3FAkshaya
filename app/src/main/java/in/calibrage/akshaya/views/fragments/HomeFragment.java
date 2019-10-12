@@ -44,6 +44,7 @@ import in.calibrage.akshaya.views.Adapter.LabourRecommendationAdapter;
 import in.calibrage.akshaya.views.Adapter.SlideAdapter;
 import in.calibrage.akshaya.views.actvity.CollectionsActivity;
 import in.calibrage.akshaya.views.actvity.FertilizerActivity;
+import in.calibrage.akshaya.views.actvity.LabourActivity;
 import in.calibrage.akshaya.views.actvity.LabourRecommendationsActivity;
 import in.calibrage.akshaya.views.actvity.LoanActivity;
 import in.calibrage.akshaya.views.actvity.PaymentActivity;
@@ -222,6 +223,7 @@ public class HomeFragment extends BaseFragment {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                        showDialog(getActivity(), getString(R.string.server_error));
                     }
 
                     @Override
@@ -238,6 +240,7 @@ public class HomeFragment extends BaseFragment {
                             sliderView.setIndicatorSelectedColor(Color.WHITE);
                             sliderView.setIndicatorUnselectedColor(Color.GRAY);
                             sliderView.startAutoCycle();
+
                             txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                          " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
                         }
                     }

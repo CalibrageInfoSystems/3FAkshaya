@@ -175,8 +175,14 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return list_loan.size();
+
+        if (list_loan != null)
+            return list_loan.size();
+        else
+            return 0;
     }
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 

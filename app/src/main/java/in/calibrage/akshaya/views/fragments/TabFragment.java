@@ -55,6 +55,7 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.GetRecommendationsByAgeAdapter;
+import in.calibrage.akshaya.views.actvity.OtpActivity;
 import in.calibrage.akshaya.views.actvity.PDFActivity;
 import in.calibrage.akshaya.views.actvity.PlayerActivity;
 import retrofit2.adapter.rxjava.HttpException;
@@ -108,7 +109,14 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
         super.onViewCreated(view, savedInstanceState);
         init(view);
         setViews();
-        GetEncyclopediaDetails();
+        if (isOnline(getContext()))
+            GetEncyclopediaDetails();
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
+
+        }
+
+
         if (SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("count") == 3)
             GetRecommendation();
     }
@@ -198,6 +206,8 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        showDialog(getActivity(), getString(R.string.server_error));
+
                     }
 
                     @Override
@@ -309,7 +319,8 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
+                        showDialog(getActivity(), getString(R.string.server_error));
                     }
 
                     @Override

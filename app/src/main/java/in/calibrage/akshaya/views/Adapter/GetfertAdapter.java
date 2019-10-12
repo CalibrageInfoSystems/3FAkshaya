@@ -161,52 +161,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
 
         });
 
-        //      holder.imageView.setImageResource(listdata[position].getImgId());
 
-
-      /*  PoleModel superHero =  superHeroes.get(position);
-
-        holder.requestCode.setText(superHero.getRequestCode());
-        holder.req_date.setText(superHero.getReqCreatedDate());
-        holder.statusType.setText(superHero.getStatusType());
-        holder.paymentMode.setText(superHero.getPaymentMode());
-      holder.amount.setText(superHero.getamount());*/
-        String powers = "";
-
-       /* for(int i = 0; i<superHero.getPowers().size(); i++){
-            powers+= superHero.getPowers().get(i);
-        }*/
-//        holder.showMore.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (holder.contentLayout.isShown()) {
-//                    holder.contentLayout.setAnimation(animationUp);
-//
-//                    CountDownTimer countDownTimerStatic = new CountDownTimer(COUNTDOWN_RUNNING_TIME, 16) {
-//                        @Override
-//                        public void onTick(long millisUntilFinished) {
-//                        }
-//
-//                        @Override
-//                        public void onFinish() {
-//                            holder.contentLayout.setVisibility(View.GONE);
-//                        }
-//                    };
-//                    countDownTimerStatic.start();
-//
-//                    //  rowViewHolder.showMore.setText(context.getString(R.string.show));
-//                    holder.showMore.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_dow, 0);
-//                } else {
-//                    GetProductDetailsByRequestCode();
-//                    holder.contentLayout.setVisibility(View.VISIBLE);
-//
-//                    holder.contentLayout.setAnimation(animationDown);
-//
-//                    //   rowViewHolder.showMore.setText(context.getString(R.string.hide));
-//                    holder.showMore.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.arrow_up, 0);
-//                }
-//            }
-//        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,16 +1,10 @@
 package in.calibrage.akshaya.views.Adapter;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import java.util.ArrayList;
-
-import in.calibrage.akshaya.views.fragments.StandardRecommendationsFragment;
 import in.calibrage.akshaya.views.fragments.TabFragment;
-import in.calibrage.akshaya.views.fragments.VideoFragment;
-import in.calibrage.akshaya.views.fragments.documentFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 

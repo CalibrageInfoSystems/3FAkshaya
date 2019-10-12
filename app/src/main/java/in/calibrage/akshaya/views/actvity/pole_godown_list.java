@@ -184,6 +184,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                     @Override
                     public void onError(Throwable e) {
                         mdilogue.cancel();
+                        showDialog(pole_godown_list.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -533,6 +534,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                     @Override
                     public void onError(Throwable e) {
                         mdilogue.cancel();
+                        showDialog(pole_godown_list.this, getString(R.string.server_error));
                         Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
 
                     }

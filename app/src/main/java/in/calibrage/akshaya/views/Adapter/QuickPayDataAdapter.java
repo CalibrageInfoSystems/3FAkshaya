@@ -103,8 +103,14 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
     // Return the size arraylist
     @Override
     public int getItemCount() {
-        return stList.size();
+
+
+        if (stList != null)
+            return stList.size();
+        else
+            return 0;
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

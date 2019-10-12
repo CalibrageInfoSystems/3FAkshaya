@@ -47,8 +47,15 @@ public class fertilizer_Adapter extends RecyclerView.Adapter<fertilizer_Adapter.
 
     @Override
     public int getItemCount() {
-        return fertilizer_List.size();
+
+
+        if (fertilizer_List != null)
+            return fertilizer_List.size();
+        else
+            return 0;
     }
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

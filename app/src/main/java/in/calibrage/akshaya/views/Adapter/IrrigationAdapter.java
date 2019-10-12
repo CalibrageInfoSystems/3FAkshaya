@@ -72,8 +72,13 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return Irr_List.size();
+        if (Irr_List != null)
+            return Irr_List.size();
+        else
+            return 0;
     }
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

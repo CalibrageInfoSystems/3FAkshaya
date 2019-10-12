@@ -208,8 +208,14 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
 
     @Override
     public int getItemCount() {
-        return list_products.size();
+        if (list_products != null)
+            return list_products.size();
+        else
+            return 0;
     }
+
+
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         public NetworkImageView imageView, imageView2;

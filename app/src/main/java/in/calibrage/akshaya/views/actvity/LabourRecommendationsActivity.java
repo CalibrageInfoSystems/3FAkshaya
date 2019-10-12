@@ -122,8 +122,13 @@ public class LabourRecommendationsActivity  extends BaseActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        if (isOnline())
+            GetLabourRequestDetails();
+        else {
+            showDialog(LabourRecommendationsActivity.this, getResources().getString(R.string.Internet));
 
-        GetLabourRequestDetails();
+        }
+
 
     }
 
@@ -153,6 +158,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                        showDialog(LabourRecommendationsActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

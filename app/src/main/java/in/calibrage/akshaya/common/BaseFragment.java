@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
@@ -17,6 +18,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import in.calibrage.akshaya.R;
@@ -93,16 +96,41 @@ public class BaseFragment extends Fragment {
         inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 
-    public void showDialog(FragmentActivity activity, String message) {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(activity);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setMessage(message);
-            mProgressDialog.setCanceledOnTouchOutside(false);
-            mProgressDialog.setCancelable(false);
-        }
-        if (mProgressDialog != null && !mProgressDialog.isShowing())
-            mProgressDialog.show();
+//    public void showDialog(FragmentActivity activity, String message) {
+//        if (mProgressDialog == null) {
+//            mProgressDialog = new ProgressDialog(activity);
+//            mProgressDialog.setIndeterminate(true);
+//            mProgressDialog.setMessage(message);
+//            mProgressDialog.setCanceledOnTouchOutside(false);
+//            mProgressDialog.setCancelable(false);
+//        }
+//        if (mProgressDialog != null && !mProgressDialog.isShowing())
+//            mProgressDialog.show();
+//    }
+
+    public void showDialog(FragmentActivity activity, String msg) {
+        final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog);
+        final ImageView img = dialog.findViewById(R.id.img_cross);
+
+        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+        text.setText(msg);
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        }, 500);
     }
 
     public void hideDialog() {

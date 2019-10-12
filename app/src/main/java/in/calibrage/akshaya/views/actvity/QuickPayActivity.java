@@ -136,7 +136,14 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        getQuckPay();
+        if (isOnline())
+            getQuckPay();
+        else {
+            showDialog(QuickPayActivity.this,getResources().getString(R.string.Internet));
+
+        }
+
+
 
     }
 
@@ -166,6 +173,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                        showDialog(QuickPayActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

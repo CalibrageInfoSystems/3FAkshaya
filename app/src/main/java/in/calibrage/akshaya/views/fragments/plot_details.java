@@ -18,6 +18,7 @@ import java.io.IOException;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.res_plotdetails;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -42,7 +43,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Use the {@link plot_details#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class plot_details extends Fragment {
+public class plot_details extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     public static String TAG = plot_details.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
@@ -98,8 +99,13 @@ public class plot_details extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // recyclerView.setAdapter(adapter);
+        if (isOnline(getContext()))
+            GetPlotDetailsByFarmerCode();
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
 
-        GetPlotDetailsByFarmerCode();
+        }
+
 
         return view;
     }
@@ -135,6 +141,7 @@ public class plot_details extends Fragment {
                                 e.printStackTrace();
                             }
                             mdilogue.dismiss();
+                            showDialog(getActivity(), getString(R.string.server_error));
                         }
 
                         @Override
@@ -146,6 +153,7 @@ public class plot_details extends Fragment {
                             if(res_plotdetails.getListResult() != null)
                             {
                                 noRecords.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
                                 PlotDetailsAdapter adapter = new PlotDetailsAdapter(res_plotdetails.getListResult(),getContext() );
                                 recyclerView.setAdapter(adapter);
 
@@ -153,6 +161,7 @@ public class plot_details extends Fragment {
                             }
                             else{
                                 noRecords.setVisibility(View.VISIBLE);
+                                recyclerView.setVisibility(View.GONE);
 
                             }
                         }

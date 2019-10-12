@@ -1,4 +1,4 @@
-package in.calibrage.akshaya.views.actvity;
+package in.calibrage.akshaya.models;
 
 import java.io.Serializable;
 

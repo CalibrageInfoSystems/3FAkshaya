@@ -7,9 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.os.Handler;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,7 +15,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +38,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +47,7 @@ import in.calibrage.akshaya.common.CircleAnimationUtil;
 import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
+import in.calibrage.akshaya.models.Product_new;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
@@ -112,34 +108,34 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //recyclerView.setAdapter(adapter);
-//
-//        Button buttonBarCodeScan = findViewById(R.id.confirm);
+            if (isOnline())
+                Getstate();
+        else {
+            showDialog(PoleActivity.this,getResources().getString(R.string.Internet));
 
-        Getstate();
-    /*    cartButtonIV.setOnClickListener(new View.OnClickListener() {
+        }
+
+
+
+       cartButtonIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (validations()) {
-                            Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
+                    if (myProductsList.size() > 0) {
 
 
-                            startActivity(i);
-
-                            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-
-                        }
+                        Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
+                        i.putExtra("Total_amount", mealTotalText.getText());
+                        startActivity(i);
+                        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                     }
-                }, SPLASH_DISPLAY_DURATION);
+                    else{
+                        showDialog(PoleActivity.this, getResources().getString(R.string.select_product_toast));
+                    }
 
-                //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //  startActivity(i);
-            }
-        });*/
+                }
+
+        });
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,21 +155,9 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 }
 
         });
-//        txt_recomandations.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(FertilizerActivity.this, RecommendationActivity.class));
-//            }
-//        });
+//
     }
 
-    private boolean validations() {
-        if (selectedQty_List.isEmpty()) {
-            showDialog(PoleActivity.this, getResources().getString(R.string.select_product_toast));
-            return false;
-        }
-        return true;
-    }
 
     private void Getstate() {
         dialog.setMessage("Loading, please wait....");

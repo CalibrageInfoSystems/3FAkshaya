@@ -251,7 +251,13 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         if (spin.getSelectedItem().toString().equals("Last 30 Days")) {
 
             collecton_data.setVisibility(View.VISIBLE); //
-            get30days();
+            if (isOnline())
+                get30days();
+            else {
+                showDialog(CollectionsActivity.this, getResources().getString(R.string.Internet));
+
+            }
+          //  get30days();
         } else {
             collecton_data.setVisibility(View.GONE);
 
@@ -260,7 +266,13 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         if (spin.getSelectedItem().toString().equals("Current Financial Year")) {
 
             collecton_data.setVisibility(View.VISIBLE); //
-            getfinacialyear();
+            if (isOnline())
+                getfinacialyear();
+            else {
+                showDialog(CollectionsActivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
         } else {
             collecton_data.setVisibility(View.GONE);
 
@@ -383,7 +395,8 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
+                        showDialog(CollectionsActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -454,6 +467,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                        showDialog(CollectionsActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -531,6 +545,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                         }
                         mdilogue.cancel();
                         collection_Adapter.clearAllDataa();
+                        showDialog(CollectionsActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

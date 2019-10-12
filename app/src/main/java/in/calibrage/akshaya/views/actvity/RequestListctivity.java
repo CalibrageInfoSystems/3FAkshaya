@@ -69,20 +69,61 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         init();
 
         if (name.equalsIgnoreCase(getResources().getString(R.string.lab_req))) {
-            GetLabourRequestDetails();
+            if (isOnline())
+                GetLabourRequestDetails();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
 
         } else if (name.equalsIgnoreCase(getResources().getString(R.string.pole_req))) {
-            getPole();
+            if (isOnline())
+                getPole();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
         } else if (name.equalsIgnoreCase(getResources().getString(R.string.fert_req))) {
-            getfertilizer();
+            if (isOnline())
+                getfertilizer();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
 
         } else if (name.equalsIgnoreCase(getResources().getString(R.string.quick_req))) {
-            getquickpay();
+            if (isOnline())
+                getquickpay();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
 
         } else if (name.equalsIgnoreCase(getResources().getString(R.string.visit_req))) {
-            getvisit();
+            if (isOnline())
+                getvisit();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
         } else if (name.equalsIgnoreCase( getResources().getString(R.string.Loan_req))) {
-            getLoan();
+            if (isOnline())
+                getLoan();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
 
         }
 
@@ -120,6 +161,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         }
                         mdilogue.cancel();
                         no_data.setVisibility(View.VISIBLE);
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -205,6 +247,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         }
                         mdilogue.cancel();
                         no_data.setVisibility(View.VISIBLE);
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -258,6 +301,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         }
                         mdilogue.cancel();
                         no_data.setVisibility(View.VISIBLE);
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -310,7 +354,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
-                        no_data.setVisibility(View.VISIBLE);
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -374,7 +418,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -427,7 +472,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                                 }
                                 e.printStackTrace();
                             }
-                            mdilogue.cancel();
+                            mdilogue.dismiss();
+                            showDialog(RequestListctivity.this, getString(R.string.server_error));
                         }
 
                         @Override

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.common.CircleTransform;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
@@ -30,7 +31,7 @@ import in.calibrage.akshaya.views.actvity.HomeActivity;
  * Use the {@link profile_fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class profile_fragment extends Fragment {
+public class profile_fragment extends BaseFragment {
     public static final String TAG= profile_fragment.class.getSimpleName();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

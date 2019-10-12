@@ -79,8 +79,13 @@ public class ReqVisitAdapter  extends RecyclerView.Adapter<ReqVisitAdapter.ViewH
     }
     @Override
     public int getItemCount() {
-        return plot_Set.size();
+
+        if (plot_Set != null)
+            return plot_Set.size();
+        else
+            return 0;
     }
+
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -85,7 +85,12 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
 
     @Override
     public int getItemCount() {
-        return nut_List.size();
+
+        if (nut_List != null)
+            return nut_List.size();
+        else
+            return 0;
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

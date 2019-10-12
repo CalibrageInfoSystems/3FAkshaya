@@ -68,8 +68,13 @@ public class producut_AdapterNew extends RecyclerView.Adapter<producut_AdapterNe
 
     @Override
     public int getItemCount() {
-        return product_List.size();
+
+        if (product_List != null)
+            return product_List.size();
+        else
+            return 0;
     }
+
 
 
 }

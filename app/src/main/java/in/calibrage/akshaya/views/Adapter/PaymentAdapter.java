@@ -83,21 +83,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         ((ViewHolder) holder).finalAmount.setText(": " + payment_Set.get(position).getAmount());
 
 
-//        if ((payment_Set.get(position).getBalance()) < 0) {
-//            String balance1= payment_Set.get(position).getBalance()+""+")";
-//            ((ViewHolder) holder).balance.setText(balance1.toString().replace("-","("));
-//        }
-//        else {
-//            ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
-//        }
 
-
-//            if ((payment_Set.get(position).getBalance()) < 0) {
-//                String balance1 = payment_Set.get(position).getBalance() + "" + ")";
-//                ((ViewHolder) holder).balance.setText(balance1.toString().replace("-", "("));
-//            } else {
-//                ((ViewHolder) holder).balance.setText("" + payment_Set.get(position).getBalance());
-//            }
         if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
@@ -105,12 +91,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
         }
 
-       /* if(position%2 == 0){
-            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
-        } else {
-            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
-        }*/
         if ((payment_Set.get(position).getBalance()) < 0) {
             String balance1 = payment_Set.get(position).getBalance() + "" + ")";
             ((ViewHolder) holder).balance.setText(": " + balance1.toString().replace("-", "("));
@@ -175,21 +156,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             holder.text_six.setVisibility(View.VISIBLE);
         }
 //
-//
-//
-//            try {
-//                if ("" + payment_Set.get(position).getMemo() == null || "" + ""+payment_Set.get(position).getMemo() == "null") {
-//                    //   Log.e("bbbbb",superHero.getmAmount());
-//                    holder.memo_text.setVisibility(View.GONE);
-//                    holder.text_six.setVisibility(View.GONE);
-//
-//                } else {
-//                    holder.memo_text.setVisibility(View.VISIBLE);
-//                    holder.text_six.setVisibility(View.VISIBLE);
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+
         if (payment_Set.get(position).getAmount() == 0.0) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.finalAmount.setVisibility(View.GONE);

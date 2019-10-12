@@ -70,6 +70,7 @@
     <string name="net_weight">Net weight</string>
     <string name="date_label">Date</string>
     <string name="location">Location</string>
+    <string name="locationn">Location   :</string>
     <string name="collection">Collections</string>
     <string name="land_mark">Landmark</string>
     <string name="landmark">Landmark</string>
@@ -282,6 +283,7 @@
     <string name="fa_hu_name">Father/Husband</string>
     <string name="res_address">Residential Address</string>
     <string name="address">Address</string>
+    <string name="addresss">Address   :</string>
     <string name="mandal">Mandal</string>
     <string name="dist">District</string>
     <string name="state">State</string>
@@ -309,6 +311,7 @@
     <string name="plot_details">Plot Details</string>
     <string name="cancel_success">Cancelled Successfully</string>
     <string name="amount_payble">Amount Payble (Rs)</string>
+    <string name="comments_valid">Please Enter Comments</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

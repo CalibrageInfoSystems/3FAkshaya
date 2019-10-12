@@ -70,8 +70,13 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
 
     @Override
     public int getItemCount() {
-        return listdata.size();
+
+        if (listdata != null)
+            return listdata.size();
+        else
+            return 0;
     }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView Disease;

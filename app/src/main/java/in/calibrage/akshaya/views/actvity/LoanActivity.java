@@ -126,8 +126,13 @@ public class LoanActivity extends BaseActivity {
             public void onClick(View view) {
                 if (amount.getText() != null & amount.getText().toString().trim() != "" & !TextUtils.isEmpty(amount.getText())) {
                     if (checkbox.isChecked()) {
+                        if (isOnline())
+                            GetLoanDetails();
+                        else {
+                            showDialog(LoanActivity.this, getResources().getString(R.string.Internet));
 
-                        GetLoanDetails();
+                        }
+
                     }
                     else {showDialog(LoanActivity.this,getResources().getString(R.string.terms_agree));
 

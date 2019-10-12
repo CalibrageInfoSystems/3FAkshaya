@@ -92,8 +92,14 @@ public class pest_Adapter extends RecyclerView.Adapter<pest_Adapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return pest_List.size();
+
+        if (pest_List != null)
+            return pest_List.size();
+        else
+            return 0;
     }
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -196,10 +196,8 @@
         
     <string name="date_label">తేదీ</string>
         
-    <string name="location">స్థానం</string><![CDATA[
-        
-        
-    ]]>
+    <string name="location">స్థానం</string><![CDATA[ ]]>
+    <string name="locationn">స్థానం   :</string>
     <string name="collection">కలెక్షన్స్</string>
         
     <string name="land_mark">మైలురాయి</string><![CDATA[/>
@@ -413,6 +411,7 @@
     <string name="fa_hu_name">తండ్రి / భర్త</string>
     <string name="res_address">నివాస చిరునామా</string>
     <string name="address">చిరునామా</string>
+    <string name="addresss">చిరునామా   :</string>
     <string name="mandal">మండల</string>
     <string name="dist">జిల్లా</string>
     <string name="state">రాష్ట్రం</string>
@@ -438,7 +437,8 @@
     <string name="farmer_profile">రైతు ప్రొఫైల్</string>
     <string name="plot_details">ప్లాట్ వివరాలు</string>
     <string name="cancel_success">రద్దు చేయబడింది</string>
-    <string name="amount_payble">Amount Payble (Rs)</string>
+    <string name="amount_payble">చెల్లించవలసిన మొత్తం (రూ)</string>
+    <string name="comments_valid">దయచేసి వ్యాఖ్యలను నమోదు చేయండి</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>

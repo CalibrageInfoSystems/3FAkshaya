@@ -167,9 +167,16 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
        });*/
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
-        getPaymentMods();
-        getFertilizerSubsidies();
-        getActiveGodowns();
+        if (isOnline()) {
+            getPaymentMods();
+            getFertilizerSubsidies();
+            getActiveGodowns();
+        }
+        else {
+            showDialog(Fert_godown_list.this,getResources().getString(R.string.Internet));
+
+        }
+
 
 
         sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
@@ -206,6 +213,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     @Override
                     public void onError(Throwable e) {
                         mdilogue.cancel();
+                        showDialog(Fert_godown_list.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -470,7 +478,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     public void onError(Throwable e) {
                         mdilogue.cancel();
                         Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
-
+                        showDialog(Fert_godown_list.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -546,7 +554,13 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
          * validate Fealds
          * */
         if (selectedGodown != null) {
-            FertilizerRequest();
+            if (isOnline())
+                FertilizerRequest();
+            else {
+                showDialog(Fert_godown_list.this,getResources().getString(R.string.Internet));
+
+            }
+
         } else {
             showDialog(this, getString(R.string.godown_valid));
         }
