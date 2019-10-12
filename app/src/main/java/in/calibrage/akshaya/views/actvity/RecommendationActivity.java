@@ -44,15 +44,10 @@ public class RecommendationActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_recommendation);
-
         init();
         setViews();
     }
-
     private void init() {
         no_plots=(TextView)findViewById(R.id.text);
         home_btn=(ImageView)findViewById(R.id.home_btn);
@@ -93,7 +88,6 @@ public class RecommendationActivity extends BaseActivity {
             Getplots();
         else {
             showDialog(RecommendationActivity.this, getResources().getString(R.string.Internet));
-            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -151,9 +145,6 @@ public class RecommendationActivity extends BaseActivity {
                         RecommendationAdapter rec_adapter= new RecommendationAdapter(RecommendationActivity.this, recomPlotcodes.getListResult());
                         recom_recyclerView.setAdapter(rec_adapter);
                     }
-
-
-
 
 
                 });

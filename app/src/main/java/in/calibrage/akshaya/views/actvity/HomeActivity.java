@@ -20,33 +20,26 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Field;
 
-import in.calibrage.akshaya.BottomLinster;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleTransform;
-import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
@@ -58,7 +51,6 @@ import rx.Subscription;
 
 import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
-import static in.calibrage.akshaya.common.CommonUtil.view;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private android.support.v7.widget.Toolbar toolbar;
@@ -77,38 +69,27 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     String FragmentTAG;
     FloatingActionButton myFab;
     Integer mSelectedItem;
-    private BottomLinster linster;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_home);
         init();
         setViews();
-
-
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void init() {
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//
-//
-//        toolbar.setTitle("Roja");
         nv = (NavigationView) findViewById(R.id.nv);
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.app_name);
         myFab = (FloatingActionButton) findViewById(R.id.call_fb);
         dl.addDrawerListener(t);
         t.syncState();
-
-        /*   getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
         bottom_navigation = findViewById(R.id.bottom_navigation);
         View headerLayout =
                 nv.inflateHeaderView(R.layout.navigation_header);
@@ -123,8 +104,6 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, homeFragment, "homeTag")
                 .commit();
-        //  viewFragment(new HomeFragment(),HomeFragment.TAG);
-//        FragmentTAG = HomeFragment.TAG;
     }
 
     private void setViews() {
@@ -154,25 +133,16 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 switch (item.getItemId()) {
 
                     case R.id.action_home: {
-
-                        /*replaceFragment(HomeActivity.this,R.id.content_frame,new HomeFragment(),FragmentTAG,HomeFragment.TAG);
-                        FragmentTAG = HomeFragment.TAG;*/
                         mSelectedItem = item.getItemId();
                         viewFragment(new HomeFragment(), HomeFragment.TAG);
                         break;
                     }
                     case R.id.action_profile: {
-//                        getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.content_frame, new ProfileFragment(), ProfileFragment.TAG)
-//                                .commit();
                         mSelectedItem = item.getItemId();
                         viewFragment(new ProfileFragment(), ProfileFragment.TAG);
                         break;
                     }
                     case R.id.action_3f: {
-                        /*getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.content_frame, new My3FFragment(), My3FFragment.TAG)
-                                .commit();*/
                         mSelectedItem = item.getItemId();
                         viewFragment(new My3FFragment(), My3FFragment.TAG);
                         break;
@@ -192,27 +162,19 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 return true;
             }
         });
-
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Uri u = Uri.parse("tel:" + "123456789");
-
-
                 Intent i = new Intent(Intent.ACTION_DIAL, u);
-
                 try {
-
                     startActivity(i);
                 } catch (SecurityException s) {
-
                     Toast.makeText(HomeActivity.this, "SecurityException", Toast.LENGTH_LONG)
                             .show();
                 }
             }
         });
-
     }
-
     public void initToolBar() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -291,11 +253,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_logout);
-
         dialogMessage = dialog.findViewById(R.id.dialogMessage);
         dialogMessage.setText(getString(R.string.alert_logout));
-
-
         cancel_btn = dialog.findViewById(R.id.cancel_btn);
         ok_btn = dialog.findViewById(R.id.ok_btn);
 /**
@@ -304,17 +263,13 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //   getApplicationContext().getSharedPreferences(PREF_NAME, 0).edit().clear().commit();
                 updateResources(getApplicationContext(), "en-US");
-                //  SharedPrefsData.putInt(getApplicationContext(), Constants.ISLOGIN, 0, PREF_NAME);
                 SharedPrefsData.getInstance(getApplicationContext()).ClearData(getApplicationContext());
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
-                // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
-                finish();
             }
         });
 
@@ -335,9 +290,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         final Dialog dialog = new Dialog(HomeActivity.this, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_select_language);
-
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
         dialog.setTitle("");
 
         // set the custom forgotPasswordDialog components - text, image and button

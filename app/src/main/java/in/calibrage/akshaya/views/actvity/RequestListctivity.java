@@ -59,10 +59,6 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_listctivity);
-        /*
-         * check comming from Request
-         *
-         * */
          name = getIntent().getStringExtra("key");
 
         setuptoolbar();

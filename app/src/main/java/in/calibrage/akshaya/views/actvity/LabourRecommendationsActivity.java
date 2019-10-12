@@ -58,9 +58,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class LabourRecommendationsActivity  extends BaseActivity {
-    private RecyclerView recyclerView;
     private static final String TAG = LabourRecommendationsActivity.class.getSimpleName();
 
+    private RecyclerView recyclerView;
     private LabourRecommendationAdapter adapter;
     private Subscription mSubscription;
     String Farmer_code;
@@ -70,17 +70,9 @@ public class LabourRecommendationsActivity  extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_labour_recommendations);
-
         init();
-
         setViews();
-
-         // Saving string data of your editext
-
     }
 
     private void init() {

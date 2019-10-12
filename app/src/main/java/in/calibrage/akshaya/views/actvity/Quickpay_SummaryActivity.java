@@ -91,32 +91,20 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     private void init() {
         ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
-
-
         backImg = (ImageView) findViewById(R.id.back);
-
         signatureView = (SignatureView) findViewById(R.id.signature_view);
         clear = (TextView) findViewById(R.id.clear);
         save = (Button) findViewById(R.id.save);
-
-
-        //  terms = (TextView) findViewById(R.id.terms);
-
         ffbCostTxt = (TextView) findViewById(R.id.tvtext_item_five);
         convenienceChargeTxt = (TextView) findViewById(R.id.tvtext_item_seven);
         closingBalanceTxt = (TextView) findViewById(R.id.tvtext_item_nine);
         totalAmount = (TextView) findViewById(R.id.tvtext_item_fifteen);
         text_flat_charge = (TextView) findViewById(R.id.text_flat_charge);
         text_quntity = (TextView) findViewById(R.id.text_quntity);
-
         text_quickpay_fee = (TextView) findViewById(R.id.text_quickpay_fee);
         Button confirmBtn = (Button) findViewById(R.id.buttonConfirm);
-
-
         checkbox = (CheckBox) findViewById(R.id.checkBox);
         home_btn = (ImageView) findViewById(R.id.home_btn);
-
-
         submit = (Button) findViewById(R.id.buttonConfirm);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
@@ -129,7 +117,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     private void setViews() {
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,8 +130,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 finish();
             }
         });
-
-
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +137,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
             }
         });
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,31 +145,15 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             }
         });
 
-
-//        terms.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                showCustomDialog();
-//            }
-//        });
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (validations()) {
-
                     if (isOnline()) {
-
                         submitReq();
                     } else {
                         showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
-                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
-
-                    //
                 }
 
 
@@ -196,11 +164,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     private boolean validations() {
         if (checkbox.isChecked()) {
-            // showCustomDialog();
-
             checkbox.setChecked(true);
         } else {
-            //Toasty.error(getApplicationContext(),R.string.terms_agree, Toast.LENGTH_LONG).show();
             showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.terms_agree));
             return false;
         }
@@ -306,8 +271,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                         } else {
 
-                            //  noRecords.setVisibility(View.VISIBLE);
-
                         }
 
                     }
@@ -350,8 +313,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                         @Override
                         public void onNext(final QuickPayResponce quickPayResponce) {
-
-
                             if (quickPayResponce.getIsSuccess()) {
                                 new Handler().postDelayed(new Runnable() {
                                     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -361,27 +322,10 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                         result = quickPayResponce.getResult();
 
                                         showSuccesspdf();
-                                        Log.e("result==", result);
-//                                    String selected_name = arrayyTOstring(selected_labour);
-//                                    String Amount = amount.getText().toString();
-//                                    String date = edittext.getText().toString();
-//                                    List<MSGmodel> displayList = new ArrayList<>();
-//
-//                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
-//                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
-//                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), Amount));
-//                                    displayList.add(new MSGmodel(getResources().getString(R.string.date), date));
-//
-//
-////
-//                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
-//
-//                                    showSuccessDialog(displayList);
                                     }
                                 }, 300);
                             } else {
                                 showDialog(Quickpay_SummaryActivity.this, quickPayResponce.getEndUserMessage());
-                                //result="http://183.82.111.111/3FFarmer/FileRepository/2019//09//27//QuickpayPdf/20190927113441434.pdf";
                             }
 
                         }

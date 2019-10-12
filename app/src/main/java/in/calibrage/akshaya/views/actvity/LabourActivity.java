@@ -337,9 +337,6 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 seleced_Duration = labourSpinner.getItemAtPosition(labourSpinner.getSelectedItemPosition()).toString();
 
                 Log.e("seleced_period===", seleced_Duration);
-//                durationId = period_id.get(labourSpinner.getSelectedItemPosition());
-                //Log.e("duration======", String.valueOf(durationId));
-//
             }
 
             @Override

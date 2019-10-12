@@ -62,17 +62,9 @@ import static in.calibrage.akshaya.service.APIConstantURL.AddAppInstallation;
 public class OtpActivity extends BaseActivity {
     public static final String TAG = OtpActivity.class.getSimpleName();
     private Subscription mSubscription;
-
-
     private Button sub_Btn;
-
-    private String currentDate;
-    public String Farmer_code;
-
+    private String currentDate,Farmer_code;
     private PinEntryEditText pinEntry;
-    public SharedPreferences.Editor editor;
-    private ProgressDialog dialog;
-    String first_name, middle_name, last_name, State_code;
     private ImageView backImg;
     private SpotsDialog mdilogue;
 
@@ -89,16 +81,14 @@ public class OtpActivity extends BaseActivity {
         init();
         setview();
     }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void init() {
-        // TextView otpDesc = (TextView) findViewById(R.id.otp_desc);
+
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         String  Device_id= Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         Log.e("deviece==id", Device_id);
         sub_Btn = (Button) findViewById(R.id.btn_otp_login);
-
         backImg = (ImageView) findViewById(R.id.back);
         pinEntry = findViewById(R.id.txt_pin_entry);
         pinEntry.requestFocus();
@@ -109,11 +99,7 @@ public class OtpActivity extends BaseActivity {
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         AddAppInstallation();
-//        if (!SharedPrefsData.getBool(OtpActivity.this, "installed")) {
-//            AddAppInstallation();
-//        }
     }
-
     private void AddAppInstallation() {
         JsonObject object = getinstallobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -150,35 +136,27 @@ public class OtpActivity extends BaseActivity {
 
                 });
     }
-
     private JsonObject getinstallobject() {
         String android_id = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         Reqinstall requestModel = new Reqinstall();
         requestModel.setId(0);
-
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setInstalledOn(currentDate);
         requestModel.setLastLoginDate(currentDate);
         requestModel.setImeiNumber(android_id);
-
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
     }
-    //  submitBtn.setTypeface(faceBold);
-
     private void setview() {
         sub_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {
                     if (isOnline())
                         GetOtp();
                     else {
                         showDialog(OtpActivity.this, getResources().getString(R.string.Internet));
-                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     showDialog(OtpActivity.this, getResources().getString(R.string.ente_pin));
@@ -192,11 +170,7 @@ public class OtpActivity extends BaseActivity {
                 finish();
             }
         });
-
-
     }
-
-
     private void GetOtp() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

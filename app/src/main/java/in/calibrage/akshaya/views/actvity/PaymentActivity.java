@@ -66,14 +66,12 @@ public class PaymentActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID);  // Saving string data of your editext
         ImageView home_btn = (ImageView) findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
+
                 Intent intent = new Intent(PaymentActivity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -81,7 +79,6 @@ public class PaymentActivity extends BaseActivity {
             }
         });
         Button submitBtn = (Button) findViewById(R.id.nextButton);
-        // submitBtn.setTypeface(faceBold);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,9 +91,7 @@ public class PaymentActivity extends BaseActivity {
             getBankDetails();
         else {
             showDialog(PaymentActivity.this,getResources().getString(R.string.Internet));
-            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
-        //getBankDetails();
     }
 
     private void getBankDetails() {

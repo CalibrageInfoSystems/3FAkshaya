@@ -53,32 +53,17 @@ import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
 
 public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner {
-
     private RecyclerView recyclerView;
-    //private ModelFertAdapter adapter;
     private ModelFertAdapterNew adapter;
-    List<Integer> selectedId_List = new ArrayList<>();
-    List<Integer> selectedQty_List = new ArrayList<>();
-    List<String> selecteditem_List = new ArrayList<>();
-    List<Integer> selectedgst_List = new ArrayList<>();
-    List<Double> amount_List = new ArrayList<>();
     static ArrayList<Product_new> myProductsList = new ArrayList<>();
-    List<String> selectedsize_List = new ArrayList<>();
-    String amount;
     String dis_price, Farmer_code;
     final Context context = this;
     Button button, btn_next;
-    TextView mealTotalText, txt_recomandations, txt_count;
+    TextView mealTotalText, txt_count;
     private String TAG = "PoleActivity";
-     List<ModelFert> product_list = new ArrayList<>();
+    List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
-    int SPLASH_DISPLAY_DURATION = 500;
-
     private ImageView cartButtonIV;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,8 +142,6 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         });
 //
     }
-
-
     private void Getstate() {
         dialog.setMessage("Loading, please wait....");
         dialog.show();
@@ -224,7 +207,6 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
-
     private void parseData(JSONArray array) {
         for (int i = 0; i < array.length(); i++) {
 
@@ -288,12 +270,9 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
 
         }
     }
-
-
     @Override
     public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
     }
-
     @Override
     public void updated(int po, ArrayList<Product_new> myProducts) {
         SharedPrefsData.saveCartitems(context,myProducts);
@@ -318,8 +297,6 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         String total_amount = allitemscost.toString();
         mealTotalText.setText(total_amount);
     }
-
-
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
@@ -354,7 +331,6 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
             }
         }
     }
-
     /**
      * Converting dp to pixel
      */
@@ -362,7 +338,6 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-
     private void makeFlyAnimation(ImageView targetView) {
 
         // RelativeLayout destView = (RelativeLayout) findViewById(R.id.cartRelativeLayout);
