@@ -19,6 +19,11 @@ import java.util.List;
 
 import in.calibrage.akshaya.R;
 
+
+/*
+* in Few Cases we have to select multiple items from spinner , this is userfull for that
+*
+* */
 @SuppressLint("AppCompatCustomView")
 public class MultiSelectionSpinner extends Spinner implements
         OnMultiChoiceClickListener {

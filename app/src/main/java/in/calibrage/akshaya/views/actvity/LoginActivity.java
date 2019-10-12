@@ -74,80 +74,32 @@ import rx.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
-    private static final int REQUEST_READ_PHONE_STATE = 1;
     private Button loginBtn, Qr_scan;
     public static EditText farmerId;
-    private String Farmer_code, Device_id, currentDate;
+    private String Farmer_code;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
-    TelephonyManager tel;
-    ZXingScannerView scannerView;
     private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_login);
-
-
         init();
         setview();
-
-
     }
-
     private void init() {
 
         loginBtn = (Button) findViewById(R.id.btn_login);
         Qr_scan = (Button) findViewById(R.id.btn_qrscan1);
-
         farmerId = findViewById(R.id.farmer_id_edittxt);
-        //
-
-
-
-
-        //farmerId.setText("APWGBDAB00010001");
-
-        tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-
-
-        tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-
-
-        //  Device_id = tel.getDeviceId().toString();
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Log.e("deviece==id", tel.getDeviceId().toString());
-        Device_id = tel.getDeviceId().toString();
-
-        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        //  imei = (TextView) findViewById(R.id.textView2);
 
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
         validationPopShow();
-
-
     }
-
-
     private void setview() {
-
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,20 +112,13 @@ public class LoginActivity extends BaseActivity {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("farmerid", Farmer_code);  // Saving string data of your editext
                     editor.commit();
-//
-
                     if (isOnline())
                         GetLogin();
-
                     else {
                         showDialog(LoginActivity.this, getResources().getString(R.string.Internet));
-                        //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // validationPopShow();
-                    // farmerId.setError("Please Enter Farmer Id");
                     showDialog(LoginActivity.this, getResources().getString(R.string.farmar_id));
-                    //showDialog(LoginActivity.this,"Please Enter Farmer Id");
                 }
             }
         });
@@ -182,32 +127,18 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-
-               /* Intent intent = new Intent(getApplicationContext(), ScannedBarcodeActivity.class);
-                st(intent);
-                if (validations()) {
-                    GetLogin(); Invalid Farmer Id
-                }else
-                {
-                    farmerId.setError("Please Enter Farmer Id");
-                }*/
-
                 if (ContextCompat.checkSelfPermission(LoginActivity.this,
                         Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-
                     startActivity(new Intent(LoginActivity.this, QRScannerActivity.class));
 
                 } else {
                     ActivityCompat.requestPermissions((LoginActivity) LoginActivity.this,
                             new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
                 }
-
-
             }
 
         });
     }
-
     private void GetLogin() {
         if (null != mdilogue)
             mdilogue.show();
@@ -268,8 +199,6 @@ public class LoginActivity extends BaseActivity {
 
 
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

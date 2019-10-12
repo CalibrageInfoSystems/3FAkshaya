@@ -33,63 +33,54 @@ import rx.schedulers.Schedulers;
 
 public class product_list extends BaseActivity {
     String id_holder;
-    private SpotsDialog mdilogue ;
+    private SpotsDialog mdilogue;
     RecyclerView recycler_view_products;
     private producut_Adapter mAdapter;
     //LinearLayout noRecords;
     private Subscription mSubscription;
     private List<Product_new> product_List = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_product_list);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
-        ImageView backImg=(ImageView)findViewById(R.id.back);
+        ImageView backImg = (ImageView) findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               finish();
+                finish();
             }
         });
-        ImageView home_btn=(ImageView)findViewById(R.id.home_btn);
+        ImageView home_btn = (ImageView) findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
         });
-
         id_holder = getIntent().getStringExtra("Name");
-        Log.e("id_holder===",id_holder);
-        recycler_view_products=(RecyclerView)findViewById(R.id.products_recy) ;
+        Log.e("id_holder===", id_holder);
+        recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view_products.setLayoutManager(mLayoutManager);
         recycler_view_products.setItemAnimator(new DefaultItemAnimator());
         if (isOnline())
             GetProductDetailsByRequestCode();
         else {
-            showDialog(product_list.this,getResources().getString(R.string.Internet));
-
+            showDialog(product_list.this, getResources().getString(R.string.Internet));
         }
-
-
     }
-
     private void GetProductDetailsByRequestCode() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getLoan(APIConstantURL.GetProductDetailsByRequestCode +id_holder)
+        mSubscription = service.getLoan(APIConstantURL.GetProductDetailsByRequestCode + id_holder)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Resproduct>() {
@@ -117,21 +108,13 @@ public class product_list extends BaseActivity {
 
                     @Override
                     public void onNext(Resproduct resproduct) {
-
-
-
-                        if(resproduct.getListResult() != null)
-                        {
-Log.e("data","have");
-                            Req_producut_Adapter adapter = new Req_producut_Adapter(product_list.this,resproduct.getListResult());
+                        if (resproduct.getListResult() != null) {
+                            Log.e("data", "have");
+                            Req_producut_Adapter adapter = new Req_producut_Adapter(product_list.this, resproduct.getListResult());
                             recycler_view_products.setAdapter(adapter);
-
-
-                        }
-                        else {
+                        } else {
                             Log.e("data", "No==have");
                         }
-
                     }
 
 

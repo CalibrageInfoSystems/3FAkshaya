@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -29,22 +28,18 @@ import java.util.HashMap;
 import java.util.List;
 
 import dmax.dialog.SpotsDialog;
-import in.calibrage.akshaya.BottomLinster;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.BannerresponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
-import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.KnowledgeZoneBaseAdapter;
-import in.calibrage.akshaya.views.Adapter.LabourRecommendationAdapter;
 import in.calibrage.akshaya.views.Adapter.SlideAdapter;
 import in.calibrage.akshaya.views.actvity.CollectionsActivity;
 import in.calibrage.akshaya.views.actvity.FertilizerActivity;
-import in.calibrage.akshaya.views.actvity.LabourActivity;
 import in.calibrage.akshaya.views.actvity.LabourRecommendationsActivity;
 import in.calibrage.akshaya.views.actvity.LoanActivity;
 import in.calibrage.akshaya.views.actvity.PaymentActivity;
@@ -63,7 +58,6 @@ import rx.schedulers.Schedulers;
  */
 public class HomeFragment extends BaseFragment {
     public static String TAG = "HomeFragment";
-    private ImageView img_banner;
     private ProgressDialog dialog;
     private Context mContext;
     private Subscription mSubscription;
@@ -75,7 +69,6 @@ public class HomeFragment extends BaseFragment {
     private TextView txt_banner;
     SliderView sliderView;
     private SpotsDialog mdilogue;
-    HashMap<String, String> HashMapForURL;
 
     public HomeFragment() {
         // Required empty public constructor

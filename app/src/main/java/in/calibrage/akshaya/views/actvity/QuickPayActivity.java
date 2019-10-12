@@ -68,9 +68,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         init();
         setViews();
 
-        //Farmer_code = SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID);     // Saving string data of your e
     }
-
     private void init() {
 
         backImg = (ImageView) findViewById(R.id.back);
@@ -87,8 +85,6 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
     }
-
-
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +142,6 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
 
     }
-
     private void getQuckPay() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -203,13 +198,11 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
                 });
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
     }
-
     @Override
     public void setOnClickAckListener(QuickPayModel.ListResult item) {
 

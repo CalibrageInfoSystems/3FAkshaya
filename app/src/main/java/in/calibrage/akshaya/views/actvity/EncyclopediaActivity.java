@@ -31,24 +31,20 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class EncyclopediaActivity extends BaseActivity {
+    //region variables
     private static final String TAG = EncyclopediaActivity.class.getSimpleName();
     private int postTypeId;
     private String titleName;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private TextView label;
-    private ImageView backImg;
     private SpotsDialog mdilogue;
-    private Subscription mSubscription;
     private String[] tabnames;
-   private ViewPagerAdapter adapter;
+    private ViewPagerAdapter adapter;
+    //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     /*   requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         setContentView(R.layout.activity_encyclopedia);
         init();
         setViews();

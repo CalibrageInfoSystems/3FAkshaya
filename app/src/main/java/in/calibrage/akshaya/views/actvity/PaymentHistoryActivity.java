@@ -62,9 +62,6 @@ public class PaymentHistoryActivity extends BaseActivity {
     private String reformattedStrFrom, reformattedStrTo;
     private TextView noRecords, Total_records, ffb, gr, totalAdjusted, totalBalance;
     private Calendar calendar;
-    private String finalbalance;
-    private ProgressDialog dialog;
-    private ImageView _infoView;
     private TextInputLayout from_txt, to_txt;
     private RecyclerView Payment_recycle;
     private SpotsDialog mdilogue;
@@ -118,16 +115,12 @@ public class PaymentHistoryActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 finish();
-//                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
-//                startActivity(intent);
             }
         });
 
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
                 Intent intent = new Intent(PaymentHistoryActivity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -146,8 +139,6 @@ public class PaymentHistoryActivity extends BaseActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                // date picker dialog
-                //   picker.getDatePicker().setMaxDate(System.currentTimeMillis());
                 picker = new DatePickerDialog(PaymentHistoryActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -176,13 +167,9 @@ public class PaymentHistoryActivity extends BaseActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-
                                 toText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-
                                 String selected_date = (dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                                 int month = (monthOfYear + 1);
-
                                 Log.e("selected_date===", selected_date);
                             }
                         }, year, month, day);
@@ -204,11 +191,8 @@ public class PaymentHistoryActivity extends BaseActivity {
 
                 if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
                     showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.enter_Date));
-                    // Toast.makeText(PaymentHistoryActivity.this, "Please Enter From Date and To Date", Toast.LENGTH_SHORT).show();
-
                 } else {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                    // String str1 = "9/10/2015";
                     Date date1 = null;
                     try {
                         date1 = formatter.parse(fromString);
@@ -280,10 +264,8 @@ public class PaymentHistoryActivity extends BaseActivity {
     }
 
     private void getPaymentDetails(String fromString, String toString) {
-
         SimpleDateFormat fromUser = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
-
         try {
 
             reformattedStrFrom = myFormat.format(fromUser.parse(this.fromString));

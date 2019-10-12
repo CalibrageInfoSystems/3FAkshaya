@@ -61,19 +61,19 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class LoanActivity extends BaseActivity {
+    public static String TAG = LoanActivity.class.getSimpleName();
     CheckBox checkbox;
-
-    public static String TAG = "LoanActivity";
     String currentDate;
-    TextView ok, getTerms,head_text;
+    TextView ok, getTerms;
     TextView terms;
     String Farmer_code;
-    ImageView backImg,home_btn;
+    ImageView backImg, home_btn;
     Button loan_Btn;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
-     Dialog myDialog;
-    EditText amount,reason;
+    Dialog myDialog;
+    EditText amount, reason;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +81,7 @@ public class LoanActivity extends BaseActivity {
         init();
         setViews();
     }
+
     private void init() {
 
         checkbox = (CheckBox) findViewById(R.id.checkBox);
@@ -89,39 +90,36 @@ public class LoanActivity extends BaseActivity {
         terms = (TextView) findViewById(R.id.terms);
         loan_Btn = (Button) findViewById(R.id.req_loan);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code=pref.getString("farmerid", "");       // Saving string data of your editext
-         home_btn=(ImageView)findViewById(R.id.home_btn);
-        amount= (EditText) findViewById(R.id.loan_amount);
-        reason= (EditText) findViewById(R.id.reason);
+        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        home_btn = (ImageView) findViewById(R.id.home_btn);
+        amount = (EditText) findViewById(R.id.loan_amount);
+        reason = (EditText) findViewById(R.id.reason);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
     }
 
-        private void setViews() {
+    private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             finish();
+                finish();
             }
         });
-            checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                      //  showCustomDialog();
-                        myDialog = new Dialog(LoanActivity.this);
-
-                        showCustomDialog();
-
-                    }
-
+        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    myDialog = new Dialog(LoanActivity.this);
+                    showCustomDialog();
                 }
-            });
+
+            }
+        });
 
 
-            loan_Btn.setOnClickListener(new View.OnClickListener() {
+        loan_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (amount.getText() != null & amount.getText().toString().trim() != "" & !TextUtils.isEmpty(amount.getText())) {
@@ -133,30 +131,30 @@ public class LoanActivity extends BaseActivity {
 
                         }
 
-                    }
-                    else {showDialog(LoanActivity.this,getResources().getString(R.string.terms_agree));
+                    } else {
+                        showDialog(LoanActivity.this, getResources().getString(R.string.terms_agree));
 
 
                     }
-                }else {
-                    showDialog(LoanActivity.this,getString(R.string.str_enter_loan_amount) );
+                } else {
+                    showDialog(LoanActivity.this, getString(R.string.str_enter_loan_amount));
                 }
 
 
             }
         });
 
-            home_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
                 startActivity(intent);*/
-                    Intent intent = new Intent(LoanActivity.this, HomeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                }
-            });
+                Intent intent = new Intent(LoanActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Log.i("LOG_RESPONSE date ", currentDate);
         terms.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +162,7 @@ public class LoanActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Log.e("Roja.....","1==================");
+                Log.e("Roja.....", "1==================");
                 showCustomDialog();
 
             }
@@ -215,11 +213,11 @@ public class LoanActivity extends BaseActivity {
                             displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
                             displayList.add(new MSGmodel(getResources().getString(R.string.reason_loan), Reason));
 
-                            showSuccessDialog(displayList,getResources().getString(R.string.success_Loan));
+                            showSuccessDialog(displayList, getResources().getString(R.string.success_Loan));
 
 
                         } else {
-                        showDialog(LoanActivity.this, loanResponse.getEndUserMessage());
+                            showDialog(LoanActivity.this, loanResponse.getEndUserMessage());
                         }
 
                     }
@@ -246,7 +244,6 @@ public class LoanActivity extends BaseActivity {
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
-
     private void showCustomDialog() {
         final Dialog dialog = new Dialog(this);
         // Include dialog.xml file
@@ -254,14 +251,9 @@ public class LoanActivity extends BaseActivity {
         // Set dialog title
         dialog.setTitle("Custom Dialog");
 
-        // set values for custom dialog components - text, image and button
-        /*TextView text = (TextView) dialog.findViewById(R.id.textDialog);
-        text.setText("Custom dialog Android example.");
-        ImageView image = (ImageView) dialog.findViewById(R.id.imageDialog);*/
+        ok = (TextView) dialog.findViewById(R.id.ok);
 
-        ok=(TextView)dialog.findViewById(R.id.ok);
-
-        getTerms=(TextView)dialog.findViewById(R.id.txtclose) ;
+        getTerms = (TextView) dialog.findViewById(R.id.txtclose);
         //  image.setImageResource(R.drawable.ic_action_duration);
 
         dialog.show();
@@ -279,8 +271,6 @@ public class LoanActivity extends BaseActivity {
         });
 
     }
-
-
 
     @Override
     public void onBackPressed() {

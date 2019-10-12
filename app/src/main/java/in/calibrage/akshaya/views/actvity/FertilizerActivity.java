@@ -169,13 +169,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         });
     }
 
-    private boolean validations() {
-        if (selectedQty_List.isEmpty()) {
-            showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
-            return false;
-        }
-        return true;
-    }
 
     private void Getstate() {
         dialog.setMessage("Loading, please wait....");
