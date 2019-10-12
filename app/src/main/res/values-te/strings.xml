@@ -438,6 +438,7 @@
     <string name="farmer_profile">రైతు ప్రొఫైల్</string>
     <string name="plot_details">ప్లాట్ వివరాలు</string>
     <string name="cancel_success">రద్దు చేయబడింది</string>
+    <string name="amount_payble">Amount Payble (Rs)</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>

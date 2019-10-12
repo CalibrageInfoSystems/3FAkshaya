@@ -224,7 +224,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
             txtPlotId = itemView.findViewById(R.id.plotId);
             txtDate = itemView.findViewById(R.id.req_date);
-            req_code = itemView.findViewById(R.id.req_code);
+            req_code = itemView.findViewById(R.id.requestCode);
             cancel = itemView.findViewById(R.id.cancel);
             txtDateNTime = itemView.findViewById(R.id.dateNTime);
             txtReqDate = itemView.findViewById(R.id.village_name);

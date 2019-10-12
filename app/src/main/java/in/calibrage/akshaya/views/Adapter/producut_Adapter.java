@@ -85,7 +85,7 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
 
         int value =amount / quantity;
         Log.e("value===", String.valueOf(value));*/
-        holder.item_cost.setText(dataa.getWithGSTamount() + "");
+        holder.item_cost.setText(dataa.getAmount() + "");
 
 
     }

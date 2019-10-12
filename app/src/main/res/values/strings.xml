@@ -308,6 +308,7 @@
     <string name="farmer_profile">Farmer Profile</string>
     <string name="plot_details">Plot Details</string>
     <string name="cancel_success">Cancelled Successfully</string>
+    <string name="amount_payble">Amount Payble (Rs)</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

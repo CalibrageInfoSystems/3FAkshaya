@@ -436,11 +436,13 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             if(resLoan.getListResult().size()!= 0)
                             {
                                 no_data.setVisibility(View.GONE);
+                                rcv_requests.setVisibility(View.VISIBLE);;
                                 GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
                                 rcv_requests.setAdapter(adapter);
                             }
                             else{
                                 no_data.setVisibility(View.VISIBLE);
+                                rcv_requests.setVisibility(View.GONE);;
 
                             }
 

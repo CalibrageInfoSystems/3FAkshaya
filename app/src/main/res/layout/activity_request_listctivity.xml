@@ -41,7 +41,7 @@
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:visibility="gone"
-android:text="No Data found"
+android:text="@string/no_req_found"
             android:textColor="@color/colorOrange"
             android:textSize="@dimen/margin_20" />
     </LinearLayout>

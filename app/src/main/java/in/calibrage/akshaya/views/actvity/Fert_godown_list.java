@@ -68,7 +68,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
     private EditText editText;
-    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount;
+    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount,paybleamount;
     private BottomSheetBehavior behavior;
 
     private Toolbar toolbar;
@@ -124,6 +124,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         txt_Payment_mode = findViewById(R.id.txt_Payment_mode);
         lst_godown_list = findViewById(R.id.lst_godown_list);
         subsidy_amount = findViewById(R.id.subcdamount);
+        paybleamount = findViewById(R.id.paybleamount);
         sw_paymentMode = findViewById(R.id.sw_paymentMode);
         linearLayoutManager = new LinearLayoutManager(ctx);
         lst_godown_list.setLayoutManager(linearLayoutManager);
@@ -308,6 +309,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 //                // React to dragging events
 //            }
 //        });
+
+        paybleamount.setText(payble_amount+"");
     }
 
     private void FertilizerRequest() {

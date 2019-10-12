@@ -20,16 +20,13 @@
         android:layout_marginBottom="@dimen/_8dp"
         android:background="@drawable/collect_bg">-->
 
-    <TextView
-        android:layout_marginLeft="@dimen/margin_10"
-        android:layout_marginRight="@dimen/margin_10"
-        android:layout_marginTop="50dp"
-        android:gravity="center_horizontal"
-        android:id="@+id/txt"
+    <WebView
+        android:id="@+id/webView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:hint="@string/req_date"
-        android:textColor="@color/light_gray"/>
-    <!--</RelativeLayout>-->
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 </LinearLayout>

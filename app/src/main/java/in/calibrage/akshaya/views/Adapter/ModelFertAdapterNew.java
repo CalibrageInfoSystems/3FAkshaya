@@ -48,6 +48,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     LayoutInflater mInflater;
     private OnClickAck onClickAck1;
     String Description, ProductName;
+    double onlygst,gst;
     private listner listner;
 
     public ModelFertAdapterNew(List<ModelFert> list_products, Context context,listner listner) {
@@ -78,7 +79,31 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         holder.imageView2.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
         holder.currentFoodName.setText(superHero.getName());
-        holder.currentCost.setText(context.getString(R.string.Rs) + (superHero.getPrice()));
+
+        if (superHero.getmAmount().equals("null")) {
+            itemcost= Double.valueOf(superHero.getPrice());
+        }
+        else {
+            itemcost = Double.valueOf(superHero.getmAmount());
+        }
+if(Double.valueOf(superHero.getgst()) != null) {
+    gst = Double.valueOf(superHero.getgst());
+    Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
+    //Double onlygst = (gst / itemcost) * 100;
+     onlygst = (itemcost / 100.0f) * gst;
+}
+else{
+    onlygst = 0.00;
+}
+        Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
+        Double finalwithGST = itemcost + onlygst;
+
+        DecimalFormat df = new DecimalFormat("####0.00");
+        //   String itemcost= df.format(itemcostt);
+
+        String total_amount =   df.format(finalwithGST);
+        Log.e("total_amount===93",total_amount);
+        holder.currentCost.setText(context.getString(R.string.Rs) + total_amount);
 
         holder.disc.setText(superHero.getDescription());
         if (!TextUtils.isEmpty(superHero.getSize().toString())) {

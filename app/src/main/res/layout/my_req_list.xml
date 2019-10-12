@@ -14,17 +14,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="10dp">
-            <!--
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:background="@color/bkg_card"
-                        android:text="contact det"
-                        android:gravity="center_vertical"
-                        android:textColor="@android:color/white"
-                        android:textSize="14dp"/>-->
+            <TextView
+                android:id="@+id/requestCodeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:text="@string/requestCodeLabel"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
 
+
+            <TextView
+                android:id="@+id/requestCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/requestCodeLabel"
+                android:layout_marginLeft="150dp"
+                android:textColor="@color/colorOrange"
+                android:text="Email"
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/plotIdLabel"
                 android:layout_width="wrap_content"
@@ -32,6 +43,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
+                android:layout_below="@id/requestCodeLabel"
                 android:text="@string/plot_code"
                 android:textSize="@dimen/album_title"
                 android:textColor="@color/black"
@@ -44,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/plotIdLabel"
                 android:layout_marginLeft="150dp"
-                android:textColor="@color/colorOrange"
+
                 android:text="Email"
                 android:textSize="@dimen/album_title" />
 
@@ -205,19 +217,7 @@ android:text="@string/cancel"
                 android:textColor="@color/Red"
                 />
 
-            <TextView
-                android:id="@+id/req_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plot_code"
-                android:paddingLeft="8dp"
-                android:paddingRight="@dimen/album_title_padding"
-                android:paddingTop="@dimen/album_title_padding"
-android:visibility="gone"
 
-                android:textStyle="bold"
-                android:textSize="@dimen/album_title"
-                />
 
         </RelativeLayout>
 

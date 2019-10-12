@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import dmax.dialog.SpotsDialog;
@@ -27,12 +30,15 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class BasicinfoFragment extends Fragment {
     public static String TAG = BasicinfoFragment.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     TextView txt;
+    WebView webView;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     // TODO: Rename and change types of parameters
@@ -72,16 +78,23 @@ public class BasicinfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_basicinfo,
                 container, false);
-        txt=(TextView)view.findViewById(R.id.txt);
+        webView=(WebView)view.findViewById(R.id.webView1);
+        WebSettings webSetting = webView.getSettings();
+        webSetting.setBuiltInZoomControls(true);
+        webSetting.setJavaScriptEnabled(true);
+
+        webView.setWebViewClient(new WebViewClient());
         GetContactInfo();
         return view;
     }
 
     private void GetContactInfo() {
         String farmer_code = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
+        SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
+        String   Farmer_code = pref.getString("farmerid", "");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
-        mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo  + "APWGBDAB00010001")
+        mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo  + Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Resbasicinfo>() {
                     @Override
@@ -101,9 +114,12 @@ public class BasicinfoFragment extends Fragment {
 
                         mdilogue.cancel();
 
-                        String discription = resbasicinfo.getListResult().get(0).getDescription();
-                        txt.setText(Html.fromHtml(discription));
-                        Log.d(TAG, "---- analysis ---->discription -->> :" + discription);
+                     String discription = resbasicinfo.getListResult().get(0).getDescription();
+                     //   String summary = "<p class=\\\"ql-align-center\\\">we feed the worldoiu</p>\",\"contactInfo\":\"<p class=\\\"ql-align-center\\\">we feed the worldoiu</p>";
+                       // webView.loadData(summary, "text/html", null);
+                       webView.loadData(discription, "text/html", null);
+                      //  txt.setText(Html.fromHtml(discription));
+                       Log.d(TAG, "---- analysis ---->discription -->> :" + discription);
                     }
                 });
     }
@@ -145,5 +161,14 @@ public class BasicinfoFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private class WebViewClient extends android.webkit.WebViewClient
+    {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url)
+        {
+            return super.shouldOverrideUrlLoading(view, url);
+        }
     }
 }

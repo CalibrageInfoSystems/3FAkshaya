@@ -128,7 +128,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_10"
                 android:textColor="@color/Red"
-                android:textSize="20dp" />
+                 />
             <!--   <TextView
 
                    android:layout_width="wrap_content"
