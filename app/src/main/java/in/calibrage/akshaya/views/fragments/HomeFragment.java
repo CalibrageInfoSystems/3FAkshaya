@@ -170,7 +170,13 @@ public class HomeFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
-        GetBannerByStateCode();
+        if (isOnline(getContext()))
+            GetBannerByStateCode();
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
+
+        }
+
         //Picasso.with(getContext()).load(catagoriesList.getResult().getBannerDetails().get(0).getImageURL()).into(img_banner);
         // txt_banner.setText(catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription());
         sliderView = v.findViewById(R.id.imageSliderr);
@@ -283,7 +289,13 @@ public class HomeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         Log.d(TAG, "----- analysis -- Life cycle :ON Resume()");
-        GetBannerByStateCode();
+        if (isOnline(getContext()))
+            GetBannerByStateCode();
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
+
+        }
+       // GetBannerByStateCode();
     }
 
     @Override
