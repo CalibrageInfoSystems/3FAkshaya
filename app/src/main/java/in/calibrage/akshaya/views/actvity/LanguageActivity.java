@@ -41,7 +41,7 @@ public class LanguageActivity extends BaseActivity {
                 Intent refresh = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(refresh);
                 finish();
-                Toast.makeText(getApplicationContext(), R.string.language_notification, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), R.string.language_notification, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -63,16 +63,13 @@ public class LanguageActivity extends BaseActivity {
                 Intent refresh = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(refresh);
                 finish();
-                Toast.makeText(getApplicationContext(), R.string.language_notification, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(), R.string.language_notification, Toast.LENGTH_SHORT).show();
 
-              /*  LocaleHelper.setLocale(LanguageActivity.this, mLanguageCode);
 
-                //It is required to recreate the activity to reflect the change in UI.
-                recreate();*/
 
             }
         });
-        //   DisplayActionBar();
+
     }
 
     public void onBackPressed() {

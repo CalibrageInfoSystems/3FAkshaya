@@ -57,12 +57,13 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
     private String mParam2;
     private SpotsDialog mdilogue;
     private OnFragmentInteractionListener mListener;
-    private RecyclerView fert_recyclerView,collection_recycleview,mill_recycleview;
-    RelativeLayout fert_text,collection_text,mill_text;
+    private RecyclerView fert_recyclerView, collection_recycleview, mill_recycleview;
+    RelativeLayout fert_text, collection_text, mill_text;
     SwitchMultiButton sw_paymentMode;
     private Subscription mSubscription;
-
+    TextView no_data;
     private GoogleMap googleMap;
+
     public placesfragment() {
         // Required empty public constructor
     }
@@ -96,24 +97,22 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                 .setTheme(R.style.Custom)
                 .build();
 
-        sw_paymentMode = (SwitchMultiButton)view.findViewById(R.id.sw_paymentMode);
-        fert_recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_fert);
+        sw_paymentMode = (SwitchMultiButton) view.findViewById(R.id.sw_paymentMode);
+        fert_recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_fert);
 
         fert_recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager fert = new LinearLayoutManager(getContext());
         fert_recyclerView.setLayoutManager(fert);
 
 
-
-
-        collection_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_collection);
+        collection_recycleview = (RecyclerView) view.findViewById(R.id.recyclerView_collection);
 
         collection_recycleview.setHasFixedSize(true);
         RecyclerView.LayoutManager collection = new LinearLayoutManager(getContext());
         collection_recycleview.setLayoutManager(collection);
+        no_data = (TextView) view.findViewById(R.id.no_data);
 
-
-        mill_recycleview = (RecyclerView)view.findViewById(R.id.recyclerView_mill);
+        mill_recycleview = (RecyclerView) view.findViewById(R.id.recyclerView_mill);
 
         mill_recycleview.setHasFixedSize(true);
         RecyclerView.LayoutManager mill = new LinearLayoutManager(getContext());
@@ -130,15 +129,15 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
             @Override
             public void onSwitch(int position, String tabText) {
 
-                if(position==0){
+                if (position == 0) {
                     fert_recyclerView.setVisibility(View.VISIBLE);
                     collection_recycleview.setVisibility(View.GONE);
                     mill_recycleview.setVisibility(View.GONE);
-                }else  if(position==1){
+                } else if (position == 1) {
                     fert_recyclerView.setVisibility(View.GONE);
                     collection_recycleview.setVisibility(View.VISIBLE);
                     mill_recycleview.setVisibility(View.GONE);
-                } else if(position==2){
+                } else if (position == 2) {
                     fert_recyclerView.setVisibility(View.GONE);
                     collection_recycleview.setVisibility(View.GONE);
                     mill_recycleview.setVisibility(View.VISIBLE);
@@ -147,14 +146,13 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
         });
 
 
-
         return view;
     }
 
     private void Get3FInfoo() {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String   Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.get3finfo(APIConstantURL.Get3FInfo + Farmer_code + "/" + statecode)
@@ -169,55 +167,55 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                     public void onError(Throwable e) {
                         mdilogue.cancel();
                         Log.d(TAG, "---- analysis ---->GetContactInfo -->> error -->> :" + e.getLocalizedMessage());
-
+                        showDialog(getActivity(), getString(R.string.server_error));
                     }
 
                     @Override
                     public void onNext(resGet3FInfo resGet3FInfo) {
-                        if(resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null)
-                        {
-
-                            Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(),getContext());
+                        if (resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null) {
+                            no_data.setVisibility(View.GONE);
+                            fert_recyclerView.setVisibility(View.VISIBLE);
+                            Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(), getContext());
                             fert_recyclerView.setAdapter(adapter);
 
 
+                        } else {
+                            no_data.setVisibility(View.VISIBLE);
+                            fert_recyclerView.setVisibility(View.GONE);
+
                         }
-                        else{
 
-
-                        }
-
-                        if(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null)
-                        {
-
-                            collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(),getContext());
+                        if (resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null) {
+                            no_data.setVisibility(View.GONE);
+                          collection_recycleview.setVisibility(View.VISIBLE);
+                            collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(), getContext());
                             collection_recycleview.setAdapter(adapter);
 
 
+                        } else {
+
+                           no_data.setVisibility(View.VISIBLE);
+                            collection_recycleview.setVisibility(View.GONE);
+
                         }
-                        else{
+                        if (resGet3FInfo.getResult().getImportantPlaces().getMills() != null) {
+                            no_data.setVisibility(View.GONE);
+                            mill_recycleview.setVisibility(View.VISIBLE);
 
-
-                        }
-                        if(resGet3FInfo.getResult().getImportantPlaces().getMills() != null)
-                        {
-
-
-                            Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(),getContext());
+                            Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(), getContext());
                             mill_recycleview.setAdapter(adapter);
 
 
-                        }
-                        else{
-                           /* mill_text.setVisibility(View.GONE);
-                            mill_recycleview.setVisibility(View.GONE);*/
+                        } else {
+                            no_data.setVisibility(View.VISIBLE);
+                            mill_recycleview.setVisibility(View.GONE);
+
 
                         }
                         sw_paymentMode.setSelectedTab(0);
                     }
                 });
     }
-
 
 
     // TODO: Rename method, update argument and hook method into UI event

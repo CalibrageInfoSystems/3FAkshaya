@@ -56,7 +56,7 @@ public class plot_details extends BaseFragment {
     String Farmer_code;
     LinearLayout noRecords;
     private Subscription mSubscription;
-    private SpotsDialog mdilogue ;
+    private SpotsDialog mdilogue;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,13 +88,13 @@ public class plot_details extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-         view = inflater.inflate(R.layout.fragment_plot_details,
+        view = inflater.inflate(R.layout.fragment_plot_details,
                 container, false);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(getContext())
                 .setTheme(R.style.Custom)
                 .build();
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         noRecords = (LinearLayout) view.findViewById(R.id.text);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -111,63 +111,58 @@ public class plot_details extends BaseFragment {
     }
 
 
-
     private void GetPlotDetailsByFarmerCode() {
 
-            mdilogue.show();
-            ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
+        mdilogue.show();
+        ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String   Farmer_code = pref.getString("farmerid", "");
-            mSubscription = service.getplotinfo(APIConstantURL.GetPlotDetailsByFarmerCode +Farmer_code)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<res_plotdetails>() {
-                        @Override
-                        public void onCompleted() {
-                            mdilogue.dismiss();
-                        }
+        String Farmer_code = pref.getString("farmerid", "");
+        mSubscription = service.getplotinfo(APIConstantURL.GetPlotDetailsByFarmerCode + Farmer_code)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<res_plotdetails>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            if (e instanceof HttpException) {
-                                ((HttpException) e).code();
-                                ((HttpException) e).message();
-                                ((HttpException) e).response().errorBody();
-                                try {
-                                    ((HttpException) e).response().errorBody().string();
-                                } catch (IOException e1) {
-                                    e1.printStackTrace();
-                                }
-                                e.printStackTrace();
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
                             }
-                            mdilogue.dismiss();
-                            showDialog(getActivity(), getString(R.string.server_error));
+                            e.printStackTrace();
                         }
+                        mdilogue.dismiss();
+                        showDialog(getActivity(), getString(R.string.server_error));
+                    }
 
-                        @Override
-                        public void onNext(res_plotdetails res_plotdetails) {
-
-
-
-
-                            if(res_plotdetails.getListResult() != null)
-                            {
-                                noRecords.setVisibility(View.GONE);
-                                recyclerView.setVisibility(View.VISIBLE);
-                                PlotDetailsAdapter adapter = new PlotDetailsAdapter(res_plotdetails.getListResult(),getContext() );
-                                recyclerView.setAdapter(adapter);
+                    @Override
+                    public void onNext(res_plotdetails res_plotdetails) {
 
 
-                            }
-                            else{
-                                noRecords.setVisibility(View.VISIBLE);
-                                recyclerView.setVisibility(View.GONE);
+                        if (res_plotdetails.getListResult() != null) {
+                            noRecords.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            PlotDetailsAdapter adapter = new PlotDetailsAdapter(res_plotdetails.getListResult(), getContext());
+                            recyclerView.setAdapter(adapter);
 
-                            }
+
+                        } else {
+                            noRecords.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+
                         }
+                    }
 
 
-                    });
+                });
 
     }
 
@@ -181,12 +176,7 @@ public class plot_details extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+
     }
 
     @Override
@@ -195,16 +185,7 @@ public class plot_details extends BaseFragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

@@ -312,6 +312,7 @@
     <string name="cancel_success">Cancelled Successfully</string>
     <string name="amount_payble">Amount Payble (Rs)</string>
     <string name="comments_valid">Please Enter Comments</string>
+    <string name="no_data">No Data Available</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

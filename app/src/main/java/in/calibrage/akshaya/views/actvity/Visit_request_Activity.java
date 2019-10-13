@@ -523,13 +523,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                                     // displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.issue_type), selected_issue));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.comments), comments.getText().toString()));
-                                    //
-                                    //  displayList.add(new MSGmodel(getResources().getString(R.string.comments), comments.getText().toString()));
-                                    //displayList.add(new MSGmodel(getResources().getString(R.string.image), date));
 
-
-//
-                                    // Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
                                     showvisitSuccessDialog(displayList, getResources().getString(R.string.visit_success));
                                 }
@@ -660,14 +654,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                 finish();
             }
         });
-      /*  new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ((Animatable) img.getDrawable()).start();
-            }
-        }, 500);*/
-//        ImageView mImgCheck = (ImageView) findViewById(R.id.imageView);
-//        ((Animatable) mImgCheck.getDrawable()).start();
+
     }
 
 
@@ -731,19 +718,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
         Log.d(TAG, "---- analysis ---->> base64 514:" + images.size() + AudioSavePathInDevice);
 //
-//        String val = arrayTOstring(ids_list);
-//        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
 //
-//        requestModel.setServiceTypes(val);
-//
-//        requestModel.setCreatedDate(reformattedDate);
-//        requestModel.setUpdatedByUserId(null);
-//        requestModel.setUpdatedDate(reformattedDate);
-//        requestModel.setAmount(Double.parseDouble((String) amount.getText()));
-
-        // TODO
-        // clearalllists();
-
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
 

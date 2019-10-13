@@ -23,18 +23,10 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.views.actvity.HomeActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link profile_fragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link profile_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class profile_fragment extends BaseFragment {
-    public static final String TAG= profile_fragment.class.getSimpleName();
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    public static final String TAG = profile_fragment.class.getSimpleName();
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -76,7 +68,6 @@ public class profile_fragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
 
         View view = inflater.inflate(R.layout.profile_fragment,
@@ -130,33 +121,33 @@ public class profile_fragment extends BaseFragment {
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getStateName())
             state.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getStateName());
         else
-           lyt_state.setVisibility(View.GONE);// state.setText(": N/A");
+            lyt_state.setVisibility(View.GONE);// state.setText(": N/A");
 
         if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()))
             Picasso.with(getContext()).load(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()).error(R.drawable.ic_user).transform(new CircleTransform()).into(img_profile);
 
 
-        Log.d(TAG,"--- >> Bind ----->> PIN :"+catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
+        Log.d(TAG, "--- >> Bind ----->> PIN :" + catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getPinCode())
-            pin.setText(": "+catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
+            pin.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getPinCode());
         else
-           lyt_pin.setVisibility(View.GONE);//; pin.setText(": N/A");
+            lyt_pin.setVisibility(View.GONE);//; pin.setText(": N/A");
 
 
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName())
             father_name.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName());
         else
-           lyt_fathername.setVisibility(View.GONE); // father_name.setText(": N/A");
+            lyt_fathername.setVisibility(View.GONE); // father_name.setText(": N/A");
 
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber())
             alt_mobile.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber());
         else
-           lyt_alt_mobile.setVisibility(View.GONE); // alt_mobile.setText(": N/A");
+            lyt_alt_mobile.setVisibility(View.GONE); // alt_mobile.setText(": N/A");
 
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getEmail())
             email.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getEmail());
         else
-          lyt_email.setVisibility(View.GONE) ;//;  email.setText(": N/A");
+            lyt_email.setVisibility(View.GONE);//;  email.setText(": N/A");
 
 
     }

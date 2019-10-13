@@ -408,7 +408,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
-                        showDialog(LabourActivity.this, getString(R.string.server_error));
+                        //showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -565,7 +565,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
-                        showDialog(LabourActivity.this, getString(R.string.server_error));
+                       // showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -623,7 +623,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
-                        showDialog(LabourActivity.this, getString(R.string.server_error));
+                       // showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override

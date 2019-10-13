@@ -361,6 +361,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+
+                Intent intent = new Intent(Quickpay_SummaryActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             }
         });
         dialog.show();

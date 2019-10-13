@@ -439,6 +439,7 @@
     <string name="cancel_success">రద్దు చేయబడింది</string>
     <string name="amount_payble">చెల్లించవలసిన మొత్తం (రూ)</string>
     <string name="comments_valid">దయచేసి వ్యాఖ్యలను నమోదు చేయండి</string>
+    <string name="no_data">No Data Available</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>
