@@ -76,7 +76,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         public TextView statusType;
         public TextView paymentMode, amount;
         public ImageView showMore;
-        public TextView cancel;
+        public TextView cancel,godown_name;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -90,6 +90,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
           card_view =   itemView.findViewById(R.id.card_view);
           amount=itemView.findViewById(R.id.amount);
             cancel = itemView.findViewById(R.id.cancel);
+            godown_name=itemView.findViewById(R.id.godown_name);
 
 
 
@@ -122,12 +123,13 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
             e.printStackTrace();
         }
         holder.requestCode.setText(list.get(position).getRequestCode());
+        holder.godown_name.setText(list.get(position).getGoDownName());
         holder.req_date.setText(datetimevaluereq);
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
-        if(null !=list.get(position).getUsageAmount() )
+        if(null !=list.get(position).getTotalCost() )
         {
-            holder.amount.setText(list.get(position).getUsageAmount().toString());
+            holder.amount.setText(list.get(position).getTotalCost().toString());
         }
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());

@@ -70,7 +70,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         public TextView requestCode;
         public TextView req_date;
         public TextView statusType;
-        public TextView paymentMode, amount,cancel;
+        public TextView paymentMode, amount,cancel,godown_name;
         public ImageView showMore;
 
 
@@ -85,6 +85,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
             paymentMode = itemView.findViewById(R.id.paymentMode);
             card_view =   itemView.findViewById(R.id.card_view);
             amount=itemView.findViewById(R.id.amount);
+            godown_name=itemView.findViewById(R.id.godown_name);
           cancel = itemView.findViewById(R.id.cancel);
 
 
@@ -118,10 +119,11 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         }
         holder.requestCode.setText(list.get(position).getRequestCode());
         holder.req_date.setText(datetimevaluereq);
+        holder.godown_name.setText(list.get(position).getGoDownName());
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
-        if(null != list.get(position).getUsageAmount())
-            holder.amount.setText(list.get(position).getUsageAmount()+"");
+        if(null != list.get(position).getTotalCost())
+            holder.amount.setText(list.get(position).getTotalCost()+"");
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         if (!"Closed".equals(holder.statusType.getText()))
