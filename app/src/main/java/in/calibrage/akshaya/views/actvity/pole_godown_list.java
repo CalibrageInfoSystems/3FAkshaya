@@ -84,9 +84,10 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     ArrayList<Integer> gstvalues = new ArrayList<Integer>();
     ArrayList<String> selects_product_size = new ArrayList<String>();
     String Amount;
+    double products_amount;
     String Farmer_code, formattedDate, IsSuccess;
     ImageView home_btn;
-    Integer GodownId;
+    Integer GodownId,quantity;
     private Spinner paymentspin;
     List<String> listdata = new ArrayList<>();
 
@@ -104,8 +105,8 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     double payble_amount;
     double Subsidy_amount, subsidy_amountt;
     private List<String> selected_list = new ArrayList<String>();
-
-
+String product_name,Godown_name,selected_name;
+    List<String> selected_labour = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,7 +286,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         }
         Final_amount.setText("" + String.valueOf(include_gst_amount));
 
-    double products_amount =Double.parseDouble(include_gst_amount)- Double.parseDouble(String.valueOf(Gst_total));
+     products_amount =Double.parseDouble(include_gst_amount)- Double.parseDouble(String.valueOf(Gst_total));
     Log.e("products_amount===", String.valueOf(products_amount));
         text_amount.setText("" + products_amount);
 /*
@@ -432,11 +433,22 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 
                                     List<MSGmodel> displayList = new ArrayList<>();
 
-//                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), "Rojs"));
-//                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), "fsdmfdl"));
+                                  for (int i = 0; i < SharedPrefsData.getCartData(pole_godown_list.this).size(); i++) {
 
-//
-//                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
+
+
+                                         product_name =SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
+                                        quantity=SharedPrefsData.getCartData(getApplicationContext()).get(i).getQuandity();
+                                        selected_list.add(product_name + " : " +quantity +"");
+                                         selected_name = arrayyTOstring(selected_list);
+                                    }
+                                    displayList.add(new MSGmodel(getString(R.string.Godown_name), Godown_name));
+                                   displayList.add(new MSGmodel(getString(R.string.product_quantity), selected_name));
+
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), products_amount+""));
+                                   displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), Gst_total+""));
+
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), include_gst_amount));
 
                                     showSuccessDialog(displayList, getString(R.string.success_pole));
                                 }
@@ -452,6 +464,18 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                 });
 
 
+    }
+    public String arrayyTOstring(List<String> arrayList) {
+        StringBuilder string = new StringBuilder();
+        if (arrayList.size() > 0) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (i == 0)
+                    string.append("" + arrayList.get(i));
+                else
+                    string.append("," + arrayList.get(i));
+            }
+        }
+        return string.toString();
     }
 
 
@@ -568,6 +592,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     public void onItemClick(ActiveGodownsModel.ListResult item) {
         selectedGodown = item;
         GodownId = selectedGodown.getId();
+        Godown_name=selectedGodown.getName();
         // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
 

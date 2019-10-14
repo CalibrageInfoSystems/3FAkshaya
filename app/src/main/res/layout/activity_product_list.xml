@@ -125,7 +125,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-
+                android:maxLength="6"
                 android:text="100"
                 android:textAlignment="textStart"
                 />
@@ -170,7 +170,7 @@
             <TextView
                 android:id="@+id/gst_amount"
                 style="@style/Common_textView"
-
+android:maxLength="6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -222,7 +222,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-
+                android:maxLength="6"
                 android:text="10"
                 android:textAlignment="textStart"
                 />
