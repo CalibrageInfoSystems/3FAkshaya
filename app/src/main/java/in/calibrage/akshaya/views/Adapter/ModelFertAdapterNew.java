@@ -38,7 +38,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     PopupWindow popUp;
     LinearLayout layout;
     TextView tv;
-    Double itemcostt,itemcost;
+    Double itemcostt, itemcost;
     WindowManager.LayoutParams params;
     LinearLayout mainLayout;
     Button but;
@@ -48,15 +48,15 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     LayoutInflater mInflater;
     private OnClickAck onClickAck1;
     String Description, ProductName;
-    double onlygst,gst;
+    double onlygst, gst;
     private listner listner;
 
-    public ModelFertAdapterNew(List<ModelFert> list_products, Context context,listner listner) {
+    public ModelFertAdapterNew(List<ModelFert> list_products, Context context, listner listner) {
         super();
         //Getting all the superheroes
         this.list_products = list_products;
         this.context = context;
-        this.listner= listner;
+        this.listner = listner;
     }
 
 
@@ -81,28 +81,26 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         holder.currentFoodName.setText(superHero.getName());
 
         if (superHero.getmAmount().equals("null")) {
-            itemcost= Double.valueOf(superHero.getPrice());
-        }
-        else {
+            itemcost = Double.valueOf(superHero.getPrice());
+        } else {
             itemcost = Double.valueOf(superHero.getmAmount());
         }
-if(Double.valueOf(superHero.getgst()) != null) {
-    gst = Double.valueOf(superHero.getgst());
-    Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
-    //Double onlygst = (gst / itemcost) * 100;
-     onlygst = (itemcost / 100.0f) * gst;
-}
-else{
-    onlygst = 0.00;
-}
+        if (Double.valueOf(superHero.getgst()) != null) {
+            gst = Double.valueOf(superHero.getgst());
+            Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
+            //Double onlygst = (gst / itemcost) * 100;
+            onlygst = (itemcost / 100.0f) * gst;
+        } else {
+            onlygst = 0.00;
+        }
         Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
         Double finalwithGST = itemcost + onlygst;
 
         DecimalFormat df = new DecimalFormat("####0.00");
         //   String itemcost= df.format(itemcostt);
 
-        String total_amount =   df.format(finalwithGST);
-        Log.e("total_amount===93",total_amount);
+        String total_amount = df.format(finalwithGST);
+        Log.e("total_amount===93", total_amount);
         holder.currentCost.setText(context.getString(R.string.Rs) + total_amount);
 
         holder.disc.setText(superHero.getDescription());
@@ -166,7 +164,7 @@ else{
                             myProducts.set(i, product_new);
                             Log.d("PRODUCT ", "---- analysis -----(Update new)  " + product_new.getQuandity());
                             superHero.setmQuantity(product_new.getQuandity());
-                           // holder.quantityText.setText("x " + product_new.getQuandity());
+                            // holder.quantityText.setText("x " + product_new.getQuandity());
                             notifyItemChanged(position);
 
                         }
@@ -174,10 +172,9 @@ else{
 
                 } else {
                     if (superHero.getmAmount().equals("null")) {
-                         itemcost= Double.valueOf(superHero.getPrice());
-                    }
-                    else {
-                         itemcost = Double.valueOf(superHero.getmAmount());
+                        itemcost = Double.valueOf(superHero.getPrice());
+                    } else {
+                        itemcost = Double.valueOf(superHero.getmAmount());
                     }
 
                     Log.d("PRODUCT ", "---- analysis -----(itemcost)  :" + itemcost);
@@ -191,16 +188,16 @@ else{
                     DecimalFormat df = new DecimalFormat("####0.00");
 
 
-                    String total_amount =   df.format(finalwithGST);
+                    String total_amount = df.format(finalwithGST);
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
-                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(),superHero.getSize()));
+                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);
 
                     notifyItemChanged(position);
                 }
                 caliculateTotalAmount();
-                listner.updated(position,myProducts);
+                listner.updated(position, myProducts);
             }
         });
 
@@ -212,16 +209,14 @@ else{
                     for (int i = 0; i < myProducts.size(); i++) {
                         if (myProducts.get(i).getProductID() == (superHero.getId())) {
                             Product_new product_new = myProducts.get(i);
-                            if(product_new.getQuandity() >1)
-                            {
+                            if (product_new.getQuandity() > 1) {
                                 Integer currentQTY = product_new.getQuandity();
                                 product_new.setQuandity(currentQTY - 1);
-                                myProducts.set(i,product_new);
+                                myProducts.set(i, product_new);
                                 superHero.setmQuantity(product_new.getQuandity());
 
                                 notifyItemChanged(position);
-                            }
-                            else {
+                            } else {
                                 myProducts.remove(i);
                                 superHero.setmQuantity(0);
                                 notifyItemChanged(position);
@@ -235,7 +230,7 @@ else{
 
 
                 caliculateTotalAmount();
-                listner.updated(position,myProducts);
+                listner.updated(position, myProducts);
 
             }
         });
@@ -326,19 +321,19 @@ else{
 
 
     public void caliculateTotalAmount() {
-        Double allitemscost= 0.0;
-        int allproducts =0;
+        Double allitemscost = 0.0;
+        int allproducts = 0;
         for (Product_new product : myProducts) {
-           Double oneitem = product.getQuandity()* Double.parseDouble(product.getWithGSTamount());
-           allitemscost = oneitem+allitemscost;
-           Log.d("Product","total Proce :"+allitemscost);
-           int onitem = product.getQuandity();
-           allproducts= allproducts+onitem;
-            Log.d("Product","totalitems :"+allproducts);
+            Double oneitem = product.getQuandity() * Double.parseDouble(product.getWithGSTamount());
+            allitemscost = oneitem + allitemscost;
+            Log.d("Product", "total Proce :" + allitemscost);
+            int onitem = product.getQuandity();
+            allproducts = allproducts + onitem;
+            Log.d("Product", "totalitems :" + allproducts);
         }
 
 
-        SharedPrefsData.getInstance(context).updateStringValue(context,"amount",allitemscost+"");
+        SharedPrefsData.getInstance(context).updateStringValue(context, "amount", allitemscost + "");
     }
 
     boolean contains(ArrayList<Product_new> list, int name) {
@@ -350,9 +345,8 @@ else{
         return false;
     }
 
-    public interface  listner
-    {
-        void updated(int po,ArrayList<Product_new> myProducts);
+    public interface listner {
+        void updated(int po, ArrayList<Product_new> myProducts);
     }
 
 }
