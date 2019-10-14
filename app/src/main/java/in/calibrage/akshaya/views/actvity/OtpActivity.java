@@ -160,7 +160,7 @@ public class OtpActivity extends BaseActivity {
                     }
                 } else {
                     showDialog(OtpActivity.this, getResources().getString(R.string.ente_pin));
-                    pinEntry.setError("Please Enter Pin");
+                    //pinEntry.setError("Please Enter Pin");
                 }
             }
         });

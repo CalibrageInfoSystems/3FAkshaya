@@ -54,17 +54,231 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/backlinear"
+        android:weightSum="1">
 
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.8" >
     <android.support.v7.widget.RecyclerView
         android:id="@+id/products_recy"
-        android:layout_below="@+id/backlinear"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
+
         android:scrollbars="vertical"
         />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/products_recy"
+        android:layout_weight="0.2"
+        android:layout_gravity = "bottom"
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_10"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/tvtext_item_four"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:paddingLeft="@dimen/margin_10"
+                android:text="@string/amount"
+                android:textAlignment="textStart" />
 
 
+            <TextView
+                android:id="@+id/dot"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingLeft="@dimen/margin_10"
+
+                android:textAlignment="textStart"
+                android:text=":"
+                />
+
+            <TextView
+                android:id="@+id/amount"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+
+                android:text="100"
+                android:textAlignment="textStart"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@drawable/devider_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/tvtext_item_six"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:paddingLeft="@dimen/margin_10"
+                android:text="@string/gst_amount"
+                android:textAlignment="textStart" />
+
+
+            <TextView
+                android:id="@+id/dotg"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingLeft="@dimen/margin_10"
+
+                android:textAlignment="textStart"
+                android:text=":"
+                />
+
+            <TextView
+                android:id="@+id/gst_amount"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+
+                android:text="100"
+                android:textAlignment="textStart"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@drawable/devider_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/text_final"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:paddingLeft="@dimen/margin_10"
+                android:text="@string/total_amt"
+                android:textAlignment="textStart" />
+
+
+            <TextView
+                android:id="@+id/dotf"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingLeft="@dimen/margin_10"
+
+                android:textAlignment="textStart"
+                android:text=":"
+                />
+
+            <TextView
+                android:id="@+id/final_amount_gst"
+                style="@style/Common_textView"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+
+                android:text="10"
+                android:textAlignment="textStart"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@drawable/devider_line" />
+        <!--                            <LinearLayout-->
+        <!--                                android:layout_width="match_parent"-->
+        <!--                                android:layout_height="wrap_content"-->
+        <!--                                android:orientation="horizontal"-->
+        <!--                                android:weightSum="1">-->
+
+        <!--                                <TextView-->
+        <!--                                    android:id="@+id/plotIdLabel"-->
+        <!--                                    style="@style/Common_textView"-->
+
+        <!--                                    android:layout_width="0dp"-->
+        <!--                                    android:layout_height="wrap_content"-->
+        <!--                                    android:layout_weight="0.4"-->
+        <!--                                    android:paddingLeft="@dimen/margin_10"-->
+        <!--                                    android:text="@string/subcd_amt"-->
+        <!--                                    android:textAlignment="textStart" />-->
+
+
+        <!--                                <TextView-->
+        <!--                                    android:id="@+id/dots"-->
+        <!--                                    style="@style/Common_textView"-->
+
+        <!--                                    android:layout_width="0dp"-->
+        <!--                                    android:layout_height="wrap_content"-->
+        <!--                                    android:layout_weight="0.2"-->
+        <!--                                    android:paddingLeft="@dimen/margin_10"-->
+
+        <!--                                    android:textAlignment="textStart"-->
+        <!--                                    android:text=":"-->
+        <!--                                    />-->
+
+        <!--                                <TextView-->
+        <!--                                    android:id="@+id/subcdamount"-->
+        <!--                                    style="@style/Common_textView"-->
+
+        <!--                                    android:layout_width="0dp"-->
+        <!--                                    android:layout_height="wrap_content"-->
+        <!--                                    android:layout_weight="0.4"-->
+        <!--                                    android:paddingLeft="@dimen/margin_10"-->
+        <!--                                    android:text=""-->
+        <!--                                    android:textAlignment="textStart"-->
+        <!--                                    />-->
+        <!--                            </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.4dp"
+            android:background="@drawable/line_bg" />
+    </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

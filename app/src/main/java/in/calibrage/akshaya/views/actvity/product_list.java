@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class product_list extends BaseActivity {
     //LinearLayout noRecords;
     private Subscription mSubscription;
     private List<Product_new> product_List = new ArrayList<>();
-
+    private TextView  text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,9 @@ public class product_list extends BaseActivity {
         id_holder = getIntent().getStringExtra("Name");
         Log.e("id_holder===", id_holder);
         recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
+        text_amount = (TextView) findViewById(R.id.amount);
+        Final_amount = (TextView) findViewById(R.id.final_amount_gst);
+        gst_amount = (TextView) findViewById(R.id.gst_amount);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view_products.setLayoutManager(mLayoutManager);
         recycler_view_products.setItemAnimator(new DefaultItemAnimator());
@@ -112,6 +116,13 @@ public class product_list extends BaseActivity {
                             Log.e("data", "have");
                             Req_producut_Adapter adapter = new Req_producut_Adapter(product_list.this, resproduct.getListResult());
                             recycler_view_products.setAdapter(adapter);
+
+                            for (int i = 0; i < resproduct.getListResult().size(); i++) {
+
+                                text_amount.setText(resproduct.getListResult().get(i).getAmount()+"");
+
+                            }
+                           // text_amount.setText();
                         } else {
                             Log.e("data", "No==have");
                         }

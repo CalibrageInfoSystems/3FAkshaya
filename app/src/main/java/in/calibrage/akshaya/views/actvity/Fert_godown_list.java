@@ -504,7 +504,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                      * nothing to pay
                                      * */
                                     payble_amount = 0.0;
-
+                                    paybleamount.setText(payble_amount+"");
                                     Subsidy_amount = Double.parseDouble(include_gst_amount);
                                 } else if (subsidy_amountt < Double.parseDouble(include_gst_amount)) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
@@ -512,6 +512,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                      * payble amount
                                      * */
                                     payble_amount = remaining_Amoubt;
+                                    paybleamount.setText(payble_amount+"");
+                                    Log.e("payble_amount===",payble_amount+"");
                                     Subsidy_amount = Double.parseDouble(include_gst_amount);
                                 } else if (Double.parseDouble(include_gst_amount) == subsidy_amountt) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;

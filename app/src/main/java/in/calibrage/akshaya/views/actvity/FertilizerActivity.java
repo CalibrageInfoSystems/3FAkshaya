@@ -320,67 +320,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
     @Override
     public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
-        if (ischecked) {
-            ImageView cartButtonIV = findViewById(R.id.cartButtonIV);
 
-            makeFlyAnimation(img);
-
-
-            Log.e(" add selectedId_List-==", selectedId_List.toString());
-            Log.e("add selectedQty_List-==", selectedQty_List.toString());
-            Log.e("add selectedQty_List-==", selecteditem_List.toString());
-            Log.e("amount_List_List-==", amount_List.toString());
-            //    Toast.makeText(FertilizerActivity.this,selectedId_List.toString(),Toast.LENGTH_SHORT).show();
-
-        } else {
-            if (selectedId_List.size() > 0 & selectedQty_List.size() > 0 & product_list.size() >0) {
-                if(Count >0)
-                {
-                    Count= Count-1;
-                    txt_count.setText(Count+"");
-                }
-                int a1 = selectedId_List.indexOf(product_list.get(position).getId());
-                if (a1 < 0) {
-                    Log.e(" ===a1==", "negative");
-
-                    return;
-                }
-                if (product_list.get(position).getmQuantity() >= 1) {
-                    selectedQty_List.set(selectedId_List.indexOf(product_list.get(position).getId()), product_list.get(position).getmQuantity());
-
-
-
-                } else {
-
-                    int a = selectedId_List.indexOf(product_list.get(position).getId());
-                    if (a < 0) {
-                        Log.e(" =====", "negative");
-
-                        return;
-                    }
-                    Log.e(TAG, "test " + a);
-                    Log.e(TAG, "test " + selectedQty_List.size());
-                    Log.e(TAG, "test " + selectedQty_List.toString());
-
-                    selectedQty_List.remove(a);
-
-                    selectedId_List.remove(selectedId_List.indexOf(product_list.get(position).getId()));
-                    Log.d(TAG, "--------- analysis ---->>(< 0) Item Count" + selectedId_List.size());
-                    if (Count > 0) {
-                        Count = Count - 1;
-                        txt_count.setText(Count + "");
-                    }
-                }
-
-
-
-
-//                Log.e(" remove selectedId_List", selectedId_List.toString());
-//                Log.e("remove selectedQty_List", selectedQty_List.toString());
-            }
-
-
-        }
     }
 
     @Override

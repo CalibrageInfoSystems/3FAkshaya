@@ -416,35 +416,6 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     }
 
 
-    private void showConformationDialog(final int pos) {
-        android.app.AlertDialog.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this, android.R.style.Theme_DeviceDefault_Dialog_Alert);
-        } else {
-            builder = new android.app.AlertDialog.Builder(Visit_request_Activity.this);
-        }
-
-
-        builder.setTitle("delete_entry")
-                .setMessage("are_you_sure_you_want_to_delete_this_entry")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        imageview.setImageBitmap(null);
-
-                        // deleteIcon.setVisibility(View.GONE);
-
-
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-    }
-
 
     private boolean validations() {
         if (Select_Issue.getSelectedItemPosition() == 0) {
@@ -648,12 +619,22 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+                if (mediaPlayer != null) {
+//
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+
+                    MediaRecorderReady();
+
+                }
                 Intent intent = new Intent(Visit_request_Activity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
+
             }
         });
+
 
     }
 
@@ -989,6 +970,8 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
+        mediaRecorder.stop();
         this.finish();
     }
 
