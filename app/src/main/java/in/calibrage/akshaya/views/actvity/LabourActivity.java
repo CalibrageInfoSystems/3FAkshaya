@@ -794,7 +794,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setCreatedDate(currentDate);
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
-        requestModel.setAmount(1.1);
+        requestModel.setAmount(null);
 
         String selected_name = arrayyTOstring(selected_labour);
 

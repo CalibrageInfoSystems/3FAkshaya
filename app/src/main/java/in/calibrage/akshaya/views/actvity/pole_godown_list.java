@@ -289,99 +289,11 @@ String product_name,Godown_name,selected_name;
      products_amount =Double.parseDouble(include_gst_amount)- Double.parseDouble(String.valueOf(Gst_total));
     Log.e("products_amount===", String.valueOf(products_amount));
         text_amount.setText("" + products_amount);
-/*
 
-        for (int i = 0; i < selected_productlist.length(); i++) {
-           // String name = selected_productlist.get(i);
-
-        }
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-        Total_amount
-
-
-//
-//            selected_ids_lists = (ArrayList<Integer>) getIntent().getSerializableExtra("Ids");
-//            selected_quntity_list = (ArrayList<Integer>) getIntent().getSerializableExtra("quantity");
-//            product_names = (ArrayList<String>) getIntent().getSerializableExtra("item_names");
-//            amount_final = (ArrayList<Integer>) getIntent().getSerializableExtra("item_amount");
-//            product_gst = (ArrayList<Integer>) getIntent().getSerializableExtra("gst_per");
-//
-//            selects_product_size = (ArrayList<String>) getIntent().getSerializableExtra("procuct_size");
-//            final_amount = getIntent().getExtras().getString("Total_amount");
-//
-//
-//            String[] parts = final_amount.split(" "); // escape .
-//            String part1 = parts[0];
-//            only_amount = parts[1];
-//            Log.e("final_amount===", "=1===  " + part1 + " ===rs ===" + only_amount);
-//            text_amount.setText("" + only_amount);
-//            Amount_ = Integer.parseInt(only_amount);
-
-
-               // for (int i = 0; i < product_names.size(); i++) {
-                for (int i = 0; i < selected_quntity_list.size(); i++) {
-                    String name = product_names.get(i);
-                    int gst = product_gst.get(i);
-                    // String gst = String.valueOf(gstt);
-                    int amount_product = amount_final.get(i);
-                    int quantity = selected_quntity_list.get(i);
-                    String quan = String.valueOf(quantity);
-                    mealTotal = amount_product * quantity;
-                    String product_amount = String.valueOf(mealTotal);
-
-
-
-
-
-//                    selectedId_List.set(i, product.getProductID());
-//
-//                    selectedQty_List.set(i, product.getQuandity());
-//                    selecteditem_List.set(i, product.getProductname());
-//                    selectedgst_List.set(i, product.getGst());
-//                    amount_List.set(i, product.getAmount());
-
-                    product a = new product(name, quantity, mealTotal, gst);
-
-                    product_List.add(a);
-
-                    int percentage = quantity * gst;
-
-                    Log.e("percentage_value===", String.valueOf(percentage));
-                    //  int k = (int)(product_amount*(percentage/100.0f));
-                    int k = (int) (percentage * amount_product) / 100;
-
-                    gstvalues.add(k);
-
-                    Log.e("percentage_value===", String.valueOf(gstvalues));
-                    Gst_sum = CommonUtil.sum(gstvalues);
-                    include_gst_amount = Gst_sum + Amount_;
-                    Log.e("gst_Sum===", String.valueOf(Gst_sum));
-
-                    gst_amount.setText("" + String.valueOf(Gst_sum));
-                    Final_amount.setText("" + String.valueOf(include_gst_amount));
-
-                }
-                mAdapter = new producut_Adapter(this, product_List);
-                recycler_view_products.setAdapter(mAdapter);
-
-*/
 
 
     }
 
-
-//        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-//                // React to state change
-//            }
-//
-//            @Override
-//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//                // React to dragging events
-//            }
-//        });
 
 
     private void FertilizerRequest() {

@@ -78,8 +78,7 @@ public class PDFActivity extends AppCompatActivity {
         webView.setWebViewClient(new Callback());
         String furl = "http://docs.google.com/gview?embedded=true&url=" + fileUrl;
 Log.d("PDF","final URL :"+furl);
-        webView.loadUrl(
-                furl);
+        webView.loadUrl(furl);
 
     }
 

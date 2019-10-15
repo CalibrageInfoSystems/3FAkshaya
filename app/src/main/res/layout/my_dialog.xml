@@ -32,8 +32,8 @@
             android:layout_height="wrap_content"
             android:text="Summary"
           android:id="@+id/summary_text"
-android:textSize="14dp"
-            style="@style/Common_textView"
+            android:textSize="18dp"
+             style="@style/Common_textView"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
         <LinearLayout

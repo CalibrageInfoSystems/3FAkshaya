@@ -8,29 +8,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="choose_language_str">భాషను ఎంచుకోండి</string>
     <string name="telugu_str">తెలుగు</string>
-    <string name="english_str">English</string><![CDATA[
-     
-
-        
-
-        
-
-        
-
-        
-
-        
-        
-    ]]><string name="ok"> సరే</string><![CDATA[
-        
-
-        
-
-        
-
-        
-        
-    ]]>
+    <string name="english_str">English</string><![CDATA[ ]]><string name="ok"> సరే</string><![CDATA[]]>
     <string name="cancel">రద్దు చేయండి</string>
     <string name="plot_id">ప్లాట్ ఐడి</string>
     <string name="terms_agree">దయచేసి నిబంధనలు మరియు షరతులను అంగీకరించండి</string>
@@ -40,33 +18,16 @@
 
         
         
-    ]]><string name="otp_desc">పంపిన 6 అంకెల కోడ్‌ను నమోదు చేయండి</string><![CDATA[
-        
-        
-    ]]>
+    ]]><string name="otp_desc">పంపిన 6 అంకెల కోడ్‌ను నమోదు చేయండి</string><![CDATA[ ]]>
     <string name="submit"> సమర్పించండి</string>
         
     <string name="submit_req">అభ్యర్థనను సమర్పించండి</string>
         
     <string name="view">వీక్షణ</string><![CDATA[
-
-        
-        
-    ]]><string name="payment_summary">చెల్లింపు సారాంశం</string><![CDATA[
-        
-
-        
-        
-    ]]><string name="recommendations">సిఫార్సులు</string><![CDATA[
-
-        
-
-        
-        
-    ]]><string name="payments">చెల్లింపులు</string><![CDATA[
-        
-        
-    ]]>
+]]><string name="payment_summary">చెల్లింపు సారాంశం</string><![CDATA[
+  ]]><string name="recommendations">సిఫార్సులు</string><![CDATA[
+]]><string name="payments">చెల్లింపులు</string><![CDATA[
+  ]]>
     <string name="bank_details">బ్యాంక్ వివరాలు</string>
         
     <string name="bank_holder">ఖాతా దారుని\n పేరు</string>
@@ -76,7 +37,7 @@
 
         
         
-    ]]>
+   ]]>
     <string name="account_no">ఖాతా సంఖ్య</string>
         
     <string name="branch_name">బ్రాంచ్ పేరు</string>
@@ -146,14 +107,7 @@
         
       
     ]]><string name="no_videos">వీడియోలు లేవు</string><![CDATA[
-
-        
-    ]]><string name="plot_size">ప్లాట్ పరిమాణం</string><![CDATA[
-        
-
-        
-        
-    ]]>
+]]><string name="plot_size">ప్లాట్ పరిమాణం</string><![CDATA[]]>
     <string name="village">గ్రామం</string>
         
     <string name="comments">వ్యాఖ్యలు</string><![CDATA[
