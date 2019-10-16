@@ -20,6 +20,7 @@ public class PDFActivity extends AppCompatActivity {
     private String name, url;
     WebView webView;
     private SpotsDialog mdilogue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +46,13 @@ public class PDFActivity extends AppCompatActivity {
         if (getIntent() != null) {
             name = getIntent().getStringExtra("name");
             url = getIntent().getStringExtra("url");
-            Log.d("PDF","---------- file URL :"+url);
-           TextView txt_name = findViewById(R.id.txt_name);
-           txt_name.setText(name);
+            Log.d("PDF", "---------- file URL :" + url);
+            TextView txt_name = findViewById(R.id.txt_name);
+            txt_name.setText(name);
         }
         webView = findViewById(R.id.webView);
 
-               mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
@@ -64,21 +65,24 @@ public class PDFActivity extends AppCompatActivity {
             public void run() {
                 mdilogue.cancel();
             }
-        },2000);
+        }, 2000);
     }
 
     private void pdfOpen(String fileUrl) {
 
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
 
         //---you need this to prevent the webview from
         // launching another browser when a url
         // redirection occurs---
         webView.setWebViewClient(new Callback());
         String furl = "http://docs.google.com/gview?embedded=true&url=" + fileUrl;
-Log.d("PDF","final URL :"+furl);
+        Log.d("PDF", "final URL :" + furl);
         webView.loadUrl(furl);
+
+
 
     }
 
