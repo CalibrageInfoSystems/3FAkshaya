@@ -239,7 +239,7 @@ public class HomeFragment extends BaseFragment {
                             sliderView.setIndicatorSelectedColor(Color.WHITE);
                             sliderView.setIndicatorUnselectedColor(Color.GRAY);
                             sliderView.startAutoCycle();
-                            sliderView.setScrollTimeInSec(5);
+                            sliderView.setScrollTimeInSec(8);
                             txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                          " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
                         }
                     }
