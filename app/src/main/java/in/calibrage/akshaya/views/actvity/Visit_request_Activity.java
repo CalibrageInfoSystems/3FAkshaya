@@ -658,7 +658,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         header.setUpdatedDate(currentDate);
         header.setTotalCost(null);
         header.setComments(comments.getText().toString());
-        header.setCropMaintainceDate(currentDate);
+        header.setCropMaintainceDate(null);
         header.setIssueTypeId(Issue_Id.get(Select_Issue.getSelectedItemPosition() - 1));
 
         List<VisitRequestModel.VisitRepo> visitRepo = new ArrayList<>();

@@ -24,7 +24,8 @@
     <string name="submit_req">Submit Request</string>
     <string name="view">Views</string>
     <string name="payment_summary">Payment Summary</string>
-    <string name="recommendations">Recommendations</string>
+    <string name="recommendations">Crop Maintenance Visits</string>
+    <string name="recommendationss">Crop Maintenance Visits</string>
     <string name="payments">Payments</string>
     <string name="bank_details">Bank Details</string>
     <string name="bank_holder">Account Holder \nName</string>
@@ -78,7 +79,7 @@
     <string name="language_notification">Language Setup Completed</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="log_off">LogOut</string>
+    <string name="log_off">Logout</string>
     <string name="tap_text">Please select language below:</string>
     <string name="btn_en">English</string>
     <string name="btn_te">Telugu</string>
@@ -315,6 +316,7 @@
     <string name="no_data">No Data Available</string>
     <string name="Godown_name">Godown Name</string>
     <string name="product_quantity"><![CDATA[Product & Quantity]]></string>
+    <string name="qucick_success">QuickPay Request Submitted Successfully</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

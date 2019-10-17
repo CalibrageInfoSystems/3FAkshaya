@@ -63,6 +63,14 @@
     <!--        android:layout_below="@+id/backlinear"-->
     <!--        android:paddingTop="5dp"-->
     <!--        android:paddingBottom="5dp">-->
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/backlinear"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="fill_parent"
@@ -156,7 +164,7 @@
                 </LinearLayout>
 
 
-                <in.calibrage.akshaya.common.SignatureView
+                <in.calibrage.akshaya.common.MySignatureView
                     xmlns:sign="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/signature_view"
                     android:layout_width="match_parent"
@@ -568,7 +576,7 @@
 android:layout_marginLeft="@dimen/margin_10"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="@dimen/margin_10"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/lin_five"
 
                     android:background="@drawable/terms_bg"
@@ -626,5 +634,5 @@ android:layout_marginLeft="@dimen/margin_10"
                 android:background="@drawable/line_bg" />
         </RelativeLayout>
     </LinearLayout>
-
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

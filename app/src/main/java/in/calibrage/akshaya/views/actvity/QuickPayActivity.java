@@ -53,12 +53,15 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     String datetimevaluereq, Farmer_code;
     TextView no_unpaid_collections;
     Button nextButton;
-    LinearLayout noRecords;
+    TextView noRecords;
     private SpotsDialog mdilogue;
     ImageView backImg, home_btn;
     private List<QuickPayModel.ListResult> collection_list = new ArrayList<>();
     List<String> ids_list = new ArrayList<>();
+    List<String> dates_list = new ArrayList<>();
+    List<Double> weight_list = new ArrayList<>();
     int SPLASH_DISPLAY_DURATION = 500;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         init();
         setViews();
     }
+
     private void init() {
 
         backImg = (ImageView) findViewById(R.id.back);
@@ -77,11 +81,12 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                 .setTheme(R.style.Custom)
                 .build();
 
-        noRecords = (LinearLayout) findViewById(R.id.text);
+        noRecords = (TextView) findViewById(R.id.no_text);
         nextButton = (Button) findViewById(R.id.nextButton);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
     }
+
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +105,14 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
                         Intent intent = new Intent(getApplicationContext(), Quickpay_SummaryActivity.class);
                         intent.putExtra("collection_ids", (Serializable) ids_list);
+
+                        intent.putExtra("collection_dates", (Serializable) dates_list);
+                        intent.putExtra("collection_weight", (Serializable) weight_list);
                         startActivity(intent);
+
                         Log.e("ids_list===", String.valueOf(ids_list));
+                        Log.e("dates_list===", String.valueOf(dates_list));
+                        Log.e("weight_list===", String.valueOf(weight_list));
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
 
@@ -128,12 +139,13 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         if (isOnline())
             getQuckPay();
         else {
-            showDialog(QuickPayActivity.this,getResources().getString(R.string.Internet));
+            showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
 
         }
 
 
     }
+
     private void getQuckPay() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -160,41 +172,49 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
-                        showDialog(QuickPayActivity.this, getString(R.string.server_error));
+                        //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
                     public void onNext(QuickPayModel quickPayModel) {
+                        mdilogue.dismiss();
 
-                        for (QuickPayModel.ListResult item : quickPayModel.getListResult()
-                        ) {
-                            ids_list.add(item.getUColnid());
+
+                        if (quickPayModel.getListResult() != null) {
+                            noRecords.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);
+                            recyclerView.setAdapter(adapter);
+                            for (QuickPayModel.ListResult item : quickPayModel.getListResult()
+                            ) {
+                                ids_list.add(item.getUColnid());
+                                dates_list.add(item.getDocDate());
+                                weight_list.add(item.getQuantity());
+                            }
+
+                        } else {
+                            noRecords.setVisibility(View.VISIBLE);
+                            // no_data.setText("No " + name + " Found");
+                            recyclerView.setVisibility(View.GONE);
+                            nextButton.setVisibility(View.GONE);
                         }
+
 
                         Log.d("", "onNext: " + quickPayModel);
-                        mdilogue.dismiss();
-                        if (quickPayModel.getIsSuccess()) {
 
-                            if (quickPayModel.getListResult().isEmpty()) {
-                                noRecords.setVisibility(View.VISIBLE);
-                                nextButton.setVisibility(View.GONE);
 
-                            } else {
-                                noRecords.setVisibility(View.GONE);
-                            }
-                        }
-                        adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);
-                        recyclerView.setAdapter(adapter);
                     }
 
 
                 });
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
     }
+
     @Override
     public void setOnClickAckListener(QuickPayModel.ListResult item) {
 

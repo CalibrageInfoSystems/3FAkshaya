@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/shape"
+    tools:context="in.calibrage.AkshayaFA.Views.Activities.QuickPayActivity">>
 
 
 
@@ -53,6 +56,8 @@
                 android:textSize="@dimen/text_size_20" />
 
         </RelativeLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -66,69 +71,57 @@
         android:visibility="gone"
         android:weightSum="1">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:visibility="gone"
-            android:src="@drawable/ic_sad" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:fontFamily="@font/roboto_regular"
-            android:gravity="center"
-            android:text="@string/no_unpaid_collections"
-            android:textColor="@color/colorOrange"
-            android:textSize="@dimen/margin_20" />
+
+
     </LinearLayout>
 
 
 
 
 
-    <TextView
-        android:id="@+id/hed_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/backlinear"
-        android:layout_margin="10dp"
-        android:text="@string/unpaidCollection"
-        android:textAlignment="center"
-        android:textColor="@color/yellow"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/backlinear"
-    android:orientation="vertical"
-    android:weightSum="1">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/quick_recycler_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/hed_text"
-        android:scrollbarSize="3dp"
-        android:layout_weight="0.8"
-        android:scrollbarStyle="outsideInset"
-        android:scrollbarThumbVertical="@color/colorPrimary"
-        android:scrollbars="vertical"
+        android:layout_below="@+id/backlinear"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/quick_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hed_text"
+            android:scrollbarSize="3dp"
+            android:layout_weight="0.8"
 
-        />
-    <Button
-        android:id="@+id/nextButton"
-        style="@style/Common_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
-        android:layout_gravity="end"
-        android:layout_below="@+id/quick_recycler_view"
-     android:paddingLeft="@dimen/margin_10"
-        android:layout_margin="@dimen/margin_5"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbarThumbVertical="@color/colorPrimary"
+            android:scrollbars="vertical"
 
-        android:text="@string/request_rise" />
-</LinearLayout>
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/no_text"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginTop="150dp"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:text="@string/no_unpaid_collections"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/nextButton"
+            style="@style/Common_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_gravity="end"
+            android:layout_below="@+id/quick_recycler_view"
+            android:paddingLeft="@dimen/margin_10"
+            android:layout_margin="@dimen/margin_5"
+
+            android:text="@string/request_rise" />
+    </LinearLayout>
 </RelativeLayout>

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -41,8 +42,10 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
-import in.calibrage.akshaya.common.SignatureView;
+
+import in.calibrage.akshaya.common.MySignatureView;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
+import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PostQuickpaymodel;
 import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -71,9 +74,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     Bitmap bitmap;
     Button save;
     private boolean isSignatured = false;
-    SignatureView signatureView;
+    MySignatureView signatureView;
     String path;
     List<String> ids_list = new ArrayList<>();
+    List<String> dates_list = new ArrayList<>();
+    List<Double> netweight_list = new ArrayList<>();
+    List<String> post_ids = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
     String result;
 
@@ -90,9 +96,22 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void init() {
+
         ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
+        dates_list= (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
+        netweight_list= (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
+        for (int i = 0; i < ids_list.size(); i++) {
+            String id =ids_list.get(i);
+    String date =dates_list.get(i);
+            double weight =netweight_list.get(i);
+            post_ids.add(id+"|"+weight+"|"+date+"");
+            Log.e("post_ids==", String.valueOf(post_ids));
+        }
+
+
+
         backImg = (ImageView) findViewById(R.id.back);
-        signatureView = (SignatureView) findViewById(R.id.signature_view);
+        signatureView = (MySignatureView) findViewById(R.id.signature_view);
         clear = (TextView) findViewById(R.id.clear);
         save = (Button) findViewById(R.id.save);
         ffbCostTxt = (TextView) findViewById(R.id.tvtext_item_five);
@@ -346,26 +365,30 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         WebView webView = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 
-        webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-
+        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setLoadWithOverviewMode(true);
+//        webView.getSettings().setUseWideViewPort(true);
 
         //---you need this to prevent the webview from
         // launching another browser when a url
         // redirection occurs---
         webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
 
-        webView.loadUrl(
-                "http://docs.google.com/gview?embedded=true&url=" + result);
+        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
         btn_dialog.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                List<MSGmodel> displayList = new ArrayList<>();
 
-                Intent intent = new Intent(Quickpay_SummaryActivity.this, HomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+             //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
+                showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
+//                Intent intent = new Intent(Quickpay_SummaryActivity.this, HomeActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
             }
         });
         dialog.show();
@@ -387,7 +410,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
         //TODO make dynamic
 
-        String val = arrayTOstring(ids_list);
+        String val = arrayTOstring(post_ids);
         Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
 
 

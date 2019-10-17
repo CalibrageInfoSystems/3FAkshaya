@@ -16,7 +16,7 @@
     <string name="terms_conditions"> నిబంధనలు &amp; పరిస్థితులు</string><![CDATA[
         
 
-        
+         <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>
         
     ]]><string name="otp_desc">పంపిన 6 అంకెల కోడ్‌ను నమోదు చేయండి</string><![CDATA[ ]]>
     <string name="submit"> సమర్పించండి</string>
@@ -396,6 +396,7 @@
     <string name="no_data">No Data Available</string>
     <string name="Godown_name">Godown Name</string>
     <string name="product_quantity"><![CDATA[Product & Quantity]]></string>
+    <string name="qucick_success">క్విక్‌పే అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>

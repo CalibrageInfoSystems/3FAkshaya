@@ -415,7 +415,7 @@ String product_name,Godown_name,selected_name;
         requestModel.setSubcidyAmount(0.0);
         requestModel.setPaybleAmount(0.0);
         requestModel.setComments(null);
-        requestModel.setCropMaintainceDate(formattedDate);
+        requestModel.setCropMaintainceDate(null);
         requestModel.setIssueTypeId(null);
 
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();

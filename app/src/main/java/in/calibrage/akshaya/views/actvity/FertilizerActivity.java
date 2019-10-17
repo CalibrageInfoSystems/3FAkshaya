@@ -58,13 +58,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
     private RecyclerView recyclerView;
     private ModelFertAdapterNew adapter;
-    List<Integer> selectedId_List = new ArrayList<>();
-    List<Integer> selectedQty_List = new ArrayList<>();
-    List<String> selecteditem_List = new ArrayList<>();
-    List<Integer> selectedgst_List = new ArrayList<>();
-    List<Integer> amount_List = new ArrayList<>();
 
-    List<String> selectedsize_List = new ArrayList<>();
     String amount;
     String dis_price, Farmer_code;
     final Context context = this;
@@ -109,9 +103,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //recyclerView.setAdapter(adapter);
-//
-//        Button buttonBarCodeScan = findViewById(R.id.confirm);
+
         if (isOnline())
             Getstate();
         else {
