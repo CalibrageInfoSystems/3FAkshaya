@@ -237,7 +237,7 @@ public class LoanActivity extends BaseActivity {
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
         requestModel.setRequestCreatedDate(currentDate);
-        requestModel.setCropMaintainceDate(currentDate);
+        requestModel.setCropMaintainceDate(null);
         requestModel.setStatusTypeId(15);
         requestModel.setRequestTypeId(28);
         requestModel.setTotalCost(Double.parseDouble(amount.getText().toString()));

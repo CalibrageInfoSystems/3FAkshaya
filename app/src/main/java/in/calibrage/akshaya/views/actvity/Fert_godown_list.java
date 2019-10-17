@@ -427,7 +427,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setSubcidyAmount(Subsidy_amount);
         requestModel.setPaybleAmount(payble_amount);
         requestModel.setComments(null);
-        requestModel.setCropMaintainceDate(formattedDate);
+        requestModel.setCropMaintainceDate(null);
         requestModel.setIssueTypeId(null);
 
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
