@@ -28,8 +28,9 @@
 
     <color name="Red">#FF4500</color>
 
+
     <color name="transparent">#00000000</color>
     <color name="spots_dialog_color">@color/half_black</color>
     <color name="pin_normal">#FFFFFF</color>
-
+    <color name="start">#F0FF9800</color>
 </resources>

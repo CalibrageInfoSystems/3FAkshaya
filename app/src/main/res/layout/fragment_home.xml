@@ -439,7 +439,7 @@
                     app:sliderAutoCycleDirection="back_and_forth"
                     app:sliderAutoCycleEnabled="true"
                     app:sliderCircularHandlerEnabled="true"
-                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorAnimationDuration="9000"
                     app:sliderIndicatorGravity="center_horizontal|bottom"
                     app:sliderIndicatorMargin="15dp"
                     app:sliderIndicatorOrientation="horizontal"

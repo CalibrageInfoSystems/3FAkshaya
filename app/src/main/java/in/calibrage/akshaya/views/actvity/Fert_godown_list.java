@@ -201,6 +201,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     public void onNext(PaymentsType paymentsType) {
                         paymentsTypes = paymentsType;
                         mdilogue.cancel();
+
                         for (PaymentsType.ListResult string : paymentsType.getListResult()
                         ) {
                             listdata.add(string.getDesc());

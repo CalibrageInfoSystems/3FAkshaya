@@ -9,6 +9,7 @@
     android:layout_height="match_parent"
     android:layout_below="@+id/relative1"
     android:paddingTop="5dp"
+    android:background="@color/white"
     android:paddingBottom="5dp">
 
     <LinearLayout
