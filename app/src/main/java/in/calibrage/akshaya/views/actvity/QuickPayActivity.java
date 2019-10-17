@@ -59,15 +59,12 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     private List<QuickPayModel.ListResult> collection_list = new ArrayList<>();
     List<String> ids_list = new ArrayList<>();
     int SPLASH_DISPLAY_DURATION = 500;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_pay);
-
         init();
         setViews();
-
     }
     private void init() {
 
@@ -102,13 +99,9 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                     public void run() {
 
                         Intent intent = new Intent(getApplicationContext(), Quickpay_SummaryActivity.class);
-
-
                         intent.putExtra("collection_ids", (Serializable) ids_list);
                         startActivity(intent);
-
                         Log.e("ids_list===", String.valueOf(ids_list));
-
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
 
@@ -138,7 +131,6 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
             showDialog(QuickPayActivity.this,getResources().getString(R.string.Internet));
 
         }
-
 
 
     }
