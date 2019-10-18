@@ -84,11 +84,10 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
     ArrayList<Integer> gstvalues = new ArrayList<Integer>();
 
-  String product_name,selected_name;
+    String product_name, selected_name;
     String Farmer_code, formattedDate, Godown_name;
     ImageView home_btn;
-    Integer GodownId,quantity;
-
+    Integer GodownId, quantity;
 
 
     List<String> listdata = new ArrayList<>();
@@ -108,6 +107,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     int Gst_total;
     //endregion
     private List<String> selected_list = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +117,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         settoolbar();
 
     }
+
     private void init() {
         ctx = this;
         paymentspin = (Spinner) findViewById(R.id.paymentSpinner);
@@ -129,7 +130,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         lst_godown_list = findViewById(R.id.lst_godown_list);
         subsidy_amount = findViewById(R.id.subcdamount);
         paybleamount = findViewById(R.id.paybleamount);
-   //     sw_paymentMode = findViewById(R.id.sw_paymentMode);
+        //     sw_paymentMode = findViewById(R.id.sw_paymentMode);
         linearLayoutManager = new LinearLayoutManager(ctx);
         lst_godown_list.setLayoutManager(linearLayoutManager);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
@@ -182,6 +183,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 //        });
 
     }
+
     //region API Requests
     private void getPaymentMods() {
         mdilogue.show();
@@ -206,14 +208,14 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         mdilogue.cancel();
                         if (paymentsType.getListResult() != null) {
                             listdata.add("Select");
-                        for (PaymentsType.ListResult string : paymentsType.getListResult()
-                        ) {
-                            listdata.add(string.getDesc());
-                            payment_id.add(string.getTypeCdId());
-                        }
+                            for (PaymentsType.ListResult string : paymentsType.getListResult()
+                            ) {
+                                listdata.add(string.getDesc());
+                                payment_id.add(string.getTypeCdId());
+                            }
 
 
-                        Log.d(TAG, "RESPONSE======" + listdata);
+                            Log.d(TAG, "RESPONSE======" + listdata);
 
 //
 
@@ -279,7 +281,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 //        Log.e("products_amount===", String.valueOf(products_amount));
 //        text_amount.setText("" + products_amount);
 
-         products_amount = Double.parseDouble(include_gst_amount) - Double.parseDouble(String.valueOf(Gst_total));
+        products_amount = Double.parseDouble(include_gst_amount) - Double.parseDouble(String.valueOf(Gst_total));
         Log.e("products_amount===", String.valueOf(products_amount));
         text_amount.setText("" + dff.format(products_amount));
 
@@ -315,11 +317,9 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                 Log.e("seleced_payment==", seleced_payment);
 
 
-
-
-
 //            }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // DO Nothing here
@@ -381,20 +381,19 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                     for (int i = 0; i < SharedPrefsData.getCartData(Fert_godown_list.this).size(); i++) {
 
 
-
-                                         product_name =SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
-                                        quantity=SharedPrefsData.getCartData(getApplicationContext()).get(i).getQuandity();
-                                        selected_list.add(product_name + " : " +quantity +"");
-                                         selected_name = arrayyTOstring(selected_list);
+                                        product_name = SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
+                                        quantity = SharedPrefsData.getCartData(getApplicationContext()).get(i).getQuandity();
+                                        selected_list.add(product_name + " : " + quantity + "");
+                                        selected_name = arrayyTOstring(selected_list);
                                     }
                                     displayList.add(new MSGmodel(getString(R.string.Godown_name), Godown_name));
-                                   displayList.add(new MSGmodel(getString(R.string.product_quantity), selected_name));
+                                    displayList.add(new MSGmodel(getString(R.string.product_quantity), selected_name));
 
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), products_amount+""));
-                                   displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), Gst_total+""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), products_amount + ""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), Gst_total + ""));
 
                                     displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), include_gst_amount));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.subcd_amt), subsidy_amountt+""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.subcd_amt), subsidy_amountt + ""));
 
 //products_amount
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
@@ -552,29 +551,29 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         if (subsidyResponse.getIsSuccess()) {
                             subsidy_amount.setText(subsidyResponse.getResult().getRemainingAmount().toString());
                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
-                            Log.e("include_gst_amount===555",include_gst_amount);
-                            Log.e("include_gst_amount===556",subsidy_amountt+"");
-                            Log.d(TAG,"-----analysis----->> Subsidy Amount : "+subsidy_amountt);
+                            Log.e("include_gst_amount===555", include_gst_amount);
+                            Log.e("include_gst_amount===556", subsidy_amountt + "");
+                            Log.d(TAG, "-----analysis----->> Subsidy Amount : " + subsidy_amountt);
                             if (subsidy_amountt > 0 || subsidy_amountt == 0.0) {
-                                Log.d(TAG,"-----analysis----->> >0 Subsidy Amount : "+subsidy_amount);
+                                Log.d(TAG, "-----analysis----->> >0 Subsidy Amount : " + subsidy_amount);
                                 if (Double.parseDouble(include_gst_amount) < subsidy_amountt) {
                                     Double remaining_subsidy_amountt = subsidy_amountt - Double.parseDouble(include_gst_amount);
                                     /*
                                      * nothing to pay
                                      * */
                                     payble_amount = 0.0;
-                                    paybleamount.setText(payble_amount+"");
+                                    paybleamount.setText(payble_amount + "");
                                     Subsidy_amount = Double.parseDouble(include_gst_amount);
                                 } else if (subsidy_amountt < Double.parseDouble(include_gst_amount)) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     /*
                                      * payble amount
                                      * */
-                                    Log.e("include_gst_amount===571",include_gst_amount);
-                                    Log.e("remaining_Amoubt===",remaining_Amoubt+"");
+                                    Log.e("include_gst_amount===571", include_gst_amount);
+                                    Log.e("remaining_Amoubt===", remaining_Amoubt + "");
                                     payble_amount = remaining_Amoubt;
-                                    paybleamount.setText(payble_amount+"");
-                                    Log.e("payble_amount===",payble_amount+"");
+                                    paybleamount.setText(payble_amount + "");
+                                    Log.e("payble_amount===", payble_amount + "");
                                     Subsidy_amount = Double.parseDouble(include_gst_amount);
                                 } else if (Double.parseDouble(include_gst_amount) == subsidy_amountt) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
@@ -582,15 +581,14 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                      * nothing to pay
                                      * */
                                     payble_amount = 0.0;
-                                }
-                                else if (subsidy_amountt == 0.0){
+                                } else if (subsidy_amountt == 0.0 || subsidy_amountt < 0) {
                                     payble_amount = Double.parseDouble(include_gst_amount);
-                                    Log.d(TAG,"-----analysis----->> == 0.0 Subsidy Amount : "+subsidy_amount);
+                                    Log.d(TAG, "-----analysis----->> == 0.0 Subsidy Amount : " + subsidy_amount);
                                 }
-                            }
-                            else if (subsidy_amountt < 0){
-                                Log.d(TAG,"-----analysis----->> < 0 Subsidy Amount : "+subsidy_amountt);
+                            } else if (subsidy_amountt < 0) {
+                                Log.d(TAG, "-----analysis----->> < 0 Subsidy Amount : " + subsidy_amountt);
                                 subsidy_amount.setText("0.00");
+                                paybleamount.setText(include_gst_amount + "");
                             }
 
                         }
@@ -623,11 +621,11 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private boolean validations() {
 
 
-            if (paymentspin.getSelectedItemPosition() == 0) {
+        if (paymentspin.getSelectedItemPosition() == 0) {
 
-                showDialog(Fert_godown_list.this, getResources().getString(R.string.paym_validation));
-                return false;
-            }
+            showDialog(Fert_godown_list.this, getResources().getString(R.string.paym_validation));
+            return false;
+        }
         return true;
     }
 
@@ -637,7 +635,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
         selectedGodown = item;
         GodownId = selectedGodown.getId();
-        Godown_name=selectedGodown.getName();
+        Godown_name = selectedGodown.getName();
         // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
 }
