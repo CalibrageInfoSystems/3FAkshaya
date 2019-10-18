@@ -248,7 +248,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                     @Override
                     public void onNext(ResPole poleResponce) {
-                        if(poleResponce.getListResult() != null)
+                        if ( poleResponce.getListResult().size() != 0)
                         {
                             no_data.setVisibility(View.GONE);
                             rcv_requests.setVisibility(View.VISIBLE);

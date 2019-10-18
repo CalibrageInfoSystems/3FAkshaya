@@ -41,7 +41,7 @@
             android:layout_margin="@dimen/margin_5"
             android:background="@drawable/edt_bg"
             android:gravity="center"
-            android:text="@string/recommendations"
+            android:text="@string/recommendationss"
             android:textColor="@color/whitepure" />
     </RelativeLayout>
 

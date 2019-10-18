@@ -450,7 +450,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
 
-        requestModel.setTotalCost(Double.parseDouble(SharedPrefsData.getInstance(ctx).getStringFromSharedPrefs("amount")));
+        requestModel.setTotalCost(products_amount);
         requestModel.setSubcidyAmount(Subsidy_amount);
         requestModel.setPaybleAmount(payble_amount);
         requestModel.setComments(null);

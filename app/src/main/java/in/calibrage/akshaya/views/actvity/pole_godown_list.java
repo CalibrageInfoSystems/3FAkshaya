@@ -407,7 +407,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
 
-        requestModel.setTotalCost(Double.parseDouble(SharedPrefsData.getInstance(ctx).getStringFromSharedPrefs("amount")));
+        requestModel.setTotalCost(products_amount);
         requestModel.setSubcidyAmount(0.0);
         requestModel.setPaybleAmount(0.0);
         requestModel.setComments(null);

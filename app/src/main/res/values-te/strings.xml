@@ -344,7 +344,7 @@
     <string name="success_pole">పోల్ అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     <string name="product_details">వస్తువు వివరాలు</string>
     <string name="signature">దయచేసి సంతకం రాయండి</string>
-    <string name="requestCodeLabel">అభ్యర్థించిన తేదీ</string>
+    <string name="requestCodeLabel">అభ్యర్థించిన ఐడి</string>
     <string name="reqDatee">అభ్యర్థించిన తేదీ</string>
     <string name="paymentMode">చెల్లింపు మోడ్</string>
     <string name="req_date">అభ్యర్థించిన తేదీ</string>
@@ -398,6 +398,7 @@
     <string name="product_quantity"><![CDATA[ఉత్పత్తి & పరిమాణం]]></string>
     <string name="qucick_success">క్విక్‌పే అభ్యర్థన విజయవంతంగా పెంచబడింది</string>
     <string name="paym_validation">దయచేసి చెల్లింపు మోడ్‌ను ఎంచుకోండి</string>
+    <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>
