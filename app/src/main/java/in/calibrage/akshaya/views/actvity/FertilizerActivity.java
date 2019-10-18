@@ -110,7 +110,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             showDialog(FertilizerActivity.this,getResources().getString(R.string.Internet));
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
-        Getstate();
+       // Getstate();
         cartButtonIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -236,7 +236,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             try {
                 json = array.getJSONObject(i);
                 superHero.setName(json.getString("name"));
-                superHero.setDiscountedPrice(json.getString("actualPrice"));
+                superHero.setDiscountedPrice(json.getDouble("actualPrice"));
                 superHero.setmAmount(json.getString("discountedPrice"));
                 superHero.setPrice(json.getInt("price"));
                 superHero.setImageUrl(json.getString("imageUrl"));
@@ -258,21 +258,36 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Log.e("dis_price====", dis_price);
 
                 superHero.setgst(json.getInt("gstPercentage"));
+                ArrayList<String> powers = new ArrayList<String>();
 
 
 
+                // superHero.setfarmerCode(labourDetails.getString("farmerCode"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             product_list.add(superHero);
+            //   selected_list.add();
 
+                                /*String plotCode = productObject.getString("plotCode");
+                                String plotMandalName = productObject.getString("plotMandalName");
+                                Log.d(TAG,"RESPONSE plotCode======"+ plotCode);
+                                Log.d(TAG,"RESPONSE plotMandalName======"+ plotMandalName);*/
 
             adapter = new ModelFertAdapterNew(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
             //Adding adapter to recyclerview
             recyclerView.setAdapter(adapter);
-//
+//            adapter.setOnListener(PoleActivity.this);
+//            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+//                @Override
+//                public void onChanged() {
+//                    super.onChanged();
+//                    setMealTotal();
+//                }
+//            });
+
         }
     }
 

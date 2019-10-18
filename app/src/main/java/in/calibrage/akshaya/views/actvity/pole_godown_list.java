@@ -13,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,39 +65,36 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
      * this is shows godows and payment process also
      * */
 
+    Spinner paymentspin;
+    List<Integer> payment_id = new ArrayList<Integer>();
     private Context ctx;
     private Button btn_submit, button;
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
-    private EditText editText;
-    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount;
-    private BottomSheetBehavior behavior;
 
+    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount;
+    private BottomSheetBehavior behavior;
+    double products_amount;
     private Toolbar toolbar;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
     Integer RequestType;
-    int Gst_total;
-    ArrayList<Integer> selected_quntity_list = new ArrayList<Integer>();
-    ArrayList<Integer> selected_ids_lists = new ArrayList<Integer>();
-    ArrayList<String> product_names = new ArrayList<String>();
-    ArrayList<Integer> product_gst = new ArrayList<Integer>();
-    ArrayList<Integer> amount_final = new ArrayList<Integer>();
+
     ArrayList<Integer> gstvalues = new ArrayList<Integer>();
-    ArrayList<String> selects_product_size = new ArrayList<String>();
-    String Amount;
-    double products_amount;
-    String Farmer_code, formattedDate, IsSuccess;
+
+    String product_name,selected_name;
+    String Farmer_code, formattedDate, Godown_name;
     ImageView home_btn;
     Integer GodownId,quantity;
-    private Spinner paymentspin;
+
+
+
     List<String> listdata = new ArrayList<>();
 
-    SwitchMultiButton sw_paymentMode;
-    private ActiveGodownsModel.ListResult selectedGodown;
-    private List<product> product_List = new ArrayList<>();
 
+    private ActiveGodownsModel.ListResult selectedGodown;
+    private ArrayList<product> product_List = new ArrayList<>();
     private String final_amount, only_amount;
     int mealTotal = 0;
     String Gst_sum, Amount_, include_gst_amount;
@@ -104,24 +104,21 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     PaymentsType paymentsTypes;
     double payble_amount;
     double Subsidy_amount, subsidy_amountt;
+    int Gst_total;
+    //endregion
     private List<String> selected_list = new ArrayList<String>();
-String product_name,Godown_name,selected_name;
-    List<String> selected_labour = new ArrayList<String>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pole_godown_list);
-
         init();
         setviews();
         settoolbar();
 
     }
-
-
     private void init() {
         ctx = this;
+        paymentspin = (Spinner) findViewById(R.id.paymentSpinner);
         recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view_products.setLayoutManager(mLayoutManager);
@@ -129,8 +126,8 @@ String product_name,Godown_name,selected_name;
         txt_select_godown = findViewById(R.id.txt_select_godown);
         txt_Payment_mode = findViewById(R.id.txt_Payment_mode);
         lst_godown_list = findViewById(R.id.lst_godown_list);
-        subsidy_amount = findViewById(R.id.subcdamount);
-        sw_paymentMode = findViewById(R.id.sw_paymentMode);
+
+        //     sw_paymentMode = findViewById(R.id.sw_paymentMode);
         linearLayoutManager = new LinearLayoutManager(ctx);
         lst_godown_list.setLayoutManager(linearLayoutManager);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
@@ -143,34 +140,29 @@ String product_name,Godown_name,selected_name;
         Final_amount = (TextView) findViewById(R.id.final_amount_gst);
         gst_amount = (TextView) findViewById(R.id.gst_amount);
         home_btn = (ImageView) findViewById(R.id.home_btn);
-
-        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
-        getPaymentMods();
-        // getFertilizerSubsidies();
-        getActiveGodowns();
-
-
-        sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
+        home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSwitch(int position, String tabText) {
-                Paymode = paymentsTypes.getListResult().get(position).getTypeCdId();
-                String name = paymentsTypes.getListResult().get(position).getDesc();
-                if (name.contains("Cash")) {
-                    Statusid = 16;
-                }
-                if (name.contains("Against FFB")) {
-                    Statusid = 15;
-                }
-
-                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + Paymode);
-                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + name);
-
+            public void onClick(View view) {
+                Log.d(TAG, "---------- Finish ----------------");
+                Intent intent = new Intent(pole_godown_list.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             }
         });
+        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+        Farmer_code = pref.getString("farmerid", "");
+        if (isOnline()) {
+            getPaymentMods();
+
+            getActiveGodowns();
+        } else {
+            showDialog(pole_godown_list.this, getResources().getString(R.string.Internet));
+
+        }
 
     }
-
+    //region API Requests
     private void getPaymentMods() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -192,69 +184,45 @@ String product_name,Godown_name,selected_name;
                     public void onNext(PaymentsType paymentsType) {
                         paymentsTypes = paymentsType;
                         mdilogue.cancel();
-                        for (PaymentsType.ListResult string : paymentsType.getListResult()
-                        ) {
-                            listdata.add(string.getDesc());
+                        if (paymentsType.getListResult() != null) {
+                            listdata.add("Select");
+                            for (PaymentsType.ListResult string : paymentsType.getListResult()
+                            ) {
+                                listdata.add(string.getDesc());
+                                payment_id.add(string.getTypeCdId());
+                            }
+
+
+                            Log.d(TAG, "RESPONSE======" + listdata);
+
+//
+
+                            ArrayAdapter aa = new ArrayAdapter(pole_godown_list.this, R.layout.spinner_itemm, listdata);
+                            aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+                            paymentspin.setAdapter(aa);
+                        } else {
+                            Log.e("nodada====", "nodata===custom2");
 
                         }
 
-                        char ch = '"';
-                        String finalstring = ch + arrayToString(listdata) + ch;
-                        finalstring = finalstring.replace(",", ch + "," + ch);
-
-                        String[] stockArr = new String[listdata.size()];
-                        stockArr = listdata.toArray(stockArr);
-                        // String[] a = listdata.toArray(new String[0]);
-                        // Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + a);
-                        sw_paymentMode.setText(stockArr);
-                        sw_paymentMode.setSelectedTab(0);
-                        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
 
                     }
                 });
     }
 
     private void setviews() {
-
-
-
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => " + c.getTime());
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
-
-        home_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /* Intent intent =new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(intent);*/
-                Intent intent = new Intent(pole_godown_list.this, HomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
-        });
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onSubmit();
-
-
-            }
-        });
-       // ArrayList<Product_new> myProductsList = SharedPrefsData.getCartData(ctx);
-
-        mAdapter = new producut_Adapter(this, SharedPrefsData.getCartData(this));
-        recycler_view_products.setAdapter(mAdapter);
-
         for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
-            int gst =SharedPrefsData.getCartData(this).get(i).getGst();
+            int gst = SharedPrefsData.getCartData(this).get(i).getGst();
 
             Double amount_product = SharedPrefsData.getCartData(this).get(i).getAmount();
             int quantity = SharedPrefsData.getCartData(this).get(i).getQuandity();
             String quan = String.valueOf(quantity);
-          //  mealTotal = amount_product * quantity;
+            //  mealTotal = amount_product * quantity;
             String product_amount = String.valueOf(mealTotal);
 
             int percentage = quantity * gst;
@@ -266,35 +234,63 @@ String product_name,Godown_name,selected_name;
             gstvalues.add(k);
 
             Log.e("percentage_value===", String.valueOf(gstvalues));
-          Gst_total = CommonUtil.sum(gstvalues);
-           // include_gst_amount = Gst_sum + Amount_;
+            Gst_total = CommonUtil.sum(gstvalues);
+            // include_gst_amount = Gst_sum + Amount_;
             Log.e("gst_Sum===", String.valueOf(Gst_total));
 
-            gst_amount.setText(Gst_total+"");
-          //  Final_amount.setText("" + String.valueOf(include_gst_amount));
+            gst_amount.setText(Gst_total + "");
+            //  Final_amount.setText("" + String.valueOf(include_gst_amount));
 
         }
-
-
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             include_gst_amount = extras.getString("Total_amount");
-          //  text_amount.setText("" + only_amount);
-           // gst_amount.setText("" + String.valueOf(Gst_sum));
+            //  text_amount.setText("" + only_amount);
+            // gst_amount.setText("" + String.valueOf(Gst_sum));
 
         }
-        Final_amount.setText("" + String.valueOf(include_gst_amount));
-
-     products_amount =Double.parseDouble(include_gst_amount)- Double.parseDouble(String.valueOf(Gst_total));
-    Log.e("products_amount===", String.valueOf(products_amount));
-        text_amount.setText("" + products_amount);
+        Final_amount.setText(include_gst_amount + "");
+        DecimalFormat dff = new DecimalFormat("####0.00");
+        DecimalFormat form = new DecimalFormat("0.00");
 
 
+        products_amount = Double.parseDouble(include_gst_amount) - Double.parseDouble(String.valueOf(Gst_total));
+        Log.e("products_amount===", String.valueOf(products_amount));
+        text_amount.setText("" + dff.format(products_amount));
 
+
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSubmit();
+
+
+            }
+        });
+        mAdapter = new producut_Adapter(this, SharedPrefsData.getCartData(this));
+        recycler_view_products.setAdapter(mAdapter);
+//
+
+
+
+        paymentspin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String seleced_payment = paymentspin.getItemAtPosition(paymentspin.getSelectedItemPosition()).toString();
+                Log.e("seleced_payment==", seleced_payment);
+
+
+
+
+
+//            }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // DO Nothing here
+            }
+        });
     }
-
-
 
     private void FertilizerRequest() {
 
@@ -335,9 +331,6 @@ String product_name,Godown_name,selected_name;
 
                         if (fertResponse.getIsSuccess()) {
 
-
-                            // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
-
                             new Handler().postDelayed(new Runnable() {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override
@@ -345,20 +338,20 @@ String product_name,Godown_name,selected_name;
 
                                     List<MSGmodel> displayList = new ArrayList<>();
 
-                                  for (int i = 0; i < SharedPrefsData.getCartData(pole_godown_list.this).size(); i++) {
+                                    for (int i = 0; i < SharedPrefsData.getCartData(pole_godown_list.this).size(); i++) {
 
 
 
-                                         product_name =SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
+                                        product_name =SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
                                         quantity=SharedPrefsData.getCartData(getApplicationContext()).get(i).getQuandity();
                                         selected_list.add(product_name + " : " +quantity +"");
-                                         selected_name = arrayyTOstring(selected_list);
+                                        selected_name = arrayyTOstring(selected_list);
                                     }
                                     displayList.add(new MSGmodel(getString(R.string.Godown_name), Godown_name));
-                                   displayList.add(new MSGmodel(getString(R.string.product_quantity), selected_name));
+                                    displayList.add(new MSGmodel(getString(R.string.product_quantity), selected_name));
 
                                     displayList.add(new MSGmodel(getResources().getString(R.string.amount), products_amount+""));
-                                   displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), Gst_total+""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), Gst_total+""));
 
                                     displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), include_gst_amount));
 
@@ -377,6 +370,7 @@ String product_name,Godown_name,selected_name;
 
 
     }
+
     public String arrayyTOstring(List<String> arrayList) {
         StringBuilder string = new StringBuilder();
         if (arrayList.size() > 0) {
@@ -390,12 +384,11 @@ String product_name,Godown_name,selected_name;
         return string.toString();
     }
 
-
     private JsonObject fertReuestobject() {
         FertRequest requestModel = new FertRequest();
 
         requestModel.setId(0);
-        requestModel.setRequestTypeId(10);
+        requestModel.setRequestTypeId(12);
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
@@ -406,10 +399,10 @@ String product_name,Godown_name,selected_name;
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(formattedDate);
         requestModel.setGodownId(GodownId);
-        requestModel.setPaymentModeType(Paymode);
-        requestModel.setFileName("");
-        requestModel.setFileExtension("");
-        requestModel.setFileLocation("");
+        requestModel.setPaymentModeType((payment_id.get(paymentspin.getSelectedItemPosition() - 1)));
+        requestModel.setFileName(null);
+        requestModel.setFileExtension(null);
+        requestModel.setFileLocation(null);
 
         requestModel.setTotalCost(Double.parseDouble(SharedPrefsData.getInstance(ctx).getStringFromSharedPrefs("amount")));
         requestModel.setSubcidyAmount(0.0);
@@ -424,7 +417,7 @@ String product_name,Godown_name,selected_name;
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost( Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
+            products.setBagCost(Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
             products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
             products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
             products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
@@ -433,12 +426,12 @@ String product_name,Godown_name,selected_name;
             req_products.add(products);
         }
 
+
         requestModel.setRequestProductDetails(req_products);
 
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
-
 
     private void settoolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -457,9 +450,13 @@ String product_name,Godown_name,selected_name;
     }
 
     private void getActiveGodowns() {
+
+        int typeid = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("postTypeId");
+
+        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns + "/" + "AP")
+        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns + "/" + statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ActiveGodownsModel>() {
                     @Override
@@ -470,9 +467,8 @@ String product_name,Godown_name,selected_name;
                     @Override
                     public void onError(Throwable e) {
                         mdilogue.cancel();
-                        showDialog(pole_godown_list.this, getString(R.string.server_error));
                         Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
-
+                        showDialog(pole_godown_list.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -492,22 +488,42 @@ String product_name,Godown_name,selected_name;
     public void onSubmit() {
         /*
          * validate Fealds
+         *
          * */
         if (selectedGodown != null) {
-            FertilizerRequest();
+            if (validations()) {
+                if (isOnline())
+
+                    FertilizerRequest();
+                else {
+                    showDialog(pole_godown_list.this, getResources().getString(R.string.Internet));
+
+                }
+            }
+
         } else {
             showDialog(this, getString(R.string.godown_valid));
         }
     }
 
+    private boolean validations() {
+
+
+        if (paymentspin.getSelectedItemPosition() == 0) {
+
+            showDialog(pole_godown_list.this, getResources().getString(R.string.paym_validation));
+            return false;
+        }
+        return true;
+    }
+
+    //endregion
     @Override
     public void onItemClick(ActiveGodownsModel.ListResult item) {
+
         selectedGodown = item;
         GodownId = selectedGodown.getId();
         Godown_name=selectedGodown.getName();
         // Log.e("selectedGodown===",selectedGodown.getId().toString());
     }
-
 }
-
-

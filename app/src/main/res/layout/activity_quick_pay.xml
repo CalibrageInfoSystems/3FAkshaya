@@ -104,11 +104,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/no_text"
             android:fontFamily="@font/roboto_regular"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="300dp"
             android:textAlignment="center"
             android:visibility="gone"
             android:text="@string/no_unpaid_collections"
-            android:textColor="@color/white"
+            android:textColor="@color/colorOrange"
             android:textSize="16dp" />
 
         <Button

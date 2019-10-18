@@ -13,11 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -63,12 +66,13 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
      *
      * this is shows godows and payment process also
      * */
-
+    Spinner paymentspin;
+    List<Integer> payment_id = new ArrayList<Integer>();
     private Context ctx;
     private Button btn_submit, button;
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
-    private EditText editText;
+
     private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount;
     private BottomSheetBehavior behavior;
     double products_amount;
@@ -77,21 +81,19 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
     Integer RequestType;
-    ArrayList<Integer> selected_quntity_list = new ArrayList<Integer>();
-    ArrayList<Integer> selected_ids_lists = new ArrayList<Integer>();
-    ArrayList<String> product_names = new ArrayList<String>();
-    ArrayList<Integer> product_gst = new ArrayList<Integer>();
-    ArrayList<Integer> amount_final = new ArrayList<Integer>();
+
     ArrayList<Integer> gstvalues = new ArrayList<Integer>();
-    ArrayList<String> selects_product_size = new ArrayList<String>();
+
   String product_name,selected_name;
     String Farmer_code, formattedDate, Godown_name;
     ImageView home_btn;
     Integer GodownId,quantity;
-    private Spinner paymentspin;
+
+
+
     List<String> listdata = new ArrayList<>();
 
-    SwitchMultiButton sw_paymentMode;
+
     private ActiveGodownsModel.ListResult selectedGodown;
     private ArrayList<product> product_List = new ArrayList<>();
     private String final_amount, only_amount;
@@ -117,6 +119,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     }
     private void init() {
         ctx = this;
+        paymentspin = (Spinner) findViewById(R.id.paymentSpinner);
         recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view_products.setLayoutManager(mLayoutManager);
@@ -126,7 +129,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         lst_godown_list = findViewById(R.id.lst_godown_list);
         subsidy_amount = findViewById(R.id.subcdamount);
         paybleamount = findViewById(R.id.paybleamount);
-        sw_paymentMode = findViewById(R.id.sw_paymentMode);
+   //     sw_paymentMode = findViewById(R.id.sw_paymentMode);
         linearLayoutManager = new LinearLayoutManager(ctx);
         lst_godown_list.setLayoutManager(linearLayoutManager);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
@@ -160,23 +163,23 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
         }
 
-        sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
-            @Override
-            public void onSwitch(int position, String tabText) {
-                Paymode = paymentsTypes.getListResult().get(position).getTypeCdId();
-                String name = paymentsTypes.getListResult().get(position).getDesc();
-                if (name.contains("Cash")) {
-                    Statusid = 16;
-                }
-                if (name.contains("Against FFB")) {
-                    Statusid = 15;
-                }
-
-                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + Paymode);
-                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + name);
-
-            }
-        });
+//        sw_paymentMode.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
+//            @Override
+//            public void onSwitch(int position, String tabText) {
+//                Paymode = paymentsTypes.getListResult().get(position).getTypeCdId();
+//                String name = paymentsTypes.getListResult().get(position).getDesc();
+//                if (name.contains("Cash")) {
+//                    Statusid = 16;
+//                }
+//                if (name.contains("Against FFB")) {
+//                    Statusid = 15;
+//                }
+//
+//                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + Paymode);
+//                Log.d(TAG, "------------ analysis -------- >> Mahesh :" + name);
+//
+//            }
+//        });
 
     }
     //region API Requests
@@ -201,24 +204,27 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                     public void onNext(PaymentsType paymentsType) {
                         paymentsTypes = paymentsType;
                         mdilogue.cancel();
-
+                        if (paymentsType.getListResult() != null) {
+                            listdata.add("Select");
                         for (PaymentsType.ListResult string : paymentsType.getListResult()
                         ) {
                             listdata.add(string.getDesc());
+                            payment_id.add(string.getTypeCdId());
+                        }
+
+
+                        Log.d(TAG, "RESPONSE======" + listdata);
+
+//
+
+                            ArrayAdapter aa = new ArrayAdapter(Fert_godown_list.this, R.layout.spinner_itemm, listdata);
+                            aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+                            paymentspin.setAdapter(aa);
+                        } else {
+                            Log.e("nodada====", "nodata===custom2");
 
                         }
 
-                        char ch = '"';
-                        String finalstring = ch + arrayToString(listdata) + ch;
-                        finalstring = finalstring.replace(",", ch + "," + ch);
-
-                        String[] stockArr = new String[listdata.size()];
-                        stockArr = listdata.toArray(stockArr);
-                        // String[] a = listdata.toArray(new String[0]);
-                        // Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + a);
-                        sw_paymentMode.setText(stockArr);
-                        sw_paymentMode.setSelectedTab(0);
-                        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + finalstring);
 
                     }
                 });
@@ -301,6 +307,24 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 //        });
 
         paybleamount.setText(payble_amount + "");
+
+        paymentspin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String seleced_payment = paymentspin.getItemAtPosition(paymentspin.getSelectedItemPosition()).toString();
+                Log.e("seleced_payment==", seleced_payment);
+
+
+
+
+
+//            }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // DO Nothing here
+            }
+        });
     }
 
     private void FertilizerRequest() {
@@ -419,7 +443,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(formattedDate);
         requestModel.setGodownId(GodownId);
-        requestModel.setPaymentModeType(Paymode);
+        requestModel.setPaymentModeType((payment_id.get(paymentspin.getSelectedItemPosition() - 1)));
         requestModel.setFileName(null);
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
@@ -554,6 +578,9 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                     payble_amount = 0.0;
                                 }
                             }
+                           else if (subsidy_amountt < 0){
+                                subsidy_amount.setText("0.00");
+                            }
 
                         }
                     }
@@ -564,18 +591,33 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     public void onSubmit() {
         /*
          * validate Fealds
+         *
          * */
         if (selectedGodown != null) {
-            if (isOnline())
-                FertilizerRequest();
-            else {
-                showDialog(Fert_godown_list.this, getResources().getString(R.string.Internet));
+            if (validations()) {
+                if (isOnline())
 
+                    FertilizerRequest();
+                else {
+                    showDialog(Fert_godown_list.this, getResources().getString(R.string.Internet));
+
+                }
             }
 
         } else {
             showDialog(this, getString(R.string.godown_valid));
         }
+    }
+
+    private boolean validations() {
+
+
+            if (paymentspin.getSelectedItemPosition() == 0) {
+
+                showDialog(Fert_godown_list.this, getResources().getString(R.string.paym_validation));
+                return false;
+            }
+        return true;
     }
 
     //endregion
