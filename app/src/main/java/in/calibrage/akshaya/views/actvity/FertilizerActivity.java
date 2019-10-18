@@ -110,7 +110,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             showDialog(FertilizerActivity.this,getResources().getString(R.string.Internet));
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
-        Getstate();
+       // Getstate();
         cartButtonIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
