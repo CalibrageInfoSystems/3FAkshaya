@@ -265,7 +265,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             include_gst_amount = extras.getString("Total_amount");
-            //  text_amount.setText("" + only_amount);
+            Log.e("include_gst_amount===268", String.valueOf(include_gst_amount));
             // gst_amount.setText("" + String.valueOf(Gst_sum));
 
         }
@@ -452,7 +452,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
         requestModel.setTotalCost(products_amount);
         requestModel.setSubcidyAmount(Subsidy_amount);
-        requestModel.setPaybleAmount(payble_amount);
+        requestModel.setPaybleAmount(Double.valueOf(paybleamount.getText().toString()));
         requestModel.setComments(null);
         requestModel.setCropMaintainceDate(null);
         requestModel.setIssueTypeId(null);
@@ -552,8 +552,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                         if (subsidyResponse.getIsSuccess()) {
                             subsidy_amount.setText(subsidyResponse.getResult().getRemainingAmount().toString());
                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
-
-
+                            Log.e("include_gst_amount===555",include_gst_amount);
+                            Log.e("include_gst_amount===556",subsidy_amountt+"");
                             if (subsidy_amountt > 0) {
                                 if (Double.parseDouble(include_gst_amount) < subsidy_amountt) {
                                     Double remaining_subsidy_amountt = subsidy_amountt - Double.parseDouble(include_gst_amount);
@@ -568,6 +568,8 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                     /*
                                      * payble amount
                                      * */
+                                    Log.e("include_gst_amount===571",include_gst_amount);
+                                    Log.e("remaining_Amoubt===",remaining_Amoubt+"");
                                     payble_amount = remaining_Amoubt;
                                     paybleamount.setText(payble_amount+"");
                                     Log.e("payble_amount===",payble_amount+"");
@@ -578,6 +580,10 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                      * nothing to pay
                                      * */
                                     payble_amount = 0.0;
+                                }
+                                else if (subsidy_amountt == 0.0){
+                                    payble_amount = Double.parseDouble(include_gst_amount);
+                                    Log.e("payble_amount===586",payble_amount+"");
                                 }
                             }
                            else if (subsidy_amountt < 0){

@@ -24,7 +24,8 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".views.actvity.Fert_godown_list"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".views.actvity.Visit_request_Activity"
             android:screenOrientation="portrait" />
