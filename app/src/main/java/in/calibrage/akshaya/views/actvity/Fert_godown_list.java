@@ -554,7 +554,9 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
                             Log.e("include_gst_amount===555",include_gst_amount);
                             Log.e("include_gst_amount===556",subsidy_amountt+"");
-                            if (subsidy_amountt > 0) {
+                            Log.d(TAG,"-----analysis----->> Subsidy Amount : "+subsidy_amountt);
+                            if (subsidy_amountt > 0 || subsidy_amountt == 0.0) {
+                                Log.d(TAG,"-----analysis----->> >0 Subsidy Amount : "+subsidy_amount);
                                 if (Double.parseDouble(include_gst_amount) < subsidy_amountt) {
                                     Double remaining_subsidy_amountt = subsidy_amountt - Double.parseDouble(include_gst_amount);
                                     /*
@@ -583,10 +585,11 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                 }
                                 else if (subsidy_amountt == 0.0){
                                     payble_amount = Double.parseDouble(include_gst_amount);
-                                    Log.e("payble_amount===586",payble_amount+"");
+                                    Log.d(TAG,"-----analysis----->> == 0.0 Subsidy Amount : "+subsidy_amount);
                                 }
                             }
-                           else if (subsidy_amountt < 0){
+                            else if (subsidy_amountt < 0){
+                                Log.d(TAG,"-----analysis----->> < 0 Subsidy Amount : "+subsidy_amountt);
                                 subsidy_amount.setText("0.00");
                             }
 

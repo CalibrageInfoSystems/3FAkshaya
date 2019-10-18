@@ -38,12 +38,10 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         collection_Set.addAll(viewModels);
         notifyDataSetChanged();
     }
-
     public void clearAllDataa() {
         collection_Set.clear();
         notifyDataSetChanged();
     }
-
     public Collection_Adapter(Context context, List<CollectionResponceModel.CollectioDatum> collection_Set) {
 
         this.mContext = context;
