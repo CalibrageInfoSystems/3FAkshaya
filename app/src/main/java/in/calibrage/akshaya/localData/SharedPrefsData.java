@@ -229,8 +229,6 @@ public class SharedPrefsData {
         if ((middlename != null && !middlename.isEmpty() && !middlename.equals("null"))) {
             finalmiddlename = middlename + " ";
         }
-
         return  SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getFirstName() + " " + finalmiddlename + SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getLastName();
     }
-
 }
