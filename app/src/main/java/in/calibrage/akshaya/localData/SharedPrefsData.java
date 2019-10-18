@@ -224,7 +224,7 @@ public class SharedPrefsData {
     }
 
     public static String getusername(Context ctx) {
-        String middlename = SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getMandalName();
+        String middlename = SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getMiddleName();
         String finalmiddlename = "";
         if ((middlename != null && !middlename.isEmpty() && !middlename.equals("null"))) {
             finalmiddlename = middlename + " ";
