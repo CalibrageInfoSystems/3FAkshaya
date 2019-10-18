@@ -231,7 +231,6 @@ public class HomeFragment extends BaseFragment {
                         if (bannerresponseModel.getListResult() != null) {
                             final SlideAdapter adapter = new SlideAdapter(getContext(), bannerresponseModel.getListResult());
                             adapter.setCount(bannerresponseModel.getAffectedRecords());
-
                             sliderView.setSliderAdapter(adapter);
                             sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
                             sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION);
@@ -243,7 +242,6 @@ public class HomeFragment extends BaseFragment {
                             txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                          " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
                         }
                     }
-
 //                    @Override
 //                    public void onNext(LabourRecommendationsModel labourRecommendationsModel) {
 //                        mdilogue.dismiss();
@@ -254,18 +252,13 @@ public class HomeFragment extends BaseFragment {
 //                            noRecords.setVisibility(View.GONE);
 //                            adapter = new LabourRecommendationAdapter(labourRecommendationsModel.getListResult(),LabourRecommendationsActivity.this);
 //                            recyclerView.setAdapter(adapter);
-//
-//
 //                        }
 //                        else{
 //                            noRecords.setVisibility(View.VISIBLE);
 //
 //                        }
 //                    }
-
-
                 });
-
 
     }
 

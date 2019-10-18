@@ -44,6 +44,7 @@ import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
 
 import in.calibrage.akshaya.common.MySignatureView;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PostQuickpaymodel;
@@ -98,16 +99,15 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     private void init() {
 
         ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
-        dates_list= (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
-        netweight_list= (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
+        dates_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
+        netweight_list = (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
         for (int i = 0; i < ids_list.size(); i++) {
-            String id =ids_list.get(i);
-    String date =dates_list.get(i);
-            double weight =netweight_list.get(i);
-            post_ids.add(id+"|"+weight+"|"+date+"");
+            String id = ids_list.get(i);
+            String date = dates_list.get(i);
+            double weight = netweight_list.get(i);
+            post_ids.add(id + "|" + weight + "|" + date + "");
             Log.e("post_ids==", String.valueOf(post_ids));
         }
-
 
 
         backImg = (ImageView) findViewById(R.id.back);
@@ -351,7 +351,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
 
                     });
-        }else {
+        } else {
             Toast.makeText(this, "unable to process request now", Toast.LENGTH_SHORT).show();
         }
 
@@ -383,7 +383,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 dialog.dismiss();
                 List<MSGmodel> displayList = new ArrayList<>();
 
-             //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
+                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
                 showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
 //                Intent intent = new Intent(Quickpay_SummaryActivity.this, HomeActivity.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -398,7 +398,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     private JsonObject quickReuestobject() {
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
 
-
+        requestModel.setFarmername(SharedPrefsData.getusername(this));
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);

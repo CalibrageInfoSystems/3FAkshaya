@@ -168,7 +168,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         dialog.setCanceledOnTouchOutside(false);
 
         String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByCategoryId/1";
-
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -177,7 +176,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
-
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     Log.d(TAG, "GetProductsByCategoryId ======" + jsonObject);
@@ -229,6 +227,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     }
 
     private void parseData(JSONArray array) {
+
         for (int i = 0; i < array.length(); i++) {
 
             ModelFert superHero = new ModelFert();

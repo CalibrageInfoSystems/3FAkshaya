@@ -6,6 +6,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class PostQuickpaymodel {
 
+    @SerializedName("farmername")
+    @Expose
+    private String farmername;
+
     @SerializedName("farmerCode")
     @Expose
     private String farmerCode;
@@ -161,4 +165,11 @@ public class PostQuickpaymodel {
         this.updatedDate = updatedDate;
     }
 
+    public String getFarmername() {
+        return farmername;
+    }
+
+    public void setFarmername(String farmername) {
+        this.farmername = farmername;
+    }
 }

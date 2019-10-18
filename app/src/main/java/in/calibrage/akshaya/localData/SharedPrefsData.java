@@ -3,6 +3,7 @@ package in.calibrage.akshaya.localData;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -164,64 +165,72 @@ public class SharedPrefsData {
     public static boolean getBool(Context context, String key) {
         SharedPreferences profilePref = context.getSharedPreferences(CHURCH_DATA,
                 Context.MODE_PRIVATE);
-         return profilePref.getBoolean(key, false);
+        return profilePref.getBoolean(key, false);
     }
 
-   public static void  saveCatagories(Context mContext, FarmerOtpResponceModel formerModel)
-   {
-       Gson gson = new Gson();
+    public static void saveCatagories(Context mContext, FarmerOtpResponceModel formerModel) {
+        Gson gson = new Gson();
 
-       if (mContext != null) {
-           String json = gson.toJson(formerModel);
-           SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
-           SharedPreferences.Editor editor = profilePref.edit();
-           editor.putString(CataGories, json);
+        if (mContext != null) {
+            String json = gson.toJson(formerModel);
+            SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = profilePref.edit();
+            editor.putString(CataGories, json);
 
-           // Commit the edits!
-           editor.apply();
+            // Commit the edits!
+            editor.apply();
 
-       }
-   }
+        }
+    }
 
-   public static FarmerOtpResponceModel getCatagories(Context mContext)
-   {
-       Gson gson = new Gson();
+    public static FarmerOtpResponceModel getCatagories(Context mContext) {
+        Gson gson = new Gson();
 
-           SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
-                   Context.MODE_PRIVATE);
-           String json = profilePref.getString(CataGories, "");
-           FarmerOtpResponceModel obj = gson.fromJson(json, FarmerOtpResponceModel.class);
-           return obj;
+        SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
+                Context.MODE_PRIVATE);
+        String json = profilePref.getString(CataGories, "");
+        FarmerOtpResponceModel obj = gson.fromJson(json, FarmerOtpResponceModel.class);
+        return obj;
 
-   }
+    }
 
 
-   public static void saveCartitems(Context mContext, ArrayList<Product_new> myProducts){
-       Gson gson = new Gson();
+    public static void saveCartitems(Context mContext, ArrayList<Product_new> myProducts) {
+        Gson gson = new Gson();
 
-       if (mContext != null) {
-           String json = gson.toJson(myProducts);
-           SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
-           SharedPreferences.Editor editor = profilePref.edit();
-           editor.putString("cart", json);
+        if (mContext != null) {
+            String json = gson.toJson(myProducts);
+            SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = profilePref.edit();
+            editor.putString("cart", json);
 
-           // Commit the edits!
-           editor.apply();
+            // Commit the edits!
+            editor.apply();
 
-       }
-   }
+        }
+    }
 
-    public static ArrayList<Product_new> getCartData(Context mContext)
-    {
+    public static ArrayList<Product_new> getCartData(Context mContext) {
         Gson gson = new Gson();
 
         SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
                 Context.MODE_PRIVATE);
         String json = profilePref.getString("cart", "");
-        Type type = new TypeToken<List<Product_new>>() {}.getType();
-        ArrayList<Product_new> obj = gson.fromJson(json,type );
+        Type type = new TypeToken<List<Product_new>>() {
+        }.getType();
+        ArrayList<Product_new> obj = gson.fromJson(json, type);
         return obj;
 
+    }
+
+    public static String getusername(Context ctx) {
+        String middlename = SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getMandalName();
+        String finalmiddlename = "";
+        if ((middlename != null && !middlename.isEmpty() && !middlename.equals("null"))) {
+            finalmiddlename = middlename + " ";
+        }
+
+        return  SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getFirstName() + " " + finalmiddlename + SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getLastName();
     }
 
 }

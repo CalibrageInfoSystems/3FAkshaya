@@ -126,7 +126,7 @@ public class FarmerOtpResponceModel {
         private String firstName;
         @SerializedName("middleName")
         @Expose
-        private Object middleName;
+        private String middleName;
         @SerializedName("lastName")
         @Expose
         private String lastName;
@@ -229,11 +229,11 @@ public class FarmerOtpResponceModel {
             this.firstName = firstName;
         }
 
-        public Object getMiddleName() {
+        public String getMiddleName() {
             return middleName;
         }
 
-        public void setMiddleName(Object middleName) {
+        public void setMiddleName(String middleName) {
             this.middleName = middleName;
         }
 
