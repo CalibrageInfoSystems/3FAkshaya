@@ -38,7 +38,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     PopupWindow popUp;
     LinearLayout layout;
     TextView tv;
-    Double itemcostt, itemcost;
+    Double discount_cost, itemcost;
     WindowManager.LayoutParams params;
     LinearLayout mainLayout;
     Button but;
@@ -48,7 +48,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     LayoutInflater mInflater;
     private OnClickAck onClickAck1;
     String Description, ProductName;
-    double onlygst, gst;
+    double onlygst, gst,discountgst;
     private listner listner;
 
     public ModelFertAdapterNew(List<ModelFert> list_products, Context context, listner listner) {
@@ -133,8 +133,13 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                 }
             });
         }
+
+        discount_cost =superHero.getDiscountedPrice();
+        Log.e("discount_cost==",discount_cost+"");
+        discountgst = (discount_cost / 100.0f) * gst;
+        Double finaldiscount= discount_cost + discountgst;
         holder.actual_amt.setPaintFlags(holder.actual_amt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        holder.actual_amt.setText(context.getString(R.string.Rs) + superHero.getDiscountedPrice());
+        holder.actual_amt.setText(context.getString(R.string.Rs) + finaldiscount);
         Log.e("aaaaaaaaaaaa", superHero.getmAmount());
         if (superHero.getmAmount().equals("null")) {
             holder.actual_amt.setVisibility(View.INVISIBLE);

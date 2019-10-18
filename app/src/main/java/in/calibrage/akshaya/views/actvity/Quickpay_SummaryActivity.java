@@ -5,12 +5,18 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.MediaScannerConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -25,7 +31,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -42,8 +47,7 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
-
-import in.calibrage.akshaya.common.MySignatureView;
+import in.calibrage.akshaya.common.SignatureView;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PostQuickpaymodel;
@@ -64,7 +68,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     String currentDate;
     String total;
     TextView terms;
-    TextView ok, getTerms, clear;
+    TextView ok, getTerms, Click_here ;
     TextView ffbCostTxt, convenienceChargeTxt, closingBalanceTxt, totalAmount, text_flat_charge, text_quntity, text_quickpay_fee;
     String Farmer_code;
     private Subscription mSubscription;
@@ -74,7 +78,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     Bitmap bitmap;
     Button save;
     private boolean isSignatured = false;
-    MySignatureView signatureView;
+    SignatureView signatureView;
     String path;
     List<String> ids_list = new ArrayList<>();
     List<String> dates_list = new ArrayList<>();
@@ -102,17 +106,17 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         netweight_list= (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
         for (int i = 0; i < ids_list.size(); i++) {
             String id =ids_list.get(i);
-    String date =dates_list.get(i);
-            double weight =netweight_list.get(i);
-            post_ids.add(id+"|"+weight+"|"+date+"");
+            String date =dates_list.get(i);
+            Double weight =netweight_list.get(i);
+            post_ids.add(id+"|"+weight+"|"+date);
             Log.e("post_ids==", String.valueOf(post_ids));
         }
 
 
 
         backImg = (ImageView) findViewById(R.id.back);
-        signatureView = (MySignatureView) findViewById(R.id.signature_view);
-        clear = (TextView) findViewById(R.id.clear);
+        signatureView = (SignatureView) findViewById(R.id.signature_view);
+        Click_here = (TextView) findViewById(R.id.clear);
         save = (Button) findViewById(R.id.save);
         ffbCostTxt = (TextView) findViewById(R.id.tvtext_item_five);
         convenienceChargeTxt = (TextView) findViewById(R.id.tvtext_item_seven);
@@ -149,10 +153,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 finish();
             }
         });
-        clear.setOnClickListener(new View.OnClickListener() {
+
+        Click_here.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signatureView.clearCanvas();
+                signature_popup();
+               // signatureView.clearCanvas();
 
             }
         });
@@ -181,6 +187,44 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         GetQuckPaySummary();
     }
 
+    private void signature_popup() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.signature_view);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+      TextView clear = (TextView) dialog.findViewById(R.id.clear);
+        signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
+      //  text.setText("Android custom dialog example!");
+      //  ImageView image = (ImageView) dialog.findViewById(R.id.image);
+       // image.setImageResource(R.drawable.ic_launcher);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              signatureView.clearCanvas();
+
+            }
+        });
+        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        // if button is clicked, close the custom dialog
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (signatureView.isBitmapEmpty()) {
+                    showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
+                    return ;
+                }
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+
+
+
     private boolean validations() {
         if (checkbox.isChecked()) {
             checkbox.setChecked(true);
@@ -188,10 +232,14 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.terms_agree));
             return false;
         }
-        if (signatureView.isBitmapEmpty()) {
+
+        if (signatureView.getSignatureBitmap() == null){
             showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
             return false;
+            // myBitmap is empty/blank
         }
+
+
         return true;
     }
 
@@ -367,15 +415,16 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setJavaScriptEnabled(true);
-//        webView.getSettings().setLoadWithOverviewMode(true);
-//        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
 
         //---you need this to prevent the webview from
         // launching another browser when a url
         // redirection occurs---
         webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
 
-        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
+        webView.loadUrl(
+                "http://docs.google.com/gview?embedded=true&url=" + result);
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

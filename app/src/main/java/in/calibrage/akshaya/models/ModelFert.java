@@ -6,7 +6,7 @@ public class ModelFert {
 
 
     private String name;
-    private String discountedPrice;
+    private double discountedPrice;
     private int price;
     private String imageUrl;
     private String description;
@@ -46,11 +46,11 @@ public class ModelFert {
         this.name = name;
     }
 
-    public String getDiscountedPrice() {
+    public double getDiscountedPrice() {
         return discountedPrice;
     }
 
-    public void setDiscountedPrice(String discountedPrice) {
+    public void setDiscountedPrice(double discountedPrice) {
         this.discountedPrice = discountedPrice;
     }
 

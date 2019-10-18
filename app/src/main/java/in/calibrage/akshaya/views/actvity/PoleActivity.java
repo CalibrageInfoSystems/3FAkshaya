@@ -216,7 +216,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
             try {
                 json = array.getJSONObject(i);
                 superHero.setName(json.getString("name"));
-                superHero.setDiscountedPrice(json.getString("actualPrice"));
+                superHero.setDiscountedPrice(json.getDouble("actualPrice"));
                 superHero.setmAmount(json.getString("discountedPrice"));
                 superHero.setPrice(json.getInt("price"));
                 superHero.setImageUrl(json.getString("imageUrl"));
