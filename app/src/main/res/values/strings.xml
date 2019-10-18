@@ -118,7 +118,7 @@
     <string name="unpaidCollection">Unpaid Collections</string>
     <string name="labour_lable">Labour</string>
     <string name="no_req_found">No Requests Found</string>
-    <string name="no_unpaid_collections">Unpaid Collections not Found</string>
+    <string name="no_unpaid_collections">Unpaid Collections are not Found</string>
     <string name="service">Service Charges 5% extra.\nThe charges will be deducted from the FFB payment in the next payment cycle</string>
 
 

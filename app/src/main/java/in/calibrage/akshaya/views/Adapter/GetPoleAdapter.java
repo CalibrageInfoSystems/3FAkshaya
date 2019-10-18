@@ -113,7 +113,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date oneWayTripDate = input.parse(list.get(position).getUpdatedDate());
+            Date oneWayTripDate = input.parse(list.get(position).getReqCreatedDate());
 
             datetimevaluereq = output.format(oneWayTripDate);
 

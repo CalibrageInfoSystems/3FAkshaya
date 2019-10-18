@@ -76,12 +76,12 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.txtPlotId.setText(labourlist_Set.get(position).getPlotDetails().getPlotCode());
+        holder.txtPlotId.setText(labourlist_Set.get(position).getPlotCode());
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date oneWayTripDate = input.parse(labourlist_Set.get(position).getLabourDetails().getStartDate());
-            Date prefferdatee = input.parse(labourlist_Set.get(position).getLabourDetails().getUpdatedDate());
+            Date oneWayTripDate = input.parse(labourlist_Set.get(position).getStartDate());
+            Date prefferdatee = input.parse(labourlist_Set.get(position).getUpdatedDate());
             prefferdate = output.format(oneWayTripDate);
             request_date = output.format(prefferdatee);
             //datetimevalute.setText(output.format(oneWayTripDate));
@@ -91,13 +91,14 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             e.printStackTrace();
         }
         holder.txtDate.setText(request_date);
-        //   holder.txtTime.setText(superHero.getTime());
-        holder.txtDateNTime.setText(labourlist_Set.get(position).getPlotDetails().getPlotSize() + " " + "Ha");
-        holder.txtReqDate.setText(labourlist_Set.get(position).getPlotDetails().getPlotVillageName());
+        //   holder.txtTime.setText(superHero.getTime() 0.6);
+   holder.txtDateNTime.setText(labourlist_Set.get(position).getPalmArea() + " " + "Ha");
+      //  holder.txtDateNTime.setText("0.6" + " " + "Ha");
+        holder.txtReqDate.setText(labourlist_Set.get(position).getPlotVillage());
         holder.txtApproveDate.setText(prefferdate);
 
-        holder.req_code.setText(labourlist_Set.get(position).getLabourDetails().getRequestCode());
-        holder.txtStatus.setText(labourlist_Set.get(position).getLabourDetails().getStatusType());
+        holder.req_code.setText(labourlist_Set.get(position).getRequestCode());
+        holder.txtStatus.setText(labourlist_Set.get(position).getStatusType());
         if (!"Closed".equals(holder.txtStatus.getText())) {
             holder.cancel.setVisibility(View.VISIBLE);
 
@@ -110,7 +111,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         } else {
             holder.cancel.setVisibility(View.GONE);
         }
-        holder.txtname.setText(labourlist_Set.get(position).getLabourDetails().getServiceTypes());
+        holder.txtname.setText(labourlist_Set.get(position).getServiceTypes());
 
 
         if (position % 2 == 0) {
@@ -124,7 +125,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
             @Override
             public void onClick(View view) {
-                selectedItemID = labourlist_Set.get(position).getLabourDetails().getRequestCode();
+                selectedItemID = labourlist_Set.get(position).getRequestCode();
                 selectedPO = position;
                 try {
                     delete_request();

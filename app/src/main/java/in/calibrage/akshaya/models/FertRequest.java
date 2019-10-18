@@ -1,11 +1,10 @@
-package in.calibrage.akshaya.models;
+ package in.calibrage.akshaya.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FertRequest
-{
+public class FertRequest {
 
     @SerializedName("id")
     @Expose
@@ -16,15 +15,15 @@ public class FertRequest
     @SerializedName("farmerCode")
     @Expose
     private String farmerCode;
+    @SerializedName("farmerName")
+    @Expose
+    private String farmerName;
     @SerializedName("plotCode")
     @Expose
-    private Object plotCode;
+    private String plotCode;
     @SerializedName("requestCreatedDate")
     @Expose
     private String requestCreatedDate;
-    @SerializedName("statusTypeId")
-    @Expose
-    private Integer statusTypeId;
     @SerializedName("isFarmerRequest")
     @Expose
     private Boolean isFarmerRequest;
@@ -48,13 +47,13 @@ public class FertRequest
     private Integer paymentModeType;
     @SerializedName("fileName")
     @Expose
-    private Object fileName;
+    private String fileName;
     @SerializedName("fileLocation")
     @Expose
-    private Object fileLocation;
+    private String fileLocation;
     @SerializedName("fileExtension")
     @Expose
-    private Object fileExtension;
+    private String fileExtension;
     @SerializedName("totalCost")
     @Expose
     private Double totalCost;
@@ -76,8 +75,6 @@ public class FertRequest
     @SerializedName("requestProductDetails")
     @Expose
     private List<RequestProductDetail> requestProductDetails = null;
-
-
 
     public Integer getId() {
         return id;
@@ -103,11 +100,19 @@ public class FertRequest
         this.farmerCode = farmerCode;
     }
 
-    public Object getPlotCode() {
+    public String getFarmerName() {
+        return farmerName;
+    }
+
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
+    }
+
+    public String getPlotCode() {
         return plotCode;
     }
 
-    public void setPlotCode(Object plotCode) {
+    public void setPlotCode(String plotCode) {
         this.plotCode = plotCode;
     }
 
@@ -117,14 +122,6 @@ public class FertRequest
 
     public void setRequestCreatedDate(String requestCreatedDate) {
         this.requestCreatedDate = requestCreatedDate;
-    }
-
-    public Integer getStatusTypeId() {
-        return statusTypeId;
-    }
-
-    public void setStatusTypeId(Integer statusTypeId) {
-        this.statusTypeId = statusTypeId;
     }
 
     public Boolean getIsFarmerRequest() {
@@ -183,27 +180,27 @@ public class FertRequest
         this.paymentModeType = paymentModeType;
     }
 
-    public Object getFileName() {
+    public String getFileName() {
         return fileName;
     }
 
-    public void setFileName(Object fileName) {
+    public void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
-    public Object getFileLocation() {
+    public String getFileLocation() {
         return fileLocation;
     }
 
-    public void setFileLocation(Object fileLocation) {
+    public void setFileLocation(String fileLocation) {
         this.fileLocation = fileLocation;
     }
 
-    public Object getFileExtension() {
+    public String getFileExtension() {
         return fileExtension;
     }
 
-    public void setFileExtension(Object fileExtension) {
+    public void setFileExtension(String fileExtension) {
         this.fileExtension = fileExtension;
     }
 
@@ -277,7 +274,7 @@ public class FertRequest
         private Double bagCost;
         @SerializedName("size")
         @Expose
-        private String size;
+        private Double size;
         @SerializedName("gstPersentage")
         @Expose
         private Double gstPersentage;
@@ -306,11 +303,11 @@ public class FertRequest
             this.bagCost = bagCost;
         }
 
-        public String getSize() {
+        public Double getSize() {
             return size;
         }
 
-        public void setSize(String size) {
+        public void setSize(Double size) {
             this.size = size;
         }
 
@@ -321,7 +318,6 @@ public class FertRequest
         public void setGstPersentage(Double gstPersentage) {
             this.gstPersentage = gstPersentage;
         }
-
 
     }
 }

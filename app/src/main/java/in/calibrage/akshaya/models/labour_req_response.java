@@ -1,6 +1,6 @@
-package in.calibrage.akshaya.models;
 
 
+        package in.calibrage.akshaya.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -76,7 +76,7 @@ public class labour_req_response {
     }
 
 
-    public class LabourDetails {
+    public class ListResult {
 
         @SerializedName("requestCode")
         @Expose
@@ -92,10 +92,16 @@ public class labour_req_response {
         private String farmerCode;
         @SerializedName("farmerName")
         @Expose
-        private String farmerName;
+        private Object farmerName;
         @SerializedName("plotCode")
         @Expose
-        private Object plotCode;
+        private String plotCode;
+        @SerializedName("plotVillage")
+        @Expose
+        private String plotVillage;
+        @SerializedName("palmArea")
+        @Expose
+        private Object palmArea;
         @SerializedName("reqCreatedDate")
         @Expose
         private String reqCreatedDate;
@@ -117,12 +123,6 @@ public class labour_req_response {
         @SerializedName("duration")
         @Expose
         private String duration;
-        @SerializedName("frequencyId")
-        @Expose
-        private Object frequencyId;
-        @SerializedName("frequency")
-        @Expose
-        private Object frequency;
         @SerializedName("leaderId")
         @Expose
         private Object leaderId;
@@ -137,28 +137,28 @@ public class labour_req_response {
         private Object jobDoneDate;
         @SerializedName("createdByUserId")
         @Expose
-        private Object createdByUserId;
+        private Integer createdByUserId;
         @SerializedName("createdBy")
         @Expose
-        private Object createdBy;
+        private String createdBy;
         @SerializedName("createdDate")
         @Expose
-        private Object createdDate;
+        private String createdDate;
         @SerializedName("updatedByUserId")
         @Expose
-        private Object updatedByUserId;
+        private Integer updatedByUserId;
         @SerializedName("updatedBy")
         @Expose
-        private Object updatedBy;
+        private String updatedBy;
         @SerializedName("updatedDate")
         @Expose
         private String updatedDate;
-        @SerializedName("amount")
-        @Expose
-        private String amount;
         @SerializedName("netWeight")
         @Expose
-        private String netWeight;
+        private Object netWeight;
+        @SerializedName("totalCost")
+        @Expose
+        private Object totalCost;
         @SerializedName("collectionIds")
         @Expose
         private Object collectionIds;
@@ -180,15 +180,12 @@ public class labour_req_response {
         @SerializedName("treesCount")
         @Expose
         private Object treesCount;
-        @SerializedName("serviceTypeIds")
-        @Expose
-        private String serviceTypeIds;
         @SerializedName("serviceTypes")
         @Expose
         private String serviceTypes;
-        @SerializedName("plotDetails")
+        @SerializedName("serviceTypeIds")
         @Expose
-        private Object plotDetails;
+        private String serviceTypeIds;
 
         public String getRequestCode() {
             return requestCode;
@@ -222,20 +219,36 @@ public class labour_req_response {
             this.farmerCode = farmerCode;
         }
 
-        public String getFarmerName() {
+        public Object getFarmerName() {
             return farmerName;
         }
 
-        public void setFarmerName(String farmerName) {
+        public void setFarmerName(Object farmerName) {
             this.farmerName = farmerName;
         }
 
-        public Object getPlotCode() {
+        public String getPlotCode() {
             return plotCode;
         }
 
-        public void setPlotCode(Object plotCode) {
+        public void setPlotCode(String plotCode) {
             this.plotCode = plotCode;
+        }
+
+        public String getPlotVillage() {
+            return plotVillage;
+        }
+
+        public void setPlotVillage(String plotVillage) {
+            this.plotVillage = plotVillage;
+        }
+
+        public Object getPalmArea() {
+            return palmArea;
+        }
+
+        public void setPalmArea(Object palmArea) {
+            this.palmArea = palmArea;
         }
 
         public String getReqCreatedDate() {
@@ -294,22 +307,6 @@ public class labour_req_response {
             this.duration = duration;
         }
 
-        public Object getFrequencyId() {
-            return frequencyId;
-        }
-
-        public void setFrequencyId(Object frequencyId) {
-            this.frequencyId = frequencyId;
-        }
-
-        public Object getFrequency() {
-            return frequency;
-        }
-
-        public void setFrequency(Object frequency) {
-            this.frequency = frequency;
-        }
-
         public Object getLeaderId() {
             return leaderId;
         }
@@ -342,43 +339,43 @@ public class labour_req_response {
             this.jobDoneDate = jobDoneDate;
         }
 
-        public Object getCreatedByUserId() {
+        public Integer getCreatedByUserId() {
             return createdByUserId;
         }
 
-        public void setCreatedByUserId(Object createdByUserId) {
+        public void setCreatedByUserId(Integer createdByUserId) {
             this.createdByUserId = createdByUserId;
         }
 
-        public Object getCreatedBy() {
+        public String getCreatedBy() {
             return createdBy;
         }
 
-        public void setCreatedBy(Object createdBy) {
+        public void setCreatedBy(String createdBy) {
             this.createdBy = createdBy;
         }
 
-        public Object getCreatedDate() {
+        public String getCreatedDate() {
             return createdDate;
         }
 
-        public void setCreatedDate(Object createdDate) {
+        public void setCreatedDate(String createdDate) {
             this.createdDate = createdDate;
         }
 
-        public Object getUpdatedByUserId() {
+        public Integer getUpdatedByUserId() {
             return updatedByUserId;
         }
 
-        public void setUpdatedByUserId(Object updatedByUserId) {
+        public void setUpdatedByUserId(Integer updatedByUserId) {
             this.updatedByUserId = updatedByUserId;
         }
 
-        public Object getUpdatedBy() {
+        public String getUpdatedBy() {
             return updatedBy;
         }
 
-        public void setUpdatedBy(Object updatedBy) {
+        public void setUpdatedBy(String updatedBy) {
             this.updatedBy = updatedBy;
         }
 
@@ -390,20 +387,20 @@ public class labour_req_response {
             this.updatedDate = updatedDate;
         }
 
-        public String getAmount() {
-            return amount;
-        }
-
-        public void setAmount(String amount) {
-            this.amount = amount;
-        }
-
-        public String getNetWeight() {
+        public Object getNetWeight() {
             return netWeight;
         }
 
-        public void setNetWeight(String netWeight) {
+        public void setNetWeight(Object netWeight) {
             this.netWeight = netWeight;
+        }
+
+        public Object getTotalCost() {
+            return totalCost;
+        }
+
+        public void setTotalCost(Object totalCost) {
+            this.totalCost = totalCost;
         }
 
         public Object getCollectionIds() {
@@ -462,14 +459,6 @@ public class labour_req_response {
             this.treesCount = treesCount;
         }
 
-        public String getServiceTypeIds() {
-            return serviceTypeIds;
-        }
-
-        public void setServiceTypeIds(String serviceTypeIds) {
-            this.serviceTypeIds = serviceTypeIds;
-        }
-
         public String getServiceTypes() {
             return serviceTypes;
         }
@@ -478,200 +467,13 @@ public class labour_req_response {
             this.serviceTypes = serviceTypes;
         }
 
-        public Object getPlotDetails() {
-            return plotDetails;
+        public String getServiceTypeIds() {
+            return serviceTypeIds;
         }
 
-        public void setPlotDetails(Object plotDetails) {
-            this.plotDetails = plotDetails;
+        public void setServiceTypeIds(String serviceTypeIds) {
+            this.serviceTypeIds = serviceTypeIds;
         }
 
-    }
-
-
-    public class ListResult {
-
-        @SerializedName("labourDetails")
-        @Expose
-        private LabourDetails labourDetails;
-        @SerializedName("plotDetails")
-        @Expose
-        private PlotDetails plotDetails;
-
-        public LabourDetails getLabourDetails() {
-            return labourDetails;
-        }
-
-        public void setLabourDetails(LabourDetails labourDetails) {
-            this.labourDetails = labourDetails;
-        }
-
-        public PlotDetails getPlotDetails() {
-            return plotDetails;
-        }
-
-        public void setPlotDetails(PlotDetails plotDetails) {
-            this.plotDetails = plotDetails;
-        }
-
-
-        public class PlotDetails {
-
-            @SerializedName("plotCode")
-            @Expose
-            private String plotCode;
-            @SerializedName("landMark")
-            @Expose
-            private String landMark;
-            @SerializedName("plotSize")
-            @Expose
-            private Double plotSize;
-            @SerializedName("fullAddress")
-            @Expose
-            private String fullAddress;
-            @SerializedName("plotVillageId")
-            @Expose
-            private Integer plotVillageId;
-            @SerializedName("plotVillageName")
-            @Expose
-            private String plotVillageName;
-            @SerializedName("plotMandalId")
-            @Expose
-            private Integer plotMandalId;
-            @SerializedName("plotMandalName")
-            @Expose
-            private String plotMandalName;
-            @SerializedName("plotDistrictId")
-            @Expose
-            private Integer plotDistrictId;
-            @SerializedName("plotDistrictName")
-            @Expose
-            private String plotDistrictName;
-            @SerializedName("plotStateId")
-            @Expose
-            private Integer plotStateId;
-            @SerializedName("plotStateName")
-            @Expose
-            private String plotStateName;
-            @SerializedName("plotCountryId")
-            @Expose
-            private Integer plotCountryId;
-            @SerializedName("plotCountryName")
-            @Expose
-            private String plotCountryName;
-
-            public String getPlotCode() {
-                return plotCode;
-            }
-
-            public void setPlotCode(String plotCode) {
-                this.plotCode = plotCode;
-            }
-
-            public String getLandMark() {
-                return landMark;
-            }
-
-            public void setLandMark(String landMark) {
-                this.landMark = landMark;
-            }
-
-            public Double getPlotSize() {
-                return plotSize;
-            }
-
-            public void setPlotSize(Double plotSize) {
-                this.plotSize = plotSize;
-            }
-
-            public String getFullAddress() {
-                return fullAddress;
-            }
-
-            public void setFullAddress(String fullAddress) {
-                this.fullAddress = fullAddress;
-            }
-
-            public Integer getPlotVillageId() {
-                return plotVillageId;
-            }
-
-            public void setPlotVillageId(Integer plotVillageId) {
-                this.plotVillageId = plotVillageId;
-            }
-
-            public String getPlotVillageName() {
-                return plotVillageName;
-            }
-
-            public void setPlotVillageName(String plotVillageName) {
-                this.plotVillageName = plotVillageName;
-            }
-
-            public Integer getPlotMandalId() {
-                return plotMandalId;
-            }
-
-            public void setPlotMandalId(Integer plotMandalId) {
-                this.plotMandalId = plotMandalId;
-            }
-
-            public String getPlotMandalName() {
-                return plotMandalName;
-            }
-
-            public void setPlotMandalName(String plotMandalName) {
-                this.plotMandalName = plotMandalName;
-            }
-
-            public Integer getPlotDistrictId() {
-                return plotDistrictId;
-            }
-
-            public void setPlotDistrictId(Integer plotDistrictId) {
-                this.plotDistrictId = plotDistrictId;
-            }
-
-            public String getPlotDistrictName() {
-                return plotDistrictName;
-            }
-
-            public void setPlotDistrictName(String plotDistrictName) {
-                this.plotDistrictName = plotDistrictName;
-            }
-
-            public Integer getPlotStateId() {
-                return plotStateId;
-            }
-
-            public void setPlotStateId(Integer plotStateId) {
-                this.plotStateId = plotStateId;
-            }
-
-            public String getPlotStateName() {
-                return plotStateName;
-            }
-
-            public void setPlotStateName(String plotStateName) {
-                this.plotStateName = plotStateName;
-            }
-
-            public Integer getPlotCountryId() {
-                return plotCountryId;
-            }
-
-            public void setPlotCountryId(Integer plotCountryId) {
-                this.plotCountryId = plotCountryId;
-            }
-
-            public String getPlotCountryName() {
-                return plotCountryName;
-            }
-
-            public void setPlotCountryName(String plotCountryName) {
-                this.plotCountryName = plotCountryName;
-            }
-
-        }
     }
 }

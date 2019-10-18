@@ -1,5 +1,4 @@
-
-package in.calibrage.akshaya.models;
+  package in.calibrage.akshaya.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,9 +8,18 @@ public class AddLabourRequestHeader {
     @SerializedName("farmerCode")
     @Expose
     private String farmerCode;
+    @SerializedName("farmerName")
+    @Expose
+    private String farmerName;
     @SerializedName("plotCode")
     @Expose
     private String plotCode;
+    @SerializedName("plotVillage")
+    @Expose
+    private String plotVillage;
+    @SerializedName("palmArea")
+    @Expose
+    private Double palmArea;
     @SerializedName("isFarmerRequest")
     @Expose
     private Boolean isFarmerRequest;
@@ -24,18 +32,6 @@ public class AddLabourRequestHeader {
     @SerializedName("durationId")
     @Expose
     private Integer durationId;
-    @SerializedName("plotVillage")
-    @Expose
-    private String plotVillage;
-    @SerializedName("plotMandal")
-    @Expose
-    private String plotMandal;
-    @SerializedName("plotDistrict")
-    @Expose
-    private String plotDistrict;
-    @SerializedName("plotState")
-    @Expose
-    private String plotState;
     @SerializedName("serviceTypes")
     @Expose
     private String serviceTypes;
@@ -75,12 +71,36 @@ public class AddLabourRequestHeader {
         this.farmerCode = farmerCode;
     }
 
+    public String getFarmerName() {
+        return farmerName;
+    }
+
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
+    }
+
     public String getPlotCode() {
         return plotCode;
     }
 
     public void setPlotCode(String plotCode) {
         this.plotCode = plotCode;
+    }
+
+    public String getPlotVillage() {
+        return plotVillage;
+    }
+
+    public void setPlotVillage(String plotVillage) {
+        this.plotVillage = plotVillage;
+    }
+
+    public Double getPalmArea() {
+        return palmArea;
+    }
+
+    public void setPalmArea(Double palmArea) {
+        this.palmArea = palmArea;
     }
 
     public Boolean getIsFarmerRequest() {
@@ -113,38 +133,6 @@ public class AddLabourRequestHeader {
 
     public void setDurationId(Integer durationId) {
         this.durationId = durationId;
-    }
-
-    public String getPlotVillage() {
-        return plotVillage;
-    }
-
-    public void setPlotVillage(String plotVillage) {
-        this.plotVillage = plotVillage;
-    }
-
-    public String getPlotMandal() {
-        return plotMandal;
-    }
-
-    public void setPlotMandal(String plotMandal) {
-        this.plotMandal = plotMandal;
-    }
-
-    public String getPlotDistrict() {
-        return plotDistrict;
-    }
-
-    public void setPlotDistrict(String plotDistrict) {
-        this.plotDistrict = plotDistrict;
-    }
-
-    public String getPlotState() {
-        return plotState;
-    }
-
-    public void setPlotState(String plotState) {
-        this.plotState = plotState;
     }
 
     public String getServiceTypes() {

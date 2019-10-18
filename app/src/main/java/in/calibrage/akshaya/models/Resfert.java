@@ -1,11 +1,9 @@
-package in.calibrage.akshaya.models;
-
-
+ package in.calibrage.akshaya.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+  import java.util.List;
 
-import java.util.List;
 
 public class Resfert {
 
@@ -75,8 +73,6 @@ public class Resfert {
     public void setException(Object exception) {
         this.exception = exception;
     }
-
-
     public class ListResult {
 
         @SerializedName("requestCode")
@@ -127,15 +123,6 @@ public class Resfert {
         @SerializedName("statusTypeId")
         @Expose
         private Integer statusTypeId;
-        @SerializedName("address")
-        @Expose
-        private String address;
-        @SerializedName("village")
-        @Expose
-        private String village;
-        @SerializedName("mandal")
-        @Expose
-        private String mandal;
         @SerializedName("fileName")
         @Expose
         private Object fileName;
@@ -150,7 +137,7 @@ public class Resfert {
         private String imageUrl;
         @SerializedName("usageAmount")
         @Expose
-        private Double usageAmount;
+        private Object usageAmount;
         @SerializedName("maxLimit")
         @Expose
         private Double maxLimit;
@@ -286,30 +273,6 @@ public class Resfert {
             this.statusTypeId = statusTypeId;
         }
 
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public String getVillage() {
-            return village;
-        }
-
-        public void setVillage(String village) {
-            this.village = village;
-        }
-
-        public String getMandal() {
-            return mandal;
-        }
-
-        public void setMandal(String mandal) {
-            this.mandal = mandal;
-        }
-
         public Object getFileName() {
             return fileName;
         }
@@ -342,11 +305,11 @@ public class Resfert {
             this.imageUrl = imageUrl;
         }
 
-        public Double getUsageAmount() {
+        public Object getUsageAmount() {
             return usageAmount;
         }
 
-        public void setUsageAmount(Double usageAmount) {
+        public void setUsageAmount(Object usageAmount) {
             this.usageAmount = usageAmount;
         }
 
@@ -367,6 +330,5 @@ public class Resfert {
         }
 
     }
-
 
 }

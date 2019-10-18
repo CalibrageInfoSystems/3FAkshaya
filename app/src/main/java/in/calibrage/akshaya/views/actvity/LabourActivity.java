@@ -47,6 +47,7 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.MultiSelectionSpinner;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.AmountRequest;
 import in.calibrage.akshaya.models.GetAmount;
@@ -101,8 +102,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     private SpotsDialog mdilogue;
     CheckBox checkbox;
     String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate;
-    String plot_id, plot_Age, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString, plantationdate, finalAmount;
+    String plot_id,  location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString, plantationdate, finalAmount;
     EditText commentsTxt;
+    double plot_Age;
     ImageView backImg, home_btn;
 
     @Override
@@ -114,7 +116,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             plot_id = extras.getString("plotid");
-            plot_Age = extras.getString("plotAge");
+            plot_Age = extras.getDouble("plotAge");
             location = extras.getString("plotVillage");
             farmerCode = extras.getString("farmerCode");
             landmarkCode = extras.getString("landMark");
@@ -193,7 +195,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         });
 
 
-        Age.setText(plot_Age);
+        Age.setText(plot_Age+"");
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
@@ -773,18 +775,22 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     private JsonObject LabourReuestobject() {
         finalAmount = getAmount();
         Log.d(TAG, "----- analysis ----->> GetAmount -->> Amount :" + finalAmount);
+
         AddLabourRequestHeader requestModel = new AddLabourRequestHeader();
         requestModel.setFarmerCode(Farmer_code);
+        requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setPlotCode(plot_id);
+        requestModel.setPalmArea(Double.valueOf(plot_Age));
         requestModel.setIsFarmerRequest(true);
         requestModel.setComments(commentsTxt.getText().toString());
         requestModel.setPreferredDate(reformattedDate);
         requestModel.setCreatedByUserId(null);
         requestModel.setDurationId(period_id.get(labourSpinner.getSelectedItemPosition() - 1));
         requestModel.setPlotVillage(location);
-        requestModel.setPlotMandal(plotMandal);
-        requestModel.setPlotState(plotState);
-        requestModel.setPlotDistrict(plotDistrict);
+
+//        requestModel.setPlotMandal(plotMandal);
+//        requestModel.setPlotState(plotState);
+//        requestModel.setPlotDistrict(plotDistrict);
 
         String val = arrayTOstring(ids_list);
         Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);

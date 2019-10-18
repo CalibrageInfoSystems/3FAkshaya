@@ -11,6 +11,9 @@ public class LoanRequest {
     @SerializedName("farmerCode")
     @Expose
     private String farmerCode;
+    @SerializedName("farmerName")
+    @Expose
+    private String farmerName;
     @SerializedName("plotCode")
     @Expose
     private String plotCode;
@@ -60,6 +63,14 @@ public class LoanRequest {
     public void setFarmerCode(String farmerCode) {
         this.farmerCode = farmerCode;
     }
+    public String getFarmerName() {
+        return farmerName;
+    }
+
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
+    }
+
 
     public String getPlotCode() {
         return plotCode;

@@ -1,11 +1,14 @@
-package in.calibrage.akshaya.models;
+ package in.calibrage.akshaya.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+        import java.util.List;
+        import com.google.gson.annotations.Expose;
+        import com.google.gson.annotations.SerializedName;
 
 public class ResPole {
+
     @SerializedName("listResult")
     @Expose
     private List<ListResult> listResult = null;
@@ -72,7 +75,6 @@ public class ResPole {
     public void setException(Object exception) {
         this.exception = exception;
     }
-
     public class ListResult {
 
         @SerializedName("requestCode")
@@ -90,18 +92,15 @@ public class ResPole {
         @SerializedName("pin")
         @Expose
         private Object pin;
-        @SerializedName("statusTypeId")
-        @Expose
-        private Integer statusTypeId;
-        @SerializedName("totalCost")
-        @Expose
-        private Double totalCost;
         @SerializedName("subsidyAmount")
         @Expose
         private Double subsidyAmount;
-        @SerializedName("paybleAmount")
+        @SerializedName("paubleAmount")
         @Expose
-        private Double paybleAmount;
+        private Double paubleAmount;
+        @SerializedName("totalCost")
+        @Expose
+        private Double totalCost;
         @SerializedName("farmerCode")
         @Expose
         private String farmerCode;
@@ -123,6 +122,9 @@ public class ResPole {
         @SerializedName("headerTotalCost")
         @Expose
         private Object headerTotalCost;
+        @SerializedName("statusTypeId")
+        @Expose
+        private Integer statusTypeId;
         @SerializedName("fileName")
         @Expose
         private Object fileName;
@@ -135,27 +137,9 @@ public class ResPole {
         @SerializedName("imageUrl")
         @Expose
         private String imageUrl;
-        @SerializedName("address")
-        @Expose
-        private String address;
-        @SerializedName("village")
-        @Expose
-        private String village;
-        @SerializedName("mandal")
-        @Expose
-        private String mandal;
-        @SerializedName("updatedDate")
-        @Expose
-        private String updatedDate;
-        @SerializedName("currentNetWeight")
-        @Expose
-        private Object currentNetWeight;
-        @SerializedName("previousNetWeight")
-        @Expose
-        private Object previousNetWeight;
         @SerializedName("usageAmount")
         @Expose
-        private Double usageAmount;
+        private Object usageAmount;
         @SerializedName("maxLimit")
         @Expose
         private Double maxLimit;
@@ -203,22 +187,6 @@ public class ResPole {
             this.pin = pin;
         }
 
-        public Integer getStatusTypeId() {
-            return statusTypeId;
-        }
-
-        public void setStatusTypeId(Integer statusTypeId) {
-            this.statusTypeId = statusTypeId;
-        }
-
-        public Double getTotalCost() {
-            return totalCost;
-        }
-
-        public void setTotalCost(Double totalCost) {
-            this.totalCost = totalCost;
-        }
-
         public Double getSubsidyAmount() {
             return subsidyAmount;
         }
@@ -227,12 +195,20 @@ public class ResPole {
             this.subsidyAmount = subsidyAmount;
         }
 
-        public Double getPaybleAmount() {
-            return paybleAmount;
+        public Double getPaubleAmount() {
+            return paubleAmount;
         }
 
-        public void setPaybleAmount(Double paybleAmount) {
-            this.paybleAmount = paybleAmount;
+        public void setPaubleAmount(Double paubleAmount) {
+            this.paubleAmount = paubleAmount;
+        }
+
+        public Double getTotalCost() {
+            return totalCost;
+        }
+
+        public void setTotalCost(Double totalCost) {
+            this.totalCost = totalCost;
         }
 
         public String getFarmerCode() {
@@ -291,6 +267,14 @@ public class ResPole {
             this.headerTotalCost = headerTotalCost;
         }
 
+        public Integer getStatusTypeId() {
+            return statusTypeId;
+        }
+
+        public void setStatusTypeId(Integer statusTypeId) {
+            this.statusTypeId = statusTypeId;
+        }
+
         public Object getFileName() {
             return fileName;
         }
@@ -323,59 +307,11 @@ public class ResPole {
             this.imageUrl = imageUrl;
         }
 
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public String getVillage() {
-            return village;
-        }
-
-        public void setVillage(String village) {
-            this.village = village;
-        }
-
-        public String getMandal() {
-            return mandal;
-        }
-
-        public void setMandal(String mandal) {
-            this.mandal = mandal;
-        }
-
-        public String getUpdatedDate() {
-            return updatedDate;
-        }
-
-        public void setUpdatedDate(String updatedDate) {
-            this.updatedDate = updatedDate;
-        }
-
-        public Object getCurrentNetWeight() {
-            return currentNetWeight;
-        }
-
-        public void setCurrentNetWeight(Object currentNetWeight) {
-            this.currentNetWeight = currentNetWeight;
-        }
-
-        public Object getPreviousNetWeight() {
-            return previousNetWeight;
-        }
-
-        public void setPreviousNetWeight(Object previousNetWeight) {
-            this.previousNetWeight = previousNetWeight;
-        }
-
-        public Double getUsageAmount() {
+        public Object getUsageAmount() {
             return usageAmount;
         }
 
-        public void setUsageAmount(Double usageAmount) {
+        public void setUsageAmount(Object usageAmount) {
             this.usageAmount = usageAmount;
         }
 

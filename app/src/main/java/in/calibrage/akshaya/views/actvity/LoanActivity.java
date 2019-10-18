@@ -45,6 +45,7 @@ import java.util.Map;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LoanRequest;
@@ -235,6 +236,7 @@ public class LoanActivity extends BaseActivity {
         requestModel.setCreatedByUserId(null);
         requestModel.setCreatedDate(currentDate);
         requestModel.setUpdatedByUserId(null);
+        requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setUpdatedDate(currentDate);
         requestModel.setRequestCreatedDate(currentDate);
         requestModel.setCropMaintainceDate(null);

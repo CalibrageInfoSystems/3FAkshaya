@@ -429,11 +429,13 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     }
 
     private JsonObject fertReuestobject() {
+
         FertRequest requestModel = new FertRequest();
 
         requestModel.setId(0);
         requestModel.setRequestTypeId(12);
         requestModel.setFarmerCode(Farmer_code);
+        requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
 
@@ -465,7 +467,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
             products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
             products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
             products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
-            products.setSize(String.valueOf(SharedPrefsData.getCartData(this).get(i).getSize()));
+            products.setSize((SharedPrefsData.getCartData(this).get(i).getSize()));
 
             req_products.add(products);
         }

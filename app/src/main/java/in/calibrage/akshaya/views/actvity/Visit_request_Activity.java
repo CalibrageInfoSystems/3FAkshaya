@@ -63,6 +63,7 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.models.LobourResponse;
@@ -648,6 +649,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         header.setRequestCode(null);
         header.setRequestTypeId(14);
         header.setFarmerCode(Farmer_code);
+        header.setFarmerName(SharedPrefsData.getusername(this));
         header.setPlotCode(plot_id);
         header.setReqCreatedDate(currentDate);
         header.setStatusTypeId(15);

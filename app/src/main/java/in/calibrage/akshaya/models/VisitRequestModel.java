@@ -45,6 +45,9 @@ public class VisitRequestModel {
         @SerializedName("farmerCode")
         @Expose
         private String farmerCode;
+        @SerializedName("farmerName")
+        @Expose
+        private String farmerName;
         @SerializedName("plotCode")
         @Expose
         private String plotCode;
@@ -114,6 +117,13 @@ public class VisitRequestModel {
 
         public void setFarmerCode(String farmerCode) {
             this.farmerCode = farmerCode;
+        }
+        public String getFarmerName() {
+            return farmerName;
+        }
+
+        public void setFarmerName(String farmerName) {
+            this.farmerName = farmerName;
         }
 
         public String getPlotCode() {
