@@ -185,5 +185,8 @@ public interface ApiService {
     @POST(APIConstantURL.AddAppInstallation)
     Observable<Resinstall> post_install(@Body JsonObject data);
 
+    @POST(APIConstantURL.GetQuickpayDetails)
+    Observable<GetquickpayDetailsModel> post_details(@Body JsonObject data);
+
 
 }

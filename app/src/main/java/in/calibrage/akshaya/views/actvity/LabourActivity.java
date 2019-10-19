@@ -117,6 +117,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         if (extras != null) {
             plot_id = extras.getString("plotid");
             plot_Age = extras.getDouble("plotAge");
+          Log.e("plot_Age===",plot_Age+"");
             location = extras.getString("plotVillage");
             farmerCode = extras.getString("farmerCode");
             landmarkCode = extras.getString("landMark");
@@ -195,7 +196,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         });
 
 
-        Age.setText(plot_Age+"");
+        Age.setText(plot_Age+" "+ "Ha");
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
@@ -780,7 +781,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setPlotCode(plot_id);
-        requestModel.setPalmArea(Double.valueOf(plot_Age));
+        requestModel.setPalmArea(plot_Age);
         requestModel.setIsFarmerRequest(true);
         requestModel.setComments(commentsTxt.getText().toString());
         requestModel.setPreferredDate(reformattedDate);
