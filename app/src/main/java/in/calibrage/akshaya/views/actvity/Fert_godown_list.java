@@ -463,7 +463,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost(Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
+            products.setBagCost(SharedPrefsData.getCartData(this).get(i).getAmount());
             products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
             products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
             products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
@@ -575,7 +575,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
                                     payble_amount = remaining_Amoubt;
                                     paybleamount.setText(payble_amount+"");
                                     Log.e("payble_amount===",payble_amount+"");
-                                    Subsidy_amount = Double.parseDouble(include_gst_amount);
+                                 Subsidy_amount = Double.parseDouble(include_gst_amount);
                                 } else if (Double.parseDouble(include_gst_amount) == subsidy_amountt) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     /*

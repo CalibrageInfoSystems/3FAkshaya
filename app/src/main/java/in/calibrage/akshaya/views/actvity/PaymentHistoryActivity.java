@@ -191,6 +191,9 @@ public class PaymentHistoryActivity extends BaseActivity {
 
                 if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
                     showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.enter_Date));
+                    pay_adapter.clearAllDataa();
+                    totalLinear.setVisibility(View.GONE);
+                    Payment_recycle.setVisibility(View.GONE);
                 } else {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     Date date1 = null;
@@ -201,6 +204,9 @@ public class PaymentHistoryActivity extends BaseActivity {
                         if (date2.compareTo(date1) < 0) {
 
                             showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.datevalidation));
+                            pay_adapter.clearAllDataa();
+                            totalLinear.setVisibility(View.GONE); //
+                            Payment_recycle.setVisibility(View.GONE);
                             //Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
                         } else {
 

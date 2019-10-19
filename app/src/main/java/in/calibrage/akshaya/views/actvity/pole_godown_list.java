@@ -407,9 +407,9 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
 
-        requestModel.setTotalCost(products_amount);
+        requestModel.setTotalCost(Double.valueOf(include_gst_amount));
         requestModel.setSubcidyAmount(0.0);
-        requestModel.setPaybleAmount(0.0);
+        requestModel.setPaybleAmount(Double.valueOf(include_gst_amount));
         requestModel.setComments(null);
         requestModel.setCropMaintainceDate(null);
         requestModel.setIssueTypeId(null);
@@ -420,7 +420,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost(Double.parseDouble(SharedPrefsData.getCartData(this).get(i).getWithGSTamount()));
+            products.setBagCost((SharedPrefsData.getCartData(this).get(i).getAmount()));
             products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
             products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
             products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
