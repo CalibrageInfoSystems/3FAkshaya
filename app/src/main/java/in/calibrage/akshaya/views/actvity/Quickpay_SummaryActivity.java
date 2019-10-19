@@ -182,15 +182,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                         submitReq();
                     } else {
                         showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
-                    }
-                }
-
-
+                    } }
             }
         });
         GetQuckPaySummary();
     }
-
     private void signature_popup() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.signature_view);
