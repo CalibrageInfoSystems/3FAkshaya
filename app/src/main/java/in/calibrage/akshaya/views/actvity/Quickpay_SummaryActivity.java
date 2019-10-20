@@ -51,6 +51,7 @@ import in.calibrage.akshaya.common.CommonUtil;
 
 import in.calibrage.akshaya.common.SignatureView;
 import in.calibrage.akshaya.localData.SharedPrefsData;
+import in.calibrage.akshaya.models.GetQuickpayDetails;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PostQuickpaymodel;
@@ -89,7 +90,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     List<String> post_ids = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
     String result;
-
+    double total_weight = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,12 +108,18 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
         dates_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
         netweight_list = (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
+
         for (int i = 0; i < ids_list.size(); i++) {
 
             String id = ids_list.get(i);
             String date = dates_list.get(i);
             double weight = netweight_list.get(i);
             post_ids.add(id + "|" + weight + "|" + date + "");
+
+
+
+            total_weight = total_weight + weight;
+            Log.e("total_weight===",total_weight+"");
 
             Log.e("post_ids==", String.valueOf(post_ids));
         }
@@ -158,14 +165,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             }
         });
 
-        Click_here.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signature_popup();
-               // signatureView.clearCanvas();
-
-            }
-        });
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -238,7 +237,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         }
 
         if (signatureView.getSignatureBitmap() == null){
-            showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
+            signature_popup();
+          //  showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
             return false;
             // myBitmap is empty/blank
         }
@@ -279,11 +279,17 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     private void GetQuckPaySummary() {
         mdilogue.show();
+        JsonObject object = GetReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getquickpaydetails(APIConstantURL.GetQuickpayDetails + Farmer_code)
+        mSubscription = service.post_details(object)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<GetquickpayDetailsModel>() {
+//        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+//        mSubscription = service.getquickpaydetails(APIConstantURL.GetQuickpayDetails + Farmer_code)
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<GetquickpayDetailsModel>() {
                     @Override
                     public void onCompleted() {
                         mdilogue.dismiss();
@@ -349,6 +355,15 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                 });
     }
+
+    private JsonObject GetReuestobject() {
+        GetQuickpayDetails requestModel = new GetQuickpayDetails();
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setQuantity(total_weight);
+            return new Gson().toJsonTree(requestModel).getAsJsonObject();
+
+        }
+
 
 
     private void submitReq() {
@@ -534,3 +549,5 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         }
     }
 }
+
+

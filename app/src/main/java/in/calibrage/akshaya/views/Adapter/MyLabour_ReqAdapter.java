@@ -81,7 +81,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date oneWayTripDate = input.parse(labourlist_Set.get(position).getStartDate());
-            Date prefferdatee = input.parse(labourlist_Set.get(position).getUpdatedDate());
+            Date prefferdatee = input.parse(labourlist_Set.get(position).getCreatedDate());
             prefferdate = output.format(oneWayTripDate);
             request_date = output.format(prefferdatee);
             //datetimevalute.setText(output.format(oneWayTripDate));

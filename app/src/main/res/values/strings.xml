@@ -97,8 +97,8 @@
     <string name="invoice_rate">Invoice Rate per MT (Rs)</string>
     <string name="memo">Memo</string>
     <string name="amount">Amount (Rs)</string>
-    <string name="harv_amount">Harvesting Amount / Ton</string>
-    <string name="pru_amount">Pruning Amount / Tree</string>
+    <string name="harv_amount">Harvesting Amount / Ton (Rs)</string>
+    <string name="pru_amount">Pruning Amount / Tree (Rs)</string>
     <string name="paidCollectionsWeight">Paid Collections Weight</string>
     <string name="no_collections_found">No Collections Available</string>
     <string name="no_payments_found">No Payments Found</string>

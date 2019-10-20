@@ -50,7 +50,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
         holder.plot_District.setText(recomm_Set.get(position).getDistrictName());
         holder.date_plantation.setText(recomm_Set.get(position).getDateOfPlanting());
 
-
+final double selected_plot =recomm_Set.get(position).getPalmArea() ;
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
 
@@ -58,7 +58,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, LabourActivity.class);
                 intent.putExtra("plotid",    holder.textViewplotId.getText());
-                intent.putExtra("plotAge",    holder.textViewpalmArea.getText());
+                intent.putExtra("plotAge",    selected_plot);
                 intent.putExtra("plotVillage",    holder.textViewLocation.getText());
                 intent.putExtra("farmerCode",    holder.farmer_Code.getText());
                 intent.putExtra("landMark",    holder.textViewstatus.getText());
