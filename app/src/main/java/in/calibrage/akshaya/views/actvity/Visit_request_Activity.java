@@ -114,7 +114,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     MediaPlayer mediaPlayer;
 
     EditText comments;
-
+    boolean flag=false;
     int pos;
 
 
@@ -552,26 +552,45 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             }
         }
 
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
+        if(flag==false)
+        {
+            play.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
 
-                mediaPlayer = new MediaPlayer();
-                play.setBackgroundResource(R.drawable.pause);
-                try {
-                    mediaPlayer.setDataSource(AudioSavePathInDevice);
-                    mediaPlayer.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    mediaPlayer = new MediaPlayer();
+                    play.setBackgroundResource(R.drawable.pause);
+                    try {
+                        mediaPlayer.setDataSource(AudioSavePathInDevice);
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    mediaPlayer.start();
+
+                    Toast.makeText(Visit_request_Activity.this, "Recording Playing", Toast.LENGTH_LONG).show();
+
                 }
+            });
+        }
+        else if(mediaPlayer.isPlaying()&&flag==true)
+        {
+            play.setBackgroundResource(R.drawable.play);
+            if (mediaPlayer != null) {
+//
+                mediaPlayer.stop();
+                mediaPlayer.release();
 
-                mediaPlayer.start();
-
-                Toast.makeText(Visit_request_Activity.this, "Recording Playing", Toast.LENGTH_LONG).show();
+                MediaRecorderReady();
 
             }
-        });
-        play.setBackgroundResource(R.drawable.play);
+
+          //  playbutton.setText("Play");
+            flag=false;
+        }
+
+     //   play.setBackgroundResource(R.drawable.play);
         //TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
         LinearLayout layout = dialogView.findViewById(R.id.linear_text);
         final ImageView img = dialogView.findViewById(R.id.img);
@@ -974,7 +993,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     public void onBackPressed() {
         super.onBackPressed();
 
-        mediaRecorder.stop();
+      //  mediaRecorder.stop();
         this.finish();
     }
 

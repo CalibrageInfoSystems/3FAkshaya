@@ -75,7 +75,7 @@
     <string name="collection">Collections</string>
     <string name="land_mark">Landmark</string>
     <string name="landmark">Landmark</string>
-    <string name="closingBal">Closing Balance (Rs)</string>
+    <string name="closingBal">Dues (Rs)</string>
     <string name="language_notification">Language Setup Completed</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -97,8 +97,8 @@
     <string name="invoice_rate">Invoice Rate per MT (Rs)</string>
     <string name="memo">Memo</string>
     <string name="amount">Amount (Rs)</string>
-    <string name="harv_amount">Harvesting Amount / Ton (Rs)</string>
-    <string name="pru_amount">Pruning Amount / Tree (Rs)</string>
+    <string name="harv_amount">Harvesting Amount/Ton (Rs)</string>
+    <string name="pru_amount">Pruning Amount/Tree (Rs)</string>
     <string name="paidCollectionsWeight">Paid Collections Weight</string>
     <string name="no_collections_found">No Collections Available</string>
     <string name="no_payments_found">No Payments Found</string>
@@ -183,7 +183,7 @@
     <string name="reason_loan">Reason for Loan</string>
 
     <string name="error">Error</string>
-    <string name="quick_pay">Quick Pay Fee (Rs)</string>
+    <string name="quick_pay">QuickPay Fee per MT (Rs)</string>
     <string name="issue_type">Type of Issue</string>
     <string name="image">Image Upload</string>
     <string name="digital_signature">Digital Signature</string>

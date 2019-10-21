@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toRightOf="@+id/plotIdLabel"
-            android:hint="APAB0001000001"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/white_new"
@@ -113,7 +113,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/palmAreaLabel"
-            android:hint="25 h"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/white_new"
@@ -144,7 +144,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint="abc"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
 
@@ -173,7 +173,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint="abc"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/white_new"
@@ -254,7 +254,7 @@
 
                 android:text="@string/harv_amount"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
 
@@ -266,7 +266,7 @@
                 android:layout_marginTop="1sp"
                 android:text=":"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -280,7 +280,7 @@
                 android:hint=""
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:textSize="12dp" />
 
         </RelativeLayout>
 
@@ -303,7 +303,7 @@
 
                 android:text="@string/pru_amount"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -314,7 +314,7 @@
                 android:layout_marginTop="1sp"
                 android:text=":"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -328,7 +328,7 @@
                 android:hint=""
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:textSize="12dp" />
 
         </RelativeLayout>
         <RelativeLayout
