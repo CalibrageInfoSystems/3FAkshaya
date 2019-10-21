@@ -11,6 +11,9 @@ public class Reqinstall {
     @SerializedName("farmerCode")
     @Expose
     private String farmerCode;
+    @SerializedName("farmerName")
+    @Expose
+    private String farmerName;
     @SerializedName("installedOn")
     @Expose
     private String installedOn;
@@ -60,6 +63,12 @@ public class Reqinstall {
     public void setLastLoginDate(String lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
     }
+    public String getFarmerName() {
+        return farmerName;
+    }
 
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
+    }
 
 }

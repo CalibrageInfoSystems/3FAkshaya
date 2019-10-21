@@ -150,7 +150,7 @@
                 android:layout_marginTop="15sp"
                 android:layout_toRightOf="@+id/dot2"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="Kiran vinnakota"
+                android:hint=" "
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title" />
@@ -197,7 +197,7 @@
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot3"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="31213254698"
+                android:hint=""
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title" />
@@ -244,7 +244,7 @@
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot4"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="SBI"
+                android:hint=""
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title" />
@@ -291,7 +291,7 @@
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot5"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="JNTU"
+                android:hint=""
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title" />
@@ -338,7 +338,7 @@
                 android:layout_marginTop="5sp"
                 android:layout_toRightOf="@+id/dot6"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="SBIN0021008"
+                android:hint=""
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title" />

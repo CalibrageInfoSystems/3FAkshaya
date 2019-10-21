@@ -98,7 +98,7 @@ public class OtpActivity extends BaseActivity {
                 .build();
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
-        AddAppInstallation();
+
     }
     private void AddAppInstallation() {
         JsonObject object = getinstallobject();
@@ -142,6 +142,7 @@ public class OtpActivity extends BaseActivity {
         Reqinstall requestModel = new Reqinstall();
         requestModel.setId(0);
         requestModel.setFarmerCode(Farmer_code);
+        requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setInstalledOn(currentDate);
         requestModel.setLastLoginDate(currentDate);
         requestModel.setImeiNumber(android_id);
@@ -155,6 +156,7 @@ public class OtpActivity extends BaseActivity {
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {
                     if (isOnline())
                         GetOtp();
+
                     else {
                         showDialog(OtpActivity.this, getResources().getString(R.string.Internet));
                     }
@@ -214,7 +216,7 @@ public class OtpActivity extends BaseActivity {
                                     SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, Constants.USER_ID, farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
                                     Log.e("Formarcode==", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
                                     SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "statecode", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
-
+                                    AddAppInstallation();
                                     Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(intent);
                                     finish();
