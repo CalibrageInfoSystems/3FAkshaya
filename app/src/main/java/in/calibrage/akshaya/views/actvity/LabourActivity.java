@@ -442,6 +442,13 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             // showDialog(LabourActivity.this, "Please Select Service Type ");
             return false;
         }
+        if (ids_list.size() == 0) {
+            showDialog(LabourActivity.this, getResources().getString(R.string.Valid_service));
+
+            // showDialog(LabourActivity.this, "Please Select Service Type ");
+            return false;
+        }
+
         if (edittext.getText().toString().matches("")) {
             // Toasty.error(LabourActivity.this, "Please Select the Date", Toast.LENGTH_SHORT).show();
             showDialog(LabourActivity.this, getResources().getString(R.string.date_selectiomn));
