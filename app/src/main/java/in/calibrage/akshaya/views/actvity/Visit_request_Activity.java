@@ -472,7 +472,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         iv3 = dialogView.findViewById(R.id.iv3);
         imageView_Play = dialogView.findViewById(R.id.imageView_Play);
         seek_Bar =dialogView.findViewById(R.id.seek_Bar);
-      voice_layout = dialogView.findViewById(R.id.linearLayout_Play);
+         voice_layout = dialogView.findViewById(R.id.linearLayout_Play);
         iv1.setVisibility(View.GONE);
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
@@ -538,6 +538,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                                                                    mPlayer.seekTo(progress);
                                                                    chronometer.setBase(SystemClock.elapsedRealtime() - mPlayer.getCurrentPosition());
                                                                    lastProgress = progress;
+                                                                   Log.d(TAG ,"-----analysis---- seekbar last progress :"+lastProgress);
                                                                }
                                                            }
 
@@ -1015,6 +1016,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         imageViewPlay.setImageResource(R.drawable.ic_play);
         chronometer.stop();
 
+
     }
 
     private void startRecording() {
@@ -1102,6 +1104,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                     mPlayer.seekTo(progress);
                     chronometer.setBase(SystemClock.elapsedRealtime() - mPlayer.getCurrentPosition());
                     lastProgress = progress;
+                    Log.d(TAG,"----- analysis ------>> last Progress :"+lastProgress);
                 }
             }
 
