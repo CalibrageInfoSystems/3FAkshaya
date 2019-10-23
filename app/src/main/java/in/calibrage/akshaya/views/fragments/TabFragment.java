@@ -181,7 +181,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private void GetEncyclopediaDetails() {
         int typeid = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("postTypeId");
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
-        String finalUrl = APIConstantURL.GetEncyclopediaDetails + typeid + "/" + statecode;
+        String finalUrl = APIConstantURL.GetEncyclopediaDetails + typeid + "/" + statecode + "/"+true;
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.getEncyclopediaDetails(finalUrl)
