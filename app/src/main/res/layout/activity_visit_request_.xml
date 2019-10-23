@@ -191,6 +191,9 @@
                             android:src="@drawable/ic_delete_img" />
                     </RelativeLayout>
 
+
+
+
                     <RelativeLayout
                         android:id="@+id/lyt_img2"
                         android:layout_width="100dp"
