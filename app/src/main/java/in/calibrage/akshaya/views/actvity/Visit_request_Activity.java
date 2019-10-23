@@ -118,7 +118,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     MediaPlayer mediaPlayer;
 
     EditText comments;
-    boolean flag=false;
+    boolean flag = false;
     int pos;
     private Chronometer chronometer;
     private ImageView imageViewRecord, imageViewPlay, imageViewStop;
@@ -129,7 +129,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     private String fileName = "";
     private int lastProgress = 0;
     private Handler mHandler = new Handler();
-    private int RECORD_AUDIO_REQUEST_CODE =123 ;
+    private int RECORD_AUDIO_REQUEST_CODE = 123;
     private boolean isPlaying = false;
 
     @Override
@@ -163,7 +163,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         // since the user can revoke permissions at any time through Settings
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
             // The permission is NOT already granted.
             // Check if the user has been asked about this permission already and denied
@@ -362,7 +362,6 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     }
 
 
-
     private boolean validations() {
         if (Select_Issue.getSelectedItemPosition() == 0) {
 
@@ -370,20 +369,17 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             return false;
         }
         if (selected_issue.contains("Others")) {
-            if(comments.getText().toString().trim().length() == 0) {
+            if (comments.getText().toString().trim().length() == 0) {
                 showDialog(Visit_request_Activity.this, getResources().getString(R.string.comments_valid));
                 return false;
             }
         }
-        if (images.size() == 0 &&  fileName.length() == 0) {
+        if (images.size() == 0 && fileName.length() == 0) {
 
             Log.d(TAG, "---- analysis ---->> base64 :" + images.size() + fileName);
             showDialog(Visit_request_Activity.this, getResources().getString(R.string.select_image));
             return false;
         }
-
-
-
 
 
         return true;
@@ -445,11 +441,10 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                                     }
                                 }, 300);
                             }
-                            } else{
-                                showDialog(Visit_request_Activity.this, visitresponseModel.getEndUserMessage());
-                            }
+                        } else {
+                            showDialog(Visit_request_Activity.this, visitresponseModel.getEndUserMessage());
                         }
-
+                    }
 
 
                 });
@@ -461,7 +456,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         final Button play;
         final ImageView iv1, iv2, iv3, imageView_Play;
         LinearLayout voice_layout;
-         final SeekBar seek_Bar;
+        final SeekBar seek_Bar;
         ViewGroup viewGroup = findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.visit_dialog, viewGroup, false);
         TextView summary_text = dialogView.findViewById(R.id.summary_text);
@@ -471,8 +466,8 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         iv2 = dialogView.findViewById(R.id.iv2);
         iv3 = dialogView.findViewById(R.id.iv3);
         imageView_Play = dialogView.findViewById(R.id.imageView_Play);
-        seek_Bar =dialogView.findViewById(R.id.seek_Bar);
-      voice_layout = dialogView.findViewById(R.id.linearLayout_Play);
+        seek_Bar = dialogView.findViewById(R.id.seek_Bar);
+        voice_layout = dialogView.findViewById(R.id.linearLayout_Play);
         iv1.setVisibility(View.GONE);
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
@@ -499,77 +494,83 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             }
         }
 //
-             imageView_Play.setOnClickListener(new View.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
+        imageView_Play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
+               // if (mPlayer != null) {
+                    lastProgress = 0;
+//                    chronometer.setBase(SystemClock.elapsedRealtime());
+//                    startPlaying();
+//                } else {
+//                    startPlaying();
+//                }
+                mPlayer = new MediaPlayer();
+                try {
+                    mPlayer.setDataSource(fileName);
+                    mPlayer.prepare();
+                    mPlayer.start();
+                } catch (IOException e) {
+                    Log.e("LOG_TAG", "prepare() failed");
+                }
+                //making the imageview pause button
+                imageView_Play.setImageResource(R.drawable.ic_pause);
 
-                                                       mPlayer = new MediaPlayer();
-                                                       try {
-                                                           mPlayer.setDataSource(fileName);
-                                                           mPlayer.prepare();
-                                                           mPlayer.start();
-                                                       } catch (IOException e) {
-                                                           Log.e("LOG_TAG", "prepare() failed");
-                                                       }
-                                                       //making the imageview pause button
-                                                       imageView_Play.setImageResource(R.drawable.ic_pause);
-
-                                                       seek_Bar.setProgress(lastProgress);
-                                                       mPlayer.seekTo(lastProgress);
-                                                       seek_Bar.setMax(mPlayer.getDuration());
-                                                       seek_Updation();
-                                                       chronometer.start();
-
-
-                                                       mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                                           @Override
-                                                           public void onCompletion(MediaPlayer mp) {
-                                                               imageView_Play.setImageResource(R.drawable.ic_play);
-                                                               isPlaying = false;
-                                                               chronometer.stop();
-                                                           }
-                                                       });
+                seek_Bar.setProgress(lastProgress);
+                mPlayer.seekTo(lastProgress);
+                seek_Bar.setMax(mPlayer.getDuration());
+                seek_Updation();
+                chronometer.start();
 
 
-                                                       seek_Bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                                                           @Override
-                                                           public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                                                               if (mPlayer != null && fromUser) {
-                                                                   mPlayer.seekTo(progress);
-                                                                   chronometer.setBase(SystemClock.elapsedRealtime() - mPlayer.getCurrentPosition());
-                                                                   lastProgress = progress;
-                                                               }
-                                                           }
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        imageView_Play.setImageResource(R.drawable.ic_play);
+                        isPlaying = false;
+                        chronometer.stop();
+                    }
+                });
 
-                                                           @Override
-                                                           public void onStartTrackingTouch(SeekBar seekBar) {
 
-                                                           }
+                seek_Bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        if (mPlayer != null && fromUser) {
+                            mPlayer.seekTo(progress);
+                            chronometer.setBase(SystemClock.elapsedRealtime() - mPlayer.getCurrentPosition());
+                            lastProgress = progress;
+                        }
+                    }
 
-                                                           @Override
-                                                           public void onStopTrackingTouch(SeekBar seekBar) {
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
 
-                                                           }
-                                                       });
-                                                   }
+                    }
 
-                                                   Runnable runnable = new Runnable() {
-                                                       @Override
-                                                       public void run() {
-                                                           seek_Updation();
-                                                       }
-                                                   };
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
 
-                                                   //
-                                                   private void seek_Updation() {
-                                                       if (mPlayer != null) {
-                                                           int mCurrentPosition = mPlayer.getCurrentPosition();
-                                                           seek_Bar.setProgress(mCurrentPosition);
-                                                           lastProgress = mCurrentPosition;
-                                                       }
-                                                       mHandler.postDelayed(runnable, 100);
-                                                   }
-                                               });
+                    }
+                });
+            }
+
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    seek_Updation();
+                }
+            };
+
+            //
+            private void seek_Updation() {
+                if (mPlayer != null) {
+                    int mCurrentPosition = mPlayer.getCurrentPosition();
+                    seek_Bar.setProgress(mCurrentPosition);
+                    lastProgress = mCurrentPosition;
+                }
+                mHandler.postDelayed(runnable, 100);
+            }
+        });
 
 
         LinearLayout layout = dialogView.findViewById(R.id.linear_text);
@@ -620,14 +621,13 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                if (mediaPlayer != null) {
-//
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-
-                   // MediaRecorderReady();
-
+                try {
+                    mRecorder.stop();
+                    mRecorder.release();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+                mRecorder = null;
                 Intent intent = new Intent(Visit_request_Activity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -638,8 +638,6 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
 
     }
-
-
 
 
     private JsonObject visitReuestobject() {
@@ -685,7 +683,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         }
 
 
-        if(null != fileName || !TextUtils.isEmpty( fileName ) ) {
+        if (null != fileName || !TextUtils.isEmpty(fileName)) {
 
             VisitRequestModel.VisitRepo visitRepo1audio = new VisitRequestModel.VisitRepo();
             visitRepo1audio.setId(1);
@@ -710,8 +708,6 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
 
     }
-
-
 
 
     @Override
@@ -806,7 +802,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         } else if (requestCode == CAMERA) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             images.add(thumbnail);
-          //  saveImage(thumbnail);
+            //  saveImage(thumbnail);
             displayImages();
             //Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
@@ -944,7 +940,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     public void onBackPressed() {
         super.onBackPressed();
 
-      //  mediaRecorder.stop();
+        //  mediaRecorder.stop();
         this.finish();
     }
 
@@ -975,10 +971,17 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                 stopRecording();
                 break;
             case R.id.imageViewPlay:
-                if( !isPlaying && fileName != null ){
+                if (!isPlaying && fileName != null) {
                     isPlaying = true;
-                    startPlaying();
-                }else{
+                    if (mPlayer != null) {
+                        lastProgress = 0;
+                        chronometer.setBase(SystemClock.elapsedRealtime());
+                        startPlaying();
+                    } else {
+                        startPlaying();
+                    }
+
+                } else {
                     isPlaying = false;
                     stopPlaying();
                 }
@@ -1005,9 +1008,9 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     }
 
     private void stopPlaying() {
-        try{
+        try {
             mPlayer.release();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         mPlayer = null;
@@ -1027,8 +1030,8 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             file.mkdirs();
         }
 
-        fileName =  root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios/" + String.valueOf(System.currentTimeMillis() + ".mp3");
-        Log.d("filename",fileName);
+        fileName = root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios/" + String.valueOf(System.currentTimeMillis() + ".mp3");
+        Log.d("filename", fileName);
         mRecorder.setOutputFile(fileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
@@ -1050,10 +1053,10 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
     private void stopRecording() {
 
-        try{
+        try {
             mRecorder.stop();
             mRecorder.release();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         mRecorder = null;
@@ -1076,7 +1079,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         }
         //making the imageview pause button
         imageViewPlay.setImageResource(R.drawable.ic_pause);
-
+        seekBar.setVisibility(View.VISIBLE);
         seekBar.setProgress(lastProgress);
         mPlayer.seekTo(lastProgress);
         seekBar.setMax(mPlayer.getDuration());
@@ -1088,17 +1091,17 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             @Override
             public void onCompletion(MediaPlayer mp) {
                 imageViewPlay.setImageResource(R.drawable.ic_play);
+                seekBar.setVisibility(View.GONE);
                 isPlaying = false;
                 chronometer.stop();
             }
         });
 
 
-
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if( mPlayer!=null && fromUser ){
+                if (mPlayer != null && fromUser) {
                     mPlayer.seekTo(progress);
                     chronometer.setBase(SystemClock.elapsedRealtime() - mPlayer.getCurrentPosition());
                     lastProgress = progress;
@@ -1125,8 +1128,8 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     };
 
     private void seekUpdation() {
-        if(mPlayer != null){
-            int mCurrentPosition = mPlayer.getCurrentPosition() ;
+        if (mPlayer != null) {
+            int mCurrentPosition = mPlayer.getCurrentPosition();
             seekBar.setProgress(mCurrentPosition);
             lastProgress = mCurrentPosition;
         }
