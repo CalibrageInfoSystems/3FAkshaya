@@ -276,8 +276,8 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
 
                     JSONObject healthPlantation_Data = jsonObject.getJSONObject("healthPlantationData");
-                    String frequencyOfHarvest = jsonObject.getString("frequencyOfHarvest");
-                    freq_harvest.setText(frequencyOfHarvest);
+                    int frequencyOfHarvest = jsonObject.getInt("frequencyOfHarvest");
+                    freq_harvest.setText(frequencyOfHarvest+"");
                     Log.e("data===",healthPlantation_Data.getString("treesAppearance"));
                     treesAppearance.setText(healthPlantation_Data.getString("treesAppearance"));
 

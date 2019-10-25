@@ -92,22 +92,23 @@ public class BasicinfoFragment extends BaseFragment {
     }
 
     private void GetContactInfo() {
+        mdilogue.show();
         String farmer_code = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
         String Farmer_code = pref.getString("farmerid", "");
-        mdilogue.show();
+
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo + Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Resbasicinfo>() {
                     @Override
                     public void onCompleted() {
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
                         Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
                         showDialog(getActivity(), getString(R.string.server_error));
                     }
@@ -115,7 +116,7 @@ public class BasicinfoFragment extends BaseFragment {
                     @Override
                     public void onNext(Resbasicinfo resbasicinfo) {
 
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
 
                         String discription = resbasicinfo.getListResult().get(0).getDescription();
 

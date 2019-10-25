@@ -21,7 +21,7 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import static in.calibrage.akshaya.common.CommonUtil.getDeviceDensityString;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-public class SplashActivity extends BaseActivity {
+public class  SplashActivity extends BaseActivity {
     public static final String TAG = SplashActivity.class.getSimpleName();
     private ImageView imgLogo;
     private TypeWriter txt_name, txt_desc;
