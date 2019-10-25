@@ -547,26 +547,26 @@ public class CommonUtil {
         Log.d("Commonutil ","--- analysis ----->> List to string -->>"+result);
         return result;
     }
-    public static int sum(List<Integer> list){
-        if(list==null || list.size()<1)
-            return 0;
-
-        int sum = 0;
-        for(Integer i: list)
-            sum = sum+i;
-
-        return sum;
-    }
-//    public static double sum(List<Double> list){
+//    public static int sum(List<Integer> list){
 //        if(list==null || list.size()<1)
 //            return 0;
 //
-//        Double sum = 0.0;
-//        for(Double i: list)
+//        int sum = 0;
+//        for(Integer i: list)
 //            sum = sum+i;
 //
 //        return sum;
 //    }
+    public static double sum(List<Double> list){
+        if(list==null || list.size()<1)
+            return 0;
+
+        Double sum = 0.0;
+        for(Double i: list)
+            sum = sum+i;
+
+        return sum;
+    }
 float Calculate_GST(float org_cost, float N_price)
 {
     // return value after calculate GST%

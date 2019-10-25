@@ -82,7 +82,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     private GodownListAdapter adapter;
     Integer RequestType;
 
-    ArrayList<Integer> gstvalues = new ArrayList<Integer>();
+    ArrayList<Double> gstvalues = new ArrayList<Double>();
 
     String product_name, selected_name;
     String Farmer_code, formattedDate, Godown_name;
@@ -104,7 +104,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
     PaymentsType paymentsTypes;
     double payble_amount;
     double Subsidy_amount, subsidy_amountt;
-    int Gst_total;
+    double Gst_total;
     //endregion
     private List<String> selected_list = new ArrayList<String>();
 
@@ -239,7 +239,7 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
         for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
-            int gst = SharedPrefsData.getCartData(this).get(i).getGst();
+            double gst = SharedPrefsData.getCartData(this).get(i).getGst();
 
             Double amount_product = SharedPrefsData.getCartData(this).get(i).getAmount();
             int quantity = SharedPrefsData.getCartData(this).get(i).getQuandity();
@@ -247,11 +247,11 @@ public class Fert_godown_list extends BaseActivity implements GodownListAdapter.
             //  mealTotal = amount_product * quantity;
             String product_amount = String.valueOf(mealTotal);
 
-            int percentage = quantity * gst;
+            double percentage = quantity * gst;
 
             Log.e("percentage_value===", String.valueOf(percentage));
             //  int k = (int)(product_amount*(percentage/100.0f));
-            int k = (int) (percentage * amount_product) / 100;
+            double k = (int) (percentage * amount_product) / 100;
 
             gstvalues.add(k);
 
