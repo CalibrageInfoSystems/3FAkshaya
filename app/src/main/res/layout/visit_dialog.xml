@@ -113,7 +113,7 @@
 
             >
 
-            
+
             <ImageView
                 android:id="@+id/imageView_Play"
                 android:layout_width="wrap_content"
