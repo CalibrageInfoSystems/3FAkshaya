@@ -485,28 +485,38 @@ public class CommonUtil {
 
     public static String getStringFile(File f) {
         InputStream inputStream = null;
-        String encodedFile = "", lastVal;
+        String encodedFile = "", lastVal, extension;
         try {
-            inputStream = new FileInputStream(f.getAbsolutePath());
+            if (f.exists()) {
+                extension = f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf("."));
 
-            byte[] buffer = new byte[10240];//specify the size to allow
-            int bytesRead;
-            ByteArrayOutputStream output = new ByteArrayOutputStream();
-            Base64OutputStream output64 = new Base64OutputStream(output, Base64.DEFAULT);
+                long fileSizeInBytes = f.length();
+                long fileSizeInKB = fileSizeInBytes / 1024;
+                long fileSizeInMB = fileSizeInKB / 1024;
 
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                output64.write(buffer, 0, bytesRead);
+
+                //   inputStream = new FileInputStream(f.getAbsolutePath());
+                inputStream = new FileInputStream(f);
+                byte[] buffer = new byte[10240];//specify the size to allow
+                int bytesRead;
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                Base64OutputStream output64 = new Base64OutputStream(output, Base64.DEFAULT);
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    output64.write(buffer, 0, bytesRead);
+                }
+                output64.close();
+                encodedFile = output.toString();
             }
-            output64.close();
-            encodedFile = output.toString();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch(FileNotFoundException e1){
+                e1.printStackTrace();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+            lastVal = encodedFile;
+            return lastVal;
         }
-        lastVal = encodedFile;
-        return lastVal;
-    }
+
 
     public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
                                    boolean filter) {

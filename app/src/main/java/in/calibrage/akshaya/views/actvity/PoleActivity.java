@@ -64,7 +64,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     private ImageView cartButtonIV;
-
+ Double  total_amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -223,7 +223,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 superHero.setDescription(json.getString("description"));
                 Double size = json.getDouble("size");
                 Log.d(TAG, "--- Size ----" + size);
-//                superHero.setSize(json.getString("size"));
+//
                 superHero.setSize(size);
 
 
@@ -238,35 +238,18 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 Log.e("dis_price====", dis_price);
 
                 superHero.setgst(json.getInt("gstPercentage"));
-                ArrayList<String> powers = new ArrayList<String>();
 
-
-
-                // superHero.setfarmerCode(labourDetails.getString("farmerCode"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             product_list.add(superHero);
-            //   selected_list.add();
 
-                                /*String plotCode = productObject.getString("plotCode");
-                                String plotMandalName = productObject.getString("plotMandalName");
-                                Log.d(TAG,"RESPONSE plotCode======"+ plotCode);
-                                Log.d(TAG,"RESPONSE plotMandalName======"+ plotMandalName);*/
 
             adapter = new ModelFertAdapterNew(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
             //Adding adapter to recyclerview
             recyclerView.setAdapter(adapter);
-//            adapter.setOnListener(PoleActivity.this);
-//            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//                @Override
-//                public void onChanged() {
-//                    super.onChanged();
-//                    setMealTotal();
-//                }
-//            });
 
         }
     }
@@ -294,8 +277,9 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
 
         }
         txt_count.setText(allproducts + "");
-        String total_amount = allitemscost.toString();
-        mealTotalText.setText(total_amount);
+        total_amount = Math.round(allitemscost * 100D) / 100D;
+        Log.e("valueRounded===",total_amount+"");
+        mealTotalText.setText(total_amount+"");
     }
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -338,36 +322,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-    private void makeFlyAnimation(ImageView targetView) {
 
-        // RelativeLayout destView = (RelativeLayout) findViewById(R.id.cartRelativeLayout);
-        ImageView destView = findViewById(R.id.cartButtonIV);
-
-        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setCircleDuration(500).setMoveDuration(800).setDestView(destView).setAnimationListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                //  addItemToCart();
-                // Toast.makeText(MainActivity.this, "Continue Shopping...", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        }).startAnimation();
-
-
-    }
     public static ArrayList<Product_new> getProducts(){
         return myProductsList;
     }

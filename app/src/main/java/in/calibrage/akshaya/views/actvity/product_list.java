@@ -41,7 +41,7 @@ public class product_list extends BaseActivity {
     private Subscription mSubscription;
     private List<Product_new> product_List = new ArrayList<>();
     private TextView text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount;
-
+    double valueRounded;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +128,13 @@ public class product_list extends BaseActivity {
                                     amount_total = amount_total + resproduct.getListResult().get(i).getAmount();
 
                                     total_amount = total_amount + resproduct.getListResult().get(i).getTotalAmount();
+
+
                                     gst_amountt=total_amount-amount_total;
+
+
+                                     valueRounded = Math.round(gst_amountt * 100D) / 100D;
+                                    Log.e("valueRounded===",valueRounded+"");
                                 }
 //                                Log.e("amount_total====127", amount_total + "");
 //                                if (null != resproduct.getListResult().get(i).getCgst() && null != resproduct.getListResult().get(i).getSgst()){
@@ -139,7 +145,7 @@ public class product_list extends BaseActivity {
                             }
                             text_amount.setText(amount_total+"");
                             Final_amount.setText(total_amount+"");
-                            gst_amount.setText(gst_amountt+"");
+                            gst_amount.setText(valueRounded+"");
                         } else {
                             Log.e("data", "No==have");
                         }

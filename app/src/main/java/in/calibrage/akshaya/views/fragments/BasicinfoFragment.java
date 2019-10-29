@@ -3,14 +3,17 @@ package in.calibrage.akshaya.views.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import dmax.dialog.SpotsDialog;
@@ -117,12 +120,14 @@ public class BasicinfoFragment extends BaseFragment {
                     public void onNext(Resbasicinfo resbasicinfo) {
 
                         mdilogue.dismiss();
+                        final String mimeType = "text/html";
+                        final String encoding = "UTF-8";
 
                         String discription = resbasicinfo.getListResult().get(0).getDescription();
 
-                        webView.loadData(discription, "text/html", null);
 
-                        Log.d(TAG, "---- analysis ---->discription -->> :" + discription);
+                        webView.loadDataWithBaseURL("", discription, mimeType, encoding, "");
+//
                     }
                 });
     }

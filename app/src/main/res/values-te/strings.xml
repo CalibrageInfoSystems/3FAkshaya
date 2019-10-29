@@ -189,8 +189,8 @@
     <string name="invoice_rate">MT కి ఇన్వాయిస్ రేటు</string>
     <string name="memo">మెమో</string>
     <string name="amount">డబ్బు (రూ.)</string>
-    <string name="harv_amount">హార్వెస్టింగ్ మొత్తం / టన్ను</string>
-    <string name="pru_amount">కత్తిరింపు మొత్తం / చెట్టు</string>
+    <string name="harv_amount">హార్వెస్టింగ్ మొత్తం / టన్ను(రూ.)</string>
+    <string name="pru_amount">కత్తిరింపు మొత్తం / చెట్టు(రూ.)</string>
     <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
     <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
     <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
@@ -287,7 +287,7 @@
     <string name="welcome">స్వాగతం</string>
     <string name="login">లాగిన్</string>
     <string name="scan_qr">QR ను స్కాన్ చేయండి</string>
-    <string name="ente_pin">దయచేసి పిన్ను నమోదు చేయండి</string>
+    <string name="ente_pin">దయచేసి పిన్ నమోదు చేయండి</string>
     <!--  we need to use video ids instead of video link  -->
     <string name="str_standard">ప్రామాణిక</string>
     <string name="str_videos">వీడియో</string>
@@ -395,10 +395,11 @@
     <string name="comments_valid">దయచేసి వ్యాఖ్యలను నమోదు చేయండి</string>
     <string name="no_data">సమాచారం అందుబాటులో లేదు</string>
     <string name="Godown_name">గోడౌన్ పేరు</string>
-    <string name="product_quantity"><![CDATA[ఉత్పత్తి & పరిమాణం]]></string>
-    <string name="qucick_success">క్విక్‌పే అభ్యర్థన విజయవంతంగా పెంచబడింది</string>
+
+    <string name="qucick_success">క్విక్‌పే అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     <string name="paym_validation">దయచేసి చెల్లింపు మోడ్‌ను ఎంచుకోండి</string>
     <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>
+    <string name="product_quantity"><![CDATA[ఉత్పత్తి & పరిమాణం]]></string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>

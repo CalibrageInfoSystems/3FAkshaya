@@ -68,7 +68,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
-
+Double total_amount;
     private ImageView cartButtonIV;
     Integer Id, quantity;
     int price_final;
@@ -137,9 +137,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             public void onClick(View view) {
 
                 if (myProductsList.size() > 0) {
-
-
-
 
                     Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
                     i.putExtra("Total_amount", mealTotalText.getText());
@@ -243,7 +240,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 superHero.setDescription(json.getString("description"));
                 Double size = json.getDouble("size");
                 Log.d(TAG, "--- Size ----" + size);
-//                superHero.setSize(json.getString("size"));
+//
                 superHero.setSize(size);
 
 
@@ -258,71 +255,24 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Log.e("dis_price====", dis_price);
 
                 superHero.setgst(json.getInt("gstPercentage"));
-                ArrayList<String> powers = new ArrayList<String>();
 
 
-
-                // superHero.setfarmerCode(labourDetails.getString("farmerCode"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             product_list.add(superHero);
-            //   selected_list.add();
-
-                                /*String plotCode = productObject.getString("plotCode");
-                                String plotMandalName = productObject.getString("plotMandalName");
-                                Log.d(TAG,"RESPONSE plotCode======"+ plotCode);
-                                Log.d(TAG,"RESPONSE plotMandalName======"+ plotMandalName);*/
 
             adapter = new ModelFertAdapterNew(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
-            //Adding adapter to recyclerview
+
             recyclerView.setAdapter(adapter);
-//            adapter.setOnListener(PoleActivity.this);
-//            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//                @Override
-//                public void onChanged() {
-//                    super.onChanged();
-//                    setMealTotal();
-//                }
-//            });
 
         }
     }
 
 
-    public long calculateMealTotal() {
-        try {
-            long mealTotal = 0;
-            for (ModelFert order : product_list) {
 
-                mealTotal = mealTotal + order.getmQuantity() * order.getPrice();
-
-
-                quantity = order.getmQuantity();
-                Id = order.getId();
-                Log.e("quantity kk===", quantity.toString());
-                Log.e("Id-=== kk", Id.toString());
-//
-            }
-
-//
-
-            return mealTotal;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return 0;
-    }
-
-    public void setMealTotal() {
-        mealTotalText.setText(" " + calculateMealTotal());
-        // mealTotalText.setText("Rs"+" "+ calculateMealTotal());
-        amount = mealTotalText.getText().toString();
-        Log.e("amount-===", mealTotalText.getText().toString());
-    }
 
     @Override
     public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
@@ -350,8 +300,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
         }
         txt_count.setText(allproducts + "");
-        String total_amount = allitemscost.toString();
-        mealTotalText.setText(total_amount);
+        total_amount = Math.round(allitemscost * 100D) / 100D;
+        Log.e("valueRounded===",total_amount+"");
+        mealTotalText.setText(total_amount+"");
     }
 
 

@@ -180,7 +180,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                         mdilogue.dismiss();
 
 
-                        if (quickPayModel.getListResult() != null) {
+                        if (quickPayModel.getListResult().size()!= 0  ) {
                             noRecords.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
                             adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);

@@ -348,7 +348,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             @Override
             public void onClick(View view) {
                 if (validations()) {
-
+                    try {
+                        mPlayer.release();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    mPlayer = null;
                     if (isOnline())
                         AddVisitRequest();
                     else {
@@ -622,12 +627,11 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             public void onClick(View v) {
                 alertDialog.dismiss();
                 try {
-                    mRecorder.stop();
-                    mRecorder.release();
+                    mPlayer.release();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mRecorder = null;
+                mPlayer = null;
                 Intent intent = new Intent(Visit_request_Activity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
