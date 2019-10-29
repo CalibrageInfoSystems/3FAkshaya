@@ -502,8 +502,8 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         imageView_Play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) throws IllegalArgumentException, SecurityException, IllegalStateException {
-               // if (mPlayer != null) {
-                    lastProgress = 0;
+                // if (mPlayer != null) {
+                lastProgress = 0;
 //                    chronometer.setBase(SystemClock.elapsedRealtime());
 //                    startPlaying();
 //                } else {
