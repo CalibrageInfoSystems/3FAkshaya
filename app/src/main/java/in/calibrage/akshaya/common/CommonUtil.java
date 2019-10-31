@@ -485,37 +485,59 @@ public class CommonUtil {
 
     public static String getStringFile(File f) {
         InputStream inputStream = null;
-        String encodedFile = "", lastVal, extension;
+        String encodedFile = "", lastVal;
         try {
-            if (f.exists()) {
-                extension = f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf("."));
+            inputStream = new FileInputStream(f.getAbsolutePath());
+            byte[] buffer = new byte[(int)f.length()];
+          //  byte[] buffer = new byte[10240];//specify the size to allow
 
-                long fileSizeInBytes = f.length();
-                long fileSizeInKB = fileSizeInBytes / 1024;
-                long fileSizeInMB = fileSizeInKB / 1024;
+        //    f.canExecute(@"D:\Temp\myFile.mp3", buffer);
+            int bytesRead;
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            Base64OutputStream output64 = new Base64OutputStream(output, Base64.DEFAULT);
 
-
-                //   inputStream = new FileInputStream(f.getAbsolutePath());
-                inputStream = new FileInputStream(f);
-                byte[] buffer = new byte[10240];//specify the size to allow
-                int bytesRead;
-                ByteArrayOutputStream output = new ByteArrayOutputStream();
-                Base64OutputStream output64 = new Base64OutputStream(output, Base64.DEFAULT);
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    output64.write(buffer, 0, bytesRead);
-                }
-                output64.close();
-                encodedFile = output.toString();
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                output64.write(buffer, 0, bytesRead);
             }
-            } catch(FileNotFoundException e1){
-                e1.printStackTrace();
-            } catch(IOException e){
-                e.printStackTrace();
-            }
-            lastVal = encodedFile;
-            return lastVal;
+            output64.close();
+            encodedFile = output.toString();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        lastVal = encodedFile;
+        return lastVal;
+
+//
+//        byte[] bytes = FileUtils.readFileToByteArray(f);
+//
+//        String encoded = Base64.encodeToString(bytes, 0);
+//        Log.d("data===", "getStringFile: BASE64 Audio :"+encoded);
+//        return  encoded;
+    }
+
+//                //   inputStream = new FileInputStream(f.getAbsolutePath());
+//                inputStream = new FileInputStream(f);
+//                byte[] buffer = new byte[10240];//specify the size to allow
+//                int bytesRead;
+//                ByteArrayOutputStream output = new ByteArrayOutputStream();
+//                Base64OutputStream output64 = new Base64OutputStream(output, Base64.DEFAULT);
+//
+//                while ((bytesRead = inputStream.read(buffer)) != -1) {
+//                    output64.write(buffer, 0, bytesRead);
+//                }
+//                output64.close();
+//                encodedFile = output.toString();
+//            }
+//            } catch(FileNotFoundException e1){
+//                e1.printStackTrace();
+//            } catch(IOException e){
+//                e.printStackTrace();
+//            }
+//            lastVal = encodedFile;
+//            return lastVal;
+//        }
 
 
     public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,

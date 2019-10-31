@@ -48,7 +48,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             name = getIntent().getStringExtra("name");
             lat = getIntent().getDoubleExtra("lat",0.0);
             log = getIntent().getDoubleExtra("log",0.0);
-
+Log.e("lat===",lat+"===="+log +"," +name );
             TextView txt_name = findViewById(R.id.txt_name);
             txt_name.setText(name);
         }
@@ -56,9 +56,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(lat, log);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title(name));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        googleMap.setMinZoomPreference(11);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        LatLng sydney = new LatLng(lat, log);
+//        googleMap.addMarker(new MarkerOptions().position(sydney).title(name));
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        googleMap.setMinZoomPreference(11);
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(lat, log))
+                .title(name));
+
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, log), 5));
+
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

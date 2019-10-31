@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
@@ -43,6 +44,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.itextpdf.text.pdf.codec.Base64;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -51,8 +53,11 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -67,6 +72,7 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.common.WavRecorder;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.GetIssueModel;
@@ -131,7 +137,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     private Handler mHandler = new Handler();
     private int RECORD_AUDIO_REQUEST_CODE = 123;
     private boolean isPlaying = false;
-
+   private WavRecorder wavRecorder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,7 +155,15 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         }
         intview();
         setViews();
+        File root = android.os.Environment.getExternalStorageDirectory();
+        File file = new File(root.getAbsolutePath() + "/3fakshaya/Audios");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
 
+       String Filepath = root.getAbsolutePath() + "/3fakshaya/Audios" + String.valueOf("recording" + ".wav");
+        Log.d(TAG, "File Path :"+Filepath);
+         wavRecorder =new WavRecorder(Filepath);
 
     }
 
@@ -689,10 +703,11 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
         if (null != fileName || !TextUtils.isEmpty(fileName)) {
 
+            Log.d(TAG, "visitReuestobject: PATH"+fileName);
             VisitRequestModel.VisitRepo visitRepo1audio = new VisitRequestModel.VisitRepo();
             visitRepo1audio.setId(1);
 
-            visitRepo1audio.setFileName(CommonUtil.getStringFile(new File(fileName)));
+            visitRepo1audio.setFileName(doFileUpload(new File(fileName)));
             visitRepo1audio.setFileExtension(".mp3");
             visitRepo1audio.setIsActive(true);
             visitRepo1audio.setCreatedByUserId(null);
@@ -969,10 +984,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             case R.id.imageViewRecord:
                 prepareforRecording();
                 startRecording();
+                wavRecorder.startRecording();
                 break;
             case R.id.imageViewStop:
                 prepareforStop();
                 stopRecording();
+                wavRecorder.stopRecording();
                 break;
             case R.id.imageViewPlay:
                 if (!isPlaying && fileName != null) {
@@ -1024,10 +1041,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
     }
 
+
     private void startRecording() {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFormat(MediaRecorder.AudioEncoder.AMR_NB);
+
         File root = android.os.Environment.getExternalStorageDirectory();
         File file = new File(root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios");
         if (!file.exists()) {
@@ -1037,7 +1056,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         fileName = root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios/" + String.valueOf(System.currentTimeMillis() + ".mp3");
         Log.d("filename", fileName);
         mRecorder.setOutputFile(fileName);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 
         try {
             mRecorder.prepare();
@@ -1090,11 +1109,9 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         seekUpdation();
         chronometer.start();
 
-
         mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void onCompletion(MediaPlayer mp) {
-                imageViewPlay.setImageResource(R.drawable.ic_play);
+            public void onCompletion(MediaPlayer mp) {imageViewPlay.setImageResource(R.drawable.ic_play);
                 seekBar.setVisibility(View.GONE);
                 isPlaying = false;
                 chronometer.stop();
@@ -1139,4 +1156,44 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         }
         mHandler.postDelayed(runnable, 100);
     }
+
+
+    private String doFileUpload(File f){
+       /* String  video_str="";
+        byte[] videoBytes;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            FileInputStream fis = new FileInputStream(new File(fileName));
+
+            byte[] buf = new byte[1024];
+            int n;
+            while (-1 != (n = fis.read(buf)))
+                baos.write(buf, 0, n);
+
+             videoBytes = baos.toByteArray();
+
+
+            video_str = Base64.encodeBytes(videoBytes);
+            System.out.println("video array"+video_str);*/
+
+
+        byte[] bytes = new byte[0];
+        try {
+            bytes = FileUtils.readFileToByteArray(f);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        //String encoded = Base64.encodeToString(bytes, 0);
+         String finalString =android.util.Base64.encodeToString(bytes,0);
+
+        byte[]  decodede=android.util.Base64.decode(finalString,0);
+      Log.e("decodede data====",  decodede+"");
+        return finalString;
+
+// Receiving side
+
+   }
+
+
 }

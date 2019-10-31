@@ -170,9 +170,11 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
                     @Override
                     public void onNext(Resdelete resdelete) {
-                        labourlist_Set.remove(selectedPO);
+                        labour_req_response.ListResult item =labourlist_Set.get(selectedPO);
+                        item.setStatusType("Cancelled");
+                        labourlist_Set.set(selectedPO,item);
                         Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
-                        recreateActivityCompat((Activity) mContext);
+                        notifyItemChanged(selectedPO);
 
                     }
 
