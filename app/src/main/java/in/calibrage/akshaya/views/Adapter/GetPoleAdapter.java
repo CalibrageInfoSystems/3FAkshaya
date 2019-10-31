@@ -203,9 +203,14 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
 
                     @Override
                     public void onNext(Resdelete resdelete) {
-                        list.remove(selectedPO);
-                        Toast.makeText(mContext,mContext.getString(R.string.cancel_success),Toast.LENGTH_LONG).show();
-                        recreateActivityCompat((Activity) mContext);
+
+
+                        ResPole.ListResult item =list.get(selectedPO);
+                        item.setStatus("Cancelled");
+                        list.set(selectedPO,item);
+                        Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
+                        notifyItemChanged(selectedPO);
+
 
                     }
 

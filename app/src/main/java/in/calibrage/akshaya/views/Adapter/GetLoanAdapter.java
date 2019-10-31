@@ -148,9 +148,13 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
 
                             @Override
                     public void onNext(Resdelete resdelete) {
-                        list_loan.remove(selectedPO);
-                        Toast.makeText(mContext,mContext.getString(R.string.cancel_success),Toast.LENGTH_LONG).show();
-                        recreateActivityCompat((Activity) mContext);
+
+                                ResLoan.ListResult item =list_loan.get(selectedPO);
+                                item.setStatusType("Cancelled");
+                                list_loan.set(selectedPO,item);
+                                Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
+                                notifyItemChanged(selectedPO);
+
 
                     }
 

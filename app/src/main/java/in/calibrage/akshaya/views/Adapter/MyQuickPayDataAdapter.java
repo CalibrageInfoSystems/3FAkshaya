@@ -142,9 +142,11 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
 
                     @Override
                     public void onNext(Resdelete resdelete) {
-                        list.remove(selectedPO);
+                        Resquickpay.ListResult item =list.get(selectedPO);
+                        item.setStatusType("Cancelled");
+                        list.set(selectedPO,item);
                         Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
-                        recreateActivityCompat((Activity) mContext);
+                        notifyItemChanged(selectedPO);
 
                     }
 

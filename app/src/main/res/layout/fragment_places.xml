@@ -75,7 +75,7 @@ android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_8dp"
             android:layout_marginRight="@dimen/_8dp"
-            android:layout_marginBottom="80dp" />
+            android:layout_marginBottom="120dp" />
 
 
         <android.support.v7.widget.RecyclerView
@@ -85,7 +85,7 @@ android:visibility="gone"
             android:layout_marginLeft="@dimen/_8dp"
             android:layout_marginRight="@dimen/_8dp"
             android:layout_below="@+id/collection_text"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="120dp"
 
             />
         <android.support.v7.widget.RecyclerView
@@ -96,7 +96,7 @@ android:visibility="gone"
             android:layout_marginLeft="@dimen/_8dp"
             android:layout_marginRight="@dimen/_8dp"
 
-            android:layout_marginBottom="80dp" />
+            android:layout_marginBottom="120dp" />
 
 
 

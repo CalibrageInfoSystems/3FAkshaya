@@ -197,9 +197,15 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
 
                     @Override
                     public void onNext(Resdelete resdelete) {
-                        list.remove(selectedPO);
-                        Toast.makeText(mContext,mContext.getString(R.string.cancel_success),Toast.LENGTH_LONG).show();
-                        recreateActivityCompat((Activity) mContext);
+
+                        Resfert.ListResult item =list.get(selectedPO);
+                        item.setStatus("Cancelled");
+                        list.set(selectedPO,item);
+                        Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
+                        notifyItemChanged(selectedPO);
+//                        list.remove(selectedPO);
+//                        Toast.makeText(mContext,mContext.getString(R.string.cancel_success),Toast.LENGTH_LONG).show();
+//                        recreateActivityCompat((Activity) mContext);
 
                     }
 

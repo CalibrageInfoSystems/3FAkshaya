@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
@@ -18,9 +17,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.transition.TransitionManager;
@@ -44,7 +41,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.itextpdf.text.pdf.codec.Base64;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -57,7 +53,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -72,11 +67,8 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
-import in.calibrage.akshaya.common.WavRecorder;
 import in.calibrage.akshaya.localData.SharedPrefsData;
-import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.GetIssueModel;
-import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.VisitRequestModel;
 import in.calibrage.akshaya.models.VisitresponseModel;
@@ -137,7 +129,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     private Handler mHandler = new Handler();
     private int RECORD_AUDIO_REQUEST_CODE = 123;
     private boolean isPlaying = false;
-   private WavRecorder wavRecorder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,15 +147,8 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         }
         intview();
         setViews();
-        File root = android.os.Environment.getExternalStorageDirectory();
-        File file = new File(root.getAbsolutePath() + "/3fakshaya/Audios");
-        if (!file.exists()) {
-            file.mkdirs();
-        }
 
-       String Filepath = root.getAbsolutePath() + "/3fakshaya/Audios" + String.valueOf("recording" + ".wav");
-        Log.d(TAG, "File Path :"+Filepath);
-         wavRecorder =new WavRecorder(Filepath);
+
 
     }
 
@@ -984,12 +969,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             case R.id.imageViewRecord:
                 prepareforRecording();
                 startRecording();
-                wavRecorder.startRecording();
+
                 break;
             case R.id.imageViewStop:
                 prepareforStop();
                 stopRecording();
-                wavRecorder.stopRecording();
+
                 break;
             case R.id.imageViewPlay:
                 if (!isPlaying && fileName != null) {
@@ -1048,12 +1033,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         mRecorder.setOutputFormat(MediaRecorder.AudioEncoder.AMR_NB);
 
         File root = android.os.Environment.getExternalStorageDirectory();
-        File file = new File(root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios");
+        File file = new File(root.getAbsolutePath() + "/3FAkshaya/Audios");
         if (!file.exists()) {
             file.mkdirs();
         }
 
-        fileName = root.getAbsolutePath() + "/VoiceRecorderSimplifiedCoding/Audios/" + String.valueOf(System.currentTimeMillis() + ".mp3");
+        fileName = root.getAbsolutePath() + "/3FAkshaya/Audios/" + String.valueOf(System.currentTimeMillis() + ".mp3");
         Log.d("filename", fileName);
         mRecorder.setOutputFile(fileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
