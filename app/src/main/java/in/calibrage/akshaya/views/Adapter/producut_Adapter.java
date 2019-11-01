@@ -20,7 +20,7 @@ import in.calibrage.akshaya.models.Product_new;
 public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyViewHolder> {
     private Context context;
     private ArrayList<Product_new> product_Listitems = new ArrayList<>();
-
+ double  valueRounded;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView product_name, quantity, amount, gst, item_cost;
@@ -65,7 +65,11 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
         final Product_new dataa = product_Listitems.get(position);
         holder.product_name.setText(dataa.getProductname());
         holder.quantity.setText(dataa.getQuandity() + "");
-        holder.amount.setText(Double.parseDouble(dataa.getWithGSTamount()) * dataa.getQuandity() + "");
+Double amountt =(dataa.getWithGSTamount()) * dataa.getQuandity() ;
+
+
+        valueRounded = Math.round(amountt * 100D) / 100D;
+        holder.amount.setText(valueRounded + "");
         holder.gst.setText(String.valueOf(dataa.getGst() + ""));
 
         holder.item_cost.setText(dataa.getAmount() + "");

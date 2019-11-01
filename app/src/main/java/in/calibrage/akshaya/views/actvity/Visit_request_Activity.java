@@ -1144,22 +1144,6 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
 
     private String doFileUpload(File f){
-       /* String  video_str="";
-        byte[] videoBytes;
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            FileInputStream fis = new FileInputStream(new File(fileName));
-
-            byte[] buf = new byte[1024];
-            int n;
-            while (-1 != (n = fis.read(buf)))
-                baos.write(buf, 0, n);
-
-             videoBytes = baos.toByteArray();
-
-
-            video_str = Base64.encodeBytes(videoBytes);
-            System.out.println("video array"+video_str);*/
 
 
         byte[] bytes = new byte[0];
@@ -1172,8 +1156,8 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         //String encoded = Base64.encodeToString(bytes, 0);
          String finalString =android.util.Base64.encodeToString(bytes,0);
 
-        byte[]  decodede=android.util.Base64.decode(finalString,0);
-      Log.e("decodede data====",  decodede+"");
+
+
         return finalString;
 
 // Receiving side

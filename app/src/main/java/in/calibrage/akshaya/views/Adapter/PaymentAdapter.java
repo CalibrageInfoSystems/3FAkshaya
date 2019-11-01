@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     String datetimevaluereq;
     public Context mContext;
     private List<PaymentResponseModel.PaymentResponce> payment_Set = new ArrayList<>();
-
+    DecimalFormat  dff,  df;
     public PaymentAdapter(Context mContext) {
         this.mContext = mContext;
     }
@@ -61,6 +62,13 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     @Override
     public void onBindViewHolder(PaymentAdapter.ViewHolder holder, int position) {
 
+
+
+        double Quanitity = payment_Set.get(position).getQuantity();
+
+        df = new DecimalFormat("#,###,##0.000");
+        dff = new DecimalFormat("#,###,##0.00");
+        Log.e("===============", payment_Set.get(position).getQuantity() + "");
         ((ViewHolder) holder).memo_text.setText(": " + payment_Set.get(position).getMemo());
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
@@ -75,12 +83,17 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         }
         ((ViewHolder) holder).date.setText(": " + datetimevaluereq);
         ((ViewHolder) holder).dateLabel.setText(datetimevaluereq);
-        ((ViewHolder) holder).quantity_ffb.setText(": " + payment_Set.get(position).getQuantity());
-        ((ViewHolder) holder).adhoc_value.setText(": " + payment_Set.get(position).getAdhocRate());
-        ((ViewHolder) holder).txt_invoice.setText(": " + payment_Set.get(position).getInvoiceRate());
-        ((ViewHolder) holder).txt_gr_rate.setText(": " + payment_Set.get(position).getGRAmount());
-        ((ViewHolder) holder).adjustTxt.setText(": " + payment_Set.get(position).getAdjusted());
-        ((ViewHolder) holder).finalAmount.setText(": " + payment_Set.get(position).getAmount());
+
+
+
+        ((ViewHolder) holder).quantity_ffb.setText(": " + df.format(Quanitity));
+
+
+        ((ViewHolder) holder).adhoc_value.setText(": " + dff.format(payment_Set.get(position).getAdhocRate()));
+        ((ViewHolder) holder).txt_invoice.setText(": " + dff.format(payment_Set.get(position).getInvoiceRate()));
+        ((ViewHolder) holder).txt_gr_rate.setText(": " + dff.format(payment_Set.get(position).getGRAmount()));
+        ((ViewHolder) holder).adjustTxt.setText(": " + dff.format(payment_Set.get(position).getAdjusted()));
+        ((ViewHolder) holder).finalAmount.setText(": " + dff.format(payment_Set.get(position).getAmount()));
 
 
         if (position % 2 == 0) {
@@ -92,10 +105,10 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
 
         if ((payment_Set.get(position).getBalance()) < 0) {
-            String balance1 = payment_Set.get(position).getBalance() + "" + ")";
+            String balance1 = dff.format(payment_Set.get(position).getBalance() )+ "" + ")";
             ((ViewHolder) holder).balance.setText(": " + balance1.toString().replace("-", "("));
         } else {
-            ((ViewHolder) holder).balance.setText(": " + payment_Set.get(position).getBalance());
+            ((ViewHolder) holder).balance.setText(": " + dff.format(payment_Set.get(position).getBalance()));
         }
 
 

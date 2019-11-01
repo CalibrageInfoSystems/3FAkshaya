@@ -193,7 +193,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                     DecimalFormat df = new DecimalFormat("####0.00");
 
 
-                    String total_amount = df.format(finalwithGST);
+                    double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
                     myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
@@ -329,7 +329,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         Double allitemscost = 0.0;
         int allproducts = 0;
         for (Product_new product : myProducts) {
-            Double oneitem = product.getQuandity() * Double.parseDouble(product.getWithGSTamount());
+            Double oneitem = product.getQuandity() * (product.getWithGSTamount());
             allitemscost = oneitem + allitemscost;
             Log.d("Product", "total Proce :" + allitemscost);
             int onitem = product.getQuandity();

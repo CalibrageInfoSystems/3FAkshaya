@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -64,12 +65,13 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     private ImageView cartButtonIV;
- Double  total_amount;
+    Double  total_amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_pole);
+        SharedPrefsData.saveCartitems(this,myProductsList);
         dialog = new ProgressDialog(this);
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
@@ -125,9 +127,10 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
             @Override
             public void onClick(View view) {
 
-                    if (myProductsList.size() > 0) {
+                try {
+                    if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
-
+Log.e("myProductsList===",myProductsList.toString());
                         Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
                         startActivity(i);
@@ -136,8 +139,12 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                     else{
                         showDialog(PoleActivity.this, getResources().getString(R.string.select_product_toast));
                     }
-
+                } catch (Resources.NotFoundException e) {
+                    Log.e("error==",e.getLocalizedMessage());
+                    e.printStackTrace();
                 }
+
+            }
 
         });
 //
@@ -267,7 +274,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         int allproducts = 0;
 
         for (Product_new product : myProducts) {
-            Double oneitem = product.getQuandity() *  Double.parseDouble(product.getWithGSTamount());
+            Double oneitem = product.getQuandity() * (product.getWithGSTamount());
             allitemscost = oneitem + allitemscost;
             Log.d("Product", "total Proce :" + allitemscost);
             int onitem = product.getQuandity();

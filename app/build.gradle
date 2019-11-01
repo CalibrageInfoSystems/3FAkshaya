@@ -68,6 +68,6 @@ dependencies {
     }
     implementation 'commons-io:commons-io:2.5'
     // https://mvnrepository.com/artifact/commons-io/commons-io
-    implementation 'commons-io:commons-io:2.4'
+  //  implementation 'commons-io:commons-io:2.4'
     implementation files('libs/tritonus_share-0.3.6.jar')
 }

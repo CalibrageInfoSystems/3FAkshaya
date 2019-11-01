@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -136,15 +137,20 @@ Double total_amount;
             @Override
             public void onClick(View view) {
 
-                if (myProductsList.size() > 0) {
+                try {
+                    if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
-                    Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
-                    i.putExtra("Total_amount", mealTotalText.getText());
-                    startActivity(i);
-                    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-                }
-                else{
-                    showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
+                        Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
+                        i.putExtra("Total_amount", mealTotalText.getText());
+                        startActivity(i);
+                        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                    }
+                    else{
+                        showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
+                    }
+                } catch (Resources.NotFoundException e) {
+                    Log.e("error==",e.getLocalizedMessage());
+                    e.printStackTrace();
                 }
 
             }
@@ -290,7 +296,7 @@ Double total_amount;
         int allproducts = 0;
 
         for (Product_new product : myProducts) {
-            Double oneitem = product.getQuandity() *  Double.parseDouble(product.getWithGSTamount());
+            Double oneitem = product.getQuandity() * (product.getWithGSTamount());
             allitemscost = oneitem + allitemscost;
             Log.d("Product", "total Proce :" + allitemscost);
             int onitem = product.getQuandity();

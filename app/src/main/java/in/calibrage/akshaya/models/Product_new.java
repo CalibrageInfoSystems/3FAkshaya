@@ -6,13 +6,13 @@ public class Product_new implements Serializable {
     private Integer Quandity;
     private String Productname;
     private Double amount;
-    private String withGSTamount;
+    private double withGSTamount;
     private Integer gst;
     private double eachproductcost;
     private double size;
     private Integer ProductID;
 
-    public Product_new(Integer quandity, String productname, Double amount, String withGSTamount, Integer gst, double eachproductcost, int productID,double size) {
+    public Product_new(Integer quandity, String productname, Double amount, double withGSTamount, Integer gst, double eachproductcost, int productID,double size) {
         Quandity = quandity;
         Productname = productname;
         this.amount = amount;
@@ -47,11 +47,11 @@ public class Product_new implements Serializable {
         this.amount = amount;
     }
 
-    public String getWithGSTamount() {
+    public double getWithGSTamount() {
         return withGSTamount;
     }
 
-    public void setWithGSTamount(String withGSTamount) {
+    public void setWithGSTamount(double withGSTamount) {
         this.withGSTamount = withGSTamount;
     }
 

@@ -344,16 +344,16 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 
                                         product_name =SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
                                         quantity=SharedPrefsData.getCartData(getApplicationContext()).get(i).getQuandity();
-                                        selected_list.add(product_name + " : " +quantity +"");
+                                        selected_list.add(product_name + "   :   " +quantity +"");
                                         selected_name = arrayyTOstring(selected_list);
                                     }
                                     displayList.add(new MSGmodel(getString(R.string.Godown_name), Godown_name));
                                     displayList.add(new MSGmodel(getString(R.string.product_quantity), selected_name));
 
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), products_amount+""));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), Gst_total+""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.amount), text_amount.getText()+""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), gst_amount.getText()+""));
 
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), include_gst_amount));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), Final_amount.getText()+""));
 
                                     showSuccessDialog(displayList, getString(R.string.success_pole));
                                 }

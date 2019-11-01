@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -67,7 +68,7 @@ public class PaymentHistoryActivity extends BaseActivity {
     private SpotsDialog mdilogue;
     private ImageView backImg, home_btn;
     String Farmer_code;
-
+    DecimalFormat  df;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -325,9 +326,16 @@ public class PaymentHistoryActivity extends BaseActivity {
                             //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
 
                             Total_records.setText(String.valueOf(paymentResponseModel.getAffectedRecords()));
-                            ffb.setText(String.valueOf(paymentResponseModel.getResult().getTotalQuanitity()));
+
+                            double TotalQuanitity = paymentResponseModel.getResult().getTotalQuanitity();
+
+                            DecimalFormat    df = new DecimalFormat("#,###,##0.000");
+                            System.out.println(df.format(TotalQuanitity));
+//
+                          // Log.e("TotalQuanitity======",TotalQuanitity+"==="+df.format(TotalQuanitity +""));
+                            ffb.setText((df.format(TotalQuanitity)));
                             if (paymentResponseModel.getResult().getTotalBalance() == null) {
-                                totalBalance.setText("0");
+                                totalBalance.setText("0.00");
 
                             } else {
                                 totalBalance.setText(String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
