@@ -2,7 +2,10 @@ package in.calibrage.akshaya.views.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -92,7 +96,17 @@ public class PaymentFragment  extends BaseFragment {
 //        yearFragTxt.setText("YEAR : "+String.valueOf(year));
         return rootView;
     }
+    private BroadcastReceiver mServiceReceiver = new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            //Extract your data - better to use constants...
+            String IncomingSms=intent.getStringExtra("incomingSms");//
+            String phoneNumber=intent.getStringExtra("incomingPhoneNumber");
+            Toast.makeText(context, "mallem Mahesh", Toast.LENGTH_SHORT).show();
 
+        }
+    };
     private void getPaymentDetails() {
         JsonObject object = paymenObject();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
@@ -185,5 +199,25 @@ public class PaymentFragment  extends BaseFragment {
         requestModel.setFromDate(from_date);
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        try {
+            if(mServiceReceiver != null){
+                getContext().unregisterReceiver(mServiceReceiver);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.intent.action.SmsReceiver");
+        getContext().registerReceiver(mServiceReceiver , filter);
     }
 }

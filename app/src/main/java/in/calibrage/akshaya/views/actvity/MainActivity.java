@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabItem;
@@ -24,6 +25,7 @@ import java.util.Locale;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.Constants;
+import in.calibrage.akshaya.common.IDataChnaged;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.views.fragments.PaymentFragment;
 import in.calibrage.akshaya.views.fragments.TransFragment;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner spin;
     PaymentFragment myFragment;
     private String currentDate,last_30day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,66 +115,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
          selected_item =selection[i];
         SharedPrefsData.getInstance(this).updateStringValue(this,"sitem",selected_item);
         Log.e("selected_item===",selected_item);
-        pageAdapter.notifyDataSetChanged();
-
-        switch(i) {
-            case 0:
-
-                if(selected_item.equals("Current Financial Year")) {
-                    Bundle bundle = new Bundle();
-
-                    bundle.putString("todate", financiyalYearTo);
-                    bundle.putString("fromdate", financiyalYearFrom);
-
-                    //PASS OVER THE BUNDLE TO OUR FRAGMENT
-                    myFragment = new PaymentFragment();
-                    myFragment.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.tabpayments,myFragment).commit();
-                }
-            case 1:
-//                fragHard = new FragHard();
-//                ft = getFragmentManager().beginTransaction();
-//
-//                ft.replace(R.id.fragment, fragHard).addToBackStack(null).commit();
-//                break;
-        }
-
-        if(selected_item.equals("Current Financial Year"))
-        {
-            Bundle bundle = new Bundle();
-
-            bundle.putString("todate", financiyalYearTo);
-            bundle.putString("fromdate", financiyalYearFrom);
-
-            //PASS OVER THE BUNDLE TO OUR FRAGMENT
-             myFragment = new PaymentFragment();
-            myFragment.setArguments(bundle);
-
-//            nameTxt.setText("");
-//            launchYearSpinner.setSelection(0);
-//
-//            //THEN NOW SHOW OUR FRAGMENT
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,myFragment).commit();
-
-        }
-
-//        Bundle bundle = new Bundle();
-//
-//
-//
-//
-//
-//        if (spin.getSelectedItem().toString().equals("Last 30 Days")) {
-//
-//            bundle.putString("todate", currentDate);
-//            bundle.putString("fromdate", last_30day);
-//
-//        }
-//
-//        PaymentFragment myFragment = new PaymentFragment();
-//        myFragment.setArguments(bundle);
-
-//
+        Intent i2 = new Intent("android.intent.action.SmsReceiver").putExtra("incomingSms", "mahesh");
+        i2.putExtra("incomingPhoneNumber", "7032214460");
+        sendBroadcast(i2);
         return ;
       //   pageAdapter.setSpinner_item(selected_item);
 
