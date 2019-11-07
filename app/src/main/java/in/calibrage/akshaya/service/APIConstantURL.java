@@ -42,6 +42,8 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String GetProductDetailsByRequestCode = "GetProductDetailsByRequestCode/";
     String delete  = "AppOrDecFertilizerRequest";
     String AddAppInstallation = "AppInstall/AddAppInstallation";
+
+    String CollectionInfoById ="Collection/CollectionInfoById/";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 }

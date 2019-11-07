@@ -22,26 +22,44 @@ android:background="@color/transparent"
 
             >
 
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/new_des"
+                android:weightSum="1">
             <TextView
                 android:id="@+id/selected_food_name"
                 style="@style/Common_textView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
+                android:layout_weight="0.85"
                 android:paddingRight="@dimen/album_title_padding"
                 android:singleLine="true"
                 android:text="title" />
 
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:layout_alignLeft="@+id/selected_food_name"
+                android:layout_weight="0.15"
+                android:background="@drawable/info"
+android:layout_gravity="center"
+                android:textSize="@dimen/album_title" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/new_label"
-                android:layout_below="@id/selected_food_name">
+                android:layout_below="@id/new_des">
                 <TextView
                     android:id="@+id/selected_food_amount"
                     android:layout_width="0dp"
@@ -65,7 +83,7 @@ android:background="@color/transparent"
 
                     android:paddingTop="@dimen/album_title_padding"
 
-                    android:text="600"
+                    android:text=""
                     android:textColor="@color/red"
                     android:textSize="12dp" />
                 <TextView
@@ -81,7 +99,7 @@ android:background="@color/transparent"
 
                     android:paddingTop="@dimen/album_title_padding"
 
-                    android:text="100.00 kgs"
+                    android:text=""
                     android:textColor="@color/colorOrange"
                     android:textSize="12dp" />
             </LinearLayout>
@@ -110,25 +128,13 @@ android:background="@color/transparent"
                 android:scaleType="fitCenter"
                 android:src="@drawable/f1" />
 
-            <TextView
-                android:id="@+id/desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/thumbnail"
-                android:ellipsize="end"
-                android:hint="desc"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/album_title" />
 
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/desc"
+                android:layout_below="@id/thumbnail2"
                 android:layout_marginLeft="@dimen/_8dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"

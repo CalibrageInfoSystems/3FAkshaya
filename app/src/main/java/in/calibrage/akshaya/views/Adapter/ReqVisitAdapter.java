@@ -101,7 +101,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
             this.textViewplotId = (TextView) itemView.findViewById(R.id.plotId);
             this.textViewpalmArea = (TextView) itemView.findViewById(R.id.palmArea);
             this.textViewLocation = (TextView) itemView.findViewById(R.id.location);
-            this.textViewstatus = (TextView) itemView.findViewById(R.id.status);
+            this.textViewstatus = (TextView) itemView.findViewById(R.id.landmark);
             this.card_view = (CardView) itemView.findViewById(R.id.card_view);
 
         }

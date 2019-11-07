@@ -41,7 +41,7 @@
     <string name="amount_of_FFB">Total FFB Cost (Rs)</string>
 
     <string name="confirm_req">Confirm Request</string>
-    <string name="pole">Pole</string>
+    <string name="pole">Equipment</string>
     <string name="fertilizer">Fertilizer</string>
     <string name="loan">Loan</string>
     <string name="quickPay">QuickPay Request</string>
@@ -144,7 +144,7 @@
     <string name="spalingPlanted">No.of Saplings Planted</string>
     <string name="prevPalmsCount">Previous Trees Count</string>
     <!--    <string name="plamsCount">Count of Trees Currently Present</string>-->
-    <string name="plamsCount">Number of Trees</string>
+    <string name="plamsCount">Current Trees Count</string>
     <string name="isTreesMissing">Missing Trees</string>
     <string name="missingTreesCount">No.of Missing Trees</string>
     <string name="reasonType">Reason for Missing Trees</string>
@@ -318,6 +318,19 @@
     <string name="product_quantity"><![CDATA[Product & Quantity]]></string>
     <string name="qucick_success">QuickPay Request Raised  Successfully</string>
     <string name="paym_validation">Please Select the Payment Mode</string>
+    <string name="last_date">Date of Last Visit</string>
+    <string name="driver_name">Driver Name</string>
+    <string name="vehicle_Number">Vehicle Number</string>
+    <string name="alert_collection">Are You Sure Want to see Driver Details?</string>
+    <string name="collectionCenter">Collection Center</string>
+    <string name="grossWeight">Gross Weight</string>
+    <string name="tareWeight">Tare Weight</string>
+    <string name="totalBunches">Total Bunches</string>
+    <string name="acceptedBunches">Accepted Bunches</string>
+    <string name="rejectedBunches">Rejected Bunches</string>
+    <string name="operatorName">Operator Name</string>
+    <string name="receiptImg">Receipt</string>
+    <string name="trans">Transaction charges</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

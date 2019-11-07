@@ -15,12 +15,15 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -49,25 +53,30 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class PaymentHistoryActivity extends BaseActivity {
+public class PaymentHistoryActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = PaymentHistoryActivity.class.getSimpleName();
     private EditText fromText, toText;
     private String fromString, toString;
     private DatePickerDialog picker;
-    private LinearLayout totalLinear;
+    private LinearLayout totalLinear,custom_linear;
     private PaymentAdapter pay_adapter;
     private Subscription mSubscription;
     private Button submit;
-    private String datetimevaluereq;
+    private String currentDate,last_30day;
     private String reformattedStrFrom, reformattedStrTo;
     private TextView noRecords, Total_records, ffb, gr, totalAdjusted, totalBalance;
     private Calendar calendar;
     private TextInputLayout from_txt, to_txt;
     private RecyclerView Payment_recycle;
     private SpotsDialog mdilogue;
+
     private ImageView backImg, home_btn;
     String Farmer_code;
+    String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
+    String financiyalYearFrom = "";
+    String financiyalYearTo = "";
+    Spinner spin;
     DecimalFormat  df;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +90,7 @@ public class PaymentHistoryActivity extends BaseActivity {
     private void init() {
         noRecords = (TextView) findViewById(R.id.text);
         ffb = (TextView) findViewById(R.id.ffb_total);
-
+        spin = (Spinner) findViewById(R.id.spinner);
         totalBalance = (TextView) findViewById(R.id.totalBalance);
         Total_records = (TextView) findViewById(R.id.total_records);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
@@ -91,10 +100,12 @@ public class PaymentHistoryActivity extends BaseActivity {
 
         backImg = (ImageView) findViewById(R.id.back);
         totalLinear = (LinearLayout) findViewById(R.id.linear1);
+        custom_linear =(LinearLayout) findViewById(R.id.linear2);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         from_txt = (TextInputLayout) findViewById(R.id.txt_from_date);
         to_txt = (TextInputLayout) findViewById(R.id.txt_to_date);
         submit = (Button) findViewById(R.id.btn__sub);
+
         Payment_recycle = (RecyclerView) findViewById(R.id.payment_recycler_view);
         fromText = (EditText) findViewById(R.id.from_date);
         fromText.setInputType(InputType.TYPE_NULL);
@@ -128,6 +139,13 @@ public class PaymentHistoryActivity extends BaseActivity {
                 finish();
             }
         });
+
+        spin.setOnItemSelectedListener(this);
+        ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, selection);
+        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+
+        spin.setAdapter(aa);
+
         Payment_recycle.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         Payment_recycle.setLayoutManager(layoutManager);
@@ -318,6 +336,7 @@ public class PaymentHistoryActivity extends BaseActivity {
                         Log.d(TAG, "onNext:collection " + paymentResponseModel);
 
                         if (paymentResponseModel.getResult().getPaymentResponce() != null) {
+                            Payment_recycle.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
                            /* pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
                             Payment_recycle.setAdapter(pay_adapter);*/
@@ -344,6 +363,7 @@ public class PaymentHistoryActivity extends BaseActivity {
                         } else {
                             noRecords.setVisibility(View.VISIBLE);
                             totalLinear.setVisibility(View.GONE);
+                            Payment_recycle.setVisibility(View.GONE);
                         }
                     }
 
@@ -377,5 +397,267 @@ public class PaymentHistoryActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if (spin.getSelectedItem().toString().equals("Last 30 Days")) {
+
+            Payment_recycle.setVisibility(View.VISIBLE);
+            custom_linear.setVisibility(View.GONE);//
+            if (isOnline())
+                get30days();
+            else {
+                showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.Internet));
+
+            }
+            //  get30days();
+        } else {
+            Payment_recycle.setVisibility(View.GONE);
+            custom_linear.setVisibility(View.VISIBLE);
+
+        }
+
+        if (spin.getSelectedItem().toString().equals("Current Financial Year")) {
+            custom_linear.setVisibility(View.GONE);
+            Payment_recycle.setVisibility(View.VISIBLE); //
+            if (isOnline())
+                getfinacial_year();
+            else {
+                showDialog(PaymentHistoryActivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            Payment_recycle.setVisibility(View.GONE);
+            custom_linear.setVisibility(View.VISIBLE);
+        }
+        if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
+            // Toast.makeText(getApplicationContext(),"hiddd" , Toast.LENGTH_LONG).show();
+            Payment_recycle.setVisibility(View.GONE);
+            custom_linear.setVisibility(View.VISIBLE);
+            totalLinear.setVisibility(View.GONE);//
+        }
+    }
+
+    private void getfinacial_year() {
+        int CurrentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int CurrentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);
+
+        if (CurrentMonth < 4) {
+            financiyalYearFrom = (CurrentYear - 1) + "-04-01";
+            financiyalYearTo = (CurrentYear) + "-03-31";
+            Log.i(" from_year ", financiyalYearFrom);
+            Log.i("tp_year ", financiyalYearTo);
+        } else {
+            financiyalYearFrom = (CurrentYear) + "-04-01";
+            financiyalYearTo = (CurrentYear + 1) + "-03-31";
+            ;
+            Log.i(" financiyalYearFrom2 ", financiyalYearFrom);
+            Log.i("financiyalYearTo2 ", financiyalYearTo);
+        }
+        mdilogue.show();
+        JsonObject object = paymentyearObject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.postpayment(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<PaymentResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        pay_adapter.clearAllDataa();
+                        showDialog(PaymentHistoryActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(PaymentResponseModel paymentResponseModel) {
+                        mdilogue.dismiss();
+
+                        Log.d(TAG, "onNext:collection " + paymentResponseModel);
+
+                        if (paymentResponseModel.getResult().getPaymentResponce() != null) {
+                            Payment_recycle.setVisibility(View.VISIBLE); //
+                            noRecords.setVisibility(View.GONE);
+                           /* pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
+                            Payment_recycle.setAdapter(pay_adapter);*/
+                            pay_adapter.updateData(paymentResponseModel.getResult().getPaymentResponce());
+                            totalLinear.setVisibility(View.VISIBLE);
+                            //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
+
+                            Total_records.setText(String.valueOf(paymentResponseModel.getAffectedRecords()));
+
+                            double TotalQuanitity = paymentResponseModel.getResult().getTotalQuanitity();
+
+                            DecimalFormat    df = new DecimalFormat("#,###,##0.000");
+                            System.out.println(df.format(TotalQuanitity));
+//
+                            // Log.e("TotalQuanitity======",TotalQuanitity+"==="+df.format(TotalQuanitity +""));
+                            ffb.setText((df.format(TotalQuanitity)));
+                            if (paymentResponseModel.getResult().getTotalBalance() == null) {
+                                totalBalance.setText("0.00");
+
+                            } else {
+                                totalBalance.setText(String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
+                            }
+
+                        } else {
+                            noRecords.setVisibility(View.VISIBLE);
+                            totalLinear.setVisibility(View.GONE);
+                            Payment_recycle.setVisibility(View.GONE); //
+                        }
+                    }
+
+
+                });
+    }
+
+    private JsonObject paymentyearObject() {
+        PaymentRequestModel requestModel = new PaymentRequestModel();
+        //TODO need to save in shared pref
+        /*
+         * remove fist 2 letters from former code and add v
+         * */
+
+        String text;
+        text = Farmer_code.substring(1);
+        text = text.substring(1);
+
+
+        String finalstring = "V" + text;
+
+        Log.i("VendorCode", finalstring);
+        requestModel.setVendorCode(finalstring);
+        requestModel.setToDate(financiyalYearTo);
+        requestModel.setFromDate(financiyalYearFrom);
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+    private void get30days() {
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        Log.i("LOG_RESPONSE date ", currentDate);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -1);
+        Date date = calendar.getTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        last_30day = format.format(date);
+        Log.i("last==30thdate ", last_30day);
+
+        mdilogue.show();
+        JsonObject object = paymen30Object();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.postpayment(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<PaymentResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        pay_adapter.clearAllDataa();
+                        showDialog(PaymentHistoryActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(PaymentResponseModel paymentResponseModel) {
+                        mdilogue.dismiss();
+
+                        Log.d(TAG, "onNext:collection " + paymentResponseModel);
+
+                        if (paymentResponseModel.getResult().getPaymentResponce() != null) {
+                            Payment_recycle.setVisibility(View.VISIBLE); //
+                            noRecords.setVisibility(View.GONE);
+                           /* pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
+                            Payment_recycle.setAdapter(pay_adapter);*/
+                            pay_adapter.updateData(paymentResponseModel.getResult().getPaymentResponce());
+                            totalLinear.setVisibility(View.VISIBLE);
+                            //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
+
+                            Total_records.setText(String.valueOf(paymentResponseModel.getAffectedRecords()));
+
+                            double TotalQuanitity = paymentResponseModel.getResult().getTotalQuanitity();
+
+                            DecimalFormat    df = new DecimalFormat("#,###,##0.000");
+                            System.out.println(df.format(TotalQuanitity));
+//
+                            // Log.e("TotalQuanitity======",TotalQuanitity+"==="+df.format(TotalQuanitity +""));
+                            ffb.setText((df.format(TotalQuanitity)));
+                            if (paymentResponseModel.getResult().getTotalBalance() == null) {
+                                totalBalance.setText("0.00");
+
+                            } else {
+                                totalBalance.setText(String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
+                            }
+
+                        } else {
+                            noRecords.setVisibility(View.VISIBLE);
+                            totalLinear.setVisibility(View.GONE);
+                            Payment_recycle.setVisibility(View.GONE); //
+                        }
+                    }
+
+
+                });
+
+    }
+
+    private JsonObject paymen30Object() {
+        PaymentRequestModel requestModel = new PaymentRequestModel();
+        //TODO need to save in shared pref
+        /*
+         * remove fist 2 letters from former code and add v
+         * */
+
+        String text;
+        text = Farmer_code.substring(1);
+        text = text.substring(1);
+
+
+        String finalstring = "V" + text;
+
+        Log.i("VendorCode", finalstring);
+        requestModel.setVendorCode(finalstring);
+        requestModel.setToDate(currentDate);
+        requestModel.setFromDate(last_30day);
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

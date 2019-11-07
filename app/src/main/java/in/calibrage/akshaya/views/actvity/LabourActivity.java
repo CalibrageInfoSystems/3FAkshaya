@@ -91,7 +91,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     LabourTermsNCondtionsAdapter Tadapter;
 
 
-    TextView terms, amount, prun_amount, harv_amount, un_amount, un2_amount;
+    TextView terms, status_text, prun_amount, harv_amount, un_amount, un2_amount;
     String seleced_Duration;
     RelativeLayout amount_Label, harv_amount_label, un_amount_label, un2_amount_label;
     private Subscription mSubscription;
@@ -102,7 +102,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     private SpotsDialog mdilogue;
     CheckBox checkbox;
     String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate;
-    String plot_id,  location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, commentString, plantationdate, finalAmount;
+    String plot_id,  location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, status, plantationdate, finalAmount;
     EditText commentsTxt;
     double plot_Age;
     ImageView backImg, home_btn;
@@ -125,6 +125,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             plotState = extras.getString("plotState");
             plotDistrict = extras.getString("plotDistrict");
             plantationdate = extras.getString("date_of_plandation");
+            status = extras.getString("status");
         }
         intview();
         setViews();
@@ -144,6 +145,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         area = findViewById(R.id.palmArea);
         landMark = findViewById(R.id.landmark);
         commentsTxt = findViewById(R.id.commentTxt);
+        status_text=findViewById(R.id.status);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         backImg = (ImageView) findViewById(R.id.back);
         multiSelectionSpinner = (MultiSelectionSpinner) findViewById(R.id.spinner_labour_type);
@@ -200,6 +202,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
+        status_text.setText(status);
         myCalendar = Calendar.getInstance();
 
 

@@ -10,6 +10,7 @@ import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.GetAmount;
+import in.calibrage.akshaya.models.GetCollectionInfoById;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
@@ -187,6 +188,8 @@ public interface ApiService {
 
     @POST(APIConstantURL.GetQuickpayDetails)
     Observable<GetquickpayDetailsModel> post_details(@Body JsonObject data);
+    @GET
+    Observable<GetCollectionInfoById> getinfo(@Url String url);
 
 
 }

@@ -103,7 +103,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         Log.e("total_amount===93", total_amount);
         holder.currentCost.setText(context.getString(R.string.Rs) + total_amount);
 
-        holder.disc.setText(superHero.getDescription());
+      //  holder.disc.setText(superHero.getDescription());
         if (!TextUtils.isEmpty(superHero.getSize().toString())) {
             holder.size.setText(superHero.getSize() + "" + superHero.getUomType());
         } else {

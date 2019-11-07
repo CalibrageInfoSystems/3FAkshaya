@@ -72,7 +72,7 @@
         
         
     ]]>
-    <string name="pole">పోల్</string>
+    <string name="pole">సామగ్రి</string>
         
     <string name="fertilizer">ఎరువులు</string>
         
@@ -233,7 +233,7 @@
 
     <string name="spalingPlanted">మొక్క నాటడం లేదు</string>
     <string name="prevPalmsCount">మునుపటి సందర్శనలో చెట్ల సంఖ్య</string>
-    <string name="plamsCount"> చెట్ల సంఖ్య</string>
+    <string name="plamsCount">ప్రస్తుత చెట్ల సంఖ్య</string>
     <string name="isTreesMissing">తప్పిపోయిన చెట్లు</string>
     <string name="missingTreesCount">తప్పిపోయిన చెట్ల సంఖ్య</string>
     <string name="reasonType">చెట్లు తప్పిపోవడానికి కారణం</string>
@@ -400,6 +400,18 @@
     <string name="paym_validation">దయచేసి చెల్లింపు మోడ్‌ను ఎంచుకోండి</string>
     <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>
     <string name="product_quantity"><![CDATA[ఉత్పత్తి & పరిమాణం]]></string>
+    <string name="last_date">చివరి సందర్శన తేదీ</string>
+    <string name="driver_name">DriverName</string>
+    <string name="vehicle_Number">Vehicle Number</string>
+    <string name="collectionCenter">CollectionCenter</string>
+    <string name="grossWeight">GrossWeight</string>
+    <string name="tareWeight">TareWeight</string>
+    <string name="totalBunches">TotalBunches</string>
+    <string name="acceptedBunches">AcceptedBunches</string>
+    <string name="rejectedBunches">RejectedBunches</string>
+    <string name="operatorName">OperatorName</string>
+    <string name="receiptImg">Receipt</string>
+    <string name="trans">Transaction charges</string>
     <string-array name="switch_tabs">
         <item>గోదాముల</item>
         <item>సేకరణ కేంద్రాలు</item>

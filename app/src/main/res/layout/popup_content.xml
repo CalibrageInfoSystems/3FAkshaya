@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/spinner_bg"
+    android:background="@drawable/lang_baground"
     android:layout_margin="10dp">
     <TextView
         android:id="@+id/tvCaption"
@@ -11,7 +11,11 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textSize="14dp"
-        android:textColor="@color/black"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />
 </RelativeLayout>

@@ -52,7 +52,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
-import in.calibrage.akshaya.MainActivity;
+
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.localData.SharedPrefsData;

@@ -55,14 +55,65 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:layout_marginLeft="@dimen/_8dp"
+android:id="@+id/spinner_"
+        android:layout_below="@+id/backlinear"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/spinner_bg"
+        android:elevation="2dp">
 
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:foregroundGravity="bottom"
+            android:src="@drawable/arrow_down" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            style="@style/SpinnerDropdown"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:minHeight="0dp"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+    <android.support.design.widget.TabLayout
+        android:layout_marginTop="@dimen/margin_20"
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorOrange"
+        app:tabMode="fixed"
+        app:tabBackground="@drawable/tab_color_selector"
+        app:tabSelectedTextColor="@color/colorOrange"
+        app:tabTextAppearance="@style/TabLayoutStyle"
+        app:tabTextColor="@color/white" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
     <LinearLayout
         android:id="@+id/linear2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/backlinear"
+        android:layout_below="@+id/spinner_"
 
-
+android:visibility="gone"
         android:layout_marginLeft="@dimen/_8dp"
         android:layout_marginTop="2dp"
         android:layout_marginRight="@dimen/_8dp"
@@ -172,6 +223,7 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"
@@ -180,7 +232,7 @@
         android:layout_marginLeft="@dimen/_8dp"
         android:layout_marginTop="@dimen/margin_5"
         android:layout_marginRight="@dimen/_8dp"
-android:visibility="gone"
+
         android:background="@drawable/collect_bg"
         android:orientation="vertical"
 
@@ -327,7 +379,7 @@ android:visibility="gone"
                 android:id="@+id/total_records"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-android:layout_weight="0.4"
+                android:layout_weight="0.4"
                 android:layout_marginLeft="17dp"
                 android:layout_toRightOf="@+id/dot3"
                 android:hint=""
@@ -341,7 +393,6 @@ android:layout_weight="0.4"
 
 
     </LinearLayout>
-
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"

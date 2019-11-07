@@ -102,7 +102,7 @@
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
             <TextView
-                android:id="@+id/statusLabel"
+                android:id="@+id/landmarkLabel"
                 android:layout_marginStart="8dp"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
@@ -115,12 +115,41 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/album_title" />
             <TextView
-                android:id="@+id/status"
-                android:layout_toRightOf="@+id/statusLabel"
+                android:id="@+id/landmark"
+                android:layout_toRightOf="@+id/landmarkLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/land_mark"
                 android:layout_below="@id/locationLabel"
+                android:paddingLeft="5dp"
+                android:paddingRight="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title" />
+
+            <TextView
+                android:id="@+id/statusLabel"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/landmarkLabel"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="-1dp"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:visibility="gone"
+                android:text="@string/status"
+                android:textColor="@color/black"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_toRightOf="@+id/statusLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/status"
+                android:visibility="gone"
+                android:layout_below="@id/landmarkLabel"
                 android:paddingLeft="5dp"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"

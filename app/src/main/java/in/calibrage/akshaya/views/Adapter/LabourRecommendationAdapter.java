@@ -43,7 +43,8 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
         holder.textViewplotId.setText(recomm_Set.get(position).getFPlotcode());
         holder.textViewpalmArea.setText(recomm_Set.get(position).getPalmArea()+" "+"Ha");
         holder.textViewLocation.setText(recomm_Set.get(position).getVillageName());
-        holder.textViewstatus.setText(recomm_Set.get(position).getStatusType());
+        holder.landmark.setText(recomm_Set.get(position).getLandMark() );
+        holder.textViewstatus.setText(recomm_Set.get(position).getStatusType() );
         holder.farmer_Code.setText(recomm_Set.get(position).getFarmerCode());
         holder.plot_Mandal.setText(recomm_Set.get(position).getMandalName());
         holder.plot_State.setText(recomm_Set.get(position).getStateName());
@@ -61,7 +62,8 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
                 intent.putExtra("plotAge",    selected_plot);
                 intent.putExtra("plotVillage",    holder.textViewLocation.getText());
                 intent.putExtra("farmerCode",    holder.farmer_Code.getText());
-                intent.putExtra("landMark",    holder.textViewstatus.getText());
+                intent.putExtra("landMark",    holder.landmark.getText());
+                intent.putExtra("status",    holder.textViewstatus.getText());
                 intent.putExtra("plotMandal",    holder.plot_Mandal.getText());
                 intent.putExtra("plotState",    holder.plot_State.getText());
                 intent.putExtra("plotDistrict",    holder.plot_District.getText());
@@ -92,7 +94,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation;
-        public TextView textViewstatus,date_plantation;
+        public TextView textViewstatus,date_plantation,landmark;
         public CardView card_view;
         public TextView farmer_Code,plot_Mandal,plot_State,plot_District;
         public ViewHolder(View itemView) {
@@ -106,7 +108,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
             this.plot_State = (TextView) itemView.findViewById(R.id.plot_State);
             this.plot_District = (TextView) itemView.findViewById(R.id.plot_District);
             this.date_plantation = (TextView) itemView.findViewById(R.id.date_plantation);
-
+            this.landmark = (TextView) itemView.findViewById(R.id.landmark);
             this.card_view =  (CardView) itemView.findViewById(R.id.card_view);
 
         }

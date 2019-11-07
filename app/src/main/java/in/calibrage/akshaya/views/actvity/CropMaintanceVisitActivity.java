@@ -120,14 +120,16 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     private List<fertilizer> fertilizer_List = new ArrayList<>();
 
     private SpotsDialog mdilogue ;
-    String datetimevalute;
+    String datetimevalute,datetimevaluereq;
     RelativeLayout irrigation_text,uprootment_text,fert_rec_text,pest_text,diase_text,nut_text,Fert_text,InterCrop_text;
-    public TextView treesAppearance,treeGirth,freq_harvest,fruitColor,fruitSize,fruitHyegiene,plantationType;
+    public TextView treesAppearance,last_visit_date,freq_harvest,fruitColor,fruitSize,fruitHyegiene,plantationType;
     public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
     // ImageView thumbnail;
     public TextView comment_label,reason_label;
     String plot_Age,location,landmarkCode;
     ImageView backImg,home_btn;
+    SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
     //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +180,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         recycler_view_irrigation =(RecyclerView)findViewById(R.id.recyclerView_irrigation);
         irrigation_text=(RelativeLayout) findViewById(R.id.irr_rec_text);
         treesAppearance = findViewById(R.id.treesAppearance);
-
+        last_visit_date  = findViewById(R.id.last_visit_date);
         freq_harvest=findViewById(R.id.freq_harvest);
 
 
@@ -258,8 +260,9 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private void GetCropMaintenanceHistoryDetailsByCode() {
         mdilogue.show();
-        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id + "/"+ Farmer_code;
-        Log.e("url====",url);
+        //String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id + "/"+ Farmer_code;
+        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APDC0003000187" + "/"+ "APWGNJDC00030098";
+        Log.e("url====APDC0003000187",url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -277,10 +280,21 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
                     JSONObject healthPlantation_Data = jsonObject.getJSONObject("healthPlantationData");
                     int frequencyOfHarvest = jsonObject.getInt("frequencyOfHarvest");
-                    freq_harvest.setText(frequencyOfHarvest+"");
+                    freq_harvest.setText(frequencyOfHarvest+" Days");
                     Log.e("data===",healthPlantation_Data.getString("treesAppearance"));
                     treesAppearance.setText(healthPlantation_Data.getString("treesAppearance"));
 
+                    try {
+                        Date oneWayTripDate = input.parse(healthPlantation_Data.getString("updatedDate"));
+
+                        datetimevaluereq = output.format(oneWayTripDate);
+
+
+                        Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    last_visit_date.setText(datetimevaluereq);
                     JSONArray nutrient_Data = jsonObject.getJSONArray("nutrientData");
                     if(nutrient_Data.length()==0){
                         recyclerView_nut.setVisibility(View.GONE);
@@ -313,8 +327,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
                             //  String amount_total=json.getString("totalCost");
                             String  datee = date.substring(0, 10);
                             Log.e("datee===",datee);
-                            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
-                            SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+
                             try {
                                 Date oneWayTripDate = input.parse(datee);
 
@@ -624,8 +637,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
                             //  String amount_total=json.getString("totalCost");
                             String  datee = date.substring(0, 10);
                             Log.e("datee===",datee);
-                            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
-                            SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+
                             try {
                                 Date oneWayTripDate = input.parse(datee);
 

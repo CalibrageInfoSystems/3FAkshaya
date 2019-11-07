@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.calibrage.akshaya.MainActivity;
+
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.resGet3FInfo;
 import in.calibrage.akshaya.views.actvity.MapActivity;
