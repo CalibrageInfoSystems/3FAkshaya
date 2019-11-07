@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,25 +13,35 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.common.IDataChnaged;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.views.fragments.PaymentFragment;
 import in.calibrage.akshaya.views.fragments.TransFragment;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import static in.calibrage.akshaya.views.actvity.PaymentHistoryActivity.compareTo;
+
+public class MainActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -41,11 +52,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String financiyalYearFrom ;
     String financiyalYearTo ;
     String selected_item;
+    private Button submit;
+    private String fromString, toString;
     String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
     Spinner spin;
     PaymentFragment myFragment;
     private String currentDate,last_30day;
-
+    LinearLayout custom_linear;
+    private EditText fromText, toText;
+    private DatePickerDialog picker;
+    private Calendar calendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +74,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         tabLayout = findViewById(R.id.tablayout);
         tabChats = findViewById(R.id.tabpayments);
         tabStatus = findViewById(R.id.tabtrans);
-       // spin.setOnItemSelectedListener(this);
+        custom_linear =(LinearLayout) findViewById(R.id.linear2);
+        fromText = (EditText) findViewById(R.id.from_date);
+        fromText.setInputType(InputType.TYPE_NULL);
+        toText = (EditText) findViewById(R.id.to_date);
+        submit = (Button) findViewById(R.id.btn__sub);
+
+        spin.setOnItemSelectedListener(this);
         ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, selection);
         aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 
@@ -90,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Log.i("LOG_RESPONSE date ", currentDate);
 
-        Calendar calendar = Calendar.getInstance();
+         calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, -1);
         Date date = calendar.getTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -108,21 +130,164 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             financiyalYearTo = (CurrentYear + 1) + "-03-31";
 
         }
+        fromText.setHint(CommonUtil.getMultiColourString(getString(R.string.from_date)));
+        toText.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
+
+        fromText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+                picker = new DatePickerDialog(MainActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                fromText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+
+
+                            }
+                        }, year, month, day);
+                picker.show();
+                picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+            }
+        });
+
+
+        toText.setInputType(InputType.TYPE_NULL);
+        toText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar1 = Calendar.getInstance();
+                int day = calendar1.get(Calendar.DAY_OF_MONTH);
+                int month = calendar1.get(Calendar.MONTH);
+                int year = calendar1.get(Calendar.YEAR);
+                // date picker dialog
+                DatePickerDialog picker1 = new DatePickerDialog(MainActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                toText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                String selected_date = (dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                int month = (monthOfYear + 1);
+                                Log.e("selected_date===", selected_date);
+                            }
+                        }, year, month, day);
+
+                picker1.show();
+                picker1.getDatePicker().setMaxDate(System.currentTimeMillis());
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                fromString = fromText.getText().toString().trim();
+                toString = toText.getText().toString().trim();
+                Log.d("fromString==", fromString);
+                Log.d("toString==", toString);
+
+                if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
+                    showDialog(MainActivity.this, getResources().getString(R.string.enter_Date));
+//                    pay_adapter.clearAllDataa();
+//                    totalLinear.setVisibility(View.GONE);
+//                    Payment_recycle.setVisibility(View.GONE);
+                } else {
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    Date date1 = null;
+                    try {
+                        date1 = formatter.parse(fromString);
+
+                        Date date2 = formatter.parse(toString);
+                        if (date2.compareTo(date1) < 0) {
+
+                            showDialog(MainActivity.this, getResources().getString(R.string.datevalidation));
+//                            pay_adapter.clearAllDataa();
+//                            totalLinear.setVisibility(View.GONE); //
+//                            Payment_recycle.setVisibility(View.GONE);
+                            //Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
+                        } else {
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                            Date d1 = null;
+                            Date d2 = null;
+                            try {
+                                d1 = sdf.parse(fromString);
+
+                                d2 = sdf.parse(toString);
+
+
+                                System.out.println("1. " + sdf.format(d1).toUpperCase());
+                                System.out.println("2. " + sdf.format(d2).toUpperCase());
+
+                                if (compareTo(d1, d2) < 0) {
+
+                                    System.out.println("proceed");
+                                } else if (compareTo(d1, d2) > 0) {
+                                    System.out.println("invalid");
+                                } else {
+                                    System.out.println("equal");
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            long diff = d2.getTime() - d1.getTime();
+
+                            Log.e("diff===", String.valueOf(diff));
+
+                            float dayCount = (float) diff / (24 * 60 * 60 * 1000);
+
+                            Log.e("dayCount===", String.valueOf(dayCount));
+                            Intent intent = new Intent("KEY");
+                            intent.putExtra("todate", toString);
+                            intent.putExtra("fromdate", fromString);
+                            sendBroadcast(intent);
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+
+            }
+        });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i , long l) {
-         selected_item =selection[i];
-        SharedPrefsData.getInstance(this).updateStringValue(this,"sitem",selected_item);
-        Log.e("selected_item===",selected_item);
-        Intent i2 = new Intent("android.intent.action.SmsReceiver").putExtra("incomingSms", "mahesh");
-        i2.putExtra("incomingPhoneNumber", "7032214460");
-        sendBroadcast(i2);
-        return ;
-      //   pageAdapter.setSpinner_item(selected_item);
+        selected_item = selection[i];
+        fromText.getText().clear();
+        toText.getText().clear();
+        if (selected_item.equalsIgnoreCase("Last 30 Days")) {
 
+            Intent intent = new Intent("KEY");
+            intent.putExtra("todate", currentDate);
+            intent.putExtra("fromdate", last_30day);
+            sendBroadcast(intent);
+
+//
+        }
+       else if (selected_item.equalsIgnoreCase("Current Financial Year")) {
+
+            Intent intent = new Intent("KEY");
+            intent.putExtra("todate", financiyalYearTo);
+            intent.putExtra("fromdate", financiyalYearFrom);
+            sendBroadcast(intent);
+
+//
+        }
+        if (selected_item.equalsIgnoreCase("Custom Time Period")) {
+            custom_linear.setVisibility(View.VISIBLE);
+
+        }
+        else {
+            custom_linear.setVisibility(View.GONE);
+        }
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -152,51 +317,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         public Fragment getItem(int position) {
 
-           String selectedText= SharedPrefsData.getInstance(getApplicationContext()).getStringFromSharedPrefs("sitem");
+         //  String selectedText= SharedPrefsData.getInstance(getApplicationContext()).getStringFromSharedPrefs("sitem");
             switch (position) {
                 case 0:
 
+                    return new PaymentFragment();
 
-                    Bundle bundle = new Bundle();
-
-                                  Log.e("selected_item===109",selectedText);
-
-
-                    if(selectedText.equalsIgnoreCase("Current Financial Year")) {
-//
-                        bundle.putString("todate", financiyalYearTo);
-                        bundle.putString("fromdate", financiyalYearFrom);
-
-                    }
-                    if (selectedText.equalsIgnoreCase("Last 30 Days")) {
-
-                    bundle.putString("todate", currentDate);
-                    bundle.putString("fromdate", last_30day);
-
-                }
-                    else if(selectedText.equalsIgnoreCase("Current Financial Year")) {
-
-                        bundle.putString("todate", financiyalYearTo);
-                        bundle.putString("fromdate", financiyalYearFrom);
-
-                    }
-                    //PASS OVER THE BUNDLE TO OUR FRAGMENT
-                    PaymentFragment myFragment = new PaymentFragment();
-                    myFragment.setArguments(bundle);
-
-//
-
-
-              //  getSupportFragmentManager().beginTransaction().replace(R.id.container,myFragment).commit();
-                    return myFragment;
-
-//                    PaymentFragment fragmentDemo = new PaymentFragment();
-////
-//			Bundle args = new Bundle();
-//			args.putInt("someInt", 1);
-//			args.putString("someTitle", "Roja");
-//			fragmentDemo.setArguments(args);
-//                    return fragmentDemo;
 
                 case 1:
                     return new TransFragment();

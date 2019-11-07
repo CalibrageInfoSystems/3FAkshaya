@@ -60,14 +60,7 @@ public class PaymentFragment  extends BaseFragment {
 
         View rootView = inflater.inflate(R.layout.fragment_payment, container, false);
 
-        if (getArguments() != null) {
 
-
-//UNPACK OUR DATA FROM OUR BUNDLE
-            to_date = this.getArguments().getString("todate").toString();
-            from_date = this.getArguments().getString("fromdate");
-            Log.e("NAME===", to_date + "====" + from_date + "");
-        }
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
          Farmer_code = pref.getString("farmerid", "");
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
@@ -82,13 +75,14 @@ public class PaymentFragment  extends BaseFragment {
 
         Payment_recycle.setHasFixedSize(true);
         Payment_recycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        // recyclerView.setAdapter(adapter);
-        if (isOnline(getContext()))
-            getPaymentDetails();
-        else {
-            showDialog(getActivity(), getResources().getString(R.string.Internet));
 
-        }
+        // recyclerView.setAdapter(adapter);
+//        if (isOnline(getContext()))
+//            getPaymentDetails();
+//        else {
+//            showDialog(getActivity(), getResources().getString(R.string.Internet));
+//
+//        }
         pay_adapter = new PaymentAdapter(getContext());
         Payment_recycle.setAdapter(pay_adapter);
 //
@@ -96,18 +90,28 @@ public class PaymentFragment  extends BaseFragment {
 //        yearFragTxt.setText("YEAR : "+String.valueOf(year));
         return rootView;
     }
-    private BroadcastReceiver mServiceReceiver = new BroadcastReceiver(){
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            //Extract your data - better to use constants...
-            String IncomingSms=intent.getStringExtra("incomingSms");//
-            String phoneNumber=intent.getStringExtra("incomingPhoneNumber");
-            Toast.makeText(context, "mallem Mahesh", Toast.LENGTH_SHORT).show();
 
+    private BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            to_date = intent.getStringExtra("todate");
+            from_date = intent.getStringExtra("fromdate");
+            Payment_recycle.setVisibility(View.GONE);
+
+            if (isOnline(getContext()))
+                getPaymentDetails();
+            else {
+                showDialog(getActivity(), getResources().getString(R.string.Internet));
+
+            }
+            Log.e("roja=====",to_date+"=====" + from_date);
         }
     };
+
     private void getPaymentDetails() {
+        pay_adapter.clearAllDataa();
+
         JsonObject object = paymenObject();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.postpayment(object)
@@ -180,6 +184,7 @@ public class PaymentFragment  extends BaseFragment {
     }
 
     private JsonObject paymenObject() {
+        Log.e("roja=====176",to_date+"=====" + from_date);
         PaymentRequestModel requestModel = new PaymentRequestModel();
         //TODO need to save in shared pref
         /*
@@ -201,23 +206,38 @@ public class PaymentFragment  extends BaseFragment {
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        try {
-            if(mServiceReceiver != null){
-                getContext().unregisterReceiver(mServiceReceiver);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onResume() {
         super.onResume();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("android.intent.action.SmsReceiver");
-        getContext().registerReceiver(mServiceReceiver , filter);
+        getContext().registerReceiver(mNotificationReceiver, new IntentFilter("KEY"));
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().unregisterReceiver(mNotificationReceiver);
+    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//
+//
+//
+//        try {
+//            if(mServiceReceiver != null){
+//                getContext().unregisterReceiver(mServiceReceiver);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction("android.intent.action.SmsReceiver");
+//        getContext().registerReceiver(mServiceReceiver , filter);
+//    }
 }
