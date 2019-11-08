@@ -40,7 +40,7 @@ public class contactfragment extends BaseFragment {
 
     private String mParam1;
     private String mParam2;
-    private TextView officer_name, officer_mobile, manager_mobile, head_name, care_number, whatsapp_number;
+    private TextView officer_name, officer_mobile, manager_mobile, head_name, care_number, whatsapp_number,manager_name;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
 
@@ -80,10 +80,11 @@ public class contactfragment extends BaseFragment {
                 container, false);
         officer_name = (TextView) view.findViewById(R.id.officer_name);
         officer_mobile = (TextView) view.findViewById(R.id.officer_mobile);
-        manager_mobile = (TextView) view.findViewById(R.id.manager_name);
+        manager_name = (TextView) view.findViewById(R.id.manager_name);
         head_name = (TextView) view.findViewById(R.id.head_name);
         care_number = (TextView) view.findViewById(R.id.care_number);
         whatsapp_number = (TextView) view.findViewById(R.id.whatsapp);
+        manager_mobile = (TextView) view.findViewById(R.id.manager_mobile);
         care_number.setText("1234567890");
         whatsapp_number.setText("9876543210");
         if (isOnline(getContext()))
@@ -120,14 +121,15 @@ public class contactfragment extends BaseFragment {
                     }
 
                     @Override
-                    public void onNext(resGet3FInfo resGet3FInfo) {
+                    public void onNext(final resGet3FInfo resGet3FInfo) {
 
 
                         mdilogue.cancel();
                         officer_name.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerName());
                         officer_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
-                        manager_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerName());
+                        manager_name.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerName());
                         head_name.setText(resGet3FInfo.getResult().getImportantContacts().getStateHeadName());
+                        manager_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
 
                         Log.d(TAG, "---- analysis ---->GetContactInfo -->> :" + resGet3FInfo.getResult().getImportantContacts());
 //
@@ -148,7 +150,41 @@ public class contactfragment extends BaseFragment {
                                 }
                             }
                         });
+                        officer_mobile.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
 
+
+                                Intent i = new Intent(Intent.ACTION_DIAL, u);
+
+                                try {
+
+                                    startActivity(i);
+                                } catch (SecurityException s) {
+
+                                    Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            }
+                        });
+
+                        manager_mobile.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
+
+
+                                Intent i = new Intent(Intent.ACTION_DIAL, u);
+
+                                try {
+
+                                    startActivity(i);
+                                } catch (SecurityException s) {
+
+                                    Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            }
+                        });
                         whatsapp_number.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

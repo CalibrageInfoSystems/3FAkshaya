@@ -159,17 +159,19 @@
 
             <TextView
                 android:id="@+id/CommentsLabel"
-                android:layout_marginStart="8dp"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="@string/comments"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="2dp"
-                android:paddingTop="@dimen/album_title_padding"
-                android:textColor="@color/black"
                 android:layout_below="@+id/DosageLabel"
-                android:textStyle="bold"
-                android:textSize="@dimen/album_title" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="-1dp"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:text="@string/comments"
+                android:textColor="@color/black"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/Comments"
                 android:layout_toRightOf="@+id/CommentsLabel"

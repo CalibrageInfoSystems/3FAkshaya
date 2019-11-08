@@ -27,8 +27,8 @@
         android:title="@string/requests"
         />
     <item
-        android:id="@+id/action_logout"
+        android:id="@+id/action_care"
         android:enabled="true"
-        android:icon="@drawable/ic_logout"
-        android:title="@string/logout" />
+        android:icon="@drawable/ic_care"
+        android:title="@string/care" />
 </menu>

@@ -193,6 +193,10 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
 //                    pay_adapter.clearAllDataa();
 //                    totalLinear.setVisibility(View.GONE);
 //                    Payment_recycle.setVisibility(View.GONE);
+                    Intent intent = new Intent("KEY");
+                    intent.putExtra("todate", "clear");
+                    intent.putExtra("fromdate", fromString);
+                    sendBroadcast(intent);
                 } else {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     Date date1 = null;
@@ -203,10 +207,11 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
                         if (date2.compareTo(date1) < 0) {
 
                             showDialog(MainActivity.this, getResources().getString(R.string.datevalidation));
-//                            pay_adapter.clearAllDataa();
-//                            totalLinear.setVisibility(View.GONE); //
-//                            Payment_recycle.setVisibility(View.GONE);
-                            //Toast.makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent("KEY");
+                            intent.putExtra("todate", "clear");
+                            intent.putExtra("fromdate", fromString);
+                            sendBroadcast(intent);
+//                            makeText(getApplicationContext(), "Please Enter From Date is less than To Date", Toast.LENGTH_LONG).show();
                         } else {
 
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -262,27 +267,30 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
         selected_item = selection[i];
         fromText.getText().clear();
         toText.getText().clear();
-        if (selected_item.equalsIgnoreCase("Last 30 Days")) {
 
+        if(i == 0)
+        {
             Intent intent = new Intent("KEY");
             intent.putExtra("todate", currentDate);
             intent.putExtra("fromdate", last_30day);
             sendBroadcast(intent);
-
-//
-        }
-       else if (selected_item.equalsIgnoreCase("Current Financial Year")) {
+        }else if(i== 1)
+        {
 
             Intent intent = new Intent("KEY");
             intent.putExtra("todate", financiyalYearTo);
             intent.putExtra("fromdate", financiyalYearFrom);
             sendBroadcast(intent);
-
-//
+        }else if(i == 2)
+        {
+            Intent intent = new Intent("KEY");
+            intent.putExtra("todate", "clear");
+            intent.putExtra("fromdate", financiyalYearFrom);
+            sendBroadcast(intent);
         }
+
         if (selected_item.equalsIgnoreCase("Custom Time Period")) {
             custom_linear.setVisibility(View.VISIBLE);
-
         }
         else {
             custom_linear.setVisibility(View.GONE);

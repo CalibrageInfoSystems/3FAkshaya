@@ -401,21 +401,26 @@
     <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>
     <string name="product_quantity"><![CDATA[ఉత్పత్తి & పరిమాణం]]></string>
     <string name="last_date">చివరి సందర్శన తేదీ</string>
-    <string name="driver_name">DriverName</string>
-    <string name="vehicle_Number">Vehicle Number</string>
-    <string name="collectionCenter">CollectionCenter</string>
-    <string name="grossWeight">GrossWeight</string>
-    <string name="tareWeight">TareWeight</string>
-    <string name="totalBunches">TotalBunches</string>
-    <string name="acceptedBunches">AcceptedBunches</string>
-    <string name="rejectedBunches">RejectedBunches</string>
-    <string name="operatorName">OperatorName</string>
-    <string name="receiptImg">Receipt</string>
-    <string name="trans">Transaction charges</string>
+    <string name="driver_name">డ్రైవర్ పేరు</string>
+    <string name="vehicle_Number">వాహన సంఖ్య</string>
+    <string name="collectionCenter">సేకరణ కేంద్రం</string>
+    <string name="grossWeight">స్థూల బరువు</string>
+    <string name="tareWeight">తారే బరువు</string>
+    <string name="totalBunches">మొత్తం గెలలు</string>
+    <string name="acceptedBunches">అంగీకరించిన గెలలు</string>
+    <string name="rejectedBunches">తిరస్కరించబడిన గెలలు</string>
+    <string name="operatorName">ఆపరేటర్ పేరు</string>
+    <string name="receiptImg">రసీదులు</string>
+    <string name="trans">రవాణా ఛార్జీలు</string>
+    <string name="manager_num">clusterOfficerManagerContactNumber</string>
+    <string name="fertgodown">Fertilizer \n Godowns</string>
+    <string name="care">Care</string>
     <string-array name="switch_tabs">
-        <item>గోదాముల</item>
+
+        <item>ఎరువుల గోడౌన్లు</item>
         <item>సేకరణ కేంద్రాలు</item>
         <item>మిల్స్</item>
+        <item>నర్సరీలు</item>
     </string-array>
 
 </resources>

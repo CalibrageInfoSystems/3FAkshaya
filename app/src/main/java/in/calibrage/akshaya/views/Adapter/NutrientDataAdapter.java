@@ -45,7 +45,7 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
 
         holder.comments.setText(dataa.getComments());
 
-        if (dataa.getDosage().contains("null")) {
+        if (dataa.getDosage().contains("0.0")) {
 
             holder.Dosage.setVisibility(View.GONE);
             holder.dosage_label.setVisibility(View.GONE);
@@ -54,6 +54,15 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
         } else {
             holder.Dosage.setVisibility(View.VISIBLE);
             holder.dosage_label.setVisibility(View.VISIBLE);
+            holder.UOMName.setVisibility(View.VISIBLE);
+        }
+        if (dataa.getUOMName().contains("null")) {
+
+
+            holder.UOMName.setVisibility(View.GONE);
+
+        } else {
+
             holder.UOMName.setVisibility(View.VISIBLE);
         }
         if (dataa.getComments().contains("null")) {

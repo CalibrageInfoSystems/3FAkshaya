@@ -36,6 +36,7 @@ import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.Godown_adapter;
 import in.calibrage.akshaya.views.Adapter.Mills_adapter;
+import in.calibrage.akshaya.views.Adapter.Nursery_adapter;
 import in.calibrage.akshaya.views.Adapter.PlotDetailsAdapter;
 import lib.kingja.switchbutton.SwitchMultiButton;
 import rx.Subscriber;
@@ -44,6 +45,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.view.View.VISIBLE;
 
 
 public class placesfragment extends BaseFragment implements OnMapReadyCallback {
@@ -57,7 +59,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
     private String mParam2;
     private SpotsDialog mdilogue;
     private OnFragmentInteractionListener mListener;
-    private RecyclerView fert_recyclerView, collection_recycleview, mill_recycleview;
+    private RecyclerView fert_recyclerView, collection_recycleview, mill_recycleview,nurseries_recycleview;
     RelativeLayout fert_text, collection_text, mill_text;
     SwitchMultiButton sw_paymentMode;
     private Subscription mSubscription;
@@ -117,6 +119,12 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
         mill_recycleview.setHasFixedSize(true);
         RecyclerView.LayoutManager mill = new LinearLayoutManager(getContext());
         mill_recycleview.setLayoutManager(mill);
+
+
+        nurseries_recycleview= (RecyclerView) view.findViewById(R.id.recyclerView_nurcery);
+        nurseries_recycleview.setHasFixedSize(true);
+        RecyclerView.LayoutManager nur = new LinearLayoutManager(getContext());
+        nurseries_recycleview.setLayoutManager(nur);
         if (isOnline(getContext()))
             Get3FInfoo();
         else {
@@ -130,17 +138,26 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
             public void onSwitch(int position, String tabText) {
 
                 if (position == 0) {
-                    fert_recyclerView.setVisibility(View.VISIBLE);
+                    fert_recyclerView.setVisibility(VISIBLE);
                     collection_recycleview.setVisibility(View.GONE);
                     mill_recycleview.setVisibility(View.GONE);
+                    nurseries_recycleview.setVisibility(View.GONE);
                 } else if (position == 1) {
                     fert_recyclerView.setVisibility(View.GONE);
-                    collection_recycleview.setVisibility(View.VISIBLE);
+                    collection_recycleview.setVisibility(VISIBLE);
                     mill_recycleview.setVisibility(View.GONE);
+                    nurseries_recycleview.setVisibility(View.GONE);
                 } else if (position == 2) {
                     fert_recyclerView.setVisibility(View.GONE);
                     collection_recycleview.setVisibility(View.GONE);
-                    mill_recycleview.setVisibility(View.VISIBLE);
+                    mill_recycleview.setVisibility(VISIBLE);
+                    nurseries_recycleview.setVisibility(View.GONE);
+                }
+                else if (position == 3) {
+                    fert_recyclerView.setVisibility(View.GONE);
+                    collection_recycleview.setVisibility(View.GONE);
+                    mill_recycleview.setVisibility(View.GONE);
+                    nurseries_recycleview.setVisibility(VISIBLE);
                 }
             }
         });
@@ -172,46 +189,65 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
 
                     @Override
                     public void onNext(resGet3FInfo resGet3FInfo) {
+
+
                         if (resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null) {
                             no_data.setVisibility(View.GONE);
-                            fert_recyclerView.setVisibility(View.VISIBLE);
+                            fert_recyclerView.setVisibility(VISIBLE);
                             Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(), getContext());
                             fert_recyclerView.setAdapter(adapter);
 
 
                         } else {
-                            no_data.setVisibility(View.VISIBLE);
+                            no_data.setVisibility(VISIBLE);
                             fert_recyclerView.setVisibility(View.GONE);
 
                         }
 
                         if (resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null) {
                             no_data.setVisibility(View.GONE);
-                          collection_recycleview.setVisibility(View.VISIBLE);
+                          collection_recycleview.setVisibility(VISIBLE);
                             collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(), getContext());
                             collection_recycleview.setAdapter(adapter);
 
 
                         } else {
 
-                           no_data.setVisibility(View.VISIBLE);
+                           no_data.setVisibility(VISIBLE);
                             collection_recycleview.setVisibility(View.GONE);
 
                         }
                         if (resGet3FInfo.getResult().getImportantPlaces().getMills() != null) {
                             no_data.setVisibility(View.GONE);
-                            mill_recycleview.setVisibility(View.VISIBLE);
+                            mill_recycleview.setVisibility(VISIBLE);
 
                             Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(), getContext());
                             mill_recycleview.setAdapter(adapter);
 
 
                         } else {
-                            no_data.setVisibility(View.VISIBLE);
+                            no_data.setVisibility(VISIBLE);
                             mill_recycleview.setVisibility(View.GONE);
 
 
                         }
+                        Log.e("Nurseries======",resGet3FInfo.getResult().getImportantPlaces().getNurseries()+"");
+                        if (resGet3FInfo.getResult().getImportantPlaces().getNurseries() != null) {
+                            Log.e("Nurseries======236",resGet3FInfo.getResult().getImportantPlaces().getNurseries()+"");
+                            no_data.setVisibility(View.GONE);
+                            nurseries_recycleview.setVisibility(VISIBLE);
+
+                            Nursery_adapter nus_adapter = new Nursery_adapter(resGet3FInfo.getResult().getImportantPlaces().getNurseries(), getContext());
+                            nurseries_recycleview.setAdapter(nus_adapter);
+
+
+                        } else {
+                            no_data.setVisibility(VISIBLE);
+                            nurseries_recycleview.setVisibility(View.GONE);
+
+
+                        }
+
                         sw_paymentMode.setSelectedTab(0);
                     }
                 });

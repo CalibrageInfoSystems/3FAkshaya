@@ -275,7 +275,7 @@
     <string name="visit_req">Visit Request</string>
     <string name="Loan_req">Loan Request</string>
     <string name="officer_name">Cluster Officer Name</string>
-    <string name="officer_mobile">Cluster Officer Mobile</string>
+    <string name="officer_mobile">Cluster Officer  Contact Number</string>
     <string name="manager_name">Cluster Manager Name </string>
     <string name="head_name">State Head Name</string>
     <string name="whats_number">Whatsapp Number</string>
@@ -330,13 +330,18 @@
     <string name="rejectedBunches">Rejected Bunches</string>
     <string name="operatorName">Operator Name</string>
     <string name="receiptImg">Receipt</string>
-    <string name="trans">Transaction charges</string>
+    <string name="trans">Transportation Charges</string>
+    <string name="fertgodown">Fertilizer Godowns</string>
+    <string name="manager_num">Cluster Manager Contact Number</string>
+    <string name="care">Care</string>
+
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">
-        <item>Godowns</item>
+        <item>@string/fertgodown</item>
         <item>Collection Centers</item>
         <item>Mills</item>
+        <item>Nurseries</item>
     </string-array>
 
 </resources>

@@ -152,10 +152,10 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                         viewFragment(new RequestsFragment(), RequestsFragment.TAG);
                         break;
                     }
-                    case R.id.action_logout: {
+                    case R.id.action_care: {
                         mSelectedItem = item.getItemId();
-                        bottom_navigation.setSelectedItemId(R.id.action_requests);
-                        logOutDialog();
+                      //  bottom_navigation.setSelectedItemId(R.id.action_requests);
+                       caredial();
                         break;
                     }
                 }
@@ -175,6 +175,21 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             }
         });
     }
+
+    private void caredial() {
+
+            Uri u = Uri.parse("tel:" + "123456789");
+            Intent i = new Intent(Intent.ACTION_DIAL, u);
+            try {
+                startActivity(i);
+            } catch (SecurityException s) {
+                Toast.makeText(HomeActivity.this, "SecurityException", Toast.LENGTH_LONG)
+                        .show();
+            }
+        }
+
+
+
     public void initToolBar() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -239,7 +254,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             if (this.dl.isDrawerOpen(GravityCompat.START))
                 this.dl.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_logout) {
-            bottom_navigation.setSelectedItemId(R.id.action_requests);
+          //  bottom_navigation.setSelectedItemId(R.id.action_requests);
             //popupdialog to show message to logout the application
             logOutDialog();
         }

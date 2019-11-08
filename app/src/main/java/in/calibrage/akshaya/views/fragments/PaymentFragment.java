@@ -54,6 +54,7 @@ public class PaymentFragment  extends BaseFragment {
     TextView noRecords,ffb,totalBalance;
     PaymentAdapter pay_adapter;
     String Farmer_code;
+    LinearLayout linear1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class PaymentFragment  extends BaseFragment {
         Payment_recycle = (RecyclerView) rootView.findViewById(R.id.payment_recycler_view);
         noRecords = (TextView) rootView.findViewById(R.id.text);
         ffb = (TextView) rootView.findViewById(R.id.ffb_total);
+        linear1=(LinearLayout) rootView.findViewById(R.id.linear1);
         totalBalance = (TextView) rootView.findViewById(R.id.totalBalance);
 
         Payment_recycle.setHasFixedSize(true);
@@ -99,11 +101,17 @@ public class PaymentFragment  extends BaseFragment {
             from_date = intent.getStringExtra("fromdate");
             Payment_recycle.setVisibility(View.GONE);
 
-            if (isOnline(getContext()))
-                getPaymentDetails();
-            else {
-                showDialog(getActivity(), getResources().getString(R.string.Internet));
-
+            if(to_date.equalsIgnoreCase("clear"))
+            {
+                pay_adapter.clearAllDataa();
+                linear1.setVisibility(View.GONE);
+            }else {
+                linear1.setVisibility(View.VISIBLE);
+                if (isOnline(getContext()))
+                    getPaymentDetails();
+                else {
+                    showDialog(getActivity(), getResources().getString(R.string.Internet));
+                }
             }
             Log.e("roja=====",to_date+"=====" + from_date);
         }
@@ -111,7 +119,7 @@ public class PaymentFragment  extends BaseFragment {
 
     private void getPaymentDetails() {
         pay_adapter.clearAllDataa();
-
+        mdilogue.show();
         JsonObject object = paymenObject();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.postpayment(object)

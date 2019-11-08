@@ -52,20 +52,35 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
         }
-        if (superHero.getDosage().contains("null"))
-        {
+        if (superHero.getDosage().contains("0.0")) {
 
             holder.Dosage.setVisibility(View.GONE);
             holder.dosage_label.setVisibility(View.GONE);
             holder.UOMName.setVisibility(View.GONE);
 
-        }
-        else {
+        } else {
             holder.Dosage.setVisibility(View.VISIBLE);
             holder.dosage_label.setVisibility(View.VISIBLE);
             holder.UOMName.setVisibility(View.VISIBLE);
         }
+        if (superHero.getUOMName().contains("null")) {
 
+
+            holder.UOMName.setVisibility(View.GONE);
+
+        } else {
+
+            holder.UOMName.setVisibility(View.VISIBLE);
+        }
+        if (superHero.getComments().contains("null")) {
+            //   Log.e("bbbbb",superHero.getmAmount());
+            holder.Comments.setVisibility(View.GONE);
+            holder.CommentsLabel.setVisibility(View.GONE);
+
+        } else {
+            holder.Comments.setVisibility(View.VISIBLE);
+            holder.CommentsLabel.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -83,7 +98,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         public TextView Chemical;
         public TextView RecommendedChemical;
         public TextView Dosage;
-        public TextView UOMName,dosage_label,Comments,txtDriverName;
+        public TextView UOMName,dosage_label,Comments,CommentsLabel;
         protected CardView card_view;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -94,6 +109,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             UOMName = itemView.findViewById(R.id.UOMName);
             Comments = itemView.findViewById(R.id.Comments);
             dosage_label= itemView.findViewById(R.id.DosageLabel);
+            CommentsLabel= itemView.findViewById(R.id.CommentsLabel);
             card_view=itemView.findViewById(R.id.card_view);
         }
     }

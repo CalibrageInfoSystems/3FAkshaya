@@ -51,6 +51,8 @@ public class pest_Adapter extends RecyclerView.Adapter<pest_Adapter.ViewHolder> 
             holder.Comments.setVisibility(View.VISIBLE);
             holder.Comments_label.setVisibility(View.VISIBLE);
         }
+
+
         if (dataa.getUOMName().contains("null")) {
 
             holder.UOMName.setVisibility(View.GONE);
@@ -60,14 +62,16 @@ public class pest_Adapter extends RecyclerView.Adapter<pest_Adapter.ViewHolder> 
             holder.UOMName.setVisibility(View.VISIBLE);
 
         }
-        if (dataa.getDosage().contains("null")) {
+        if (dataa.getDosage().contains("0.0")) {
 
             holder.Dosage.setVisibility(View.GONE);
             holder.Dosage_label.setVisibility(View.GONE);
+            holder.UOMName.setVisibility(View.GONE);
 
         } else {
             holder.Dosage.setVisibility(View.VISIBLE);
             holder.Dosage_label.setVisibility(View.VISIBLE);
+            holder.UOMName.setVisibility(View.VISIBLE);
         }
         if (dataa.getRecommendedChemical().contains("null")) {
 

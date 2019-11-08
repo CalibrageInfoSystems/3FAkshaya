@@ -262,6 +262,9 @@ public  class resGet3FInfo {
         @SerializedName("clusterOfficerManagerName")
         @Expose
         private String clusterOfficerManagerName;
+        @SerializedName("clusterOfficerManagerContactNumber")
+        @Expose
+        private String clusterOfficerManagerContactNumber;
         @SerializedName("stateHeadName")
         @Expose
         private String stateHeadName;
@@ -314,6 +317,13 @@ public  class resGet3FInfo {
             this.stateHeadName = stateHeadName;
         }
 
+        public String getClusterOfficerManagerContactNumber() {
+            return clusterOfficerManagerContactNumber;
+        }
+
+        public void setClusterOfficerManagerContactNumber(String clusterOfficerManagerContactNumber) {
+            this.clusterOfficerManagerContactNumber = clusterOfficerManagerContactNumber;
+        }
     }
 
     public class ImportantPlaces {
@@ -327,6 +337,10 @@ public  class resGet3FInfo {
         @SerializedName("godowns")
         @Expose
         private List<Godown> godowns = null;
+
+        @SerializedName("nurseries")
+        @Expose
+        private List<Nurseries> nurseries = null;
 
         public List<CollectionCenter> getCollectionCenters() {
             return collectionCenters;
@@ -352,6 +366,13 @@ public  class resGet3FInfo {
             this.godowns = godowns;
         }
 
+        public List<Nurseries> getNurseries() {
+            return nurseries;
+        }
+
+        public void setNurseries(List<Nurseries> nurseries) {
+            this.nurseries = nurseries;
+        }
     }
 
 
@@ -437,5 +458,64 @@ public  class resGet3FInfo {
 
     }
 
+    public class Nurseries {
 
+        @SerializedName("nurseryCode")
+        @Expose
+        private String nurseryCode;
+        @SerializedName("nurseryName")
+        @Expose
+        private String nurseryName;
+        @SerializedName("village")
+        @Expose
+        private String village;
+        @SerializedName("mandal")
+        @Expose
+        private String mandal;
+        @SerializedName("district")
+        @Expose
+        private String district;
+
+        public String getNurseryCode() {
+            return nurseryCode;
+        }
+
+        public void setNurseryCode(String nurseryCode) {
+            this.nurseryCode = nurseryCode;
+        }
+
+        public String getNurseryName() {
+            return nurseryName;
+        }
+
+        public void setNurseryName(String nurseryName) {
+            this.nurseryName = nurseryName;
+        }
+
+        public String getVillage() {
+            return village;
+        }
+
+        public void setVillage(String village) {
+            this.village = village;
+        }
+
+        public String getMandal() {
+            return mandal;
+        }
+
+        public void setMandal(String mandal) {
+            this.mandal = mandal;
+        }
+
+        public String getDistrict() {
+            return district;
+        }
+
+        public void setDistrict(String district) {
+            this.district = district;
+        }
+
+
+    }
 }

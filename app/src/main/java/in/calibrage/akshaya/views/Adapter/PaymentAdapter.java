@@ -35,8 +35,9 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
     public void updateData(List<PaymentResponseModel.PaymentResponce> viewModels) {
         payment_Set.clear();
-        payment_Set.addAll(viewModels);
-        notifyDataSetChanged();
+        Log.d("PaymentAdapter","----- analysis --- Size :"+payment_Set.size());
+        payment_Set= viewModels;
+      //  notifyDataSetChanged();
     }
 
     public PaymentAdapter(Context context, List<PaymentResponseModel.PaymentResponce> payment_Set) {

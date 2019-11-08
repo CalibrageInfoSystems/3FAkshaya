@@ -341,6 +341,7 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
                            /* pay_adapter = new PaymentAdapter(PaymentHistoryActivity.this, paymentResponseModel.getResult().getPaymentResponce());
                             Payment_recycle.setAdapter(pay_adapter);*/
                             pay_adapter.updateData(paymentResponseModel.getResult().getPaymentResponce());
+                            pay_adapter.notifyDataSetChanged();
                             totalLinear.setVisibility(View.VISIBLE);
                             //  unPaidCollectionsWeight.setText( String.valueOf(paymentResponseModel.getResult().getPaymentResponce().get(0).g())+""+"0 Kgs");
 
