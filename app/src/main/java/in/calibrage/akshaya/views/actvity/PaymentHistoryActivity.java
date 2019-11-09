@@ -97,10 +97,11 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
-
-        backImg = (ImageView) findViewById(R.id.back);
         totalLinear = (LinearLayout) findViewById(R.id.linear1);
         custom_linear =(LinearLayout) findViewById(R.id.linear2);
+
+        backImg = (ImageView) findViewById(R.id.back);
+
         home_btn = (ImageView) findViewById(R.id.home_btn);
         from_txt = (TextInputLayout) findViewById(R.id.txt_from_date);
         to_txt = (TextInputLayout) findViewById(R.id.txt_to_date);

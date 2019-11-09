@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
     private EditText fromText, toText;
     private DatePickerDialog picker;
     private Calendar calendar;
+    private ImageView backImg, home_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,25 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
         fromText.setInputType(InputType.TYPE_NULL);
         toText = (EditText) findViewById(R.id.to_date);
         submit = (Button) findViewById(R.id.btn__sub);
+        backImg = (ImageView) findViewById(R.id.back);
 
+        home_btn = (ImageView) findViewById(R.id.home_btn);
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
         spin.setOnItemSelectedListener(this);
         ArrayAdapter aa = new ArrayAdapter(this, R.layout.spinner_item, selection);
         aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);

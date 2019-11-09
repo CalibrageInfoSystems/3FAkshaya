@@ -91,6 +91,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             e.printStackTrace();
         }
         holder.txtDate.setText(request_date);
+
         //   holder.txtTime.setText(superHero.getTime() 0.6);
    holder.txtDateNTime.setText(labourlist_Set.get(position).getPalmArea() + " " + "Ha");
       //  holder.txtDateNTime.setText("0.6" + " " + "Ha");

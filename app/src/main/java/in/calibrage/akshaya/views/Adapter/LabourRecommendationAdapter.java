@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
@@ -41,7 +42,9 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
 
 
         holder.textViewplotId.setText(recomm_Set.get(position).getFPlotcode());
-        holder.textViewpalmArea.setText(recomm_Set.get(position).getPalmArea()+" "+"Ha");
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+
+        holder.textViewpalmArea.setText(df.format(recomm_Set.get(position).getPalmArea())+" "+"Ha");
         holder.textViewLocation.setText(recomm_Set.get(position).getVillageName());
         holder.landmark.setText(recomm_Set.get(position).getLandMark() );
         holder.textViewstatus.setText(recomm_Set.get(position).getStatusType() );

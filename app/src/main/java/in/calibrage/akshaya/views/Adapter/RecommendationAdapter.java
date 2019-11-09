@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
@@ -61,9 +62,10 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             }
 
         });
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
 
         ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
-        ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea() + " " + "Ha");
+        ((ViewHolder) holder).textViewpalmArea.setText(df.format(plot_Set.get(position).getPalmArea() )+ " " + "Ha");
         ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
         ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
 

@@ -65,7 +65,7 @@ Log.e("lat===",lat+"===="+log +"," +name );
                 .position(new LatLng(lat, log))
                 .title(name));
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, log), 5));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, log), 3));
 
 //        LatLng sydney = new LatLng(-34, 151);
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));

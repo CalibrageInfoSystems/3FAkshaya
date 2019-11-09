@@ -176,6 +176,12 @@ public class PaymentFragment  extends BaseFragment {
                                     totalBalance.setText(String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
                                 }
 
+                             if(paymentResponseModel.getAffectedRecords()==0){
+                                 noRecords.setVisibility(View.VISIBLE);
+                                 linear1.setVisibility(View.GONE);
+                                 Payment_recycle.setVisibility(View.GONE);
+                             }
+
                             } else {
                                 noRecords.setVisibility(View.VISIBLE);
     //

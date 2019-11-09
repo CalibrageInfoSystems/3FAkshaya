@@ -260,8 +260,8 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private void GetCropMaintenanceHistoryDetailsByCode() {
         mdilogue.show();
-        String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id + "/"+ Farmer_code;
-        //String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APDC0003000187" + "/"+ "APWGNJDC00030098";
+      String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + plot_id + "/"+ Farmer_code;
+      //String url = APIConstantURL.LOCAL_URL + "GetCropMaintenanceHistoryDetailsByPlotCode/" + "APDC0003000187" + "/"+ "APWGNJDC00030098";
         Log.e("url====APDC0003000187",url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
