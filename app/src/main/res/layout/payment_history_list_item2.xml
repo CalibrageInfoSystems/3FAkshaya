@@ -93,6 +93,7 @@
                             android:fontFamily="@font/roboto_regular"
                             android:gravity="center_vertical"
                             android:maxLines="1"
+                            android:textStyle="bold"
                             android:text="@string/amount"
                             android:textSize="@dimen/album_title" />
 
@@ -122,6 +123,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/gr_amount_label"
                             android:layout_weight="0.6"
+                            android:textStyle="bold"
                             android:gravity="center_vertical"
                             android:text="@string/adjusted"
 
@@ -153,7 +155,7 @@
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
                             android:text="@string/gr"
-
+                            android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
 
                         <TextView
@@ -182,7 +184,7 @@
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
                             android:text="@string/ffb"
-
+                            android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
 
                         <TextView
@@ -204,6 +206,7 @@
                         <TextView
                             android:id="@+id/adhocLabel"
                             android:layout_width="0dp"
+                            android:textStyle="bold"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
@@ -233,6 +236,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6"
+                            android:textStyle="bold"
                             android:gravity="center_vertical"
                             android:text="@string/invoice_rate"
                             android:textSize="@dimen/album_title"
@@ -267,6 +271,7 @@
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
                             android:text="@string/memo"
+                            android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
 
                         <TextView
@@ -296,7 +301,7 @@
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
                             android:text="@string/balance"
-                            android:textColor="@color/black"
+
                             android:textSize="@dimen/album_title"
                             android:textStyle="bold" />
 

@@ -131,70 +131,75 @@ public class contactfragment extends BaseFragment {
                         head_name.setText(resGet3FInfo.getResult().getImportantContacts().getStateHeadName());
                         manager_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
 
-                        Log.d(TAG, "---- analysis ---->GetContactInfo -->> :" + resGet3FInfo.getResult().getImportantContacts());
+                        try {
+                            Log.d(TAG, "---- analysis ---->GetContactInfo -->> :" + resGet3FInfo.getResult().getImportantContacts());
 //
-                        care_number.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v) {
-                                Uri u = Uri.parse("tel:" + "1234567890");
+                            care_number.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Uri u = Uri.parse("tel:" + "1234567890");
 
 
-                                Intent i = new Intent(Intent.ACTION_DIAL, u);
+                                    Intent i = new Intent(Intent.ACTION_DIAL, u);
 
-                                try {
+                                    try {
 
-                                    startActivity(i);
-                                } catch (SecurityException s) {
+                                        startActivity(i);
+                                    } catch (SecurityException s) {
 
-                                    Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
-                                            .show();
+                                        Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
+                                                .show();
+                                    }
                                 }
-                            }
-                        });
-                        officer_mobile.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v) {
-                                Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
+                            });
+                            officer_mobile.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
 
 
-                                Intent i = new Intent(Intent.ACTION_DIAL, u);
+                                    Intent i = new Intent(Intent.ACTION_DIAL, u);
 
-                                try {
+                                    try {
 
-                                    startActivity(i);
-                                } catch (SecurityException s) {
+                                        startActivity(i);
+                                    } catch (SecurityException s) {
 
-                                    Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
-                                            .show();
+                                        Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
+                                                .show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                        manager_mobile.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v) {
-                                Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
+                            manager_mobile.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
 
 
-                                Intent i = new Intent(Intent.ACTION_DIAL, u);
+                                    Intent i = new Intent(Intent.ACTION_DIAL, u);
 
-                                try {
+                                    try {
 
-                                    startActivity(i);
-                                } catch (SecurityException s) {
+                                        startActivity(i);
+                                    } catch (SecurityException s) {
 
-                                    Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
-                                            .show();
+                                        Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
+                                                .show();
+                                    }
                                 }
-                            }
-                        });
-                        whatsapp_number.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                String url = "https://api.whatsapp.com/send?phone=" + "+91 9876543210";
-                                ;
-                                Intent i = new Intent(Intent.ACTION_VIEW);
-                                i.setData(Uri.parse(url));
-                                startActivity(i);
-                            }
-                        });
+                            });
+                            whatsapp_number.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    String url = "https://api.whatsapp.com/send?phone=" + "+91 9876543210";
+                                    ;
+                                    Intent i = new Intent(Intent.ACTION_VIEW);
+                                    i.setData(Uri.parse(url));
+                                    startActivity(i);
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d(TAG, "---- analysis ---->GetContactInfo -->> :" + e.getLocalizedMessage());
+                        }
                     }
                 });
     }

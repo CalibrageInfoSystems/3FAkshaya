@@ -10,7 +10,7 @@
 
     Package name:
     D4:DA:1E:DA:DE:AB:50:8B:E1:8E:DC:2A:F5:8D:61:4C:6D:96:00:60
-
+  // AIzaSyCA26pi0qrd5pI1ywRO3cNGeuArvTDvjSg
     SHA-1 certificate fingerprint:
     D4:DA:1E:DA:DE:AB:50:8B:E1:8E:DC:2A:F5:8D:61:4C:6D:96:00:60
 
@@ -22,3 +22,5 @@
     -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCA26pi0qrd5pI1ywRO3cNGeuArvTDvjSg</string>
 </resources>
+
+<!--    AIzaSyDR2Cds_S4r_SKGzgm6AdrJZnvg3CpM7DE-->

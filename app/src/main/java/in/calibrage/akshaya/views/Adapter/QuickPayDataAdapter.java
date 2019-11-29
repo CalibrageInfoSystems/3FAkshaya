@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
     public Context mContext;
     private List<QuickPayModel.ListResult> stList = new ArrayList<>();
 
+    DecimalFormat dff = new DecimalFormat("####0.000");
     String datetimevaluereq;
 
     private quick_paylistener listener;
@@ -60,7 +63,7 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
 
         viewHolder.collection_id.setText(stList.get(position).getUColnid());
 
-        viewHolder.tvNetWeight.setText(stList.get(position).getQuantity() + " " + "MT");
+        viewHolder.tvNetWeight.setText(dff.format(stList.get(position).getQuantity())+ " " + "MT");
 
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
@@ -120,6 +123,7 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
         public CardView card_view;
         public QuickPayModel singlestudent;
 
+
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
 
@@ -127,6 +131,7 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
             tvNetWeight = (TextView) itemLayoutView.findViewById(R.id.tvNetWeight);
             tvDate = (TextView) itemLayoutView.findViewById(R.id.tvDate);
             tvCc = (TextView) itemLayoutView.findViewById(R.id.tvCc);
+
             card_view = (CardView) itemLayoutView.findViewById(R.id.card_view);
 
 

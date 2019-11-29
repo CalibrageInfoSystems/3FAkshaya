@@ -2,16 +2,24 @@ package in.calibrage.akshaya.views.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +29,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,10 +41,12 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.DeleteObject;
+import in.calibrage.akshaya.models.GetLabourPackageDiscount;
 import in.calibrage.akshaya.models.ReqPole;
 import in.calibrage.akshaya.models.ResPole;
 import in.calibrage.akshaya.models.Resdelete;
 import in.calibrage.akshaya.models.labour_req_response;
+import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.actvity.CropMaintanceVisitActivity;
@@ -45,18 +56,31 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapter.ViewHolder> {
+import static in.calibrage.akshaya.service.APIConstantURL.GetLabourPackageDiscount;
 
+public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapter.ViewHolder> {
+    TextView request_id, plot_code, plot_size, village, leader_name, pref_date, service_type, status, prun_amount, harv_amount, pack_name, collectionid, netweight,
+            Discount_percentage, amount,Discount_amount, comments, job_done, trees_count, service_charge, service_amount, total_prunning_amount, total_harvesting_amount;
+    Button cancel_btn, ok_btn;
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
-    String request_date, prefferdate, currentDate;
+    String request_date, prefferdate, currentDate, job_donee, prefferdate_popup;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
-
+    DecimalFormat df = new DecimalFormat("####0.00");
+    DecimalFormat dff = new DecimalFormat("####0.000");
+    SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+    String seleced_Duration;
+    int discount;
+    // double total_amount = Double.parseDouble(df.format(finalwithGST));
+    RelativeLayout new_data, coll_label, label_netweight, label_amount, lin_comments, trees_lable, label_prunning, label_harv, label_amount_service;
     private Reqlister reqlister;
     // RecyclerView recyclerView;
     String selectedItemID;
     int selectedPO;
+    DecimalFormat dec = new DecimalFormat("####0.00");
+    double total_prunning, total_hav, Total_amount;
 
     public MyLabour_ReqAdapter(List<labour_req_response.ListResult> labourlist_Set, Context ctx) {
         this.labourlist_Set = labourlist_Set;
@@ -76,69 +100,376 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.txtPlotId.setText(labourlist_Set.get(position).getPlotCode());
-        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date oneWayTripDate = input.parse(labourlist_Set.get(position).getStartDate());
-            Date prefferdatee = input.parse(labourlist_Set.get(position).getCreatedDate());
-            prefferdate = output.format(oneWayTripDate);
-            request_date = output.format(prefferdatee);
-            //datetimevalute.setText(output.format(oneWayTripDate));
 
-            Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
+        holder.txtPlotId.setText(labourlist_Set.get(position).getPlotCode());
+
+        try {
+
+            Date prefferdatee = input.parse(labourlist_Set.get(position).getStartDate());
+            prefferdate = output.format(prefferdatee);
+            if (labourlist_Set.get(position).getJobDoneDate() != null) {
+                Date oneWayTripDate = input.parse(labourlist_Set.get(position).getJobDoneDate() + "");
+                request_date = output.format(oneWayTripDate);
+                Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
+            }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.txtDate.setText(request_date);
-
+        holder.txtDate.setText(labourlist_Set.get(position).getLeader() + "");
+        //   holder.txtApproveDate.setText(labourlist_Set.get(position).getLeader()+"");
+        if ((holder.txtDate.getText().equals("null")) || holder.txtDate.getText() == "null") {
+            holder.txtDate.setVisibility(View.GONE);
+            holder.line_labour.setVisibility(View.GONE);
+        } else {
+            holder.txtDate.setVisibility(View.VISIBLE);
+            holder.line_labour.setVisibility(View.VISIBLE);
+        }
         //   holder.txtTime.setText(superHero.getTime() 0.6);
-   holder.txtDateNTime.setText(labourlist_Set.get(position).getPalmArea() + " " + "Ha");
-      //  holder.txtDateNTime.setText("0.6" + " " + "Ha");
+        holder.txtDateNTime.setText(dec.format(labourlist_Set.get(position).getPalmArea()) + " " + "Ha");
+        //  holder.txtDateNTime.setText("0.6" + " " + "Ha");
         holder.txtReqDate.setText(labourlist_Set.get(position).getPlotVillage());
         holder.txtApproveDate.setText(prefferdate);
 
         holder.req_code.setText(labourlist_Set.get(position).getRequestCode());
         holder.txtStatus.setText(labourlist_Set.get(position).getStatusType());
-        if (!"Closed".equals(holder.txtStatus.getText())) {
-            holder.cancel.setVisibility(View.VISIBLE);
 
-        } else {
-            holder.cancel.setVisibility(View.GONE);
-        }
-        if (!"Cancelled".equals(holder.txtStatus.getText())) {
-            holder.cancel.setVisibility(View.VISIBLE);
-
-        } else {
-            holder.cancel.setVisibility(View.GONE);
-        }
+//        if(labourlist_Set.get(position).getStatusType().equals("Closed") && labourlist_Set.get(position).getStatusType().equalsIgnoreCase("Closed")){
+//            holder.cancel.setVisibility(View.GONE);
+//            Log.e("staus====",labourlist_Set.get(position).getStatusType());
+//        }
+//        else {
+//            Log.e("cancel====",labourlist_Set.get(position).getStatusType());
+//            holder.cancel.setVisibility(View.VISIBLE);
+//        }
+//        if (!"Closed".equals(holder.txtStatus.getText())) {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
+//        if (!"Cancelled".equals(holder.txtStatus.getText())) {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
+        //todo
+        Log.e("statustype++++id", labourlist_Set.get(position).getStatusTypeId() + "");
+//        if(labourlist_Set.get(position).getStatusTypeId()!= 18 && labourlist_Set.get(position).getStatusTypeId()!=32  && labourlist_Set.get(position).getStatusTypeId()!=39){
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            holder.cancel.setVisibility(View.GONE);
+//
+//        }
         holder.txtname.setText(labourlist_Set.get(position).getServiceTypes());
 
 
         if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+            holder.details.setBackgroundColor(mContext.getColor(R.color.white2));
         } else {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
+            holder.details.setBackgroundColor(mContext.getColor(R.color.light_gray2));
 
         }
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        holder.cancel.setOnClickListener(new View.OnClickListener() {
+//        holder.cancel.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                selectedItemID = labourlist_Set.get(position).getRequestCode();
+//                selectedPO = position;
+//                showConformationDialog(selectedPO);
+////                selectedItemID = labourlist_Set.get(position).getRequestCode();
+////                selectedPO = position;
+////                try {
+////                    delete_request();
+////                } catch (JSONException e) {
+////                    e.printStackTrace();
+////                }
+//
+//            }
+//
+//        });
+        holder.details.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 selectedItemID = labourlist_Set.get(position).getRequestCode();
                 selectedPO = position;
-                try {
-                    delete_request();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                GetLabourPackageDiscount(selectedPO);
+
+
 
             }
 
         });
         AnimationUtil.animate(holder, true);
     }
+
+    private void GetLabourPackageDiscount(final int selectedPO) {
+        ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
+        mSubscription = service.getdiscount(APIConstantURL.GetLabourPackageDiscount)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<in.calibrage.akshaya.models.GetLabourPackageDiscount>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+
+                        //showDialog(LabourActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(GetLabourPackageDiscount getLabourPackageDiscount) {
+
+
+//                        for (int j = 0; j < getLabourPackageDiscount.getListResult().size(); j++) {
+//
+//                            String Second=getLabourPackageDiscount.getListResult().get(j).getDesc();
+//                            //Log.e("seleced_period===249", getLabourPackageDiscount.getListResult().get(j).getDesc());
+//                            Log.d("MAHESH:","ONE :"+seleced_Duration );
+//                            Log.d("MAHESH:","TWO :"+Second );
+//                            //  seleced_Duration = getLabourPackageDiscount.getListResult().get(j).getDesc();
+//                            if (seleced_Duration.equalsIgnoreCase(Second)) {
+//                                discount = getLabourPackageDiscount.getListResult().get(j).getDiscountPercentage();
+//                                Log.e("discount===253", discount + "");
+////
+//
+//                            }
+//                        }
+
+                        if (getLabourPackageDiscount.getIsSuccess()) {
+                            seleced_Duration = labourlist_Set.get(selectedPO).getDuration();
+                            Log.e("seleced_Duration===246", seleced_Duration);
+                            discount=0;
+                            for (int i=0;i<getLabourPackageDiscount.getListResult().size();i++)
+                            {
+                                String Data=getLabourPackageDiscount.getListResult().get(i).getDesc();
+                                Log.d("MAHESH ","discount Name :"+Data);
+                                if(Data.equalsIgnoreCase(seleced_Duration))
+                                {
+                                    discount = getLabourPackageDiscount.getListResult().get(i).getDiscountPercentage();
+                                    Log.d("MAHESH ","discount :"+discount);
+                                }
+                            }
+
+                        }
+
+                        showCondetailsDialog(selectedPO);
+                    }
+                });
+    }
+
+    private void showConformationDialog(final int selectedPO) {
+        TextView dialogMessage;
+        final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_cancel);
+        dialogMessage = dialog.findViewById(R.id.dialogMessage);
+        dialogMessage.setText(mContext.getString(R.string.alert_msg));
+        cancel_btn = dialog.findViewById(R.id.cancel_btn);
+        ok_btn = dialog.findViewById(R.id.ok_btn);
+/**
+ * @param OnClickListner
+ */
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    delete_request();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                dialog.dismiss();
+            }
+        });
+
+/**
+ * @param OnClickListner
+ */
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    private void showCondetailsDialog(int selectedPO) {
+
+        final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_ditails);
+        // grossWeight,tareWeight,totalBunches,acceptedBunches,rejectedBunches,operatorname;
+        request_id = dialog.findViewById(R.id.request_id);
+        plot_code = dialog.findViewById(R.id.plot_code);
+        plot_size = dialog.findViewById(R.id.plot_size);
+        village = dialog.findViewById(R.id.village);
+        leader_name = dialog.findViewById(R.id.leader_name);
+        pref_date = dialog.findViewById(R.id.pref_date);
+        service_type = dialog.findViewById(R.id.service_type);
+        status = dialog.findViewById(R.id.status);
+        prun_amount = dialog.findViewById(R.id.prun_amount);
+        harv_amount = dialog.findViewById(R.id.harv_amount);
+        pack_name = dialog.findViewById(R.id.pack_name);
+        Discount_amount = dialog.findViewById(R.id.discount_amount);
+        Discount_percentage = dialog.findViewById(R.id.discount_percentage);
+        // collectionid= dialog.findViewById(R.id.ids_collection);
+        netweight = dialog.findViewById(R.id.netweight);
+        amount = dialog.findViewById(R.id.amount);
+        job_done = dialog.findViewById(R.id.job_done);
+        new_data = dialog.findViewById(R.id.new_data);
+        coll_label = dialog.findViewById(R.id.lin_collection_ids);
+        label_netweight = dialog.findViewById(R.id.label_netweight);
+        label_amount = dialog.findViewById(R.id.label_amount);
+        lin_comments = dialog.findViewById(R.id.lin_comments);
+        trees_lable = dialog.findViewById(R.id.lin_new1);
+        label_prunning = dialog.findViewById(R.id.lin_new2);
+        label_harv = dialog.findViewById(R.id.label_harv_amount);
+        trees_count = dialog.findViewById(R.id.trees_count);
+        service_charge = dialog.findViewById(R.id.service_charge);
+        label_amount_service = dialog.findViewById(R.id.amount_service);
+        service_amount = dialog.findViewById(R.id.service_amount);
+        total_prunning_amount = dialog.findViewById(R.id.prun_total_amount);
+        total_harvesting_amount = dialog.findViewById(R.id.harv_amountt);
+        ok_btn = dialog.findViewById(R.id.btn_dialog);
+
+        request_id.setText(labourlist_Set.get(selectedPO).getRequestCode());
+        plot_code.setText(labourlist_Set.get(selectedPO).getPlotCode());
+        plot_size.setText(dec.format(labourlist_Set.get(selectedPO).getPalmArea()) + " " + "Ha");
+        village.setText(labourlist_Set.get(selectedPO).getPlotVillage());
+        leader_name.setText(labourlist_Set.get(selectedPO).getLeader() + "");
+        Date prefferdatee = null;
+        try {
+            prefferdatee = input.parse(labourlist_Set.get(selectedPO).getStartDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        prefferdate_popup = output.format(prefferdatee);
+        pref_date.setText(prefferdate_popup);
+        Log.d("MAHESH: ","Discount IN POPUP :"+discount);
+        Discount_percentage.setText(discount + "");
+        service_type.setText(labourlist_Set.get(selectedPO).getServiceTypes());
+        status.setText(labourlist_Set.get(selectedPO).getStatusType());
+        prun_amount.setText(df.format(labourlist_Set.get(selectedPO).getPruningAmount()));
+        harv_amount.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingAmount()));
+        pack_name.setText(labourlist_Set.get(selectedPO).getDuration() + "");
+
+        //   collectionid.setText(labourlist_Set.get(selectedPO).getCollectionIds()+"");
+        //  netweight.setText(labourlist_Set.get(selectedPO).getNetWeight()+"");
+
+
+        //service_charge.setText(labourlist_Set.get(selectedPO).getServiceChargePercentage()+"");
+
+
+        int percentages = (int) Math.round(Float.parseFloat(labourlist_Set.get(selectedPO).getServiceChargePercentage()));
+        Log.e("tress====234", String.valueOf(percentages));
+        service_charge.setText(percentages + "");
+
+        job_done.setText(request_date);
+
+
+        if (prun_amount.getText() != null && labourlist_Set.get(selectedPO).getTreesCount() != null) {
+
+            double prunning = Double.parseDouble(prun_amount.getText() + "");
+            double tress = Double.parseDouble(labourlist_Set.get(selectedPO).getTreesCount() + "");
+            total_prunning = tress * prunning;
+            total_prunning_amount.setText(df.format(total_prunning));
+            int value = (int) Math.round((Double) labourlist_Set.get(selectedPO).getTreesCount());
+            trees_count.setText(value + "");
+            Log.e("tress====236", String.valueOf(total_prunning));
+        } else {
+            trees_count.setText("0");
+            total_prunning_amount.setText("0.00");
+        }
+
+
+        if (harv_amount.getText() != null && labourlist_Set.get(selectedPO).getNetWeight() != null && labourlist_Set.get(selectedPO).getServiceChargePercentage() != null) {
+            double harvesting = Double.parseDouble(harv_amount.getText() + "");
+            double net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeight() + "");
+            netweight.setText(dff.format(net_weight));
+            total_hav = net_weight * harvesting;
+            total_harvesting_amount.setText(df.format(total_hav));
+            Total_amount = total_prunning + total_hav;
+            Log.e("tress====247", String.valueOf(Total_amount));
+            double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
+            Log.e("percentage====252", String.valueOf(percentage));
+            double Service_amount = (Total_amount * percentage) / 100;
+            Log.e("percentage====254", String.valueOf(Service_amount));
+            service_amount.setText(dff.format(Service_amount));
+            double discount_amount =(Total_amount * discount)/100;
+            Discount_amount.setText(discount_amount+"");
+
+        } else {
+            netweight.setText("0.000");
+            total_harvesting_amount.setText("0.00");
+            service_amount.setText("0.00");
+            Discount_amount.setText(("0.00"));
+            //  label_netweight.setVisibility(View.GONE);
+//            label_harv.setVisibility(View.GONE);
+//            label_amount_service.setVisibility(View.GONE);
+
+        }
+        if (labourlist_Set.get(selectedPO).getTotalCost() != null) {
+            amount.setText(labourlist_Set.get(selectedPO).getTotalCost() + "");
+        } else {
+            amount.setText("0.00");
+        }
+        if (job_done.getText() != null && TextUtils.isEmpty(request_date)) {
+            lin_comments.setVisibility(View.GONE);
+        }
+//        if (job_done.getText().equals("null")|| job_done.getText() == "null") {
+//            lin_comments.setVisibility(View.GONE);
+//        }
+        if (leader_name.getText().equals("null") || leader_name.getText() == "null") {
+            new_data.setVisibility(View.GONE);
+        }
+//        if (collectionid.getText().equals("null")|| collectionid.getText() == "null") {
+//            coll_label.setVisibility(View.GONE);
+//        }
+        if (netweight.getText().equals("null") || netweight.getText() == "null") {
+            label_netweight.setVisibility(View.GONE);
+        }
+//        if (amount.getText().equals("null")|| amount.getText() == "null") {
+//
+//        }
+
+
+/**
+ * @param OnClickListner
+ */
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
 
     private void delete_request() throws JSONException {
 
@@ -171,9 +502,9 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
                     @Override
                     public void onNext(Resdelete resdelete) {
-                        labour_req_response.ListResult item =labourlist_Set.get(selectedPO);
+                        labour_req_response.ListResult item = labourlist_Set.get(selectedPO);
                         item.setStatusType("Cancelled");
-                        labourlist_Set.set(selectedPO,item);
+                        labourlist_Set.set(selectedPO, item);
                         Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
                         notifyItemChanged(selectedPO);
 
@@ -215,10 +546,11 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         public TextView txtReqDate;
         public TextView txtApproveDate;
         public TextView txtStatus;
-        public TextView txtname;
+        public TextView txtname, line_labour;
         public TextView cancel;
         public TextView req_code;
         public CardView card_view;
+        LinearLayout details;
 //"requestCode":"REQVWGBDAB00010001L127"
 
         public ViewHolder(View itemView) {
@@ -234,8 +566,9 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             txtApproveDate = itemView.findViewById(R.id.status_type);
             txtStatus = itemView.findViewById(R.id.status);
             txtname = itemView.findViewById(R.id.name);
+            line_labour = itemView.findViewById(R.id.approveDateLabel);
             card_view = itemView.findViewById(R.id.card_view);
-            //   txtPin = itemView.findViewById(R.id.pin);*/
+            details = itemView.findViewById(R.id.details);
 
 
         }

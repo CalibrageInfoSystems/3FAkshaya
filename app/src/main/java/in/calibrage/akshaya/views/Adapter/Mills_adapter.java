@@ -19,6 +19,7 @@ import java.util.List;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.resGet3FInfo;
 import in.calibrage.akshaya.views.actvity.MapActivity;
+import in.calibrage.akshaya.views.actvity.MapsActivity;
 
 
 public class Mills_adapter extends RecyclerView.Adapter<Mills_adapter.viewHolder> {
@@ -55,7 +56,7 @@ public class Mills_adapter extends RecyclerView.Adapter<Mills_adapter.viewHolder
             public void onClick(View view) {
                 if(null != milllistResults.get(position).getLatitude())
                 {
-                    Intent intent = new Intent(ctx, MapActivity.class);
+                    Intent intent = new Intent(ctx, MapsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("name", milllistResults.get(position).getMill());
                     intent.putExtra("lat", milllistResults.get(position).getLatitude());

@@ -72,6 +72,9 @@ public class FertRequest {
     @SerializedName("issueTypeId")
     @Expose
     private Integer issueTypeId;
+    @SerializedName("godownCode")
+    @Expose
+    private String godownCode;
     @SerializedName("requestProductDetails")
     @Expose
     private List<RequestProductDetail> requestProductDetails = null;
@@ -252,6 +255,14 @@ public class FertRequest {
         this.issueTypeId = issueTypeId;
     }
 
+    public String getGodownCode() {
+        return godownCode;
+    }
+
+    public void setGodownCode(String godownCode) {
+        this.godownCode = godownCode;
+    }
+
     public List<RequestProductDetail> getRequestProductDetails() {
         return requestProductDetails;
     }
@@ -261,63 +272,74 @@ public class FertRequest {
     }
 
 
-    public static class RequestProductDetail {
 
-        @SerializedName("productId")
-        @Expose
-        private Integer productId;
-        @SerializedName("quantity")
-        @Expose
-        private Integer quantity;
-        @SerializedName("bagCost")
-        @Expose
-        private Double bagCost;
-        @SerializedName("size")
-        @Expose
-        private Double size;
-        @SerializedName("gstPersentage")
-        @Expose
-        private Double gstPersentage;
+ public static class RequestProductDetail {
 
-        public Integer getProductId() {
-            return productId;
-        }
+     @SerializedName("productId")
+     @Expose
+     private Integer productId;
+     @SerializedName("quantity")
+     @Expose
+     private Integer quantity;
+     @SerializedName("bagCost")
+     @Expose
+     private Double bagCost;
+     @SerializedName("size")
+     @Expose
+     private Double size;
+     @SerializedName("gstPersentage")
+     @Expose
+     private Double gstPersentage;
+     @SerializedName("productCode")
+     @Expose
+     private String productCode;
 
-        public void setProductId(Integer productId) {
-            this.productId = productId;
-        }
+     public Integer getProductId() {
+         return productId;
+     }
 
-        public Integer getQuantity() {
-            return quantity;
-        }
+     public void setProductId(Integer productId) {
+         this.productId = productId;
+     }
 
-        public void setQuantity(Integer quantity) {
-            this.quantity = quantity;
-        }
+     public Integer getQuantity() {
+         return quantity;
+     }
 
-        public Double getBagCost() {
-            return bagCost;
-        }
+     public void setQuantity(Integer quantity) {
+         this.quantity = quantity;
+     }
 
-        public void setBagCost(Double bagCost) {
-            this.bagCost = bagCost;
-        }
+     public Double getBagCost() {
+         return bagCost;
+     }
 
-        public Double getSize() {
-            return size;
-        }
+     public void setBagCost(Double bagCost) {
+         this.bagCost = bagCost;
+     }
 
-        public void setSize(Double size) {
-            this.size = size;
-        }
+     public Double getSize() {
+         return size;
+     }
 
-        public Double getGstPersentage() {
-            return gstPersentage;
-        }
+     public void setSize(Double size) {
+         this.size = size;
+     }
 
-        public void setGstPersentage(Double gstPersentage) {
-            this.gstPersentage = gstPersentage;
-        }
+     public Double getGstPersentage() {
+         return gstPersentage;
+     }
 
-    }
-}
+     public void setGstPersentage(Double gstPersentage) {
+         this.gstPersentage = gstPersentage;
+     }
+
+     public String getProductCode() {
+         return productCode;
+     }
+
+     public void setProductCode(String productCode) {
+         this.productCode = productCode;
+     }
+
+ }}

@@ -40,6 +40,7 @@ import in.calibrage.akshaya.views.Adapter.KnowledgeZoneBaseAdapter;
 import in.calibrage.akshaya.views.Adapter.SlideAdapter;
 import in.calibrage.akshaya.views.actvity.CollectionsActivity;
 import in.calibrage.akshaya.views.actvity.FertilizerActivity;
+import in.calibrage.akshaya.views.actvity.Godown_list;
 import in.calibrage.akshaya.views.actvity.LabourRecommendationsActivity;
 import in.calibrage.akshaya.views.actvity.LoanActivity;
 import in.calibrage.akshaya.views.actvity.PaymentActivity;
@@ -130,14 +131,16 @@ public class HomeFragment extends BaseFragment {
         v.findViewById(R.id.pole_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PoleActivity.class);
+                Intent intent = new Intent(getContext(), Godown_list.class);
+                intent.putExtra("godown","pole");
                 startActivity(intent);
             }
         });
         v.findViewById(R.id.fertilizer_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), FertilizerActivity.class);
+                Intent intent = new Intent(getContext(), Godown_list.class);
+                intent.putExtra("godown","fert");
                 startActivity(intent);
             }
         });

@@ -12,6 +12,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import in.calibrage.akshaya.R;
@@ -21,9 +22,10 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
     private Context context;
     private ArrayList<Product_new> product_Listitems = new ArrayList<>();
  double  valueRounded;
-
+    double cgst;
+    DecimalFormat dec = new DecimalFormat("####0.00");
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView product_name, quantity, amount, gst, item_cost;
+        public TextView product_name, quantity, amount, gst, item_cost,cgst,sgst;
         CardView card_view;
 
         public MyViewHolder(View view) {
@@ -31,7 +33,9 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
             product_name = view.findViewById(R.id.name);
             quantity = view.findViewById(R.id.qun_tity);
             amount = view.findViewById(R.id.Value);
-            gst = view.findViewById(R.id.per_gst);
+           // gst = view.findViewById(R.id.per_gst);
+            cgst =view.findViewById(R.id.cgst);
+            sgst =view.findViewById(R.id.sgst);
             item_cost = view.findViewById(R.id.item_cost);
             card_view = view.findViewById(R.id.card_view);
             view.setOnClickListener(new View.OnClickListener() {
@@ -69,12 +73,16 @@ Double amountt =(dataa.getWithGSTamount()) * dataa.getQuandity() ;
 
 
         valueRounded = Math.round(amountt * 100D) / 100D;
-        holder.amount.setText(valueRounded + "");
-        holder.gst.setText(String.valueOf(dataa.getGst() + ""));
+        holder.amount.setText(dec.format(valueRounded ));
+       // holder.gst.setText(dataa.getGst()+"");
 
-        holder.item_cost.setText(dataa.getAmount() + "");
-
-
+        holder.item_cost.setText(dec.format(dataa.getAmount()));
+       if(" "+dataa.getGst()!=null){
+           double GST = dataa.getGst();
+            cgst =GST/2;
+       }
+        holder.cgst.setText(cgst+"");
+        holder.sgst.setText(cgst+"");
     }
 
 

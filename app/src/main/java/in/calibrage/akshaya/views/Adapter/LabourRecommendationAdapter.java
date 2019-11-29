@@ -38,7 +38,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
         holder.textViewplotId.setText(recomm_Set.get(position).getFPlotcode());
@@ -52,7 +52,9 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
         holder.plot_Mandal.setText(recomm_Set.get(position).getMandalName());
         holder.plot_State.setText(recomm_Set.get(position).getStateName());
         holder.plot_District.setText(recomm_Set.get(position).getDistrictName());
-        holder.date_plantation.setText(recomm_Set.get(position).getDateOfPlanting());
+        //holder.date_plantation.setText(recomm_Set."get(position).getDateOfPlanting());
+        holder.yop.setText(recomm_Set.get(position).getDateOfPlanting() );
+        Log.e("date",recomm_Set.get(position).getDateOfPlanting() );
 
 final double selected_plot =recomm_Set.get(position).getPalmArea() ;
 
@@ -70,7 +72,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
                 intent.putExtra("plotMandal",    holder.plot_Mandal.getText());
                 intent.putExtra("plotState",    holder.plot_State.getText());
                 intent.putExtra("plotDistrict",    holder.plot_District.getText());
-                intent.putExtra("date_of_plandation",    holder.date_plantation.getText());
+                intent.putExtra("date_of_plandation",   recomm_Set.get(position).getDateOfPlanting());
 
 
                 Log.e("plotDistrict====", (String) holder.plot_Mandal.getText());
@@ -97,7 +99,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation;
-        public TextView textViewstatus,date_plantation,landmark;
+        public TextView textViewstatus,date_plantation,landmark,yop;
         public CardView card_view;
         public TextView farmer_Code,plot_Mandal,plot_State,plot_District;
         public ViewHolder(View itemView) {
@@ -112,6 +114,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
             this.plot_District = (TextView) itemView.findViewById(R.id.plot_District);
             this.date_plantation = (TextView) itemView.findViewById(R.id.date_plantation);
             this.landmark = (TextView) itemView.findViewById(R.id.landmark);
+            this.yop = (TextView) itemView.findViewById(R.id.yop);
             this.card_view =  (CardView) itemView.findViewById(R.id.card_view);
 
         }

@@ -51,6 +51,12 @@ public class VisitRequestModel {
         @SerializedName("plotCode")
         @Expose
         private String plotCode;
+        @SerializedName("plotVillage")
+        @Expose
+        private String plotVillage;
+        @SerializedName("palmArea")
+        @Expose
+        private String palmArea;
         @SerializedName("reqCreatedDate")
         @Expose
         private String reqCreatedDate;
@@ -72,6 +78,9 @@ public class VisitRequestModel {
         @SerializedName("updatedDate")
         @Expose
         private String updatedDate;
+        @SerializedName("yearofPlanting")
+        @Expose
+        private String yearofPlanting;
         @SerializedName("totalCost")
         @Expose
         private Double totalCost;
@@ -239,6 +248,30 @@ public class VisitRequestModel {
             this.comments = comments;
             this.cropMaintainceDate = cropMaintainceDate;
             this.issueTypeId = issueTypeId;
+        }
+
+        public String getPlotVillage() {
+            return plotVillage;
+        }
+
+        public void setPlotVillage(String plotVillage) {
+            this.plotVillage = plotVillage;
+        }
+
+        public String getPalmArea() {
+            return palmArea;
+        }
+
+        public void setPalmArea(String palmArea) {
+            this.palmArea = palmArea;
+        }
+
+        public String getYearofPlanting() {
+            return yearofPlanting;
+        }
+
+        public void setYearofPlanting(String yearofPlanting) {
+            this.yearofPlanting = yearofPlanting;
         }
     }
 

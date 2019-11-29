@@ -39,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,12 +61,15 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     String dis_price, Farmer_code;
     final Context context = this;
     Button button, btn_next;
-    TextView mealTotalText, txt_count;
+    TextView mealTotalText, txt_count,no_data;
     private String TAG = "PoleActivity";
     List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     private ImageView cartButtonIV;
     Double  total_amount;
+    int Godown_id;
+    String Godown_code,Godown_name;
+    DecimalFormat dec = new DecimalFormat("####0.00");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +80,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
         cartButtonIV = findViewById(R.id.cartButtonIV);
+        no_data =findViewById(R.id.no_data);
         ImageView backImg = (ImageView) findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +89,15 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
                 finish();
             }
         });
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Godown_code = extras.getString("code_godown");
+            Godown_id= extras.getInt("id_godown");
+            Godown_name = extras.getString("name_godown");
+
+
+
+        }
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
@@ -133,6 +147,9 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
 Log.e("myProductsList===",myProductsList.toString());
                         Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
+                        i.putExtra("godown_id",Godown_id);
+                        i.putExtra("godown_code",Godown_code);
+                        i.putExtra("godown_name",Godown_name);
                         startActivity(i);
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                     }
@@ -154,7 +171,7 @@ Log.e("myProductsList===",myProductsList.toString());
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
 
-        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByCategoryId/2";
+        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/2/"+ Godown_code;
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -170,8 +187,29 @@ Log.e("myProductsList===",myProductsList.toString());
                     Log.d(TAG, "GetProductsByCategoryId ======" + jsonObject);
                     String success = jsonObject.getString("isSuccess");
                     Log.d(TAG, "success======" + success);
-                    JSONArray alsoKnownAsArray = jsonObject.getJSONArray("listResult");
-                    parseData(alsoKnownAsArray);
+
+                    if(!jsonObject.getString("listResult").equals("null")) {
+
+                        JSONArray kl = jsonObject.getJSONArray("listResult");
+                        Log.d("kl==============", String.valueOf(kl));
+                        parseData(kl);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        no_data.setVisibility(View.GONE);
+                        Log.e("no==data==208","No data");
+
+                        // parseData(alsoKnownAsArray);
+
+
+                        String affectedRecords = jsonObject.getString("affectedRecords");
+                        Log.d(TAG, "GetProductsByCategoryId======" + affectedRecords);
+                    }else {
+                        no_data.setVisibility(View.VISIBLE);
+                        btn_next.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        Log.d(TAG,"------ analysis ------ "+"Iam NUll");
+                    }
+                   // JSONArray alsoKnownAsArray = jsonObject.getJSONArray("listResult");
+                   // parseData(alsoKnownAsArray);
 
 
                     String affectedRecords = jsonObject.getString("affectedRecords");
@@ -215,6 +253,7 @@ Log.e("myProductsList===",myProductsList.toString());
         requestQueue.add(stringRequest);
     }
     private void parseData(JSONArray array) {
+
         for (int i = 0; i < array.length(); i++) {
 
             ModelFert superHero = new ModelFert();
@@ -228,7 +267,7 @@ Log.e("myProductsList===",myProductsList.toString());
                 superHero.setPrice(json.getInt("price"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
-                Double size = json.getDouble("size");
+                int size = json.getInt("size");
                 Log.d(TAG, "--- Size ----" + size);
 //
                 superHero.setSize(size);
@@ -236,6 +275,9 @@ Log.e("myProductsList===",myProductsList.toString());
 
                 superHero.setId(json.getInt("id"));
                 superHero.setUomType(json.getString("uomType"));
+                superHero.setAvail_quantity(json.getInt("availableQuantity"));
+                superHero.setProduct_code(json.getString("code"));
+
                 Log.e("uom===", json.getString("uomType"));
                 int price_finall = json.getInt("price");
                 Log.e("price_final====", String.valueOf(price_finall));
@@ -244,7 +286,12 @@ Log.e("myProductsList===",myProductsList.toString());
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
 
-                superHero.setgst(json.getInt("gstPercentage"));
+                int gst =json.getInt("gstPercentage");
+                Log.e("gst====", String.valueOf(gst));
+
+                if( String.valueOf(gst)!= null) {
+                    superHero.setgst(gst);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -252,10 +299,9 @@ Log.e("myProductsList===",myProductsList.toString());
 
             product_list.add(superHero);
 
-
             adapter = new ModelFertAdapterNew(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
-            //Adding adapter to recyclerview
+
             recyclerView.setAdapter(adapter);
 
         }
@@ -286,7 +332,7 @@ Log.e("myProductsList===",myProductsList.toString());
         txt_count.setText(allproducts + "");
         total_amount = Math.round(allitemscost * 100D) / 100D;
         Log.e("valueRounded===",total_amount+"");
-        mealTotalText.setText(total_amount+"");
+        mealTotalText.setText(dec.format(total_amount));
     }
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 

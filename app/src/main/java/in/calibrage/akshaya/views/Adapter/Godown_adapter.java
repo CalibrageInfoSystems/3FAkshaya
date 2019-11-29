@@ -19,6 +19,7 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.resGet3FInfo;
 import in.calibrage.akshaya.views.actvity.MapActivity;
+import in.calibrage.akshaya.views.actvity.MapsActivity;
 
 public class Godown_adapter extends RecyclerView.Adapter<Godown_adapter.viewHolder> {
 
@@ -43,8 +44,6 @@ public class Godown_adapter extends RecyclerView.Adapter<Godown_adapter.viewHold
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
-
-
         holder.txt_name.setText(""+godownlistResults.get(position).getGodown());
         holder.txt_address.setText(""+godownlistResults.get(position).getAddress());
         holder.txt_Location.setText(""+godownlistResults.get(position).getLocation());
@@ -53,7 +52,7 @@ public class Godown_adapter extends RecyclerView.Adapter<Godown_adapter.viewHold
             public void onClick(View view) {
                 if(null != godownlistResults.get(position).getLatitude())
                 {
-                    Intent intent = new Intent(ctx, MapActivity.class);
+                    Intent intent = new Intent(ctx, MapsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("name", godownlistResults.get(position).getGodown());
                     intent.putExtra("lat", godownlistResults.get(position).getLatitude());

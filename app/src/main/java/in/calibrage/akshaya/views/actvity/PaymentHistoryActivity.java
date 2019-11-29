@@ -73,7 +73,7 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
 
     private ImageView backImg, home_btn;
     String Farmer_code;
-    String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
+    String[] selection = {"Last 30 Days", "Current Financial Year", "Select Time Period"};
     String financiyalYearFrom = "";
     String financiyalYearTo = "";
     Spinner spin;
@@ -434,7 +434,7 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
             Payment_recycle.setVisibility(View.GONE);
             custom_linear.setVisibility(View.VISIBLE);
         }
-        if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
+        if (spin.getSelectedItem().toString().equals("Select Time Period")) {
             // Toast.makeText(getApplicationContext(),"hiddd" , Toast.LENGTH_LONG).show();
             Payment_recycle.setVisibility(View.GONE);
             custom_linear.setVisibility(View.VISIBLE);

@@ -1,24 +1,37 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.github.chrisbanes.photoview.PhotoView;
+import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -28,34 +41,40 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.models.Product_new;
+import in.calibrage.akshaya.views.actvity.FertilizerActivity;
+import in.calibrage.akshaya.views.actvity.Godown_list;
 
 
 public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNew.ViewHolder> {
 
     private ArrayList<Product_new> myProducts = new ArrayList<>();
     private ImageLoader imageLoader;
-    private Context context;
+    public Context mContext;
     PopupWindow popUp;
     LinearLayout layout;
-    TextView tv;
+    TextView  Product_Name,product_price, discountprice,productsize,gst_price,cancel,instock;
     Double discount_cost, itemcost;
     WindowManager.LayoutParams params;
     LinearLayout mainLayout;
     Button but;
     boolean click = true;
+    LinearLayout des_linear;
     //List of superHeroes
     List<ModelFert> list_products = new ArrayList<>();
     LayoutInflater mInflater;
+    public ImageView new_image;
     private OnClickAck onClickAck1;
-    String Description, ProductName;
-    double onlygst, gst,discountgst;
+    String Description, ProductName,image_url,product_size,Product_uom ;
+    double onlygst, gst,discountgst ,discount_price,price;
+    Integer gstprice;
+    int Available_quantity;
     private listner listner;
 
     public ModelFertAdapterNew(List<ModelFert> list_products, Context context, listner listner) {
         super();
         //Getting all the superheroes
         this.list_products = list_products;
-        this.context = context;
+        this.mContext = context;
         this.listner = listner;
     }
 
@@ -73,11 +92,17 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
         final ModelFert superHero = list_products.get(position);
 
-        imageLoader = CustomVolleyRequest.getInstance(context).getImageLoader();
-        imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
+       imageLoader = CustomVolleyRequest.getInstance(mContext).getImageLoader();
+//        imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
 
         holder.imageView2.setImageUrl(superHero.getImageUrl(), imageLoader);
-        holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
+       // holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
+
+        Picasso.with(mContext )
+                .load(superHero.getImageUrl())
+                .error( R.drawable.ic_applogo )
+                .placeholder( R.drawable.progress_animation)
+                .into(holder.imageView);
         holder.currentFoodName.setText(superHero.getName());
 
         if (superHero.getmAmount().equals("null")) {
@@ -93,6 +118,8 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         } else {
             onlygst = 0.00;
         }
+
+
         Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
         Double finalwithGST = itemcost + onlygst;
 
@@ -101,27 +128,44 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
         String total_amount = df.format(finalwithGST);
         Log.e("total_amount===93", total_amount);
-        holder.currentCost.setText(context.getString(R.string.Rs) + total_amount);
+        holder.currentCost.setText(mContext.getString(R.string.Rs) + total_amount);
 
       //  holder.disc.setText(superHero.getDescription());
-        if (!TextUtils.isEmpty(superHero.getSize().toString())) {
-            holder.size.setText(superHero.getSize() + "" + superHero.getUomType());
+        if (!TextUtils.isEmpty(superHero.getSize() +"")) {
+            holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
         } else {
             holder.size.setText("N/A");
         }
-        holder.quantityText.setText("" + superHero.getmQuantity());
+        if(superHero.getmQuantity() < superHero.getAvail_quantity()) {
+            holder.quantityText.setText("" + superHero.getmQuantity());
+            holder.addMeal.setEnabled(true);
 
-        if (superHero.getDescription().equals("null")) {
+        }
+        if(superHero.getmQuantity()== superHero.getAvail_quantity()){
+            holder.quantityText.setText("" + superHero.getAvail_quantity());
+            holder.addMeal.setEnabled(false);
+            showDialog(mContext, "Available only " + superHero.getAvail_quantity() + " "+superHero.getName() + "  Products in this Godown ");
+            //Toast.makeText(context, "Have max "+superHero.getAvail_quantity()+"only", Toast.LENGTH_LONG).show();
+        }
 
-            holder.disc.setVisibility(View.INVISIBLE);
+//        else {
+//            holder.addMeal.setEnabled(false);
+//            Toast.makeText(context, "Have max "+superHero.getAvail_quantity()+"only", Toast.LENGTH_LONG).show();
+//        }
 
-        } else {
-            holder.disc.setVisibility(View.VISIBLE);
-
-            holder.disc.setOnClickListener(new View.OnClickListener() {
+        holder.disc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Description = superHero.getDescription();
+                    image_url=superHero.getImageUrl();
+                    price =superHero.getPrice();
+                    ProductName = superHero.getName();
+                    discount_price=superHero.getDiscountedPrice();
+                    product_size=superHero.getSize()+"";
+                    Product_uom =superHero.getUomType();
+                    gstprice=superHero.getgst();
+                    Available_quantity =superHero.getAvail_quantity();
+Log.e("Description==160",  discount_price +"   price"+price +"");
                     displayPopupWindow(view);
                 }
             });
@@ -129,17 +173,17 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                 @Override
                 public void onClick(View view) {
                     ProductName = superHero.getName();
-                    displayPopupWindow2(view);
+                 //   displayPopupWindow2(view);
                 }
             });
-        }
+
 
         discount_cost =superHero.getDiscountedPrice();
         Log.e("discount_cost==",discount_cost+"");
         discountgst = (discount_cost / 100.0f) * gst;
         Double finaldiscount= discount_cost + discountgst;
         holder.actual_amt.setPaintFlags(holder.actual_amt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        holder.actual_amt.setText(context.getString(R.string.Rs) + finaldiscount);
+        holder.actual_amt.setText(mContext.getString(R.string.Rs) + finaldiscount);
         Log.e("aaaaaaaaaaaa", superHero.getmAmount());
         if (superHero.getmAmount().equals("null")) {
             holder.actual_amt.setVisibility(View.INVISIBLE);
@@ -165,10 +209,17 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                         if (myProducts.get(i).getProductID() == (superHero.getId())) {
                             Product_new product_new = myProducts.get(i);
                             Integer currentQTY = product_new.getQuandity();
-                            product_new.setQuandity(currentQTY + 1);
+                            if(currentQTY==superHero.getAvail_quantity()){
+                                holder.addMeal.setEnabled(false);
+                                product_new.setQuandity(currentQTY);
+                            }else {
+                                product_new.setQuandity(currentQTY + 1);
+                            }
+
                             myProducts.set(i, product_new);
                             Log.d("PRODUCT ", "---- analysis -----(Update new)  " + product_new.getQuandity());
                             superHero.setmQuantity(product_new.getQuandity());
+
                             // holder.quantityText.setText("x " + product_new.getQuandity());
                             notifyItemChanged(position);
 
@@ -195,7 +246,8 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
                     double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
-                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize()));
+                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize(),
+                            superHero.getProduct_code()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);
 
@@ -241,43 +293,150 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         });
 
     }
+    public void showDialog(Context context, String msg) {
+        final Dialog dialog = new Dialog(context, R.style.DialogSlideAnim);
+      //  dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog);
+        final ImageView img = dialog.findViewById(R.id.img_cross);
 
-    private void displayPopupWindow(View anchorView) {
-        PopupWindow popup = new PopupWindow(context);
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.popup_content, null);
-        TextView text = layout.findViewById(R.id.tvCaption);
-        text.setText(Description);
-        popup.setContentView(layout);
-        // Set content width and height
-        popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
-        // Closes the popup window when touch outside of it - when looses focus
-        popup.setOutsideTouchable(true);
-        popup.setFocusable(true);
-        // Show anchored to button
-        popup.setBackgroundDrawable(new BitmapDrawable());
-        popup.showAsDropDown(anchorView);
+        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+        text.setText(msg);
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        }, 500);
     }
+    private void displayPopupWindow(View anchorView) {
+      //  View container;
+        Log.e("Description==252", Description + "price=="+ price + discount_price +product_size + gstprice);
+    //    final PopupWindow popup = new PopupWindow(context);
 
-    private void displayPopupWindow2(View anchorView) {
-        PopupWindow popup = new PopupWindow(context);
+        final PopupWindow   popup = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.popup_content, null);
-        TextView text = layout.findViewById(R.id.tvCaption);
-        text.setText(ProductName);
+        TextView text = layout.findViewById(R.id.product_description);
+        new_image =layout.findViewById(R.id.product_image);
+        Product_Name =layout.findViewById(R.id.product_title);
+        des_linear=layout.findViewById(R.id.des_linear);
+        product_price=layout.findViewById(R.id.product_price);
+        instock =layout.findViewById(R.id.instock);
+        discountprice =layout.findViewById(R.id.discount_price);
+        productsize=layout.findViewById(R.id.product_size);
+        cancel=layout.findViewById(R.id.cancel);
+        gst_price=layout.findViewById(R.id.gst_price);
+        if(Description != null && !Description .isEmpty()){
+            des_linear.setVisibility(View.VISIBLE);
+            Log.e("Description====336",Description);
+        }
+        else {
+            Log.e("Description====339",Description);
+            des_linear.setVisibility(View.GONE);
+        }
+        text.setText(Description);
+        Picasso.with(mContext).load(image_url).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(new_image);
+
+        new_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Context  context=mContext.getApplicationContext();
+                mInflater = LayoutInflater.from(context);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+                View mView =mInflater.inflate(R.layout.dialog_custom_layout, null);
+                TextView cancel =mView.findViewById(R.id.cancel);
+                //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
+                PhotoView photoView = mView.findViewById(R.id.imageView);
+                Picasso.with(mContext).load(image_url).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(photoView);
+                //photoView.setImageResource(Integer.parseInt(getCollectionInfoById.getResult().getReceiptImg()));
+                mBuilder.setView(mView);
+
+                final AlertDialog mDialog = mBuilder.create();
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mDialog.dismiss();
+                    }
+                });
+                mDialog.show();
+            }
+        });
+        DecimalFormat df = new DecimalFormat("####0.00");
+
+       // double total_amount = Double.parseDouble(df.format(finalwithGST));
+      //  imageLoader.get(image_url, ImageLoader.getImageListener(new_image, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
+        Product_Name.setText(": "+ProductName);
+        product_price.setText("  "+df.format(discount_price));
+        discountprice.setText(""+df.format(price));
+        productsize.setText(": "+product_size + " "+ Product_uom);
+        gst_price.setText(": "+gstprice);
+        instock.setText(": "+Available_quantity);
+        if(product_price.getText().toString().trim()== discountprice.getText().toString().trim() && discount_price == price ){
+            Log.e("price====381",product_price.getText()+"====="+discountprice.getText() );
+            product_price.setVisibility(View.GONE);
+        }
+        else {
+            Log.e("price====385",product_price.getText()+"====="+discountprice.getText() );
+            product_price.setVisibility(View.VISIBLE);
+            product_price.setPaintFlags(product_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+       // holder.actual_amt.setText(mContext.getString(R.string.Rs) + finaldiscount);
+        Log.e("Description==273", Description + "price=="+ price + discount_price +product_size + gstprice);
         popup.setContentView(layout);
         // Set content width and height
         popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+        popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+
+        popup.setOutsideTouchable(false);
+
+        View container = (View) popup.getContentView().getParent();
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.3f;
+        wm.updateViewLayout(container, p);
+//         container = popup.getContentView().getRootView();
+//        if(container != null) {
+//            WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+//            WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+//            p.flags = WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+//
+//            p.dimAmount = 0.3f;
+//            if (wm != null) {
+//                wm.updateViewLayout(container, p);
+//            }
+
+     //   }
+
+
         // Closes the popup window when touch outside of it - when looses focus
-        popup.setOutsideTouchable(true);
+//        popup.setOutsideTouchable(true);
         popup.setFocusable(true);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup.dismiss();
+            }
+        });
+
         // Show anchored to button
         popup.setBackgroundDrawable(new BitmapDrawable());
         popup.showAsDropDown(anchorView);
+
     }
 
     @Override
@@ -286,7 +445,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        public NetworkImageView imageView, imageView2;
+        public ImageView imageView; NetworkImageView imageView2;
         public TextView currentFoodName,
                 currentCost,
                 quantityText,
@@ -300,7 +459,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         @SuppressLint("WrongViewCast")
         public ViewHolder(View itemView) {
             super(itemView);
-            imageView = (NetworkImageView) itemView.findViewById(R.id.thumbnail);
+            imageView = (ImageView) itemView.findViewById(R.id.thumbnail);
             imageView2 = (NetworkImageView) itemView.findViewById(R.id.thumbnail2);
             currentFoodName = (TextView) itemView.findViewById(R.id.selected_food_name);
             currentCost = (TextView) itemView.findViewById(R.id.selected_food_amount);
@@ -338,7 +497,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         }
 
 
-        SharedPrefsData.getInstance(context).updateStringValue(context, "amount", allitemscost + "");
+        SharedPrefsData.getInstance(mContext).updateStringValue(mContext, "amount", allitemscost + "");
     }
 
     boolean contains(ArrayList<Product_new> list, int name) {

@@ -4,12 +4,19 @@ package in.calibrage.akshaya.views.Adapter;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +27,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,6 +56,11 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
     String datetimevaluereq,currentDate;
     String selectedItemID;
     int selectedPO;
+    Button ok_btn;
+    TextView comments;
+    LinearLayout lin_comments;
+    TextView no_comments;
+    DecimalFormat df = new DecimalFormat("####0.00");
     private Subscription mSubscription;
     // RecyclerView recyclerView;
     public GetLoanAdapter(  List<ResLoan.ListResult> list_loan, Context ctx) {
@@ -81,40 +94,89 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
 
         holder.requestCode.setText(list_loan.get(position).getRequestCode());
         holder.req_date.setText(datetimevaluereq);
+        holder.amount.setText(df.format(list_loan.get(position).getTotalCost()));
           holder.statusType.setText(list_loan.get(position).getStatusType());
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        if (!"Closed".equals(holder.statusType.getText()))
-        {
-            holder.cancel.setVisibility(View.VISIBLE);
+//        if (!"Closed".equals(holder.statusType.getText()))
+//        {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        }
+//        else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
+//        if (!"Cancelled".equals(holder.statusType.getText())) {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
 
-        }
-        else {
-            holder.cancel.setVisibility(View.GONE);
-        }
-        if (!"Cancelled".equals(holder.statusType.getText())) {
-            holder.cancel.setVisibility(View.VISIBLE);
-
-        } else {
-            holder.cancel.setVisibility(View.GONE);
-        }
-        holder.cancel.setOnClickListener(new View.OnClickListener() {
+        holder.details.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 selectedItemID = list_loan.get(position).getRequestCode();
+
                 selectedPO = position;
-                try {
-                    delete_request();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                showCondetailsDialog(selectedPO);
+
 
             }
 
         });
+//        holder.cancel.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                selectedItemID = list_loan.get(position).getRequestCode();
+//                selectedPO = position;
+//                try {
+//                    delete_request();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//
+//        });
 
 
     }
+
+
+        private void showCondetailsDialog(int selectedPO) {
+
+            final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialog_loan);
+            comments=dialog.findViewById(R.id.comments_text);
+            no_comments=dialog.findViewById(R.id.no_comments);
+            lin_comments=dialog.findViewById(R.id.lin_comments);
+            ok_btn=dialog.findViewById(R.id.buttonOk);
+            if(list_loan.get(selectedPO).getComments()!= null && !list_loan.get(selectedPO).getComments().isEmpty()) {
+                comments.setText(list_loan.get(selectedPO).getComments());
+                no_comments.setVisibility(View.GONE);
+            }
+            else {
+                lin_comments.setVisibility(View.GONE                               );
+                no_comments.setVisibility(View.VISIBLE);
+            }
+/**
+ * @param OnClickListner
+ */
+            ok_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+
+                }
+            });
+            dialog.show();
+
+        }
+
 
 
     private void delete_request()  throws JSONException {
@@ -191,10 +253,10 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
 
 
         public TextView requestCode;
-        public TextView req_date;
+        public TextView req_date,amount;
         public TextView statusType,cancel;
 
-
+LinearLayout details;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -204,7 +266,8 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
             requestCode = itemView.findViewById(R.id.requestCode);
             req_date = itemView.findViewById(R.id.reqCreatedDate);
             statusType = itemView.findViewById(R.id.statusType);
-
+            amount = itemView.findViewById(R.id.amount);
+            details =itemView.findViewById(R.id.details);
               cancel = itemView.findViewById(R.id.cancel);
 
 

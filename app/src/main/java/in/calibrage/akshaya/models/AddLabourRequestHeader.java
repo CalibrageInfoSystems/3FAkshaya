@@ -63,6 +63,10 @@ public class AddLabourRequestHeader {
     @Expose
     private Double unKnown2Amount;
 
+    @SerializedName("yearofPlanting")
+    @Expose
+    private String yearofPlanting;
+
     public String getFarmerCode() {
         return farmerCode;
     }
@@ -215,4 +219,11 @@ public class AddLabourRequestHeader {
         this.unKnown2Amount = unKnown2Amount;
     }
 
+    public String getYearofPlanting() {
+        return yearofPlanting;
+    }
+
+    public void setYearofPlanting(String yearofPlanting) {
+        this.yearofPlanting = yearofPlanting;
+    }
 }

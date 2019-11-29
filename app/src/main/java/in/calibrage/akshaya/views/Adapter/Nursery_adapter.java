@@ -49,9 +49,9 @@ Log.e("nurseriesResults======",nurseriesResults+"");
         holder.collectioncentermandal.setText(": "+nurseriesResults.get(position).getMandal());
         holder.collectioncenterdistrict.setText(": "+nurseriesResults.get(position).getDistrict());
 //
-//        holder.mapview.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View view) {
+        holder.mapview.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
 //        if(null != nurseriesResults.get(position).getLatitude())
 //        {
 //        Intent intent = new Intent(ctx, MapActivity.class);
@@ -61,11 +61,11 @@ Log.e("nurseriesResults======",nurseriesResults+"");
 //        intent.putExtra("log", nurseriesResults.get(position).getLongitude());
 //        ctx.startActivity(intent);
 //        }else {
-//        Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        }
-//        });
+        Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
+       // }
+
+        }
+        });
 
 
         }

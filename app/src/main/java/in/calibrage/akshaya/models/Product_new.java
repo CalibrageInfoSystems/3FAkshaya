@@ -7,12 +7,13 @@ public class Product_new implements Serializable {
     private String Productname;
     private Double amount;
     private double withGSTamount;
-    private Integer gst;
+    private double gst;
     private double eachproductcost;
     private double size;
+    private  String product_code;
     private Integer ProductID;
 
-    public Product_new(Integer quandity, String productname, Double amount, double withGSTamount, Integer gst, double eachproductcost, int productID,double size) {
+    public Product_new(Integer quandity, String productname, Double amount, double withGSTamount, double gst, double eachproductcost, int productID,double size, String productcode) {
         Quandity = quandity;
         Productname = productname;
         this.amount = amount;
@@ -21,6 +22,7 @@ public class Product_new implements Serializable {
         this.eachproductcost = eachproductcost;
         this.size =size;
         ProductID = productID;
+        product_code =productcode;
     }
 
     public Integer getQuandity() {
@@ -55,11 +57,11 @@ public class Product_new implements Serializable {
         this.withGSTamount = withGSTamount;
     }
 
-    public Integer getGst() {
+    public double getGst() {
         return gst;
     }
 
-    public void setGst(Integer gst) {
+    public void setGst(double gst) {
         this.gst = gst;
     }
 
@@ -85,5 +87,13 @@ public class Product_new implements Serializable {
 
     public void setSize(double size) {
         this.size = size;
+    }
+
+    public String getProduct_code() {
+        return product_code;
+    }
+
+    public void setProduct_code(String product_code) {
+        this.product_code = product_code;
     }
 }

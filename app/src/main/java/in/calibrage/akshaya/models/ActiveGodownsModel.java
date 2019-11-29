@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ActiveGodownsModel {
+
     @SerializedName("listResult")
     @Expose
     private List<ListResult> listResult = null;
@@ -73,8 +74,12 @@ public class ActiveGodownsModel {
         this.exception = exception;
     }
 
+
     public class ListResult {
 
+        @SerializedName("stateName")
+        @Expose
+        private String stateName;
         @SerializedName("id")
         @Expose
         private Integer id;
@@ -84,9 +89,6 @@ public class ActiveGodownsModel {
         @SerializedName("typeId")
         @Expose
         private Integer typeId;
-        @SerializedName("desc")
-        @Expose
-        private String desc;
         @SerializedName("location")
         @Expose
         private String location;
@@ -108,21 +110,29 @@ public class ActiveGodownsModel {
         @SerializedName("createdByUserId")
         @Expose
         private Integer createdByUserId;
-        @SerializedName("createdBy")
-        @Expose
-        private String createdBy;
         @SerializedName("createdDate")
         @Expose
         private String createdDate;
         @SerializedName("updatedByUserId")
         @Expose
         private Integer updatedByUserId;
-        @SerializedName("updateddBy")
-        @Expose
-        private String updateddBy;
         @SerializedName("updatedDate")
         @Expose
         private String updatedDate;
+        @SerializedName("stateCode")
+        @Expose
+        private String stateCode;
+        @SerializedName("code")
+        @Expose
+        private String code;
+
+        public String getStateName() {
+            return stateName;
+        }
+
+        public void setStateName(String stateName) {
+            this.stateName = stateName;
+        }
 
         public Integer getId() {
             return id;
@@ -146,14 +156,6 @@ public class ActiveGodownsModel {
 
         public void setTypeId(Integer typeId) {
             this.typeId = typeId;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
-
-        public void setDesc(String desc) {
-            this.desc = desc;
         }
 
         public String getLocation() {
@@ -212,14 +214,6 @@ public class ActiveGodownsModel {
             this.createdByUserId = createdByUserId;
         }
 
-        public String getCreatedBy() {
-            return createdBy;
-        }
-
-        public void setCreatedBy(String createdBy) {
-            this.createdBy = createdBy;
-        }
-
         public String getCreatedDate() {
             return createdDate;
         }
@@ -236,14 +230,6 @@ public class ActiveGodownsModel {
             this.updatedByUserId = updatedByUserId;
         }
 
-        public String getUpdateddBy() {
-            return updateddBy;
-        }
-
-        public void setUpdateddBy(String updateddBy) {
-            this.updateddBy = updateddBy;
-        }
-
         public String getUpdatedDate() {
             return updatedDate;
         }
@@ -252,7 +238,21 @@ public class ActiveGodownsModel {
             this.updatedDate = updatedDate;
         }
 
+        public String getStateCode() {
+            return stateCode;
+        }
+
+        public void setStateCode(String stateCode) {
+            this.stateCode = stateCode;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
     }
 }
-
-

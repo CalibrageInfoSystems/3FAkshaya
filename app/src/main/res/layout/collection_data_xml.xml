@@ -42,20 +42,16 @@
         android:textSize="@dimen/album_title"
         android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/info"
-                android:layout_width="0dp"
-                android:layout_height="15dp"
-                android:gravity="right"
-                android:layout_weight=".1"
-                android:layout_alignParentTop="true"
-
-
-
-                android:layout_marginEnd="20dp"
-                android:layout_toRightOf="@+id/collection_id"
-                android:background="@drawable/eye"
-                android:textSize="@dimen/album_title" />
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_margin="1dp"
+        android:layout_alignLeft="@+id/collection_id"
+        android:layout_weight="0.1"
+        android:background="@drawable/info_icon"
+        android:layout_gravity="center"
+        android:textSize="@dimen/album_title" />
 </LinearLayout>
             <TextView
                 android:id="@+id/dateLabel"

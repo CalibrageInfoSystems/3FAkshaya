@@ -36,9 +36,9 @@
             android:id="@+id/otp_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_20"
+            android:layout_margin="3dp"
             android:layout_weight="0.1"
-            android:text="@string/otp_desc"
+            android:text=""
            android:textColor="@color/white_new"
             android:textSize="@dimen/text_size" />
 

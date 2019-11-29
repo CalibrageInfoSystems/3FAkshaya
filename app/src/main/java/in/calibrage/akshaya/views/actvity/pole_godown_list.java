@@ -57,7 +57,7 @@ import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.arrayToString;
 
-public class pole_godown_list extends BaseActivity implements GodownListAdapter.OnItemClickListener {
+public class pole_godown_list extends BaseActivity  {
 
     public static final String TAG = pole_godown_list.class.getSimpleName();
     /*
@@ -72,7 +72,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
 
-    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount;
+    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount,sgst_amount,cgst_amount;
     private BottomSheetBehavior behavior;
     double products_amount;
     private Toolbar toolbar;
@@ -88,7 +88,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     ImageView home_btn;
     Integer GodownId,quantity;
 
-
+    DecimalFormat dec = new DecimalFormat("####0.00");
 
     List<String> listdata = new ArrayList<>();
 
@@ -97,7 +97,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     private ArrayList<product> product_List = new ArrayList<>();
     private String final_amount, only_amount;
     int mealTotal = 0;
-    String Gst_sum, Amount_, include_gst_amount;
+    String Gst_sum, Amount_, include_gst_amount,Godowncode;
     Integer Paymode, Statusid;
     private producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
@@ -123,13 +123,15 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view_products.setLayoutManager(mLayoutManager);
         btn_submit = findViewById(R.id.btn_submit);
-        txt_select_godown = findViewById(R.id.txt_select_godown);
+        sgst_amount =(TextView) findViewById(R.id.sgst_amount);
+        cgst_amount =(TextView) findViewById(R.id.cgst_amount);
+      //  txt_select_godown = findViewById(R.id.txt_select_godown);
         txt_Payment_mode = findViewById(R.id.txt_Payment_mode);
-        lst_godown_list = findViewById(R.id.lst_godown_list);
+       // lst_godown_list = findViewById(R.id.lst_godown_list);
 
         //     sw_paymentMode = findViewById(R.id.sw_paymentMode);
-        linearLayoutManager = new LinearLayoutManager(ctx);
-        lst_godown_list.setLayoutManager(linearLayoutManager);
+//        linearLayoutManager = new LinearLayoutManager(ctx);
+//        lst_godown_list.setLayoutManager(linearLayoutManager);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
@@ -155,7 +157,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         if (isOnline()) {
             getPaymentMods();
 
-            getActiveGodowns();
+      //   getActiveGodowns();
         } else {
             showDialog(pole_godown_list.this, getResources().getString(R.string.Internet));
 
@@ -229,7 +231,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 
             Log.e("percentage_value===", String.valueOf(percentage));
             //  int k = (int)(product_amount*(percentage/100.0f));
-            double k = (int) (percentage * amount_product) / 100;
+            double k = (double) (percentage * amount_product) / 100;
 
             gstvalues.add(k);
 
@@ -237,17 +239,22 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
             Gst_total = CommonUtil.sum(gstvalues);
             // include_gst_amount = Gst_sum + Amount_;
             Log.e("gst_Sum===", String.valueOf(Gst_total));
-
-            gst_amount.setText(Gst_total + "");
+            gst_amount.setText(dec.format(Gst_total) );
+          //  gst_amount.setText(Gst_total + "");
             //  Final_amount.setText("" + String.valueOf(include_gst_amount));
+            double cgst = Gst_total/2;
 
+            sgst_amount.setText(dec.format(cgst));
+            cgst_amount.setText(dec.format(cgst));
         }
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
             include_gst_amount = extras.getString("Total_amount");
-            //  text_amount.setText("" + only_amount);
-            // gst_amount.setText("" + String.valueOf(Gst_sum));
 
+            GodownId = extras.getInt("godown_id");
+            Godowncode = extras.getString("godown_code");
+            Godown_name = extras.getString("godown_name");
         }
         Final_amount.setText(include_gst_amount + "");
         DecimalFormat dff = new DecimalFormat("####0.00");
@@ -344,7 +351,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
 
                                         product_name =SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
                                         quantity=SharedPrefsData.getCartData(getApplicationContext()).get(i).getQuandity();
-                                        selected_list.add(product_name + "   :   " +quantity +"");
+                                        selected_list.add(product_name + "   :   " +quantity +" ");
                                         selected_name = arrayyTOstring(selected_list);
                                     }
                                     displayList.add(new MSGmodel(getString(R.string.Godown_name), Godown_name));
@@ -378,7 +385,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                 if (i == 0)
                     string.append("" + arrayList.get(i));
                 else
-                    string.append("," + arrayList.get(i));
+                    string.append(","+ "\n" + arrayList.get(i));
             }
         }
         return string.toString();
@@ -413,18 +420,20 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         requestModel.setComments(null);
         requestModel.setCropMaintainceDate(null);
         requestModel.setIssueTypeId(null);
-
+        requestModel.setGodownCode(Godowncode);
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
+
 
         for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost((SharedPrefsData.getCartData(this).get(i).getAmount()));
-            products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst().doubleValue());
+            products.setBagCost(SharedPrefsData.getCartData(this).get(i).getAmount());
+            products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst());
             products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
             products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
-            products.setSize(SharedPrefsData.getCartData(this).get(i).getSize());
+            products.setSize((SharedPrefsData.getCartData(this).get(i).getSize()));
+            products.setProductCode((SharedPrefsData.getCartData(this).get(i).getProduct_code()));
 
             req_products.add(products);
         }
@@ -452,40 +461,40 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
         });
     }
 
-    private void getActiveGodowns() {
-
-        int typeid = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("postTypeId");
-
-        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
-        mdilogue.show();
-        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns + "/" + statecode)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ActiveGodownsModel>() {
-                    @Override
-                    public void onCompleted() {
-                        mdilogue.cancel();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mdilogue.cancel();
-                        Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
-                        showDialog(pole_godown_list.this, getString(R.string.server_error));
-                    }
-
-                    @Override
-                    public void onNext(ActiveGodownsModel activeGodownsModel) {
-                        mdilogue.cancel();
-                        Log.d(TAG, "---- analysis ---->GetActiveGodows-->> Responce size-->> :" + activeGodownsModel.getListResult().size());
-                        adapter = new GodownListAdapter(activeGodownsModel.getListResult(), ctx, pole_godown_list.this);
-                        lst_godown_list.setAdapter(adapter);
-
-
-                    }
-                });
-
-    }
+//    private void getActiveGodowns() {
+//
+//        int typeid = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("postTypeId");
+//
+//        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
+//        mdilogue.show();
+//        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+//        mSubscription = service.getActiveGodowns(APIConstantURL.GetActiveGodowns + "/" + statecode)
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<ActiveGodownsModel>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        mdilogue.cancel();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        mdilogue.cancel();
+//                        Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
+//                        showDialog(pole_godown_list.this, getString(R.string.server_error));
+//                    }
+//
+//                    @Override
+//                    public void onNext(ActiveGodownsModel activeGodownsModel) {
+//                        mdilogue.cancel();
+//                        Log.d(TAG, "---- analysis ---->GetActiveGodows-->> Responce size-->> :" + activeGodownsModel.getListResult().size());
+//                        adapter = new GodownListAdapter(activeGodownsModel.getListResult(), ctx, pole_godown_list.this);
+//                        lst_godown_list.setAdapter(adapter);
+//
+//
+//                    }
+//                });
+//
+//    }
 
 
     public void onSubmit() {
@@ -493,7 +502,7 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
          * validate Fealds
          *
          * */
-        if (selectedGodown != null) {
+
             if (validations()) {
                 if (isOnline())
 
@@ -504,10 +513,8 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
                 }
             }
 
-        } else {
-            showDialog(this, getString(R.string.godown_valid));
         }
-    }
+
 
     private boolean validations() {
 
@@ -521,12 +528,12 @@ public class pole_godown_list extends BaseActivity implements GodownListAdapter.
     }
 
     //endregion
-    @Override
-    public void onItemClick(ActiveGodownsModel.ListResult item) {
-
-        selectedGodown = item;
-        GodownId = selectedGodown.getId();
-        Godown_name=selectedGodown.getName();
-        // Log.e("selectedGodown===",selectedGodown.getId().toString());
-    }
+//    @Override
+//    public void onItemClick(ActiveGodownsModel.ListResult item) {
+//
+//        selectedGodown = item;
+//        GodownId = selectedGodown.getId();
+//        Godown_name=selectedGodown.getName();
+//        // Log.e("selectedGodown===",selectedGodown.getId().toString());
+//    }
 }

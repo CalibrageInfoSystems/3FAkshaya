@@ -19,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -56,7 +57,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
     String datetimevaluereq,info_date;
     public Context mContext;
     int pos;
-    ImageView img_profile;
+    LinearLayout img_profile;
     TextView driverName,vehicleNumber,collectionCenter,grossWeight,tareWeight,totalBunches,acceptedBunches,rejectedBunches,operatorname,net_weight,collectionid,date,comments;
     Button cancel_btn,ok_btn;
     String collection_id;
@@ -156,12 +157,12 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         driverName=dialog.findViewById(R.id.driverName);
         vehicleNumber=dialog.findViewById(R.id.vehicle_number);
         collectionCenter=dialog.findViewById(R.id.collection_center);
-        img_profile=dialog.findViewById(R.id.img_profile);
+        img_profile=dialog.findViewById(R.id.lin_rept);
        grossWeight = dialog.findViewById(R.id.gross_weight);
         tareWeight = dialog.findViewById(R.id.tare_weight);
-        totalBunches = dialog.findViewById(R.id.total_Bunches);
-        acceptedBunches = dialog.findViewById(R.id.accepted_Bunches);
-        rejectedBunches = dialog.findViewById(R.id.rejected_Bunches);
+//        totalBunches = dialog.findViewById(R.id.total_Bunches);
+//        acceptedBunches = dialog.findViewById(R.id.accepted_Bunches);
+//        rejectedBunches = dialog.findViewById(R.id.rejected_Bunches);
         operatorname = dialog.findViewById(R.id.operator_Name);
         net_weight= dialog.findViewById(R.id.net_weight);
         collectionid= dialog.findViewById(R.id.collection_id);
@@ -216,15 +217,15 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
                     public void onNext(final GetCollectionInfoById getCollectionInfoById) {
 
                         if (getCollectionInfoById.getResult() != null) {
-                          Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(img_profile);
+
 
                             driverName.setText(getCollectionInfoById.getResult().getDriverName());
                             vehicleNumber.setText(getCollectionInfoById.getResult().getVehicleNumber());
                             collectionCenter.setText(getCollectionInfoById.getResult().getCollectionCenter());
                             operatorname.setText(getCollectionInfoById.getResult().getOperatorName());
-                            totalBunches.setText(getCollectionInfoById.getResult().getTotalBunches()+"");
-                            acceptedBunches.setText(getCollectionInfoById.getResult().getAcceptedBunches()+"");
-                            rejectedBunches.setText(getCollectionInfoById.getResult().getRejectedBunches()+"");
+//                            totalBunches.setText(getCollectionInfoById.getResult().getTotalBunches()+"");
+//                            acceptedBunches.setText(getCollectionInfoById.getResult().getAcceptedBunches()+"");
+//                            rejectedBunches.setText(getCollectionInfoById.getResult().getRejectedBunches()+"");
 
                             grossWeight.setText(getCollectionInfoById.getResult().getGrossWeight()+"0 Kgs");
                             tareWeight.setText(getCollectionInfoById.getResult().getTareWeight()+"0 Kgs");
@@ -258,10 +259,23 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
                                 View mView =mInflater.inflate(R.layout.dialog_custom_layout, null);
                               //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
                                 PhotoView photoView = mView.findViewById(R.id.imageView);
-                                Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
+                                TextView cancel =mView.findViewById(R.id.cancel);
+                                if(getCollectionInfoById.getResult().getReceiptImg()!=null)
+                                    Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(photoView);
+                              //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
+                                else
+                                    Picasso.with(mContext).load(R.drawable.logo).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(photoView);
                                 //photoView.setImageResource(Integer.parseInt(getCollectionInfoById.getResult().getReceiptImg()));
                                 mBuilder.setView(mView);
-                                AlertDialog mDialog = mBuilder.create();
+
+
+                                final AlertDialog mDialog = mBuilder.create();
+                                cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        mDialog.dismiss();
+                                    }
+                                });
                                 mDialog.show();
                             }
                         });

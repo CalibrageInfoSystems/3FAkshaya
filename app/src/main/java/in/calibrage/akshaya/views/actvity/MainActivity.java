@@ -55,7 +55,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
     String selected_item;
     private Button submit;
     private String fromString, toString;
-    String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
+
+    private String farmatted_fromdate, farmated_todate;
+    String[] selection = {"Last 30 Days", "Current Financial Year", "Select Time Period"};
     Spinner spin;
     PaymentFragment myFragment;
     private String currentDate,last_30day;
@@ -63,6 +65,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
     private EditText fromText, toText;
     private DatePickerDialog picker;
     private Calendar calendar;
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     private ImageView backImg, home_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,9 +136,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
         Log.i("LOG_RESPONSE date ", currentDate);
 
          calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, -1);
+        calendar.add(Calendar.DAY_OF_MONTH, -30);
         Date date = calendar.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    //    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         last_30day = format.format(date);
         Log.i("last==30thdate ", last_30day);
         int CurrentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -263,11 +266,12 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
                             Log.e("diff===", String.valueOf(diff));
 
                             float dayCount = (float) diff / (24 * 60 * 60 * 1000);
-
+                            farmatted_fromdate = format.format(date1);
+                            farmated_todate= format.format(date2);
                             Log.e("dayCount===", String.valueOf(dayCount));
                             Intent intent = new Intent("KEY");
-                            intent.putExtra("todate", toString);
-                            intent.putExtra("fromdate", fromString);
+                            intent.putExtra("todate", farmated_todate);
+                            intent.putExtra("fromdate", farmatted_fromdate);
                             sendBroadcast(intent);
                         }
                     } catch (ParseException e) {
@@ -309,7 +313,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
             sendBroadcast(intent);
         }
 
-        if (selected_item.equalsIgnoreCase("Custom Time Period")) {
+        if (selected_item.equalsIgnoreCase("Select Time Period")) {
             custom_linear.setVisibility(View.VISIBLE);
         }
         else {

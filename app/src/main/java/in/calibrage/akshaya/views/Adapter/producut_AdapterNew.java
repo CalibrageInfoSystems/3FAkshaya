@@ -33,7 +33,7 @@ public class producut_AdapterNew extends RecyclerView.Adapter<producut_AdapterNe
             product_name = view.findViewById(R.id.name);
             quantity = view.findViewById(R.id.qun_tity);
             amount = view.findViewById(R.id.Value);
-            gst = view.findViewById(R.id.per_gst);
+          //  gst = view.findViewById(R.id.per_gst);
             item_cost = view.findViewById(R.id.item_cost);
             card_view = view.findViewById(R.id.card_view);
         }
@@ -54,7 +54,7 @@ public class producut_AdapterNew extends RecyclerView.Adapter<producut_AdapterNe
         holder.product_name.setText(dataa.getname());
         holder.quantity.setText(dataa.getquantity() + "");
         holder.amount.setText(dataa.getamount() + "");
-        holder.gst.setText(String.valueOf(dataa.getgst()));
+       // holder.gst.setText(String.valueOf(dataa.getgst()));
         int quantity = dataa.getquantity();
         int amount = dataa.getamount();
         int value = amount / quantity;

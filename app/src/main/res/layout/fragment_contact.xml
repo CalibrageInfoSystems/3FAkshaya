@@ -260,7 +260,7 @@
                 android:id="@+id/tvtext_item_eight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
+                android:fontFamily="@font/roboto_regular"
                 android:layout_marginTop="5sp"
                 android:text="@string/head_name"
                 android:layout_weight="0.6"

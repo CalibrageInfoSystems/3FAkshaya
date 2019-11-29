@@ -55,6 +55,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -85,11 +86,11 @@ import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class Visit_request_Activity extends BaseActivity implements View.OnClickListener {
-    String plot_Age, location, landmarkCode, plot_id, Farmer_code;
+    String location, landmarkCode, plot_id, Farmer_code,date_of_plandation;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     ImageView backImg, home_btn;
-    private TextView Age, id_plot, area, landMark;
+    private TextView Age, id_plot, area, landMark,yop;
     List<String> Issue_type = new ArrayList<String>();
     private static final String TAG = Visit_request_Activity.class.getSimpleName();
     List<Integer> Issue_Id = new ArrayList<Integer>();
@@ -104,7 +105,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     private int GALLERY = 1, CAMERA = 2;
 
     private List<Bitmap> images = new ArrayList<>();
-
+    DecimalFormat dec = new DecimalFormat("####0.00");
     String currentDate;
     Button submit;
     Button buttonStart, buttonStop, buttonPlayLastRecordAudio, buttonStopPlayingRecording;
@@ -124,11 +125,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     private LinearLayout linearLayoutRecorder, linearLayoutPlay;
     private MediaRecorder mRecorder;
     private MediaPlayer mPlayer;
-    private String fileName = "";
+    private String fileName = null;
     private int lastProgress = 0;
     private Handler mHandler = new Handler();
     private int RECORD_AUDIO_REQUEST_CODE = 123;
     private boolean isPlaying = false;
+    double plot_Age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,9 +140,10 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             plot_id = extras.getString("plotid");
-            plot_Age = extras.getString("plotAge");
+            plot_Age = extras.getDouble("plotAge", 0.00);
             location = extras.getString("plotVillage");
             landmarkCode = extras.getString("landMark");
+            date_of_plandation = extras.getString("date_of_plandation");
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getPermissionToRecordAudio();
@@ -191,6 +194,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         id_plot = findViewById(R.id.plot);
         area = findViewById(R.id.palmArea);
         landMark = findViewById(R.id.landmark);
+        yop =findViewById(R.id.yop);
         Select_Issue = findViewById(R.id.issue_type);
         comments = findViewById(R.id.comments);
         imageview = (ImageView) findViewById(R.id.iv);
@@ -305,11 +309,11 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                 finish();
             }
         });
-        Age.setText(plot_Age);
+        Age.setText(dec.format(plot_Age )+" Ha");
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
-
+        yop.setText(date_of_plandation);
         GetIssue_type();
         Select_Issue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -378,7 +382,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                 return false;
             }
         }
-        if (images.size() == 0 && fileName.length() == 0) {
+        if (images.size() == 0 &&  fileName == null) {
 
             Log.d(TAG, "---- analysis ---->> base64 :" + images.size() + fileName);
             showDialog(Visit_request_Activity.this, getResources().getString(R.string.select_image));
@@ -475,11 +479,14 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         iv1.setVisibility(View.GONE);
         iv2.setVisibility(View.GONE);
         iv3.setVisibility(View.GONE);
-        //    voice_layout.setVisibility(View.GONE);
 
-        File file = new File(fileName);
-        if (file.exists()) {
+        if (null != fileName || !TextUtils.isEmpty(fileName) ){
+//            File file = new File(fileName);
+//        if (file.exists()) {
             voice_layout.setVisibility(View.VISIBLE);
+        }
+        else {
+            voice_layout.setVisibility(View.GONE);
         }
 
         for (int i = 0; i < images.size(); i++) {
@@ -625,12 +632,14 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+
                 try {
                     mPlayer.release();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 mPlayer = null;
+
                 Intent intent = new Intent(Visit_request_Activity.this, HomeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -665,7 +674,9 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         header.setComments(comments.getText().toString());
         header.setCropMaintainceDate(null);
         header.setIssueTypeId(Issue_Id.get(Select_Issue.getSelectedItemPosition() - 1));
-
+        header.setPalmArea(plot_Age + "");
+        header.setPlotVillage(location);
+        header.setYearofPlanting(date_of_plandation);
         List<VisitRequestModel.VisitRepo> visitRepo = new ArrayList<>();
 
         for (int i = 0; i < images.size(); i++) {
@@ -686,32 +697,36 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         }
 
 
-        if (null != fileName || !TextUtils.isEmpty(fileName)) {
 
-            Log.d(TAG, "visitReuestobject: PATH"+fileName);
-            VisitRequestModel.VisitRepo visitRepo1audio = new VisitRequestModel.VisitRepo();
-            visitRepo1audio.setId(1);
 
-            visitRepo1audio.setFileName(doFileUpload(new File(fileName)));
-            visitRepo1audio.setFileExtension(".mp3");
-            visitRepo1audio.setIsActive(true);
-            visitRepo1audio.setCreatedByUserId(null);
-            visitRepo1audio.setCreatedDate(currentDate);
-            visitRepo1audio.setFileTypeId(37);
 
-            visitRepo1audio.setRequestCode(null);
-            visitRepo1audio.setFileLocation(null);
-            visitRepo.add(visitRepo1audio);
+            if (null != fileName || !TextUtils.isEmpty(fileName) ) {
+
+                Log.d(TAG, "visitReuestobject: PATH" + fileName);
+                VisitRequestModel.VisitRepo visitRepo1audio = new VisitRequestModel.VisitRepo();
+                visitRepo1audio.setId(1);
+
+                visitRepo1audio.setFileName(doFileUpload(new File(fileName)));
+                visitRepo1audio.setFileExtension(".mp3");
+                visitRepo1audio.setIsActive(true);
+                visitRepo1audio.setCreatedByUserId(null);
+                visitRepo1audio.setCreatedDate(currentDate);
+                visitRepo1audio.setFileTypeId(37);
+
+                visitRepo1audio.setRequestCode(null);
+                visitRepo1audio.setFileLocation(null);
+                visitRepo.add(visitRepo1audio);
+            }
+
+            VisitRequestModel requestModel = new VisitRequestModel(header, visitRepo);
+
+            Log.d(TAG, "---- analysis ---->> base64 514:" + images.size() + fileName);
+//
+//
+            return new Gson().toJsonTree(requestModel).getAsJsonObject();
+
+
         }
-        VisitRequestModel requestModel = new VisitRequestModel(header, visitRepo);
-
-        Log.d(TAG, "---- analysis ---->> base64 514:" + images.size() + fileName);
-//
-//
-        return new Gson().toJsonTree(requestModel).getAsJsonObject();
-
-
-    }
 
 
     @Override
@@ -980,7 +995,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                 if (!isPlaying && fileName != null) {
                     isPlaying = true;
                     if (mPlayer != null) {
-                        lastProgress = 0;
+                     //   lastProgress = 0;
                         chronometer.setBase(SystemClock.elapsedRealtime());
                         startPlaying();
                     } else {
@@ -1039,7 +1054,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         }
 
         fileName = root.getAbsolutePath() + "/3FAkshaya/Audios/" + String.valueOf(System.currentTimeMillis() + ".mp3");
-        Log.d("filename", fileName);
+        Log.d("filename===1049", fileName);
         mRecorder.setOutputFile(fileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 

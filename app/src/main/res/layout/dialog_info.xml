@@ -7,13 +7,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/lang_baground">
+        android:background="@drawable/fert_baground">
         <LinearLayout
             android:id="@+id/lin_zero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="6dp"
+android:visibility="gone"
+            android:layout_marginTop="10dp"
 
           >
 
@@ -75,7 +75,7 @@
             android:layout_marginTop="1sp"
 
             android:text="@string/driver_name"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14dp"
             android:textStyle="bold" />
 
@@ -87,7 +87,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="1sp"
             android:text=":"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14dp"
             android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
             android:layout_toRightOf="@+id/dot2"
             android:hint=""
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14dp"
             />
 
@@ -125,7 +125,7 @@
             android:layout_marginTop="1dp"
             android:text="@string/vehicle_Number"
 
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14dp"
             android:textStyle="bold" />
 
@@ -136,7 +136,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="1sp"
             android:text=":"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -150,7 +150,7 @@
             android:hint=""
             android:text=""
 
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14dp"
             />
 
@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1sp"
             android:text="@string/collectionCenter"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
 
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -184,7 +184,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="1sp"
             android:text=":"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
 
             android:textSize="14dp"
             android:textStyle="bold" />
@@ -198,164 +198,164 @@
             android:layout_toRightOf="@+id/dot4"
             android:hint=""
             android:text=""
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14dp"
             />
 
     </RelativeLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/lin_five"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_date"
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/lin_five"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/lin_date"-->
 
-            android:layout_marginStart="6dp"
+<!--            android:layout_marginStart="6dp"-->
 
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/totalbunches"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1sp"
-
-                android:text="@string/totalBunches"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                android:textStyle="bold" />
+<!--            android:orientation="horizontal">-->
 
 
-            <TextView
-                android:id="@+id/dot5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="1sp"
-                android:text=":"
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/totalbunches"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="1sp"-->
 
-            <TextView
-                android:id="@+id/total_Bunches"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginTop="1sp"
-                android:layout_toRightOf="@+id/dot5"
-                android:hint=""
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/lin_six"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_five"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="3sp"
-            android:elevation="2dp"
-            android:orientation="horizontal">
+<!--                android:text="@string/totalBunches"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="14dp"-->
+<!--                android:textStyle="bold" />-->
 
 
-            <TextView
-                android:id="@+id/accept_bumches"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="1dp"
-                android:text="@string/acceptedBunches"
+<!--            <TextView-->
+<!--                android:id="@+id/dot5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="1sp"-->
+<!--                android:text=":"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="14dp"-->
+<!--                android:textStyle="bold" />-->
 
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/total_Bunches"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="10sp"-->
+<!--                android:layout_marginTop="1sp"-->
+<!--                android:layout_toRightOf="@+id/dot5"-->
+<!--                android:hint=""-->
+<!--                android:text=""-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="14dp"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/dot6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="1sp"
-                android:text=":"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+<!--        </RelativeLayout>-->
 
-            <TextView
-                android:id="@+id/accepted_Bunches"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="1sp"
-                android:layout_toRightOf="@+id/dot6"
-                android:hint=""
-                android:text=""
-
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/lin_seven"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_six"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="3sp"
-            android:orientation="horizontal">
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/lin_six"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/lin_five"-->
+<!--            android:layout_marginStart="6dp"-->
+<!--            android:layout_marginTop="3sp"-->
+<!--            android:elevation="2dp"-->
+<!--            android:orientation="horizontal">-->
 
 
-            <TextView
-                android:id="@+id/rejected_buncjhes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1sp"
-                android:text="@string/rejectedBunches"
-                android:textColor="@color/white"
+<!--            <TextView-->
+<!--                android:id="@+id/accept_bumches"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_marginTop="1dp"-->
+<!--                android:text="@string/acceptedBunches"-->
 
-                android:textSize="14dp"
-                android:textStyle="bold" />
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="14dp"-->
+<!--                android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/dot7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="1sp"
-                android:text=":"
-                android:textColor="@color/white"
+<!--            <TextView-->
+<!--                android:id="@+id/dot6"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="1sp"-->
+<!--                android:text=":"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textStyle="bold" />-->
 
-                android:textSize="14dp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/accepted_Bunches"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="1sp"-->
+<!--                android:layout_toRightOf="@+id/dot6"-->
+<!--                android:hint=""-->
+<!--                android:text=""-->
 
-            <TextView
-                android:id="@+id/rejected_Bunches"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginTop="1sp"
-                android:layout_toRightOf="@+id/dot7"
-                android:hint=""
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="14dp"
-                />
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="14dp"-->
+<!--                />-->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/lin_seven"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/lin_six"-->
+<!--            android:layout_marginStart="6dp"-->
+<!--            android:layout_marginTop="3sp"-->
+<!--            android:orientation="horizontal">-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/rejected_buncjhes"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="1sp"-->
+<!--                android:text="@string/rejectedBunches"-->
+<!--                android:textColor="@color/black"-->
+
+<!--                android:textSize="14dp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/dot7"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="1sp"-->
+<!--                android:text=":"-->
+<!--                android:textColor="@color/black"-->
+
+<!--                android:textSize="14dp"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/rejected_Bunches"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="10sp"-->
+<!--                android:layout_marginTop="1sp"-->
+<!--                android:layout_toRightOf="@+id/dot7"-->
+<!--                android:hint=""-->
+<!--                android:text=""-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="14dp"-->
+<!--                />-->
+
+<!--        </RelativeLayout>-->
         <RelativeLayout
             android:id="@+id/lin_eight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_seven"
+            android:layout_below="@+id/lin_date"
             android:layout_marginStart="6dp"
             android:layout_marginTop="3sp"
             android:orientation="horizontal">
@@ -367,7 +367,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
                 android:text="@string/operatorName"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -379,7 +379,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -393,13 +393,34 @@
                 android:layout_toRightOf="@+id/dot8"
                 android:hint=""
 
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 />
 
         </RelativeLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:id="@+id/lin_rept"
+
+            android:layout_below="@+id/lin_eight">
+
+            <TextView
+                style="@style/Common_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/recept"
+                android:textColor="@color/colorOrange"
+                android:textSize="14sp">
+
+            </TextView>
+        </LinearLayout>
         <RelativeLayout
             android:id="@+id/lin_ten"
             android:layout_width="match_parent"
@@ -416,7 +437,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
                 android:text="@string/grossWeight"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -428,7 +449,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -442,7 +463,7 @@
                 android:layout_toRightOf="@+id/dot10"
                 android:hint=""
 
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 />
 
@@ -463,7 +484,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
                 android:text="@string/tareWeight"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -475,7 +496,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -489,7 +510,7 @@
                 android:layout_toRightOf="@+id/dot11"
                 android:hint=""
                 android:text=""
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 />
 
@@ -512,7 +533,7 @@
                 android:layout_marginTop="1dp"
                 android:text="@string/net_weight"
 
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -523,7 +544,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -537,7 +558,7 @@
                 android:layout_toRightOf="@+id/dot12"
                 android:hint=""
                 android:text=""
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 />
 
@@ -551,7 +572,7 @@
 
             android:layout_marginStart="6dp"
 
-            android:layout_marginTop="-2dp"
+            android:layout_marginTop="3dp"
             android:orientation="horizontal">
 
 
@@ -562,7 +583,7 @@
                 android:layout_marginTop="1sp"
 
                 android:text="@string/date_label"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -574,7 +595,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -587,7 +608,7 @@
                 android:layout_toRightOf="@+id/dotd"
                 android:hint=""
                 android:text=""
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp" />
 
         </RelativeLayout>
@@ -596,7 +617,7 @@
             android:id="@+id/lin_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_eight"
+            android:layout_below="@+id/lin_rept"
             android:layout_marginStart="6dp"
             android:layout_marginTop="3sp"
             android:visibility="gone"
@@ -609,7 +630,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
                 android:text="@string/comments"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -621,7 +642,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -635,7 +656,7 @@
                 android:layout_toRightOf="@+id/dotcom"
                 android:hint=""
 
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"
                 />
 

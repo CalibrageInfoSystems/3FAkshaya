@@ -106,9 +106,9 @@ public class profile_fragment extends BaseFragment {
             land_mark.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getLandmark());
         else
             lyt_landmark.setVisibility(View.GONE); // land_mark.setText(": N/A");
-
-        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber())
-            mobile.setText(catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber().toString());
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber())
+//        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber())
+           mobile.setText(": " +catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber().toString());
         else
             lyt_mobile.setVisibility(View.GONE);  // mobile.setText(": N/A");
 
@@ -138,9 +138,9 @@ public class profile_fragment extends BaseFragment {
             father_name.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getGuardianName());
         else
             lyt_fathername.setVisibility(View.GONE); // father_name.setText(": N/A");
-
-        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber())
-            alt_mobile.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber());
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber())
+//        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getContactNumber())
+           alt_mobile.setText(": " + catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber());
         else
             lyt_alt_mobile.setVisibility(View.GONE); // alt_mobile.setText(": N/A");
 

@@ -21,6 +21,7 @@ import in.calibrage.akshaya.models.resGet3FInfo;
 import in.calibrage.akshaya.views.Adapter.GodownListAdapter;
 import in.calibrage.akshaya.views.Adapter.Godown_adapter;
 import in.calibrage.akshaya.views.actvity.MapActivity;
+import in.calibrage.akshaya.views.actvity.MapsActivity;
 
 class collectioncenters_adapter extends RecyclerView.Adapter<collectioncenters_adapter.viewHolder> {
     private Context ctx;
@@ -54,7 +55,7 @@ class collectioncenters_adapter extends RecyclerView.Adapter<collectioncenters_a
             @Override
             public void onClick(View view) {
                 if (null != centerslistResults.get(position).getLatitude()) {
-                    Intent intent = new Intent(ctx, MapActivity.class);
+                    Intent intent = new Intent(ctx, MapsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("name", centerslistResults.get(position).getCollectionCenter());
                     intent.putExtra("lat", centerslistResults.get(position).getLatitude());

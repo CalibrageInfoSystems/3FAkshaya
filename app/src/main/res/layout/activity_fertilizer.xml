@@ -1,9 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9E7E7"
+    android:orientation="vertical"
     tools:context="in.calibrage.akshaya.views.actvity.FertilizerActivity">
 
     <RelativeLayout
@@ -193,82 +194,39 @@
             android:scrollbarThumbVertical="@color/colorPrimary"
 
             android:scrollbars="vertical" />
+        <TextView
+            android:id="@+id/no_data"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:visibility="gone"
+    android:layout_marginTop="200dp"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/no_products"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/margin_20" />
+
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_10"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:id="@+id/lin_three"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_two"
-            android:layout_gravity="center"
-            android:layout_marginTop="10sp"
-            android:background="#28201E1E"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/margin_5">
 
 
-            <!--   <TextView
-                   android:id="@+id/tvtext_item_four"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginStart="50dp"
-                   android:layout_marginTop="5dp"
-
-                   android:text="@string/total_amt"
-                   android:textColor="#111"
-                   android:textSize="@dimen/album_title"
-                   android:textStyle="bold" />
-
-               <TextView
-                   android:id="@+id/dot3"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerHorizontal="true"
-                   android:layout_marginTop="5dp"
-                   android:text=":"
-
-                   android:textColor="#111"
-                   android:textSize="@dimen/album_title"
-                   android:textStyle="bold" />-->
-
-            <!-- <TextView
-                 android:id="@+id/meal_total"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="10sp"
-                 android:layout_marginTop="5sp"
-                 android:layout_toRightOf="@+id/dot3"
-                 android:hint="0"
-                 android:text=""
-                 android:textColor="@color/black"
-                 android:textSize="@dimen/album_title"
-                 android:textStyle="bold" />-->
-
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/confirm"
-            style="@style/Common_Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_view"
-            android:text="@string/confirm"
-            android:visibility="gone" />
-    </LinearLayout>
 
 
-</RelativeLayout>
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="0.5"-->
+<!--            android:fontFamily="@font/roboto_regular"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/no_collections_found"-->
+<!--            android:textColor="@color/colorOrange"-->
+<!--            android:textSize="@dimen/margin_20" />-->
+
+
+
+</LinearLayout>
 
 
 
