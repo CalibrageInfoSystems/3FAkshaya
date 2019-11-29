@@ -103,7 +103,13 @@ public class Resproduct {
         private Double amount;
         @SerializedName("gstPercentage")
         @Expose
-        private Double gstPercentage;
+        private int gstPercentage;
+        @SerializedName("cgstPercentage")
+        @Expose
+        private double cgstPercentage;
+        @SerializedName("sgstPercentage")
+        @Expose
+        private double sgstPercentage;
         @SerializedName("cgst")
         @Expose
         private Double cgst;
@@ -170,11 +176,11 @@ public class Resproduct {
             this.amount = amount;
         }
 
-        public Double getGstPercentage() {
+        public int getGstPercentage() {
             return gstPercentage;
         }
 
-        public void setGstPercentage(Double gstPercentage) {
+        public void setGstPercentage(int gstPercentage) {
             this.gstPercentage = gstPercentage;
         }
 
@@ -202,6 +208,21 @@ public class Resproduct {
             this.totalAmount = totalAmount;
         }
 
+        public double getCgstPercentage() {
+            return cgstPercentage;
+        }
+
+        public void setCgstPercentage(double cgstPercentage) {
+            this.cgstPercentage = cgstPercentage;
+        }
+
+        public double getSgstPercentage() {
+            return sgstPercentage;
+        }
+
+        public void setSgstPercentage(double sgstPercentage) {
+            this.sgstPercentage = sgstPercentage;
+        }
     }
 
 }

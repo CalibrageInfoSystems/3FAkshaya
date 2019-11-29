@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +38,13 @@ public class product_list extends BaseActivity {
     private SpotsDialog mdilogue;
     RecyclerView recycler_view_products;
     private producut_Adapter mAdapter;
+    TextView requst_code;
     //LinearLayout noRecords;
     private Subscription mSubscription;
     private List<Product_new> product_List = new ArrayList<>();
-    private TextView text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount;
+    private TextView text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount,sgst_amount,cgst_amount;
     double valueRounded;
+    DecimalFormat df = new DecimalFormat("####0.00");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +70,14 @@ public class product_list extends BaseActivity {
                 finish();
             }
         });
+        requst_code =(TextView) findViewById(R.id.requst_code);
         id_holder = getIntent().getStringExtra("Name");
+        requst_code.setText(": " + id_holder);
         Log.e("id_holder===", id_holder);
         recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
         text_amount = (TextView) findViewById(R.id.amount);
+        sgst_amount =(TextView) findViewById(R.id.sgst_amount);
+        cgst_amount =(TextView) findViewById(R.id.cgst_amount);
         Final_amount = (TextView) findViewById(R.id.final_amount_gst);
         gst_amount = (TextView) findViewById(R.id.gst_amount);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -120,8 +127,8 @@ public class product_list extends BaseActivity {
                             Req_producut_Adapter adapter = new Req_producut_Adapter(product_list.this, resproduct.getListResult());
                             recycler_view_products.setAdapter(adapter);
 
-                            Double amount_total = 0.0;
-                            Double total_amount = 0.0;
+                            Double amount_total = 0.00;
+                            Double total_amount = 0.00;
                             Double gst_amountt =0.0;
                             for (int i = 0; i < resproduct.getListResult().size(); i++) {
                                 if (null != resproduct.getListResult().get(i).getAmount()) {
@@ -143,9 +150,12 @@ public class product_list extends BaseActivity {
                                 // text_amount.setText(resproduct.getListResult().get(i).getAmount()+"");
 
                             }
-                            text_amount.setText(amount_total+"");
-                            Final_amount.setText(total_amount+"");
-                            gst_amount.setText(valueRounded+"");
+                            text_amount.setText(df.format(amount_total));
+                            Final_amount.setText(df.format(total_amount));
+                            gst_amount.setText(df.format(valueRounded));
+                            double cgst = valueRounded/2;
+                            sgst_amount.setText(df.format(cgst));
+                            cgst_amount.setText(df.format(cgst));
                         } else {
                             Log.e("data", "No==have");
                         }

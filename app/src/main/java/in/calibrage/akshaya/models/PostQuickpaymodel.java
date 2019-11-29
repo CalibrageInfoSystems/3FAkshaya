@@ -46,6 +46,9 @@ public class PostQuickpaymodel {
     @SerializedName("createdDate")
     @Expose
     private String createdDate;
+    @SerializedName("whsCode")
+    @Expose
+    private String whsCode;
     @SerializedName("updatedByUserId")
     @Expose
     private Integer updatedByUserId;
@@ -171,5 +174,13 @@ public class PostQuickpaymodel {
 
     public void setFarmername(String farmername) {
         this.farmername = farmername;
+    }
+
+    public String getWhsCode() {
+        return whsCode;
+    }
+
+    public void setWhsCode(String whsCode) {
+        this.whsCode = whsCode;
     }
 }

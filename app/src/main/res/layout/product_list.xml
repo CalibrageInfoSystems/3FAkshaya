@@ -26,7 +26,7 @@
                 android:orientation="horizontal"
                 android:weightSum="1">
 
-                <!--<TextView-->
+                <!--<TextView-->roja
                 <!--android:id="@+id/collection_id_label"-->
                 <!--android:layout_marginStart="@dimen/margin_20"-->
                 <!--android:layout_width="wrap_content"-->
@@ -78,6 +78,7 @@
                 <LinearLayout
                     android:weightSum="1"
                     android:layout_width="0dp"
+                    android:layout_marginTop="3dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5">
 
@@ -100,9 +101,9 @@
                         android:layout_toRightOf="@+id/each_item"
                         android:layout_weight="0.4"
                         android:hint="@string/land_mark"
-                        android:paddingLeft="8dp"
+                        android:paddingLeft="2dp"
                         android:text="@string/product"
-                        android:textColor="@color/colorOrange"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/album_title">
 
                     </TextView>
@@ -116,94 +117,251 @@
                 android:layout_below="@id/linear"
 android:weightSum="1"
                 android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-                <TextView
-                    android:textAlignment="textStart"
-                    android:id="@+id/dateLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    <TextView
+                        android:textAlignment="textStart"
+                        android:id="@+id/cgst_label"
+                        style="@style/Common_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
 
-android:layout_weight="0.15"
-                    style="@style/Common_textView"
-                    android:paddingTop="@dimen/album_title_padding"
-                    android:paddingRight="@dimen/album_title_padding"
-                    android:text="@string/quantity"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/album_title"
-                    />
+                        android:layout_weight="0.35"
+                        android:text="@string/sgst"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/qun_tity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/collection_id"
-                    android:layout_toRightOf="@+id/dateLabel"
-                    android:paddingLeft="4dp"
-                    android:paddingTop="@dimen/album_title_padding"
-                    android:layout_weight="0.15"
-                    style="@style/Common_textView"
-                    android:paddingRight="@dimen/album_title_padding"
-                    android:textColor="@color/gray"
-                    android:text="date"
-                    android:textSize="@dimen/album_title" />
+                    <TextView
+                        android:textAlignment="textStart"
+                        android:id="@+id/sgst"
+                        style="@style/Common_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/collection_id"
+                        android:layout_weight="0.65"
+                        android:hint="@string/land_mark"
 
-                <TextView
-                    android:id="@+id/weightLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/collection_id"
-                    android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@+id/date"
-                    style="@style/Common_textView"
-                    android:paddingTop="@dimen/album_title_padding"
-                    android:paddingRight="@dimen/album_title_padding"
-android:textColor="@color/black"
-                    android:layout_weight="0.15"
-                    android:text="@string/gst"
-                 />
+                        android:text="@string/product"
+                        android:textColor="@color/black"
 
-                <TextView
-                    android:id="@+id/per_gst"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/collection_id"
-                    android:layout_toRightOf="@+id/weightLabel"
-                    android:paddingLeft="4dp"
-                    android:paddingTop="@dimen/album_title_padding"
-                    android:layout_weight="0.15"
-                    android:paddingRight="@dimen/album_title_padding"
-                    style="@style/Common_textView"
-                    android:textColor="@color/gray"/>
+                        />
 
-                <TextView
-                    android:id="@+id/amount_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/weight"
-                    android:layout_marginStart="1dp"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="@dimen/album_title_padding"
-                    android:paddingRight="@dimen/album_title_padding"
-                    android:text="@string/amount"
-                    android:textSize="@dimen/album_title"
-                    android:layout_weight="0.15"
-                    style="@style/Common_textView"
-                 android:textColor="@color/black" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/dateLabel"
-                    android:layout_toRightOf="@+id/dateLabel"
-                    android:hint="@string/cc"
-                    android:layout_weight="0.15"
-                    style="@style/Common_textView"
-                    android:paddingLeft="4dp"
-                    android:paddingTop="@dimen/album_title_padding"
-                    android:textColor="@color/gray"
-                    android:paddingRight="@dimen/album_title_padding"
-                 />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:textAlignment="textStart"
+                            android:id="@+id/weightLabel"
+                            style="@style/Common_textView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_weight="0.6"
+                            android:text="@string/Cgst"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:textAlignment="textStart"
+                            android:id="@+id/cgst"
+                            style="@style/Common_textView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/collection_id"
+                            android:layout_weight="0.4"
+                            android:hint="@string/land_mark"
+                            android:paddingLeft="2dp"
+                            android:text="@string/product"
+                            android:textColor="@color/black"
+
+                            />
+
+                    </LinearLayout>
+
+
+                    <!--                <TextView-->
+<!--                    android:id="@+id/sgstLabel"-->
+<!--                    style="@style/Common_textView"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                 -->per_gst
+<!--                    android:layout_weight="0.25"-->
+<!--                    android:paddingTop="@dimen/album_title_padding"-->
+<!--     -->
+<!--                    android:text="@string/sgst"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/per_gst"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/collection_id"-->
+<!--                    android:layout_toRightOf="@+id/weightLabel"-->
+<!--                    android:paddingLeft="4dp"-->
+<!--                    android:paddingTop="@dimen/album_title_padding"-->
+<!--                    android:layout_weight="0.15"-->
+<!--                    android:paddingRight="@dimen/album_title_padding"-->
+<!--                    style="@style/Common_textView"-->
+<!--                    android:textColor="@color/gray"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/weightLabel"-->
+<!--                    style="@style/Common_textView"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/collection_id"-->
+
+<!--                    android:layout_toRightOf="@+id/date"-->
+<!--                    android:layout_weight="0.25"-->
+<!--                    android:paddingTop="@dimen/album_title_padding"-->
+
+<!--                    android:text="@string/Cgst"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/cgst"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/collection_id"-->
+<!--                    android:layout_toRightOf="@+id/weightLabel"-->
+
+<!--                    android:paddingTop="@dimen/album_title_padding"-->
+<!--                    android:layout_weight="0.25"-->
+
+<!--                    style="@style/Common_textView"-->
+<!--                    android:textColor="@color/gray"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/statusLabel"-->
+                <!--android:layout_marginStart="30dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/status"-->
+                <!--android:paddingLeft="@dimen/album_title_padding"-->
+                <!--android:paddingRight="@dimen/album_title_padding"-->
+                <!--android:paddingTop="@dimen/album_title_padding"-->
+                <!--android:layout_toRightOf="@+id/date"-->
+                <!--android:textColor="@color/album_title"-->
+                <!--android:layout_below="@+id/date"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="@dimen/album_title" />-->
+                <!--<TextView-->
+                <!--android:id="@+id/status"-->
+                <!--android:layout_toRightOf="@+id/weightLabel"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="@string/status"-->
+                <!--android:layout_below="@id/date"-->
+                <!--android:paddingLeft="4dp"-->
+                <!--android:paddingRight="@dimen/album_title_padding"-->
+                <!--android:paddingTop="@dimen/album_title_padding"-->
+                <!--android:textSize="@dimen/album_title" />-->
+                <!--  <TextView
+                      android:id="@+id/count"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/title"
+                      android:paddingBottom="@dimen/songs_count_padding_bottom"
+                      android:paddingLeft="@dimen/album_title_padding"
+                      android:paddingRight="@dimen/album_title_padding"
+                      android:textSize="@dimen/songs_count" />-->
+
+                <!-- <ImageView
+                     android:id="@+id/overflow"
+                     android:layout_width="@dimen/ic_album_overflow_width"
+                     android:layout_height="@dimen/ic_album_overflow_height"
+                     android:layout_alignParentRight="true"
+                     android:layout_centerInParent="true"
+                     android:layout_marginEnd="@dimen/margin_20"
+                     android:scaleType="centerCrop"
+                     android:src="@drawable/arrow_right" />-->
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear"
+                android:weightSum="1"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:weightSum="1"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5">
+
+                    <TextView
+                        android:textAlignment="textStart"
+                        style="@style/Common_textView"
+                        android:id="@+id/dateLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.35"
+                        android:text="@string/quantity"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textAlignment="textStart"
+                        android:id="@+id/qun_tity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/each_item"
+                        android:layout_weight="0.65"
+                        android:hint="@string/land_mark"
+                        android:paddingLeft="2dp"
+                        android:text="@string/product"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title">
+
+                    </TextView>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:weightSum="1"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5">
+
+                    <TextView
+                        android:textAlignment="textStart"
+                        style="@style/Common_textView"
+                        android:id="@+id/amount_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:text="@string/amount"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textAlignment="textStart"
+                        android:id="@+id/Value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/each_item"
+                        android:layout_weight="0.4"
+                        android:hint="@string/land_mark"
+                        android:paddingLeft="2dp"
+                        android:text="@string/product"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/album_title">
+
+                    </TextView>
+                </LinearLayout>
                 <!--<TextView-->
                 <!--android:id="@+id/statusLabel"-->
                 <!--android:layout_marginStart="30dp"-->

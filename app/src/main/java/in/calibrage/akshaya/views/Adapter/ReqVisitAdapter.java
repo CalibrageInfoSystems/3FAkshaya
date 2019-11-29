@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,18 +44,28 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+
+        holder.textViewpalmArea.setText(df.format(plot_Set.get(position).getPalmArea())+" "+"Ha");
+        ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
+     //   ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea() + " " + "Ha");
+        ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
+        ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
+        holder.yop.setText(plot_Set.get(position).getDateOfPlanting() );
+        final double selected_plot =plot_Set.get(position).getPalmArea();
+        Log.e("selected_plot===",selected_plot+"");
         ((ViewHolder) holder).card_view.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, Visit_request_Activity.class);
                 intent.putExtra("plotid", holder.textViewplotId.getText());
-                intent.putExtra("plotAge", holder.textViewpalmArea.getText());
+                intent.putExtra("plotAge", selected_plot);
                 intent.putExtra("plotVillage", holder.textViewLocation.getText());
                 intent.putExtra("landMark", holder.textViewstatus.getText());
-
+                intent.putExtra("date_of_plandation",   plot_Set.get(position).getDateOfPlanting());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 mContext.startActivity(intent);
@@ -63,14 +74,6 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
             }
 
         });
-        DecimalFormat df = new DecimalFormat("#,###,##0.00");
-
-        holder.textViewpalmArea.setText(df.format(plot_Set.get(position).getPalmArea())+" "+"Ha");
-        ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
-     //   ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea() + " " + "Ha");
-        ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
-        ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
-
         if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
@@ -96,7 +99,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation;
-        public TextView textViewstatus;
+        public TextView textViewstatus,yop;
         public CardView card_view;
 
         public ViewHolder(View itemView) {
@@ -105,6 +108,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
             this.textViewpalmArea = (TextView) itemView.findViewById(R.id.palmArea);
             this.textViewLocation = (TextView) itemView.findViewById(R.id.location);
             this.textViewstatus = (TextView) itemView.findViewById(R.id.landmark);
+            this.yop =(TextView) itemView.findViewById(R.id.yop);
             this.card_view = (CardView) itemView.findViewById(R.id.card_view);
 
         }

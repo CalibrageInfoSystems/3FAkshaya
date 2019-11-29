@@ -23,6 +23,7 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.localData.SharedPrefsData;
+import in.calibrage.akshaya.models.Getvisit;
 import in.calibrage.akshaya.models.LabourRequestModel;
 import in.calibrage.akshaya.models.ReqPole;
 import in.calibrage.akshaya.models.ResLoan;
@@ -35,6 +36,7 @@ import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.GetLoanAdapter;
 import in.calibrage.akshaya.views.Adapter.GetPoleAdapter;
 import in.calibrage.akshaya.views.Adapter.GetfertAdapter;
+import in.calibrage.akshaya.views.Adapter.GetvisitAdapter;
 import in.calibrage.akshaya.views.Adapter.MyLabour_ReqAdapter;
 import in.calibrage.akshaya.views.Adapter.MyQuickPayDataAdapter;
 import retrofit2.adapter.rxjava.HttpException;
@@ -442,14 +444,14 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                 });
     }
     private void getvisit() {
-        {
+
             mdilogue.show();
             JsonObject object = getheadervisitobject();
             ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-            mSubscription = service.GetRequestheaderLoanDetails(object)
+            mSubscription = service.GetRequestheadervistDetails(object)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<ResLoan>() {
+                    .subscribe(new Subscriber<Getvisit>() {
                         @Override
                         public void onCompleted() {
                             mdilogue.dismiss();
@@ -473,13 +475,12 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                         }
 
                         @Override
-                        public void onNext(ResLoan resLoan) {
-
-                            if(resLoan.getListResult().size()!= 0)
+                        public void onNext(Getvisit getvisit) {
+                            if(getvisit.getListResult().size()!= 0)
                             {
                                 no_data.setVisibility(View.GONE);
                                 rcv_requests.setVisibility(View.VISIBLE);;
-                                GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
+                                GetvisitAdapter adapter = new GetvisitAdapter(getvisit.getListResult(), ctx);
                                 rcv_requests.setAdapter(adapter);
                             }
                             else{
@@ -487,17 +488,19 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                                 rcv_requests.setVisibility(View.GONE);;
 
                             }
+                        }
+
 
 //                            GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
 //                            rcv_requests.setAdapter(adapter);
-                        }
+
 
 
 
 
                     });
         }
-    }
+
 
 
     private JsonObject getLoanheaderobject() {
@@ -528,12 +531,16 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     }
 
     @Override
-    public void onContactSelected(String products) {
+    public void onContactSelected(Resfert.ListResult list) {
 
-        Intent intent = new Intent(RequestListctivity.this, product_list.class);
+        Intent intent = new Intent(RequestListctivity.this, product_list_fert.class);
+        intent.putExtra("Name",  list.getRequestCode());
+        intent.putExtra("subcidy",   list.getSubsidyAmount());
+        intent.putExtra("pay",   list.getPaubleAmount());
+        Log.e("540====","Selected: " +  list.getSubsidyAmount() + ", " +list.getPaubleAmount());
 
 //                    // Sending Student Id, Name, Number and Class to next UpdateActivity.
-        intent.putExtra("Name",  products);
+
 
         startActivity(intent);
     }

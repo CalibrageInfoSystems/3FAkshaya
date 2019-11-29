@@ -79,6 +79,7 @@ public class LoginActivity extends BaseActivity {
     private String Farmer_code;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
+    String mobile_number;
     private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,12 +182,23 @@ public class LoginActivity extends BaseActivity {
                         mdilogue.cancel();
                         Log.d(TAG, "onNext: " + farmerResponceModel);
                         if (farmerResponceModel.getIsSuccess()) {
+                            if (farmerResponceModel.getResult()!=null) {
+                                mobile_number = farmerResponceModel.getResult();
+
+                                Log.d("mobile_number===", mobile_number);
+                            }
+                            else {
+                                showDialog(LoginActivity.this, "No Register Mobile Number for Send Otp");
+                            }
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     /* Create an Intent that will start the Menu-Activity. */
+                                    Intent i = new Intent(LoginActivity.this, OtpActivity.class);
+                                    i.putExtra("mobile", mobile_number);
+                                    startActivity(i);
+                                    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
-                                    startActivity(new Intent(getApplicationContext(), OtpActivity.class));
                                     finish();
                                 }
                             }, 300);

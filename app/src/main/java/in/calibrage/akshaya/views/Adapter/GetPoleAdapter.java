@@ -1,14 +1,19 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +26,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.DeleteObject;
 import in.calibrage.akshaya.models.ResPole;
 import in.calibrage.akshaya.models.Resdelete;
@@ -53,11 +60,11 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
     private GetPoleAdapterListener1 listener;
     public CardView card_view;
     String datetimevaluereq,currentDate;
-
+    DecimalFormat df = new DecimalFormat("####0.00");
     String selectedItemID;
     int selectedPO;
     private Subscription mSubscription;
-
+    Button cancel_btn,ok_btn;
 
     public GetPoleAdapter(List<ResPole.ListResult> list, Context ctx, GetPoleAdapterListener1 listener) {
         this.mContext = ctx;
@@ -77,6 +84,8 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         public TextView paymentMode, amount;
         public ImageView showMore;
         public TextView cancel,godown_name;
+        LinearLayout details;
+        public CardView card_view;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -91,7 +100,8 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
           amount=itemView.findViewById(R.id.amount);
             cancel = itemView.findViewById(R.id.cancel);
             godown_name=itemView.findViewById(R.id.godown_name);
-
+            details = itemView.findViewById(R.id.details);
+            card_view = itemView.findViewById(R.id.card_view);
 
 
         }
@@ -107,6 +117,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
@@ -127,49 +138,96 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         holder.req_date.setText(datetimevaluereq);
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
-        if(null !=list.get(position).getTotalCost() )
+        if(null !=list.get(position).getPaubleAmount() )
         {
-            holder.amount.setText(list.get(position).getTotalCost().toString());
+            holder.amount.setText(df.format(list.get(position).getPaubleAmount()));
         }
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        if (!"Closed".equals(holder.statusType.getText()))
-        {
-            holder.cancel.setVisibility(View.VISIBLE);
+//        if (!"Closed".equals(holder.statusType.getText()))
+//        {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        }
+//        else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
 
-        }
-        else {
-            holder.cancel.setVisibility(View.GONE);
-        }
-        if (!"Cancelled".equals(holder.statusType.getText())) {
-            holder.cancel.setVisibility(View.VISIBLE);
 
+        //todo
+      //  if (!"Closed".equals(holder.statusType.getText()) && !"Cancelled".equals(holder.statusType.getText())) {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
+//
+//        holder.cancel.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                selectedItemID = list.get(position).getRequestCode();
+//                selectedPO = position;
+//                showConformationDialog(selectedPO);
+//
+//            }
+//
+//        });
+
+        if (position % 2 == 0) {
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+            holder.details.setBackgroundColor(mContext.getColor(R.color.white2));
         } else {
-            holder.cancel.setVisibility(View.GONE);
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
+            holder.details.setBackgroundColor(mContext.getColor(R.color.light_gray2));
+
         }
-
-        holder.cancel.setOnClickListener(new View.OnClickListener() {
-
+        holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedItemID = list.get(position).getRequestCode();
-                selectedPO = position;
+                listener.onContactSelected1(list.get(position).getRequestCode().toString());
+
+            }
+        });
+        AnimationUtil.animate(holder, true);
+    }
+
+    private void showConformationDialog(final int selectedPO) {
+        TextView dialogMessage;
+        final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_cancel);
+        dialogMessage = dialog.findViewById(R.id.dialogMessage);
+        dialogMessage.setText(mContext.getString(R.string.alert_msg));
+        cancel_btn = dialog.findViewById(R.id.cancel_btn);
+        ok_btn = dialog.findViewById(R.id.ok_btn);
+/**
+ * @param OnClickListner
+ */
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 try {
                     delete_request();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
+                dialog.dismiss();
             }
-
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+/**
+ * @param OnClickListner
+ */
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onContactSelected1(list.get(position).getRequestCode().toString());
+                dialog.dismiss();
             }
         });
-
+        dialog.show();
     }
 
     private void delete_request()  throws JSONException {

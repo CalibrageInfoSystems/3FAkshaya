@@ -42,7 +42,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         ((ViewHolder) holder).card_view.setOnClickListener(new View.OnClickListener() {
 
@@ -54,6 +54,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
                 intent.putExtra("plotVillage", holder.textViewLocation.getText());
                 intent.putExtra("landMark", holder.textViewstatus.getText());
 
+                intent.putExtra("date_of_plandation",   plot_Set.get(position).getDateOfPlanting());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 mContext.startActivity(intent);
@@ -68,6 +69,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         ((ViewHolder) holder).textViewpalmArea.setText(df.format(plot_Set.get(position).getPalmArea() )+ " " + "Ha");
         ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
         ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
+        ((ViewHolder) holder).yop.setText(plot_Set.get(position).getDateOfPlanting() );
 
         if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
@@ -93,7 +95,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation;
-        public TextView textViewstatus;
+        public TextView textViewstatus,yop;
         public CardView card_view;
 
         public ViewHolder(View itemView) {
@@ -103,6 +105,8 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             this.textViewLocation = (TextView) itemView.findViewById(R.id.location);
             this.textViewstatus = (TextView) itemView.findViewById(R.id.landmark);
             this.card_view = (CardView) itemView.findViewById(R.id.card_view);
+            this.yop=(TextView)itemView.findViewById(R.id.yop);
+
 
         }
 

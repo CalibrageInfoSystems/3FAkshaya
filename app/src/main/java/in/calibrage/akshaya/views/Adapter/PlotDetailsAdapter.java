@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
@@ -25,6 +26,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
 
     List<res_plotdetails.ListResult> recomm_Set;
     public Context mContext;
+    DecimalFormat df = new DecimalFormat("####0.00");
 
 
     public PlotDetailsAdapter(List<res_plotdetails.ListResult> recomm_Set, Context context) {
@@ -46,7 +48,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
 
 
         holder.textViewplotId.setText(": " + recomm_Set.get(position).getSurveyNumber());
-        holder.textViewpalmArea.setText(": " + recomm_Set.get(position).getTotalPalmArea() + " " + "Ha");
+        holder.textViewpalmArea.setText(": " + df.format(recomm_Set.get(position).getTotalPalmArea()) + " " + "Ha");
         holder.textViewLocation.setText(": " + recomm_Set.get(position).getAddress());
 
         holder.plotLandmark.setText(": " + recomm_Set.get(position).getLandmark());

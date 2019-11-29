@@ -13,6 +13,8 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String Farmer_ID_CHECK ="Farmer/";
     String Farmer_otp ="Farmer/";
     String payment_history ="Payment/GetVendorLedger";
+
+    String transport_history ="Payment/GetTranspotationChargesByFarmerCode";
     String GetEncyclopediaDetails = "Encyclopedia/GetEncyclopediaDetails/";
     String GetRecommendationAges = "GetRecommendationAges";
     String GetActivePlotsByFarmerCode = "Farmer/GetActivePlotsByFarmerCode/";
@@ -23,7 +25,8 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String labour_amount = "LabourServiceCost/GetLabourServiceCostCalculation";
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetLabourTermsandConditions ="LabourServiceCost/GetLabourServiceCost/null";
-    String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetailsByFarmerCode/";
+    String CostConfig ="CostConfig/";
+    String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetailsByFarmerCode";
     String GetIssue = "TypeCdDmt/10";
     String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
     String post_visit = "RequestHeader/AddVisitRequest";
@@ -44,6 +47,11 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String AddAppInstallation = "AppInstall/AddAppInstallation";
 
     String CollectionInfoById ="Collection/CollectionInfoById/";
+    String GetVisitRequestRepository ="RequestHeader/GetVisitRequestRepository/";
+
+    String GetLabourPackageDiscount ="LabourPackageDiscount/GetLabourPackageDiscount";
+    String post_export ="Payment/ExportPayments";
+    String GetBankDetailsByFarmerCode ="Farmer/GetBankDetailsByFarmerCode/";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 }

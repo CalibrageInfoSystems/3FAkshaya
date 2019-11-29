@@ -66,8 +66,10 @@ public class OtpActivity extends BaseActivity {
     private String currentDate,Farmer_code;
     private PinEntryEditText pinEntry;
     private ImageView backImg;
+    TextView otp_desc;
+    String Reg_mobilenumber;
     private SpotsDialog mdilogue;
-
+    String F_number,S_number;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,7 @@ public class OtpActivity extends BaseActivity {
         Log.e("deviece==id", Device_id);
         sub_Btn = (Button) findViewById(R.id.btn_otp_login);
         backImg = (ImageView) findViewById(R.id.back);
+        otp_desc =(TextView)findViewById(R.id.otp_desc);
         pinEntry = findViewById(R.id.txt_pin_entry);
         pinEntry.requestFocus();
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
@@ -150,7 +153,21 @@ public class OtpActivity extends BaseActivity {
 
     }
     private void setview() {
-        sub_Btn.setOnClickListener(new View.OnClickListener() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Reg_mobilenumber = extras.getString("mobile");
+            if(Reg_mobilenumber.contains(",")) {
+                String[] separated = Reg_mobilenumber.split(",");
+                F_number = separated[0].replaceFirst("(\\d{8})(\\d+)", "$********$2");
+                S_number = separated[1].replaceFirst("(\\d{8})(\\d+)", "$********$2");
+                otp_desc.setText(getString(R.string.otp_desc) + " " + F_number + "," + S_number);
+            }
+          else {
+                String number = Reg_mobilenumber.replaceFirst("(\\d{8})(\\d+)", "$********$2");
+                otp_desc.setText(getString(R.string.otp_desc) + " " + number);
+            }
+        }
+            sub_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {

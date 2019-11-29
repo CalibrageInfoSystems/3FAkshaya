@@ -186,6 +186,9 @@ public class labour_req_response {
         @SerializedName("serviceTypeIds")
         @Expose
         private String serviceTypeIds;
+        @SerializedName("serviceChargePercentage")
+        @Expose
+        private String serviceChargePercentage;
 
         public String getRequestCode() {
             return requestCode;
@@ -475,5 +478,12 @@ public class labour_req_response {
             this.serviceTypeIds = serviceTypeIds;
         }
 
+        public String getServiceChargePercentage() {
+            return serviceChargePercentage;
+        }
+
+        public void setServiceChargePercentage(String serviceChargePercentage) {
+            this.serviceChargePercentage = serviceChargePercentage;
+        }
     }
 }

@@ -10,11 +10,11 @@ public class ModelFert {
     private int price;
     private String imageUrl;
     private String description;
-    private Double size;
+    private int size;
     private String uomType;
     private ArrayList<String> powers;
-    private int mQuantity;
-    private String mAmount;
+    private int mQuantity,avail_quantity;
+    private String mAmount,product_code;
     private int gst;
     private int Id;
 
@@ -31,6 +31,8 @@ public class ModelFert {
         this.mQuantity = 0;
         this.Id=Id;
         this.gst=gst;
+        this.avail_quantity =avail_quantity;
+        this.product_code = product_code;
 
     }
 
@@ -78,11 +80,11 @@ public class ModelFert {
         this.description = description;
     }
 
-    public Double getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(Double size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
@@ -138,4 +140,22 @@ public class ModelFert {
         this.gst = gst;
     }
 
+    public int getAvail_quantity() {
+        return avail_quantity;
+    }
+
+    public void setAvail_quantity(int avail_quantity) {
+        this.avail_quantity = avail_quantity;
+    }
+
+
+    public String getProduct_code() {
+        return product_code;
+    }
+
+
+
+    public void setProduct_code(String product_code) {
+        this.product_code = product_code;
+    }
 }

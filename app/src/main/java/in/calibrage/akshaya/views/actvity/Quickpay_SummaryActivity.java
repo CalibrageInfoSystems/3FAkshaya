@@ -37,6 +37,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -90,7 +91,10 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     List<String> post_ids = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
     String result;
+    String whs_Code;
     double total_weight = 0.0;
+     DecimalFormat df = new DecimalFormat("####0.00");
+    DecimalFormat dff = new DecimalFormat("####0.000");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,11 +108,16 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void init() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+           // include_gst_amount = extras.getString("Total_amount");
 
-        ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
-        dates_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
-        netweight_list = (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
-
+            ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
+            dates_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
+            netweight_list = (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
+            whs_Code =extras.getString("whsCode");
+            Log.e("whs_Code==",whs_Code);
+        }
         for (int i = 0; i < ids_list.size(); i++) {
 
             String id = ids_list.get(i);
@@ -313,25 +322,25 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                         if (getquickpayDetailsModel.getListResult() != null) {
 
                             Log.e("nodada====", "nodata===custom2");
-                            text_quntity.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getQuantity()));
+                            text_quntity.setText(dff.format(getquickpayDetailsModel.getListResult().get(0).getQuantity()));
 
                             if (getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge() == null) {
                                 text_flat_charge.setText("0");
 
                             } else {
-                                text_flat_charge.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge()));
+                                text_flat_charge.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge()));
                             }
-                            ffbCostTxt.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getFfbCost()));
+                            ffbCostTxt.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getFfbCost()));
 
                             if (getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge() == null) {
                                 convenienceChargeTxt.setText("0");
 
                             } else {
 
-                                convenienceChargeTxt.setText("-" + String.valueOf(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
+                                convenienceChargeTxt.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
                             }
                             closingBalanceTxt.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
-                            totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                            totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
 
                             if (getquickpayDetailsModel.getListResult().get(0).getTotal() == null) {
                                 totalAmount.setText("0");
@@ -340,7 +349,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                                 totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
                             }
-                            text_quickpay_fee.setText("-" + String.valueOf(getquickpayDetailsModel.getListResult().get(0).getQuickPay()));
+                            text_quickpay_fee.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getQuickPay()));
 
                         } else {
 
@@ -356,6 +365,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         GetQuickpayDetails requestModel = new GetQuickpayDetails();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setQuantity(total_weight);
+        requestModel.setWhsCode(whs_Code);
             return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
         }
@@ -421,6 +431,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void showSuccesspdf() {
+        mdilogue.show();
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -428,18 +439,18 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         WebView webView = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+       // webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.getSettings().setUseWideViewPort(true);
+       webView.getSettings().setLoadWithOverviewMode(true);
+       webView.getSettings().setUseWideViewPort(true);
 
         //---you need this to prevent the webview from
         // launching another browser when a url
         // redirection occurs---
         webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
 
-        webView.loadUrl(
-                "http://docs.google.com/gview?embedded=true&url=" + result);
+        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
+        mdilogue.cancel();
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -470,6 +481,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setCreatedDate(currentDate);
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
+        requestModel.setWhsCode(whs_Code);
         requestModel.setFileLocation("");
         if(null != closingBalanceTxt.getText() & !TextUtils.isEmpty(closingBalanceTxt.getText()))
           requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
@@ -483,7 +495,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
 
         requestModel.setCollectionIds(val);
-        requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
+      //  requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
         requestModel.setSignatureExtension(".png");
         requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));

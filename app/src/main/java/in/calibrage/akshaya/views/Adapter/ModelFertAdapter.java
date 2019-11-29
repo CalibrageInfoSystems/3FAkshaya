@@ -77,7 +77,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
         Log.e("uom==76",superHero.getSize() + " " + superHero.getUomType());
 //
         holder.disc.setText(superHero.getDescription());
-        if (!TextUtils.isEmpty(superHero.getSize().toString())) {
+        if (!TextUtils.isEmpty(superHero.getSize()+"")) {
             holder.size.setText(superHero.getSize() + "" + superHero.getUomType());
         } else {
             holder.size.setText("N/A");
@@ -154,7 +154,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.popup_content, null);
-        TextView text = layout.findViewById(R.id.tvCaption);
+        TextView text = layout.findViewById(R.id.product_description);
         text.setText(Description);
         popup.setContentView(layout);
         // Set content width and height
@@ -173,7 +173,7 @@ public class ModelFertAdapter extends RecyclerView.Adapter<ModelFertAdapter.View
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.popup_content, null);
-        TextView text = layout.findViewById(R.id.tvCaption);
+        TextView text = layout.findViewById(R.id.product_description);
         text.setText(ProductName);
         popup.setContentView(layout);
 

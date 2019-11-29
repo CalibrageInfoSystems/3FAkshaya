@@ -1,14 +1,19 @@
 package in.calibrage.akshaya.views.Adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +25,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,9 +58,10 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
     String datetimevaluereq,currentDate;
     // RecyclerView recyclerView;
     String selectedItemID;
+    Button cancel_btn,ok_btn;
     int selectedPO;
     private Subscription mSubscription;
-
+    DecimalFormat df = new DecimalFormat("####0.00");
     public GetfertAdapter(List<Resfert.ListResult> list, Context ctx, GetfertAdapter.GetPoleAdapterListener listener) {
         this.mContext = ctx;
         this.listener = listener;
@@ -69,10 +76,11 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         public LinearLayout contentLayout;
         public TextView requestCode;
         public TextView req_date;
-        public TextView statusType;
+        public TextView statusType,sub_amount;
         public TextView paymentMode, amount,cancel,godown_name;
         public ImageView showMore;
-
+        LinearLayout details;
+        public CardView card_view;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -82,12 +90,14 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
             requestCode = itemView.findViewById(R.id.requestCode);
             req_date = itemView.findViewById(R.id.reqCreatedDate);
             statusType = itemView.findViewById(R.id.statusType);
+            sub_amount = itemView.findViewById(R.id.sub_amount);
             paymentMode = itemView.findViewById(R.id.paymentMode);
             card_view =   itemView.findViewById(R.id.card_view);
             amount=itemView.findViewById(R.id.amount);
             godown_name=itemView.findViewById(R.id.godown_name);
           cancel = itemView.findViewById(R.id.cancel);
-
+            details = itemView.findViewById(R.id.details);
+            card_view = itemView.findViewById(R.id.card_view);
 
         }
 
@@ -97,11 +107,12 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem = layoutInflater.inflate(R.layout.pole_list, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.fert_list, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
@@ -122,48 +133,95 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         holder.godown_name.setText(list.get(position).getGoDownName());
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
+        holder.sub_amount.setText(list.get(position).getSubsidyAmount()+"");
         if(null != list.get(position).getTotalCost())
-            holder.amount.setText(list.get(position).getTotalCost()+"");
+            holder.amount.setText(df.format(list.get(position).getTotalCost()));
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        if (!"Closed".equals(holder.statusType.getText()))
-        {
-            holder.cancel.setVisibility(View.VISIBLE);
+//        if (!"Closed".equals(holder.statusType.getText()))
+//        {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        }
+//        else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
 
-        }
-        else {
-            holder.cancel.setVisibility(View.GONE);
-        }
-        if (!"Cancelled".equals(holder.statusType.getText())) {
-            holder.cancel.setVisibility(View.VISIBLE);
+        //todo
 
+
+//        if (!"Closed".equals(holder.statusType.getText()) && !"Cancelled".equals(holder.statusType.getText())) {
+//            holder.cancel.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            holder.cancel.setVisibility(View.GONE);
+//        }
+//        holder.cancel.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                selectedItemID = list.get(position).getRequestCode();
+//                selectedPO = position;
+//                showConformationDialog(selectedPO);
+//
+//            }
+//
+//        });
+
+
+        if (position % 2 == 0) {
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
+            holder.details.setBackgroundColor(mContext.getColor(R.color.white2));
         } else {
-            holder.cancel.setVisibility(View.GONE);
-        }
-        holder.cancel.setOnClickListener(new View.OnClickListener() {
+            holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
+            holder.details.setBackgroundColor(mContext.getColor(R.color.light_gray2));
 
+        }
+        holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedItemID = list.get(position).getRequestCode();
-                selectedPO = position;
+                listener.onContactSelected(list.get(position));
+            }
+        });
+    }
+
+
+    private void showConformationDialog(final int selectedPO) {
+        TextView dialogMessage;
+        final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_cancel);
+        dialogMessage = dialog.findViewById(R.id.dialogMessage);
+        dialogMessage.setText(mContext.getString(R.string.alert_msg));
+        cancel_btn = dialog.findViewById(R.id.cancel_btn);
+        ok_btn = dialog.findViewById(R.id.ok_btn);
+/**
+ * @param OnClickListner
+ */
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 try {
                     delete_request();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
+                dialog.dismiss();
             }
-
         });
 
-
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+/**
+ * @param OnClickListner
+ */
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onContactSelected(list.get(position).getRequestCode().toString());
+                dialog.dismiss();
             }
         });
+        dialog.show();
     }
 
     private void delete_request()  throws JSONException {
@@ -236,7 +294,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
 
 
     public interface GetPoleAdapterListener {
-        void onContactSelected(String products);
+        void onContactSelected(Resfert.ListResult list);
     }
 
 }

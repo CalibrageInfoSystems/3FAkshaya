@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
+import in.calibrage.akshaya.models.GetBankDetailsByFarmerCode;
 import in.calibrage.akshaya.models.Product_new;
 
 
@@ -24,6 +25,8 @@ public class SharedPrefsData {
     private SharedPreferences ChurchSharedPrefs = null;
     private static final String USER_ID = "user_id";
     private static final String CataGories = "catagories";
+    private static final String BankDetails = "bankdetails";
+
 
 
     public static SharedPrefsData getInstance(Context context) {
@@ -228,5 +231,32 @@ public class SharedPrefsData {
             finalmiddlename = middlename + " ";
         }
         return  SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getFirstName() + " " + finalmiddlename + SharedPrefsData.getCatagories(ctx).getResult().getFarmerDetails().get(0).getLastName();
+    }
+
+
+    public static void savebankdetails(Context mContext, GetBankDetailsByFarmerCode bankmodel) {
+        Gson gson = new Gson();
+
+        if (mContext != null) {
+            String json = gson.toJson(bankmodel);
+            SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = profilePref.edit();
+            editor.putString(BankDetails, json);
+
+            // Commit the edits!
+            editor.apply();
+
+        }
+    }
+
+    public static GetBankDetailsByFarmerCode getbankdetails(Context mContext) {
+        Gson gson = new Gson();
+
+        SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
+                Context.MODE_PRIVATE);
+        String json = profilePref.getString(BankDetails, "");
+        GetBankDetailsByFarmerCode obj = gson.fromJson(json, GetBankDetailsByFarmerCode.class);
+        return obj;
+
     }
 }

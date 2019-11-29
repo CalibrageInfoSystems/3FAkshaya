@@ -5,15 +5,22 @@ import com.google.gson.JsonObject;
 import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.BannerresponseModel;
 import in.calibrage.akshaya.models.CollectionResponceModel;
+import in.calibrage.akshaya.models.Costconfigres;
 import in.calibrage.akshaya.models.CropResponseModel;
+import in.calibrage.akshaya.models.ExportPayments;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.GetAmount;
+import in.calibrage.akshaya.models.GetBankDetailsByFarmerCode;
 import in.calibrage.akshaya.models.GetCollectionInfoById;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.GetIssueModel;
+import in.calibrage.akshaya.models.GetLabourPackageDiscount;
+import in.calibrage.akshaya.models.GetTranspotationCharges;
+import in.calibrage.akshaya.models.GetVisitRequestRepository;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
+import in.calibrage.akshaya.models.Getvisit;
 import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.LabourTermsNCondtionsModel;
@@ -76,6 +83,9 @@ public interface ApiService {
     @POST(APIConstantURL.payment_history)
     Observable<PaymentResponseModel> postpayment(@Body JsonObject data);
 
+    @POST(APIConstantURL.transport_history)
+    Observable<GetTranspotationCharges> posttrans(@Body JsonObject data);
+
 
     @GET
     Observable<GetEncyclopediaDetails> getEncyclopediaDetails(@Url String url);
@@ -113,6 +123,8 @@ public interface ApiService {
 
     @GET
     Observable<LabourTermsNCondtionsModel> getterms(@Url String url);
+    @GET
+    Observable<Costconfigres> getcostconfi(@Url String url);
 
     @GET
     Observable<GetquickpayDetailsModel> getquickpaydetails(@Url String url);
@@ -167,6 +179,8 @@ public interface ApiService {
 
     @POST(APIConstantURL.GetRequestHeaderDetails)
     Observable<ResLoan> GetRequestheaderLoanDetails(@Body JsonObject data);
+    @POST(APIConstantURL.GetRequestHeaderDetails)
+    Observable<Getvisit> GetRequestheadervistDetails(@Body JsonObject data);
 
     @GET
     Observable<Resbasicinfo> getbasicinfo(@Url String url);
@@ -192,4 +206,16 @@ public interface ApiService {
     Observable<GetCollectionInfoById> getinfo(@Url String url);
 
 
+    @GET
+    Observable<GetBankDetailsByFarmerCode> getbankdetails(@Url String url);
+
+    @GET
+    Observable<GetVisitRequestRepository> getimages(@Url String url);
+
+    @GET
+    Observable<GetLabourPackageDiscount> getdiscount(@Url String url);
+
+
+    @POST(APIConstantURL.post_export)
+    Observable<String> postexport(@Body JsonObject data);
 }

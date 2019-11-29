@@ -63,7 +63,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
     DatePickerDialog picker;
     public static String TAG = "CollectionsActivity";
     EditText fromText, toText;
-    String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
+    String[] selection = {"Last 30 Days", "Current Financial Year", "Select Time Period"};
 
     Spinner spin;
     Collection_Adapter collection_Adapter;
@@ -205,7 +205,8 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         Log.i("LOG_RESPONSE date ", currentDate);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, -1);
+        calendar.add(Calendar.DAY_OF_MONTH, -30);
+
         Date date = calendar.getTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         last_30day = format.format(date);
@@ -266,7 +267,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         }
         {
             //  String Month = MonthArray[index];
-            if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
+            if (spin.getSelectedItem().toString().equals("Select Time Period")) {
                 //   adapter.notifyDataSetChanged();
                 collecton_data.setVisibility(View.GONE); //
                 noRecords.setVisibility(View.GONE);
@@ -340,7 +341,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
             }
         }
-        if (spin.getSelectedItem().toString().equals("Custom Time Period")) {
+        if (spin.getSelectedItem().toString().equals("Select Time Period")) {
             // Toast.makeText(getApplicationContext(),"hiddd" , Toast.LENGTH_LONG).show();
             date_linear.setVisibility(View.VISIBLE); //
             relativeLayoutCount.setVisibility(View.GONE);

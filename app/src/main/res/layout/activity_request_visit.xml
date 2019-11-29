@@ -66,7 +66,7 @@
     <LinearLayout
         android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
 
@@ -74,11 +74,7 @@
         android:visibility="gone"
         android:weightSum="1">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:src="@drawable/ic_sad" />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -86,7 +82,7 @@
             android:layout_weight="0.5"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
-            android:text="@string/no_collections_found"
+            android:text="@string/no_plots"
             android:textColor="@color/colorOrange"
             android:textSize="@dimen/margin_20" />
     </LinearLayout>

@@ -564,7 +564,35 @@
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/white"
             android:textSize="@dimen/album_title" />
+        <TextView
+            android:id="@+id/status_Label"
 
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/landmarkLabel"
+            android:layout_marginTop="@dimen/margin_5"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:text="@string/yop"
+
+            android:textColor="@color/white"
+            android:textSize="@dimen/album_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/yop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/landmarkLabel"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_toRightOf="@+id/textView55"
+            android:hint=""
+            android:maxLength="4"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:textColor="@color/white_new"
+            android:textSize="@dimen/album_title" />
 
     </RelativeLayout>
 

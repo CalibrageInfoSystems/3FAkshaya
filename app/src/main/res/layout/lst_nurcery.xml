@@ -38,7 +38,7 @@
                     android:padding="10dp"
 
                     android:scaleType="centerInside"
-                    android:src="@drawable/nurseries" />
+                    android:src="@drawable/nurseries_icon" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -171,6 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/margin_5"
                         android:gravity="right"
+
                         android:orientation="horizontal"
                         android:textColor="@color/text_dark_gray"
                         android:weightSum="1">

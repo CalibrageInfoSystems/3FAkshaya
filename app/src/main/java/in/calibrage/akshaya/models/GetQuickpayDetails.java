@@ -11,6 +11,9 @@ public class GetQuickpayDetails {
     @SerializedName("quantity")
     @Expose
     private Double quantity;
+    @SerializedName("whsCode")
+    @Expose
+    private String whsCode;
 
     public String getFarmerCode() {
         return farmerCode;
@@ -28,4 +31,11 @@ public class GetQuickpayDetails {
         this.quantity = quantity;
     }
 
+    public String getWhsCode() {
+        return whsCode;
+    }
+
+    public void setWhsCode(String whsCode) {
+        this.whsCode = whsCode;
+    }
 }

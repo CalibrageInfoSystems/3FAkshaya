@@ -125,8 +125,8 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     public TextView treesAppearance,last_visit_date,freq_harvest,fruitColor,fruitSize,fruitHyegiene,plantationType;
     public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
     // ImageView thumbnail;
-    public TextView comment_label,reason_label;
-    String plot_Age,location,landmarkCode;
+    public TextView comment_label,reason_label,yop;
+    String plot_Age,location,landmarkCode,date_of_plandation;
     ImageView backImg,home_btn;
     SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
@@ -144,7 +144,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
             plot_Age = extras.getString("plotAge");
             location = extras.getString("plotVillage");
             landmarkCode = extras.getString("landMark");
-
+            date_of_plandation=extras.getString("date_of_plandation");
         }
         intview();
         setViews();
@@ -199,6 +199,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         id_plot = findViewById(R.id.plot);
         area = findViewById(R.id.palmArea);
         landMark = findViewById(R.id.landmark);
+        yop=findViewById(R.id.yop);
     }
 
     private void  setViews() {
@@ -242,6 +243,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
+        yop.setText(date_of_plandation);
 
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override

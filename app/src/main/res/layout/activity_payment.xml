@@ -76,7 +76,7 @@
     <RelativeLayout
         android:id="@+id/lin_one"
         android:layout_width="403dp"
-        android:layout_height="393dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/_8dp"
         android:layout_marginLeft="@dimen/_8dp"

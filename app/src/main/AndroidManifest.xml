@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="in.calibrage.akshaya">
 
     <application
         android:allowBackup="true"
+ android:requestLegacyExternalStorage="true"
         android:icon="@drawable/ic_applogo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_applogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.actvity.PaymentHistories"></activity>
+        <activity android:name=".views.actvity.test"></activity>
+        <activity android:name=".views.actvity.product_list_fert" />
+        <activity android:name=".views.actvity.Godown_list" />
+        <activity android:name=".views.actvity.PaymentHistories" />
         <activity android:name=".views.actvity.CollectionInfo" />
         <activity
             android:name=".views.actvity.QRScannerActivity"
@@ -63,10 +68,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.FertilizerActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.PoleActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.LabourRecommendationsActivity"
             android:screenOrientation="portrait" />
@@ -92,6 +99,11 @@
             android:name=".views.actvity.OtpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".views.actvity.MapsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".views.actvity.LoginActivity"
             android:screenOrientation="portrait"
@@ -139,13 +151,16 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+        <service android:name="in.calibrage.akshaya.service.BackgroundNotificationService" />
     </application>
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

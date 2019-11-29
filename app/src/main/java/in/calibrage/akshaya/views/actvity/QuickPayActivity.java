@@ -60,6 +60,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     List<String> ids_list = new ArrayList<>();
     List<String> dates_list = new ArrayList<>();
     List<Double> weight_list = new ArrayList<>();
+    String w_Code;
     int SPLASH_DISPLAY_DURATION = 500;
 
     @Override
@@ -108,6 +109,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
                         intent.putExtra("collection_dates", (Serializable) dates_list);
                         intent.putExtra("collection_weight", (Serializable) weight_list);
+                        intent.putExtra("whsCode",w_Code);
                         startActivity(intent);
 
                         Log.e("ids_list===", String.valueOf(ids_list));
@@ -185,6 +187,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                             recyclerView.setVisibility(View.VISIBLE);
                             adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);
                             recyclerView.setAdapter(adapter);
+                            w_Code = quickPayModel.getListResult().get(0).getWhsCode();
                             for (QuickPayModel.ListResult item : quickPayModel.getListResult()
                             ) {
                                 ids_list.add(item.getUColnid());

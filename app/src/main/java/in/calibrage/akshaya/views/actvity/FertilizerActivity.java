@@ -39,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     String dis_price, Farmer_code;
     final Context context = this;
     Button button, btn_next;
-    TextView mealTotalText, txt_recomandations, txt_count;
+    TextView mealTotalText, txt_recomandations, txt_count,no_data;
     private String TAG = "FertilizerActivity";
     private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
@@ -74,7 +75,10 @@ Double total_amount;
     Integer Id, quantity;
     int price_final;
     int Count=0;
-
+    int Godown_id;
+    String Godown_code,Godown_name;
+    DecimalFormat dec = new DecimalFormat("####0.00");
+    //code_godown
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,7 @@ Double total_amount;
         txt_recomandations = findViewById(R.id.txt_recomandations);
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
+        no_data =findViewById(R.id.no_data);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         ImageView backImg = (ImageView) findViewById(R.id.back);
         backImg.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +98,16 @@ Double total_amount;
                 finish();
             }
         });
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Godown_code = extras.getString("code_godown");
+            Log.e("Godown_code===",Godown_code);
+            Godown_id= extras.getInt("id_godown");
+            Godown_name = extras.getString("name_godown");
 
+
+
+        }
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
 
@@ -142,6 +156,10 @@ Double total_amount;
 
                         Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
+                        i.putExtra("godown_id",Godown_id);
+                        i.putExtra("godown_code",Godown_code);
+                        i.putExtra("godown_name",Godown_name);
+
                         startActivity(i);
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                     }
@@ -170,7 +188,8 @@ Double total_amount;
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
 
-        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByCategoryId/1";
+        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/1/"+ Godown_code;
+        Log.e("url==Godown_code===",url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -184,12 +203,26 @@ Double total_amount;
                     Log.d(TAG, "GetProductsByCategoryId ======" + jsonObject);
                     String success = jsonObject.getString("isSuccess");
                     Log.d(TAG, "success======" + success);
-                    JSONArray alsoKnownAsArray = jsonObject.getJSONArray("listResult");
-                    parseData(alsoKnownAsArray);
+                    if(!jsonObject.getString("listResult").equals("null")) {
+
+                        JSONArray kl = jsonObject.getJSONArray("listResult");
+                        Log.d("kl==============", String.valueOf(kl));
+                        parseData(kl);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            no_data.setVisibility(View.GONE);
+                            Log.e("no==data==208","No data");
+
+                        // parseData(alsoKnownAsArray);
 
 
-                    String affectedRecords = jsonObject.getString("affectedRecords");
-                    Log.d(TAG, "GetProductsByCategoryId======" + affectedRecords);
+                        String affectedRecords = jsonObject.getString("affectedRecords");
+                        Log.d(TAG, "GetProductsByCategoryId======" + affectedRecords);
+                    }else {
+                        no_data.setVisibility(View.VISIBLE);
+                        btn_next.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        Log.d(TAG,"------ analysis ------ "+"Iam NUll");
+                    }
 
 
                 } catch (JSONException e) {
@@ -244,7 +277,7 @@ Double total_amount;
                 superHero.setPrice(json.getInt("price"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
-                Double size = json.getDouble("size");
+                int size = json.getInt("size");
                 Log.d(TAG, "--- Size ----" + size);
 //
                 superHero.setSize(size);
@@ -252,6 +285,9 @@ Double total_amount;
 
                 superHero.setId(json.getInt("id"));
                 superHero.setUomType(json.getString("uomType"));
+                superHero.setAvail_quantity(json.getInt("availableQuantity"));
+                superHero.setProduct_code(json.getString("code"));
+
                 Log.e("uom===", json.getString("uomType"));
                 int price_finall = json.getInt("price");
                 Log.e("price_final====", String.valueOf(price_finall));
@@ -260,8 +296,12 @@ Double total_amount;
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
 
-                superHero.setgst(json.getInt("gstPercentage"));
+                int gst =json.getInt("gstPercentage");
+                Log.e("gst====", String.valueOf(gst));
 
+if( String.valueOf(gst)!= null) {
+    superHero.setgst(gst);
+}
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -308,7 +348,7 @@ Double total_amount;
         txt_count.setText(allproducts + "");
         total_amount = Math.round(allitemscost * 100D) / 100D;
         Log.e("valueRounded===",total_amount+"");
-        mealTotalText.setText(total_amount+"");
+        mealTotalText.setText(dec.format(total_amount));
     }
 
 
