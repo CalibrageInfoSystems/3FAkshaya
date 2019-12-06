@@ -17,9 +17,9 @@
     <string name="cancel">Cancel</string>
     <string name="terms_conditions">Terms &amp; Conditions</string>
     <string name="terms_agree">Please Agree Terms &amp; Conditions</string>
-    <string name="convenience_charge">Convenience Charge (Rs)</string>
-    <string name="total_amt_pay">Total Bill Amount (Rs)</string>
-    <string name="otp_desc">Enter the 6 digits code sent your registered mobile number(s)</string>
+    <string name="convenience_charge">Convenience Charge(Rs)</string>
+    <string name="total_amt_pay">Total Bill Amount(Rs)</string>
+    <string name="otp_desc">Enter the 6 Digits Code Sent your Registered Mobile Number(s)</string>
     <string name="submit">SUBMIT</string>
     <string name="submit_req">Submit Request</string>
     <string name="view">Views</string>
@@ -76,12 +76,12 @@
     <string name="collection">Collections</string>
     <string name="land_mark">Landmark</string>
     <string name="landmark">Landmark</string>
-    <string name="closingBal">Dues (Rs)</string>
+    <string name="closingBal">Dues(Rs)</string>
     <string name="language_notification">Language Setup Completed</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_off">Logout</string>
-    <string name="tap_text">Please select language below:</string>
+    <string name="tap_text">Please select Language below:</string>
     <string name="btn_en">English</string>
     <string name="btn_te">Telugu</string>
 
@@ -98,10 +98,10 @@
     <string name="invoice_rate">Invoice Rate per MT (Rs)</string>
     <string name="memo">Memo</string>
     <string name="amount">Amount (Rs)</string>
-    <string name="harv_amountt">D) Harvesting \nCost /Ton (Rs)</string>
-    <string name="pru_amountt">A) Pruning \nCost /Tree (Rs)</string>
-    <string name="harv_amount">Harvesting Amount/Ton (Rs)</string>
-    <string name="pru_amount">Pruning Amount/Tree (Rs)</string>
+    <string name="harv_amountt">D) Harvesting \nCost /Ton(Rs)</string>
+    <string name="pru_amountt">A) Pruning \nCost /Tree(Rs)</string>
+    <string name="harv_amount">Harvesting Amount/Ton(Rs)</string>
+    <string name="pru_amount">Pruning Amount/Tree(Rs)</string>
     <string name="paidCollectionsWeight">Paid Collections Weight</string>
     <string name="no_collections_found">No Collections Available</string>
     <string name="no_payments_found">No Payments Found</string>
@@ -128,8 +128,8 @@
 
     />
     <string name="total_records">Total Records</string>
-    <string name="quantity_mt">Quantity (MT)</string>
-    <string name="ffb_flot">FFB Rate (Rs)</string>
+    <string name="quantity_mt">Quantity(MT)</string>
+    <string name="ffb_flot">FFB Rate(Rs)</string>
     <string name="no_pdfs">No Pdfs Available</string>
     <string name="dosage_only">Dosage</string>
 
@@ -187,7 +187,7 @@
     <string name="reason_loan">Reason for Loan</string>
 
     <string name="error">Error</string>
-    <string name="quick_pay">QuickPay Fee  (Rs)</string>
+    <string name="quick_pay">QuickPay Fee(Rs)</string>
     <string name="issue_type">Type of Issue</string>
     <string name="image">Image Upload</string>
     <string name="digital_signature">Digital Signature</string>
@@ -211,6 +211,7 @@
     <string name="str_videos">Videos</string>
     <string name="str_pdf">Pdfs</string>
     <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
+    <string name="enter_loan_amount"> Amount must be Greater than 0</string>
     <string name="Valid_service">Please Select Service Type</string>
     <string name="valid_pack">Please Select Package</string>
     <string name="record">Voice Recording</string>
@@ -353,7 +354,7 @@
     <string name="num_trees">B) No. of Trees</string>
     <string name="Prunning_amount">C) Pruning  \nAmount(Rs)(A*B)</string>
     Package Discount (%)
-    <string name="amount_labour">K)Total Amount (Rs)\n(C+F+H-J)</string>
+    <string name="amount_labour">K)Total Amount(Rs)\n(C+F+H-J)</string>
     <string name="harvesting_amount">F) Harvesting \nAmount(Rs)(D*E)</string>
     <string name="service_chargeper">G) Service Charge (%)</string>
     <string name="service_amount">H) Service Charge(Rs)\n((C+F)*G)/100</string>
@@ -379,9 +380,11 @@
     <string name="text">Discount on Your Package</string>
     <string name="click_downlad">Click Here to Download</string>
     <string name="disc_package">I) Package Discount \n(%)</string>
-    <string name="disc_price">J) Package Discount \nPrice (Rs)((C+F)*I)/100) </string>
+    <string name="disc_price">J) Package Discount \nPrice(Rs)((C+F)*I)/100) </string>
     <string name="note">If the Products has not been Picked with in 2 Days of Requested Date,Your Order will be Cancelled.</string>
     <string name="subsidy_amt">Available Subsidy Amount</string>
+    <string name="download">Downloaded Files</string>
+    <string name="endusermsg">Total Cost Shouldnot be 0</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

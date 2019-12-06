@@ -96,7 +96,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     DecimalFormat df = new DecimalFormat("#,###,##0.00");
     LabourTermsNCondtionsAdapter Tadapter;
     LabourdiscountAdapter dis_adapter;
-
+    String selected_name;
     TextView terms, status_text, prun_amount, harv_amount, un_amount, un2_amount,yop;
     String seleced_Duration;
     int discount;
@@ -714,31 +714,57 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override
                                 public void run() {
-                                    String selected_name = arrayyTOstring(selected_labour);
+                                  //  String selected_name = arrayyTOstring(selected_labour);
+                                    Log.e("selected_name===",selected_name);
                                     finalAmount = getAmount();
                                     String Amount = harv_amount.getText().toString();
                                     String date = edittext.getText().toString();
                                     List<MSGmodel> displayList = new ArrayList<>();
 
 
-                                    displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
-                                    if (selected_name.contains("Harvesting")) {
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount),df.format(Double.parseDouble(harv_amount.getText()+""))));
-                                    }
-                                    if (selected_name.contains("Pruning")) {
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount),df.format(Double.parseDouble(prun_amount.getText()+""))));
-                                    }
-                                    if (selected_name.contains("UnKnown1")) {
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
-                                    }
-                                    if (selected_name.contains("UnKnown2")) {
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
-                                    }
+//                                        requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
+//                                    } else {
+//                                        requestModel.setHarvestingAmount(0.0);
+//                                    }
+                                    if (discount_label.getVisibility() == View.VISIBLE) {
+                                        displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+                                        if (selected_name.contains("Harvesting")) {
 
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount),df.format(Double.parseDouble(harv_d_amount.getText()+""))));
+                                        }
+                                        if (selected_name.contains("Pruning")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount),df.format(Double.parseDouble(pru_d_amount.getText()+""))));
+                                        }
+//                                        if (selected_name.contains("UnKnown1")) {
+//                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
+//                                        }
+//                                        if (selected_name.contains("UnKnown2")) {
+//                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
+//                                        }
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
 
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
+                                    }
+                                    else {
+                                        displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+                                        if (selected_name.contains("Harvesting")) {
 
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), df.format(Double.parseDouble(harv_amount.getText() + ""))));
+                                        }
+                                        if (selected_name.contains("Pruning")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), df.format(Double.parseDouble(prun_amount.getText() + ""))));
+                                        }
+                                        if (selected_name.contains("UnKnown1")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
+                                        }
+                                        if (selected_name.contains("UnKnown2")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
+                                        }
+
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
+
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
+                                    }
 
 //
                                     Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
@@ -898,15 +924,15 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
         }
 
-        String name = CommonUtil.arrayToString(strings);
-
-        if (name.contains("Pruning")) {
+         selected_name = CommonUtil.arrayToString(strings);
+        Log.d(TAG, "---- analysis ---- > get selected labour name908 :" + selected_name);
+        if (selected_name.contains("Pruning")) {
             amount_Label.setVisibility(View.VISIBLE);
         } else {
             amount_Label.setVisibility(View.GONE);
         }
 
-        if (name.contains("Harvesting")) {
+        if (selected_name.contains("Harvesting")) {
             harv_amount_label.setVisibility(View.VISIBLE);
             harvesting_d_amount = harvesting_amount*discount/100;
             Log.e("call====864",discount + "discoutnt percentage"+ harvesting_d_amount+"harvesting===with discount " +harvesting_amount);
@@ -916,13 +942,13 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             harv_amount_label.setVisibility(View.GONE);
         }
 
-        if (name.contains("UnKnown1")) {
+        if (selected_name.contains("UnKnown1")) {
             un_amount_label.setVisibility(View.VISIBLE);
         } else {
             un_amount_label.setVisibility(View.GONE);
         }
 
-        if (name.contains("UnKnown2")) {
+        if (selected_name.contains("UnKnown2")) {
             un2_amount_label.setVisibility(View.VISIBLE);
         } else {
             un2_amount_label.setVisibility(View.GONE);
@@ -1011,6 +1037,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setDurationId(period_id.get(labourSpinner.getSelectedItemPosition() - 1));
         requestModel.setPlotVillage(location);
         requestModel.setYearofPlanting(plantationdate);
+//        requestModel.setHarvestingAmount(0.00);
+//        requestModel.setPruningAmount(0.00);
         requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
         requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
        // requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
@@ -1031,7 +1059,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setAmount(null);
 
         String selected_name = arrayyTOstring(selected_labour);
-
+//
 //        if (selected_name.contains("Harvesting")) {
 //            requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
 //        }else {
@@ -1051,36 +1079,36 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //        if (selected_name.contains("UnKnown2")) {
 //            requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
 //        }else { requestModel.setUnKnown2Amount(0.0);}
+//
 
 
 
 
 
+//      if (harv_amount.getVisibility() == View.VISIBLE) {
+//            requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
+//        } else {
+//            requestModel.setHarvestingAmount(0.0);
+//        }
+//
+//
+//        if (prun_amount.getVisibility() == View.VISIBLE){
+//            requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));}
+//        else{
+//            requestModel.setPruningAmount(0.0);}
+//
+//
+//        if (un_amount.getVisibility() == View.VISIBLE){
+//            requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));}
+//        else{
+//            requestModel.setUnKnown1Amount(0.0);}
+//
+//
+//        if (un2_amount.getVisibility() == View.VISIBLE){
+//            requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));}
+//        else{
+//            requestModel.setUnKnown2Amount(0.0);}
 
-   /*     if (harv_amount.getVisibility() == View.VISIBLE) {
-            requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
-        } else {
-            requestModel.setHarvestingAmount(0.0);
-        }
-
-
-        if (prun_amount.getVisibility() == View.VISIBLE){
-            requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));}
-        else{
-            requestModel.setPruningAmount(0.0);}
-
-
-        if (un_amount.getVisibility() == View.VISIBLE){
-            requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));}
-        else{
-            requestModel.setUnKnown1Amount(0.0);}
-
-
-        if (un2_amount.getVisibility() == View.VISIBLE){
-            requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));}
-        else{
-            requestModel.setUnKnown2Amount(0.0);}
-*/
 
 //        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
 //        requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));

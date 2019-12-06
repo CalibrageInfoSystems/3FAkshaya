@@ -366,7 +366,7 @@ public class pole_godown_list extends BaseActivity  {
                                 }
                             }, 300);
                         } else {
-                            showDialog(pole_godown_list.this, fertResponse.getEndUserMessage());
+                            showDialog(pole_godown_list.this, getString(R.string.endusermsg) );
                         }
 
 
@@ -413,7 +413,7 @@ public class pole_godown_list extends BaseActivity  {
         requestModel.setFileName(null);
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
-
+        //requestModel.setTotalCost(0.00);
         requestModel.setTotalCost(Double.valueOf(include_gst_amount));
         requestModel.setSubcidyAmount(0.0);
         requestModel.setPaybleAmount(Double.valueOf(include_gst_amount));

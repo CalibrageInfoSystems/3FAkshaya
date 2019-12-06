@@ -151,29 +151,29 @@ android:textStyle="bold"
                 android:textSize="12dp" />
 
             <TextView
-            android:id="@+id/product_price"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/selected_food_name"
-            android:paddingLeft="3dp"
-            android:paddingTop="@dimen/album_title_padding"
-            android:layout_weight=".2"
-                android:textColor="@color/red"
-            android:text=" "
+                android:id="@+id/discount_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selected_food_name"
+                android:layout_weight=".17"
+                android:paddingLeft="3dp"
+                android:paddingTop="@dimen/album_title_padding"
+                android:text=" "
+                android:textColor="@color/black"
 
-            android:textSize="12dp" />
+                android:textSize="12dp" />
 
             <TextView
-                android:id="@+id/discount_price"
+                android:id="@+id/product_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/selected_food_name"
                 android:paddingLeft="3dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:layout_weight=".15"
+                android:layout_weight=".18"
 
                 android:text=" "
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:textSize="12dp" />
             <TextView
                 android:id="@+id/gst_label"

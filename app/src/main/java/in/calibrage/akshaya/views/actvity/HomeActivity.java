@@ -64,7 +64,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     private FrameLayout content_frame;
     private FragmentManager fragmentManager;
     private TextView txt_name, txt_phone, txt_adrs, dialogMessage;
-    private FarmerOtpResponceModel catagoriesList;
+     FarmerOtpResponceModel catagoriesList;
     private Button ok_btn, cancel_btn;
     String FragmentTAG;
     FloatingActionButton myFab;
@@ -112,6 +112,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         initToolBar();
 
         nv.setNavigationItemSelectedListener(this);
+
         catagoriesList = SharedPrefsData.getCatagories(HomeActivity.this);
 
         String name = catagoriesList.getResult().getFarmerDetails().get(0).getFirstName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getMiddleName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getLastName();

@@ -64,7 +64,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     LayoutInflater mInflater;
     public ImageView new_image;
     private OnClickAck onClickAck1;
-    String Description, ProductName,image_url,product_size,Product_uom ;
+    String Description, ProductName,image_url,product_size,Product_uom ,final_amount;
     double onlygst, gst,discountgst ,discount_price,price;
     Integer gstprice;
     int Available_quantity;
@@ -100,16 +100,18 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
         Picasso.with(mContext )
                 .load(superHero.getImageUrl())
-                .error( R.drawable.ic_applogo )
+                .error(R.drawable.ic_applogo )
                 .placeholder( R.drawable.progress_animation)
                 .into(holder.imageView);
         holder.currentFoodName.setText(superHero.getName());
 
         if (superHero.getmAmount().equals("null")) {
             itemcost = Double.valueOf(superHero.getPrice());
+
         } else {
             itemcost = Double.valueOf(superHero.getmAmount());
         }
+
         if (Double.valueOf(superHero.getgst()) != null) {
             gst = Double.valueOf(superHero.getgst());
             Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
@@ -127,7 +129,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         //   String itemcost= df.format(itemcostt);
 
         String total_amount = df.format(finalwithGST);
-        Log.e("total_amount===93", total_amount);
+
         holder.currentCost.setText(mContext.getString(R.string.Rs) + total_amount);
 
       //  holder.disc.setText(superHero.getDescription());
@@ -164,6 +166,8 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                     product_size=superHero.getSize()+"";
                     Product_uom =superHero.getUomType();
                     gstprice=superHero.getgst();
+                    final_amount =superHero.getmAmount();
+
                     Available_quantity =superHero.getAvail_quantity();
 Log.e("Description==160",  discount_price +"   price"+price +"");
                     displayPopupWindow(view);
@@ -182,15 +186,23 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
         Log.e("discount_cost==",discount_cost+"");
         discountgst = (discount_cost / 100.0f) * gst;
         Double finaldiscount= discount_cost + discountgst;
-        holder.actual_amt.setPaintFlags(holder.actual_amt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
         holder.actual_amt.setText(mContext.getString(R.string.Rs) + finaldiscount);
-        Log.e("aaaaaaaaaaaa", superHero.getmAmount());
-        if (superHero.getmAmount().equals("null")) {
+        Log.e("cost===191", superHero.getmAmount()+"===============110"+superHero.getDiscountedPrice());
+        if (superHero.getmAmount().equals("null") || superHero.getmAmount().equalsIgnoreCase(superHero.getDiscountedPrice()+"") ) {
+            Log.e("cost===193", superHero.getmAmount()+"===============110"+superHero.getDiscountedPrice());
             holder.actual_amt.setVisibility(View.INVISIBLE);
         } else {
+            Log.e("cost===196", superHero.getmAmount()+"===============110"+superHero.getDiscountedPrice());
             holder.actual_amt.setVisibility(View.VISIBLE);
+            holder.actual_amt.setPaintFlags(holder.actual_amt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
-
+//        if (superHero.getmAmount().equals(superHero.getDiscountedPrice())) {
+//            holder.actual_amt.setVisibility(View.INVISIBLE);
+//        } else {
+//            holder.actual_amt.setVisibility(View.VISIBLE);
+//            holder.actual_amt.setPaintFlags(holder.actual_amt.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//        }
 
         String powers = "";
 
@@ -383,9 +395,11 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
         productsize.setText(": "+product_size + " "+ Product_uom);
         gst_price.setText(": "+gstprice);
         instock.setText(": "+Available_quantity);
-        if(product_price.getText().toString().trim()== discountprice.getText().toString().trim() && discount_price == price ){
+        Log.e("finalamount ",final_amount);
+        if(final_amount.equalsIgnoreCase("null") || final_amount.equalsIgnoreCase(discount_price +"")){
+            Log.e("finalamount ",final_amount);
             Log.e("price====381",product_price.getText()+"====="+discountprice.getText() );
-            product_price.setVisibility(View.GONE);
+            product_price.setVisibility(View.INVISIBLE);
         }
         else {
             Log.e("price====385",product_price.getText()+"====="+discountprice.getText() );

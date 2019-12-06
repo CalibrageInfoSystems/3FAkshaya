@@ -33,6 +33,7 @@
                     style="@style/Common_textView_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="@string/view" />
 
                 <LinearLayout
@@ -153,6 +154,7 @@
                     style="@style/Common_textView_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="@string/req_services" />
 
                 <LinearLayout
@@ -390,6 +392,7 @@
                     style="@style/Common_textView_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:text="@string/learning" />
 
                 <android.support.v7.widget.RecyclerView

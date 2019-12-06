@@ -2,9 +2,11 @@ package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,12 +54,26 @@ public class Godown_adapter extends RecyclerView.Adapter<Godown_adapter.viewHold
             public void onClick(View view) {
                 if(null != godownlistResults.get(position).getLatitude())
                 {
-                    Intent intent = new Intent(ctx, MapsActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("name", godownlistResults.get(position).getGodown());
-                    intent.putExtra("lat", godownlistResults.get(position).getLatitude());
-                    intent.putExtra("log", godownlistResults.get(position).getLongitude());
-                    ctx.startActivity(intent);
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("https")
+                        .authority("www.google.com")
+                        .appendPath("maps")
+                        .appendPath("dir")
+                        .appendPath("")
+                        .appendQueryParameter("api", "1")
+                        .appendQueryParameter("destination", godownlistResults.get(position).getLatitude() + "," +  godownlistResults.get(position).getLongitude());
+                String url = builder.build().toString();
+                Log.d("Directions", url);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                ctx.startActivity(i);
+
+//                    Intent intent = new Intent(ctx, MapsActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.putExtra("name", godownlistResults.get(position).getGodown());
+//                    intent.putExtra("lat", godownlistResults.get(position).getLatitude());
+//                    intent.putExtra("log", godownlistResults.get(position).getLongitude());
+//                    ctx.startActivity(intent);
                 }else {
                     Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
                 }

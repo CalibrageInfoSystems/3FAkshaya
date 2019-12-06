@@ -376,7 +376,7 @@
     <string name="email">ఇమెయిల్ ఐడి</string>
     <string name="plaod_hect">ప్లాట్ హెక్ట్రేజ్</string>
     <string name="sur_num">ప్లాట్ సర్వే \n సంఖ్య</string>
-    <string name="yop">యోప్</string>
+    <string name="yop">నాటిన సంవత్సరం</string>
     <string name="fert_godown">ఎరువుల గోడౌన్లు</string>
     <string name="collection_centres">సేకరణ కేంద్రాలు</string>
     <string name="Mills">మిల్స్</string>
@@ -440,28 +440,34 @@
     <string name="net_weightk">నికర బరువు (కిలోలు)</string>
     <string name="service">సేవా ఛార్జీలు </string>
     <string name="charge">% అదనపు.\nతదుపరి చెల్లింపు చక్రంలో ఛార్జీలు FFB చెల్లింపు నుండి తీసివేయబడతాయి </string>
-    <string name="no_godowns">No Godowns Found</string>
-    <string name="code">Code</string>
-    <string name="alert_msg">Are You Sure You Want to Cancel this Request?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="quick_docu">QuickPay  Document</string>
-    <string name="recept">Click Here to See Recept</string>
-    <string name="description">Description</string>
+    <string name="no_godowns">గోడౌన్లు కనుగొనబడలేదు</string>
+    <string name="code">కోడ్</string>
+
+
+    <string name="alert_msg">మీరు ఈ అభ్యర్థనను రద్దు చేయాలనుకుంటున్నారా?</string>
+    <string name="yes">అవును</string>
+    <string name="no">లేదు</string>
+    <string name="quick_docu">క్విక్‌పే పత్రం</string>
+    <string name="recept">రసీదు చూడటానికి ఇక్కడ క్లిక్ చేయండి</string>
+    <string name="description">వివరణ :</string>
     <string name="Cgst">CGST(%)</string>
     <string name="sgst">SGST(%)</string>
     <string name="cgst_amount">CGST (Rs)</string>
     <string name="sgst_amount">SGST (Rs)</string>
-    <string name="discount_percentage">Discount Percentage</string>
-    <string name="Package">Package</string>
-    <string name="discount">Discount(%)</string>
-    <string name="disc">Offer Applied</string>
-    <string name="text">Discount on Your Package</string>
-    <string name="click_downlad">Click Here to Download</string>
-    <string name="disc_package">Package Discount (%)</string>
-    <string name="disc_price">Package Discount Price (Rs)</string>
-    <string name="note">If the Products has not been Picked with in 2 Days of Requested Date,Your Products will be Cancelled.</string>
-    <string name="subsidy_amt">Available Subsidy Amount</string>
+    <string name="discount_percentage"> ప్యాకేజీ వివరాలు</string>
+    <string name="Package">ప్యాకేజీ</string>
+    <string name="discount">డిస్కౌంట్(%)</string>
+    <string name="disc">ఆఫర్ వర్తించబడింది</string>
+    <string name="text">మీ ప్యాకేజీపై డిస్కౌంట్</string>
+    <string name="click_downlad">డౌన్‌లోడ్ చేయడానికి ఇక్కడ క్లిక్ చేయండి</string>
+    <string name="disc_package">ఐ) ప్యాకేజీ డిస్కౌంట్ \ n (%)</string>
+    <string name="disc_price">J) ప్యాకేజీ డిస్కౌంట్ \n ధర(రూ)((సి+ఎఫ్)*ఐ)/100) </string>
+    <string name="note">అభ్యర్థించిన 2 రోజులలో ఉత్పత్తులను ఎంచుకోకపోతే, మీ ఆర్డర్ రద్దు చేయబడుతుంది.</string>
+    <string name="subsidy_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం</string>
+    <string name="download">డౌన్‌లోడ్ చేసిన ఫైల్‌లు</string>
+    <string name="endusermsg">మొత్తం ఖర్చు 0 ఉండకూడదు</string>
+    <string name="enter_loan_amount"> మొత్తం 0 కంటే ఎక్కువగా ఉండాలి</string>
+
     <string-array name="switch_tabs">
 
         <item>ఎరువుల గోడౌన్లు</item>

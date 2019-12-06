@@ -82,22 +82,22 @@ public class GetquickpayDetailsModel {
         private Double quantity;
         @SerializedName("ffbFlatCharge")
         @Expose
-        private Object ffbFlatCharge;
+        private Double ffbFlatCharge;
         @SerializedName("ffbCost")
         @Expose
         private Double ffbCost;
         @SerializedName("convenienceCharge")
         @Expose
-        private Object convenienceCharge;
+        private Double convenienceCharge;
         @SerializedName("closingBalance")
         @Expose
-        private Integer closingBalance;
+        private Double closingBalance;
         @SerializedName("quickPay")
         @Expose
         private Double quickPay;
         @SerializedName("total")
         @Expose
-        private Object total;
+        private Double total;
 
         public Double getQuantity() {
             return quantity;
@@ -107,11 +107,11 @@ public class GetquickpayDetailsModel {
             this.quantity = quantity;
         }
 
-        public Object getFfbFlatCharge() {
+        public Double getFfbFlatCharge() {
             return ffbFlatCharge;
         }
 
-        public void setFfbFlatCharge(Object ffbFlatCharge) {
+        public void setFfbFlatCharge(Double ffbFlatCharge) {
             this.ffbFlatCharge = ffbFlatCharge;
         }
 
@@ -123,19 +123,19 @@ public class GetquickpayDetailsModel {
             this.ffbCost = ffbCost;
         }
 
-        public Object getConvenienceCharge() {
+        public Double getConvenienceCharge() {
             return convenienceCharge;
         }
 
-        public void setConvenienceCharge(Object convenienceCharge) {
+        public void setConvenienceCharge(Double convenienceCharge) {
             this.convenienceCharge = convenienceCharge;
         }
 
-        public Integer getClosingBalance() {
+        public Double getClosingBalance() {
             return closingBalance;
         }
 
-        public void setClosingBalance(Integer closingBalance) {
+        public void setClosingBalance(Double closingBalance) {
             this.closingBalance = closingBalance;
         }
 
@@ -147,11 +147,11 @@ public class GetquickpayDetailsModel {
             this.quickPay = quickPay;
         }
 
-        public Object getTotal() {
+        public Double getTotal() {
             return total;
         }
 
-        public void setTotal(Object total) {
+        public void setTotal(Double total) {
             this.total = total;
         }
 

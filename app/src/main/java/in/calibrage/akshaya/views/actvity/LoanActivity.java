@@ -123,21 +123,26 @@ public class LoanActivity extends BaseActivity {
         loan_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (amount.getText() != null & amount.getText().toString().trim() != "" & !TextUtils.isEmpty(amount.getText())) {
-                    if (checkbox.isChecked()) {
-                        if (isOnline())
-                            GetLoanDetails();
-                        else {
-                            showDialog(LoanActivity.this, getResources().getString(R.string.Internet));
+               if (amount.getText() != null & amount.getText().toString().trim() != "" & !TextUtils.isEmpty(amount.getText()) ) {
+                   if (Double.parseDouble(amount.getText().toString()) != 0.0) {
+                       if (checkbox.isChecked()) {
+                           if (isOnline())
+                               GetLoanDetails();
+                           else {
+                               showDialog(LoanActivity.this, getResources().getString(R.string.Internet));
 
-                        }
+                           }
 
-                    } else {
-                        showDialog(LoanActivity.this, getResources().getString(R.string.terms_agree));
+                       } else {
+                           showDialog(LoanActivity.this, getResources().getString(R.string.terms_agree));
 
 
-                    }
-                } else {
+                       }
+                   } else {
+                       showDialog(LoanActivity.this, getString(R.string.enter_loan_amount));
+                   }
+               }
+               else {
                     showDialog(LoanActivity.this, getString(R.string.str_enter_loan_amount));
                 }
 

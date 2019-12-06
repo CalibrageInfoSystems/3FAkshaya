@@ -50,7 +50,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
 
         holder.textViewpalmArea.setText(df.format(plot_Set.get(position).getPalmArea())+" "+"Ha");
         ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
-     //   ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea() + " " + "Ha");
+        //   ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea() + " " + "Ha");
         ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
         ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
         holder.yop.setText(plot_Set.get(position).getDateOfPlanting() );

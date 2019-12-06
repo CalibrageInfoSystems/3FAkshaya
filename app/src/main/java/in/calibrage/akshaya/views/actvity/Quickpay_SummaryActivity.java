@@ -322,32 +322,33 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                         if (getquickpayDetailsModel.getListResult() != null) {
 
                             Log.e("nodada====", "nodata===custom2");
-                            text_quntity.setText(dff.format(getquickpayDetailsModel.getListResult().get(0).getQuantity()));
+                            text_quntity.setText(" "+dff.format(getquickpayDetailsModel.getListResult().get(0).getQuantity()));
 
                             if (getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge() == null) {
-                                text_flat_charge.setText("0");
+                                text_flat_charge.setText(" 0.00");
 
                             } else {
-                                text_flat_charge.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge()));
+                                text_flat_charge.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge()));
                             }
-                            ffbCostTxt.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getFfbCost()));
+                            ffbCostTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getFfbCost()));
 
                             if (getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge() == null) {
-                                convenienceChargeTxt.setText("0");
+                                convenienceChargeTxt.setText(" 0.00");
 
                             } else {
 
                                 convenienceChargeTxt.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
                             }
-                            closingBalanceTxt.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
-                            totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                            closingBalanceTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
+                         //   totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
 
-                            if (getquickpayDetailsModel.getListResult().get(0).getTotal() == null) {
-                                totalAmount.setText("0");
+                            if (getquickpayDetailsModel.getListResult().get(0).getTotal() > 0.0 ) {
+                                totalAmount.setText(" "+String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                               // totalAmount.setText("0");
 
                             } else {
-
-                                totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                                totalAmount.setText(" 0.00");
+                               // totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
                             }
                             text_quickpay_fee.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getQuickPay()));
 
@@ -373,8 +374,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
 
     private void submitReq() {
+        Double d1 = Double.valueOf(totalAmount.getText().toString());
 
-        if (null != closingBalanceTxt.getText().toString()) {
+        if (d1 > 0.0) {
             mdilogue.show();
             JsonObject object = quickReuestobject();
             ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -425,7 +427,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                     });
         } else {
-            Toast.makeText(this, "unable to process request now", Toast.LENGTH_SHORT).show();
+            showDialog(Quickpay_SummaryActivity.this,getString(R.string.enter_loan_amount));
+           // Toast.makeText(this, "unable to process request now", Toast.LENGTH_SHORT).show();
         }
 
     }

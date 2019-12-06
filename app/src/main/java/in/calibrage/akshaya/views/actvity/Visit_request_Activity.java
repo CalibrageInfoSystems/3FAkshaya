@@ -995,7 +995,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                 if (!isPlaying && fileName != null) {
                     isPlaying = true;
                     if (mPlayer != null) {
-                     //   lastProgress = 0;
+                        lastProgress = 0;
                         chronometer.setBase(SystemClock.elapsedRealtime());
                         startPlaying();
                     } else {

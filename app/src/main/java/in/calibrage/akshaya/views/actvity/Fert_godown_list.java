@@ -402,7 +402,7 @@ public class Fert_godown_list extends BaseActivity {
                                     displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), include_gst_amount));
 
                                     //Double subAmount = subsidy_amountt- include_gst_amount dec.format(Gst_total)
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.Avb_subcd_amt), remaining_subsidy_amountt  +""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.Avb_subcd_amt), dec.format(remaining_subsidy_amountt)));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.amount_payble),paybleamount.getText().toString()));
 
 //products_amount
@@ -412,7 +412,7 @@ public class Fert_godown_list extends BaseActivity {
                                 }
                             }, 300);
                         } else {
-                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
+                            showDialog(Fert_godown_list.this, getString(R.string.endusermsg));
                         }
 
 
@@ -458,8 +458,8 @@ public class Fert_godown_list extends BaseActivity {
         requestModel.setFileName(null);
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
-        requestModel.setTotalCost(Double.valueOf(include_gst_amount));
-
+     requestModel.setTotalCost(Double.valueOf(include_gst_amount));
+       // requestModel.setTotalCost(0.00);
         requestModel.setSubcidyAmount(Double.valueOf(Subsidy_amount));
         requestModel.setPaybleAmount(Double.valueOf(paybleamount.getText().toString()));
         requestModel.setComments(null);

@@ -2,9 +2,11 @@ package in.calibrage.akshaya.views.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,13 +56,21 @@ class collectioncenters_adapter extends RecyclerView.Adapter<collectioncenters_a
         holder.mapview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (null != centerslistResults.get(position).getLatitude()) {
-                    Intent intent = new Intent(ctx, MapsActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("name", centerslistResults.get(position).getCollectionCenter());
-                    intent.putExtra("lat", centerslistResults.get(position).getLatitude());
-                    intent.putExtra("log", centerslistResults.get(position).getLongitude());
-                    ctx.startActivity(intent);
+                if (null != centerslistResults.get(position).getLatitude())      {
+                    Uri.Builder builder = new Uri.Builder();
+                    builder.scheme("https")
+                            .authority("www.google.com")
+                            .appendPath("maps")
+                            .appendPath("dir")
+                            .appendPath("")
+                            .appendQueryParameter("api", "1")
+                            .appendQueryParameter("destination", centerslistResults.get(position).getLatitude() + "," +  centerslistResults.get(position).getLongitude());
+                    String url = builder.build().toString();
+                    Log.d("Directions", url);
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    ctx.startActivity(i);
+
                 } else {
                     Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
                 }

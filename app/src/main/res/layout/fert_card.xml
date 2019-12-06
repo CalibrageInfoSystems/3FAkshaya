@@ -114,7 +114,7 @@ android:background="@color/transparent"
                 android:clickable="true"
                 android:padding="3dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/f1" />
+                />
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/thumbnail2"
                 android:layout_width="wrap_content"
@@ -126,7 +126,7 @@ android:background="@color/transparent"
                 android:clickable="true"
                 android:padding="3dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/f1" />
+               />
 
 
 

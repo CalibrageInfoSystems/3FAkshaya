@@ -122,9 +122,7 @@ public class product_list extends BaseActivity {
                     @Override
                     public void onNext(Resproduct resproduct) {
                         if (resproduct.getListResult() != null) {
-
-
-                            Req_producut_Adapter adapter = new Req_producut_Adapter(product_list.this, resproduct.getListResult());
+  Req_producut_Adapter adapter = new Req_producut_Adapter(product_list.this, resproduct.getListResult());
                             recycler_view_products.setAdapter(adapter);
 
                             Double amount_total = 0.00;

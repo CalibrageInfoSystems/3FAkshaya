@@ -53,14 +53,19 @@ Log.e("nurseriesResults======",nurseriesResults+"");
 @Override
 public void onClick(View view) {
 //        if(null != nurseriesResults.get(position).getLatitude())
-//        {
-//        Intent intent = new Intent(ctx, MapActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        intent.putExtra("name", nurseriesResults.get(position).getMill());
-//        intent.putExtra("lat", nurseriesResults.get(position).getLatitude());
-//        intent.putExtra("log", nurseriesResults.get(position).getLongitude());
-//        ctx.startActivity(intent);
-//        }else {
+//        Uri.Builder builder = new Uri.Builder();
+//                    builder.scheme("https")
+//                            .authority("www.google.com")
+//                            .appendPath("maps")
+//                            .appendPath("dir")
+//                            .appendPath("")
+//                            .appendQueryParameter("api", "1")
+//                            .appendQueryParameter("destination", milllistResults.get(position).getLatitude() + "," +  milllistResults.get(position).getLongitude());
+//                    String url = builder.build().toString();
+//                    Log.d("Directions", url);
+//                    Intent i = new Intent(Intent.ACTION_VIEW);
+//                    i.setData(Uri.parse(url));
+//                    ctx.startActivity(i);
         Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
        // }
 

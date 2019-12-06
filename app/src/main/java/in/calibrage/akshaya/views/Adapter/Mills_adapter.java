@@ -2,9 +2,11 @@ package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,12 +58,20 @@ public class Mills_adapter extends RecyclerView.Adapter<Mills_adapter.viewHolder
             public void onClick(View view) {
                 if(null != milllistResults.get(position).getLatitude())
                 {
-                    Intent intent = new Intent(ctx, MapsActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("name", milllistResults.get(position).getMill());
-                    intent.putExtra("lat", milllistResults.get(position).getLatitude());
-                    intent.putExtra("log", milllistResults.get(position).getLongitude());
-                     ctx.startActivity(intent);
+                    Uri.Builder builder = new Uri.Builder();
+                    builder.scheme("https")
+                            .authority("www.google.com")
+                            .appendPath("maps")
+                            .appendPath("dir")
+                            .appendPath("")
+                            .appendQueryParameter("api", "1")
+                            .appendQueryParameter("destination", milllistResults.get(position).getLatitude() + "," +  milllistResults.get(position).getLongitude());
+                    String url = builder.build().toString();
+                    Log.d("Directions", url);
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    ctx.startActivity(i);
+
                 }else {
                     Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
                 }
