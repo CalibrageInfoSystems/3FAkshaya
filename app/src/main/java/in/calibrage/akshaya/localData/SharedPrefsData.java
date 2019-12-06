@@ -215,7 +215,6 @@ public class SharedPrefsData {
 
     public static ArrayList<Product_new> getCartData(Context mContext) {
         Gson gson = new Gson();
-
         SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
                 Context.MODE_PRIVATE);
         String json = profilePref.getString("cart", "");
@@ -223,7 +222,6 @@ public class SharedPrefsData {
         }.getType();
         ArrayList<Product_new> obj = gson.fromJson(json, type);
         return obj;
-
     }
 
     public static String getusername(Context ctx) {
