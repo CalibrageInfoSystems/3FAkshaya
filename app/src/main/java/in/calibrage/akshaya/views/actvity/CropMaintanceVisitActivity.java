@@ -49,6 +49,7 @@ import java.util.List;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.CropResponseModel;
 import in.calibrage.akshaya.models.DiseaseDataModel;
 import in.calibrage.akshaya.models.InterCrop;
@@ -76,6 +77,8 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class CropMaintanceVisitActivity extends BaseActivity {
     //region variables
@@ -134,7 +137,11 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_crop_maintance_visit);
 
         Bundle extras = getIntent().getExtras();

@@ -53,6 +53,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class PaymentActivity extends BaseActivity {
     public static String TAG = "PaymentActivity";
     private TextView accoontHolderName, accoontNumber, bankNamee, branchName, ifscCode;
@@ -63,6 +65,11 @@ public class PaymentActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_payment);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)

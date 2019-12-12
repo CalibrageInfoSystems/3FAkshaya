@@ -47,6 +47,9 @@ import java.util.Locale;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.FetchURL;
 import in.calibrage.akshaya.common.TaskLoadedCallback;
+import in.calibrage.akshaya.localData.SharedPrefsData;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 
 public class MapsActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener , OnMapReadyCallback, TaskLoadedCallback {
@@ -72,6 +75,11 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_map);
         init();
         //code for getting current location

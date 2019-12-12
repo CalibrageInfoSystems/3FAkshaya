@@ -41,6 +41,7 @@ public class LanguageActivity extends BaseActivity {
                 Intent refresh = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(refresh);
                 finish();
+
                 //Toast.makeText(getApplicationContext(), R.string.language_notification, Toast.LENGTH_SHORT).show();
 
             }

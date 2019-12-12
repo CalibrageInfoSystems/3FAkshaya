@@ -19,6 +19,7 @@ import java.util.List;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.Product_new;
 import in.calibrage.akshaya.models.Resproduct;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -31,6 +32,8 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class product_list_fert extends BaseActivity {
     String id_holder;
@@ -48,6 +51,11 @@ public class product_list_fert extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_product_list_fert);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)

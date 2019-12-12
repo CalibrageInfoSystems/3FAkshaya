@@ -73,7 +73,11 @@ public class OtpActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -83,6 +87,10 @@ public class OtpActivity extends BaseActivity {
         init();
         setview();
     }
+
+    private void updateResources(OtpActivity otpActivity, String s) {
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void init() {
 

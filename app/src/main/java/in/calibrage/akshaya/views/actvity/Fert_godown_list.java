@@ -58,6 +58,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.arrayToString;
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class Fert_godown_list extends BaseActivity {
     //region variables
@@ -111,6 +112,11 @@ public class Fert_godown_list extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_fert_godown_list);
         init();
         setviews();
@@ -531,7 +537,7 @@ public class Fert_godown_list extends BaseActivity {
                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
 
                             Log.d(TAG, "-----analysis----->> Subsidy Amount : " + subsidy_amountt);
-                            if (subsidy_amountt > 0 || subsidy_amountt == 0.0) {
+                            if (subsidy_amountt > 0 ) {
                                 Log.d(TAG, "-----analysis----->> >0 Subsidy Amount : " + subsidy_amount);
                                 if (Double.parseDouble(include_gst_amount) < subsidy_amountt) {
                                      remaining_subsidy_amountt = subsidy_amountt - Double.parseDouble(include_gst_amount);
@@ -549,12 +555,16 @@ public class Fert_godown_list extends BaseActivity {
                                     paybleamount.setText(dec.format(payble_amount));
                                 } else if (subsidy_amountt == 0.0 || subsidy_amountt < 0) {
                                     payble_amount = Double.parseDouble(include_gst_amount);
-                                    Log.d(TAG, "-----analysis----->> == 0.0 Subsidy Amount : " + subsidy_amount);
+                                    paybleamount.setText(dec.format(include_gst_amount));
+                                    Log.d(TAG, "-----analysis----->> == 0.0 Subsidy Amount : " + payble_amount);
                                 }
-                            } else if (subsidy_amountt < 0) {
-                                Log.d(TAG, "-----analysis----->> < 0 Subsidy Amount : " + subsidy_amountt);
+                            }
+                            else  {
+                                Log.d(TAG, "-----analysis----->> < 557 Subsidy Amount : " + subsidy_amountt);
                                 subsidy_amount.setText("0.00");
-                                paybleamount.setText(dec.format(include_gst_amount));
+                                payble_amount = Double.parseDouble(include_gst_amount);
+                                Log.d(TAG, "-----analysis----->> < 560 payble_amount  : " + payble_amount);
+                                paybleamount.setText(dec.format(payble_amount));
                             }
 
                         }

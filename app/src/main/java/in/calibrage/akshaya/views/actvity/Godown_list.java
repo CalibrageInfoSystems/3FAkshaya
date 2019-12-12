@@ -26,6 +26,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class Godown_list extends BaseActivity implements GodownListAdapter.OnItemClickListener {
     public static final String TAG = Godown_list.class.getSimpleName();
     private RecyclerView lst_godown_list;
@@ -43,6 +45,11 @@ public class Godown_list extends BaseActivity implements GodownListAdapter.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_godown_list);
         init();
         setviews();

@@ -38,6 +38,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapter.quick_paylistener {
 
     private RecyclerView recyclerView;
@@ -66,6 +68,11 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_quick_pay);
         init();
         setViews();

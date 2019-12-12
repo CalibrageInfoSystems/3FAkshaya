@@ -45,6 +45,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class RequestListctivity extends BaseActivity implements GetPoleAdapter.GetPoleAdapterListener1, GetfertAdapter.GetPoleAdapterListener{
 
     public static final String TAG = RequestListctivity.class.getSimpleName();
@@ -62,7 +64,11 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_listctivity);
          name = getIntent().getStringExtra("key");
-
+       final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setuptoolbar();
         init();
 

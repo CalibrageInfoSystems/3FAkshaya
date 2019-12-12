@@ -75,7 +75,13 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_home);
+
         init();
         setViews();
     }
@@ -323,6 +329,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 /**
                  * "en" is the localization code for our default English language.
                  */
+
+
                 updateResources(HomeActivity.this, "en-US");
                 SharedPrefsData.getInstance(HomeActivity.this).updateIntValue(HomeActivity.this, "lang", 1);
                 Intent refresh = new Intent(getApplicationContext(), HomeActivity.class);

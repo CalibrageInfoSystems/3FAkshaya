@@ -54,6 +54,8 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner {
     private RecyclerView recyclerView;
     private ModelFertAdapterNew adapter;
@@ -73,7 +75,11 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_pole);
         SharedPrefsData.saveCartitems(this,myProductsList);
         dialog = new ProgressDialog(this);

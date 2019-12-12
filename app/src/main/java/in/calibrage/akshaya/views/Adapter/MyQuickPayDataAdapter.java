@@ -147,7 +147,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
     }
 
     private void showCondetailsDialog(int selectedPO) {
-       // mdilogue.show();
+
         final Dialog dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -155,7 +155,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         final WebView webView = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 
-
+        mdilogue.show();
        // WebView webView = (WebView) rootView.findViewById(R.id.web_view);
         webView.getSettings().setJavaScriptEnabled(true);
 

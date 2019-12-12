@@ -108,6 +108,7 @@
     <string name="i_have_agree">I Agree</string>
     <string name="measurement">Age</string>
     <string name="startDate">Preferred Date</string>
+    <string name="starttDate"> Preferred Date</string>
     <string name="totalBalance">Closing Balance (Rs)</string>
     <string name="balance">Balance (Rs)</string>
     <string name="collectionsWeight">Total Net Weight </string>
@@ -275,6 +276,7 @@
     <string name="req_date">Requested Date</string>
     <string name="serviceType">Service Type(s)</string>
     <string name="lab_req">Labour Request</string>
+    <string name="select_labour_ltype">Labour Service</string>
     <string name="pole_req">Equipment Request</string>
     <string name="fert_req">Fertilizer Request</string>
     <string name="quick_req">QuickPay Request</string>
@@ -353,7 +355,7 @@
     <string name="no_trans_found">No Transportation Charges Found</string>
     <string name="num_trees">B) No. of Trees</string>
     <string name="Prunning_amount">C) Pruning  \nAmount(Rs)(A*B)</string>
-    Package Discount (%)
+<!--    Package Discount (%)-->
     <string name="amount_labour">K)Total Amount(Rs)\n(C+F+H-J)</string>
     <string name="harvesting_amount">F) Harvesting \nAmount(Rs)(D*E)</string>
     <string name="service_chargeper">G) Service Charge (%)</string>
@@ -379,12 +381,23 @@
     <string name="disc">Offer Applied</string>
     <string name="text">Discount on Your Package</string>
     <string name="click_downlad">Click Here to Download</string>
-    <string name="disc_package">I) Package Discount \n(%)</string>
+    <string name="disc_package">I) Package Discount(%)</string>
     <string name="disc_price">J) Package Discount \nPrice(Rs)((C+F)*I)/100) </string>
     <string name="note">If the Products has not been Picked with in 2 Days of Requested Date,Your Order will be Cancelled.</string>
     <string name="subsidy_amt">Available Subsidy Amount</string>
     <string name="download">Downloaded Files</string>
     <string name="endusermsg">Total Cost Shouldnot be 0</string>
+    <string name="thirty_days">Last 30 days</string>
+    <string name="currentfinicial">Current Financial Year</string>
+    <string name="selected">Select Time Period</string>
+    <string name="multistring">Please Select Service(s)</string>
+    <string name="thirtyP_days"> Last 30 days</string>
+    <string name="currentfinicialP">Current Financial Year</string>
+    <string name="selectedP">Select Time Period</string>
+    <string name="or">OR</string>
+    <string name="failmsg">You can\'t Raise the Request since Amount is 0</string>
+    <string name="location_notfount">Location not available</string>
+    <string name="userPermission">All permissions are granted by user!</string>
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

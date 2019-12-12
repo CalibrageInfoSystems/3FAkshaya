@@ -19,9 +19,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.views.fragments.PaymentFragment;
 import in.calibrage.akshaya.views.fragments.ProfileFragment;
 import in.calibrage.akshaya.views.fragments.TransFragment;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class PaymentHistories extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};
@@ -31,6 +34,11 @@ public class PaymentHistories extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_payment_histories);
 
 

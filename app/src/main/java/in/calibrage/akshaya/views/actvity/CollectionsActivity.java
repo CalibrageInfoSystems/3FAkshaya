@@ -46,6 +46,7 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.CollectionResponceModel;
 import in.calibrage.akshaya.models.collectionRequestModel;
 
@@ -58,12 +59,15 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class CollectionsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     //region variables
     DatePickerDialog picker;
     public static String TAG = "CollectionsActivity";
     EditText fromText, toText;
-    String[] selection = {"Last 30 Days", "Current Financial Year", "Select Time Period"};
+    String[] selection ;
+    // String[] selection = {getS(R.string.thirty_days), "Current Financial Year", "Select Time Period"};
 
     Spinner spin;
     Collection_Adapter collection_Adapter;
@@ -73,7 +77,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
     String currentDate;
     private ProgressDialog dialog;
     private RecyclerView.LayoutManager layoutManager;
-    String  Farmer_code;
+    String Farmer_code;
     LinearLayout noRecords;
     String last_30day;
     TextView collectionsWeight, collectionsCount, paidCollectionsWeight, unPaidCollectionsWeight;
@@ -93,11 +97,21 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_collections);
+
+      String[]  selection2=  {
+               getString(R.string.thirty_days), getString(R.string.currentfinicial), getString(R.string.selected)};
+        selection= selection2;
         init();
         setViews();
 
     }
+
     //region InitViews
     private void init() {
 
@@ -130,6 +144,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         fromText.setHint(CommonUtil.getMultiColourString(getString(R.string.from_date)));
         toText.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
     }
+
     //endregion
     //region SetViews
     private void setViews() {
@@ -230,14 +245,16 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         }
 
     }
+
     //endregion
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         fromText.getText().clear();
         toText.getText().clear();
-        if (spin.getSelectedItem().toString().equals("Last 30 Days")) {
+        Log.e("position==",spin.getSelectedItemPosition()+"");
 
+        if (spin.getSelectedItemPosition()== 0) {
             collecton_data.setVisibility(View.VISIBLE); //
             if (isOnline())
                 get30days();
@@ -245,13 +262,13 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                 showDialog(CollectionsActivity.this, getResources().getString(R.string.Internet));
 
             }
-          //  get30days();
+            //  get30days();
         } else {
             collecton_data.setVisibility(View.GONE);
 
         }
 
-        if (spin.getSelectedItem().toString().equals("Current Financial Year")) {
+        if (spin.getSelectedItemPosition()== 1) {
 
             collecton_data.setVisibility(View.VISIBLE); //
             if (isOnline())
@@ -267,7 +284,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         }
         {
             //  String Month = MonthArray[index];
-            if (spin.getSelectedItem().toString().equals("Select Time Period")) {
+            if (spin.getSelectedItemPosition()== 2){
                 //   adapter.notifyDataSetChanged();
                 collecton_data.setVisibility(View.GONE); //
                 noRecords.setVisibility(View.GONE);
@@ -292,7 +309,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                         if (fromString.equalsIgnoreCase("") || toString.equalsIgnoreCase("")) {
 
 
-                            showDialog(CollectionsActivity.this,getResources().getString(R.string.enter_Date));
+                            showDialog(CollectionsActivity.this, getResources().getString(R.string.enter_Date));
                             collection_Adapter.clearAllDataa();
                             date_linear.setVisibility(View.VISIBLE); //
                             collecton_data.setVisibility(View.GONE);
@@ -305,7 +322,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                                 date1 = formatter.parse(fromString);
                                 Date date2 = formatter.parse(toString);
                                 if (date2.compareTo(date1) < 0) {
-                                    showDialog(CollectionsActivity.this,getResources().getString(R.string.datevalidation));
+                                    showDialog(CollectionsActivity.this, getResources().getString(R.string.datevalidation));
                                     relativeLayoutCount.setVisibility(View.GONE);
                                     collection_Adapter.clearAllDataa();
 
@@ -317,10 +334,9 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
                                     if (isOnline())
                                         getCustomCollections(fromString, toString);
                                     else {
-                                        showDialog(CollectionsActivity.this,getResources().getString(R.string.Internet));
+                                        showDialog(CollectionsActivity.this, getResources().getString(R.string.Internet));
                                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                                     }
-
 
 
                                 }
@@ -341,7 +357,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
             }
         }
-        if (spin.getSelectedItem().toString().equals("Select Time Period")) {
+        if (spin.getSelectedItemPosition()== 2){
             // Toast.makeText(getApplicationContext(),"hiddd" , Toast.LENGTH_LONG).show();
             date_linear.setVisibility(View.VISIBLE); //
             relativeLayoutCount.setVisibility(View.GONE);
@@ -355,6 +371,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         }
 
     }
+
     //region API Requests
     private void getCustomCollections(String fromString, String toString) {
         collection_list.clear();
@@ -579,14 +596,16 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
     //endregion
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-         this.finish();
+        this.finish();
     }
 }

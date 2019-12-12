@@ -66,6 +66,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class Quickpay_SummaryActivity extends BaseActivity {
     CheckBox checkbox;
     private static final String TAG = Quickpay_SummaryActivity.class.getSimpleName();
@@ -98,6 +100,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_quickpay__summary);
 
         init();
@@ -439,7 +446,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.pdf_dialog);
-        WebView webView = dialog.findViewById(R.id.webView);
+        final WebView webView = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 
        // webView.getSettings().setPluginState(WebSettings.PluginState.ON);
@@ -451,9 +458,25 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         // launching another browser when a url
         // redirection occurs---
         webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
 
+                webView.loadUrl("javascript:(function() { " +
+                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+                mdilogue.show();
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                webView.loadUrl("javascript:(function() { " +
+                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+                mdilogue.dismiss();
+            }
+        });
         webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
-        mdilogue.cancel();
+       // mdilogue.cancel();
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

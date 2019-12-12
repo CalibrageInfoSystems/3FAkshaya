@@ -391,7 +391,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
       //  imageLoader.get(image_url, ImageLoader.getImageListener(new_image, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
         Product_Name.setText(": "+ProductName);
         product_price.setText("  "+df.format(discount_price));
-        discountprice.setText(""+df.format(price));
+        discountprice.setText(": "+df.format(price));
         productsize.setText(": "+product_size + " "+ Product_uom);
         gst_price.setText(": "+gstprice);
         instock.setText(": "+Available_quantity);

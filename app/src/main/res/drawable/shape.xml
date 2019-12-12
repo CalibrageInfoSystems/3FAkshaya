@@ -7,7 +7,7 @@
     </item>
 
 
-    <item android:top="-90dp" android:bottom="350dp" android:left="-60dp" android:right="-60dp">
+    <item android:top="-90dp" android:bottom="400dp" android:left="-60dp" android:right="-60dp">
 
         <shape>
             <gradient

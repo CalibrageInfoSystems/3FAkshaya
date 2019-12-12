@@ -66,7 +66,7 @@ public void onClick(View view) {
 //                    Intent i = new Intent(Intent.ACTION_VIEW);
 //                    i.setData(Uri.parse(url));
 //                    ctx.startActivity(i);
-        Toast.makeText(ctx, "Location not available", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ctx, ctx.getResources().getString(R.string.location_notfount), Toast.LENGTH_SHORT).show();
        // }
 
         }

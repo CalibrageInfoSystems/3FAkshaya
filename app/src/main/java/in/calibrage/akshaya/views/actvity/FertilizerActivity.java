@@ -54,6 +54,7 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 import static in.calibrage.akshaya.views.actvity.PoleActivity.myProductsList;
 
 public class FertilizerActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner  {
@@ -82,7 +83,11 @@ Double total_amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_fertilizer);
         dialog = new ProgressDialog(this);
         txt_recomandations = findViewById(R.id.txt_recomandations);

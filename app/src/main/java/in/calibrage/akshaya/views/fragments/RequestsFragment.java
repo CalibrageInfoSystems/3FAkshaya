@@ -14,9 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.Request_settings;
 import in.calibrage.akshaya.views.Adapter.MyReqListAdapter;
 import in.calibrage.akshaya.views.actvity.RequestListctivity;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +38,11 @@ public class RequestsFragment extends Fragment implements MyReqListAdapter.Reque
         View view = inflater.inflate(R.layout.fragment_requests,
                 container, false);
 
-
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else
+            updateResources(getContext(), "en-US");
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         MyReqListAdapter adapter = new MyReqListAdapter(getActivity(), request_List, RequestsFragment.this);
         recyclerView.setHasFixedSize(true);

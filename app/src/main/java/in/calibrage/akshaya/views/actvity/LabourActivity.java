@@ -73,6 +73,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class LabourActivity extends BaseActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener {
     Calendar myCalendar;
     EditText edittext;
@@ -122,6 +124,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_labour);
 
 
@@ -727,7 +734,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //                                        requestModel.setHarvestingAmount(0.0);
 //                                    }
                                     if (discount_label.getVisibility() == View.VISIBLE) {
-                                        displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+                                        displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
                                         if (selected_name.contains("Harvesting")) {
 
                                             displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount),df.format(Double.parseDouble(harv_d_amount.getText()+""))));
@@ -743,10 +750,10 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //                                        }
                                         displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
 
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.starttDate), date));
                                     }
                                     else {
-                                        displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
+                                        displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
                                         if (selected_name.contains("Harvesting")) {
 
                                             displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), df.format(Double.parseDouble(harv_amount.getText() + ""))));
@@ -773,7 +780,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                 }
                             }, 300);
                         } else {
-                            showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
+                            showDialog(LabourActivity.this, getResources().getString(R.string.failmsg));
                         }
 
                     }

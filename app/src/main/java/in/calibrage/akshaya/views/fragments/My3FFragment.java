@@ -18,6 +18,9 @@ import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
+import in.calibrage.akshaya.localData.SharedPrefsData;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 
 public class My3FFragment extends BaseFragment {
@@ -40,11 +43,18 @@ public class My3FFragment extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else
+            updateResources(getContext(), "en-US");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override

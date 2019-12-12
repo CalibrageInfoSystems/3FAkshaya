@@ -137,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/statusLabel"
-                android:text="@string/startDate"
+                android:text="@string/starttDate"
                 android:layout_below="@id/approveDateLabel"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"

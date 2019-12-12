@@ -30,6 +30,8 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 public class EncyclopediaActivity extends BaseActivity {
     //region variables
     private static final String TAG = EncyclopediaActivity.class.getSimpleName();
@@ -45,6 +47,11 @@ public class EncyclopediaActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_encyclopedia);
         init();
         setViews();

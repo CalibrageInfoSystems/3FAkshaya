@@ -58,10 +58,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/new_line"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
+                android:paddingRight="15dp"
                 android:text="@string/date_label"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
@@ -74,7 +74,7 @@
                 android:layout_below="@id/new_line"
                 android:layout_toRightOf="@+id/dateLabel"
                 android:maxLength="10"
-                android:paddingLeft="4dp"
+                android:paddingLeft="10dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:text="date"
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/new_line"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_toRightOf="@+id/date"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -97,13 +97,13 @@
 
             <TextView
                 android:id="@+id/weight"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/new_line"
                 android:layout_toRightOf="@+id/weightLabel"
                 android:paddingLeft="4dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
+
                 android:text="@string/weight"
                 android:textSize="@dimen/album_title" />
 
@@ -112,10 +112,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/weight"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
+                android:paddingRight="15dp"
                 android:text="@string/cc"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
@@ -137,12 +137,11 @@
                 android:id="@+id/statusLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/date"
-                android:layout_marginStart="30dp"
-                android:layout_toRightOf="@+id/date"
-                android:paddingLeft="@dimen/album_title_padding"
+                android:layout_below="@id/ccLabel"
+                android:layout_marginStart="4dp"
+                android:paddingLeft="8dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
+                android:paddingRight="15dp"
                 android:text="@string/status"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
@@ -152,13 +151,40 @@
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/date"
-                android:layout_toRightOf="@+id/weightLabel"
-                android:hint="@string/status"
+                android:layout_below="@id/ccLabel"
+                android:layout_toRightOf="@+id/dateLabel"
+                android:hint="@string/cc"
                 android:paddingLeft="4dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/statusLabel"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/ccLabel"-->
+<!--                android:layout_marginStart="30dp"-->
+<!--              -->
+<!--                android:paddingLeft="@dimen/album_title_padding"-->
+<!--                android:paddingTop="@dimen/album_title_padding"-->
+<!--                android:paddingRight="@dimen/album_title_padding"-->
+<!--                android:text="@string/status"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="@dimen/album_title"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/status"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/cc"-->
+<!--                android:layout_toRightOf="@+id/weightLabel"-->
+<!--                android:hint="@string/status"-->
+<!--                android:paddingLeft="4dp"-->
+<!--                android:paddingTop="@dimen/album_title_padding"-->
+<!--                android:paddingRight="@dimen/album_title_padding"-->
+<!--                android:textSize="@dimen/album_title" />-->
 
 
         </RelativeLayout>

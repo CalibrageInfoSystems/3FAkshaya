@@ -40,6 +40,7 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.views.fragments.PaymentFragment;
 import in.calibrage.akshaya.views.fragments.TransFragment;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 import static in.calibrage.akshaya.views.actvity.PaymentHistoryActivity.compareTo;
 
 public class MainActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
     private String fromString, toString;
 
     private String farmatted_fromdate, farmated_todate;
-    String[] selection = {"Last 30 Days", "Current Financial Year", "Select Time Period"};
+    String[] selection ;
     Spinner spin;
     PaymentFragment myFragment;
     private String currentDate,last_30day;
@@ -70,7 +71,16 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_main);
+
+        String[]  selection2=  {
+                getString(R.string.thirtyP_days), getString(R.string.currentfinicialP), getString(R.string.selectedP)};
+        selection= selection2;
 
 //        toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitle(getResources().getString(R.string.app_name));
@@ -313,7 +323,9 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
             sendBroadcast(intent);
         }
 
-        if (selected_item.equalsIgnoreCase("Select Time Period")) {
+        if (spin.getSelectedItemPosition()== 2){
+
+
             custom_linear.setVisibility(View.VISIBLE);
         }
         else {

@@ -7,27 +7,30 @@
     android:orientation="vertical"
     tools:context="in.calibrage.akshaya.views.actvity.FertilizerActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorOrange_head"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="@dimen/margin_20"
+
             android:layout_marginTop="17dp"
-            android:layout_marginEnd="10dp"
+
             android:src="@drawable/ic_left" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="0.45"
             android:layout_toRightOf="@+id/back"
             android:text="@string/select_product"
             android:textColor="@color/white"
@@ -36,15 +39,16 @@
         <TextView
             android:id="@+id/txt_recomandations"
             style="@style/Common_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_weight="0.45"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/margin_5"
             android:background="@drawable/edt_bg"
             android:gravity="center"
             android:text="@string/recommendationss"
             android:textColor="@color/whitepure" />
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <LinearLayout

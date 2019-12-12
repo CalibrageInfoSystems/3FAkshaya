@@ -39,7 +39,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
 
-                android:text="@string/labour"
+                android:text="@string/labour_lable"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
 
@@ -305,7 +305,7 @@ android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="1sp"
-                android:visibility="gone"
+
                 android:layout_toRightOf="@+id/doth"
                 android:hint=""
                 android:text=""
@@ -322,6 +322,7 @@ android:visibility="gone"
                 android:layout_toRightOf="@+id/harv_amount"
                 android:hint=""
                 android:text=""
+                android:visibility="gone"
 
                 android:textColor="@color/white"
                 android:textSize="12dp" />
@@ -634,6 +635,7 @@ android:visibility="gone"
         <!--                    android:maxLength="1000"-->
         <!--                    />-->
         <!--            </android.support.design.widget.TextInputLayout>-->
+
         <EditText
             android:id="@+id/commentTxt"
             android:layout_width="match_parent"
@@ -642,11 +644,10 @@ android:visibility="gone"
             android:background="@drawable/edt_bg"
             android:hint="@string/comments"
             android:inputType="text"
-
-            android:lines="1"
             android:maxLength="1000"
-            android:maxLines="1"
+
             android:paddingLeft="15dp"
+            android:singleLine="false"
             android:textColor="@color/white_new"
             android:textColorHint="@color/white"
             android:textSize="@dimen/album_title"></EditText>

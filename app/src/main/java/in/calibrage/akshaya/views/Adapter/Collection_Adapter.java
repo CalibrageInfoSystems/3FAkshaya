@@ -115,7 +115,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         }
         ((ViewHolder) holder).txtDate.setText(datetimevaluereq);
         ((ViewHolder) holder).txtWeight.setText("" + collection_Set.get(position).getQuantity() + "" + "0 Kgs");
-        ((ViewHolder) holder).txtCc.setText(collection_Set.get(position).getWhsCode());
+        ((ViewHolder) holder).txtCc.setText(collection_Set.get(position).getWhsName());
         ((ViewHolder) holder).txtStatus.setText(collection_Set.get(position).getUApaystat().toString().replace("Payment", ""));
         if (collection_Set.get(position).getUApaystat().toString().endsWith("Paid"))
             ((ViewHolder) holder).txtStatus.setTextColor(mContext.getColor(R.color.green));
