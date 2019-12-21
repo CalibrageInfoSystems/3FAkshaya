@@ -155,7 +155,7 @@ public class ExportPayments {
         private Double adjusted;
         @SerializedName("balance")
         @Expose
-        private Double balance;
+        private String balance;
 
         public String getCardCode() {
             return cardCode;
@@ -309,11 +309,11 @@ public class ExportPayments {
             this.adjusted = adjusted;
         }
 
-        public Double getBalance() {
+        public String getBalance() {
             return balance;
         }
 
-        public void setBalance(Double balance) {
+        public void setBalance(String balance) {
             this.balance = balance;
         }
 
@@ -321,6 +321,8 @@ public class ExportPayments {
         {
 
         }
+
+
     }
     public static class BankDetails {
 

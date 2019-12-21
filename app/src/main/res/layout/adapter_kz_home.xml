@@ -17,7 +17,7 @@
             <ImageView
                 style="@style/Common_image"
                 android:id="@+id/imageView"
-                android:src="@drawable/ic_lernin"
+
                 />
             <TextView
                 android:maxLines="1"

@@ -82,7 +82,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     String Farmer_code;
     Integer durationId;
     List<String> list = new ArrayList<String>();
-
+    String val;
     List<String> service_name = new ArrayList<String>();
     List<Integer> labour_uID = new ArrayList<Integer>();
     List<Integer> ids_list = new ArrayList<Integer>();
@@ -98,7 +98,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     DecimalFormat df = new DecimalFormat("#,###,##0.00");
     LabourTermsNCondtionsAdapter Tadapter;
     LabourdiscountAdapter dis_adapter;
-    String selected_name;
+    String selected_name,selected_ids;
     TextView terms, status_text, prun_amount, harv_amount, un_amount, un2_amount,yop;
     String seleced_Duration;
     int discount;
@@ -316,7 +316,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
             CostConfig();
             Getterms_conditions();
-           GetLabourPackageDiscount();}
+        }
+         //  GetLabourPackageDiscount();}
 
         else {
             showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
@@ -385,20 +386,20 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 seleced_Duration = labourSpinner.getItemAtPosition(labourSpinner.getSelectedItemPosition()).toString();
-                if(seleced_Duration!= "Select") {
-                    GetLabourPackageDiscount();
-                    myDialog = new Dialog(LabourActivity.this);
-
-                    discount_popup();
-                }
-                if (seleced_Duration.equalsIgnoreCase("1 Day") ){
-                    discount_label.setVisibility(View.GONE);
-                    harv_d_amount.setVisibility(View.GONE);
-                    pru_d_amount.setVisibility(View.GONE);
-                    harv_amount.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
-                    prun_amount.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
-
-                }
+//                if(seleced_Duration!= "Select") {
+//                    GetLabourPackageDiscount();
+//                    myDialog = new Dialog(LabourActivity.this);
+//
+//                    discount_popup();
+//                }
+//                if (seleced_Duration.equalsIgnoreCase("1 Day") ){
+//                    discount_label.setVisibility(View.GONE);
+//                    harv_d_amount.setVisibility(View.GONE);
+//                    pru_d_amount.setVisibility(View.GONE);
+//                    harv_amount.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
+//                    prun_amount.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
+//
+//                }
                 Log.e("seleced_period===", seleced_Duration);
             }
 
@@ -735,37 +736,37 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //                                    }
                                     if (discount_label.getVisibility() == View.VISIBLE) {
                                         displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
-                                        if (selected_name.contains("Harvesting")) {
+                                        if (selected_ids.contains("20")){
 
                                             displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount),df.format(Double.parseDouble(harv_d_amount.getText()+""))));
                                         }
-                                        if (selected_name.contains("Pruning")) {
+                                        if (selected_ids.contains("19")) {
                                             displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount),df.format(Double.parseDouble(pru_d_amount.getText()+""))));
                                         }
-//                                        if (selected_name.contains("UnKnown1")) {
-//                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
-//                                        }
-//                                        if (selected_name.contains("UnKnown2")) {
-//                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
-//                                        }
+                                         if (selected_ids.contains("33")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.intercrop_prunning), un_amount.getText().toString()));
+                                        }
+                                        if(selected_ids.contains("34")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_intercrop), un2_amount.getText().toString()));
+                                        }
                                         displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
 
                                         displayList.add(new MSGmodel(getResources().getString(R.string.starttDate), date));
                                     }
                                     else {
                                         displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
-                                        if (selected_name.contains("Harvesting")) {
+                                        if (selected_ids.contains("20")){
 
                                             displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), df.format(Double.parseDouble(harv_amount.getText() + ""))));
                                         }
-                                        if (selected_name.contains("Pruning")) {
+                                        if (selected_ids.contains("19")) {
                                             displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), df.format(Double.parseDouble(prun_amount.getText() + ""))));
                                         }
-                                        if (selected_name.contains("UnKnown1")) {
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown), un_amount.getText().toString()));
+                                        if (selected_ids.contains("33")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.intercrop_prunning),  df.format(Double.parseDouble(un_amount.getText().toString()))));
                                         }
-                                        if (selected_name.contains("UnKnown2")) {
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.unkonown2), un2_amount.getText().toString()));
+                                        if(selected_ids.contains("34")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_intercrop), df.format(Double.parseDouble(un2_amount.getText().toString()))));
                                         }
 
                                         displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
@@ -827,7 +828,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                 service_name.add(data.getDesc());
                                 labour_uID.add(data.getTypeCdId());
                             }
-                            Log.d(TAG, "RESPONSE======" + service_name);
+                            Log.d(TAG, "RESPONSE======" + service_name + labour_uID);
 
                             multiSelectionSpinner.setItems(service_name);
 
@@ -917,6 +918,32 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         }
 
         GetLabourServiceCostByAge();
+        selected_ids =arrayTOstring(ids_list);
+        Log.d(TAG, "---- analysis ---- > get selected labour name922 :" + selected_ids);
+        if (selected_ids.contains("20")) {
+            harv_amount_label.setVisibility(View.VISIBLE);
+            harvesting_d_amount = harvesting_amount*discount/100;
+            Log.e("call====864",discount + "discoutnt percentage"+ harvesting_d_amount+"harvesting===with discount " +harvesting_amount);
+
+            //double k = (int) (percentage * amount_product) / 100;
+        } else {
+            harv_amount_label.setVisibility(View.GONE);
+        }
+        if (selected_ids.contains("19")) {
+            amount_Label.setVisibility(View.VISIBLE);
+        } else {
+            amount_Label.setVisibility(View.GONE);
+        }
+        if (selected_ids.contains("33")) {
+            un_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            un_amount_label.setVisibility(View.GONE);
+        }
+        if (selected_ids.contains("34")) {
+            un2_amount_label.setVisibility(View.VISIBLE);
+        } else {
+            un2_amount_label.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -933,33 +960,21 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
          selected_name = CommonUtil.arrayToString(strings);
         Log.d(TAG, "---- analysis ---- > get selected labour name908 :" + selected_name);
-        if (selected_name.contains("Pruning")) {
-            amount_Label.setVisibility(View.VISIBLE);
-        } else {
-            amount_Label.setVisibility(View.GONE);
-        }
 
-        if (selected_name.contains("Harvesting")) {
-            harv_amount_label.setVisibility(View.VISIBLE);
-            harvesting_d_amount = harvesting_amount*discount/100;
-            Log.e("call====864",discount + "discoutnt percentage"+ harvesting_d_amount+"harvesting===with discount " +harvesting_amount);
 
-            //double k = (int) (percentage * amount_product) / 100;
-        } else {
-            harv_amount_label.setVisibility(View.GONE);
-        }
 
-        if (selected_name.contains("UnKnown1")) {
-            un_amount_label.setVisibility(View.VISIBLE);
-        } else {
-            un_amount_label.setVisibility(View.GONE);
-        }
 
-        if (selected_name.contains("UnKnown2")) {
-            un2_amount_label.setVisibility(View.VISIBLE);
-        } else {
-            un2_amount_label.setVisibility(View.GONE);
-        }
+//        if (selected_name.contains("UnKnown1")) {
+//            un_amount_label.setVisibility(View.VISIBLE);
+//        } else {
+//            un_amount_label.setVisibility(View.GONE);
+//        }
+//
+//        if (selected_name.contains("UnKnown2")) {
+//            un2_amount_label.setVisibility(View.VISIBLE);
+//        } else {
+//            un2_amount_label.setVisibility(View.GONE);
+//        }
 
 
         return null;
@@ -1048,8 +1063,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //        requestModel.setPruningAmount(0.00);
         requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
         requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
-       // requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
-       // requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
+        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
+       requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
 
 //        requestModel.setPlotMandal(plotMandal);
 //        requestModel.setPlotState(plotState);

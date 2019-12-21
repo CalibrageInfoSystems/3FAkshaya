@@ -15,30 +15,24 @@
     <string name="english_str">English</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="terms_conditions">Terms &amp; Conditions</string>
+
     <string name="terms_agree">Please Agree Terms &amp; Conditions</string>
-    <string name="convenience_charge">Convenience Charge(Rs)</string>
-    <string name="total_amt_pay">Total Bill Amount(Rs)</string>
+
+
     <string name="otp_desc">Enter the 6 Digits Code Sent your Registered Mobile Number(s)</string>
     <string name="submit">SUBMIT</string>
-    <string name="submit_req">Submit Request</string>
+
     <string name="view">Views</string>
-    <string name="payment_summary">Payment Summary</string>
+
     <string name="recommendations">Recommendations</string>
-    <string name="recommendationss">Crop Maintenance Visits</string>
-    <string name="payments">Payments</string>
-    <string name="bank_details">Bank Details</string>
-    <string name="bank_holder">Account Holder \nName</string>
-    <string name="bank_name">Bank Name</string>
-    <string name="account_no">Account Number</string>
-    <string name="branch_name">Branch Name</string>
-    <string name="ifsc">IFSC Code</string>
-    <string name="next">Next</string>
+
+
+
+
 
     <string name="req_services">Request Services</string>
-    <string name="labour">Labour Request</string>
-    <string name="labour_duration">Package </string>
-    <string name="amount_of_FFB">Total FFB Cost per MT(Rs)</string>
+
+
 
     <string name="confirm_req">Confirm Request</string>
     <string name="pole">Equipment</string>
@@ -55,86 +49,88 @@
     <string name="from_date">From Date *</string>
 
     <string name="to_date">To Date *</string>
-    <string name="collection_id">Collection ID</string>
+
     <string name="date">Start Date</string>
+
+
+    <string name="req_loan">Loan Request</string>
+    <string name="plot_id">Plot ID</string>
+
+
+
+    <string name="code">Code</string>
+
+    <string name="net_weight">Net weight</string>
+
+    <string name="location">Location</string>
+    <string name="locationn">Location   :</string>
+
+
+<!--    collections-->
+    <string name="collection">Collections</string>
+    <string name="collectionsWeight">Total Net Weight </string>
+    <string name="collectionsCount">Total Collections</string>
+    <string name="unPaidCollectionsWeight">Unpaid Collections Weight </string>
+    <string name="paidCollectionsWeight">Paid Collections Weight</string>
+    <string name="no_collections_found">No Collections Available</string>
+    <string name="unpaidCollection">Unpaid Collections</string>
+    <string name="no_unpaid_collections">Unpaid Collections are not Found</string>
+    <string name="date_label">Date</string>
+    <string name="collection_id">Collection ID</string>
     <string name="weight">Weight</string>
     <string name="cc">CC</string>
     <string name="status">Status</string>
-    <string name="req_loan">Loan Request</string>
-    <string name="plot_id">Plot ID</string>
-    <string name="plot_size">Plot Size</string>
+    <string name="driver_name">Driver Name</string>
+    <string name="vehicle_Number">Vehicle Number</string>
+    <string name="collectionCenter">Collection Center</string>
+    <string name="grossWeight">Gross Weight</string>
+    <string name="tareWeight">Tare Weight</string>
+    <string name="totalBunches">Total Bunches</string>
+    <string name="acceptedBunches">Accepted Bunches</string>
+    <string name="rejectedBunches">Rejected Bunches</string>
+    <string name="operatorName">Operator Name</string>
+    <string name="receiptImg">Receipt</string>
+    <string name="recept">Click Here to See Receipt</string>
+    <string name="datevalidation">Please Enter From Date is less than To Date</string>
+    <string name="enter_Date">Please Enter From Date and To Date</string>
 
-    <string name="village">Village</string>
-    <string name="comments">Comments</string>
-    <string name="plot_code">Plot Code</string>
-    <string name="code">Code</string>
-    <string name="select_labour_type">Labour Service</string>
-    <string name="net_weight">Net weight</string>
-    <string name="date_label">Date</string>
-    <string name="location">Location</string>
-    <string name="locationn">Location   :</string>
-    <string name="collection">Collections</string>
-    <string name="land_mark">Landmark</string>
-    <string name="landmark">Landmark</string>
-    <string name="closingBal">Dues(Rs)</string>
-    <string name="language_notification">Language Setup Completed</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="log_off">Logout</string>
-    <string name="tap_text">Please select Language below:</string>
-    <string name="btn_en">English</string>
-    <string name="btn_te">Telugu</string>
-
-    <string name="only_date">Date</string>
-    <string name="no_videos">No Videos Available</string>
-
-    <!-- <string name="harvest">Harvest</string>-->
-    <string name="remarks">Remarks</string>
-    <string name="quantity">Quantity</string>
-
+<!--  Payments  -->
+    <string name="no_payments_found">No Payments Found</string>
+    <string name="grr">Payment for FFB(Rs)</string>
+    <string name="payments">Payments</string>
+    <string name="payment_summary">Payment Summary</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="bank_holder">Account Holder \nName</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_no">Account Number</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="ifsc">IFSC Code</string>
+    <string name="next">Next</string>
+    <string name="trans">Transportation Charges</string>
     <string name="ffb_qty">Total FFB Qty (MT)</string>
     <string name="ffb">FFB Qty (MT)</string>
     <string name="adhoc_rate">Adhoc Rate per MT (Rs)</string>
     <string name="invoice_rate">Invoice Rate per MT (Rs)</string>
     <string name="memo">Memo</string>
     <string name="amount">Amount (Rs)</string>
-    <string name="harv_amountt">D) Harvesting \nCost /Ton(Rs)</string>
-    <string name="pru_amountt">A) Pruning \nCost /Tree(Rs)</string>
-    <string name="harv_amount">Harvesting Amount/Ton(Rs)</string>
-    <string name="pru_amount">Pruning Amount/Tree(Rs)</string>
-    <string name="paidCollectionsWeight">Paid Collections Weight</string>
-    <string name="no_collections_found">No Collections Available</string>
-    <string name="no_payments_found">No Payments Found</string>
-    <string name="i_have_agree">I Agree</string>
-    <string name="measurement">Age</string>
-    <string name="startDate">Preferred Date</string>
-    <string name="starttDate"> Preferred Date</string>
+    <string name="download">Downloaded Files</string>
+    <string name="click_downlad">Click Here to Download</string>
     <string name="totalBalance">Closing Balance (Rs)</string>
     <string name="balance">Balance (Rs)</string>
-    <string name="collectionsWeight">Total Net Weight </string>
-    <string name="collectionsCount">Total Collections</string>
-    <string name="unPaidCollectionsWeight">Unpaid Collections Weight </string>
     <string name="gr">GR Amount (Rs)</string>
     <string name="adjusted">Adjusted (Rs)</string>
-    <string name="loan_req">Request for Loan</string>
-    <string name="loan_message">In finance, a loan is the lending of money by one or more individuals, organizations, or other entities to other individuals, organizations etc. The recipient (i.e. the borrower) incurs a debt, and is usually liable to pay interest on that debt until it is repaid, and also to repay the principal amount borrowed.  The document evidencing the debt, e.g. a promissory note, will normally specify, among other things, the principal amount of money borrowed, the interest rate the lender is charging, and date of repayment. A loan entails the reallocation of the subject asset(s) for a period of time, between the lender and the borrower.  The interest provides an incentive for the lender to engage in the loan. In a legal loan, each of these obligations and restrictions is enforced by contract, which can also place the borrower under additional restrictions known as loan covenants. Although this article focuses on monetary loans, in practice any material object might be lent.</string>
-    <string name="got_it">Got It</string>
-    <string name="unpaidCollection">Unpaid Collections</string>
-    <string name="labour_lable">Labour</string>
-    <string name="no_req_found">No Requests Found</string>
-    <string name="no_unpaid_collections">Unpaid Collections are not Found</string>
-    <string name="service">Service Charges  </string>
-    <string name="charge">% extra.\nThe charges will be deducted from the FFB payment in the next payment cycle</string>
+    <string name="descriptionn">Description </string>
+    <string name="trans_charges">Transportation \nCharges / Kg (Rs)</string>
+    <string name="no_trans_found">No Transportation Charges Found</string>
 
 
-    />
-    <string name="total_records">Total Records</string>
-    <string name="quantity_mt">Quantity(MT)</string>
-    <string name="ffb_flot">FFB Rate(Rs)</string>
-    <string name="no_pdfs">No Pdfs Available</string>
-    <string name="dosage_only">Dosage</string>
-
-
+    <!--    Crop Maintenance Visits -->
+    <string name="recommendationss">Crop Maintenance Visits</string>
+    <string name="plot_code">Plot Code</string>
+    <string name="plot_size">Plot Size</string>
+    <string name="village">Village</string>
+    <string name="landmark">Landmark</string>
+    <string name="yop">Year of Planting</string>
     <string name="treesAppearance">Trees Appearance</string>
     <string name="treeGrowth">Tree Growth</string>
     <string name="treeHeight">Tree Height</string>
@@ -144,29 +140,17 @@
     <string name="plantationType">Plantation Type</string>
     <string name="health_crop">Health of Plantation Details</string>
     <string name="uprrot_crop">Uprootment Details</string>
-
-
     <string name="spalingPlanted">No.of Saplings Planted</string>
     <string name="prevPalmsCount">Previous Trees Count</string>
-    <!--    <string name="plamsCount">Count of Trees Currently Present</string>-->
     <string name="plamsCount">Current Trees Count</string>
     <string name="isTreesMissing">Missing Trees</string>
     <string name="missingTreesCount">No.of Missing Trees</string>
     <string name="reasonType">Reason for Missing Trees</string>
     <string name="expectedPlamsCount">Expected Palms Count</string>
-
-
-    <string name="crop">Crop Maintenance Visit</string>
-
-    <string name="recommended_ertilizer">Recommended Fertilizer</string>
-    <string name="UOMName">UOM Name</string>
-    <string name="LastUpdatedDate">Last Updated Date</string>
-    <string name="fert_rec">Fertilizer Recommendation Details</string>
-
-
-    <string name="Chemical">Chemical</string>
-
-
+    <string name="last_date">Date of Last Visit</string>
+    <string name="Frequency">Frequency</string>
+    <string name="static_data">We recommend harvesting every 10 days, when the loose fruitlets are seen on the ground for optimal yield</string>
+    <string name="Frequency_harvest">Frequency of Harvest</string>
     <string name="NutrientDeficiencyName">Nutrient Deficiency Name</string>
     <string name="Nameofchemicalapplied">Name of Chemical Applied</string>
     <string name="registeredDate">Registered Date</string>
@@ -176,30 +160,161 @@
     <string name="disease">Disease</string>
     <string name="pest">Pest Details</string>
     <string name="deases">Disease Details</string>
-
     <string name="nut_repo">Nutrient Deficiency Details</string>
+    <string name="fert_rec">Fertilizer Recommendation Details</string>
+    <string name="irrigation">Irrigation Details</string>
+    <string name="irrigation_name">Irrigation Name</string>
+    <string name="updated_by">Updated By</string>
+    <string name="updated_date">Updated Date</string>
+    <string name="inter_crop">InterCrop Details</string>
+    <string name="fertilizer_crop">Fertilizers Details</string>
+    <string name="fertilizerSource">Fertilizer Source</string>
+    <string name="fertilizer_name">Fertilizer Name</string>
+    <string name="lastAppliedDate">Last Applied Date</string>
+    <string name="applyFertilizerFrequencyType">Apply Fertilizer Frequency</string>
+
+
+<!--   Labour  -->
+    <string name="labour_lable">Labour</string>
+    <string name="select_labour_type">Labour Service</string>
+    <string name="startDate">Preferred Date</string>
+    <string name="starttDate"> Preferred Date</string>
+    <string name="labour">Labour Request</string>
+    <string name="labour_duration">Package </string>
+    <string name="comments">Comments</string>
+    <string name="i_have_agree">I Agree</string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="submit_req">Submit Request</string>
+    <string name="harv_amount">Harvesting Amount/Ton (Rs)</string>
+    <string name="pru_amount">Pruning Amount/Tree (Rs)</string>
+    <string name="success_labour">Labour Request Submitted Successfully</string>
+    <string name="service">Service Charges  </string>
+    <string name="charge">% extra.\nThe charges will be deducted from the FFB payment in the next payment cycle</string>
+    <string name="Prunning">Prunning</string>
+    <string name="harvesting">Harvesting Per Ton</string>
+    <string name="intercrop_prunning">Pruning With Intercrop\nAmount/Tree (Rs)</string>
+    <string name="harv_intercrop">Harvesting With Intercrop\nAmount/Ton (Rs)</string>
+    <string name="measurement">Age</string>
+    <string name="Valid_service">Please Select Service Type</string>
+    <string name="valid_pack">Please Select Package</string>
+    <string name="serviceType">Service Type(s)</string>
+<!-- Equipment   -->
+    <string name="select_godown">Select Godown </string>
+    <string name="payment_mode">Payment Mode </string>
+    <string name="product">Product</string>
+    <string name="gst">GST(%)</string>
+    <string name="no_products">No Products Found</string>
+    <string name="gst_amount">GST (Rs)</string>
+    <string name="no_godowns">No Godowns Found</string>
+    <string name="address">Address</string>
+    <string name="select_product">Select Products</string>
+    <string name="product_details">Product Details</string>
+    <string name="notee">Note</string>
+    <string name="note">If the Products has not been Picked with in 2 Days of Requested Date,Your Order will be Cancelled.</string>
+    <string name="subsidy_amt">Available Subsidy Amount</string>
+    <string name="endusermsg">Total Cost Shouldnot be 0</string>
+    <string name="each_product"> Each Item Cost (Rs)</string>
+    <string name="server_error">Server Not Responding, Please Try Again</string>
+    <string name="godown_valid">Please Select Godown</string>
+    <string name="success_pole">Equipment Request Submitted Successfully</string>
+    <string name="subcd_amt">Subsidy Amount</string>
+    <string name="Avb_subcd_amt">Available Subsidy Amount</string>
+    <string name="product_quantity">Product &amp; Quantity</string>
+
+
+
+
+    <string name="land_mark">Landmark</string>
+
+    <string name="language_notification">Language Setup Completed</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_off">Logout</string>
+    <string name="tap_text">Please select Language below:</string>
+    <string name="btn_en">English</string>
+    <string name="btn_te">Telugu</string>
+   <string name="only_date">Date</string>
+    <string name="no_videos">No Videos Available</string>
+
+    <!-- <string name="harvest">Harvest</string>-->
+    <string name="remarks">Remarks</string>
+    <string name="quantity">Quantity</string>
+
+
+
+
+
+
+
+
+<!--Loan-->
+    <string name="loan_req">Request for Loan</string>
+    <string name="loan_message">1.Quick Pay is a special feature provided by 3F Oil Palm so that our farmers can get payment for their FFB supplied within 1-2 working days.\n2.Working days are Monday- Saturday (except 2nd Saturday). All public holidays and company holidays are not considered working days.\n3.To avail this offer, there is a Rs. 100/ton quick pay fee along with a flat banking fee of Rs. 15. Quick pay will be paid based on the prevelant adhoc rate. In case adhoc rate is not yet known, quick pay will be based on an assumed adhoc rate, but it will be adjusted based on Government Order rate, as and when declared.\n
+4.Atleast 1 unpaid collection is required in order to request for Quick Pay.\n5.In case of more than 1 unpaid collection, quick pay request will  happen on all pending unpaid collections.\n6.All deductions such as fertilizers, poles and labour requests that were done against FFB will be reduced from the FFB payment while making quick pay payment.\n7.Complete calculation and value of payment will be mentioned in the receipt in the app. This requires a digital signature of the farmer, which signifies adherence to all terms and conditions.\n8.In order to be eligible for quick pay, FFB payment value should be greater than any against FFB deductions (such as fertilizers, poles or labour requests done against FFB).\n9.If quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.\n10.Once Quick Pay has been requested, it cannot be cancelled.</string>
+    <string name="got_it">Got It</string>
+
+    <string name="success_Loan">Loan Request Submitted Successfully</string>
+    <string name="no_req_found">No Requests Found</string>
+
+    <string name="loan_amount">Loan Amount (Rs)</string>
+    <string name="reason_loan">Reason for Loan</string>
+    <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
+    <string name="enter_loan_amount"> Amount must be Greater than 0</string>
+    />
+<!--    -->
+    <string name="total_records">Total Records</string>
+
+
+    <string name="no_pdfs">No Pdfs Available</string>
+    <string name="dosage_only">Dosage</string>
+
+
+
+
+
+
+
+
+    <string name="crop">Crop Maintenance Visit</string>
+    <string name="recommended_ertilizer">Recommended Fertilizer</string>
+    <string name="UOMName">UOM Name</string>
+    <string name="LastUpdatedDate">Last Updated Date</string>
+
+
+
+    <string name="Chemical">Chemical</string>
+<!--Navigation -->
     <string name="my3F">My 3F</string>
     <string name="logout">LogOut</string>
     <string name="confirmation">Confirmation</string>
     <string name="alert_logout">Are you sure you want to Logout?</string>
     <string name="no_plots">No Plots Available</string>
 
-    <string name="loan_amount">Loan Amount (Rs)</string>
-    <string name="reason_loan">Reason for Loan</string>
+
 
     <string name="error">Error</string>
-    <string name="quick_pay">QuickPay Fee(Rs)</string>
+
+
+<!--    Visit -->
     <string name="issue_type">Type of Issue</string>
     <string name="image">Image Upload</string>
+    <string name="record">Voice Recording</string>
+
+    <string name="visit_success">Visit Request Submitted Successfully</string>
+<!--    Quick pay -->
     <string name="digital_signature">Digital Signature</string>
-    <string name="Prunning">Prunning</string>
-    <string name="harvesting">Harvesting Per Ton</string>
-    <string name="unkonown">UnKnown1</string>
-    <string name="unkonown2">UnKnown2</string>
     <string name="request_rise">Raise Request</string>
     <string name="clear">Clear</string>
-    <string name="datevalidation">Please Enter From Date is less than To Date</string>
-    <string name="enter_Date">Please Enter From Date and To Date</string>
+    <string name="signature">Please Write Signature</string>
+    <string name="quick_pay">QuickPay Fee(Rs)</string>
+    <string name="closingBal">Dues(Rs)</string>
+
+    <string name="quantity_mt">Quantity(MT)</string>
+    <string name="ffb_flot">FFB Rate(Rs)</string>
+    <string name="amount_of_FFB">Total FFB Cost per MT(Rs)</string>
+    <string name="convenience_charge">Convenience Charge(Rs)</string>
+    <string name="total_amt_pay">Total Bill Amount(Rs)</string>
+
 
     <string name="farmar_id"> Enter Farmer Id</string>
     <string name="Internet">Please Check Internet Connection</string>
@@ -211,12 +326,10 @@
     <string name="str_standard">Standard</string>
     <string name="str_videos">Videos</string>
     <string name="str_pdf">Pdfs</string>
-    <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
-    <string name="enter_loan_amount"> Amount must be Greater than 0</string>
-    <string name="Valid_service">Please Select Service Type</string>
-    <string name="valid_pack">Please Select Package</string>
-    <string name="record">Voice Recording</string>
-    <string name="select_product">Select Products</string>
+
+
+
+
     <string name="total_amt">Total Amount (Rs)</string>
 
     <string name="confirm">Confirm</string>
@@ -226,27 +339,10 @@
     <string name="valid_issue_type">Please Select Issue Type</string>
     <string name="select_image">Please Attach At Least One Image or Voice Record</string>
     <string name="str_select_plot">Select Plot</string>
-    <string name="select_godown">Select Godown </string>
-    <string name="payment_mode">Payment Mode </string>
-
-    <string name="product">Product</string>
-    <string name="gst">GST(%)</string>
-    <string name="no_products">No Products Found</string>
-    <string name="gst_amount">GST (Rs)</string>
-    <string name="irrigation">Irrigation Details</string>
-    <string name="irrigation_name">Irrigation Name</string>
-    <string name="updated_by">Updated By</string>
-    <string name="updated_date">Updated Date</string>
-    <string name="inter_crop">InterCrop Details</string>
-
-    <string name="fertilizer_crop">Fertilizers Details</string>
 
 
-    <string name="fertilizerSource">Fertilizer Source</string>
-    <string name="fertilizer_name">Fertilizer Name</string>
 
-    <string name="lastAppliedDate">Last Applied Date</string>
-    <string name="applyFertilizerFrequencyType">Apply Fertilizer Frequency</string>
+   >
     <string name="no_recommendations">No Recommendations</string>
     <string name="record_btn">Record</string>
     <string name="stop">STOP</string>
@@ -254,27 +350,22 @@
     <string name="summary">Summary</string>
     <string name="record_voice">Recorded Voice</string>
     <string name="product_req">Product Request</string>
-    <string name="Frequency">Frequency</string>
-    <string name="static_data">We recommend harvesting every 10 days, when the loose fruitlets are seen on the ground for optimal yield</string>
-    <string name="Frequency_harvest">Frequency of Harvest</string>
+
+
     <string name="date_selectiomn">Please Select the Date</string>
-    <string name="subcd_amt">Subsidy Amount</string>
-    <string name="Avb_subcd_amt">Available Subsidy Amount</string>
+
     <string name="success_fertilizer">Fertilizer Request Submitted Successfully</string>
-    <string name="success_labour">Labour Request Submitted Successfully</string>
-    <string name="visit_success">Visit Request Submitted Successfully</string>
-    <string name="success_Loan">Loan Request Submitted Successfully</string>
-    <string name="each_product"> Item Cost (Rs)</string>
-    <string name="server_error">Server Not Responding, Please Try Again</string>
-    <string name="godown_valid">Please Select Godown</string>
-    <string name="success_pole">Equipment Request Submitted Successfully</string>
-    <string name="product_details">Product Details</string>
-    <string name="signature">Please Write Signature</string>
+
+
+
+
+
     <string name="requestCodeLabel">Request Id</string>
     <string name="reqDatee">Requested Date</string>
     <string name="paymentMode">Payment Mode</string>
     <string name="req_date">Requested Date</string>
-    <string name="serviceType">Service Type(s)</string>
+
+<!--    Request -->
     <string name="lab_req">Labour Request</string>
     <string name="select_labour_ltype">Labour Service</string>
     <string name="pole_req">Equipment Request</string>
@@ -282,6 +373,8 @@
     <string name="quick_req">QuickPay Request</string>
     <string name="visit_req">Visit Request</string>
     <string name="Loan_req">Loan Request</string>
+
+<!--    -->
     <string name="officer_name">Cluster Officer Name</string>
     <string name="officer_mobile">Cluster Officer  Contact Number</string>
     <string name="manager_name">Cluster Manager Name </string>
@@ -291,7 +384,7 @@
     <string name="farmer_name">Farmer Name</string>
     <string name="fa_hu_name">Father/Husband</string>
     <string name="res_address">Residential Address</string>
-    <string name="address">Address</string>
+
     <string name="addresss">Address   :</string>
     <string name="mandal">Mandal</string>
     <string name="dist">District</string>
@@ -302,7 +395,7 @@
     <string name="email">Email ID</string>
     <string name="plaod_hect"> Hectrage</string>
     <string name="sur_num">Survery Number</string>
-    <string name="yop">Year of Planting</string>
+
     <!--   We have sent Otp on Your Mobile XXXXXXXX10-->
     <string name="fert_godown">Fertilizer Godowns</string>
     <string name="collection_centres">Collection Centers</string>
@@ -324,22 +417,13 @@
     <string name="comments_valid">Please Enter Comments</string>
     <string name="no_data">No Data Available</string>
     <string name="Godown_name">Godown</string>
-    <string name="product_quantity"><![CDATA[Product & Quantity]]></string>
+
     <string name="qucick_success">QuickPay Request Raised  Successfully</string>
     <string name="paym_validation">Please Select the Payment Mode</string>
-    <string name="last_date">Date of Last Visit</string>
-    <string name="driver_name">Driver Name</string>
-    <string name="vehicle_Number">Vehicle Number</string>
 
-    <string name="collectionCenter">Collection Center</string>
-    <string name="grossWeight">Gross Weight</string>
-    <string name="tareWeight">Tare Weight</string>
-    <string name="totalBunches">Total Bunches</string>
-    <string name="acceptedBunches">Accepted Bunches</string>
-    <string name="rejectedBunches">Rejected Bunches</string>
-    <string name="operatorName">Operator Name</string>
-    <string name="receiptImg">Receipt</string>
-    <string name="trans">Transportation Charges</string>
+
+
+
     <string name="fertgodown">Fertilizer Godowns</string>
     <string name="manager_num">Cluster Manager Contact Number</string>
     <string name="care">Care</string>
@@ -347,30 +431,35 @@
     <string name="labour_leader">Leader </string>
     <string name="job_done">Job Done On</string>
     <string name="coll_id">Collection Id(s)</string>
-    <string name="net_weight_mt">E) Net Weight (MT)</string>
+
     <string name="product_name">Product Name</string>
     <string name="price">Price (Rs)</string>
     <string name="product_size"> Size</string>
-    <string name="trans_charges">Transportation \nCharges / Kg (Rs)</string>
-    <string name="no_trans_found">No Transportation Charges Found</string>
+
+    <string name="pru_amountt">A) Pruning \nCost /Tree(Rs)</string>
     <string name="num_trees">B) No. of Trees</string>
     <string name="Prunning_amount">C) Pruning  \nAmount(Rs)(A*B)</string>
-<!--    Package Discount (%)-->
-    <string name="amount_labour">K)Total Amount(Rs)\n(C+F+H-J)</string>
+    <string name="harv_amountt">D) Harvesting \nCost /Ton(Rs)</string>
+    <string name="net_weight_mt">E) Net Weight (MT)</string>
     <string name="harvesting_amount">F) Harvesting \nAmount(Rs)(D*E)</string>
-    <string name="service_chargeper">G) Service Charge (%)</string>
-    <string name="service_amount">H) Service Charge(Rs)\n((C+F)*G)/100</string>
+    <string name="service_chargeper">M) Service Charge (%)</string>
+    <string name="service_amount">N) Service Charge(Rs)\n((C+F+I+L)*M)/100</string>
+    <string name="disc_package">O) Package Discount(%)</string>
+    <string name="disc_price">P) Package Discount \nPrice(Rs)\n((C+F+I+L)*O)/100 </string>
+    <string name="amount_labour">Q)Total Amount(Rs)\n(C+F+I+L+N-P)</string>
+
     <string name="payment_details">Total Amount Details</string>
     <string name="instock">In stock</string>
     <string name="nocomments">No Comments</string>
     <string name="net_weightk">Net Weight (Kgs)</string>
-    <string name="no_godowns">No Godowns Found</string>
+
     <string name="alert_msg">Are You Sure You Want to Cancel this Request?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="quick_docu">QuickPay Document</string>
-    <string name="recept">Click Here to See Receipt</string>
+
     <string name="description">Description :</string>
+
     <string name="Cgst">CGST(%)</string>
     <string name="sgst">SGST(%)</string>
     <string name="cgst_amount">CGST (Rs)</string>
@@ -380,13 +469,7 @@
     <string name="discount">Discount(%)</string>
     <string name="disc">Offer Applied</string>
     <string name="text">Discount on Your Package</string>
-    <string name="click_downlad">Click Here to Download</string>
-    <string name="disc_package">I) Package Discount(%)</string>
-    <string name="disc_price">J) Package Discount \nPrice(Rs)((C+F)*I)/100) </string>
-    <string name="note">If the Products has not been Picked with in 2 Days of Requested Date,Your Order will be Cancelled.</string>
-    <string name="subsidy_amt">Available Subsidy Amount</string>
-    <string name="download">Downloaded Files</string>
-    <string name="endusermsg">Total Cost Shouldnot be 0</string>
+
     <string name="thirty_days">Last 30 days</string>
     <string name="currentfinicial">Current Financial Year</string>
     <string name="selected">Select Time Period</string>
@@ -398,6 +481,14 @@
     <string name="failmsg">You can\'t Raise the Request since Amount is 0</string>
     <string name="location_notfount">Location not available</string>
     <string name="userPermission">All permissions are granted by user!</string>
+    <string name="incrop_prunning">G) Intercrop Pruning \nCost / Tree(Rs)</string>
+    <string name="num_intercrop">H) No.of Intercrop \nTrees</string>
+    <string name="pru_intercrop_amountt">I) Pruning Intercrop \nAmount(Rs)(G*H)</string>
+    <string name="harv_inter_amountt">J) Intercrop Harvesting \nCost / Tree(Rs)</string>
+    <string name="harv_intercrop_netweight">K) Intercrop \nNet Weight(Ton)</string>
+    <string name="harv_intercrop_amout">L) Harvesting Intercrop \nAmount(Rs)(J*K)</string>
+    <string name="details">Complete Details</string>
+
     />
     <!-- we need to use video ids instead of video link -->
     <string-array name="switch_tabs">

@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import in.calibrage.akshaya.R;
@@ -37,9 +39,61 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getName());
+        if(learning_Set.get(position).getId() == 1 ){
+            Picasso.with(mContext )
+                    .load(R.drawable.ic_ferti)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+
+        }else if(learning_Set.get(position).getId() == 5 )
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.harvest)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+
+        }
+        else if(learning_Set.get(position).getId() == 6 )
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.pest)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+
+        }
+        else if(learning_Set.get(position).getId() == 7 )
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.oilpalm)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+
+        }
+        else if(learning_Set.get(position).getId() == 8 )
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.general)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+
+        }
+        else
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.ic_lernin)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+
+        }
          holder.learn_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,12 +103,15 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                 intent.putExtra("name", learning_Set.get(position).getName());
 
                 if(learning_Set.get(position).getId() == 1 ){
+
                     String[] tabnames = {mContext.getString(R.string.str_standard),mContext.getString(R.string.str_videos),mContext.getString(R.string.str_pdf)};
+
 
 
                     intent.putExtra("tabslist", tabnames);
                 }else
                 {
+
                     String[] tabnames = {mContext.getString(R.string.str_videos),mContext.getString(R.string.str_pdf)};
                     intent.putExtra("tabslist", tabnames);
                 }

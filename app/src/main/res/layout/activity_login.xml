@@ -47,7 +47,7 @@
             android:background="@drawable/edt_bg"
             android:fontFamily="@font/roboto_regular"
             android:hint="@string/farmar_id"
-
+android:maxLength="20"
             android:maxEms="50"
             android:maxLines="1"
             android:inputType="textCapCharacters"

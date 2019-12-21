@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -80,6 +82,7 @@ Double total_amount;
     String Godown_code,Godown_name;
     DecimalFormat dec = new DecimalFormat("####0.00");
     //code_godown
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +131,8 @@ Double total_amount;
             Getstate();
         else {
             showDialog(FertilizerActivity.this,getResources().getString(R.string.Internet));
+          btn_next.setBackground(this.getDrawable(R.drawable.button_bg_disable));
+            btn_next.setEnabled(false);
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
        // Getstate();

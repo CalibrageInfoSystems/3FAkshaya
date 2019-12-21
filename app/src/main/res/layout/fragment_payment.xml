@@ -256,7 +256,6 @@
             android:weightSum="1">
 
 
-
             <TextView
                 style="@style/Common_textView"
                 android:layout_width="match_parent"

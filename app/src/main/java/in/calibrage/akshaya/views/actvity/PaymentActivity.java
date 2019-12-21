@@ -3,7 +3,9 @@ package in.calibrage.akshaya.views.actvity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,7 +63,9 @@ public class PaymentActivity extends BaseActivity {
     private ProgressDialog dialog;
     String Farmer_code;
     private SpotsDialog mdilogue;
+    String bank_Account;
     private Subscription mSubscription;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,19 +108,25 @@ public class PaymentActivity extends BaseActivity {
             }
         });
         Button submitBtn = (Button) findViewById(R.id.nextButton);
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
 
-            }
-        });
-        if (isOnline())
+            submitBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+
+                }
+            });
+
+        if (isOnline()) {
             getBankDetails();
+        }
         else {
             showDialog(PaymentActivity.this,getResources().getString(R.string.Internet));
+            submitBtn.setBackground(this.getDrawable(R.drawable.button_bg_disable));
+            submitBtn.setEnabled(false);
         }
+
     }
 
     private void getBankDetails() {
@@ -153,7 +163,7 @@ public class PaymentActivity extends BaseActivity {
                         Log.e("bankdetails==", String.valueOf(SharedPrefsData.getbankdetails(PaymentActivity.this)));
                         String cardName = getBankDetailsByFarmerCode.getListResult().get(0).getAccountHolderName();
                         accoontHolderName.setText(cardName);
-                        String bank_Account =  getBankDetailsByFarmerCode.getListResult().get(0).getAccountNumber();
+                         bank_Account =  getBankDetailsByFarmerCode.getListResult().get(0).getAccountNumber();
                         String bankName =  getBankDetailsByFarmerCode.getListResult().get(0).getBankName();
                         String branch =  getBankDetailsByFarmerCode.getListResult().get(0).getBranchName();
                         String ifscCode1 =  getBankDetailsByFarmerCode.getListResult().get(0).getIfscCode();
@@ -161,7 +171,10 @@ public class PaymentActivity extends BaseActivity {
            bankNamee.setText(bankName);
            branchName.setText(branch);
            ifscCode.setText(ifscCode1);
-                    }
+
+                        }
+
+
 
                 });
 

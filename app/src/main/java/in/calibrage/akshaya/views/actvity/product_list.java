@@ -25,6 +25,7 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.Req_producut_Adapter;
+import in.calibrage.akshaya.views.Adapter.Req_producutt_Adapter;
 import in.calibrage.akshaya.views.Adapter.producut_Adapter;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
@@ -122,7 +123,7 @@ public class product_list extends BaseActivity {
                     @Override
                     public void onNext(Resproduct resproduct) {
                         if (resproduct.getListResult() != null) {
-  Req_producut_Adapter adapter = new Req_producut_Adapter(product_list.this, resproduct.getListResult());
+  Req_producutt_Adapter adapter = new Req_producutt_Adapter(product_list.this, resproduct.getListResult());
                             recycler_view_products.setAdapter(adapter);
 
                             Double amount_total = 0.00;

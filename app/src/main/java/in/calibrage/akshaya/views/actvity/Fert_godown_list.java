@@ -49,6 +49,7 @@ import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.GodownListAdapter;
+import in.calibrage.akshaya.views.Adapter.fert_producut_Adapter;
 import in.calibrage.akshaya.views.Adapter.producut_Adapter;
 import lib.kingja.switchbutton.SwitchMultiButton;
 import retrofit2.adapter.rxjava.HttpException;
@@ -100,7 +101,7 @@ public class Fert_godown_list extends BaseActivity {
     int mealTotal = 0;
     String Gst_sum, Amount_, include_gst_amount;
     Integer Paymode, Statusid;
-    private producut_Adapter mAdapter;
+    private fert_producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
     PaymentsType paymentsTypes;
     double payble_amount, remaining_subsidy_amountt;
@@ -307,7 +308,7 @@ public class Fert_godown_list extends BaseActivity {
 
             }
         });
-        mAdapter = new producut_Adapter(this, SharedPrefsData.getCartData(this));
+        mAdapter = new fert_producut_Adapter(this, SharedPrefsData.getCartData(this));
         recycler_view_products.setAdapter(mAdapter);
 //        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 //            @Override

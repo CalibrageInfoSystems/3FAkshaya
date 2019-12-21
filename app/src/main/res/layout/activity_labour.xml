@@ -395,8 +395,9 @@ android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_one"
             android:layout_margin="6dp"
-            android:orientation="horizontal"
             android:visibility="gone"
+            android:orientation="horizontal"
+
             >
 
 
@@ -406,9 +407,9 @@ android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
 
-                android:text="@string/unkonown"
+                android:text="@string/intercrop_prunning"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
 
@@ -420,7 +421,7 @@ android:visibility="gone"
                 android:layout_marginTop="1sp"
                 android:text=":"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -434,7 +435,7 @@ android:visibility="gone"
                 android:hint=""
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:textSize="12dp"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -454,9 +455,9 @@ android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
 
-                android:text="@string/unkonown2"
+                android:text="@string/harv_intercrop"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
 
@@ -468,7 +469,7 @@ android:visibility="gone"
                 android:layout_marginTop="1sp"
                 android:text=":"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -482,7 +483,7 @@ android:visibility="gone"
                 android:hint=""
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:textSize="12dp" />
 
         </RelativeLayout>
         <TextView

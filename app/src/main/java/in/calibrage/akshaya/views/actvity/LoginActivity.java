@@ -218,6 +218,17 @@ public class LoginActivity extends BaseActivity {
             startActivity(new Intent(LoginActivity.this, QRScannerActivity.class));
         }
     }
+    @Override
+    public void onBackPressed() {
+        Intent start = new Intent(Intent.ACTION_MAIN);
+        start.addCategory(Intent.CATEGORY_HOME);
+        start.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        start.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(start);
+        //   super.onBackPressed();
+
+        // return;
+    }
 }
 
 

@@ -329,7 +329,7 @@ android:background="@drawable/collect_bg"
         android:layout_alignWithParentIfMissing="true"
         android:layout_below="@+id/selecte_label"
         android:layout_margin="@dimen/_8dp"
-     android:visibility="gone"
+
         android:elevation="2dp"
 
         >

@@ -7,16 +7,21 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.TimeZoneFormat;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -59,8 +64,8 @@ import rx.schedulers.Schedulers;
 import static in.calibrage.akshaya.service.APIConstantURL.GetLabourPackageDiscount;
 
 public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapter.ViewHolder> {
-    TextView request_id, plot_code, plot_size, village, leader_name, pref_date, service_type, status, prun_amount, harv_amount, pack_name, collectionid, netweight,
-            Discount_percentage, amount,Discount_amount, comments, job_done, trees_count, service_charge, service_amount, total_prunning_amount, total_harvesting_amount;
+    TextView request_id, plot_code, plot_size, village, leader_name, pref_date, service_type, status, prun_amount, harv_amount,pruning_intercrop,harvest_intercrop, pack_name, collectionid, netweight,
+            Discount_percentage, amount,Discount_amount, comments,intercrop_tresscount,intercrop_amount,intercrop_netweight,intercrop_harv_amount, job_done, trees_count, service_charge, service_amount, total_prunning_amount, total_harvesting_amount;
     Button cancel_btn, ok_btn;
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
@@ -80,7 +85,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     String selectedItemID;
     int selectedPO;
     DecimalFormat dec = new DecimalFormat("####0.00");
-    double total_prunning, total_hav, Total_amount;
+    double total_prunning, total_hav, Total_amount ,intercrop_prunning,intercrop_harvesting;
 
     public MyLabour_ReqAdapter(List<labour_req_response.ListResult> labourlist_Set, Context ctx) {
         this.labourlist_Set = labourlist_Set;
@@ -318,10 +323,13 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
 
     private void showCondetailsDialog(int selectedPO) {
-
-        final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
+        //myDialog.setContentView(R.layout.custompopup);
+        final Dialog dialog = new Dialog(mContext,R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
+        dialog.getWindow().setLayout(((getWidth(mContext) / 100) * 100), LinearLayout.LayoutParams.MATCH_PARENT);
+//        dialog.getWindow().setGravity(Gravity.LEFT);
+//        dialog.show();
         dialog.setContentView(R.layout.dialog_ditails);
         // grossWeight,tareWeight,totalBunches,acceptedBunches,rejectedBunches,operatorname;
         request_id = dialog.findViewById(R.id.request_id);
@@ -334,9 +342,15 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         status = dialog.findViewById(R.id.status);
         prun_amount = dialog.findViewById(R.id.prun_amount);
         harv_amount = dialog.findViewById(R.id.harv_amount);
+        pruning_intercrop =dialog.findViewById(R.id.pruning_intercrop);
+        harvest_intercrop=dialog.findViewById(R.id.harvest_intercrop);
         pack_name = dialog.findViewById(R.id.pack_name);
         Discount_amount = dialog.findViewById(R.id.discount_amount);
         Discount_percentage = dialog.findViewById(R.id.discount_percentage);
+        intercrop_tresscount =dialog.findViewById(R.id.prun_intercrop_num);
+        intercrop_amount=dialog.findViewById(R.id.intercrop_amount);
+        intercrop_netweight =dialog.findViewById(R.id.harv_weight_intercrop);
+        intercrop_harv_amount =dialog.findViewById(R.id.harv_amt_intercrop);
         // collectionid= dialog.findViewById(R.id.ids_collection);
         netweight = dialog.findViewById(R.id.netweight);
         amount = dialog.findViewById(R.id.amount);
@@ -377,6 +391,8 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         prun_amount.setText(df.format(labourlist_Set.get(selectedPO).getPruningAmount()));
         harv_amount.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingAmount()));
         pack_name.setText(labourlist_Set.get(selectedPO).getDuration() + "");
+      pruning_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getUnKnown1Amount()));
+       harvest_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getUnKnown2Amount()));
 
         //   collectionid.setText(labourlist_Set.get(selectedPO).getCollectionIds()+"");
         //  netweight.setText(labourlist_Set.get(selectedPO).getNetWeight()+"");
@@ -405,15 +421,39 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             trees_count.setText("0");
             total_prunning_amount.setText("0.00");
         }
+        if (pruning_intercrop.getText() != null && labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() != null) {
 
+            double prunning_intercrop = Double.parseDouble(pruning_intercrop.getText() + "");
+            double tress_inter = Double.parseDouble(labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() + "");
+            intercrop_prunning = tress_inter * prunning_intercrop;
+            intercrop_amount.setText(df.format(intercrop_prunning));
+            int value = (int) Math.round((Double) labourlist_Set.get(selectedPO).getTreesCountWithIntercrop());
+            intercrop_tresscount.setText(value + "");
+            Log.e("tress====424", String.valueOf(intercrop_prunning));
+        } else {
+            intercrop_tresscount.setText("0");
+            intercrop_amount.setText("0.00");
+        }
 
+        if (harvest_intercrop.getText() != null && labourlist_Set.get(selectedPO).getNetWeightIntercrop() != null) {
+
+            double harv_intercrop = Double.parseDouble(harvest_intercrop.getText() + "");
+            double intercrop_net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeightIntercrop() + "");
+            intercrop_harvesting = intercrop_net_weight * harv_intercrop;
+            intercrop_harv_amount.setText(df.format(intercrop_harvesting));
+            intercrop_netweight.setText(dff.format(intercrop_net_weight));
+            Log.e("tress====424", String.valueOf(intercrop_prunning));
+        } else {
+            intercrop_harv_amount.setText("0.00");
+            intercrop_netweight.setText("0.000");
+        }
         if (harv_amount.getText() != null && labourlist_Set.get(selectedPO).getNetWeight() != null && labourlist_Set.get(selectedPO).getServiceChargePercentage() != null) {
             double harvesting = Double.parseDouble(harv_amount.getText() + "");
             double net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeight() + "");
             netweight.setText(dff.format(net_weight));
             total_hav = net_weight * harvesting;
             total_harvesting_amount.setText(df.format(total_hav));
-            Total_amount = total_prunning + total_hav;
+            Total_amount = total_prunning + total_hav+intercrop_prunning +intercrop_harvesting;
             Log.e("tress====247", String.valueOf(Total_amount));
             double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
             Log.e("percentage====252", String.valueOf(percentage));
@@ -468,6 +508,13 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             }
         });
         dialog.show();
+    }
+
+    public static int getWidth(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowmanager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
     }
 
 

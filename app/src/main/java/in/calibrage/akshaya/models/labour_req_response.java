@@ -156,6 +156,9 @@ public class labour_req_response {
         @SerializedName("netWeight")
         @Expose
         private Object netWeight;
+        @SerializedName("netWeightIntercrop")
+        @Expose
+        private Object netWeightIntercrop;
         @SerializedName("totalCost")
         @Expose
         private Object totalCost;
@@ -171,15 +174,18 @@ public class labour_req_response {
         @SerializedName("pruningAmount")
         @Expose
         private Double pruningAmount;
-        @SerializedName("unKnown1Amount")
+        @SerializedName("pruningWithIntercropAmount")
         @Expose
-        private Double unKnown1Amount;
-        @SerializedName("unKnown2Amount")
+        private Double pruningWithIntercropAmount;
+        @SerializedName("harvestingWithIntercropAmount")
         @Expose
-        private Double unKnown2Amount;
+        private Double harvestingWithIntercropAmount;
         @SerializedName("treesCount")
         @Expose
         private Object treesCount;
+        @SerializedName("treesCountWithIntercrop")
+        @Expose
+        private Object treesCountWithIntercrop;
         @SerializedName("serviceTypes")
         @Expose
         private String serviceTypes;
@@ -439,19 +445,19 @@ public class labour_req_response {
         }
 
         public Double getUnKnown1Amount() {
-            return unKnown1Amount;
+            return pruningWithIntercropAmount;
         }
 
         public void setUnKnown1Amount(Double unKnown1Amount) {
-            this.unKnown1Amount = unKnown1Amount;
+            this.pruningWithIntercropAmount = unKnown1Amount;
         }
 
         public Double getUnKnown2Amount() {
-            return unKnown2Amount;
+            return harvestingWithIntercropAmount;
         }
 
         public void setUnKnown2Amount(Double unKnown2Amount) {
-            this.unKnown2Amount = unKnown2Amount;
+            this.harvestingWithIntercropAmount = unKnown2Amount;
         }
 
         public Object getTreesCount() {
@@ -484,6 +490,22 @@ public class labour_req_response {
 
         public void setServiceChargePercentage(String serviceChargePercentage) {
             this.serviceChargePercentage = serviceChargePercentage;
+        }
+
+        public Object getTreesCountWithIntercrop() {
+            return treesCountWithIntercrop;
+        }
+
+        public void setTreesCountWithIntercrop(Object treesCountWithIntercrop) {
+            this.treesCountWithIntercrop = treesCountWithIntercrop;
+        }
+
+        public Object getNetWeightIntercrop() {
+            return netWeightIntercrop;
+        }
+
+        public void setNetWeightIntercrop(Object netWeightIntercrop) {
+            this.netWeightIntercrop = netWeightIntercrop;
         }
     }
 }

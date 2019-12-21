@@ -34,32 +34,42 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".2"
                 android:hint="@string/measurement"
+
 android:textColor="@color/half_black"
                 android:textSize="14dp" />
-
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
             <TextView
                 android:id="@+id/prunning"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 style="@style/Common_textView"
-                android:layout_weight=".4"
+                android:layout_weight=".2"
                 android:hint="Pruning"
                 android:textColor="@color/half_black"
                 android:textSize="14dp" />
-
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
             <TextView
                 android:id="@+id/harv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
                 android:hint="Harvesting"
-                android:layout_weight=".4"
+                android:layout_weight=".2"
                 android:textColor="@color/half_black"
                 style="@style/Common_textView"
                 />
-
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
             <TextView
-                android:visibility="gone"
+
                 android:id="@+id/un1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -68,9 +78,12 @@ android:textColor="@color/half_black"
                 android:textColor="@color/half_black"
                 style="@style/Common_textView"
                 />
-
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
             <TextView
-                android:visibility="gone"
+
                 android:id="@+id/un2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

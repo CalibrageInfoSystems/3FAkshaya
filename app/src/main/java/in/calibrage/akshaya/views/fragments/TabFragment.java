@@ -362,8 +362,8 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
         parseData(text_year, false);
     }
 
-    private void parseData(String text_year, final boolean lazyloading) {
-
+    private void parseData( String text_yearr, final boolean lazyloading) {
+        recom_list.clear();
         mdilogue.show();
         String URL_TOKEN = APIConstantURL.LOCAL_URL + "GetRecommendationsByAge/" + text_year;
 

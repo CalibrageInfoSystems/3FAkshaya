@@ -40,6 +40,7 @@ import java.lang.reflect.Field;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleTransform;
+import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
@@ -64,7 +65,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     private FrameLayout content_frame;
     private FragmentManager fragmentManager;
     private TextView txt_name, txt_phone, txt_adrs, dialogMessage;
-     FarmerOtpResponceModel catagoriesList;
+    FarmerOtpResponceModel catagoriesList;
     private Button ok_btn, cancel_btn;
     String FragmentTAG;
     FloatingActionButton myFab;
@@ -161,8 +162,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                     }
                     case R.id.action_care: {
                         mSelectedItem = item.getItemId();
-                      //  bottom_navigation.setSelectedItemId(R.id.action_requests);
-                       caredial();
+                        //  bottom_navigation.setSelectedItemId(R.id.action_requests);
+                        caredial();
                         break;
                     }
                 }
@@ -185,16 +186,15 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void caredial() {
 
-            Uri u = Uri.parse("tel:" + "123456789");
-            Intent i = new Intent(Intent.ACTION_DIAL, u);
-            try {
-                startActivity(i);
-            } catch (SecurityException s) {
-                Toast.makeText(HomeActivity.this, "SecurityException", Toast.LENGTH_LONG)
-                        .show();
-            }
+        Uri u = Uri.parse("tel:" + "123456789");
+        Intent i = new Intent(Intent.ACTION_DIAL, u);
+        try {
+            startActivity(i);
+        } catch (SecurityException s) {
+            Toast.makeText(HomeActivity.this, "SecurityException", Toast.LENGTH_LONG)
+                    .show();
         }
-
+    }
 
 
     public void initToolBar() {
@@ -261,7 +261,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             if (this.dl.isDrawerOpen(GravityCompat.START))
                 this.dl.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_logout) {
-          //  bottom_navigation.setSelectedItemId(R.id.action_requests);
+            //  bottom_navigation.setSelectedItemId(R.id.action_requests);
             //popupdialog to show message to logout the application
             logOutDialog();
         }
@@ -285,8 +285,9 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateResources(getApplicationContext(), "en-US");
-                SharedPrefsData.getInstance(getApplicationContext()).ClearData(getApplicationContext());
+//                updateResources(getApplicationContext(), "en-US");
+//                SharedPrefsData.getInstance(getApplicationContext()).ClearData(getApplicationContext());
+                SharedPrefsData.putBool(HomeActivity.this, Constants.IS_LOGIN, false);
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

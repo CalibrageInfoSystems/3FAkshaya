@@ -82,12 +82,12 @@ public class GetAmount {
         @SerializedName("prunningCost")
         @Expose
         private Double prunningCost;
-        @SerializedName("unKnown1Cost")
+        @SerializedName("pruningWithIntercropCost")
         @Expose
-        private Double unKnown1Cost;
-        @SerializedName("unKnown2Cost")
+        private Double pruningWithIntercropCost;
+        @SerializedName("harvestingWithIntercropCost")
         @Expose
-        private Double unKnown2Cost;
+        private Double harvestingWithIntercropCost;
 
         public Double getHarvestCost() {
             return harvestCost;
@@ -106,19 +106,19 @@ public class GetAmount {
         }
 
         public Double getUnKnown1Cost() {
-            return unKnown1Cost;
+            return pruningWithIntercropCost;
         }
 
         public void setUnKnown1Cost(Double unKnown1Cost) {
-            this.unKnown1Cost = unKnown1Cost;
+            this.pruningWithIntercropCost = unKnown1Cost;
         }
 
         public Double getUnKnown2Cost() {
-            return unKnown2Cost;
+            return harvestingWithIntercropCost;
         }
 
         public void setUnKnown2Cost(Double unKnown2Cost) {
-            this.unKnown2Cost = unKnown2Cost;
+            this.harvestingWithIntercropCost = unKnown2Cost;
         }
 
     }

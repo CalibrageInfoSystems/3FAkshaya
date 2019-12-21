@@ -74,7 +74,7 @@
                 android:layout_below="@id/new_line"
                 android:layout_toRightOf="@+id/dateLabel"
                 android:maxLength="10"
-                android:paddingLeft="10dp"
+android:paddingLeft="5dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:text="date"
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/new_line"
                 android:layout_toRightOf="@+id/weightLabel"
-                android:paddingLeft="4dp"
+                android:paddingLeft="5dp"
                 android:paddingTop="@dimen/album_title_padding"
 
                 android:text="@string/weight"
@@ -117,6 +117,7 @@
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="15dp"
                 android:text="@string/cc"
+
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -128,7 +129,7 @@
                 android:layout_below="@id/dateLabel"
                 android:layout_toRightOf="@+id/dateLabel"
                 android:hint="@string/cc"
-                android:paddingLeft="4dp"
+                android:paddingLeft="5dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
@@ -148,15 +149,28 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/status"
+                android:id="@+id/dot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ccLabel"
                 android:layout_toRightOf="@+id/dateLabel"
-                android:hint="@string/cc"
-                android:paddingLeft="4dp"
+                android:hint=": "
+                android:paddingLeft="10dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
+
+
+
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ccLabel"
+                android:layout_toRightOf="@+id/dot"
+                android:hint="@string/cc"
+
+                android:paddingTop="@dimen/album_title_padding"
+
                 android:textSize="@dimen/album_title" />
 
 <!--            <TextView-->

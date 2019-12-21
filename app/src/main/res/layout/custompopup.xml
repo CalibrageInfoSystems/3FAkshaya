@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lin_two"
         android:orientation="horizontal"
-
+        android:background="@drawable/ed_bg"
         android:weightSum="1"
 
         >
@@ -72,45 +72,62 @@
             android:layout_weight=".2"
             android:text="@string/measurement"
 
+android:layout_gravity="center"
             android:textSize="14dp" />
-
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
         <TextView
             android:id="@+id/prunning"
             style="@style/Common_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".4"
-            android:text="Pruning Per Tree"
+            android:layout_weight=".2"
+            android:text="Pruning With OilPalm Per Tree"
 
             android:textSize="14dp" />
-
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
         <TextView
             android:id="@+id/harv"
             style="@style/Common_textView"
             android:layout_width="0dp"
-
+            android:textSize="14dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".4"
+            android:layout_weight=".2"
 
-            android:text="Harvesting Per Ton" />
-
+            android:text="Harvesting With OilPalm Per Ton" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
         <TextView
-            android:visibility="gone"
+
             android:id="@+id/un1"
             style="@style/Common_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:text="UnKnown1" />
 
+            android:textSize="14dp"
+            android:text="Pruning With Intercrop Per Tree" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
         <TextView
-            android:visibility="gone"
+
             android:id="@+id/un2"
             style="@style/Common_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"
-            android:text="UnKnown2" />
+
+            android:textSize="14dp"
+            android:text="Harvesting With Intercrop Per Ton" />
     </LinearLayout>
 
     <RelativeLayout
@@ -132,6 +149,7 @@
             style="@style/Common_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_below="@+id/recycler_term"
 
             />

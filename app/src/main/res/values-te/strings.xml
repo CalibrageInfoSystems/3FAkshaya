@@ -1,5 +1,12 @@
 <resources>
+
+<!--    Login-->
+
+
     <string name="app_name">3 ఎఫ్ అక్షయ</string>
+
+
+<!--    Home-->
     <string name="home">హోమ్</string>
     <string name="profile">ప్రొఫైల్</string>
     <string name="requests">అభ్యర్థనలు</string>
@@ -15,37 +22,217 @@
     <string name="plot_id">ప్లాట్ ఐడి</string>
     <string name="terms_agree">దయచేసి నిబంధనలు మరియు షరతులను అంగీకరించండి</string>
         
-    <string name="terms_conditions"> నిబంధనలు &amp; షరతులను</string>
+
     <!--           <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>-->
         
     <string name="otp_desc">మీ రిజిస్టర్డ్ మొబైల్ నంబర్(ల)కు పంపిన 6 అంకెల కోడ్‌ను నమోదు చేయండి</string>
     <string name="submit"> సమర్పించండి</string>
         
-    <string name="submit_req">అభ్యర్థనను సమర్పించండి</string>
+
         
+    <!--    collections-->
+    <string name="collection">గెలల సేకరణ వివరములు</string>
+    <string name="collectionsWeight">గెలల సేకరణల బరువు</string>
+    <string name="collectionsCount">గెలల సేకరణలు</string>
+    <string name="paidCollectionsWeight">పేమెంట్ జరిగిన గెలల బరువు</string>
+    <string name="unPaidCollectionsWeight"> పేమెంట్ జరగని గెలల బరువు</string>
+    <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
+    <string name="unpaidCollection">పేమెంట్ జరగని సేకరణలు</string>
+    <string name="no_unpaid_collections">పేమెంట్ జరగని సేకరణలు కనుగొనబడలేదు</string>
+    <string name="date_label">తేదీ</string>
+    <string name="collection_id">సేకరణ ID</string>
+    <string name="weight">బరువు</string>
+     <string name="cc">సిసి</string>
+     <string name="status">స్థితి</string>
+    <string name="driver_name">డ్రైవర్ పేరు</string>
+    <string name="vehicle_Number">వాహన సంఖ్య</string>
+    <string name="collectionCenter">సేకరణ కేంద్రం</string>
+    <string name="grossWeight">స్థూల బరువు</string>
+    <string name="tareWeight">టేరు బరువు</string>
+    <string name="totalBunches">మొత్తం గెలలు</string>
+    <string name="acceptedBunches">అంగీకరించిన గెలలు</string>
+    <string name="rejectedBunches">తిరస్కరించబడిన గెలలు</string>
+    <string name="operatorName">ఆపరేటర్ పేరు</string>
+    <string name="receiptImg">రసీదులు</string>
+    <string name="recept">రసీదు చూడటానికి ఇక్కడ క్లిక్ చేయండి</string>
+
+
+
     <string name="view">వీక్షణ</string>
-    <string name="payment_summary">చెల్లింపు సారాంశం</string>
-    <string name="recommendations">సిఫార్సులు</string>
+
+    <!--  Payments  -->
+    <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
+    <string name="grr">ఎఫ్‌ఎఫ్‌బి కోసం చెల్లింపు(రూ.)</string>
     <string name="payments">చెల్లింపులు</string>
+    <string name="payment_summary">చెల్లింపు సారాంశం</string>
     <string name="bank_details">బ్యాంక్ వివరాలు</string>
-        
     <string name="bank_holder">ఖాతా దారుని\n పేరు</string>
-        
     <string name="bank_name">బ్యాంక్ పేరు</string>
     <string name="account_no">ఖాతా సంఖ్య</string>
-        
     <string name="branch_name">బ్రాంచ్ పేరు</string>
-        
     <string name="ifsc">ఐఎఫ్ఎస్సి కోడ్</string>
-        
     <string name="next">తదుపరి</string>
-    <string name="req_services">సేవలను అభ్యర్థించండి</string>
-        
-    <string name="labour">కార్మిక అభ్యర్థన</string>
-        
+    <string name="trans">రవాణా ఛార్జీలు</string>
+    <string name="ffb_qty">మొత్తం ఎఫ్‌ఎఫ్‌బి పరిమాణం (టన్ను)</string>
+    <string name="ffb"> ఎఫ్‌ఎఫ్‌బి పరిమాణం (టన్ను)</string>
+    <string name="adhoc_rate">ఎమ్‌టికి అడోక్ రేటు (రూ)</string>
+    <string name="invoice_rate">టన్ను కి ఇన్వాయిస్ రేటు</string>
+    <string name="memo">మెమో</string>
+    <string name="amount">డబ్బు (రూ.)</string>
+    <string name="download">డౌన్‌లోడ్ చేసిన ఫైల్‌లు</string>
+    <string name="click_downlad">డౌన్‌లోడ్ చేయడానికి ఇక్కడ క్లిక్ చేయండి</string>
+    <string name="totalBalance">ముగింపు బ్యాలెన్స్ (రూ.)</string>
+    <string name="balance">బ్యాలెన్స్ (రూ.)</string>
+    <string name="gr">జీఆర్ మొత్తం (రూ.)</string>
+    <string name="adjusted">సర్దుబాటు (రూ.)</string>
+    <string name="descriptionn">వివరణ </string>
+    <string name="trans_charges">రవాణా ఛార్జీలు \n టన్నులు (రూ)</string>
+    <string name="no_trans_found">రవాణా ఛార్జీలు కనుగొనబడలేదు</string>
+
+
+    <!--    collections-->
+
+    <string name="recommendations">సిఫార్సులు</string>
+
+
+    <!--    Crop Maintenance Visits -->
+    <string name="recommendationss">కంపెనీ ఫీల్డ్ సిబ్బంది తోటను సందర్శన వివరాలు</string>
+    <string name="plot_code">ప్లాట్ కోడ్</string>
+    <string name="plot_size">ప్లాట్ పరిమాణం</string>
+    <string name="village">గ్రామం</string>
+    <string name="landmark">సమీప స్థల గుర్తింపు</string>
+    <string name="yop">నాటిన సంవత్సరం</string>
+    <string name="treesAppearance">చెట్ల స్వరూపం</string>
+    <string name="treeGrowth">చెట్ల పెరుగుదల</string>
+    <string name="treeHeight">చెట్ల ఎత్తు</string>
+    <string name="fruitColor">పండ్ల రంగు</string>
+    <string name="fruitSize">పండ్ల పరిమాణం</string>
+    <string name="fruitHyegiene">పండ్ల పరిశుభ్రత</string>
+
+    <string name="plantationType">తోటల రకం</string>
+    <string name="health_crop">తోటల ఆరోగ్యం</string>
+    <string name="uprrot_crop">నిర్మూలన వివరాలు</string>
+    <string name="spalingPlanted">మొక్క నాటడం లేదు</string>
+    <string name="prevPalmsCount">మునుపటి సందర్శనలో చెట్ల సంఖ్య</string>
+    <string name="plamsCount">ప్రస్తుత చెట్ల సంఖ్య</string>
+    <string name="isTreesMissing">తప్పిపోయిన చెట్లు</string>
+    <string name="missingTreesCount">తప్పిపోయిన చెట్ల సంఖ్య</string>
+    <string name="reasonType">చెట్లు తప్పిపోవడానికి కారణం</string>
+    <string name="expectedPlamsCount">ఊహించినద పామ్స్ కౌంట్</string>
+    <string name="last_date">చివరి సందర్శన తేదీ</string>
+    <string name="Frequency">సూచన</string>
+    <string name="static_data">అధిక దిగుబడి మరియు బరువు  కొరకు గెల యందు పండ్లు పండి నేలపై రాలుటకు సిద్ధంగా వున్న గెలలను మాత్రమే కోయవలెను మరియు ప్రతి 10 రోజులకు గెలలు కోయమని మేము సిపార్సు చేస్తున్నాము.</string>
+    <string name="Frequency_harvest">హార్వెస్ట్ యొక్క ఫ్రీక్వెన్సీ</string>
+    <string name="NutrientDeficiencyName">పోషక లోపం పేరు</string>
+    <string name="Nameofchemicalapplied">కెమికల్ అప్లైడ్ పేరు</string>
+    <string name="registeredDate">నమోదు చేసిన తేదీ</string>
+    <string name="Pest">తెగులు</string>
+    <string name="pestChemicals">పెస్ట్ కెమికల్స్</string>
+    <string name="RecommendedChemical">సిఫార్సు చేసిన కెమికల్</string>
+    <string name="disease">తెగులు సోకింది</string>
+    <string name="pest">తెగులు వివరాలు</string>
+    <string name="deases">వ్యాధి వివరాలు</string>>
+    <string name="nut_repo">పోషక డేటా</string>
+    <string name="fert_rec">ఎరువుల సిఫార్సు వివరాలు</string>
+    <string name="irrigation">నీటిపారుదల వివరాలు</string>
+    <string name="irrigation_name">నీటిపారుదల పేరు</string>
+    <string name="updated_by">ద్వారా నవీకరించబడింది</string>
+    <string name="updated_date">నవీకరించబడిన తేదీ</string>
+    <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
+    <string name="fertilizer_crop">ఎరువుల వివరాలు</string>
+    <string name="fertilizerSource">ఎరువుల మూలం</string>
+    <string name="fertilizer_name">ఎరువుల పేరు</string>
+    <string name="lastAppliedDate">చివరి అనువర్తిత తేదీ</string>
+    <string name="applyFertilizerFrequencyType">ఎరువుల ఫ్రీక్వెన్సీని వర్తించండి</string>
+
+    <!--   Labour  -->
+    <string name="labour_lable">లేబర్ అభ్యర్థన</string>
+    <string name="select_labour_type">లేబర్ చేయు పనిని ఎంచుకోండి</string>
+    <string name="startDate"> కావలసిన తేదీ ఎంచుకోండి</string>
+    <string name="starttDate"> కావలసిన తేదీ </string>
+    <string name="labour">లేబర్ అభ్యర్థన</string>
     <string name="labour_duration">ప్యాకేజీ</string>
-    <string name="amount_of_FFB">ఎఫ్‌ఎఫ్‌బి మొత్తం (రూ.)</string>
+    <string name="comments">సూచనలు</string>
+    <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
+    <string name="terms_conditions"> నిబంధనలు &amp; షరతులను</string>
+    <string name="submit_req">అభ్యర్థనను సమర్పించండి</string>
+    <string name="harv_amount">హార్వెస్టింగ్ మొత్తం / టన్ను(రూ.)</string>
+    <string name="pru_amount">కత్తిరింపు మొత్తం / చెట్టు(రూ.)</string>
+    <string name="success_labour">కార్మిక అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+    <string name="service">సేవా ఛార్జీలు </string>
+    <string name="charge">% అదనపు.\nతదుపరి చెల్లింపు చక్రంలో ఛార్జీలు FFB చెల్లింపు నుండి తీసివేయబడతాయి </string>
+    <string name="Prunning">చక్కబెట్టుట</string>
+    <string name="harvesting">Harvesting</string>
+    <string name="intercrop_prunning">ఇంటర్‌క్రాప్‌తో కత్తిరింపు</string>
+    <string name="harv_intercrop">ఇంటర్‌క్రాప్‌తో హార్వెస్టింగ్</string>
+    <string name="measurement">వయసు</string>
+    <string name="Valid_service">దయచేసి కార్మిక రకాన్ని ఎంచుకోండి</string>
+    <string name="valid_pack">దయచేసి ప్యాకేజీని ఎంచుకోండి</string>
+    <string name="serviceType">సేవా రకం</string>త్వరితచెల్లింపు
+
+        
+    <!-- Equipment   -->
+    <string name="select_godown">గోడౌన్ ఎంచుకోండి</string>
+    <string name="payment_mode">చెల్లింపు విధానం</string>
+    <string name="product">ఉత్పత్తి</string>
+    <string name="gst">జిఎస్టి (%)</string>
+    <string name="no_products"> ఉత్పత్తులు కనుగొనబడలేదు</string>
+    <string name="gst_amount">జీఎస్టీ (రూ.)</string>
+    <string name="no_godowns">గోడౌన్లు కనుగొనబడలేదు</string>
+    <string name="address">చిరునామా</string>
+    <string name="notee">గమనిక</string>
+    <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
+    <string name="note">అభ్యర్థించిన 2 రోజులలో ఉత్పత్తులను ఎంచుకోకపోతే, మీ ఆర్డర్ రద్దు చేయబడుతుంది.</string>
+    <string name="subsidy_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం</string>
+    <string name="endusermsg">మొత్తం ఖర్చు 0 ఉండకూడదు</string>
+    <string name="each_product">ప్రతి వస్తువు ధర (రూ.)</string>
+    <string name="server_error">సర్వర్ స్పందించడం లేదు, దయచేసి మళ్ళీ ప్రయత్నించండి</string>
+    <string name="godown_valid">దయచేసి గోడౌన్ ఎంచుకోండి</string>
+    <string name="success_pole">పరికరాల అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+    <string name="product_details">వస్తువు వివరాలు</string>
+    <string name="subcd_amt">సబ్సిడీ మొత్తం</string>
+    <string name="Avb_subcd_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం</string>
+    <string name="product_quantity">ఉత్పత్తి &amp; పరిమాణం></string>
+
+    <!--  Loan  -->
+      
+    <string name="loan_req">లోన్ కోసం అభ్యర్థన</string>
+    <string name="loan_message">
+1 . ౩ఫ్ ఆయిల్ పామ్ కంపెనీ వారు రైతులకు త్వరిత చెల్లింపు సదుపాయాన్ని అందుబాటులోకి తీసుకువచ్చారు. దీని ద్వారా రైతులు గెలలు సేకరణ జరిగిన ఒకటి రెండు రోజులలో పేమెంట్ పొందవచ్చు.\n2. త్వరిత చెల్లింపు సదుపాయం సోమవారం నుండి శనివారం వరకు మాత్రమే పనిచేయును.   రెండో శనివారం మరియు ప్రభుత్వ, కంపెనీ సెలవు దినములలో పనిచేయదు.\n3 . త్వరిత చెల్లింపు విధానంలో టన్నుకు 100 రూపాయలు మరియు బ్యాంకు ఛార్జ్ 15 రూపాయలు వసూలుచేయబడును. త్వరిత చెల్లింపు విధానం ద్వారా ప్రభుత్వం నిర్ణయించిన ధర ప్రకారం జరుగును. అప్పటికి ప్రభుత్వ ధర ప్రకటించని యెడల ప్రస్తుతం ఉన్న ధర ప్రకారం పేమెంట్ జరుగును.\n4 . త్వరిత చెల్లింపు ద్వారా కనీసం పేమెంట్ జరగని ఒక్క సేకరణను ఆర్డర్ చేయవచ్చు.\n5 . ఒకవేళ ఒకటి కంటే ఎక్కువ పేమెంట్  జరగని సేకరణలకు త్వరిత చెల్లింపు అవసరమైతే పేమెంట్ జరగని మొత్తం సేకరణలకు త్వరిత చెల్లింపు వర్తిస్తుంది.\n6 . త్వరిత చెల్లింపు విధానంలో గతంలో వున్న బకాయిలు అనగా ఎరువులు,  పోల్స్, గెలలు నరికిన కూలీలా బకాయిలు వున్నచో ఆ మొత్తం  మినహాయించి మిగతా సొమ్ము చెల్లింపబడును.\n7 . త్వరిత చెల్లింపు విధానంలో చెల్లింపు  పూర్తి వివరములు రసీదులో పేర్కొనబడును.  రసీదులో పేర్కొనబడిన షరతులును,  నియమ నిబంధనలును  అంగీకరిస్తూ రైతు డిజిటల్ సంతకం చేయవలసి ఉంటుంది.\n8 . త్వరిత చెల్లింపు విధానంలో రైతు ఆర్డర్ చేసిన పేమెంట్ కంటే బకాయిల (ఎరువులు,  పోల్స్, గెలలు నరికిన కూలీలా బకాయిలు) పేమెంట్ తక్కువగా వున్న రైతులను మాత్రమే అర్హులుగా పరిగణించబడును.\n9 . త్వరిత చెల్లింపు లో మొదటి ఆర్డర్  పేమెంట్ పూర్తయిన తరువాత మాత్రమే రెండో ఆర్డర్ చేయవలెను.\n10 . త్వరిత చెల్లింపులో ఒకసారి ఆర్డర్ చేసిన తరువాత ఆ ఆర్డర్ రద్దు చేయబడదు.</string>
+    <string name="got_it">అర్దం ఐంది</string>
+    <string name="no_req_found">అభ్యర్థనలు ఏవీ కనుగొనబడలేదు</string>
+    <string name="success_Loan">రుణ అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+  <string name="loan_amount">అప్పు మొత్తం (రూ.)</string>
+    <string name="reason_loan">రుణానికి కారణం</string>
+    <string name="str_enter_loan_amount">దయచేసి రుణ మొత్తాన్ని నమోదు చేయండి</string>
+    <string name="enter_loan_amount"> మొత్తం 0 కంటే ఎక్కువగా ఉండాలి</string>
+        
+<!--Visit -->
+    <string name="issue_type">సమస్యను ఎంచుకోండి</string>
+    <string name="image">సమస్య యొక్క ఫోటో పొందుపరచవలెను</string>
+    <string name="record">సమస్య గురించి మీ మాటల లో చెప్పండి</string>
+    <string name="visit_success">సమర్పించిన అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
+
+    <!--    Quick pay -->
+    <string name="signature">దయచేసి సంతకం రాయండి</string>
+    <string name="request_rise">అభ్యర్థనను పెంచండి</string>
+    <string name="clear">స్పష్టమైన</string>
+    <string name="quick_pay">త్వరితచెల్లింపు రుసుము</string>
     <string name="closingBal">ముగింపు బ్యాలెన్స్ (రూ.)</string>
+    <string name="digital_signature">డిజిటల్ సంతకం</string>
+    <string name="quantity_mt">మొత్తము (టన్ను)</string>
+    <string name="ffb_flot">ఎఫ్‌ఎఫ్‌బి ఫ్లాట్ ఛార్జ్ (రూ.)</string>
+    <string name="amount_of_FFB">ఎఫ్‌ఎఫ్‌బి మొత్తం (రూ.)</string>
+    <string name="convenience_charge">సౌలభ్యం ఛార్జ్ (రూ.)</string>
+    <string name="total_amt_pay">చెల్లించవలసిన మొత్తం (రూ.)</string>
+
+        
+
+        
+
+    <string name="req_services">సేవలను అభ్యర్థించండి</string>
+  
+
         
     <string name="confirm_req">అభ్యర్థనను నిర్ధారించండి</string>
     <string name="pole">పరికరాలు</string>
@@ -68,36 +255,26 @@
         
     <string name="to_date">తేదీ వరకు * </string>
         
-    <string name="collection_id">సేకరణ ID</string>
+
         
     <string name="date">తేదీని ఎంచుకోండి</string>
         
-    <string name="weight">బరువు</string>
-        
-    <string name="cc">సిసి</string>
-        
-    <string name="status">స్థితి</string>
+
     <string name="req_loan">రుణం కోసం అభ్యర్థన</string>
     <string name="no_videos">వీడియోలు లేవు</string>
-    <string name="plot_size">ప్లాట్ పరిమాణం</string>
-    <string name="village">గ్రామం</string>
-        
-    <string name="comments">సూచనలు</string>
-    <string name="plot_code">ప్లాట్ కోడ్</string>
-    <string name="select_labour_type">లేబర్ చేయు పనిని ఎంచుకోండి</string>
+
+
     <string name="net_weight">నికర బరువు</string>
         
-    <string name="date_label">తేదీ</string>
+
         
     <string name="location">గ్రామం</string>
     <string name="locationn">గ్రామం   :</string>
-    <string name="collection">గెలల సేకరణ వివరములు</string>
+
         
     <string name="land_mark">సమీప స్థల గుర్తింపు</string>
-    <string name="convenience_charge">సౌలభ్యం ఛార్జ్ (రూ.)</string>
-        
-    <string name="total_amt_pay">చెల్లించవలసిన మొత్తం (రూ.)</string>
-    <string name="landmark">సమీప స్థల గుర్తింపు</string>
+
+
     <string name="language_notification">భాషా సెటప్ పూర్తయింది</string>
         <!-- TODO: Remove or change this placeholder text -->
         
@@ -115,103 +292,53 @@
     <string name="sgst">ఎస్జిఎస్టి(%)</string>
     <string name="cgst_amount">సిజిఎస్టి (రూ)</string>
     <string name="sgst_amount">ఎస్జిఎస్టి (రూ)</string>
-    <string name="ffb_qty">మొత్తం ఎఫ్‌ఎఫ్‌బి పరిమాణం (టన్ను)</string>
-    <string name="ffb"> ఎఫ్‌ఎఫ్‌బి పరిమాణం (టన్ను)</string>
-    <string name="adhoc_rate">ఎమ్‌టికి అడోక్ రేటు (రూ)</string>
-    <string name="invoice_rate">టన్ను కి ఇన్వాయిస్ రేటు</string>
-    <string name="memo">మెమో</string>
-    <string name="amount">డబ్బు (రూ.)</string>
-    <string name="harv_amount">హార్వెస్టింగ్ మొత్తం / టన్ను(రూ.)</string>
-    <string name="pru_amount">కత్తిరింపు మొత్తం / చెట్టు(రూ.)</string>
-    <string name="no_collections_found">సేకరణలు అందుబాటులో లేవు</string>
-    <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
-    <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
 
-    <string name="startDate"> కావలసిన తేదీ ఎంచుకోండి</string>
-    <string name="starttDate"> కావలసిన తేదీ </string>
 
-    <string name="paidCollectionsWeight">చెల్లించిన గెలల బరువు</string>
-    <string name="unPaidCollectionsWeight"> చెల్లించని గెలల బరువు</string>
-    <string name="totalBalance">ముగింపు బ్యాలెన్స్ (రూ.)</string>
-    <string name="balance">బ్యాలెన్స్ (రూ.)</string>
-    <string name="collectionsWeight">గెలల సేకరణల బరువు</string>
-    <string name="collectionsCount">గెలల సేకరణలు</string>
-    <string name="gr">జీఆర్ మొత్తం (రూ.)</string>
-    <string name="adjusted">సర్దుబాటు (రూ.)</string>
-    <string name="loan_req">లోన్ కోసం అభ్యర్థన</string>
-    <string name="loan_message">ఫైనాన్స్‌లో, ఋణం అంటే ఒకటి లేదా అంతకంటే ఎక్కువ వ్యక్తులు, సంస్థలు లేదా ఇతర వ్యక్తులు, సంస్థలకు రుణాలు ఇవ్వడం. గ్రహీత (అనగా రుణగ్రహీత) అప్పును కలిగి ఉంటాడు మరియు సాధారణంగా ఆ రుణంపై వడ్డీని చెల్లించే వరకు బాధ్యత వహిస్తాడు. ఇది తిరిగి చెల్లించబడుతుంది మరియు అరువు తీసుకున్న ప్రధాన మొత్తాన్ని కూడా తిరిగి చెల్లించాలి. రుణాన్ని రుజువు చేసే పత్రం, ఉదా. ప్రామిసరీ నోట్, సాధారణంగా, ఇతర విషయాలతోపాటు, రుణం తీసుకున్న ప్రధాన డబ్బు, రుణదాత వసూలు చేస్తున్న వడ్డీ రేటు మరియు తిరిగి చెల్లించే తేదీని పేర్కొంటుంది. Loan ణం రుణదాత మరియు రుణగ్రహీత మధ్య కొంతకాలం విషయ ఆస్తి (ల) ను తిరిగి కేటాయించడం. వడ్డీ రుణదాతకు రుణంలో పాల్గొనడానికి ప్రోత్సాహాన్ని అందిస్తుంది. చట్టబద్దమైన రుణంలో, ఈ బాధ్యతలు మరియు పరిమితులు ప్రతి ఒక్కటి కాంట్రాక్ట్ ద్వారా అమలు చేయబడతాయి, ఇది రుణగ్రహీతను రుణ ఒప్పందాలు అని పిలువబడే అదనపు పరిమితుల క్రింద ఉంచవచ్చు. ఈ వ్యాసం ద్రవ్య రుణాలపై దృష్టి సారించినప్పటికీ, ఆచరణలో ఏదైనా భౌతిక వస్తువు అప్పు ఇవ్వబడుతుంది.</string>
-    <string name="got_it">అర్దం ఐంది</string>
-    <string name="unpaidCollection">చెల్లించని సేకరణలు</string>
-    <string name="labour_lable">లేబర్ అభ్యర్థన</string>
-    <string name="no_req_found">అభ్యర్థనలు ఏవీ కనుగొనబడలేదు</string>
-    <string name="no_unpaid_collections">చెల్లించని సేకరణలు కనుగొనబడలేదు</string>
+
+
+
+
+
+
+
 
     <string name="total_records">మొత్తం రికార్డులు</string>
-    <string name="quantity_mt">మొత్తము (టన్ను)</string>
-    <string name="ffb_flot">ఎఫ్ఎఫ్బి ఫ్లాట్ ఛార్జ్ (రూ.)</string>
+
     <string name="no_pdfs">పిడిఎఫ్ లేదు</string>
     <string name="dosage_only">మోతాదు</string>
 
 
-    <string name="treesAppearance">చెట్ల స్వరూపం</string>
-    <string name="treeGrowth">చెట్ల పెరుగుదల</string>
-    <string name="treeHeight">చెట్ల ఎత్తు</string>
-    <string name="fruitColor">పండ్ల రంగు</string>
-    <string name="fruitSize">పండ్ల పరిమాణం</string>
-    <string name="fruitHyegiene">పండ్ల పరిశుభ్రత</string>
-    <string name="plantationType">తోటల రకం</string>
-    <string name="health_crop">తోటల ఆరోగ్యం</string>
-    <string name="uprrot_crop">నిర్మూలన వివరాలు</string>
 
 
-    <string name="spalingPlanted">మొక్క నాటడం లేదు</string>
-    <string name="prevPalmsCount">మునుపటి సందర్శనలో చెట్ల సంఖ్య</string>
-    <string name="plamsCount">ప్రస్తుత చెట్ల సంఖ్య</string>
-    <string name="isTreesMissing">తప్పిపోయిన చెట్లు</string>
-    <string name="missingTreesCount">తప్పిపోయిన చెట్ల సంఖ్య</string>
-    <string name="reasonType">చెట్లు తప్పిపోవడానికి కారణం</string>
-    <string name="expectedPlamsCount">ఊహించినద పామ్స్ కౌంట్</string>
+
+
 
 
     <string name="crop">పంట నిర్వహణ</string>
     <string name="recommended_ertilizer">సిఫార్సు చేసిన ఎరువులు</string>
     <string name="UOMName">UOM పేరు</string>
     <string name="LastUpdatedDate">చివరిగా నవీకరించబడిన తేదీ</string>
-    <string name="fert_rec">ఎరువుల సిఫార్సు వివరాలు</string>
+
     <string name="Chemical">కెమికల్</string>
 
 
-    <string name="NutrientDeficiencyName">పోషక లోపం పేరు</string>
-    <string name="Nameofchemicalapplied">కెమికల్ అప్లైడ్ పేరు</string>
-    <string name="registeredDate">నమోదు చేసిన తేదీ</string>
-    <string name="Pest">తెగులు</string>
-    <string name="pestChemicals">పెస్ట్ కెమికల్స్</string>
-    <string name="RecommendedChemical">సిఫార్సు చేసిన కెమికల్</string>
-    <string name="disease">తెగులు సోకింది</string>
-    <string name="pest">తెగులు వివరాలు</string>
-    <string name="deases">వ్యాధి వివరాలు</string>
 
 
-    <string name="nut_repo">NutrientData</string>
+
+
     <string name="my3F">నా 3 ఎఫ్</string>
     <string name="logout">లాగ్అవుట్</string>
     <string name="confirmation">నిర్ధారణ</string>
     <string name="alert_logout">మీరు లాగ్ అవుట్ చేయాలనుకుంటున్నారా?</string>
     <string name="no_plots">ప్లాట్లు అందుబాటులో లేవు</string>
 
-    <string name="loan_amount">అప్పు మొత్తం (రూ.)</string>
-    <string name="reason_loan">రుణానికి కారణం</string>
+
     <string name="error">లోపం</string>
-    <string name="quick_pay">త్వరితచెల్లింపు రుసుము</string>
-    <string name="issue_type">సమస్యను ఎంచుకోండి</string>
-    <string name="image">సమస్య యొక్క ఫోటో పొందుపరచవలెను</string>
-    <string name="digital_signature">డిజిటల్ సంతకం</string>
-    <string name="Prunning">చక్కబెట్టుట</string>
-    <string name="harvesting">Harvesting</string>
-    <string name="unkonown">తెలియని 1</string>
-    <string name="unkonown2">తెలియని 2</string>
-    <string name="request_rise">అభ్యర్థనను పెంచండి</string>
-    <string name="clear">స్పష్టమైన</string>
+
+
+
+
+
 
     <string name="datevalidation">దయచేసి తేదీ నుండి  కంటే తక్కువ తేదీ ఎంచుకోండి</string>
     <string name="enter_Date">దయచేసి తేదీ నుండి మరియు తేది వరకు నమోదు చేయండి</string>
@@ -226,11 +353,10 @@
     <string name="str_standard">ప్రామాణిక</string>
     <string name="str_videos">వీడియో</string>
     <string name="str_pdf">పిడిఎఫ్</string>
-    <string name="str_enter_loan_amount">దయచేసి రుణ మొత్తాన్ని నమోదు చేయండి</string>
-    <string name="Valid_service">దయచేసి కార్మిక రకాన్ని ఎంచుకోండి</string>
-    <string name="valid_pack">దయచేసి ప్యాకేజీని ఎంచుకోండి</string>
-    <string name="record">సమస్య గురించి మీ మాటల లో చెప్పండి</string>
-    <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
+
+
+
+
     <string name="total_amt"> మొత్తం డబ్బు (రూ.)</string>
         
     <string name="confirm">నిర్ధారించండి</string>
@@ -239,51 +365,29 @@
     <string name="valid_issue_type">దయచేసి సమస్య రకాన్ని ఎంచుకోండి</string>
     <string name="select_image">దయచేసి కనీసం ఒక చిత్రం లేదా వాయిస్ రికార్డ్‌ను అటాచ్ చేయండి</string>
     <string name="str_select_plot">ప్లాట్ ఎంచుకోండి</string>
-    <string name="select_godown">గోడౌన్ ఎంచుకోండి</string>
-    <string name="payment_mode">చెల్లింపు విధానం</string>
-    <string name="irrigation">నీటిపారుదల వివరాలు</string>
-    <string name="irrigation_name">నీటిపారుదల పేరు</string>
-    <string name="updated_by">ద్వారా నవీకరించబడింది</string>
-    <string name="updated_date">నవీకరించబడిన తేదీ</string>
+
+
     <string name="no_recommendations">సిఫార్సులు లేవు</string>
-    <string name="product">ఉత్పత్తి</string>
-    <string name="gst">జిఎస్టి (%)</string>
-    <string name="no_products"> ఉత్పత్తులు కనుగొనబడలేదు</string>
-    <string name="gst_amount">జీఎస్టీ (రూ.)</string>
-    <string name="inter_crop">ఇంటర్‌క్రాప్ వివరాలు</string>
-    <string name="fertilizer_crop">ఎరువుల వివరాలు</string>
-    <string name="fertilizerSource">ఎరువుల మూలం</string>
-    <string name="fertilizer_name">ఎరువుల పేరు</string>
-    <string name="lastAppliedDate">చివరి అనువర్తిత తేదీ</string>
-    <string name="applyFertilizerFrequencyType">ఎరువుల ఫ్రీక్వెన్సీని వర్తించండి</string>
-    <string name="measurement">వయసు</string>
+
+
+
     <string name="record_btn">రికార్డు</string>
     <string name="stop">ఆపు</string>
     <string name="play">ప్లే</string>
     <string name="summary">సారాంశం</string>
     <string name="record_voice">రికార్డ్ చేసిన వాయిస్</string>
     <string name="product_req">ఉత్పత్తి అభ్యర్థన</string>
-    <string name="Frequency">సూచన</string>
-    <string name="static_data">అధిక దిగుబడి మరియు బరువు  కొరకు గెల యందు పండ్లు పండి నేలపై రాలుటకు సిద్ధంగా వున్న గెలలను మాత్రమే కోయవలెను మరియు ప్రతి 10 రోజులకు గెలలు కోయమని మేము సిపార్సు చేస్తున్నాము.</string>
-    <string name="Frequency_harvest">హార్వెస్ట్ యొక్క ఫ్రీక్వెన్సీ</string>
+
     <string name="date_selectiomn">దయచేసి తేదీని ఎంచుకోండి</string>
-    <string name="subcd_amt">సబ్సిడీ మొత్తం</string>
-    <string name="Avb_subcd_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం</string>
+
     <string name="success_fertilizer">ఎరువుల అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
-    <string name="success_labour">కార్మిక అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
-    <string name="visit_success">సమర్పించిన అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
-    <string name="success_Loan">రుణ అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
-    <string name="each_product">వస్తువు ఖర్చు (రూ.)</string>
-    <string name="server_error">సర్వర్ స్పందించడం లేదు, దయచేసి మళ్ళీ ప్రయత్నించండి</string>
-    <string name="godown_valid">దయచేసి గోడౌన్ ఎంచుకోండి</string>
-    <string name="success_pole">పరికరాల అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
-    <string name="product_details">వస్తువు వివరాలు</string>
-    <string name="signature">దయచేసి సంతకం రాయండి</string>
+
+
     <string name="requestCodeLabel">అభ్యర్థించిన ఐడి</string>
     <string name="reqDatee">అభ్యర్థించిన తేదీ</string>
 
     <string name="req_date">అభ్యర్థించిన తేదీ</string>
-    <string name="serviceType">సేవా రకం</string>త్వరితచెల్లింపు
+
     <string name="lab_req">లేబర్ అభ్యర్థన</string>
     <string name="pole_req">పరికరాల అభ్యర్థన</string>
     <string name="fert_req">ఎరువుల అభ్యర్థన</string>
@@ -299,7 +403,7 @@
     <string name="farmer_name">రైతు పేరు</string>
     <string name="fa_hu_name">తండ్రి / భర్త</string>
     <string name="res_address">నివాస చిరునామా</string>
-    <string name="address">చిరునామా</string>
+
     <string name="addresss">చిరునామా   :</string>
     <string name="mandal">మండల</string>
     <string name="dist">జిల్లా</string>
@@ -310,7 +414,7 @@
     <string name="email">ఇమెయిల్ ఐడి</string>
     <string name="plaod_hect"> హెక్ట్రేజ్</string>
     <string name="sur_num"> సర్వే  సంఖ్య</string>
-    <string name="yop">నాటిన సంవత్సరం</string>
+
     <string name="fert_godown">ఎరువుల గోడౌన్లు</string>
     <string name="collection_centres">సేకరణ కేంద్రాలు</string>
     <string name="Mills">మిల్స్</string>
@@ -333,22 +437,24 @@
 
     <string name="qucick_success">క్విక్‌పే అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     <string name="paym_validation">దయచేసి చెల్లింపు విధానం ఎంచుకోండి</string>
-    <string name="recommendationss">కంపెనీ ఫీల్డ్ సిబ్బంది తోటను సందర్శన వివరాలు</string>
-    <string name="product_quantity"><![CDATA[ఉత్పత్తి & పరిమాణం]]></string>
-    <string name="last_date">చివరి సందర్శన తేదీ</string>
-    <string name="driver_name">డ్రైవర్ పేరు</string>
-    <string name="vehicle_Number">వాహన సంఖ్య</string>
-    <string name="collectionCenter">సేకరణ కేంద్రం</string>
-    <string name="grossWeight">స్థూల బరువు</string>
-    <string name="tareWeight">టేరు బరువు</string>
-    <string name="totalBunches">మొత్తం గెలలు</string>
-    <string name="acceptedBunches">అంగీకరించిన గెలలు</string>
-    <string name="rejectedBunches">తిరస్కరించబడిన గెలలు</string>
-    <string name="operatorName">ఆపరేటర్ పేరు</string>
-    <string name="receiptImg">రసీదులు</string>
-    <string name="trans">రవాణా ఛార్జీలు</string>
-    <string name="harv_amountt">డి) హార్వెస్టింగ్\n ఖర్చు/టన్ను(రూ.)</string>
+
+
     <string name="pru_amountt">ఎ) కత్తిరింపు \n ఖర్చు/చెట్టు(రూ.)</string>
+    <string name="num_trees">బి) చెట్ల సంఖ్య</string>
+    <string name="Prunning_amount">సి) కత్తిరింపు \n మొత్తం(రూ)(ఎ*బి)</string>
+    <string name="harv_amountt">డి) హార్వెస్టింగ్\n ఖర్చు/టన్ను(రూ.)</string>
+    <string name="net_weight_mt">ఇ) నికర బరువు (టన్ను)</string>
+    <string name="harvesting_amount">ఎఫ్) హార్వెస్టింగ్ \n మొత్తం(రూ)(డి * ఇ)</string>
+    <string name="service_chargeper">జి) సేవా ఛార్జ్ (%)</string>
+    <string name="service_amount">హెచ్) సర్వీస్ ఛార్జ్ (రూ)\n((సి+ఎఫ్) * జి)/100</string>
+    <string name="disc_package">ఐ) ప్యాకేజీ డిస్కౌంట్(%)</string>
+    <string name="disc_price">జె) ప్యాకేజీ డిస్కౌంట్ \n(రూ)((సి+ఎఫ్)*ఐ)/100) </string>
+    <string name="amount_labour"> కె) మొత్తం(రూ)\n (సి+ఎఫ్+హెచ్-జె)</string>
+
+
+
+
+
     <string name="fertgodown">ఎరువుల \n గోడౌన్లు </string>
     <string name="manager_num">క్లస్టర్ మేనేజర్ సంప్రదింపు సంఖ్య</string>
     <string name="care">సంరక్షణ</string>
@@ -356,25 +462,20 @@
     <string name="labour_leader">నాయకుడు </string>
     <string name="job_done">ఉద్యోగం పూర్తయింది</string>
     <string name="coll_id">సేకరణ ఐడి (లు)</string>
-    <string name="net_weight_mt">ఇ) నికర బరువు (టన్ను)</string>
     <string name="product_name">ఉత్పత్తి నామం</string>
     <string name="price">ధర (రూ.)</string>
     <string name="product_size">ఉత్పత్తి పరిమాణం</string>
-    <string name="trans_charges">రవాణా ఛార్జీలు \n టన్నులు (రూ)</string>
-    <string name="no_trans_found">రవాణా ఛార్జీలు కనుగొనబడలేదు</string>
-    <string name="num_trees">బి) చెట్ల సంఖ్య</string>
-    <string name="Prunning_amount">సి) కత్తిరింపు \n మొత్తం(రూ)(ఎ*బి)</string>
-    <string name="amount_labour"> కె) మొత్తం(రూ)\n (సి+ఎఫ్+హెచ్)</string>
-    <string name="harvesting_amount">ఎఫ్) హార్వెస్టింగ్ \n మొత్తం(రూ)(డి * ఇ)</string>
-    <string name="service_chargeper">జి) సేవా ఛార్జ్ (%)</string>
-    <string name="service_amount">హెచ్) సర్వీస్ ఛార్జ్ (రూ)\n((సి+ఎఫ్) * జి)/100</string>
+
+
+
+
+
     <string name="payment_details">మొత్తం వివరాలు</string>
     <string name="instock">అందుబాటులో ఉంది</string>
     <string name="nocomments">సూచనలు లేవు</string>
     <string name="net_weightk">నికర బరువు (కిలోలు)</string>
-    <string name="service">సేవా ఛార్జీలు </string>
-    <string name="charge">% అదనపు.\nతదుపరి చెల్లింపు చక్రంలో ఛార్జీలు FFB చెల్లింపు నుండి తీసివేయబడతాయి </string>
-    <string name="no_godowns">గోడౌన్లు కనుగొనబడలేదు</string>
+
+
     <string name="code">కోడ్</string>
 
 
@@ -382,22 +483,18 @@
     <string name="yes">అవును</string>
     <string name="no">లేదు</string>
     <string name="quick_docu">త్వరితచెల్లింపు పత్రం</string>
-    <string name="recept">రసీదు చూడటానికి ఇక్కడ క్లిక్ చేయండి</string>
+
     <string name="description">వివరణ :</string>
+
     <string name="paymentMode">చెల్లింపు విధానం</string>
     <string name="discount_percentage"> ప్యాకేజీ వివరాలు</string>
     <string name="Package">ప్యాకేజీ</string>
     <string name="discount">డిస్కౌంట్(%)</string>
     <string name="disc">ఆఫర్ వర్తించబడింది</string>
     <string name="text">మీ ప్యాకేజీపై డిస్కౌంట్</string>
-    <string name="click_downlad">డౌన్‌లోడ్ చేయడానికి ఇక్కడ క్లిక్ చేయండి</string>
-    <string name="disc_package">ఐ) ప్యాకేజీ డిస్కౌంట్(%)</string>
-    <string name="disc_price">జె) ప్యాకేజీ డిస్కౌంట్ \n(రూ)((సి+ఎఫ్)*ఐ)/100) </string>
-    <string name="note">అభ్యర్థించిన 2 రోజులలో ఉత్పత్తులను ఎంచుకోకపోతే, మీ ఆర్డర్ రద్దు చేయబడుతుంది.</string>
-    <string name="subsidy_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం</string>
-    <string name="download">డౌన్‌లోడ్ చేసిన ఫైల్‌లు</string>
-    <string name="endusermsg">మొత్తం ఖర్చు 0 ఉండకూడదు</string>
-    <string name="enter_loan_amount"> మొత్తం 0 కంటే ఎక్కువగా ఉండాలి</string>
+
+
+
     <string name="thirty_days"> గత  30 రోజుల  గెలల సేకరణలు</string>
     <string name="currentfinicial">ప్రస్తుత సంవత్సర గెలల సేకరణలు</string>
     <string name="selected">అవసరమగు తేదీల గెలల సేకరణలు</string>
@@ -410,6 +507,14 @@
     <string name="failmsg">మొత్తం 0 అయినందున మీరు అభ్యర్థన చేయలేరు</string>
     <string name="location_notfount">స్థానం అందుబాటులో లేదు</string>
     <string name="userPermission">అన్ని అనుమతులు వినియోగదారుచే మంజూరు చేయబడాయి!</string>
+    <string name="incrop_prunning">Intercrop Pruning Cost / Tree (Rs)</string>
+    <string name="num_intercrop">H) No.of Intercrop Trees</string>
+    <string name="pru_intercrop_amountt">I) Pruning Intercrop Amount (Rs)</string>
+    <string name="harv_inter_amountt">J) Intercrop Harvesting Cost / Tree(Rs)</string>
+    <string name="harv_intercrop_netweight">K) Intercrop Net Weight(Ton)</string>
+    <string name="harv_intercrop_amout">L) Harvesting Intercrop Amount(Rs)</string>
+    <string name="details">Complete Details</string>
+
     <string-array name="switch_tabs">
 
         <item>ఎరువుల గోడౌన్లు</item>

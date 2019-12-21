@@ -3,7 +3,6 @@ package in.calibrage.akshaya.views.Adapter;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +10,16 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import in.calibrage.akshaya.R;
-import in.calibrage.akshaya.models.Resproduct;
+import in.calibrage.akshaya.models.Product_new;
 
-public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adapter.MyViewHolder> {
+public class fert_producut_Adapter  extends RecyclerView.Adapter<fert_producut_Adapter.MyViewHolder> {
     private Context context;
-    private List<Resproduct.ListResult> product_Listitems = new ArrayList<>();
-    DecimalFormat df = new DecimalFormat("####0.00");
-    String holiday_id, name;
-    String Enduser, IsSuccess;
-
+    private ArrayList<Product_new> product_Listitems = new ArrayList<>();
+    double  valueRounded;
+    double cgst;
+    DecimalFormat dec = new DecimalFormat("####0.00");
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView product_name, quantity, amount, gst, item_cost,cgst,sgst;
         CardView card_view;
@@ -32,11 +29,11 @@ public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adap
             product_name = view.findViewById(R.id.name);
             quantity = view.findViewById(R.id.qun_tity);
             amount = view.findViewById(R.id.Value);
-           // gst = view.findViewById(R.id.per_gst);
-            item_cost = view.findViewById(R.id.item_cost);
-            card_view = view.findViewById(R.id.card_view);
+            // gst = view.findViewById(R.id.per_gst);
             cgst =view.findViewById(R.id.cgst);
             sgst =view.findViewById(R.id.sgst);
+            item_cost = view.findViewById(R.id.item_cost);
+            card_view = view.findViewById(R.id.card_view);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -47,10 +44,10 @@ public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adap
     }
 
 
-    public Req_producut_Adapter(Context context, List<Resproduct.ListResult> product_Listitems) {
+    public fert_producut_Adapter(Context context, ArrayList<Product_new> myProductsList) {
         this.context = context;
 
-        this.product_Listitems = product_Listitems;
+        this.product_Listitems = myProductsList;
 
     }
 
@@ -65,19 +62,23 @@ public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adap
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.card_view.setBackgroundResource(R.drawable.button_bg2);
+        final Product_new dataa = product_Listitems.get(position);
+        holder.product_name.setText(dataa.getProductname());
+        holder.quantity.setText(dataa.getQuandity() + "");
+        Double amountt =(dataa.getWithGSTamount()) * dataa.getQuandity() ;
 
-        holder.product_name.setText(product_Listitems.get(position).getName());
-        holder.quantity.setText(product_Listitems.get(position).getQuantity() + "");
-        holder.amount.setText(df.format(product_Listitems.get(position).getTotalAmount()));
-       // holder.gst.setText(product_Listitems.get(position).getGstPercentage()+"");
-        holder.cgst.setText(product_Listitems.get(position).getCgstPercentage()+"");
-        holder.sgst.setText(product_Listitems.get(position).getSgstPercentage()+"");
-      //  holder.item_cost.setText(df.format(product_Listitems.get(position).getAmount()));
-        double amount = Double.valueOf(product_Listitems.get(position).getAmount());
-        Log.e("amount===",amount+"");
-        Integer quantity = Integer.parseInt(holder.quantity.getText().toString());
-        double value = amount / quantity;
-        holder.item_cost.setText(df.format(value));
+
+        valueRounded = Math.round(amountt * 100D) / 100D;
+        holder.amount.setText(dec.format(valueRounded ));
+        // holder.gst.setText(dataa.getGst()+"");
+
+        holder.item_cost.setText(dec.format(dataa.getAmount()));
+        if(" "+dataa.getGst()!=null){
+            double GST = dataa.getGst();
+            cgst =GST/2;
+        }
+        holder.cgst.setText(cgst+"");
+        holder.sgst.setText(cgst+"");
     }
 
 
@@ -91,5 +92,4 @@ public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adap
 
 
 }
-
 

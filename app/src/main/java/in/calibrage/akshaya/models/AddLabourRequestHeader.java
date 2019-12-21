@@ -56,12 +56,12 @@ public class AddLabourRequestHeader {
     @SerializedName("pruningAmount")
     @Expose
     private Double pruningAmount;
-    @SerializedName("unKnown1Amount")
+    @SerializedName("pruningWithIntercropAmount")
     @Expose
-    private Double unKnown1Amount;
-    @SerializedName("unKnown2Amount")
+    private Double pruningWithIntercropAmount;
+    @SerializedName("harvestingWithIntercropAmount")
     @Expose
-    private Double unKnown2Amount;
+    private Double harvestingWithIntercropAmount;
 
     @SerializedName("yearofPlanting")
     @Expose
@@ -204,19 +204,19 @@ public class AddLabourRequestHeader {
     }
 
     public Double getUnKnown1Amount() {
-        return unKnown1Amount;
+        return pruningWithIntercropAmount;
     }
 
     public void setUnKnown1Amount(Double unKnown1Amount) {
-        this.unKnown1Amount = unKnown1Amount;
+        this.pruningWithIntercropAmount = unKnown1Amount;
     }
 
     public Double getUnKnown2Amount() {
-        return unKnown2Amount;
+        return harvestingWithIntercropAmount;
     }
 
     public void setUnKnown2Amount(Double unKnown2Amount) {
-        this.unKnown2Amount = unKnown2Amount;
+        this.harvestingWithIntercropAmount = unKnown2Amount;
     }
 
     public String getYearofPlanting() {

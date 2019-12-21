@@ -475,6 +475,12 @@ public  class resGet3FInfo {
         @SerializedName("district")
         @Expose
         private String district;
+        @SerializedName("latitude")
+        @Expose
+        private Double latitude;
+        @SerializedName("longitude")
+        @Expose
+        private Double longitude;
 
         public String getNurseryCode() {
             return nurseryCode;
@@ -517,5 +523,20 @@ public  class resGet3FInfo {
         }
 
 
+        public Double getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(Double latitude) {
+            this.latitude = latitude;
+        }
+
+        public Double getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(Double longitude) {
+            this.longitude = longitude;
+        }
     }
 }

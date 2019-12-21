@@ -154,7 +154,7 @@
                             android:layout_below="@id/invoice_label"
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
-                            android:text="@string/gr"
+                            android:text="@string/grr"
                             android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
 
@@ -270,7 +270,7 @@
                             android:layout_below="@id/adjustedLabel"
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
-                            android:text="@string/memo"
+                            android:text="@string/descriptionn"
                             android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
 

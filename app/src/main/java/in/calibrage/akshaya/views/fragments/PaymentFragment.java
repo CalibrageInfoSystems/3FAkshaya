@@ -93,6 +93,7 @@ public class PaymentFragment extends BaseFragment {
     public static final String PROGRESS_UPDATE = "progress_update";
     private static final int PERMISSION_REQUEST_CODE = 1;
 
+    DecimalFormat dff = new DecimalFormat("######0.00");
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -290,7 +291,12 @@ Log.e("bankdetails==", String.valueOf(bankdetails));
             payment.setBranch(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBranch());
             payment.setRefDate(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getRefDate());
             payment.setQuantity(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getQuantity());
-            payment.setMemo(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getMemo() + "");
+            if(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getMemo()!=null) {
+                payment.setMemo(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getMemo() + "");
+            }
+            else {
+                payment.setMemo(" ");
+            }
             payment.setObAmount(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getObAmount());
 
             payment.setAmount(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAmount());
@@ -300,7 +306,15 @@ Log.e("bankdetails==", String.valueOf(bankdetails));
             payment.setCb(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getCb());
             payment.setGRAmount(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getGRAmount());
             payment.setAdjusted(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAdjusted());
-            payment.setBalance(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance());
+
+            if (paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance() < 0) {
+                String balance1 = dff.format(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance())+ "" + ")";
+             //   String balance1 = dff.format(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance())+ "";
+                payment.setBalance( balance1.replace("-","(")+" ");
+            } else {
+                payment.setBalance(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance()+"  ");
+            }
+
 
 
             paymentinfo.add(payment);
@@ -316,6 +330,7 @@ Log.e("bankdetails==", String.valueOf(bankdetails));
     }
 
     private BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onReceive(Context context, Intent intent) {
 
@@ -332,20 +347,27 @@ Log.e("bankdetails==", String.valueOf(bankdetails));
                     getPaymentDetails();
                 else {
                     showDialog(getActivity(), getResources().getString(R.string.Internet));
+
                 }
             }
             Log.e("roja=====", to_date + "=====" + from_date);
 
 
-            btnDownload.setOnClickListener(new View.OnClickListener() {
+                btnDownload.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View view) {
+                    @Override
+                    public void onClick(View view) {
 
-//
-                    ExportPayments();
-                }
-            });
+if (isOnline(getContext())) {
+                        ExportPayments();
+                        }
+else {
+    showDialog(getActivity(), getResources().getString(R.string.Internet));
+}
+                    }
+                });
+
+
             Downloaded_files.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -450,10 +472,12 @@ Log.e("bankdetails==", String.valueOf(bankdetails));
                                     Payment_recycle.setVisibility(View.GONE);
                                 }
 
+
                             } else {
                                 noRecords.setVisibility(View.VISIBLE);
                                 //
                                 Payment_recycle.setVisibility(View.GONE);
+                                showDialog(getActivity(), getResources().getString(R.string.Internet));
                             }
                         } catch (Exception e) {
                             Log.e("Exception.==", e.getLocalizedMessage());

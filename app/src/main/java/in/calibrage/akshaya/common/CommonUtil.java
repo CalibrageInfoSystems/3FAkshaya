@@ -478,7 +478,7 @@ public class CommonUtil {
 
     public static String bitMaptoBase64(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 50, outputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 30, outputStream);
 
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }

@@ -399,7 +399,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
         if(final_amount.equalsIgnoreCase("null") || final_amount.equalsIgnoreCase(discount_price +"")){
             Log.e("finalamount ",final_amount);
             Log.e("price====381",product_price.getText()+"====="+discountprice.getText() );
-            product_price.setVisibility(View.INVISIBLE);
+            product_price.setVisibility(View.GONE);
         }
         else {
             Log.e("price====385",product_price.getText()+"====="+discountprice.getText() );

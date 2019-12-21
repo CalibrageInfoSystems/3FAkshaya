@@ -3,7 +3,9 @@ package in.calibrage.akshaya.views.actvity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -95,6 +97,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         Farmer_code = pref.getString("farmerid", "");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +152,8 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
             getQuckPay();
         else {
             showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
-
+            nextButton.setBackground(this.getDrawable(R.drawable.button_bg_disable));
+            nextButton.setEnabled(false);
         }
 
 
