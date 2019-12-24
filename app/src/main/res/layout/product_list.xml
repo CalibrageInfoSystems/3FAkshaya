@@ -11,6 +11,7 @@
         android:layout_gravity="center"
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="2dp"
+        android:layout_marginBottom="@dimen/margin_5"
         card_view:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -22,7 +23,7 @@
             <LinearLayout
                 android:id="@+id/linear"
                 android:layout_width="match_parent"
-android:layout_weight=".35"
+android:layout_weight=".3"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
@@ -221,7 +222,7 @@ android:weightSum="1"
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight=".2"
+                android:layout_weight=".25"
                 android:layout_height="0dp"
                 android:layout_below="@id/linear"
                 android:weightSum="1"

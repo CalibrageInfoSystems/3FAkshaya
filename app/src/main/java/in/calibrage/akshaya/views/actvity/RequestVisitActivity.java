@@ -148,21 +148,25 @@ public class RequestVisitActivity extends BaseActivity {
                     public void onNext(RecomPlotcodes recomPlotcodes) {
                         Log.d("", "onNext: " + recomPlotcodes);
                         mdilogue.dismiss();
-                        if (recomPlotcodes.getIsSuccess()) {
 
-                            if (recomPlotcodes.getListResult().isEmpty()) {
-                                noRecords.setVisibility(View.VISIBLE);
+
+                            if (recomPlotcodes.getListResult() != null) {
+                                noRecords.setVisibility(View.GONE);
+                                ReqVisitAdapter rec_adapter = new ReqVisitAdapter(RequestVisitActivity.this, recomPlotcodes.getListResult());
+                                recyclerView.setAdapter(rec_adapter);
+
 
                             } else {
-                                noRecords.setVisibility(View.GONE);
+                                noRecords.setVisibility(View.VISIBLE);
+
                             }
-                        }
-                        ReqVisitAdapter rec_adapter = new ReqVisitAdapter(RequestVisitActivity.this, recomPlotcodes.getListResult());
-                        recyclerView.setAdapter(rec_adapter);
+
+
+
                     }
 
-                });
 
+                });
     }
     @Override
     public void onBackPressed() {

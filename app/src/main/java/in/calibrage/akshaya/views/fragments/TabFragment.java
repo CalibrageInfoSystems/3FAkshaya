@@ -109,16 +109,18 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
         super.onViewCreated(view, savedInstanceState);
         init(view);
         setViews();
-        if (isOnline(getContext()))
+        if (isOnline(getContext())) {
             GetEncyclopediaDetails();
+
+
+            if (SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("count") == 3)
+                GetRecommendation();
+        }
         else {
             showDialog(getActivity(), getResources().getString(R.string.Internet));
 
         }
 
-
-        if (SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("count") == 3)
-            GetRecommendation();
     }
 
 

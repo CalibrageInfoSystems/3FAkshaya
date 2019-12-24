@@ -605,5 +605,10 @@ public class Fert_godown_list extends BaseActivity {
     }
 
     //endregion
+    @Override
+    public void onBackPressed() {
 
+            super.onBackPressed();
+
+    }
 }

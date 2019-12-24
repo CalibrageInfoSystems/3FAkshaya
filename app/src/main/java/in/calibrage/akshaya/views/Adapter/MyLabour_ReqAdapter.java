@@ -204,8 +204,9 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             public void onClick(View view) {
                 selectedItemID = labourlist_Set.get(position).getRequestCode();
                 selectedPO = position;
+                Log.d("selectedPO==",selectedPO+"");
                 GetLabourPackageDiscount(selectedPO);
-
+                //showCondetailsDialog(selectedPO);
 
 
             }
@@ -326,7 +327,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         //myDialog.setContentView(R.layout.custompopup);
         final Dialog dialog = new Dialog(mContext,R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
+      //  dialog.setCancelable(false);
         dialog.getWindow().setLayout(((getWidth(mContext) / 100) * 100), LinearLayout.LayoutParams.MATCH_PARENT);
 //        dialog.getWindow().setGravity(Gravity.LEFT);
 //        dialog.show();

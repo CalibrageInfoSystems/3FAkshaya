@@ -379,10 +379,10 @@
     <string name="officer_mobile">Cluster Officer  Contact Number</string>
     <string name="manager_name">Cluster Manager Name </string>
     <string name="head_name">State Head Name</string>
-    <string name="whats_number">Whatsapp Number</string>
+    <string name="whats_number">WhatsApp Number</string>
     <string name="customer_care">Customer Care Number</string>
     <string name="farmer_name">Farmer Name</string>
-    <string name="fa_hu_name">Father/Husband</string>
+    <string name="fa_hu_name">Father/Husband Name</string>
     <string name="res_address">Residential Address</string>
 
     <string name="addresss">Address   :</string>
@@ -393,9 +393,9 @@
     <string name="mobile">Mobile Number</string>
     <string name="alter_mobile">Alternate Mobile \nNumber</string>
     <string name="email">Email ID</string>
-    <string name="plaod_hect"> Hectrage</string>
-    <string name="sur_num">Survery Number</string>
-
+    <string name="plaod_hect">Hectarage</string>
+    <string name="sur_num">Survey Number</string>
+    survey
     <!--   We have sent Otp on Your Mobile XXXXXXXX10-->
     <string name="fert_godown">Fertilizer Godowns</string>
     <string name="collection_centres">Collection Centers</string>

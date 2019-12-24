@@ -423,7 +423,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     public void onBackPressed() {
         MenuItem homeItem = bottom_navigation.getMenu().getItem(0);
 
-        if (mSelectedItem != homeItem.getItemId()) {
+        if (mSelectedItem !=null && mSelectedItem != homeItem.getItemId()) {
 
             HomeFragment homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()

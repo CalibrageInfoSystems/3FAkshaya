@@ -13,10 +13,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".views.actvity.test"></activity>
-        <activity android:name=".views.actvity.product_list_fert" />
-        <activity android:name=".views.actvity.Godown_list" />
-        <activity android:name=".views.actvity.PaymentHistories" />
-        <activity android:name=".views.actvity.CollectionInfo" />
+        <activity android:name=".views.actvity.product_list_fert"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.actvity.Godown_list"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.actvity.PaymentHistories"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".views.actvity.CollectionInfo"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".views.actvity.QRScannerActivity"
             android:screenOrientation="portrait" />

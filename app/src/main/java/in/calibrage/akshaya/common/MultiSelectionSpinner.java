@@ -23,23 +23,25 @@ import static com.itextpdf.text.factories.GreekAlphabetFactory.getString;
 
 
 /*
-* in Few Cases we have to select multiple items from spinner , this is userfull for that
-*
-* */
+ * in Few Cases we have to select multiple items from spinner , this is userfull for that
+ *
+ * */
 @SuppressLint("AppCompatCustomView")
 public class MultiSelectionSpinner extends Spinner implements
         OnMultiChoiceClickListener {
 
-    public interface OnMultipleItemsSelectedListener{
+    public interface OnMultipleItemsSelectedListener {
         void selectedIndices(List<Integer> indices);
+
         JsonObject selectedStrings(List<String> strings);
     }
+
     private OnMultipleItemsSelectedListener listener;
 
     String[] _items = null;
     boolean[] mSelection = null;
     boolean[] mSelectionAtStart = null;
-    String _itemsAtStart = null;
+    String _itemsAtStart = "";
 
     ArrayAdapter<String> simple_adapter;
 
@@ -59,7 +61,7 @@ public class MultiSelectionSpinner extends Spinner implements
         super.setAdapter(simple_adapter);
     }
 
-    public void setListener(OnMultipleItemsSelectedListener listener){
+    public void setListener(OnMultipleItemsSelectedListener listener) {
         this.listener = listener;
     }
 
@@ -76,9 +78,12 @@ public class MultiSelectionSpinner extends Spinner implements
 
     @Override
     public boolean performClick() {
+        //  if(_itemsAtStart!=null) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable(false);
         builder.setTitle("Please Select Service(s)");
         builder.setMultiChoiceItems(_items, mSelection, this);
+
         _itemsAtStart = getSelectedItemsAsString();
         builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
@@ -96,7 +101,10 @@ public class MultiSelectionSpinner extends Spinner implements
                 System.arraycopy(mSelectionAtStart, 0, mSelection, 0, mSelectionAtStart.length);
             }
         });
-        builder.show();
+
+        if (CommonUtil.isNetworkAvailable(getContext()))
+            builder.show();
+
         return true;
     }
 
@@ -120,13 +128,13 @@ public class MultiSelectionSpinner extends Spinner implements
     public void setItems(List<String> items) {
         _items = items.toArray(new String[items.size()]);
         mSelection = new boolean[_items.length];
-        mSelectionAtStart  = new boolean[_items.length];
+        mSelectionAtStart = new boolean[_items.length];
         simple_adapter.clear();
-       // simple_adapter.add(_items[0]);
+        // simple_adapter.add(_items[0]);
         simple_adapter.add("Tap to select");
         ///simple_adapter.add(_items[0]);
         Arrays.fill(mSelection, false);
-       // mSelection[0] = true;
+        // mSelection[0] = true;
     }
 
     public void setSelection(String[] selection) {
@@ -238,13 +246,15 @@ public class MultiSelectionSpinner extends Spinner implements
         StringBuilder sb = new StringBuilder();
         boolean foundOne = false;
 
-        for (int i = 0; i < _items.length; ++i) {
-            if (mSelection[i]) {
-                if (foundOne) {
-                    sb.append(", ");
+        if (_items != null) {
+            for (int i = 0; i < _items.length; ++i) {
+                if (mSelection[i]) {
+                    if (foundOne) {
+                        sb.append(", ");
+                    }
+                    foundOne = true;
+                    sb.append(_items[i]);
                 }
-                foundOne = true;
-                sb.append(_items[i]);
             }
         }
         return sb.toString();

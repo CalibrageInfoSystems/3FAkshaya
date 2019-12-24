@@ -67,6 +67,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     String w_Code;
     int SPLASH_DISPLAY_DURATION = 500;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,12 +149,15 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        if (isOnline())
+        if (isOnline()) {
             getQuckPay();
+            nextButton.setVisibility(View.VISIBLE);
+        }
         else {
             showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
-            nextButton.setBackground(this.getDrawable(R.drawable.button_bg_disable));
-            nextButton.setEnabled(false);
+            nextButton.setVisibility(View.GONE);
+//            nextButton.setBackground(this.getDrawable(R.drawable.button_bg_disable));
+//            nextButton.setEnabled(false);
         }
 
 

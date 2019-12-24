@@ -46,8 +46,8 @@ public class GodownListAdapter extends RecyclerView.Adapter<GodownListAdapter.vi
 
 
         holder.txt_name.setText(""+godownlistResults.get(position).getName());
-        holder.txt_address.setText(""+godownlistResults.get(position).getAddress());
-        holder.txt_Location.setText(""+godownlistResults.get(position).getLocation());
+        holder.txt_address.setText(": "+godownlistResults.get(position).getAddress());
+        holder.txt_Location.setText(": "+godownlistResults.get(position).getLocation());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

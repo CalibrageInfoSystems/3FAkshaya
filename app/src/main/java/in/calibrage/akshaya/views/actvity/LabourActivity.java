@@ -98,28 +98,28 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     DecimalFormat df = new DecimalFormat("#,###,##0.00");
     LabourTermsNCondtionsAdapter Tadapter;
     LabourdiscountAdapter dis_adapter;
-    String selected_name,selected_ids;
-    TextView terms, status_text, prun_amount, harv_amount, un_amount, un2_amount,yop;
+    String selected_name, selected_ids;
+    TextView terms, status_text, prun_amount, harv_amount, un_amount, un2_amount, yop;
     String seleced_Duration;
     int discount;
     RelativeLayout amount_Label, harv_amount_label, un_amount_label, un2_amount_label;
     private Subscription mSubscription;
-    TextView ok, getTerms, head_text,service_charge;
+    TextView ok, getTerms, head_text, service_charge;
     TextView Age, id_plot, area, landMark;
-    RecyclerView terms_recycle,discount_recycle;
+    RecyclerView terms_recycle, discount_recycle;
     Button button_submit;
     private SpotsDialog mdilogue;
     CheckBox checkbox;
-    double harvesting_amount, harvesting_d_amount,prunning_amount,prunning_d_amount;
+    double harvesting_amount, harvesting_d_amount, prunning_amount, prunning_d_amount,intercrop_prun,intercrop_harv;
     String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate;
-    String plot_id,  location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, status, plantationdate, finalAmount,plantation_date;
+    String plot_id, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, status, plantationdate, finalAmount, plantation_date;
     EditText commentsTxt;
     double plot_Age;
     ImageView backImg, home_btn;
     SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
     LinearLayout discount_label;
-    TextView discount_percentage,harv_d_amount,pru_d_amount;
+    TextView discount_percentage, harv_d_amount, pru_d_amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,24 +132,30 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         setContentView(R.layout.activity_labour);
 
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            plot_id = extras.getString("plotid");
-            plot_Age = extras.getDouble("plotAge",0.00);
-          Log.e("plot_Age===",plot_Age+"");
-            location = extras.getString("plotVillage");
-            farmerCode = extras.getString("farmerCode");
-            landmarkCode = extras.getString("landMark");
-            plotMandal = extras.getString("plotMandal");
-            plotState = extras.getString("plotState");
-            plotDistrict = extras.getString("plotDistrict");
-            plantationdate = extras.getString("date_of_plandation");
-            status = extras.getString("status");
+        if (isOnline()) {
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                plot_id = extras.getString("plotid");
+                plot_Age = extras.getDouble("plotAge", 0.00);
+                Log.e("plot_Age===", plot_Age + "");
+                location = extras.getString("plotVillage");
+                farmerCode = extras.getString("farmerCode");
+                landmarkCode = extras.getString("landMark");
+                plotMandal = extras.getString("plotMandal");
+                plotState = extras.getString("plotState");
+                plotDistrict = extras.getString("plotDistrict");
+                plantationdate = extras.getString("date_of_plandation");
+                status = extras.getString("status");
+            }
+            intview();
+            setViews();
+            SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
+            Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
         }
-        intview();
-        setViews();
-        SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        else {
+            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
 
         // GetCropMaintenanceHistoryDetailsByCode();
 
@@ -162,7 +168,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         Age = findViewById(R.id.age_plot);
         id_plot = findViewById(R.id.plot);
         area = findViewById(R.id.palmArea);
-        yop =findViewById(R.id.yop);
+        yop = findViewById(R.id.yop);
         landMark = findViewById(R.id.landmark);
         commentsTxt = findViewById(R.id.commentTxt);
 //        status_text=findViewById(R.id.status);
@@ -176,10 +182,10 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         button_submit = findViewById(R.id.buttonSubmit);
         amount_Label = findViewById(R.id.pruning_amount_label);
         harv_amount_label = findViewById(R.id.harv_amount_label);
-        harv_d_amount=findViewById(R.id.harv_d_amount);
-        pru_d_amount=findViewById(R.id.pru_d_amount);
-        discount_percentage=findViewById(R.id.discount_percentage);
-        discount_label =findViewById( R.id.discount_label);
+        harv_d_amount = findViewById(R.id.harv_d_amount);
+        pru_d_amount = findViewById(R.id.pru_d_amount);
+        discount_percentage = findViewById(R.id.discount_percentage);
+        discount_label = findViewById(R.id.discount_label);
         un_amount_label = findViewById(R.id.un_amount_label);
         un2_amount_label = findViewById(R.id.un2_amount_label);
         prun_amount = findViewById(R.id.pruning_amount);
@@ -195,9 +201,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             CostConfig();
             Getterms_conditions();
 
-        }
-        else {
-            showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+        } else {
+            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
 
@@ -235,11 +240,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //            e.printStackTrace();
 //        }
 
-        Age.setText(df.format(plot_Age)+" "+ "Ha");
+        Age.setText(df.format(plot_Age) + " " + "Ha");
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
-      //  status_text.setText(status);
+        //  status_text.setText(status);
         yop.setText(plantationdate);
         myCalendar = Calendar.getInstance();
 
@@ -317,10 +322,10 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             CostConfig();
             Getterms_conditions();
         }
-         //  GetLabourPackageDiscount();}
+        //  GetLabourPackageDiscount();}
 
         else {
-            showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -367,8 +372,15 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                CostConfig();
-                Getterms_conditions();
+                if (isOnline()) {
+                    CostConfig();
+                    Getterms_conditions();
+                } else {
+
+                    showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
+                    //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+
+                }
                 myDialog = new Dialog(LabourActivity.this);
 
                 ShowPopup();
@@ -378,7 +390,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         if (isOnline())
             Getlabour_duration();
         else {
-            showDialog(LabourActivity.this,getResources().getString(R.string.Internet));
+            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
 
@@ -408,11 +420,16 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 // DO Nothing here
             }
         });
+        if (isOnline()) {
+            GetSpinnerLabourType();
+        } else {
+            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
 
-        GetSpinnerLabourType();
-
-
-        multiSelectionSpinner.setListener(this);
+        if (isOnline()) {
+            multiSelectionSpinner.setListener(this);
+        }
     }
 
     private void GetLabourPackageDiscount() {
@@ -456,48 +473,45 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                 Log.e("seleced_period===432", seleced_Duration);
                                 Log.e("seleced_period===432d", getLabourPackageDiscount.getListResult().get(j).getDesc());
 
-                                if(seleced_Duration.equals (getLabourPackageDiscount.getListResult().get(j).getDesc())) {
+                                if (seleced_Duration.equals(getLabourPackageDiscount.getListResult().get(j).getDesc())) {
                                     Log.e("seleced_period===432f", seleced_Duration);
                                     Log.e("seleced_period===432df", getLabourPackageDiscount.getListResult().get(j).getDesc());
-                                   if (getLabourPackageDiscount.getListResult().get(j).getDesc()!=null && seleced_Duration != null){
-                                       discount_label.setVisibility(View.VISIBLE);
-                                       harv_d_amount.setVisibility(View.VISIBLE);
-                                       pru_d_amount.setVisibility(View.VISIBLE);
-                                       harv_amount.setPaintFlags(harv_amount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                                       prun_amount.setPaintFlags(prun_amount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                                   }
-                                   else {
-                                       discount_label.setVisibility(View.GONE);
-                                       harv_d_amount.setVisibility(View.GONE);
-                                       pru_d_amount.setVisibility(View.GONE);
-                                   }
+                                    if (getLabourPackageDiscount.getListResult().get(j).getDesc() != null && seleced_Duration != null) {
+                                        discount_label.setVisibility(View.VISIBLE);
+                                        harv_d_amount.setVisibility(View.VISIBLE);
+                                        pru_d_amount.setVisibility(View.VISIBLE);
+                                        harv_amount.setPaintFlags(harv_amount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                                        prun_amount.setPaintFlags(prun_amount.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                                    } else {
+                                        discount_label.setVisibility(View.GONE);
+                                        harv_d_amount.setVisibility(View.GONE);
+                                        pru_d_amount.setVisibility(View.GONE);
+                                    }
 
-                                    discount =getLabourPackageDiscount.getListResult().get(j).getDiscountPercentage();
-                                    discount_percentage.setText(discount +"%");
-                                    Log.e("discount===430",discount+"");
+                                    discount = getLabourPackageDiscount.getListResult().get(j).getDiscountPercentage();
+                                    discount_percentage.setText(discount + "%");
+                                    Log.e("discount===430", discount + "");
                                 }
 
                             }
-                            harvesting_d_amount = harvesting_amount*discount/100;
-                            Log.e("call====864",discount + "discoutnt percentage"+
-                                    harvesting_d_amount+"harvesting===with discount " +harvesting_amount);
-                            double dis_amount =harvesting_amount-harvesting_d_amount;
-                            harv_d_amount.setText(dis_amount+"");
+                            harvesting_d_amount = harvesting_amount * discount / 100;
+                            Log.e("call====864", discount + "discoutnt percentage" +
+                                    harvesting_d_amount + "harvesting===with discount " + harvesting_amount);
+                            double dis_amount = harvesting_amount - harvesting_d_amount;
+                            harv_d_amount.setText(dis_amount + "");
 
-                            prunning_d_amount=prunning_amount*discount/100;
-                            double pru_dis_amount =prunning_amount-prunning_d_amount;
-                            pru_d_amount.setText(pru_dis_amount+"");
+                            prunning_d_amount = prunning_amount * discount / 100;
+                            double pru_dis_amount = prunning_amount - prunning_d_amount;
+                            pru_d_amount.setText(pru_dis_amount + "");
                         }
                     }
-
-
 
 
                 });
     }
 
     private void discount_popup() {
-       // GetLabourPackageDiscount();
+        // GetLabourPackageDiscount();
         myDialog.setContentView(R.layout.discount_popup);
         ok = (TextView) myDialog.findViewById(R.id.ok);
 
@@ -531,7 +545,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     private void ShowPopup() {
         myDialog.setContentView(R.layout.custompopup);
         ok = (TextView) myDialog.findViewById(R.id.ok);
-        service_charge =(TextView) myDialog.findViewById(R.id.service_charge);
+        service_charge = (TextView) myDialog.findViewById(R.id.service_charge);
         head_text = (TextView) myDialog.findViewById(R.id.head_text);
         getTerms = (TextView) myDialog.findViewById(R.id.txtclose);
         terms_recycle = (RecyclerView) myDialog.findViewById(R.id.recycler_term);
@@ -640,12 +654,14 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                     @Override
                     public void onNext(Costconfigres costconfigres) {
                         if (costconfigres.getIsSuccess()) {
-                            service_charge.setText(getResources().getString(R.string.service) +" "+costconfigres.getResult().getCost() + getResources().getString(R.string.charge));
+                            service_charge.setText(getResources().getString(R.string.service) + " " + costconfigres.getResult().getCost() + getResources().getString(R.string.charge));
 
-                            Log.e("service_charge",costconfigres.getResult().getCost() + "");
-                        }}
+                            Log.e("service_charge", costconfigres.getResult().getCost() + "");
+                        }
+                    }
 
-                });}
+                });
+    }
 
     private boolean validations() {
 
@@ -682,6 +698,39 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             showDialog(LabourActivity.this, getResources().getString(R.string.terms_agree));
             return false;
         }
+
+        if (selected_ids.contains("20")) {
+            if( harvesting_amount ==0.0){
+                showDialog(LabourActivity.this, "You can't Raise the Request since Harvesting Amount is 0");
+                return false;
+            }
+
+        }
+        if (selected_ids.contains("19")) {
+            if( prunning_amount ==0.0){
+                showDialog(LabourActivity.this, getResources().getString(R.string.failmsg));
+                return false;
+            }
+
+
+        }
+        if (selected_ids.contains("33")) {
+            if( intercrop_prun ==0.0){
+                showDialog(LabourActivity.this, getResources().getString(R.string.failmsg));
+                return false;
+            }
+
+
+        }
+        if (selected_ids.contains("34")) {
+            if( intercrop_harv ==0.0){
+                showDialog(LabourActivity.this, getResources().getString(R.string.failmsg));
+                return false;
+            }
+
+
+        }
+
 
         return true;
     }
@@ -722,8 +771,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override
                                 public void run() {
-                                  //  String selected_name = arrayyTOstring(selected_labour);
-                                    Log.e("selected_name===",selected_name);
+                                    //  String selected_name = arrayyTOstring(selected_labour);
+                                    Log.e("selected_name===", selected_name);
                                     finalAmount = getAmount();
                                     String Amount = harv_amount.getText().toString();
                                     String date = edittext.getText().toString();
@@ -736,26 +785,25 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //                                    }
                                     if (discount_label.getVisibility() == View.VISIBLE) {
                                         displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
-                                        if (selected_ids.contains("20")){
+                                        if (selected_ids.contains("20")) {
 
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount),df.format(Double.parseDouble(harv_d_amount.getText()+""))));
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), df.format(Double.parseDouble(harv_d_amount.getText() + ""))));
                                         }
                                         if (selected_ids.contains("19")) {
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount),df.format(Double.parseDouble(pru_d_amount.getText()+""))));
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), df.format(Double.parseDouble(pru_d_amount.getText() + ""))));
                                         }
-                                         if (selected_ids.contains("33")) {
+                                        if (selected_ids.contains("33")) {
                                             displayList.add(new MSGmodel(getResources().getString(R.string.intercrop_prunning), un_amount.getText().toString()));
                                         }
-                                        if(selected_ids.contains("34")) {
+                                        if (selected_ids.contains("34")) {
                                             displayList.add(new MSGmodel(getResources().getString(R.string.harv_intercrop), un2_amount.getText().toString()));
                                         }
                                         displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
 
                                         displayList.add(new MSGmodel(getResources().getString(R.string.starttDate), date));
-                                    }
-                                    else {
+                                    } else {
                                         displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
-                                        if (selected_ids.contains("20")){
+                                        if (selected_ids.contains("20")) {
 
                                             displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), df.format(Double.parseDouble(harv_amount.getText() + ""))));
                                         }
@@ -763,9 +811,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                             displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), df.format(Double.parseDouble(prun_amount.getText() + ""))));
                                         }
                                         if (selected_ids.contains("33")) {
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.intercrop_prunning),  df.format(Double.parseDouble(un_amount.getText().toString()))));
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.intercrop_prunning), df.format(Double.parseDouble(un_amount.getText().toString()))));
                                         }
-                                        if(selected_ids.contains("34")) {
+                                        if (selected_ids.contains("34")) {
                                             displayList.add(new MSGmodel(getResources().getString(R.string.harv_intercrop), df.format(Double.parseDouble(un2_amount.getText().toString()))));
                                         }
 
@@ -815,7 +863,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
-                       // showDialog(LabourActivity.this, getString(R.string.server_error));
+                        // showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -873,7 +921,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
-                       // showDialog(LabourActivity.this, getString(R.string.server_error));
+                        // showDialog(LabourActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -909,40 +957,46 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
     @Override
     public void selectedIndices(List<Integer> indices) {
-        ids_list.clear();
-        for (Integer values : indices) {
-            Log.d(TAG, "---- analysis ---- > get selected labour ID :" + labour_uID.get(values));
+        if (isOnline()) {
+            ids_list.clear();
+            for (Integer values : indices) {
+                Log.d(TAG, "---- analysis ---- > get selected labour ID :" + labour_uID.get(values));
 
-            ids_list.add(labour_uID.get(values));
-            Log.d(TAG, "---- analysis ---- > get selected labour ID :" + ids_list);
-        }
+                ids_list.add(labour_uID.get(values));
+                Log.d(TAG, "---- analysis ---- > get selected labour ID :" + ids_list);
+            }
+            if (isOnline()) {
+                GetLabourServiceCostByAge();
+            } else {
+                showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+            selected_ids = arrayTOstring(ids_list);
+            Log.d(TAG, "---- analysis ---- > get selected labour name922 :" + selected_ids);
+            if (selected_ids.contains("20")) {
+                harv_amount_label.setVisibility(View.VISIBLE);
+                harvesting_d_amount = harvesting_amount * discount / 100;
+                Log.e("call====864", discount + "discoutnt percentage" + harvesting_d_amount + "harvesting===with discount " + harvesting_amount);
 
-        GetLabourServiceCostByAge();
-        selected_ids =arrayTOstring(ids_list);
-        Log.d(TAG, "---- analysis ---- > get selected labour name922 :" + selected_ids);
-        if (selected_ids.contains("20")) {
-            harv_amount_label.setVisibility(View.VISIBLE);
-            harvesting_d_amount = harvesting_amount*discount/100;
-            Log.e("call====864",discount + "discoutnt percentage"+ harvesting_d_amount+"harvesting===with discount " +harvesting_amount);
-
-            //double k = (int) (percentage * amount_product) / 100;
-        } else {
-            harv_amount_label.setVisibility(View.GONE);
-        }
-        if (selected_ids.contains("19")) {
-            amount_Label.setVisibility(View.VISIBLE);
-        } else {
-            amount_Label.setVisibility(View.GONE);
-        }
-        if (selected_ids.contains("33")) {
-            un_amount_label.setVisibility(View.VISIBLE);
-        } else {
-            un_amount_label.setVisibility(View.GONE);
-        }
-        if (selected_ids.contains("34")) {
-            un2_amount_label.setVisibility(View.VISIBLE);
-        } else {
-            un2_amount_label.setVisibility(View.GONE);
+                //double k = (int) (percentage * amount_product) / 100;
+            } else {
+                harv_amount_label.setVisibility(View.GONE);
+            }
+            if (selected_ids.contains("19")) {
+                amount_Label.setVisibility(View.VISIBLE);
+            } else {
+                amount_Label.setVisibility(View.GONE);
+            }
+            if (selected_ids.contains("33")) {
+                un_amount_label.setVisibility(View.VISIBLE);
+            } else {
+                un_amount_label.setVisibility(View.GONE);
+            }
+            if (selected_ids.contains("34")) {
+                un2_amount_label.setVisibility(View.VISIBLE);
+            } else {
+                un2_amount_label.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -958,10 +1012,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
         }
 
-         selected_name = CommonUtil.arrayToString(strings);
+        selected_name = CommonUtil.arrayToString(strings);
         Log.d(TAG, "---- analysis ---- > get selected labour name908 :" + selected_name);
-
-
 
 
 //        if (selected_name.contains("UnKnown1")) {
@@ -1021,8 +1073,10 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             un_amount.setText(getAmount.getResult().getUnKnown1Cost().toString());
                             un2_amount.setText(getAmount.getResult().getUnKnown2Cost().toString());
 
-                            harvesting_amount =getAmount.getResult().getHarvestCost();
-                            prunning_amount=getAmount.getResult().getPrunningCost();
+                            harvesting_amount = getAmount.getResult().getHarvestCost();
+                            prunning_amount = getAmount.getResult().getPrunningCost();
+                            intercrop_prun =getAmount.getResult().getUnKnown1Cost();
+                            intercrop_harv =getAmount.getResult().getUnKnown2Cost();
                         } else {
                             //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
                         }
@@ -1064,7 +1118,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
         requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
         requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
-       requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
+        requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
 
 //        requestModel.setPlotMandal(plotMandal);
 //        requestModel.setPlotState(plotState);
@@ -1102,9 +1156,6 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //            requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
 //        }else { requestModel.setUnKnown2Amount(0.0);}
 //
-
-
-
 
 
 //      if (harv_amount.getVisibility() == View.VISIBLE) {

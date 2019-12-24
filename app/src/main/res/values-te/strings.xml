@@ -405,7 +405,7 @@
     <string name="res_address">నివాస చిరునామా</string>
 
     <string name="addresss">చిరునామా   :</string>
-    <string name="mandal">మండల</string>
+    <string name="mandal">మండలం</string>
     <string name="dist">జిల్లా</string>
     <string name="state">రాష్ట్రం</string>
     <string name="pin">పిన్ కోడ్</string>
@@ -445,11 +445,11 @@
     <string name="harv_amountt">డి) హార్వెస్టింగ్\n ఖర్చు/టన్ను(రూ.)</string>
     <string name="net_weight_mt">ఇ) నికర బరువు (టన్ను)</string>
     <string name="harvesting_amount">ఎఫ్) హార్వెస్టింగ్ \n మొత్తం(రూ)(డి * ఇ)</string>
-    <string name="service_chargeper">జి) సేవా ఛార్జ్ (%)</string>
-    <string name="service_amount">హెచ్) సర్వీస్ ఛార్జ్ (రూ)\n((సి+ఎఫ్) * జి)/100</string>
-    <string name="disc_package">ఐ) ప్యాకేజీ డిస్కౌంట్(%)</string>
-    <string name="disc_price">జె) ప్యాకేజీ డిస్కౌంట్ \n(రూ)((సి+ఎఫ్)*ఐ)/100) </string>
-    <string name="amount_labour"> కె) మొత్తం(రూ)\n (సి+ఎఫ్+హెచ్-జె)</string>
+    <string name="service_chargeper">ఎం) సేవా ఛార్జ్ (%)</string>
+    <string name="service_amount">ఎన్) సేవాఛార్జ్(రూ)\n((సి+ఎఫ్+ఐ+ఎల్)*ఎం)/100</string>
+    <string name="disc_package">ఓ) ప్యాకేజీ డిస్కౌంట్(%)</string>
+    <string name="disc_price">పి) ప్యాకేజీ డిస్కౌంట్\nధర(రూ)\n((సి+ఎఫ్+ఐ+ఎల్)*ఓ)/100 </string>
+    <string name="amount_labour"> క్యు) మొత్తం(రూ)\n(సి+ఎఫ్+ఐ+ఎల్+ఎన్-పి)</string>
 
 
 
@@ -507,12 +507,12 @@
     <string name="failmsg">మొత్తం 0 అయినందున మీరు అభ్యర్థన చేయలేరు</string>
     <string name="location_notfount">స్థానం అందుబాటులో లేదు</string>
     <string name="userPermission">అన్ని అనుమతులు వినియోగదారుచే మంజూరు చేయబడాయి!</string>
-    <string name="incrop_prunning">Intercrop Pruning Cost / Tree (Rs)</string>
-    <string name="num_intercrop">H) No.of Intercrop Trees</string>
-    <string name="pru_intercrop_amountt">I) Pruning Intercrop Amount (Rs)</string>
-    <string name="harv_inter_amountt">J) Intercrop Harvesting Cost / Tree(Rs)</string>
-    <string name="harv_intercrop_netweight">K) Intercrop Net Weight(Ton)</string>
-    <string name="harv_intercrop_amout">L) Harvesting Intercrop Amount(Rs)</string>
+    <string name="incrop_prunning">జి) ఇంటర్‌క్రాప్ కత్తిరింపు\nకాస్ట్/ట్రీ(రూ.)</string>
+    <string name="num_intercrop">హెచ్) ఇంటర్‌క్రాప్\nచెట్ల సంఖ్య</string>
+    <string name="pru_intercrop_amountt">ఐ) కత్తిరింపు ఇంటర్‌క్రాప్\n  మొత్తం(రూ)(జి*హెచ్)</string>
+    <string name="harv_inter_amountt">జె) ఇంటర్‌క్రాప్ హార్వెస్టింగ్\nకాస్ట్ / ట్రీ (రూ.)</string>
+    <string name="harv_intercrop_netweight">కె) ఇంటర్‌క్రాప్ \n మొత్తం బరువు (టన్ను)</string>
+    <string name="harv_intercrop_amout">ఎల్ హార్వెస్టింగ్ ఇంటర్‌క్రాప్ \n మొత్తం(రూ)(జె*కె)</string>
     <string name="details">Complete Details</string>
 
     <string-array name="switch_tabs">

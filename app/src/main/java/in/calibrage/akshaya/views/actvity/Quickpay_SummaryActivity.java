@@ -200,7 +200,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                     } }
             }
         });
-        GetQuckPaySummary();
+        if(isOnline()) {
+            GetQuckPaySummary();
+        }
+        else {
+            showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
+        }
     }
     private void signature_popup() {
         final Dialog dialog = new Dialog(this);

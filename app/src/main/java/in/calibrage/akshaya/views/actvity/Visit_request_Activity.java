@@ -260,7 +260,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.userPermission), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), getResources().getString(R.string.userPermission), Toast.LENGTH_SHORT).show();
                         }
 
                         // check for permanent denial of any permission
@@ -314,7 +314,13 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
         yop.setText(date_of_plandation);
-        GetIssue_type();
+        if(isOnline()) {
+            GetIssue_type();
+        }
+        else {
+            showDialog(Visit_request_Activity.this, getResources().getString(R.string.Internet));
+        }
+
         Select_Issue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -350,21 +356,24 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validations()) {
-                    try {
-                        mPlayer.release();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    mPlayer = null;
-                    if (isOnline())
-                        AddVisitRequest();
+                if (isOnline()) {
+                    if (validations()) {
+                        try {
+                            mPlayer.release();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        mPlayer = null;
+
+                            AddVisitRequest();
+
+
+                    }}
                     else {
                         showDialog(Visit_request_Activity.this, getResources().getString(R.string.Internet));
                         //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                     }
 
-                }
             }
         });
     }
@@ -624,6 +633,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogView);
+        builder.setCancelable(false);
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
 

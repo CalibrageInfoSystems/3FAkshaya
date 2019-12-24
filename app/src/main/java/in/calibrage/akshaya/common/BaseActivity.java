@@ -188,6 +188,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogView);
+        builder.setCancelable(false);
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
 

@@ -42,11 +42,11 @@
             style="@style/Common_textView_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_marginBottom="@dimen/margin_5"
             android:text="Hindi"
-            android:layout_marginLeft="15dp"
-       android:textAlignment="textStart"
+            android:textAlignment="textStart"
             android:textColor="@color/text_dark_gray"
 
             android:textStyle="bold" />
@@ -68,7 +68,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="@string/locationn"
+                android:text="@string/location"
+                android:layout_marginLeft="15dp"
+                android:textAlignment="textStart"
                 android:textColor="@color/text_dark_gray"
                 android:textStyle="bold" />
 
@@ -102,7 +104,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="@string/addresss"
+                android:text="@string/address"
+                android:layout_marginLeft="15dp"
+                android:textAlignment="textStart"
                 android:textColor="@color/text_dark_gray"
                 android:textStyle="bold" />
 
