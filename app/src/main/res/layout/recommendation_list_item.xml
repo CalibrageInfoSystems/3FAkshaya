@@ -130,7 +130,7 @@
                 android:id="@+id/statusLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/landmarkLabel"
+                android:layout_below="@+id/landmark"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="-1dp"
                 android:paddingLeft="@dimen/album_title_padding"

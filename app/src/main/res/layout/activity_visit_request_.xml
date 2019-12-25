@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:drawableRight="@drawable/star"
+
                     android:drawablePadding="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/comments"

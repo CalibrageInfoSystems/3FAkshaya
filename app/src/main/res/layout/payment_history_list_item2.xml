@@ -96,14 +96,24 @@
                             android:textStyle="bold"
                             android:text="@string/amount"
                             android:textSize="@dimen/album_title" />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+android:id="@+id/dot1"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/amount"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/memo_label"
                             android:layout_alignBaseline="@id/amount_label"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.35"
                             android:fontFamily="@font/roboto_regular"
                             android:maxLines="1"
 
@@ -129,13 +139,23 @@
 
 
                             />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/dot2"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/adjusted"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
 
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.35"
 
                             android:textSize="@dimen/album_title" />
                     </LinearLayout>
@@ -157,13 +177,23 @@
                             android:text="@string/grr"
                             android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/dot3"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/gr_rate"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_alignBaseline="@id/gr_amount_label"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.35"
 
 
                             android:textSize="@dimen/album_title" />
@@ -186,13 +216,23 @@
                             android:text="@string/ffb"
                             android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/dot4"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/quantity_ffb"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_alignBaseline="@id/ffb_quantity"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.35"
 
                             android:textSize="@dimen/album_title" />
                     </LinearLayout>
@@ -211,14 +251,24 @@
                             android:layout_weight="0.6"
                             android:gravity="center_vertical"
                             android:text="@string/adhoc_rate" />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/dot5"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/adhoc_value"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/ffb_quantity"
                             android:layout_alignBaseline="@id/adhocLabel"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.35"
 
                             android:textSize="@dimen/album_title" />
                     </LinearLayout>
@@ -242,14 +292,24 @@
                             android:textSize="@dimen/album_title"
 
                             />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/dot6"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/invoice"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/adhocLabel"
                             android:layout_alignBaseline="@id/invoice_label"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.35"
 
 
                             />
@@ -273,14 +333,24 @@
                             android:text="@string/descriptionn"
                             android:textStyle="bold"
                             android:textSize="@dimen/album_title" />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/dot7"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/memo_text"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/gr_amount_label"
                             android:layout_alignBaseline="@id/memo_label"
-                            android:layout_weight="0.4" />
+                            android:layout_weight="0.35" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -304,14 +374,24 @@
 
                             android:textSize="@dimen/album_title"
                             android:textStyle="bold" />
+                        <TextView
 
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/memo_label"
+                            android:layout_alignBaseline="@id/amount_label"
+                            android:layout_weight="0.05"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/dot8"
+                            android:text=":"
+                            android:textSize="@dimen/album_title" />
                         <TextView
                             android:id="@+id/balance"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/amount_label"
                             android:layout_alignBaseline="@id/balanceLabel"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.35"
                             android:text="0.0"
 
                             android:textSize="@dimen/album_title" />

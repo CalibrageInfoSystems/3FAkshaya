@@ -140,18 +140,24 @@ Double total_amount;
             @Override
             public void onClick(View view) {
 
-                if (myProductsList.size() > 0) {
+                try {
+                    if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
+                        Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
+                        i.putExtra("Total_amount", mealTotalText.getText());
+                        i.putExtra("godown_id",Godown_id);
+                        i.putExtra("godown_code",Godown_code);
+                        i.putExtra("godown_name",Godown_name);
 
-
-
-                    Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
-                    i.putExtra("Total_amount", mealTotalText.getText());
-                    startActivity(i);
-                    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-                }
-                else{
-                    showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
+                        startActivity(i);
+                        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+                    }
+                    else{
+                        showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
+                    }
+                } catch (Resources.NotFoundException e) {
+                    Log.e("error==",e.getLocalizedMessage());
+                    e.printStackTrace();
                 }
 
             }

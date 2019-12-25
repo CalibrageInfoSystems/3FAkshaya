@@ -70,7 +70,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         df = new DecimalFormat("#,###,##0.000");
         dff = new DecimalFormat("#,###,##0.00");
         Log.e("===============", payment_Set.get(position).getQuantity() + "");
-        ((ViewHolder) holder).memo_text.setText(": " + payment_Set.get(position).getMemo());
+        ((ViewHolder) holder).memo_text.setText("" + payment_Set.get(position).getMemo());
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -82,19 +82,19 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        ((ViewHolder) holder).date.setText(": " + datetimevaluereq);
+        ((ViewHolder) holder).date.setText("" + datetimevaluereq);
         ((ViewHolder) holder).dateLabel.setText(datetimevaluereq);
 
 
 
-        ((ViewHolder) holder).quantity_ffb.setText(": " + df.format(Quanitity));
+        ((ViewHolder) holder).quantity_ffb.setText("" + df.format(Quanitity));
 
 
-        ((ViewHolder) holder).adhoc_value.setText(": " + dff.format(payment_Set.get(position).getAdhocRate()));
-        ((ViewHolder) holder).txt_invoice.setText(": " + dff.format(payment_Set.get(position).getInvoiceRate()));
-        ((ViewHolder) holder).txt_gr_rate.setText(": " + dff.format(payment_Set.get(position).getGRAmount()));
-        ((ViewHolder) holder).adjustTxt.setText(": " + dff.format(payment_Set.get(position).getAdjusted()));
-        ((ViewHolder) holder).finalAmount.setText(": " + dff.format(payment_Set.get(position).getAmount()));
+        ((ViewHolder) holder).adhoc_value.setText("" + dff.format(payment_Set.get(position).getAdhocRate()));
+        ((ViewHolder) holder).txt_invoice.setText("" + dff.format(payment_Set.get(position).getInvoiceRate()));
+        ((ViewHolder) holder).txt_gr_rate.setText("" + dff.format(payment_Set.get(position).getGRAmount()));
+        ((ViewHolder) holder).adjustTxt.setText("" + dff.format(payment_Set.get(position).getAdjusted()));
+        ((ViewHolder) holder).finalAmount.setText("" + dff.format(payment_Set.get(position).getAmount()));
 
 
         if (position % 2 == 0) {
@@ -107,9 +107,9 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
         if ((payment_Set.get(position).getBalance()) < 0) {
             String balance1 = dff.format(payment_Set.get(position).getBalance() )+ "" + ")";
-            ((ViewHolder) holder).balance.setText(": " + balance1.toString().replace("-", "("));
+            ((ViewHolder) holder).balance.setText("" + balance1.toString().replace("-", "("));
         } else {
-            ((ViewHolder) holder).balance.setText(": " + dff.format(payment_Set.get(position).getBalance()));
+            ((ViewHolder) holder).balance.setText("" + dff.format(payment_Set.get(position).getBalance()));
         }
 
 
@@ -118,35 +118,44 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.adhoc_value.setVisibility(View.GONE);
             holder.text_two.setVisibility(View.GONE);
+            holder.dot5.setVisibility(View.GONE);
+
         } else {
             holder.adhoc_value.setVisibility(View.VISIBLE);
             holder.text_two.setVisibility(View.VISIBLE);
+            holder.dot5.setVisibility(View.VISIBLE);
         }
         if (payment_Set.get(position).getQuantity() == 0.0) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.text_one.setVisibility(View.GONE);
             holder.quantity_ffb.setVisibility(View.GONE);
+            holder.dot4.setVisibility(View.GONE);
         } else {
             holder.text_one.setVisibility(View.VISIBLE);
             holder.quantity_ffb.setVisibility(View.VISIBLE);
+            holder.dot4.setVisibility(View.VISIBLE);
         }
         if (payment_Set.get(position).getInvoiceRate() == 0.0) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.txt_invoice.setVisibility(View.GONE);
             holder.text_thee.setVisibility(View.GONE);
+            holder.dot6.setVisibility(View.GONE);
 
         } else {
             holder.txt_invoice.setVisibility(View.VISIBLE);
             holder.text_thee.setVisibility(View.VISIBLE);
+            holder.dot6.setVisibility(View.VISIBLE);
         }
         if (payment_Set.get(position).getGRAmount() == 0.0) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.txt_gr_rate.setVisibility(View.GONE);
             holder.text_four.setVisibility(View.GONE);
+            holder.dot3.setVisibility(View.GONE);
 
         } else {
             holder.txt_gr_rate.setVisibility(View.VISIBLE);
             holder.text_four.setVisibility(View.VISIBLE);
+            holder.dot3.setVisibility(View.VISIBLE);
         }
 //
 //
@@ -154,19 +163,23 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.adjustTxt.setVisibility(View.GONE);
             holder.text_five.setVisibility(View.GONE);
+            holder.dot2.setVisibility(View.GONE);
 
         } else {
             holder.adjustTxt.setVisibility(View.VISIBLE);
             holder.text_five.setVisibility(View.VISIBLE);
+            holder.dot2.setVisibility(View.VISIBLE);
         }
         if (payment_Set.get(position).getMemo() == null) {
             Log.e("Roja===", "memo==nulll");
             holder.memo_text.setVisibility(View.GONE);
             holder.text_six.setVisibility(View.GONE);
+            holder.dot7.setVisibility(View.GONE);
 
         } else {
             holder.memo_text.setVisibility(View.VISIBLE);
             holder.text_six.setVisibility(View.VISIBLE);
+            holder.dot7.setVisibility(View.VISIBLE);
         }
 //
 
@@ -174,15 +187,18 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.finalAmount.setVisibility(View.GONE);
             holder.text_seven.setVisibility(View.GONE);
+            holder.dot1.setVisibility(View.GONE);
         } else {
             holder.finalAmount.setVisibility(View.VISIBLE);
             holder.text_seven.setVisibility(View.VISIBLE);
+            holder.dot1.setVisibility(View.VISIBLE);
         }
 
         if (holder.memo_text.getVisibility() == View.VISIBLE) {
             if (TextUtils.isEmpty(holder.memo_text.getText()) || holder.memo_text.getText() == "null") {
                 holder.memo_text.setVisibility(View.GONE);
                 holder.text_six.setVisibility(View.GONE);
+                holder.dot7.setVisibility(View.GONE);
             }
         }
 
@@ -212,7 +228,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         protected CardView card_view;
         public TextView remarks, textViewPowers, date, balance, adjustTxt, dateLabel;
         public TextView text_one, text_two, text_thee, text_four, text_five, text_six, text_seven, text_eight;
-
+public TextView dot1,dot2,dot3,dot4,dot5,dot6,dot7,dot8;
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -239,6 +255,16 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             text_six = (TextView) itemView.findViewById(R.id.memo_label);
             text_seven = (TextView) itemView.findViewById(R.id.amount_label);
             text_eight = (TextView) itemView.findViewById(R.id.balanceLabel);
+
+
+            dot1 = (TextView) itemView.findViewById(R.id.dot1);
+            dot2 = (TextView) itemView.findViewById(R.id.dot2);
+            dot3 = (TextView) itemView.findViewById(R.id.dot3);
+            dot4 = (TextView) itemView.findViewById(R.id.dot4);
+            dot5 = (TextView) itemView.findViewById(R.id.dot5);
+            dot6 = (TextView) itemView.findViewById(R.id.dot6);
+            dot7 = (TextView) itemView.findViewById(R.id.dot7);
+            dot8 = (TextView) itemView.findViewById(R.id.dot8);
 
             card_view = itemView.findViewById(R.id.card_view);
         }

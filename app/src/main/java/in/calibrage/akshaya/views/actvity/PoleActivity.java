@@ -132,18 +132,25 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
             @Override
             public void onClick(View view) {
 
-                    if (myProductsList.size() > 0) {
+                try {
+                    if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
-
+                        Log.e("myProductsList===",myProductsList.toString());
                         Intent i = new Intent(PoleActivity.this, pole_godown_list.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
+                        i.putExtra("godown_id",Godown_id);
+                        i.putExtra("godown_code",Godown_code);
+                        i.putExtra("godown_name",Godown_name);
                         startActivity(i);
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                     }
                     else{
                         showDialog(PoleActivity.this, getResources().getString(R.string.select_product_toast));
                     }
-
+                } catch (Resources.NotFoundException e) {
+                    Log.e("error==",e.getLocalizedMessage());
+                    e.printStackTrace();
+                }
                 }
 
         });

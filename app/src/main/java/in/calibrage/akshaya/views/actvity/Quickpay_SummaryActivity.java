@@ -194,7 +194,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             public void onClick(View view) {
                 if (validations()) {
                     if (isOnline()) {
-                        submitReq();
+                     //   submitReq();
                     } else {
                         showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
                     } }
@@ -234,6 +234,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 if (signatureView.isBitmapEmpty()) {
                     showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
                     return ;
+                }
+                if (isOnline()) {
+                    submitReq();
+                } else {
+                    showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
                 }
                 dialog.dismiss();
             }

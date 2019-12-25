@@ -247,7 +247,7 @@ public class CommonUtil {
             if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
                 return true;
             } else {
-                Toast.makeText(ctx, "internet not available", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "Internet not Available", Toast.LENGTH_SHORT).show();
                 return false;
             }
         } catch (Exception e) {

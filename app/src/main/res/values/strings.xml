@@ -418,11 +418,11 @@
     <string name="no_data">No Data Available</string>
     <string name="Godown_name">Godown</string>
 
-    <string name="qucick_success">QuickPay Request Raised  Successfully</string>
+    <string name="qucick_success">QuickPay Request has been Raised  Successfully</string>
     <string name="paym_validation">Please Select the Payment Mode</string>
 
 
-
+   
 
     <string name="fertgodown">Fertilizer Godowns</string>
     <string name="manager_num">Cluster Manager Contact Number</string>

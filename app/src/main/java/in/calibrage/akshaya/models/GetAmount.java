@@ -82,12 +82,16 @@ public class GetAmount {
         @SerializedName("prunningCost")
         @Expose
         private Double prunningCost;
+        @SerializedName("servicePercentage")
+        @Expose
+        private Integer servicePercentage;
         @SerializedName("pruningWithIntercropCost")
         @Expose
         private Double pruningWithIntercropCost;
         @SerializedName("harvestingWithIntercropCost")
         @Expose
         private Double harvestingWithIntercropCost;
+
 
         public Double getHarvestCost() {
             return harvestCost;
@@ -103,6 +107,13 @@ public class GetAmount {
 
         public void setPrunningCost(Double prunningCost) {
             this.prunningCost = prunningCost;
+        }
+        public Integer getservicePercentage() {
+            return servicePercentage;
+        }
+
+        public void setservicePercentage(Integer servicePercentage) {
+            this.servicePercentage = servicePercentage;
         }
 
         public Double getUnKnown1Cost() {

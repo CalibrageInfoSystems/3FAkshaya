@@ -176,7 +176,7 @@
 
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/landmarkLabel"
+            android:layout_below="@id/landmark"
             android:layout_marginTop="@dimen/margin_5"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"

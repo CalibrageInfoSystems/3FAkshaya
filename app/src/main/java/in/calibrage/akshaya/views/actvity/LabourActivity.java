@@ -1067,16 +1067,31 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
                         if (getAmount.getIsSuccess()) {
+
+                            Integer percentage = getAmount.getResult().getservicePercentage();
                             //  amount_Label.setVisibility(View.VISIBLE);
-                            prun_amount.setText(getAmount.getResult().getPrunningCost().toString());
-                            harv_amount.setText(getAmount.getResult().getHarvestCost().toString());
-                            un_amount.setText(getAmount.getResult().getUnKnown1Cost().toString());
-                            un2_amount.setText(getAmount.getResult().getUnKnown2Cost().toString());
+//                            prun_amount.setText(getAmount.getResult().getPrunningCost().toString());
+//                            harv_amount.setText(getAmount.getResult().getHarvestCost().toString());
+//                            un_amount.setText(getAmount.getResult().getUnKnown1Cost().toString());
+//                            un2_amount.setText(getAmount.getResult().getUnKnown2Cost().toString());
 
                             harvesting_amount = getAmount.getResult().getHarvestCost();
                             prunning_amount = getAmount.getResult().getPrunningCost();
                             intercrop_prun =getAmount.getResult().getUnKnown1Cost();
                             intercrop_harv =getAmount.getResult().getUnKnown2Cost();
+                            double harv = (double) (percentage * harvesting_amount) / 100;
+                            Log.e("K===1",harv+"");
+                            double prun= (double) (percentage * prunning_amount) / 100;
+                            Log.e("K===2",prun+"");
+                            double prun_inter= (double) (percentage * prunning_amount) / 100;
+                            Log.e("K===3",prun_inter+"");
+                            double harv_inter= (double) (percentage * prunning_amount) / 100;
+                            Log.e("K===4",harv_inter+"");
+                            prun_amount.setText(prunning_amount+prun+"");
+                            harv_amount.setText(harvesting_amount+harv+"");
+                            un_amount.setText(intercrop_prun+prun_inter+"");
+                            un2_amount.setText(intercrop_harv+harv_inter+"");
+                          //  double  harv_amount =
                         } else {
                             //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
                         }
@@ -1115,10 +1130,10 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setYearofPlanting(plantationdate);
 //        requestModel.setHarvestingAmount(0.00);
 //        requestModel.setPruningAmount(0.00);
-        requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
-        requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));
-        requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));
-        requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));
+        requestModel.setHarvestingAmount(harvesting_amount);
+        requestModel.setPruningAmount(prunning_amount);
+        requestModel.setUnKnown1Amount(intercrop_prun);
+        requestModel.setUnKnown2Amount(intercrop_harv);
 
 //        requestModel.setPlotMandal(plotMandal);
 //        requestModel.setPlotState(plotState);

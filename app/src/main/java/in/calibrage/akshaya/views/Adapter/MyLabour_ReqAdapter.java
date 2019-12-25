@@ -265,7 +265,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
                         if (getLabourPackageDiscount.getIsSuccess()) {
                             seleced_Duration = labourlist_Set.get(selectedPO).getDuration();
                             Log.e("seleced_Duration===246", seleced_Duration);
-                            discount=0;
+                           // discount=0;
                             for (int i=0;i<getLabourPackageDiscount.getListResult().size();i++)
                             {
                                 String Data=getLabourPackageDiscount.getListResult().get(i).getDesc();
@@ -454,26 +454,39 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             netweight.setText(dff.format(net_weight));
             total_hav = net_weight * harvesting;
             total_harvesting_amount.setText(df.format(total_hav));
-            Total_amount = total_prunning + total_hav+intercrop_prunning +intercrop_harvesting;
-            Log.e("tress====247", String.valueOf(Total_amount));
-            double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
-            Log.e("percentage====252", String.valueOf(percentage));
-            double Service_amount = (Total_amount * percentage) / 100;
-            Log.e("percentage====254", String.valueOf(Service_amount));
-            service_amount.setText(dff.format(Service_amount));
-            double discount_amount =(Total_amount * discount)/100;
-            Discount_amount.setText(discount_amount+"");
+//            Total_amount = total_prunning + total_hav+intercrop_prunning +intercrop_harvesting;
+//            Log.e("tress====247", String.valueOf(Total_amount));
+//            double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
+//            Log.e("percentage====252", String.valueOf(percentage));
+//            double Service_amount = (Total_amount * percentage) / 100;
+//            Log.e("percentage====254", String.valueOf(Service_amount));
+//            service_amount.setText(dff.format(Service_amount));
+//            double discount_amount =(Total_amount * discount)/100;
+//            Log.e("discount_amount==",discount_amount+"");
+//            Discount_amount.setText(discount_amount+"");
 
         } else {
             netweight.setText("0.000");
             total_harvesting_amount.setText("0.00");
-            service_amount.setText("0.00");
-            Discount_amount.setText(("0.00"));
+         //   service_amount.setText("0.00");
+          //  Discount_amount.setText(("0.00"));
             //  label_netweight.setVisibility(View.GONE);
 //            label_harv.setVisibility(View.GONE);
 //            label_amount_service.setVisibility(View.GONE);
 
         }
+
+        Total_amount = total_prunning + total_hav+intercrop_prunning +intercrop_harvesting;
+        Log.e("tress====247", String.valueOf(Total_amount));
+        double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
+        Log.e("percentage====252", String.valueOf(percentage));
+        double Service_amount = (Total_amount * percentage) / 100;
+        Log.e("percentage====254", String.valueOf(Service_amount));
+        service_amount.setText(dff.format(Service_amount));
+        double discount_amount =(Total_amount * discount)/100;
+        Log.e("discount_amount==",discount_amount+"");
+        Discount_amount.setText(discount_amount+"");
+
         if (labourlist_Set.get(selectedPO).getTotalCost() != null) {
             amount.setText(labourlist_Set.get(selectedPO).getTotalCost() + "");
         } else {
