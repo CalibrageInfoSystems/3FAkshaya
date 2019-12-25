@@ -86,7 +86,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     int selectedPO;
     DecimalFormat dec = new DecimalFormat("####0.00");
     double total_prunning, total_hav, Total_amount ,intercrop_prunning,intercrop_harvesting;
-
+LinearLayout linear;
     public MyLabour_ReqAdapter(List<labour_req_response.ListResult> labourlist_Set, Context ctx) {
         this.labourlist_Set = labourlist_Set;
         this.mContext = ctx;
@@ -334,6 +334,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         dialog.setContentView(R.layout.dialog_ditails);
         // grossWeight,tareWeight,totalBunches,acceptedBunches,rejectedBunches,operatorname;
         request_id = dialog.findViewById(R.id.request_id);
+        linear =dialog.findViewById(R.id.linear);
         plot_code = dialog.findViewById(R.id.plot_code);
         plot_size = dialog.findViewById(R.id.plot_size);
         village = dialog.findViewById(R.id.village);
@@ -486,10 +487,12 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         double discount_amount =(Total_amount * discount)/100;
         Log.e("discount_amount==",discount_amount+"");
         Discount_amount.setText(discount_amount+"");
-
+        //amount.setText(labourlist_Set.get(selectedPO).getTotalCost() + "");
         if (labourlist_Set.get(selectedPO).getTotalCost() != null) {
+            linear.setVisibility(View.VISIBLE);
             amount.setText(labourlist_Set.get(selectedPO).getTotalCost() + "");
         } else {
+            linear.setVisibility(View.GONE);
             amount.setText("0.00");
         }
         if (job_done.getText() != null && TextUtils.isEmpty(request_date)) {

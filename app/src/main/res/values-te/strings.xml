@@ -449,7 +449,7 @@
     <string name="service_amount">ఎన్) సేవాఛార్జ్(రూ)\n((సి+ఎఫ్+ఐ+ఎల్)*ఎం)/100</string>
     <string name="disc_package">ఓ) ప్యాకేజీ డిస్కౌంట్(%)</string>
     <string name="disc_price">పి) ప్యాకేజీ డిస్కౌంట్\nధర(రూ)\n((సి+ఎఫ్+ఐ+ఎల్)*ఓ)/100 </string>
-    <string name="amount_labour"> క్యు) మొత్తం(రూ)\n(సి+ఎఫ్+ఐ+ఎల్+ఎన్-పి)</string>
+    <string name="amount_labour"> క్యు) మొత్తం(రూ)\n(సి+ఎఫ్+ఐ+ఎల్+ఎన్)-పి</string>
 
 
 

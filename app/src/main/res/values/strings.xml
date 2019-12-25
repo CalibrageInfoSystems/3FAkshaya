@@ -422,7 +422,7 @@
     <string name="paym_validation">Please Select the Payment Mode</string>
 
 
-   
+
 
     <string name="fertgodown">Fertilizer Godowns</string>
     <string name="manager_num">Cluster Manager Contact Number</string>
@@ -446,7 +446,7 @@
     <string name="service_amount">N) Service Charge(Rs)\n((C+F+I+L)*M)/100</string>
     <string name="disc_package">O) Package Discount(%)</string>
     <string name="disc_price">P) Package Discount \nPrice(Rs)\n((C+F+I+L)*O)/100 </string>
-    <string name="amount_labour">Q)Total Amount(Rs)\n(C+F+I+L+N-P)</string>
+    <string name="amount_labour">Q)Total Amount(Rs)\n(C+F+I+L+N)-P</string>
 
     <string name="payment_details">Total Amount Details</string>
     <string name="instock">In stock</string>
