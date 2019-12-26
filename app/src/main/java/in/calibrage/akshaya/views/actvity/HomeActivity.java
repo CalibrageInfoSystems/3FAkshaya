@@ -130,7 +130,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         else
             txt_phone.setText(catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber().toString());
         txt_adrs.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
-        if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1()))
+
+        if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()))
             Picasso.with(HomeActivity.this).load(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()).error(R.drawable.ic_user).transform(new CircleTransform()).into(img_profile);
 
         bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

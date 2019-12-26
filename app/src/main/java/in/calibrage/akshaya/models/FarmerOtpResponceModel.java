@@ -181,6 +181,7 @@ public class FarmerOtpResponceModel {
         @SerializedName("farmerPictureLocation")
         @Expose
         private String farmerPictureLocation;
+
         @SerializedName("addressLine1")
         @Expose
         private String addressLine1;
@@ -475,4 +476,4 @@ public class FarmerOtpResponceModel {
 
     }
 
-    }
+}

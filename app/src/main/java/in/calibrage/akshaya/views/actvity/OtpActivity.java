@@ -29,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.zxing.common.StringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,17 +64,19 @@ public class OtpActivity extends BaseActivity {
     public static final String TAG = OtpActivity.class.getSimpleName();
     private Subscription mSubscription;
     private Button sub_Btn;
-    private String currentDate,Farmer_code;
+    private String currentDate, Farmer_code;
     private PinEntryEditText pinEntry;
     private ImageView backImg;
     TextView otp_desc;
     String Reg_mobilenumber;
     private SpotsDialog mdilogue;
-    String F_number,S_number;
+    String F_number, S_number;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
         else
@@ -95,12 +98,12 @@ public class OtpActivity extends BaseActivity {
     private void init() {
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        String  Device_id= Settings.Secure.getString(this.getContentResolver(),
+        String Device_id = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         Log.e("deviece==id", Device_id);
         sub_Btn = (Button) findViewById(R.id.btn_otp_login);
         backImg = (ImageView) findViewById(R.id.back);
-        otp_desc =(TextView)findViewById(R.id.otp_desc);
+        otp_desc = (TextView) findViewById(R.id.otp_desc);
         pinEntry = findViewById(R.id.txt_pin_entry);
         pinEntry.requestFocus();
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
@@ -111,6 +114,7 @@ public class OtpActivity extends BaseActivity {
         Farmer_code = pref.getString("farmerid", "");
 
     }
+
     private void AddAppInstallation() {
         JsonObject object = getinstallobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -147,6 +151,7 @@ public class OtpActivity extends BaseActivity {
 
                 });
     }
+
     private JsonObject getinstallobject() {
         String android_id = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -160,22 +165,22 @@ public class OtpActivity extends BaseActivity {
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
     }
+
     private void setview() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Reg_mobilenumber = extras.getString("mobile");
-            if(Reg_mobilenumber.contains(",")) {
+            if (Reg_mobilenumber.contains(",")) {
                 String[] separated = Reg_mobilenumber.split(",");
                 F_number = separated[0].replaceFirst("(\\d{8})(\\d+)", "$********$2");
                 S_number = separated[1].replaceFirst("(\\d{8})(\\d+)", "$********$2");
                 otp_desc.setText(getString(R.string.otp_desc) + " " + F_number + "," + S_number);
-            }
-          else {
+            } else {
                 String number = Reg_mobilenumber.replaceFirst("(\\d{8})(\\d+)", "$********$2");
                 otp_desc.setText(getString(R.string.otp_desc) + " " + number);
             }
         }
-            sub_Btn.setOnClickListener(new View.OnClickListener() {
+        sub_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (pinEntry.getText() != null & pinEntry.getText().toString().trim() != "" & !TextUtils.isEmpty(pinEntry.getText())) {
@@ -198,6 +203,7 @@ public class OtpActivity extends BaseActivity {
             }
         });
     }
+
     private void GetOtp() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -221,6 +227,7 @@ public class OtpActivity extends BaseActivity {
                                 e1.printStackTrace();
                             }
                             e.printStackTrace();
+                            Log.e("getFormerdetails",   e.getLocalizedMessage());
                         }
                         mdilogue.dismiss();
                         showDialog(OtpActivity.this, getString(R.string.server_error));
@@ -231,23 +238,25 @@ public class OtpActivity extends BaseActivity {
                         mdilogue.dismiss();
                         if (farmerOtpResponceModel.getIsSuccess()) {
 
-
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    /* Create an Intent that will start the Menu-Activity. */
-                                    SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
-                                    SharedPrefsData.saveCatagories(OtpActivity.this, farmerOtpResponceModel);
-                                    SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, Constants.USER_ID, farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
-                                    Log.e("Formarcode==", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
-                                    SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "statecode", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
-                                    AddAppInstallation();
-                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
-
-                                }
-                            }, 000);
+//                            if (null != farmerOtpResponceModel.getResult().getFarmerDetails() && farmerOtpResponceModel.getResult().getFarmerDetails().size() > 0) {
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        /* Create an Intent that will start the Menu-Activity. */
+                                        SharedPrefsData.putBool(OtpActivity.this, Constants.IS_LOGIN, true);
+                                        SharedPrefsData.saveCatagories(OtpActivity.this, farmerOtpResponceModel);
+                                        SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, Constants.USER_ID, farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
+                                        Log.e("Formarcode==", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
+                                        SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "statecode", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
+                                        AddAppInstallation();
+                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 000);
+//                            } else {
+//                                showDialog(OtpActivity.this, farmerOtpResponceModel.getEndUserMessage());
+//                            }
 
                         } else {
                             showDialog(OtpActivity.this, farmerOtpResponceModel.getEndUserMessage());

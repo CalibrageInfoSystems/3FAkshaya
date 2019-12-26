@@ -64,8 +64,8 @@ import rx.schedulers.Schedulers;
 import static in.calibrage.akshaya.service.APIConstantURL.GetLabourPackageDiscount;
 
 public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapter.ViewHolder> {
-    TextView request_id, plot_code, plot_size, village, leader_name, pref_date, service_type, status, prun_amount, harv_amount,pruning_intercrop,harvest_intercrop, pack_name, collectionid, netweight,
-            Discount_percentage, amount,Discount_amount, comments,intercrop_tresscount,intercrop_amount,intercrop_netweight,intercrop_harv_amount, job_done, trees_count, service_charge, service_amount, total_prunning_amount, total_harvesting_amount;
+    TextView request_id, plot_code, plot_size, village, leader_name, pref_date, service_type, status, prun_amount, harv_amount, pruning_intercrop, harvest_intercrop, pack_name, collectionid, netweight,
+            Discount_percentage, amount, Discount_amount, comments, intercrop_tresscount, intercrop_amount, intercrop_netweight, intercrop_harv_amount, job_done, trees_count, service_charge, service_amount, total_prunning_amount, total_harvesting_amount;
     Button cancel_btn, ok_btn;
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
@@ -85,8 +85,9 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     String selectedItemID;
     int selectedPO;
     DecimalFormat dec = new DecimalFormat("####0.00");
-    double total_prunning, total_hav, Total_amount ,intercrop_prunning,intercrop_harvesting;
-LinearLayout linear;
+    double total_prunning, total_hav, Total_amount, intercrop_prunning, intercrop_harvesting;
+    LinearLayout linear;
+
     public MyLabour_ReqAdapter(List<labour_req_response.ListResult> labourlist_Set, Context ctx) {
         this.labourlist_Set = labourlist_Set;
         this.mContext = ctx;
@@ -204,7 +205,7 @@ LinearLayout linear;
             public void onClick(View view) {
                 selectedItemID = labourlist_Set.get(position).getRequestCode();
                 selectedPO = position;
-                Log.d("selectedPO==",selectedPO+"");
+                Log.d("selectedPO==", selectedPO + "");
                 GetLabourPackageDiscount(selectedPO);
                 //showCondetailsDialog(selectedPO);
 
@@ -265,15 +266,13 @@ LinearLayout linear;
                         if (getLabourPackageDiscount.getIsSuccess()) {
                             seleced_Duration = labourlist_Set.get(selectedPO).getDuration();
                             Log.e("seleced_Duration===246", seleced_Duration);
-                           // discount=0;
-                            for (int i=0;i<getLabourPackageDiscount.getListResult().size();i++)
-                            {
-                                String Data=getLabourPackageDiscount.getListResult().get(i).getDesc();
-                                Log.d("MAHESH ","discount Name :"+Data);
-                                if(Data.equalsIgnoreCase(seleced_Duration))
-                                {
+                            // discount=0;
+                            for (int i = 0; i < getLabourPackageDiscount.getListResult().size(); i++) {
+                                String Data = getLabourPackageDiscount.getListResult().get(i).getDesc();
+                                Log.d("MAHESH ", "discount Name :" + Data);
+                                if (Data.equalsIgnoreCase(seleced_Duration)) {
                                     discount = getLabourPackageDiscount.getListResult().get(i).getDiscountPercentage();
-                                    Log.d("MAHESH ","discount :"+discount);
+                                    Log.d("MAHESH ", "discount :" + discount);
                                 }
                             }
 
@@ -319,22 +318,23 @@ LinearLayout linear;
                 dialog.dismiss();
             }
         });
+
         dialog.show();
     }
 
 
     private void showCondetailsDialog(int selectedPO) {
         //myDialog.setContentView(R.layout.custompopup);
-        final Dialog dialog = new Dialog(mContext,R.style.DialogSlideAnim);
+        final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-      //  dialog.setCancelable(false);
+        //  dialog.setCancelable(false);
         dialog.getWindow().setLayout(((getWidth(mContext) / 100) * 100), LinearLayout.LayoutParams.MATCH_PARENT);
 //        dialog.getWindow().setGravity(Gravity.LEFT);
 //        dialog.show();
         dialog.setContentView(R.layout.dialog_ditails);
         // grossWeight,tareWeight,totalBunches,acceptedBunches,rejectedBunches,operatorname;
         request_id = dialog.findViewById(R.id.request_id);
-        linear =dialog.findViewById(R.id.linear);
+        linear = dialog.findViewById(R.id.linear);
         plot_code = dialog.findViewById(R.id.plot_code);
         plot_size = dialog.findViewById(R.id.plot_size);
         village = dialog.findViewById(R.id.village);
@@ -344,15 +344,15 @@ LinearLayout linear;
         status = dialog.findViewById(R.id.status);
         prun_amount = dialog.findViewById(R.id.prun_amount);
         harv_amount = dialog.findViewById(R.id.harv_amount);
-        pruning_intercrop =dialog.findViewById(R.id.pruning_intercrop);
-        harvest_intercrop=dialog.findViewById(R.id.harvest_intercrop);
+        pruning_intercrop = dialog.findViewById(R.id.pruning_intercrop);
+        harvest_intercrop = dialog.findViewById(R.id.harvest_intercrop);
         pack_name = dialog.findViewById(R.id.pack_name);
         Discount_amount = dialog.findViewById(R.id.discount_amount);
         Discount_percentage = dialog.findViewById(R.id.discount_percentage);
-        intercrop_tresscount =dialog.findViewById(R.id.prun_intercrop_num);
-        intercrop_amount=dialog.findViewById(R.id.intercrop_amount);
-        intercrop_netweight =dialog.findViewById(R.id.harv_weight_intercrop);
-        intercrop_harv_amount =dialog.findViewById(R.id.harv_amt_intercrop);
+        intercrop_tresscount = dialog.findViewById(R.id.prun_intercrop_num);
+        intercrop_amount = dialog.findViewById(R.id.intercrop_amount);
+        intercrop_netweight = dialog.findViewById(R.id.harv_weight_intercrop);
+        intercrop_harv_amount = dialog.findViewById(R.id.harv_amt_intercrop);
         // collectionid= dialog.findViewById(R.id.ids_collection);
         netweight = dialog.findViewById(R.id.netweight);
         amount = dialog.findViewById(R.id.amount);
@@ -386,15 +386,15 @@ LinearLayout linear;
         }
         prefferdate_popup = output.format(prefferdatee);
         pref_date.setText(prefferdate_popup);
-        Log.d("MAHESH: ","Discount IN POPUP :"+discount);
+        Log.d("MAHESH: ", "Discount IN POPUP :" + discount);
         Discount_percentage.setText(discount + "");
         service_type.setText(labourlist_Set.get(selectedPO).getServiceTypes());
         status.setText(labourlist_Set.get(selectedPO).getStatusType());
         prun_amount.setText(df.format(labourlist_Set.get(selectedPO).getPruningAmount()));
         harv_amount.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingAmount()));
         pack_name.setText(labourlist_Set.get(selectedPO).getDuration() + "");
-      pruning_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getUnKnown1Amount()));
-       harvest_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getUnKnown2Amount()));
+        pruning_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getUnKnown1Amount()));
+        harvest_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getUnKnown2Amount()));
 
         //   collectionid.setText(labourlist_Set.get(selectedPO).getCollectionIds()+"");
         //  netweight.setText(labourlist_Set.get(selectedPO).getNetWeight()+"");
@@ -469,30 +469,30 @@ LinearLayout linear;
         } else {
             netweight.setText("0.000");
             total_harvesting_amount.setText("0.00");
-         //   service_amount.setText("0.00");
-          //  Discount_amount.setText(("0.00"));
+            //   service_amount.setText("0.00");
+            //  Discount_amount.setText(("0.00"));
             //  label_netweight.setVisibility(View.GONE);
 //            label_harv.setVisibility(View.GONE);
 //            label_amount_service.setVisibility(View.GONE);
 
         }
 
-        Total_amount = total_prunning + total_hav+intercrop_prunning +intercrop_harvesting;
+        Total_amount = total_prunning + total_hav + intercrop_prunning + intercrop_harvesting;
         Log.e("tress====247", String.valueOf(Total_amount));
         double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
         Log.e("percentage====252", String.valueOf(percentage));
         double Service_amount = (Total_amount * percentage) / 100;
         Log.e("percentage====254", String.valueOf(Service_amount));
         service_amount.setText(dff.format(Service_amount));
-        double discount_amount =(Total_amount * discount)/100;
-        Log.e("discount_amount==",discount_amount+"");
-        Discount_amount.setText(discount_amount+"");
+        double discount_amount = (Total_amount * discount) / 100;
+        Log.e("discount_amount==", discount_amount + "");
+        Discount_amount.setText(discount_amount + "");
         //amount.setText(labourlist_Set.get(selectedPO).getTotalCost() + "");
         if (labourlist_Set.get(selectedPO).getTotalCost() != null) {
-            linear.setVisibility(View.VISIBLE);
+            //linear.setVisibility(View.VISIBLE); MAHESH
             amount.setText(labourlist_Set.get(selectedPO).getTotalCost() + "");
         } else {
-            linear.setVisibility(View.GONE);
+            //linear.setVisibility(View.GONE);
             amount.setText("0.00");
         }
         if (job_done.getText() != null && TextUtils.isEmpty(request_date)) {
