@@ -22,7 +22,7 @@
         android:textSize="18dp"
         android:textColor="@color/white"
         android:text="Mallem Mahesh"
-        android:fontFamily="@font/oswald_regular"
+        android:fontFamily="@font/hind_semibold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
@@ -31,7 +31,7 @@
         android:textSize="16dp"
         android:textColor="@color/white"
         android:text="+91 7032214460"
-        android:fontFamily="@font/oswald_regular"
+        android:fontFamily="@font/hind_semibold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
@@ -40,7 +40,7 @@
         android:textSize="16dp"
         android:textColor="@color/white"
         android:text="+91 Hyderabad"
-        android:fontFamily="@font/oswald_regular"
+        android:fontFamily="@font/hind_semibold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

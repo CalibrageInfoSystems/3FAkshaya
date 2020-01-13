@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_alignLeft="@+id/back"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/req_visit"
@@ -90,6 +91,7 @@
                     android:drawableRight="@drawable/star"
                     android:drawablePadding="5dp"
                     android:paddingTop="5dp"
+                    android:fontFamily="@font/hind_semibold"
                     android:text="@string/issue_type"
                     android:textColor="@color/white_new"
                     android:textSize="@dimen/album_title" />
@@ -472,7 +474,7 @@
             android:layout_toRightOf="@+id/plotIdLabel"
             android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
-
+            android:fontFamily="@font/hind_semibold"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
@@ -500,6 +502,7 @@
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/palmAreaLabel"
             android:hint=""
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
@@ -518,6 +521,7 @@
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/village"
+
             android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
@@ -533,12 +537,12 @@
             android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
+            android:fontFamily="@font/hind_semibold"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
 
         <TextView
             android:id="@+id/landmarkLabel"
-
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/palmArea"
@@ -558,6 +562,8 @@
             android:layout_below="@id/palmArea"
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
+
+android:fontFamily="@font/hind_semibold"
             android:layout_toRightOf="@+id/textView55"
             android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
@@ -575,7 +581,7 @@
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/cluster_officer"
             android:textColor="@color/black"
-
+            android:fontFamily="@font/hind_semibold"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -588,7 +594,7 @@
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
             android:hint=""
-
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
@@ -603,7 +609,7 @@
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/yop"
-
+            android:fontFamily="@font/hind_semibold"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
@@ -619,6 +625,7 @@
             android:hint=""
             android:maxLength="4"
             android:paddingLeft="@dimen/album_title_padding"
+            android:fontFamily="@font/hind_semibold"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />

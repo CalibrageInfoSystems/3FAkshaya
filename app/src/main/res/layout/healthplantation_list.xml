@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/treesAppearanceLabel"
                 android:layout_toRightOf="@+id/imageViewHero"
-
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginStart="3dp"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/treesAppearance"
-
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/colorOrange2"
                 android:layout_toRightOf="@+id/treesAppearanceLabel"
                 android:layout_width="wrap_content"
@@ -63,6 +63,7 @@
                 android:layout_marginStart="3dp"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_below="@id/treesAppearanceLabel"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -75,6 +76,7 @@
             <TextView
                 android:id="@+id/treeGirth"
                 android:hint="@string/treeGrowth"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_toRightOf="@+id/treeGirthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,6 +89,7 @@
                 android:id="@+id/treeHeightLabel"
                 android:layout_toRightOf="@+id/imageViewHero"
                 android:text="@string/treeHeight"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginStart="3dp"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
@@ -106,6 +109,7 @@
                 android:layout_below="@id/treeGirthLabel"
                 android:paddingLeft="5dp"
                 android:paddingRight="@dimen/album_title_padding"
+                android:fontFamily="@font/hind_semibold"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
             <TextView
@@ -114,6 +118,7 @@
                 android:layout_marginStart="3dp"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/fruitColor"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="2dp"
@@ -123,6 +128,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/album_title" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/fruitColor"
                 android:layout_toRightOf="@+id/fruitColorLabel"
                 android:layout_width="match_parent"
@@ -140,6 +146,7 @@
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:text="@string/fruitSize"
+                android:fontFamily="@font/hind_semibold"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="2dp"
                 android:paddingTop="@dimen/album_title_padding"

@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/product_details"
                 android:layout_alignLeft="@+id/back"
                 android:textStyle="bold"
@@ -92,6 +93,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
                android:textStyle="bold"
                 android:textColor="@color/colorOrange"
                 android:textSize="@dimen/album_title" />

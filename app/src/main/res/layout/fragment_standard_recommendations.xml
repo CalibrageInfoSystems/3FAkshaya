@@ -60,6 +60,7 @@
             android:textAlignment="center"
             android:text="No Data Found"
             android:layout_marginTop="@dimen/text_size_20"
+            android:fontFamily="@font/hind_semibold"
             android:textSize="@dimen/text_size_20"
             android:textColor="@color/colorAccent"
             android:layout_centerInParent="true"

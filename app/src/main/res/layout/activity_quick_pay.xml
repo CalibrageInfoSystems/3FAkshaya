@@ -50,7 +50,7 @@
                 android:layout_alignLeft="@+id/back"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
-
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/quickPay"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />

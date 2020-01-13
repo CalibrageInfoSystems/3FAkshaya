@@ -22,6 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center"
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/quick_docu"
                 android:textColor="@color/white_new"
                 android:textSize="18sp" />
