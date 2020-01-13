@@ -1,54 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="wrap_content"
 
     android:orientation="vertical"
     android:layout_gravity="center"
     >
-    <!--    <RelativeLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content">-->
 
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_gravity="center"-->
-
-    <!--            android:background="@color/colorOrange"-->
-
-    <!--            android:gravity="center"-->
-    <!--            android:orientation="horizontal">-->
-
-
-    <!--            <TextView-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-
-    <!--                android:gravity="center"-->
-    <!--                android:paddingTop="@dimen/margin_10"-->
-    <!--                android:paddingBottom="@dimen/margin_10"-->
-    <!--                android:text="@string/details"-->
-
-    <!--                android:textColor="@color/white"-->
-    <!--                android:textSize="18dp"-->
-    <!--                android:textStyle="bold" />-->
-    <!--        </LinearLayout>-->
-
-    <!--        <TextView-->
-    <!--            android:visibility="gone"-->
-    <!--            android:id="@+id/txtclose"-->
-    <!--            android:layout_width="30dp"-->
-    <!--            android:layout_height="44.5dp"-->
-    <!--            android:layout_alignParentRight="true"-->
-    <!--            android:layout_gravity="end"-->
-    <!--            android:background="@color/colorOrange"-->
-    <!--            android:gravity="center"-->
-
-    <!--            android:text="X"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            android:textStyle="bold" />-->
-    <!--    </RelativeLayout>-->
     <ScrollView
         android:layout_width="match_parent"
 
@@ -181,9 +139,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lin_two"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:elevation="2dp"
+
                     android:orientation="horizontal">
 
 
@@ -215,12 +175,14 @@
                         android:id="@+id/plot_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="11dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="1sp"
+                        android:layout_toEndOf="@+id/dot3"
                         android:layout_toRightOf="@+id/dot3"
+
                         android:hint=""
                         android:text=""
-
                         android:textColor="@color/white"
                         android:textSize="14dp" />
 
@@ -231,8 +193,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lin_three"
-                    android:layout_marginStart="6dp"
+
                     android:layout_marginTop="3sp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:orientation="horizontal">
 
 
@@ -279,7 +243,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lin_eight"
 
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
 
                     android:orientation="horizontal">
 
@@ -288,8 +253,10 @@
                         android:id="@+id/totalbunches"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1sp"
+                        android:layout_alignParentStart="true"
 
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="1sp"
                         android:text="@string/status"
                         android:textColor="@color/white"
                         android:textSize="14dp"
@@ -321,13 +288,349 @@
                         android:textSize="14dp" />
 
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/lin_ten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_four"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="3sp"
+                    android:orientation="horizontal">
 
+
+                    <TextView
+                        android:id="@+id/gross_weighrt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1sp"
+                        android:text="@string/village"
+                        android:textColor="@color/white"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dot10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text="     :"
+                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/village"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dot10"
+                        android:hint=""
+
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/new_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_ten"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="3sp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/tare_weightt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1sp"
+                        android:text="@string/labour_leader"
+                        android:textColor="@color/white"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dot11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text="     :"
+                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/leader_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dot11"
+                        android:hint=""
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lin_four_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/new_data"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="3sp"
+
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/net_weightt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/starttDate"
+
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dot12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text="     :"
+                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pref_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dot12"
+                        android:hint=""
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lin_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_four_new"
+
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="3sp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/dateLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1sp"
+
+                        android:text="@string/serviceType"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/dotd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text="     :"
+                        android:paddingLeft="20dp"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/service_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dotd"
+                        android:hint=""
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lin_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_date"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="3sp"
+
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/comt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1sp"
+                        android:text="@string/job_done"
+                        android:textColor="@color/white"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dotcom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text="     :"
+                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/job_done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dotcom"
+                        android:hint=""
+
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lin_eight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_comments"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="3sp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/operatorName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1sp"
+                        android:text="@string/labour_duration"
+                        android:textColor="@color/white"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dot8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1sp"
+                        android:text="     :"
+                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pack_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="1sp"
+                        android:layout_toRightOf="@+id/dot8"
+                        android:hint=""
+
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lin_collection_ids"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lin_five"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="3sp"
+
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/coll_label"
+                        style="@style/Common_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="2dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/dotcol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="1sp"
+                        android:text="@string/payment_details"
+                        android:textColor="@color/colorOrange"
+
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_below="@+id/lin_collection_ids"
+    android:id="@id/prunning_label"
+
+    android:layout_height="wrap_content">
                 <RelativeLayout
                     android:id="@+id/lin_six"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_collection_ids"
-                    android:layout_marginStart="6dp"
+
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:elevation="2dp"
                     android:orientation="horizontal">
@@ -353,7 +656,6 @@
                         android:layout_marginTop="1sp"
                         android:text="     :"
                         android:paddingLeft="20dp"
-                        android:layout_marginRight="@dimen/margin_5"
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -371,6 +673,8 @@
                         android:textColor="@color/white"
                         android:textSize="14dp" />
 
+
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -378,7 +682,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lin_six"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:elevation="2dp"
                     android:orientation="horizontal">
@@ -428,8 +733,9 @@
                     android:id="@+id/lin_new2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_below="@+id/lin_new1"
-                    android:layout_marginStart="6dp"
                     android:layout_marginTop="3sp"
                     android:elevation="2dp"
                     android:orientation="horizontal">
@@ -473,13 +779,21 @@
                         android:textSize="14dp" />
 
                 </RelativeLayout>
+        </RelativeLayout>
+<RelativeLayout
+    android:layout_width="wrap_content"
 
+    android:id="@+id/harvest_label"
+    android:layout_below="@+id/prunning_label"
+    android:visibility="gone"
+    android:layout_height="wrap_content">
                 <RelativeLayout
                     android:id="@+id/lin_seven"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_new2"
-                    android:layout_marginStart="6dp"
+
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:orientation="horizontal">
 
@@ -521,335 +835,15 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/lin_ten"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_four"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
 
-
-                    <TextView
-                        android:id="@+id/gross_weighrt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1sp"
-                        android:text="@string/village"
-                        android:textColor="@color/white"
-
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/dot10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="1sp"
-                        android:text="     :"
-                        android:textColor="@color/white"
-                        android:paddingLeft="20dp"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/village"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="1sp"
-                        android:layout_toRightOf="@+id/dot10"
-                        android:hint=""
-
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/new_data"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_ten"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/tare_weightt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1sp"
-                        android:text="@string/labour_leader"
-                        android:textColor="@color/white"
-
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/dot11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="1sp"
-                        android:text="     :"
-                        android:textColor="@color/white"
-                        android:paddingLeft="20dp"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/leader_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="1sp"
-                        android:layout_toRightOf="@+id/dot11"
-                        android:hint=""
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/lin_four_new"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/new_data"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/net_weightt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="1dp"
-                        android:text="@string/starttDate"
-
-                        android:textColor="@color/white"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/dot12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="1sp"
-                        android:text="     :"
-                        android:textColor="@color/white"
-                        android:paddingLeft="20dp"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/pref_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="1sp"
-                        android:layout_toRightOf="@+id/dot12"
-                        android:hint=""
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/lin_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_four_new"
-
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/dateLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1sp"
-
-                        android:text="@string/serviceType"
-                        android:textColor="@color/white"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/dotd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="1sp"
-                        android:text="     :"
-                        android:paddingLeft="20dp"
-                        android:textColor="@color/white"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/service_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="1sp"
-                        android:layout_toRightOf="@+id/dotd"
-                        android:hint=""
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/lin_comments"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_date"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="3sp"
-
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/comt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1sp"
-                        android:text="@string/job_done"
-                        android:textColor="@color/white"
-
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/dotcom"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="1sp"
-                        android:text="     :"
-                        android:textColor="@color/white"
-                        android:paddingLeft="20dp"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/job_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="1sp"
-                        android:layout_toRightOf="@+id/dotcom"
-                        android:hint=""
-
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/lin_eight"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_comments"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="3sp"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/operatorName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1sp"
-                        android:text="@string/labour_duration"
-                        android:textColor="@color/white"
-
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/dot8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="1sp"
-                        android:text="     :"
-                        android:textColor="@color/white"
-                        android:paddingLeft="20dp"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/pack_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="1sp"
-                        android:layout_toRightOf="@+id/dot8"
-                        android:hint=""
-
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/lin_collection_ids"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_five"
-                    android:layout_marginStart="6dp"
-
-                    android:layout_marginTop="3sp"
-
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/coll_label"
-                        style="@style/Common_textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="2dp"
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="14dp" />
-
-                    <TextView
-                        android:id="@+id/dotcol"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_marginTop="1sp"
-                        android:text="@string/payment_details"
-                        android:textColor="@color/colorOrange"
-
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/label_netweight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lin_seven"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
 
                     android:orientation="horizontal">
@@ -897,7 +891,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/label_netweight"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
 
                     android:orientation="horizontal">
@@ -939,12 +934,20 @@
                         android:textSize="14dp" />
 
                 </RelativeLayout>
+</RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/prunning_intercrop_label"
+                android:layout_below="@+id/harvest_label"
+                android:layout_height="wrap_content">
                 <RelativeLayout
                     android:id="@+id/prunningintercrop_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/label_harv_amount"
-                    android:layout_marginStart="6dp"
+
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:elevation="2dp"
                     android:orientation="horizontal">
@@ -993,7 +996,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/prunningintercrop_label"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:elevation="2dp"
                     android:orientation="horizontal">
@@ -1042,7 +1046,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/trees_intercrop_label"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:elevation="2dp"
                     android:orientation="horizontal">
@@ -1086,12 +1091,20 @@
                         android:textSize="14dp" />
 
                 </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/prunning_intercrop_label"
+                android:id="@+id/harvest_inter_label"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
                 <RelativeLayout
                     android:id="@+id/harv_inter_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/amount_intercrop_label"
-                    android:layout_marginStart="6dp"
+
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:orientation="horizontal">
 
@@ -1137,7 +1150,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/harv_inter_label"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:orientation="horizontal">
 
@@ -1183,7 +1197,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/harv_inter_weight_label"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
                     android:orientation="horizontal">
 
@@ -1224,14 +1239,16 @@
                         android:textSize="14dp" />
 
                 </RelativeLayout>
+            </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/per_service"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/harv_intercrop_amount_label"
-                    android:layout_marginStart="6dp"
+                    android:layout_below="@+id/harvest_inter_label"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
-
+android:visibility="gone"
                     android:orientation="horizontal">
 
 
@@ -1278,9 +1295,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/per_service"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
-
+android:visibility="gone"
                     android:orientation="horizontal">
 
 
@@ -1326,9 +1344,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/amount_service"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
-
+android:visibility="gone"
                     android:orientation="horizontal">
 
 
@@ -1375,9 +1394,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/disc_label"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
-
+android:visibility="gone"
                     android:orientation="horizontal">
 
 
@@ -1423,7 +1443,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/amount_discount"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
 
                     android:orientation="horizontal">
@@ -1434,7 +1455,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1sp"
-                        android:text="@string/amount_labour"
+                        android:text="@string/total_amt"
                         android:textColor="@color/white"
 
                         android:textSize="14dp"

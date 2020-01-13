@@ -39,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private Subscription mSubscription;
     private static final String TAG = CropMaintanceVisitActivity.class.getSimpleName();
-    String Farmer_code,plot_id,datevaluereq,timevaluereq;
+    String Farmer_code,plot_id,datevaluereq,timevaluereq,clustter;
     RecyclerView recycler_view_InterCrop,recycler_view_irrigation ,
             recycler_view_fert_rec_Details,recycler_view_pest,recycler_view_desease,
             recyclerView_nut,recycler_view_fertilizer;
@@ -95,7 +96,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     private uprootment_Adapter UAdapter;
 
     private fertilizer_Adapter fAdapter;
-    private TextView Age, id_plot, area,landMark;
+    private TextView Age, id_plot, area,landMark,cluster_name;
     //
    private fertilizerRecommendation_Adapter fertadapter;
 //
@@ -129,8 +130,10 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
     // ImageView thumbnail;
     public TextView comment_label,reason_label,yop;
-    String plot_Age,location,landmarkCode,date_of_plandation;
+    String location,landmarkCode,date_of_plandation;
     ImageView backImg,home_btn;
+    double plot_Age,plotarea;
+    DecimalFormat dec = new DecimalFormat("####0.00");
     SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
     //endregion
@@ -148,9 +151,11 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         if (extras != null) {
 
             plot_id = extras.getString("plotid");
-            plot_Age = extras.getString("plotAge");
+            plot_Age = extras.getDouble("plotAge", 0.00);
+            plotarea = extras.getDouble("plotarea", 0.00);
             location = extras.getString("plotVillage");
             landmarkCode = extras.getString("landMark");
+            clustter = extras.getString("cluster_name");
             date_of_plandation=extras.getString("date_of_plandation");
         }
         intview();
@@ -189,7 +194,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         treesAppearance = findViewById(R.id.treesAppearance);
         last_visit_date  = findViewById(R.id.last_visit_date);
         freq_harvest=findViewById(R.id.freq_harvest);
-
+        cluster_name =findViewById(R.id.cluster_officer);
 
         plamsCount = findViewById(R.id.plamsCount);
 
@@ -246,11 +251,12 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         recycler_view_fertilizer.setLayoutManager(mLayoutManager);
         recycler_view_fertilizer.setItemAnimator(new DefaultItemAnimator());
 
-        Age.setText(plot_Age );
+        Age.setText(dec.format(plot_Age )+" Ha (" +dec.format(plotarea )+" Acre)"  );
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
         yop.setText(date_of_plandation);
+        cluster_name.setText(clustter);
 
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override

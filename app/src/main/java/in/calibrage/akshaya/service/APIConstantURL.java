@@ -19,13 +19,14 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";
     String GetRecommendationAges = "GetRecommendationAges";
     String GetActivePlotsByFarmerCode = "Farmer/GetActivePlotsByFarmerCode/";
     String GetLabourDuration = "TypeCdDmt/7";
-    String GetLabourServicetype = " TypeCdDmt/6";
+    String GetLabourServicetype = "Farmer/GetServicesByPlotCode/";
     String post_labour = "LabourRequest/AddLabourRequestHeader";
     String Post_Loan = " RequestHeader/AddRequestHeader";
     String labour_amount = "LabourServiceCost/GetLabourServiceCostCalculation";
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetLabourTermsandConditions ="LabourServiceCost/GetLabourServiceCost/null";
     String CostConfig ="CostConfig/";
+    String GetInterCropByPlotCode ="Farmer/GetInterCropByPlotCode/";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetailsByFarmerCode";
     String GetIssue = "TypeCdDmt/10";
     String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
@@ -52,6 +53,8 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";
     String GetLabourPackageDiscount ="LabourPackageDiscount/GetLabourPackageDiscount";
     String post_export ="Payment/ExportPayments";
     String GetBankDetailsByFarmerCode ="Farmer/GetBankDetailsByFarmerCode/";
+    String HolidayList ="HolidayList/IsHoliday";
+    String CanRaiseRequest ="RequestHeader/CanRaiseRequest/";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 }

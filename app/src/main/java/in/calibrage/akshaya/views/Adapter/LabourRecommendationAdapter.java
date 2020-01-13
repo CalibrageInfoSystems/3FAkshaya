@@ -25,6 +25,7 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
     List<LabourRecommendationsModel.ListResult> recomm_Set;
     public Context mContext;
 
+    DecimalFormat dec = new DecimalFormat("####0.00");
     public LabourRecommendationAdapter(    List<LabourRecommendationsModel.ListResult> recomm_Set, Context context) {
         this.recomm_Set = recomm_Set;
         this.mContext=context;
@@ -41,10 +42,10 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
-        holder.textViewplotId.setText(recomm_Set.get(position).getFPlotcode());
+        holder.textViewplotId.setText(recomm_Set.get(position).getPlotcode());
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
 
-        holder.textViewpalmArea.setText(df.format(recomm_Set.get(position).getPalmArea())+" "+"Ha");
+        holder.textViewpalmArea.setText(df.format(recomm_Set.get(position).getPalmArea())+"Ha ("+ dec.format(recomm_Set.get(position).getPalmAreainAcres() ) + " Acre)");
         holder.textViewLocation.setText(recomm_Set.get(position).getVillageName());
         holder.landmark.setText(recomm_Set.get(position).getLandMark() );
         holder.textViewstatus.setText(recomm_Set.get(position).getStatusType() );
@@ -52,11 +53,14 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
         holder.plot_Mandal.setText(recomm_Set.get(position).getMandalName());
         holder.plot_State.setText(recomm_Set.get(position).getStateName());
         holder.plot_District.setText(recomm_Set.get(position).getDistrictName());
-        //holder.date_plantation.setText(recomm_Set."get(position).getDateOfPlanting());
+        holder.cluster_name.setText(recomm_Set.get(position).getClusterName());
         holder.yop.setText(recomm_Set.get(position).getDateOfPlanting() );
         Log.e("date",recomm_Set.get(position).getDateOfPlanting() );
 
 final double selected_plot =recomm_Set.get(position).getPalmArea() ;
+        final double selected_palm =recomm_Set.get(position).getPalmAreainAcres() ;
+
+         final String interCrops =recomm_Set.get(position).getInterCrops() ;
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
 
@@ -65,6 +69,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
                 Intent intent = new Intent(mContext, LabourActivity.class);
                 intent.putExtra("plotid",    holder.textViewplotId.getText());
                 intent.putExtra("plotAge",    selected_plot);
+                intent.putExtra("plotarea",    selected_palm);
                 intent.putExtra("plotVillage",    holder.textViewLocation.getText());
                 intent.putExtra("farmerCode",    holder.farmer_Code.getText());
                 intent.putExtra("landMark",    holder.landmark.getText());
@@ -72,7 +77,10 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
                 intent.putExtra("plotMandal",    holder.plot_Mandal.getText());
                 intent.putExtra("plotState",    holder.plot_State.getText());
                 intent.putExtra("plotDistrict",    holder.plot_District.getText());
+                intent.putExtra("cluster_name",    holder.cluster_name.getText());
+                intent.putExtra("interCrop",   interCrops);
                 intent.putExtra("date_of_plandation",   recomm_Set.get(position).getDateOfPlanting());
+
 
 
                 Log.e("plotDistrict====", (String) holder.plot_Mandal.getText());
@@ -99,7 +107,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation;
-        public TextView textViewstatus,date_plantation,landmark,yop;
+        public TextView textViewstatus,date_plantation,landmark,yop,cluster_name;
         public CardView card_view;
         public TextView farmer_Code,plot_Mandal,plot_State,plot_District;
         public ViewHolder(View itemView) {
@@ -116,6 +124,7 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
             this.landmark = (TextView) itemView.findViewById(R.id.landmark);
             this.yop = (TextView) itemView.findViewById(R.id.yop);
             this.card_view =  (CardView) itemView.findViewById(R.id.card_view);
+            this.cluster_name=(TextView)itemView.findViewById(R.id.status);
 
         }
 

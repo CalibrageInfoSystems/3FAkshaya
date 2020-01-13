@@ -32,7 +32,7 @@
             android:src="@drawable/arrow_left" />
 
         <TextView
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/otp_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

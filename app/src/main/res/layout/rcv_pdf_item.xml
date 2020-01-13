@@ -29,7 +29,7 @@
           android:id="@+id/txt_pdfname"
           android:textAlignment="center"
           android:text="Mahesh Mallem"
-          android:fontFamily="@font/roboto_regular"
+          android:fontFamily="@font/hind_semibold"
           android:textColor="@color/gray"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"/>
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_name"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="3dp"
             android:text="Sample Text"
             android:textColor="@color/gray"

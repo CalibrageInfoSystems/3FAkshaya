@@ -172,11 +172,12 @@ public class OtpActivity extends BaseActivity {
             Reg_mobilenumber = extras.getString("mobile");
             if (Reg_mobilenumber.contains(",")) {
                 String[] separated = Reg_mobilenumber.split(",");
-                F_number = separated[0].replaceFirst("(\\d{8})(\\d+)", "$********$2");
-                S_number = separated[1].replaceFirst("(\\d{8})(\\d+)", "$********$2");
+                F_number = separated[0].replaceAll("\\d(?=(?:\\D*\\d){4})", "*");
+                S_number = separated[1].replaceAll("\\d(?=(?:\\D*\\d){4})", "*");
                 otp_desc.setText(getString(R.string.otp_desc) + " " + F_number + "," + S_number);
             } else {
-                String number = Reg_mobilenumber.replaceFirst("(\\d{8})(\\d+)", "$********$2");
+                String number = Reg_mobilenumber
+                        .replaceAll("\\d(?=(?:\\D*\\d){4})", "*");
                 otp_desc.setText(getString(R.string.otp_desc) + " " + number);
             }
         }

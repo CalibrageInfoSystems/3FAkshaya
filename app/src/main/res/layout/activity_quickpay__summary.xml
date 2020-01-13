@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape"
+    android:background="@color/white2"
 
     >
 
@@ -14,7 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:background="@color/transparent"
+        android:background="@color/colorOrange_head"
         android:orientation="horizontal">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

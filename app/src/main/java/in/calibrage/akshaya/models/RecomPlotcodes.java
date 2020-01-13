@@ -7,7 +7,7 @@ public class RecomPlotcodes {
 
     @SerializedName("listResult")
     @Expose
-    private List<ListResult> listResult = null;
+    private List<LabourRecommendationsModel.ListResult> listResult = null;
     @SerializedName("isSuccess")
     @Expose
     private Boolean isSuccess;
@@ -24,11 +24,11 @@ public class RecomPlotcodes {
     @Expose
     private Object exception;
 
-    public List<ListResult> getListResult() {
+    public List<LabourRecommendationsModel.ListResult> getListResult() {
         return listResult;
     }
 
-    public void setListResult(List<ListResult> listResult) {
+    public void setListResult(List<LabourRecommendationsModel.ListResult> listResult) {
         this.listResult = listResult;
     }
 
@@ -78,15 +78,21 @@ public class RecomPlotcodes {
         @SerializedName("plotcode")
         @Expose
         private String plotcode;
-        @SerializedName("fPlotcode")
-        @Expose
-        private String fPlotcode;
         @SerializedName("farmerCode")
         @Expose
         private String farmerCode;
         @SerializedName("palmArea")
         @Expose
         private Double palmArea;
+        @SerializedName("plotArea")
+        @Expose
+        private Double plotArea;
+        @SerializedName("plotAreainAcres")
+        @Expose
+        private Double plotAreainAcres;
+        @SerializedName("palmAreainAcres")
+        @Expose
+        private Double palmAreainAcres;
         @SerializedName("dateOfPlanting")
         @Expose
         private String dateOfPlanting;
@@ -117,12 +123,6 @@ public class RecomPlotcodes {
         @SerializedName("stateName")
         @Expose
         private String stateName;
-        @SerializedName("plotActive")
-        @Expose
-        private Boolean plotActive;
-        @SerializedName("farmerHistoryActive")
-        @Expose
-        private Boolean farmerHistoryActive;
         @SerializedName("statusTypeId")
         @Expose
         private Integer statusTypeId;
@@ -132,6 +132,24 @@ public class RecomPlotcodes {
         @SerializedName("age")
         @Expose
         private Integer age;
+        @SerializedName("clusterId")
+        @Expose
+        private Integer clusterId;
+        @SerializedName("clusterName")
+        @Expose
+        private String clusterName;
+        @SerializedName("surveyNumber")
+        @Expose
+        private String surveyNumber;
+        @SerializedName("farmerName")
+        @Expose
+        private String farmerName;
+        @SerializedName("contactNumber")
+        @Expose
+        private String contactNumber;
+        @SerializedName("mobileNumber")
+        @Expose
+        private Object mobileNumber;
 
         public String getPlotcode() {
             return plotcode;
@@ -139,14 +157,6 @@ public class RecomPlotcodes {
 
         public void setPlotcode(String plotcode) {
             this.plotcode = plotcode;
-        }
-
-        public String getFPlotcode() {
-            return fPlotcode;
-        }
-
-        public void setFPlotcode(String fPlotcode) {
-            this.fPlotcode = fPlotcode;
         }
 
         public String getFarmerCode() {
@@ -163,6 +173,30 @@ public class RecomPlotcodes {
 
         public void setPalmArea(Double palmArea) {
             this.palmArea = palmArea;
+        }
+
+        public Double getPlotArea() {
+            return plotArea;
+        }
+
+        public void setPlotArea(Double plotArea) {
+            this.plotArea = plotArea;
+        }
+
+        public Double getPlotAreainAcres() {
+            return plotAreainAcres;
+        }
+
+        public void setPlotAreainAcres(Double plotAreainAcres) {
+            this.plotAreainAcres = plotAreainAcres;
+        }
+
+        public Double getPalmAreainAcres() {
+            return palmAreainAcres;
+        }
+
+        public void setPalmAreainAcres(Double palmAreainAcres) {
+            this.palmAreainAcres = palmAreainAcres;
         }
 
         public String getDateOfPlanting() {
@@ -245,22 +279,6 @@ public class RecomPlotcodes {
             this.stateName = stateName;
         }
 
-        public Boolean getPlotActive() {
-            return plotActive;
-        }
-
-        public void setPlotActive(Boolean plotActive) {
-            this.plotActive = plotActive;
-        }
-
-        public Boolean getFarmerHistoryActive() {
-            return farmerHistoryActive;
-        }
-
-        public void setFarmerHistoryActive(Boolean farmerHistoryActive) {
-            this.farmerHistoryActive = farmerHistoryActive;
-        }
-
         public Integer getStatusTypeId() {
             return statusTypeId;
         }
@@ -285,5 +303,52 @@ public class RecomPlotcodes {
             this.age = age;
         }
 
-    }
-}
+        public Integer getClusterId() {
+            return clusterId;
+        }
+
+        public void setClusterId(Integer clusterId) {
+            this.clusterId = clusterId;
+        }
+
+        public String getClusterName() {
+            return clusterName;
+        }
+
+        public void setClusterName(String clusterName) {
+            this.clusterName = clusterName;
+        }
+
+        public String getSurveyNumber() {
+            return surveyNumber;
+        }
+
+        public void setSurveyNumber(String surveyNumber) {
+            this.surveyNumber = surveyNumber;
+        }
+
+        public String getFarmerName() {
+            return farmerName;
+        }
+
+        public void setFarmerName(String farmerName) {
+            this.farmerName = farmerName;
+        }
+
+        public String getContactNumber() {
+            return contactNumber;
+        }
+
+        public void setContactNumber(String contactNumber) {
+            this.contactNumber = contactNumber;
+        }
+
+        public Object getMobileNumber() {
+            return mobileNumber;
+        }
+
+        public void setMobileNumber(Object mobileNumber) {
+            this.mobileNumber = mobileNumber;
+        }
+
+    }}

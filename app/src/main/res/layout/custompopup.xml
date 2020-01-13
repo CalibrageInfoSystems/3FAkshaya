@@ -116,7 +116,7 @@ android:layout_gravity="center"
 
             android:layout_gravity="center"
             android:textSize="14dp"
-            android:text="Pruning With Intercrop Per Tree" />
+            android:text="Pruning with Cocoa Intercrop Per Tree" />
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
@@ -131,7 +131,7 @@ android:layout_gravity="center"
 
             android:layout_gravity="center"
             android:textSize="14dp"
-            android:text="Harvesting With Intercrop Per Ton" />
+            android:text="Harvesting with Cocoa Intercrop Per Ton" />
     </LinearLayout>
 
     <RelativeLayout
@@ -153,7 +153,8 @@ android:layout_gravity="center"
             style="@style/Common_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+    android:text="@string/inter_coco"
+            android:layout_margin="1dp"
             android:layout_below="@+id/recycler_term"
 
             />

@@ -22,11 +22,11 @@
 
             <TextView
                 android:id="@+id/PestLabel"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/album_title_padding"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/Pest"
-                android:paddingLeft="8dp"
+                android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/black"
@@ -48,10 +48,10 @@
 
             <TextView
                 android:id="@+id/PestChemicalsLabel"
-                android:layout_width="170dp"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/PestLabel"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/album_title_padding"
 
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -75,8 +75,8 @@
             <TextView
                 android:id="@+id/RecommendedChemicalLabel"
                 android:text="@string/RecommendedChemical"
-                android:layout_marginStart="8dp"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/album_title_padding"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/PestChemicalsLabel"
                 android:paddingLeft="8dp"
@@ -122,8 +122,8 @@
             android:textSize="@dimen/album_title" />-->
             <TextView
                 android:id="@+id/DosageLabel"
-                android:layout_marginStart="8dp"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/album_title_padding"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/dosage_only"
                 android:paddingLeft="@dimen/album_title_padding"
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/dosage_only"
                 android:layout_below="@id/RecommendedChemicalLabel"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/margin_5"
 
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
@@ -151,19 +151,19 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/UOMName"
                 android:layout_below="@id/RecommendedChemicalLabel"
-                android:paddingLeft="3dp"
+                android:paddingLeft="@dimen/_3dp"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/CommentsLabel"
-                android:layout_marginStart="8dp"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/album_title_padding"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/comments"
                 android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="2dp"
+                android:paddingRight="@dimen/_2dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/black"
                 android:layout_below="@+id/DosageLabel"
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/comments"
                 android:layout_below="@id/DosageLabel"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/margin_5"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />

@@ -82,7 +82,7 @@ public class My3FFragment extends BaseFragment {
         Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new BasicinfoFragment(), getResources().getString(R.string.basic_info));
         adapter.addFragment(new contactfragment(), getResources().getString(R.string.contact));
-        adapter.addFragment(new placesfragment(), getResources().getString(R.string.places));
+       adapter.addFragment(new placesfragment(), getResources().getString(R.string.places));
 
         viewPager.setAdapter(adapter);
 

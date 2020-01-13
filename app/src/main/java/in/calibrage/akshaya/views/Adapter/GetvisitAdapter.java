@@ -113,7 +113,8 @@ public class GetvisitAdapter extends RecyclerView.Adapter<GetvisitAdapter.ViewHo
         holder.req_date.setText(datetimevaluereq);
         holder.PlotId.setText(list_visit.get(position).getPlotCode());
         if(list_visit.get(position).getPalmArea()!=null) {
-            holder.plot_size.setText(df.format(list_visit.get(position).getPalmArea()) + " Ha");
+            holder.plot_size.setText(df.format(list_visit.get(position).getPalmArea()) + " Ha ("+ df.format(list_visit.get(position).getPalmArea()*2.5 ) + " Acre)");
+
         }
         holder.location.setText(list_visit.get(position).getPlotVillage());
         holder.statusType.setText(list_visit.get(position).getStatusType());

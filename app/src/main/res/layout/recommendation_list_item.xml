@@ -27,16 +27,19 @@
 
             <TextView
                 android:id="@+id/plotIdLabel"
-                android:layout_marginStart="10dp"
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130dp"
                 android:layout_height="wrap_content"
-                android:text="@string/plot_code"
-                android:paddingLeft="8dp"
-                android:paddingRight="@dimen/album_title_padding"
+                android:layout_below="@id/plotIdLabel"
+                android:layout_marginStart="@dimen/margin_10"
+                android:textAlignment="textStart"
+                android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
+                android:paddingRight="@dimen/album_title_padding"
+                android:text="@string/plot_code"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="@dimen/album_title" />
+                android:textSize="@dimen/album_title"
+
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/plotId"
                 android:textColor="@color/colorOrange2"
@@ -53,11 +56,11 @@
 
             <TextView
                 android:id="@+id/palmAreaLabel"
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/plotIdLabel"
                 android:layout_marginStart="@dimen/margin_10"
-
+android:textAlignment="textStart"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
@@ -79,17 +82,20 @@
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/locationLabel"
-                android:text="@string/location"
-                android:layout_marginStart="10dp"
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130dp"
                 android:layout_height="wrap_content"
+
+                android:layout_marginStart="@dimen/margin_10"
+                android:textAlignment="textStart"
                 android:layout_below="@id/palmAreaLabel"
-                android:paddingLeft="8dp"
-                android:paddingRight="@dimen/album_title_padding"
+                android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
-                android:textStyle="bold"
+                android:paddingRight="@dimen/album_title_padding"
+                android:text="@string/village"
                 android:textColor="@color/black"
-                android:textSize="@dimen/album_title" />
+                android:textSize="@dimen/album_title"
+
+                android:textStyle="bold" /> />
             <TextView
                 android:id="@+id/location"
                 android:hint="@string/location"
@@ -101,19 +107,23 @@
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
+
             <TextView
                 android:id="@+id/landmarkLabel"
-                android:layout_marginStart="10dp"
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130dp"
                 android:layout_height="wrap_content"
-                android:text="@string/land_mark"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="2dp"
-                android:paddingTop="@dimen/album_title_padding"
-                android:textColor="@color/black"
+                android:textAlignment="textStart"
                 android:layout_below="@+id/locationLabel"
-                android:textStyle="bold"
-                android:textSize="@dimen/album_title" />
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="1dp"
+                android:paddingLeft="@dimen/album_title_padding"
+                android:paddingTop="@dimen/album_title_padding"
+                android:paddingRight="2dp"
+                android:text="@string/land_mark"
+                android:textColor="@color/black"
+                android:textSize="@dimen/album_title"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/landmark"
                 android:layout_toRightOf="@+id/landmarkLabel"
@@ -128,16 +138,17 @@
 
             <TextView
                 android:id="@+id/statusLabel"
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/landmark"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="-1dp"
+android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="1dp"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="2dp"
-                android:visibility="gone"
-                android:text="@string/status"
+
+                android:text="@string/cluster_officer"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -148,8 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/status"
-                android:visibility="gone"
-                android:layout_below="@id/landmarkLabel"
+                 android:layout_below="@id/landmark"
                 android:paddingLeft="5dp"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -216,11 +226,11 @@
                 android:src="@drawable/arrow_right" />
             <TextView
                 android:id="@+id/date_plantation"
-                android:layout_width="130dp"
+                android:layout_width="@dimen/_130dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/plot_State"
                 android:layout_marginStart="@dimen/margin_10"
-
+android:textAlignment="textStart"
 
                 android:paddingTop="@dimen/album_title_padding"
              android:textStyle="bold"
@@ -228,7 +238,7 @@
                 android:text="@string/yop"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
-                android:textSize="14dp" />
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/yop"
                 android:hint="@string/location"

@@ -5,14 +5,14 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
 
-    android:background="@drawable/shape">
+    android:background="@color/white2">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/backlinear"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:background="@color/transparent"
+        android:background="@color/colorOrange_head"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -441,25 +441,25 @@
     />
 
     <RelativeLayout
+        android:layout_marginTop="@dimen/margin_10"
         android:id="@+id/relative1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/backlinear"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="@dimen/margin_10"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="2dp"
-        android:background="@color/transparent">
+        >
 
         <TextView
             android:id="@+id/plotIdLabel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/plot_code"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -470,11 +470,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toRightOf="@+id/plotIdLabel"
-            android:hint="APAB0001000001"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
 
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
 
         <TextView
@@ -483,11 +483,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/plot"
             android:layout_marginTop="@dimen/margin_5"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/plot_size"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -499,10 +499,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/palmAreaLabel"
-            android:hint="25 h"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
 
 
@@ -514,11 +514,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/palmAreaLabel"
             android:layout_marginTop="@dimen/margin_5"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/village"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -530,10 +530,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint="abc"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
 
         <TextView
@@ -543,11 +543,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/palmArea"
             android:layout_marginTop="@dimen/margin_5"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/landmark"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -559,23 +559,52 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint="abc"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
+            android:textSize="@dimen/album_title" />
+        <TextView
+            android:id="@+id/cluster_Label"
+
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/landmark"
+            android:layout_marginTop="@dimen/margin_5"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:text="@string/cluster_officer"
+            android:textColor="@color/black"
+
+            android:textSize="@dimen/album_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cluster_officer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/landmark"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_toRightOf="@+id/textView55"
+            android:hint=""
+
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
         <TextView
             android:id="@+id/status_Label"
 
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/landmarkLabel"
+            android:layout_below="@id/cluster_Label"
             android:layout_marginTop="@dimen/margin_5"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/yop"
 
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -583,7 +612,7 @@
             android:id="@+id/yop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/landmarkLabel"
+            android:layout_below="@id/cluster_Label"
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
@@ -591,9 +620,8 @@
             android:maxLength="4"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
-
     </RelativeLayout>
 
 </RelativeLayout>

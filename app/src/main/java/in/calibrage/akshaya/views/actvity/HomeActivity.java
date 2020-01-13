@@ -187,7 +187,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void caredial() {
 
-        Uri u = Uri.parse("tel:" + "123456789");
+        Uri u = Uri.parse("tel:" + " 040 23324733");
         Intent i = new Intent(Intent.ACTION_DIAL, u);
         try {
             startActivity(i);

@@ -17,16 +17,17 @@ import java.util.List;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.CollectionResponceModel;
+import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.views.actvity.CropMaintanceVisitActivity;
 
 public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.ViewHolder> {
 
     public Context mContext;
-    private List<RecomPlotcodes.ListResult> plot_Set;
+    private List<LabourRecommendationsModel.ListResult> plot_Set;
+    DecimalFormat dec = new DecimalFormat("####0.00");
 
-
-    public RecommendationAdapter(Context context, List<RecomPlotcodes.ListResult> plot_Set) {
+    public RecommendationAdapter(Context context, List<LabourRecommendationsModel.ListResult> plot_Set) {
 
         this.mContext = context;
         this.plot_Set = plot_Set;
@@ -44,16 +45,27 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+
+        final double selected_plot =plot_Set.get(position).getPalmArea();
+        final double plot_area = plot_Set.get(position).getPalmAreainAcres();
+
+        ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
+        holder.textViewpalmArea.setText(dec.format(plot_Set.get(position).getPalmArea())+"Ha ("+  dec.format(plot_Set.get(position).getPalmAreainAcres() ) + " Acre)");
+        ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
+        ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
+        ((ViewHolder) holder).yop.setText(plot_Set.get(position).getDateOfPlanting() );
+        holder.cluster_name.setText(plot_Set.get(position).getClusterName());
         ((ViewHolder) holder).card_view.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CropMaintanceVisitActivity.class);
                 intent.putExtra("plotid", holder.textViewplotId.getText());
-                intent.putExtra("plotAge", holder.textViewpalmArea.getText());
+                intent.putExtra("plotAge", selected_plot);
                 intent.putExtra("plotVillage", holder.textViewLocation.getText());
                 intent.putExtra("landMark", holder.textViewstatus.getText());
-
+                intent.putExtra("plotarea",plot_area);
+                intent.putExtra("cluster_name",holder.cluster_name.getText());
                 intent.putExtra("date_of_plandation",   plot_Set.get(position).getDateOfPlanting());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -63,14 +75,6 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             }
 
         });
-        DecimalFormat df = new DecimalFormat("#,###,##0.00");
-
-        ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
-        ((ViewHolder) holder).textViewpalmArea.setText(df.format(plot_Set.get(position).getPalmArea() )+ " " + "Ha");
-        ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
-        ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
-        ((ViewHolder) holder).yop.setText(plot_Set.get(position).getDateOfPlanting() );
-
         if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
         } else {
@@ -95,7 +99,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation;
-        public TextView textViewstatus,yop;
+        public TextView textViewstatus,yop,cluster_name;
         public CardView card_view;
 
         public ViewHolder(View itemView) {
@@ -107,6 +111,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             this.card_view = (CardView) itemView.findViewById(R.id.card_view);
             this.yop=(TextView)itemView.findViewById(R.id.yop);
 
+            this.cluster_name=(TextView)itemView.findViewById(R.id.status);
 
         }
 

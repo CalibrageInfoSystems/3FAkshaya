@@ -114,7 +114,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
             e.printStackTrace();
         }
         ((ViewHolder) holder).txtDate.setText(" : "+datetimevaluereq);
-        ((ViewHolder) holder).txtWeight.setText(" : " + collection_Set.get(position).getQuantity() + "" + "0 Kgs");
+        ((ViewHolder) holder).txtWeight.setText(" : " + collection_Set.get(position).getQuantity() + "" + "0 Kg");
         ((ViewHolder) holder).txtCc.setText(" : "+collection_Set.get(position).getWhsName());
         ((ViewHolder) holder).txtStatus.setText(collection_Set.get(position).getUApaystat().toString().replace("Payment", ""));
         if (collection_Set.get(position).getUApaystat().toString().endsWith("Paid"))
@@ -143,6 +143,18 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
             }
 
         });
+        holder.card_view.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                collection_id = holder.txtCollectionId.getText().toString();
+                pos = position;
+                showConformationDialog(pos);
+
+
+            }
+
+        });
         AnimationUtil.animate(holder, true);
     }
 
@@ -151,7 +163,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
 
         final Dialog dialog = new Dialog(mContext, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
+
         dialog.setContentView(R.layout.dialog_info);
        // grossWeight,tareWeight,totalBunches,acceptedBunches,rejectedBunches,operatorname;
         driverName=dialog.findViewById(R.id.driverName);
@@ -227,9 +239,9 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
 //                            acceptedBunches.setText(getCollectionInfoById.getResult().getAcceptedBunches()+"");
 //                            rejectedBunches.setText(getCollectionInfoById.getResult().getRejectedBunches()+"");
 
-                            grossWeight.setText(getCollectionInfoById.getResult().getGrossWeight()+"0 Kgs");
-                            tareWeight.setText(getCollectionInfoById.getResult().getTareWeight()+"0 Kgs");
-                            net_weight.setText(getCollectionInfoById.getResult().getNetWeight()+"0 Kgs");
+                            grossWeight.setText(getCollectionInfoById.getResult().getGrossWeight()+"0 Kg");
+                            tareWeight.setText(getCollectionInfoById.getResult().getTareWeight()+"0 Kg");
+                            net_weight.setText(getCollectionInfoById.getResult().getNetWeight()+"0 Kg");
                             try {
                                 Date oneWayTripDate = input.parse(getCollectionInfoById.getResult().getReceiptGeneratedDate());
 

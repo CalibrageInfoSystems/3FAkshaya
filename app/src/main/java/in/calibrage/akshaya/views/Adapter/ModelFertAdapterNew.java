@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -59,6 +60,9 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     Button but;
     boolean click = true;
     LinearLayout des_linear;
+
+
+
     //List of superHeroes
     List<ModelFert> list_products = new ArrayList<>();
     LayoutInflater mInflater;
@@ -143,7 +147,11 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
             holder.addMeal.setEnabled(true);
 
         }
-        if(superHero.getmQuantity()== superHero.getAvail_quantity()){
+
+        if (superHero.getAvail_quantity()== 0){
+            holder.card_view.setVisibility(View.GONE);
+        }
+       else     if(superHero.getmQuantity()== superHero.getAvail_quantity()){
             holder.quantityText.setText("" + superHero.getAvail_quantity());
             holder.addMeal.setEnabled(false);
             showDialog(mContext, "Available only " + superHero.getAvail_quantity() + " "+superHero.getName() + "  Products in this Godown ");
@@ -155,6 +163,24 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 //            Toast.makeText(context, "Have max "+superHero.getAvail_quantity()+"only", Toast.LENGTH_LONG).show();
 //        }
 
+        holder.card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Description = superHero.getDescription();
+                image_url=superHero.getImageUrl();
+                price =superHero.getPrice();
+                ProductName = superHero.getName();
+                discount_price=superHero.getDiscountedPrice();
+                product_size=superHero.getSize()+"";
+                Product_uom =superHero.getUomType();
+                gstprice=superHero.getgst();
+                final_amount =superHero.getmAmount();
+
+                Available_quantity =superHero.getAvail_quantity();
+                Log.e("Description==160",  discount_price +"   price"+price +"");
+                displayPopupWindow(view);
+            }
+        });
         holder.disc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -307,7 +333,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
     }
     public void showDialog(Context context, String msg) {
         final Dialog dialog = new Dialog(context, R.style.DialogSlideAnim);
-      //  dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog);
         final ImageView img = dialog.findViewById(R.id.img_cross);
@@ -466,6 +492,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
                 actual_amt,
 
         remove_text;
+        CardView  card_view;
         public ImageView addMeal, subtractMeal;
         public ImageView thumbnail;
         public TextView disc, size;
@@ -486,6 +513,8 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
                     R.id.desc);
             size = (TextView) itemView.findViewById(
                     R.id.size);
+            card_view =(CardView) itemView.findViewById(
+                    R.id.card_view);
         }
     }
 

@@ -250,6 +250,31 @@ android:maxLength="6"
                     android:layout_marginTop="5dp"
                   />
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/Common_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.3"
+                    android:text="@string/cluster_officer"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/cluster_offcer"
+                    android:layout_weight="0.7"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    />
+            </LinearLayout>
 
 
         </LinearLayout>

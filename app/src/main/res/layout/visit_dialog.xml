@@ -34,6 +34,8 @@
             android:id="@+id/summary_text"
             android:textColor="@color/colorOrange"
             android:textAlignment="center"
+            android:fontFamily="@font/hind_semibold"
+
             style="@style/Common_textView"
             android:textSize="18dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />

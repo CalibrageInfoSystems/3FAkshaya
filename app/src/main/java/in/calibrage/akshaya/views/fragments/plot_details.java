@@ -117,10 +117,10 @@ public class plot_details extends BaseFragment {
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
         String Farmer_code = pref.getString("farmerid", "");
-        mSubscription = service.getplotinfo(APIConstantURL.GetPlotDetailsByFarmerCode + Farmer_code)
+        mSubscription = service.getrecommdetails(APIConstantURL.GetActivePlotsByFarmerCode + Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<res_plotdetails>() {
+                .subscribe(new Subscriber<LabourRecommendationsModel>() {
                     @Override
                     public void onCompleted() {
                         mdilogue.dismiss();
@@ -144,7 +144,8 @@ public class plot_details extends BaseFragment {
                     }
 
                     @Override
-                    public void onNext(res_plotdetails res_plotdetails) {
+                    public void onNext(LabourRecommendationsModel res_plotdetails) {
+
 
 
                         if (res_plotdetails.getListResult() != null) {

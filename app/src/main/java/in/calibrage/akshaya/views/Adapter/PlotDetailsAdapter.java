@@ -24,12 +24,12 @@ import in.calibrage.akshaya.views.actvity.LabourRecommendationsActivity;
 
 public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.ViewHolder> {
 
-    List<res_plotdetails.ListResult> recomm_Set;
+    List<LabourRecommendationsModel.ListResult> recomm_Set;
     public Context mContext;
     DecimalFormat df = new DecimalFormat("####0.00");
 
 
-    public PlotDetailsAdapter(List<res_plotdetails.ListResult> recomm_Set, Context context) {
+    public PlotDetailsAdapter(List<LabourRecommendationsModel.ListResult> recomm_Set, Context context) {
         this.recomm_Set = recomm_Set;
         this.mContext = context;
     }
@@ -48,16 +48,17 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
 
 
         holder.textViewplotId.setText(": " + recomm_Set.get(position).getSurveyNumber());
-        holder.textViewpalmArea.setText(": " + df.format(recomm_Set.get(position).getTotalPalmArea()) + " " + "Ha");
-        holder.textViewLocation.setText(": " + recomm_Set.get(position).getAddress());
+        holder.textViewpalmArea.setText(": " + df.format(recomm_Set.get(position).getPalmArea()) + " " + "Ha ("+ df.format(recomm_Set.get(position).getPalmArea()*2.5) + " Acre)");
+        holder.textViewLocation.setText(": " + recomm_Set.get(position).getVillageName());
 
-        holder.plotLandmark.setText(": " + recomm_Set.get(position).getLandmark());
-        holder.plot_Mandal.setText(": " + recomm_Set.get(position).getMandal());
-        holder.plotvillage.setText(": " + recomm_Set.get(position).getVillage());
-        holder.plot_District.setText(": " + recomm_Set.get(position).getDistrict());
+        holder.plotLandmark.setText(": " + recomm_Set.get(position).getLandMark());
+        holder.plot_Mandal.setText(": " + recomm_Set.get(position).getMandalName());
+        holder.plotvillage.setText(": " + recomm_Set.get(position).getVillageName());
+        holder.plot_District.setText(": " + recomm_Set.get(position).getDistrictName());
 
-        holder.date_plantation.setText(": " + recomm_Set.get(position).getDateofPlanting());
-        holder.plot_code.setText(": " + recomm_Set.get(position).getCode());
+        holder.date_plantation.setText(": " + recomm_Set.get(position).getDateOfPlanting());
+        holder.plot_code.setText(": " + recomm_Set.get(position).getPlotcode());
+        holder.cluster_offcer.setText(": " + recomm_Set.get(position).getClusterName());
 
 
         if (position % 2 == 0) {
@@ -82,7 +83,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
         public TextView textViewplotId;
         public TextView textViewpalmArea;
         public TextView textViewLocation, plotvillage;
-        public TextView plot_code, date_plantation;
+        public TextView plot_code, date_plantation,cluster_offcer;
         public CardView card_view;
         public TextView plotLandmark, plot_Mandal, plot_State, plot_District;
 
@@ -91,6 +92,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
             this.textViewplotId = (TextView) itemView.findViewById(R.id.surveynumber);
             this.textViewpalmArea = (TextView) itemView.findViewById(R.id.plothectrage);
             this.textViewLocation = (TextView) itemView.findViewById(R.id.plotaddress);
+            this.cluster_offcer = (TextView) itemView.findViewById(R.id.cluster_offcer);
 
 
             this.plotLandmark = (TextView) itemView.findViewById(R.id.plotLandmark);
@@ -100,6 +102,7 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
             this.date_plantation = (TextView) itemView.findViewById(R.id.yop);
             this.plot_code = (TextView) itemView.findViewById(R.id.plot_code);
             this.card_view = (CardView) itemView.findViewById(R.id.card_view);
+
 
         }
 

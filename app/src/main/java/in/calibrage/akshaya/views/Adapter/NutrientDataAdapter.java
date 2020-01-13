@@ -55,15 +55,16 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
             holder.Dosage.setVisibility(View.VISIBLE);
             holder.dosage_label.setVisibility(View.VISIBLE);
             holder.UOMName.setVisibility(View.VISIBLE);
-        }
-        if (dataa.getUOMName().contains("null")) {
+
+            if (dataa.getUOMName().contains("null")) {
 
 
-            holder.UOMName.setVisibility(View.GONE);
+                holder.UOMName.setVisibility(View.GONE);
 
-        } else {
+            } else {
 
-            holder.UOMName.setVisibility(View.VISIBLE);
+                holder.UOMName.setVisibility(View.VISIBLE);
+            }
         }
         if (dataa.getComments().contains("null")) {
             //   Log.e("bbbbb",superHero.getmAmount());

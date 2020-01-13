@@ -62,7 +62,7 @@
             android:layout_marginLeft="@dimen/_8dp"
             android:layout_marginRight="@dimen/_8dp"
             android:layout_marginBottom="80dp"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:gravity="center"
             android:id="@+id/no_data"
 android:visibility="gone"

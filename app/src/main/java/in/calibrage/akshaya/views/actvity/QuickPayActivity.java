@@ -28,6 +28,7 @@ import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.QuickPayModel;
+import in.calibrage.akshaya.models.RaiseRequest;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -110,27 +111,8 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CanRaiseRequest();
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Intent intent = new Intent(getApplicationContext(), Quickpay_SummaryActivity.class);
-                        intent.putExtra("collection_ids", (Serializable) ids_list);
-
-                        intent.putExtra("collection_dates", (Serializable) dates_list);
-                        intent.putExtra("collection_weight", (Serializable) weight_list);
-                        intent.putExtra("whsCode",w_Code);
-                        startActivity(intent);
-
-                        Log.e("ids_list===", String.valueOf(ids_list));
-                        Log.e("dates_list===", String.valueOf(dates_list));
-                        Log.e("weight_list===", String.valueOf(weight_list));
-                        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-
-
-                    }
-                }, SPLASH_DISPLAY_DURATION);
 
                 //  i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -161,6 +143,70 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         }
 
 
+    }
+
+    private void CanRaiseRequest() {
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.getRaiseRequest(APIConstantURL.CanRaiseRequest + Farmer_code + "/" + null + "/" + 13)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<RaiseRequest>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(RaiseRequest raiseRequest) {
+
+                        if (raiseRequest.getIsSuccess()){
+                            Log.e("test=== ",raiseRequest.getIsSuccess()+"");
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    Intent intent = new Intent(getApplicationContext(), Quickpay_SummaryActivity.class);
+                                    intent.putExtra("collection_ids", (Serializable) ids_list);
+
+                                    intent.putExtra("collection_dates", (Serializable) dates_list);
+                                    intent.putExtra("collection_weight", (Serializable) weight_list);
+                                    intent.putExtra("whsCode",w_Code);
+                                    startActivity(intent);
+
+                                    Log.e("ids_list===", String.valueOf(ids_list));
+                                    Log.e("dates_list===", String.valueOf(dates_list));
+                                    Log.e("weight_list===", String.valueOf(weight_list));
+                                    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+
+
+                                }
+                            }, SPLASH_DISPLAY_DURATION);
+
+                        }
+                        else {
+                           // edittext.getText().clear();Quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.
+                            showDialog(QuickPayActivity.this,  getResources().getString(R.string.quick_reqc));
+
+                        }
+                    }
+                });
     }
 
     private void getQuckPay() {

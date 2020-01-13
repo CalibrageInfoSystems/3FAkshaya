@@ -47,8 +47,8 @@ public class Godown_adapter extends RecyclerView.Adapter<Godown_adapter.viewHold
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
         holder.txt_name.setText(""+godownlistResults.get(position).getGodown());
-        holder.txt_address.setText(": "+godownlistResults.get(position).getAddress());
-        holder.txt_Location.setText(": "+godownlistResults.get(position).getLocation());
+        holder.txt_address.setText(""+godownlistResults.get(position).getAddress());
+        holder.txt_Location.setText(""+godownlistResults.get(position).getLocation());
         holder.mapview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

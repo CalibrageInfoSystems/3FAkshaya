@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape"
+ android:background="@drawable/shapee"
     tools:context="in.calibrage.akshaya.views.actvity.CollectionsActivity">
 
     <LinearLayout
@@ -141,7 +141,7 @@ android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:gravity="center"
             android:text="@string/no_collections_found"
             android:textColor="@color/colorOrange"
@@ -339,8 +339,8 @@ android:background="@drawable/collect_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin_one"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="10sp"
+            android:layout_marginStart="@dimen/_6dp"
+            android:layout_marginTop="@dimen/_10sp"
             android:orientation="horizontal">
 
 
@@ -349,10 +349,10 @@ android:background="@drawable/collect_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
-
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/collectionsCount"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
 
@@ -363,8 +363,9 @@ android:background="@drawable/collect_bg"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -372,12 +373,13 @@ android:background="@drawable/collect_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dot2"
                 android:hint=""
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="@dimen/_14dp"
                  />
 
         </RelativeLayout>
@@ -400,9 +402,9 @@ android:background="@drawable/collect_bg"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="1dp"
                 android:text="@string/collectionsWeight"
-
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -412,8 +414,9 @@ android:background="@drawable/collect_bg"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -425,9 +428,9 @@ android:background="@drawable/collect_bg"
                 android:layout_toRightOf="@+id/dot3"
                 android:hint="31213254698"
                 android:text=""
-
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="@dimen/_14dp"
             />
 
         </RelativeLayout>
@@ -449,8 +452,8 @@ android:background="@drawable/collect_bg"
                 android:layout_marginTop="1sp"
                 android:text="@string/unPaidCollectionsWeight"
                 android:textColor="@color/white"
-
-                android:textSize="14dp"
+                android:fontFamily="@font/hind_semibold"
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -461,8 +464,8 @@ android:background="@drawable/collect_bg"
                 android:layout_marginTop="1sp"
                 android:text=":"
                 android:textColor="@color/white"
-
-                android:textSize="14dp"
+                android:fontFamily="@font/hind_semibold"
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -473,9 +476,10 @@ android:background="@drawable/collect_bg"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dot4"
                 android:hint=""
+                android:fontFamily="@font/hind_semibold"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="@dimen/_14dp"
              />
 
         </RelativeLayout>
@@ -498,8 +502,8 @@ android:background="@drawable/collect_bg"
                 android:layout_marginTop="1sp"
                 android:text="@string/paidCollectionsWeight"
                 android:textColor="@color/white"
-
-                android:textSize="14dp"
+                android:fontFamily="@font/hind_semibold"
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -509,8 +513,9 @@ android:background="@drawable/collect_bg"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="1sp"
                 android:text=":"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
-
+                android:textSize="@dimen/_14dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -521,22 +526,28 @@ android:background="@drawable/collect_bg"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dot5"
                 android:hint=""
+                android:fontFamily="@font/hind_semibold"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="14dp"
+                android:textSize="@dimen/_14dp"
               />
 
         </RelativeLayout>
 
     </RelativeLayout>
 
-
-    <android.support.v7.widget.RecyclerView
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/top_linear"
+    android:background="@color/white"
+>   <android.support.v7.widget.RecyclerView
 
         android:id="@+id/collection_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/top_linear"
+
         android:layout_margin="8dp"
         android:layout_marginTop="@dimen/margin_5"
         android:clipToPadding="false"
@@ -547,5 +558,5 @@ android:background="@drawable/collect_bg"
         android:visibility="gone"
 
         />
-
+</LinearLayout>
 </RelativeLayout>

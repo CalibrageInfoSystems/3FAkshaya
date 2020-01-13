@@ -123,7 +123,7 @@ android:visibility="gone"
                 android:ems="7"
 
                 android:focusable="false"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
 
 
@@ -145,7 +145,7 @@ android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:ems="7"
                 android:focusable="false"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
         <Button
@@ -177,18 +177,21 @@ android:visibility="gone"
         app:tabSelectedTextColor="@color/colorOrange"
         app:tabTextAppearance="@style/TabLayoutStyle"
         app:tabTextColor="@color/white"
+
       >
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabpayments"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+       style="@style/Common_textView"
             android:text="@string/payments" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tabtrans"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Common_textView"
             android:text="@string/trans" />
 
 

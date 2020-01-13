@@ -44,7 +44,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
         ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getName());
         if(learning_Set.get(position).getId() == 1 ){
             Picasso.with(mContext )
-                    .load(R.drawable.ic_ferti)
+                    .load(R.drawable.fertilizers)
                     .error(R.drawable.ic_applogo )
                     .placeholder( R.drawable.progress_animation)
                     .into(holder.img);
@@ -52,7 +52,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
         }else if(learning_Set.get(position).getId() == 5 )
         {
             Picasso.with(mContext )
-                    .load(R.drawable.harvest)
+                    .load(R.drawable.harvesting)
                     .error(R.drawable.ic_applogo )
                     .placeholder( R.drawable.progress_animation)
                     .into(holder.img);

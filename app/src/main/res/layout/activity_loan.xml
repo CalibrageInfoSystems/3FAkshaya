@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape"
+
     tools:context="in.calibrage.akshaya.views.actvity.LoanActivity">
     <LinearLayout
 
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/backlinear"
-        android:background="@color/transparent">
+        android:background="@color/colorOrange_head">
 
         <RelativeLayout
             android:layout_width="fill_parent"

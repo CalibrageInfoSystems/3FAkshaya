@@ -419,10 +419,10 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
                             relativeLayoutCount.setVisibility(View.VISIBLE);
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
-                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
-                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kgs");
+                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kg");
+                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kg");
                             collectionsCount.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
-                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kgs");
+                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kg");
                         } else {
                             Log.e("nodada====", "nodata===custom2");
                             noRecords.setVisibility(View.VISIBLE);
@@ -492,10 +492,10 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
 
-                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
-                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kgs");
+                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kg");
+                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kg");
                             collectionsCount.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
-                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kgs");
+                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kg");
 
 
                         } else {
@@ -570,10 +570,10 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
                             // collectionsWeight,collectionsCount,paidCollectionsWeight,unPaidCollectionsWeight
 
-                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kgs");
-                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kgs");
+                            unPaidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getUnPaidCollectionsWeight()) + "" + "0 Kg");
+                            collectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsWeight()) + "" + "0 Kg");
                             collectionsCount.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getCollectionsCount()));
-                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kgs");
+                            paidCollectionsWeight.setText(String.valueOf(collectionResponcemodel.getResult().getCollectionCount().get(0).getPaidCollectionsWeight()) + "" + "0 Kg");
 
 
                         } else {

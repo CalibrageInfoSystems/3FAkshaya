@@ -38,6 +38,7 @@ android:background="@color/transparent"
                 android:paddingTop="@dimen/album_title_padding"
                 android:layout_weight="0.85"
                 android:paddingRight="@dimen/album_title_padding"
+                android:textSize="@dimen/album_title"
                 android:singleLine="true"
                 android:text="title" />
 
@@ -71,7 +72,7 @@ android:background="@color/transparent"
 
                     android:text="price"
                     android:textColor="@color/black"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/margin_12" />
 
                 <TextView
                     android:id="@+id/actual_amt"
@@ -85,7 +86,7 @@ android:background="@color/transparent"
 
                     android:text=""
                     android:textColor="@color/red"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/margin_12" />
                 <TextView
                     android:id="@+id/size"
                     android:layout_width="0dp"
@@ -101,7 +102,7 @@ android:background="@color/transparent"
 
                     android:text=""
                     android:textColor="@color/colorOrange"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/margin_12" />
             </LinearLayout>
             <ImageView
                 android:id="@+id/thumbnail"
@@ -140,36 +141,36 @@ android:background="@color/transparent"
                 android:layout_marginBottom="4dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingTop="4dp">
+               >
 
                 <TextView
                     style="@style/Common_textView"
                     android:layout_width="wrap_content"
-                    android:layout_height="18dp"
+                    android:layout_height="@dimen/_18dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="5dp"
-                    android:text="Qty: "
+                    android:layout_margin="5dp"
+                    android:text="Qty : "
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/album_title"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/minus_meal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:background="@drawable/button_circle_outline"
-                    android:padding="2dp"
+                    android:padding="@dimen/_2dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_remove_red" />
 
                 <TextView
                     android:id="@+id/quantity"
-                    android:layout_width="24dp"
-                    android:layout_height="18dp"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_18dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="@dimen/_8dp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginRight="@dimen/_8dp"
                     android:text="1"
                     android:textAlignment="center"
                     android:textSize="14sp"
@@ -177,11 +178,11 @@ android:background="@color/transparent"
 
                 <ImageView
                     android:id="@+id/plus_meal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/_30dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_marginEnd="0dp"
                     android:background="@drawable/button_circle_outline"
-                    android:padding="2dp"
+                    android:padding="@dimen/_2dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_add_green" />
                 <!--<TextView-->

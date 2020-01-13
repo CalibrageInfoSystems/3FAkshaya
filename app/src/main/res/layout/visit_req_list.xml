@@ -25,6 +25,8 @@
                 android:textColor="@color/black"
                 android:text="@string/requestCodeLabel"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textStyle="bold" />
 
 
@@ -36,6 +38,8 @@
                 android:layout_marginLeft="150dp"
                 android:textColor="@color/colorOrange"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/plotIdLabel"
@@ -47,6 +51,8 @@
                 android:layout_below="@id/requestCodeLabel"
                 android:text="@string/plot_code"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -57,6 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/plotIdLabel"
                 android:layout_marginLeft="150dp"
+                android:fontFamily="@font/hind_semibold"
+
 
                 android:text="Email"
                 android:textSize="@dimen/album_title" />
@@ -71,6 +79,8 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
             <TextView
@@ -80,6 +90,8 @@
                 android:text="Email"
                 android:layout_below="@id/plotIdLabel"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="150dp"
                 android:layout_marginRight="10dp"
@@ -90,6 +102,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reqDateLabel"
                 android:text="@string/village"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
@@ -102,6 +116,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/village_name"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_below="@id/dateNTimeLabel"
                 android:textSize="@dimen/album_title"
                 android:layout_marginTop="10dp"
@@ -116,6 +132,8 @@
                 android:id="@+id/statusLabel"
                 android:text="@string/req_date"
                 android:layout_below="@id/reqDateLabel"
+                android:fontFamily="@font/hind_semibold"
+
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold"
@@ -127,6 +145,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reqCreatedDate"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_below="@id/reqDateLabel"
                 android:textSize="@dimen/album_title"
                 android:layout_marginTop="10dp"
@@ -139,6 +159,8 @@
                 android:id="@+id/req_date_text"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_height="wrap_content"
                 android:text="@string/status"
                 android:layout_below="@id/statusLabel"
@@ -153,6 +175,8 @@
                 android:id="@+id/statusType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_alignBaseline="@id/req_date_text"
                 android:layout_marginLeft="150dp"
                 android:text="Email"
@@ -170,6 +194,8 @@
                 android:visibility="gone"
                 android:background="@drawable/button_bg"
                 android:gravity="center"
+                android:fontFamily="@font/hind_semibold"
+
                 android:text="@string/cancel"
                 android:textColor="@color/Red" />
 
@@ -186,8 +212,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:fontFamily="@font/hind_semibold"
+
                     android:padding="5dp"
                     style="@style/Common_textView"
+
                     android:textSize="14sp"
                     android:textColor="@color/colorOrange"
                     android:text="@string/complete_details">

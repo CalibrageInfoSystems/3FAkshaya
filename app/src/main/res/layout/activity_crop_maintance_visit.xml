@@ -4,47 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape">
+    android:background="@color/white2">
 
 
-        <RelativeLayout
-            android:id="@+id/backlinear"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_left"
-                android:layout_marginTop="18dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/back"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="18dp"
-                android:text="@string/recommendationss"
-                android:layout_alignLeft="@+id/back"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginStart="20dp"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
+    <RelativeLayout
+        android:id="@+id/backlinear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange_head"
+        android:orientation="horizontal" >
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_left"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/recommendationss"
+            android:layout_alignLeft="@+id/back"
+            android:fontFamily="@font/hind_semibold"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16" />
 
 
-            <ImageView
-                android:id="@+id/home_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/home"
-                android:textColor="#ff0000ff"
-                android:layout_marginTop="3dp"
-                />
+        <ImageView
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/home"
+            android:textColor="#ff0000ff"
+            android:layout_marginTop="3dp"
+            />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 
     <RelativeLayout
@@ -56,17 +57,17 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="2dp"
-        android:background="@color/transparent">
+        >
 
         <TextView
             android:id="@+id/plotIdLabel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/plot_code"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -77,11 +78,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toRightOf="@+id/plotIdLabel"
-            android:hint="APAB0001000001"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
 
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
 
         <TextView
@@ -90,11 +91,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/plot"
             android:layout_marginTop="@dimen/margin_5"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/plot_size"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -106,10 +107,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/palmAreaLabel"
-            android:hint="25 h"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
 
 
@@ -121,11 +122,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/palmAreaLabel"
             android:layout_marginTop="@dimen/margin_5"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/village"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -137,10 +138,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint="abc"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
 
         <TextView
@@ -150,11 +151,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/palmArea"
             android:layout_marginTop="@dimen/margin_5"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/landmark"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -166,13 +167,13 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint="abc"
+            android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
         <TextView
-            android:id="@+id/status_Label"
+            android:id="@+id/cluster_Label"
 
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -180,9 +181,38 @@
             android:layout_marginTop="@dimen/margin_5"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
+            android:text="@string/cluster_officer"
+            android:textColor="@color/black"
+
+            android:textSize="@dimen/album_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cluster_officer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/landmark"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_toRightOf="@+id/textView55"
+            android:hint=""
+
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
+            android:textColor="@color/black"
+            android:textSize="@dimen/album_title" />
+        <TextView
+            android:id="@+id/status_Label"
+
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cluster_Label"
+            android:layout_marginTop="@dimen/margin_5"
+            android:paddingLeft="@dimen/album_title_padding"
+            android:paddingRight="@dimen/album_title_padding"
             android:text="@string/yop"
 
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
 
@@ -190,7 +220,7 @@
             android:id="@+id/yop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/landmarkLabel"
+            android:layout_below="@id/cluster_Label"
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
@@ -198,7 +228,7 @@
             android:maxLength="4"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
-            android:textColor="@color/white_new"
+            android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
     </RelativeLayout>
 
@@ -245,10 +275,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1sp"
-
+                        android:fontFamily="@font/hind_semibold"
                         android:text="@string/treesAppearance"
                         android:textColor="@color/white"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
 
@@ -259,8 +289,9 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="1sp"
                         android:text=":"
+                        android:fontFamily="@font/hind_semibold"
                         android:textColor="@color/white"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -269,11 +300,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10sp"
                         android:layout_marginTop="1sp"
+                        android:fontFamily="@font/hind_semibold"
                         android:layout_toRightOf="@+id/dot2"
                         android:hint=""
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp"
                         />
 
                 </RelativeLayout>
@@ -296,9 +328,9 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="1dp"
                         android:text="@string/plamsCount"
-
+                        android:fontFamily="@font/hind_semibold"
                         android:textColor="@color/white"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -308,8 +340,9 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="1sp"
                         android:text=":"
+                        android:fontFamily="@font/hind_semibold"
                         android:textColor="@color/white"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -321,9 +354,9 @@
                         android:layout_toRightOf="@+id/dot3"
                         android:hint=""
                         android:text=""
-
+                        android:fontFamily="@font/hind_semibold"
                         android:textColor="@color/white"
-                        android:textSize="14dp"
+                        android:textSize="@dimen/_14dp"
                         />
 
                 </RelativeLayout>
@@ -345,8 +378,8 @@
                         android:layout_marginTop="1sp"
                         android:text="@string/Frequency_harvest"
                         android:textColor="@color/white"
-
-                        android:textSize="14dp"
+                        android:fontFamily="@font/hind_semibold"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -357,8 +390,8 @@
                         android:layout_marginTop="1sp"
                         android:text=":"
                         android:textColor="@color/white"
-
-                        android:textSize="14dp"
+                        android:fontFamily="@font/hind_semibold"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -370,8 +403,9 @@
                         android:layout_toRightOf="@+id/dot4"
                         android:hint=""
                         android:text=""
+                        android:fontFamily="@font/hind_semibold"
                         android:textColor="@color/white"
-                        android:textSize="14dp" />
+                        android:textSize="@dimen/_14dp" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -391,8 +425,8 @@
                         android:layout_marginTop="1sp"
                         android:text="@string/last_date"
                         android:textColor="@color/white"
-
-                        android:textSize="14dp"
+                        android:fontFamily="@font/hind_semibold"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -403,8 +437,8 @@
                         android:layout_marginTop="1sp"
                         android:text=":"
                         android:textColor="@color/white"
-
-                        android:textSize="14dp"
+                        android:fontFamily="@font/hind_semibold"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -415,10 +449,11 @@
                         android:layout_marginTop="1sp"
                         android:layout_toRightOf="@+id/dotv"
                         android:hint=""
+                        android:fontFamily="@font/hind_semibold"
                         android:maxLength="10"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="14dp" />
+                        android:textSize="@dimen/_14dp" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -442,7 +477,8 @@
                         android:layout_marginTop="1sp"
                         android:text="@string/Frequency"
                         android:textColor="@color/white"
-
+android:textSize="@dimen/_14dp"
+                        android:fontFamily="@font/hind_semibold"
                         android:textStyle="bold" />
 
 
@@ -466,8 +502,8 @@
                         android:layout_marginTop="1sp"
                         android:text="@string/static_data"
                         android:textColor="@color/white"
-
-                        android:textSize="14dp"
+                        android:fontFamily="@font/hind_semibold"
+                        android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
 
 
@@ -487,7 +523,7 @@
                 android:layout_marginLeft="@dimen/_8dp"
                 android:layout_marginRight="@dimen/_8dp"
                 android:background="@drawable/collect_bg"
-               android:visibility="gone"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
@@ -501,7 +537,7 @@
                     android:gravity="center"
                     android:text="@string/pest"
                     android:textColor="@color/white_new"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/_16"
                     />
 
 
@@ -538,7 +574,7 @@
                     android:text="@string/deases"
                     android:textColor="@color/white_new"
 
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_16" />
 
             </RelativeLayout>
 
@@ -574,7 +610,7 @@
                     android:text="@string/nut_repo"
                     android:textColor="@color/white_new"
 
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_16" />
 
             </RelativeLayout>
 
@@ -609,7 +645,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="@string/fert_rec"
                     android:textColor="@color/white_new"
-                    android:textSize="16dp" /> />
+                    android:textSize="@dimen/_16" /> />
 
             </RelativeLayout>
 
@@ -630,7 +666,7 @@
                 android:layout_marginLeft="@dimen/_8dp"
                 android:layout_marginRight="@dimen/_8dp"
                 android:background="@drawable/collect_bg"
-android:visibility="gone"
+                android:visibility="gone"
                 android:padding="2dp">
 
 
@@ -644,7 +680,7 @@ android:visibility="gone"
                     android:gravity="center"
                     android:text="@string/irrigation"
                     android:textColor="@color/white_new"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_16" />
                 />
 
             </RelativeLayout>
@@ -681,7 +717,7 @@ android:visibility="gone"
                     android:gravity="center"
                     android:text="@string/inter_crop"
                     android:textColor="@color/white_new"
-                    android:textSize="16dp" />/>
+                    android:textSize="@dimen/_16" />/>
 
             </RelativeLayout>
 
@@ -692,7 +728,7 @@ android:visibility="gone"
                 android:visibility="gone"
                 android:layout_below="@+id/pagerHomeLay"
                 android:layout_marginBottom="3dp"
-              />
+                />
 
 
             <RelativeLayout
@@ -715,8 +751,8 @@ android:visibility="gone"
                     android:gravity="center"
                     android:text="@string/fertilizer_crop"
                     android:textColor="@color/white_new"
-                    android:textSize="16dp"
-                  />
+                    android:textSize="@dimen/_16"
+                    />
 
 
             </RelativeLayout>

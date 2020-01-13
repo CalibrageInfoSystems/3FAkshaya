@@ -63,13 +63,13 @@ import in.calibrage.akshaya.models.Product_new;
 
 
 public class CommonUtil {
-    public static   ArrayList<Product_new> Productitems;
+    public static ArrayList<Product_new> Productitems;
 
-    public  ArrayList<Product_new> getProductitems() {
+    public ArrayList<Product_new> getProductitems() {
         return Productitems;
     }
 
-    public  void setProductitems(ArrayList<Product_new> productitems) {
+    public void setProductitems(ArrayList<Product_new> productitems) {
         Productitems = productitems;
     }
 
@@ -428,8 +428,8 @@ public class CommonUtil {
         Pattern compiledPattern = Pattern.compile(pattern);
         Matcher matcher = compiledPattern.matcher(url);
 
-        if(matcher.find()){
-            vId= matcher.group();
+        if (matcher.find()) {
+            vId = matcher.group();
         }
         return vId;
     }
@@ -488,10 +488,10 @@ public class CommonUtil {
         String encodedFile = "", lastVal;
         try {
             inputStream = new FileInputStream(f.getAbsolutePath());
-            byte[] buffer = new byte[(int)f.length()];
-          //  byte[] buffer = new byte[10240];//specify the size to allow
+            byte[] buffer = new byte[(int) f.length()];
+            //  byte[] buffer = new byte[10240];//specify the size to allow
 
-        //    f.canExecute(@"D:\Temp\myFile.mp3", buffer);
+            //    f.canExecute(@"D:\Temp\myFile.mp3", buffer);
             int bytesRead;
             ByteArrayOutputStream output = new ByteArrayOutputStream();
             Base64OutputStream output64 = new Base64OutputStream(output, Base64.DEFAULT);
@@ -563,9 +563,10 @@ public class CommonUtil {
             }
             result = sb.deleteCharAt(sb.length() - 1).toString();
         }
-        Log.d("Commonutil ","--- analysis ----->> List to string -->>"+result);
+        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + result);
         return result;
     }
+
     public static String arrayToStringwithoutDuplicates(List<String> array) {
         String result = "";
         if (array.size() > 0) {
@@ -576,10 +577,11 @@ public class CommonUtil {
             }
             result = sb.deleteCharAt(sb.length() - 1).toString();
         }
-        Log.d("Commonutil ","--- analysis ----->> List to string -->>"+result);
+        Log.d("Commonutil ", "--- analysis ----->> List to string -->>" + result);
         return result;
     }
-//    public static int sum(List<Integer> list){
+
+    //    public static int sum(List<Integer> list){
 //        if(list==null || list.size()<1)
 //            return 0;
 //
@@ -589,19 +591,33 @@ public class CommonUtil {
 //
 //        return sum;
 //    }
-    public static double sum(List<Double> list){
-        if(list==null || list.size()<1)
+    public static double sum(List<Double> list) {
+        if (list == null || list.size() < 1)
             return 0;
 
         Double sum = 0.0;
-        for(Double i: list)
-            sum = sum+i;
+        for (Double i : list)
+            sum = sum + i;
 
         return sum;
     }
-float Calculate_GST(float org_cost, float N_price)
-{
-    // return value after calculate GST%
-    return (((N_price - org_cost) * 100) / org_cost);
-}
+
+    float Calculate_GST(float org_cost, float N_price) {
+        // return value after calculate GST%
+        return (((N_price - org_cost) * 100) / org_cost);
+    }
+
+    public static boolean isDoubleNullorEmpty(Double val) {
+        if (val == 0.0)
+            return true;
+        else if (val == null)
+            return true;
+        else if (val == 0)
+            return true;
+        else if (val > 0)
+            return false;
+        else
+            return false;
+
+    }
 }

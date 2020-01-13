@@ -32,6 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
                 android:text="@string/requestCodeLabel"
@@ -48,6 +50,8 @@
                 android:layout_marginLeft="150dp"
                 android:textColor="@color/colorOrange_head"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textSize="@dimen/album_title" />
 
             <TextView
@@ -59,6 +63,8 @@
                 android:layout_below="@id/requestCodeLabel"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/hind_semibold"
+
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -70,6 +76,8 @@
                 android:layout_below="@id/requestCodeLabel"
                 android:textSize="@dimen/album_title"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_marginLeft="150dp"
                 android:layout_marginRight="10dp"
                 android:layout_alignBaseline="@id/reqCreatedDateLabel"/>
@@ -78,6 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/statusTypeLabel"
+                android:fontFamily="@font/hind_semibold"
+
                 android:text="@string/status"
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
@@ -91,6 +101,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/statusType"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_below="@id/reqCreatedDateLabel"
                 android:textSize="@dimen/album_title"
                 android:layout_marginTop="10dp"
@@ -106,6 +118,8 @@
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textColor="@color/black"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textStyle="bold"
                 android:layout_below="@id/statusTypeLabel"
                 android:layout_marginTop="10dp"
@@ -115,6 +129,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/amount"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_below="@id/statusTypeLabel"
                 android:textSize="@dimen/album_title"
                 android:layout_marginTop="10dp"
@@ -127,6 +143,8 @@
                 android:layout_alignBaseline="@id/statusTypeLabel"
                 android:background="@drawable/button_bg"
                 android:text="@string/cancel"
+                android:fontFamily="@font/hind_semibold"
+
                 android:gravity="center"
                 android:visibility="gone"
                 android:layout_alignParentRight="true"
@@ -136,6 +154,8 @@
                  />
             <LinearLayout
                 android:layout_width="match_parent"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="8dp"
@@ -147,6 +167,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:fontFamily="@font/hind_semibold"
+
                     android:padding="5dp"
                     style="@style/Common_textView"
                     android:textSize="14sp"

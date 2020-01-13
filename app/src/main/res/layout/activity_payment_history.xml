@@ -141,7 +141,7 @@ android:id="@+id/spinner_"
                 android:ems="7"
 
                 android:focusable="false"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
 
 
@@ -163,7 +163,7 @@ android:id="@+id/spinner_"
                 android:layout_height="wrap_content"
                 android:ems="7"
                 android:focusable="false"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
         <Button

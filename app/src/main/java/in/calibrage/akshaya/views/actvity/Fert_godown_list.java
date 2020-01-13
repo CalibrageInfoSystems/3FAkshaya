@@ -552,6 +552,7 @@ public class Fert_godown_list extends BaseActivity {
                                 } else if (subsidy_amountt < Double.parseDouble(include_gst_amount)) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                   Log.e("remaining_Amoubt===",remaining_Amoubt+"");
+                                    Subsidy_amount =subsidy_amountt;
                                     payble_amount =remaining_Amoubt;
                                     paybleamount.setText(dec.format(payble_amount));
                                 } else if (subsidy_amountt == 0.0 || subsidy_amountt < 0) {

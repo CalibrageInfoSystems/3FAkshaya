@@ -74,7 +74,17 @@
                 android:layout_marginLeft="15dp"
                 android:textColor="@color/text_dark_gray"
                 android:textStyle="bold" />
+            <TextView
 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:id="@+id/dot7"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/txt_Location"
                 style="@style/Common_textView"
@@ -110,13 +120,23 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/text_dark_gray"
                 android:textStyle="bold" />
+            <TextView
 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:id="@+id/dot"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/txt_address"
                 style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7"
+                android:layout_weight="0.65"
                 android:text="Sasikanth Nagar, kakinada, Andhra Pradesh, 533005"
                 android:textAlignment="textStart"
                 android:textColor="@color/text_dark_gray" />

@@ -15,6 +15,7 @@ import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.GetBankDetailsByFarmerCode;
 import in.calibrage.akshaya.models.GetCollectionInfoById;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
+import in.calibrage.akshaya.models.GetInterCropByPlotCode;
 import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.models.GetLabourPackageDiscount;
 import in.calibrage.akshaya.models.GetTranspotationCharges;
@@ -30,8 +31,10 @@ import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.models.PaymentsType;
+import in.calibrage.akshaya.models.PostHoliday;
 import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.QuickPayResponce;
+import in.calibrage.akshaya.models.RaiseRequest;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.ResLoan;
 import in.calibrage.akshaya.models.ResPole;
@@ -39,6 +42,7 @@ import in.calibrage.akshaya.models.Resbasicinfo;
 import in.calibrage.akshaya.models.Resdelete;
 import in.calibrage.akshaya.models.Resfert;
 import in.calibrage.akshaya.models.Resinstall;
+import in.calibrage.akshaya.models.RespHoliday;
 import in.calibrage.akshaya.models.Resproduct;
 import in.calibrage.akshaya.models.Resquickpay;
 import in.calibrage.akshaya.models.SpinnerModel;
@@ -125,6 +129,8 @@ public interface ApiService {
     Observable<LabourTermsNCondtionsModel> getterms(@Url String url);
     @GET
     Observable<Costconfigres> getcostconfi(@Url String url);
+    @GET
+    Observable<GetInterCropByPlotCode> getintercrop(@Url String url);
 
     @GET
     Observable<GetquickpayDetailsModel> getquickpaydetails(@Url String url);
@@ -218,4 +224,9 @@ public interface ApiService {
 
     @POST(APIConstantURL.post_export)
     Observable<String> postexport(@Body JsonObject data);
+    @POST(APIConstantURL.HolidayList)
+    Observable<RespHoliday> postholiday(@Body JsonObject data);
+
+    @GET
+    Observable<RaiseRequest> getRaiseRequest(@Url String url);
 }

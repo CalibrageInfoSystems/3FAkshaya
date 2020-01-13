@@ -30,6 +30,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 
 public class contactfragment extends BaseFragment {
@@ -62,6 +63,11 @@ public class contactfragment extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else
+            updateResources(getContext(), "en-US");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -85,8 +91,8 @@ public class contactfragment extends BaseFragment {
         care_number = (TextView) view.findViewById(R.id.care_number);
         whatsapp_number = (TextView) view.findViewById(R.id.whatsapp);
         manager_mobile = (TextView) view.findViewById(R.id.manager_mobile);
-        care_number.setText("1234567890");
-        whatsapp_number.setText("9876543210");
+        care_number.setText("040 23324733");
+        whatsapp_number.setText("9515103107");
         if (isOnline(getContext()))
             Get3FInfo();
         else {
@@ -136,7 +142,7 @@ public class contactfragment extends BaseFragment {
 //
                             care_number.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-                                    Uri u = Uri.parse("tel:" + "1234567890");
+                                    Uri u = Uri.parse("tel:" + "040 23324733");
 
 
                                     Intent i = new Intent(Intent.ACTION_DIAL, u);
@@ -189,7 +195,7 @@ public class contactfragment extends BaseFragment {
                             whatsapp_number.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    String url = "https://api.whatsapp.com/send?phone=" + "+91 9876543210";
+                                    String url = "https://api.whatsapp.com/send?phone=" + "+91 9515103107";
                                     ;
                                     Intent i = new Intent(Intent.ACTION_VIEW);
                                     i.setData(Uri.parse(url));

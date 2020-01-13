@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Labourservicetype {
 
-    @SerializedName("listResult")
+    @SerializedName("result")
     @Expose
-    private List<ListResult> listResult = null;
+    private List<Result> result = null;
     @SerializedName("isSuccess")
     @Expose
     private Boolean isSuccess;
@@ -25,12 +25,12 @@ public class Labourservicetype {
     @Expose
     private Object exception;
 
-    public List<ListResult> getListResult() {
-        return listResult;
+    public List<Result> getResult() {
+        return result;
     }
 
-    public void setListResult(List<ListResult> listResult) {
-        this.listResult = listResult;
+    public void setResult(List<Result> result) {
+        this.result = result;
     }
 
     public Boolean getIsSuccess() {
@@ -74,7 +74,7 @@ public class Labourservicetype {
     }
 
 
-    public class ListResult {
+    public class Result {
 
         @SerializedName("typeCdId")
         @Expose
@@ -197,6 +197,5 @@ public class Labourservicetype {
         public void setUpdatedDate(String updatedDate) {
             this.updatedDate = updatedDate;
         }
-
     }
 }

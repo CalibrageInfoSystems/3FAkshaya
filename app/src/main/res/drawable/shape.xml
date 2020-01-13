@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:height="1000dp">
+    <item android:height="@dimen/hight_1000">
         <shape>
-            <solid android:color="#E9E7E7" />
+            <solid android:color="#0AE9E7E7" />
         </shape>
     </item>
 
 
-    <item android:top="-90dp" android:bottom="400dp" android:left="-60dp" android:right="-60dp">
+    <item android:top="-90dp" android:bottom="@dimen/_500dp" android:left="-60dp" android:right="-60dp">
 
         <shape>
             <gradient
-                android:angle="45"
-                android:endColor="#D7FB7500"
-                android:centerColor="#D7FB7500"
-                android:startColor="#F0FF9800"
+                android:angle="90"
+                android:endColor="#DB5D4B"
+
+                android:startColor="#E39A63"
                 />
-            <corners android:radius="900dp" />
+            />
         </shape>
     </item>
 </layer-list>

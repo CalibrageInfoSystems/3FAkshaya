@@ -1,8 +1,9 @@
 package in.calibrage.akshaya.views.actvity;
 
-import android.app.DatePickerDialog;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -31,9 +32,10 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -55,12 +57,15 @@ import in.calibrage.akshaya.models.AddLabourRequestHeader;
 import in.calibrage.akshaya.models.AmountRequest;
 import in.calibrage.akshaya.models.Costconfigres;
 import in.calibrage.akshaya.models.GetAmount;
+import in.calibrage.akshaya.models.GetInterCropByPlotCode;
 import in.calibrage.akshaya.models.GetLabourPackageDiscount;
 import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourTermsNCondtionsModel;
 import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LobourResponse;
 import in.calibrage.akshaya.models.MSGmodel;
+import in.calibrage.akshaya.models.PostHoliday;
+import in.calibrage.akshaya.models.RespHoliday;
 import in.calibrage.akshaya.models.ServiceType;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -75,7 +80,7 @@ import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-public class LabourActivity extends BaseActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener {
+public class LabourActivity extends BaseActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener, DatePickerDialog.OnDateSetListener {
     Calendar myCalendar;
     EditText edittext;
     int day, year, month;
@@ -87,7 +92,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     List<Integer> labour_uID = new ArrayList<Integer>();
     List<Integer> ids_list = new ArrayList<Integer>();
     List<String> selected_labour = new ArrayList<String>();
-
+boolean result;
     List<Integer> period_id = new ArrayList<Integer>();
     Spinner labourSpinner;
     private ProgressDialog dialog;
@@ -95,7 +100,8 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     ArrayList<String> listdata = new ArrayList<String>();
     MultiSelectionSpinner multiSelectionSpinner;
     Dialog myDialog;
-    DecimalFormat df = new DecimalFormat("#,###,##0.00");
+    boolean isSelectable=true;
+    DecimalFormat df = new DecimalFormat("######0.00");
     LabourTermsNCondtionsAdapter Tadapter;
     LabourdiscountAdapter dis_adapter;
     String selected_name, selected_ids;
@@ -105,22 +111,26 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     RelativeLayout amount_Label, harv_amount_label, un_amount_label, un2_amount_label;
     private Subscription mSubscription;
     TextView ok, getTerms, head_text, service_charge;
-    TextView Age, id_plot, area, landMark;
+    TextView Age, id_plot, area, landMark,cluster_name ,InterCrop;
     RecyclerView terms_recycle, discount_recycle;
     Button button_submit;
     private SpotsDialog mdilogue;
     CheckBox checkbox;
     double harvesting_amount, harvesting_d_amount, prunning_amount, prunning_d_amount,intercrop_prun,intercrop_harv;
     String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate;
-    String plot_id, location, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, status, plantationdate, finalAmount, plantation_date;
+    String plot_id, interCrops,location,clustername, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, selected_date,status, plantationdate, finalAmount, plantation_date;
     EditText commentsTxt;
-    double plot_Age;
+    double plot_Age,plotarea;
+    DecimalFormat dec = new DecimalFormat("####0.00");
     ImageView backImg, home_btn;
     SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
     LinearLayout discount_label;
     TextView discount_percentage, harv_d_amount, pru_d_amount;
+    DatePickerDialog datePickerDialog ;
 
+    int Year, Month, Day, Hour, Minute;
+    Calendar calendar ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,12 +141,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             updateResources(this, "en-US");
         setContentView(R.layout.activity_labour);
 
-
         if (isOnline()) {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 plot_id = extras.getString("plotid");
                 plot_Age = extras.getDouble("plotAge", 0.00);
+                plotarea = extras.getDouble("plotarea", 0.00);
                 Log.e("plot_Age===", plot_Age + "");
                 location = extras.getString("plotVillage");
                 farmerCode = extras.getString("farmerCode");
@@ -144,9 +154,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 plotMandal = extras.getString("plotMandal");
                 plotState = extras.getString("plotState");
                 plotDistrict = extras.getString("plotDistrict");
+                clustername = extras.getString("cluster_name");
                 plantationdate = extras.getString("date_of_plandation");
                 status = extras.getString("status");
+                interCrops = extras.getString("interCrop");
             }
+          //  GetInterCropByPlotCode();
             intview();
             setViews();
             SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
@@ -167,10 +180,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         Log.i("LOG_RESPONSE date ", currentDate);
         Age = findViewById(R.id.age_plot);
         id_plot = findViewById(R.id.plot);
+        InterCrop =findViewById(R.id.intercrop);
         area = findViewById(R.id.palmArea);
         yop = findViewById(R.id.yop);
         landMark = findViewById(R.id.landmark);
         commentsTxt = findViewById(R.id.commentTxt);
+        cluster_name =findViewById(R.id.cluster_officer);
 //        status_text=findViewById(R.id.status);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         backImg = (ImageView) findViewById(R.id.back);
@@ -192,13 +207,19 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         harv_amount = findViewById(R.id.harv_amount);
         un_amount = findViewById(R.id.un_amount);
         un2_amount = findViewById(R.id.un2_amount);
+        calendar = Calendar.getInstance();
 
+        Year = calendar.get(Calendar.YEAR) ;
+        Month = calendar.get(Calendar.MONTH);
+        Day = calendar.get(Calendar.DAY_OF_MONTH);
+        Hour = calendar.get(Calendar.HOUR_OF_DAY);
+        Minute = calendar.get(Calendar.MINUTE);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
                 .build();
         if (isOnline()) {
-            CostConfig();
+           // CostConfig();
             Getterms_conditions();
 
         } else {
@@ -240,11 +261,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //            e.printStackTrace();
 //        }
 
-        Age.setText(df.format(plot_Age) + " " + "Ha");
+        Age.setText(dec.format(plot_Age )+" Ha (" +dec.format(plotarea )+" Acre)"  );
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
-        //  status_text.setText(status);
+        cluster_name.setText(clustername);
+        InterCrop.setText(interCrops);
         yop.setText(plantationdate);
         myCalendar = Calendar.getInstance();
 
@@ -267,59 +289,78 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             @Override
             public void onClick(View v) {
 
-                final Calendar c = Calendar.getInstance();
-                year = c.get(Calendar.YEAR);
-                month = c.get(Calendar.MONTH);
-                day = c.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = DatePickerDialog.newInstance(LabourActivity.this, Year, Month, Day);
+                datePickerDialog.setThemeDark(false);
+                datePickerDialog.showYearPickerFirst(false);
+                datePickerDialog.setTitle("Select Date");
 
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(LabourActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                int month = monthOfYear + 1;
-                                String formattedMonth = "" + month;
-                                String formattedDayOfMonth = "" + dayOfMonth;
-
-                                if (month < 10) {
-
-                                    formattedMonth = "0" + month;
-                                }
-                                if (dayOfMonth < 10) {
-
-                                    formattedDayOfMonth = "0" + dayOfMonth;
-                                }
-                                String dateVal = formattedDayOfMonth + "/" + formattedMonth + "/" + year;
+                // Setting Min Date to today date
+                Calendar min_date_c = Calendar.getInstance();
+               min_date_c.set(Calendar.DATE, Day+3);
+                datePickerDialog.setMinDate(min_date_c);
 
 
-                                edittext.setText(dateVal);
+
+                // Setting Max Date to next 2 years
+                Calendar max_date_c = Calendar.getInstance();
+                max_date_c.set(Calendar.YEAR, Year+100);
+                datePickerDialog.setMaxDate(max_date_c);
 
 
-                                SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
-                                SimpleDateFormat output = new SimpleDateFormat("yyyy/MM/dd");
-                                try {
-                                    Date oneWayTripDate = input.parse(dateVal);
 
-                                    reformattedDate = output.format(oneWayTripDate);
-                                    //  GetAll_tokens_closed();
-                                    Log.e("===============", "======sending_date===========" + reformattedDate);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
+                //Disable all SUNDAYS and SATURDAYS between Min and Max Dates
+                for (Calendar loopdate = min_date_c; min_date_c.before(max_date_c); min_date_c.add(Calendar.DATE, 1), loopdate = min_date_c) {
+                    int dayOfWeek = loopdate.get(Calendar.DAY_OF_WEEK);
+                    if (dayOfWeek == Calendar.SUNDAY ) {
+                        Calendar[] disabledDays =  new Calendar[1];
+                        disabledDays[0] = loopdate;
+                        datePickerDialog.setDisabledDays(disabledDays);
+                    }
+                }
+               // datePickerDialog.setMinDate(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 3));
 
-                            }
-                        }, year, month, day);
-                datePickerDialog.show();
-                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 3));
+
+                datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+
+                      //  Toast.makeText(LabourActivity.this, "Datepicker Canceled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                datePickerDialog.show(getFragmentManager(), "DatePickerDialog");
             }
-
         });
+
+//
+//// Setting Min Date
+//              Calendar min_date_c = Calendar.getInstance();
+//                datePickerDialog.getDatePicker().setMinDate(min_date_c);
+//                //datePickerDialog.setMinDate(min_date_c);
+//
+//
+//// Setting Max Date
+//                Calendar max_date_c = Calendar.getInstance();
+//                max_date_c.set(Calendar.YEAR, 10);
+//                datePickerDialog.getDatePicker().setMaxDate(max_date_c);
+//                //  datePickerDialog.setMaxDate(max_date_c);
+//
+////Disable all SUNDAYS and SATURDAYS between Min and Max Dates
+//                for (Calendar loopdate = min_date_c; min_date_c.before(max_date_c); min_date_c.add(Calendar.DATE, 1), loopdate = min_date_c) {
+//                    int dayOfWeek = loopdate.get(Calendar.DAY_OF_WEEK);
+//                    if (dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY) {
+//                        Calendar[] disabledDays = new Calendar[1];
+//                        disabledDays[0] = loopdate;
+//                        datePickerDialog.getDatePicker().setEnabled(false);
+//                    }
+//                    datePickerDialog.show();
+//                }
 
         if (isOnline()) {
 
-            CostConfig();
+         //   CostConfig();
             Getterms_conditions();
         }
         //  GetLabourPackageDiscount();}
@@ -332,7 +373,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    CostConfig();
+                   // CostConfig();
                     Getterms_conditions();
 
                     myDialog = new Dialog(LabourActivity.this);
@@ -373,7 +414,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 if (isOnline()) {
-                    CostConfig();
+                  //  CostConfig();
                     Getterms_conditions();
                 } else {
 
@@ -387,31 +428,40 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
             }
         });
-        if (isOnline())
-            Getlabour_duration();
-        else {
-            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
-            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
-        }
+//        if (isOnline())
+//
+//          //  Getlabour_duration();
+//        else {
+//            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
+//            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+//        }
 
         labourSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 seleced_Duration = labourSpinner.getItemAtPosition(labourSpinner.getSelectedItemPosition()).toString();
+                if(seleced_Duration!= "Select") {
+                    discount_label.setVisibility(View.VISIBLE);
+                }
+                else {
+                    discount_label.setVisibility(View.GONE);
+                }
+
 //                if(seleced_Duration!= "Select") {
 //                    GetLabourPackageDiscount();
 //                    myDialog = new Dialog(LabourActivity.this);
 //
 //                    discount_popup();
 //                }
-//                if (seleced_Duration.equalsIgnoreCase("1 Day") ){
-//                    discount_label.setVisibility(View.GONE);
+                if (seleced_Duration.equalsIgnoreCase("1 Day") ){
+                    discount_label.setVisibility(View.GONE);
 //                    harv_d_amount.setVisibility(View.GONE);
 //                    pru_d_amount.setVisibility(View.GONE);
 //                    harv_amount.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
 //                    prun_amount.setPaintFlags(Paint.ANTI_ALIAS_FLAG);
-//
-//                }
+
+                }
+
                 Log.e("seleced_period===", seleced_Duration);
             }
 
@@ -420,6 +470,11 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 // DO Nothing here
             }
         });
+        listdata.clear();
+        listdata.add("Select");
+        ArrayAdapter aa = new ArrayAdapter(LabourActivity.this, R.layout.spinner_item, listdata);
+        aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        labourSpinner.setAdapter(aa);
         if (isOnline()) {
             GetSpinnerLabourType();
         } else {
@@ -511,7 +566,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     }
 
     private void discount_popup() {
-        // GetLabourPackageDiscount();
+      // GetLabourPackageDiscount();
         myDialog.setContentView(R.layout.discount_popup);
         ok = (TextView) myDialog.findViewById(R.id.ok);
 
@@ -622,7 +677,44 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
                 });
     }
+    private void GetInterCropByPlotCode() {
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.getintercrop(APIConstantURL.GetInterCropByPlotCode)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetInterCropByPlotCode>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        //showDialog(LabourActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(GetInterCropByPlotCode getInterCropByPlotCode) {
+                        if (getInterCropByPlotCode.getIsSuccess()) {
+                           result =getInterCropByPlotCode.getResult();
+                        }
+                    }
+
+
+                });
+    }
     private void CostConfig() {
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getcostconfi(APIConstantURL.CostConfig + 7)
@@ -683,11 +775,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
             // Toasty.error(LabourActivity.this, "Please Select the Date", Toast.LENGTH_SHORT).show();
             showDialog(LabourActivity.this, getResources().getString(R.string.date_selectiomn));
             return false;
-        }
-        if (labourSpinner.getSelectedItemPosition() == 0) {
+        }if (selected_ids.contains("20") || selected_ids.contains("34") ) {
+            if (labourSpinner.getSelectedItemPosition() == 0) {
 
-            showDialog(LabourActivity.this, getResources().getString(R.string.valid_pack));
-            return false;
+                showDialog(LabourActivity.this, getResources().getString(R.string.valid_pack));
+                return false;
+            }
         }
         if (checkbox.isChecked()) {
             // showCustomDialog();
@@ -783,25 +876,25 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 //                                    } else {
 //                                        requestModel.setHarvestingAmount(0.0);
 //                                    }
-                                    if (discount_label.getVisibility() == View.VISIBLE) {
-                                        displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
-                                        if (selected_ids.contains("20")) {
-
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), df.format(Double.parseDouble(harv_d_amount.getText() + ""))));
-                                        }
-                                        if (selected_ids.contains("19")) {
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), df.format(Double.parseDouble(pru_d_amount.getText() + ""))));
-                                        }
-                                        if (selected_ids.contains("33")) {
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.intercrop_prunning), un_amount.getText().toString()));
-                                        }
-                                        if (selected_ids.contains("34")) {
-                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_intercrop), un2_amount.getText().toString()));
-                                        }
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
-
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.starttDate), date));
-                                    } else {
+//                                    if (discount_label.getVisibility() == View.VISIBLE) {
+//                                        displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
+//                                        if (selected_ids.contains("20")) {
+//
+//                                          displayList.add(new MSGmodel(getResources().getString(R.string.harv_amount), df.format(Double.parseDouble(harv_amount.getText() + ""))));
+//                                        }
+//                                        if (selected_ids.contains("19")) {
+//                                            displayList.add(new MSGmodel(getResources().getString(R.string.pru_amount), df.format(Double.parseDouble(harv_amount.getText() + ""))));
+//                                        }
+//                                        if (selected_ids.contains("33")) {
+//                                            displayList.add(new MSGmodel(getResources().getString(R.string.intercrop_prunning), un_amount.getText().toString()));
+//                                        }
+//                                        if (selected_ids.contains("34")) {
+//                                            displayList.add(new MSGmodel(getResources().getString(R.string.harv_intercrop), un2_amount.getText().toString()));
+//                                        }
+//                                        displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
+//
+//                                        displayList.add(new MSGmodel(getResources().getString(R.string.starttDate), date));
+//                                    } else {
                                         displayList.add(new MSGmodel(getString(R.string.select_labour_ltype), selected_name));
                                         if (selected_ids.contains("20")) {
 
@@ -820,7 +913,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                                         displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
 
                                         displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
-                                    }
+
 
 //
                                     Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
@@ -841,7 +934,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
     private void GetSpinnerLabourType() {
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getLabourService(APIConstantURL.GetLabourServicetype)
+        mSubscription = service.getLabourService(APIConstantURL.GetLabourServicetype + plot_id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Labourservicetype>() {
                     @Override
@@ -869,9 +962,9 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                     @Override
                     public void onNext(Labourservicetype labourservicetype) {
 
-                        if (labourservicetype.getListResult() != null) {
+                        if (labourservicetype.getResult() != null) {
 
-                            for (Labourservicetype.ListResult data : labourservicetype.getListResult()
+                            for (Labourservicetype.Result data : labourservicetype.getResult()
                             ) {
                                 service_name.add(data.getDesc());
                                 labour_uID.add(data.getTypeCdId());
@@ -882,9 +975,7 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 //
 
-//                            ArrayAdapter aa = new ArrayAdapter(LabourActivity.this, R.layout.spinner_item, listdata);
-//                            aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-//                            labourSpinner.setAdapter(aa);
+//
                         } else {
                             Log.e("nodada====", "nodata===custom2");
 
@@ -959,9 +1050,16 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
     public void selectedIndices(List<Integer> indices) {
         if (isOnline()) {
             ids_list.clear();
+
             for (Integer values : indices) {
                 Log.d(TAG, "---- analysis ---- > get selected labour ID :" + labour_uID.get(values));
-
+//if(result = true){
+//    labour_uID.get(values).equals;
+//    Log.d(TAG, "---- analysis ---- > get selected labour ID result true:" + labour_uID.get(values));
+//}
+//else {
+//    Log.d(TAG, "---- analysis ---- > get selected labour ID result false:" + labour_uID.get(values));
+//}
                 ids_list.add(labour_uID.get(values));
                 Log.d(TAG, "---- analysis ---- > get selected labour ID :" + ids_list);
             }
@@ -981,9 +1079,12 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 //double k = (int) (percentage * amount_product) / 100;
             } else {
                 harv_amount_label.setVisibility(View.GONE);
+
             }
+//
             if (selected_ids.contains("19")) {
                 amount_Label.setVisibility(View.VISIBLE);
+
             } else {
                 amount_Label.setVisibility(View.GONE);
             }
@@ -996,6 +1097,20 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                 un2_amount_label.setVisibility(View.VISIBLE);
             } else {
                 un2_amount_label.setVisibility(View.GONE);
+            }
+
+
+            if (selected_ids.contains("20") || selected_ids.contains("34") ) {
+                listdata.clear();
+                Getlabour_duration();
+            }
+            else
+            {
+                listdata.clear();
+                listdata.add("1 Day");
+                ArrayAdapter aa = new ArrayAdapter(LabourActivity.this, R.layout.spinner_item, listdata);
+                aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+                labourSpinner.setAdapter(aa);
             }
         }
     }
@@ -1087,10 +1202,10 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
                             Log.e("K===3",prun_inter+"");
                             double harv_inter= (double) (percentage * prunning_amount) / 100;
                             Log.e("K===4",harv_inter+"");
-                            prun_amount.setText(prunning_amount+prun+"");
-                            harv_amount.setText(harvesting_amount+harv+"");
-                            un_amount.setText(intercrop_prun+prun_inter+"");
-                            un2_amount.setText(intercrop_harv+harv_inter+"");
+                            prun_amount.setText(df.format(prunning_amount+prun));
+                            harv_amount.setText(df.format(harvesting_amount+harv));
+                            un_amount.setText(df.format(intercrop_prun+prun_inter));
+                            un2_amount.setText(df.format(intercrop_harv+harv_inter)  );
                           //  double  harv_amount =
                         } else {
                             //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
@@ -1125,15 +1240,18 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setComments(commentsTxt.getText().toString());
         requestModel.setPreferredDate(reformattedDate);
         requestModel.setCreatedByUserId(null);
-        requestModel.setDurationId(period_id.get(labourSpinner.getSelectedItemPosition() - 1));
+        if (selected_ids.contains("20") || selected_ids.contains("34") ) {
+        requestModel.setDurationId(period_id.get(labourSpinner.getSelectedItemPosition() - 1));}
+        else{
+            requestModel.setDurationId(38);}
         requestModel.setPlotVillage(location);
         requestModel.setYearofPlanting(plantationdate);
 //        requestModel.setHarvestingAmount(0.00);
 //        requestModel.setPruningAmount(0.00);
-        requestModel.setHarvestingAmount(harvesting_amount);
-        requestModel.setPruningAmount(prunning_amount);
-        requestModel.setUnKnown1Amount(intercrop_prun);
-        requestModel.setUnKnown2Amount(intercrop_harv);
+//        requestModel.setHarvestingAmount(harvesting_amount);
+//        requestModel.setPruningAmount(prunning_amount);
+//        requestModel.setUnKnown1Amount(intercrop_prun);
+//        requestModel.setUnKnown2Amount(intercrop_harv);
 
 //        requestModel.setPlotMandal(plotMandal);
 //        requestModel.setPlotState(plotState);
@@ -1148,6 +1266,29 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
         requestModel.setAmount(null);
+        if (selected_ids.contains("20")) {
+
+            requestModel.setHarvestingAmount(harvesting_amount);
+        } else {
+            requestModel.setHarvestingAmount(0.0);
+        }
+        if (selected_ids.contains("19")) {
+            requestModel.setPruningAmount(prunning_amount);
+        }
+        else{
+            requestModel.setPruningAmount(0.0);}
+
+        if (selected_ids.contains("33")) {
+            requestModel.setUnKnown1Amount(intercrop_prun);
+        }
+        else{
+            requestModel.setUnKnown1Amount(0.0);}
+
+        if (selected_ids.contains("34")) {
+            requestModel.setUnKnown2Amount(intercrop_harv);
+        }
+        else{
+            requestModel.setUnKnown2Amount(0.0);}
 
         String selected_name = arrayyTOstring(selected_labour);
 //
@@ -1174,26 +1315,29 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
 
 
 //      if (harv_amount.getVisibility() == View.VISIBLE) {
-//            requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));
+//          requestModel.setHarvestingAmount(harvesting_amount);
 //        } else {
 //            requestModel.setHarvestingAmount(0.0);
 //        }
 //
 //
-//        if (prun_amount.getVisibility() == View.VISIBLE){
-//            requestModel.setPruningAmount(Double.parseDouble((String) prun_amount.getText()));}
+//        if (prun_amount.getVisibility() == View.VISIBLE) {
+//            requestModel.setPruningAmount(prunning_amount);
+//        }
 //        else{
 //            requestModel.setPruningAmount(0.0);}
 //
 //
-//        if (un_amount.getVisibility() == View.VISIBLE){
-//            requestModel.setUnKnown1Amount(Double.parseDouble((String) un_amount.getText()));}
+//        if (un_amount.getVisibility() == View.VISIBLE) {
+//            requestModel.setUnKnown1Amount(intercrop_prun);
+//        }
 //        else{
 //            requestModel.setUnKnown1Amount(0.0);}
 //
 //
-//        if (un2_amount.getVisibility() == View.VISIBLE){
-//            requestModel.setUnKnown2Amount(Double.parseDouble((String) un2_amount.getText()));}
+//        if (un2_amount.getVisibility() == View.VISIBLE) {
+//            requestModel.setUnKnown2Amount(intercrop_harv);
+//        }
 //        else{
 //            requestModel.setUnKnown2Amount(0.0);}
 
@@ -1262,4 +1406,99 @@ public class LabourActivity extends BaseActivity implements MultiSelectionSpinne
         super.onBackPressed();
         this.finish();
     }
+
+    @Override
+
+    public void onDateSet(DatePickerDialog view, int year,
+                          int monthOfYear, int dayOfMonth) {
+
+
+        int month = monthOfYear + 1;
+        String formattedMonth = "" + month;
+        String formattedDayOfMonth = "" + dayOfMonth;
+
+        if (month < 10) {
+
+            formattedMonth = "0" + month;
+        }
+        if (dayOfMonth < 10) {
+
+            formattedDayOfMonth = "0" + dayOfMonth;
+        }
+        String dateVal = formattedDayOfMonth + "/" + formattedMonth + "/" + year;
+
+
+        edittext.setText(dateVal);
+
+
+        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat output = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            Date oneWayTripDate = input.parse(dateVal);
+
+            reformattedDate = output.format(oneWayTripDate);
+            //  GetAll_tokens_closed();
+            Log.e("===============", "======sending_date===========" + reformattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        HolidayList();
+    }
+
+    private void HolidayList() {
+        mdilogue.show();
+        JsonObject object = holidayobject();
+        ApiService service = ServiceFactory.createRetrofitService(LabourActivity.this, ApiService.class);
+        mSubscription = service.postholiday(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<RespHoliday>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onNext(RespHoliday respHoliday) {
+
+                        Log.e("test=== ",respHoliday.getIsSuccess()+"");
+                        if (respHoliday.getIsSuccess()){
+                            Log.e("test=== ",respHoliday.getIsSuccess()+"");
+                        }
+                        else {
+                            edittext.getText().clear();
+                            showDialog(LabourActivity.this, "Please Select Another Date.It is Holiday.");
+
+                        }
+                    }
+
+
+
+
+                });
+
 }
+
+    private JsonObject holidayobject() {
+        PostHoliday requestModel = new PostHoliday();
+        requestModel.setPreferredDate(reformattedDate);
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+    }

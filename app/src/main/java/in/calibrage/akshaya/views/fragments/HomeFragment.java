@@ -9,7 +9,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -93,6 +95,9 @@ public class HomeFragment extends BaseFragment {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
         leaning_recycle.setLayoutManager(mLayoutManager);
         leaning_recycle.setItemAnimator(new DefaultItemAnimator());
+        // adding inbuilt divider line
+        leaning_recycle.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+     leaning_recycle.addItemDecoration(new MyDividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL, 40));
         knowledgeZoneBaseAdapter = new KnowledgeZoneBaseAdapter(mContext, catagoriesList);
         leaning_recycle.setAdapter(knowledgeZoneBaseAdapter);
 
@@ -242,7 +247,8 @@ public class HomeFragment extends BaseFragment {
                             sliderView.setIndicatorUnselectedColor(Color.GRAY);
                             sliderView.startAutoCycle();
                             sliderView.setScrollTimeInSec(8);
-                            txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                          " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
+                           // txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription());
+                           txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                                 " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
                         }
                     }
 //                    @Override

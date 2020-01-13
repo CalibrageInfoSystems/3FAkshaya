@@ -31,7 +31,7 @@
 
         
     <!--    collections-->
-    <string name="collection">గెలల సేకరణ వివరములు</string>
+    <string name="collection">ఎఫ్‌ఎఫ్‌బి గెలల సేకరణ వివరములు</string>
     <string name="collectionsWeight">గెలల సేకరణల బరువు</string>
     <string name="collectionsCount">గెలల సేకరణలు</string>
     <string name="paidCollectionsWeight">పేమెంట్ జరిగిన గెలల బరువు</string>
@@ -63,7 +63,7 @@
     <!--  Payments  -->
     <string name="no_payments_found">చెల్లింపులు కనుగొనబడలేదు</string>
     <string name="grr">ఎఫ్‌ఎఫ్‌బి కోసం చెల్లింపు(రూ.)</string>
-    <string name="payments">చెల్లింపులు</string>
+    <string name="payments">రైతు పాస్‌బుక్</string>
     <string name="payment_summary">చెల్లింపు సారాంశం</string>
     <string name="bank_details">బ్యాంక్ వివరాలు</string>
     <string name="bank_holder">ఖాతా దారుని\n పేరు</string>
@@ -72,7 +72,7 @@
     <string name="branch_name">బ్రాంచ్ పేరు</string>
     <string name="ifsc">ఐఎఫ్ఎస్సి కోడ్</string>
     <string name="next">తదుపరి</string>
-    <string name="trans">రవాణా ఛార్జీలు</string>
+    <string name="trans">ప్రత్యక్ష రైతు రవాణా రీయింబర్స్‌మెంట్</string>
     <string name="ffb_qty">మొత్తం ఎఫ్‌ఎఫ్‌బి పరిమాణం (టన్ను)</string>
     <string name="ffb"> ఎఫ్‌ఎఫ్‌బి పరిమాణం (టన్ను)</string>
     <string name="adhoc_rate">ఎమ్‌టికి అడోక్ రేటు (రూ)</string>
@@ -86,8 +86,8 @@
     <string name="gr">జీఆర్ మొత్తం (రూ.)</string>
     <string name="adjusted">సర్దుబాటు (రూ.)</string>
     <string name="descriptionn">వివరణ </string>
-    <string name="trans_charges">రవాణా ఛార్జీలు \n టన్నులు (రూ)</string>
-    <string name="no_trans_found">రవాణా ఛార్జీలు కనుగొనబడలేదు</string>
+    <string name="trans_charges">ప్రత్యక్ష రైతు రవాణా రీయింబర్స్‌మెంట్ \n టన్నులు (రూ.)</string>
+    <string name="no_trans_found">రవాణా ప్రత్యక్ష రైతు రవాణా రీయింబర్స్‌మెంట్ కనుగొనబడలేదు</string>
 
 
     <!--    collections-->
@@ -183,16 +183,16 @@
     <string name="notee">గమనిక</string>
     <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
     <string name="note">అభ్యర్థించిన 2 రోజులలో ఉత్పత్తులను ఎంచుకోకపోతే, మీ ఆర్డర్ రద్దు చేయబడుతుంది.</string>
-    <string name="subsidy_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం</string>
+    <string name="subsidy_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం(రూ.)</string>
     <string name="endusermsg">మొత్తం ఖర్చు 0 ఉండకూడదు</string>
     <string name="each_product">ప్రతి వస్తువు ధర (రూ.)</string>
     <string name="server_error">సర్వర్ స్పందించడం లేదు, దయచేసి మళ్ళీ ప్రయత్నించండి</string>
     <string name="godown_valid">దయచేసి గోడౌన్ ఎంచుకోండి</string>
     <string name="success_pole">పరికరాల అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     <string name="product_details">వస్తువు వివరాలు</string>
-    <string name="subcd_amt">సబ్సిడీ మొత్తం</string>
-    <string name="Avb_subcd_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం</string>
-    <string name="product_quantity">ఉత్పత్తి &amp; పరిమాణం></string>
+    <string name="subcd_amt">సబ్సిడీ మొత్తం (రూ.)</string>
+    <string name="Avb_subcd_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం (రూ.)</string>
+    <string name="product_quantity">ఉత్పత్తి &amp; పరిమాణం</string>
 
     <!--  Loan  -->
       
@@ -290,8 +290,8 @@
     <!--<string name="harvest">హార్వెస్ట్</string>-->
     <string name="Cgst">సిజిఎస్టి(%)</string>
     <string name="sgst">ఎస్జిఎస్టి(%)</string>
-    <string name="cgst_amount">సిజిఎస్టి (రూ)</string>
-    <string name="sgst_amount">ఎస్జిఎస్టి (రూ)</string>
+    <string name="cgst_amount">సిజిఎస్టి (రూ.)</string>
+    <string name="sgst_amount">ఎస్జిఎస్టి (రూ.)</string>
 
 
 
@@ -430,7 +430,7 @@
     <string name="farmer_profile">రైతు ప్రొఫైల్</string>
     <string name="plot_details">ప్లాట్ వివరాలు</string>
     <string name="cancel_success">రద్దు చేయబడింది</string>
-    <string name="amount_payble">చెల్లించవలసిన మొత్తం (రూ)</string>
+    <string name="amount_payble">చెల్లించవలసిన మొత్తం (రూ.)</string>
     <string name="comments_valid">దయచేసి సూచనలు నమోదు చేయండి</string>
     <string name="no_data">సమాచారం అందుబాటులో లేదు</string>
     <string name="Godown_name">గోడౌన్ పేరు</string>
@@ -441,15 +441,15 @@
 
     <string name="pru_amountt">ఎ) కత్తిరింపు \n ఖర్చు/చెట్టు(రూ.)</string>
     <string name="num_trees">బి) చెట్ల సంఖ్య</string>
-    <string name="Prunning_amount">సి) కత్తిరింపు \n మొత్తం(రూ)(ఎ*బి)</string>
+    <string name="Prunning_amount">సి) కత్తిరింపు \n మొత్తం(రూ.)(ఎ*బి)</string>
     <string name="harv_amountt">డి) హార్వెస్టింగ్\n ఖర్చు/టన్ను(రూ.)</string>
     <string name="net_weight_mt">ఇ) నికర బరువు (టన్ను)</string>
-    <string name="harvesting_amount">ఎఫ్) హార్వెస్టింగ్ \n మొత్తం(రూ)(డి * ఇ)</string>
+    <string name="harvesting_amount">ఎఫ్) హార్వెస్టింగ్ \n మొత్తం(రూ.)(డి * ఇ)</string>
     <string name="service_chargeper">ఎం) సేవా ఛార్జ్ (%)</string>
-    <string name="service_amount">ఎన్) సేవాఛార్జ్(రూ)\n((సి+ఎఫ్+ఐ+ఎల్)*ఎం)/100</string>
+    <string name="service_amount">ఎన్) సేవాఛార్జ్(రూ.)\n((సి+ఎఫ్+ఐ+ఎల్)*ఎం)/100</string>
     <string name="disc_package">ఓ) ప్యాకేజీ డిస్కౌంట్(%)</string>
-    <string name="disc_price">పి) ప్యాకేజీ డిస్కౌంట్\nధర(రూ)\n((సి+ఎఫ్+ఐ+ఎల్)*ఓ)/100 </string>
-    <string name="amount_labour"> క్యు) మొత్తం(రూ)\n(సి+ఎఫ్+ఐ+ఎల్+ఎన్)-పి</string>
+    <string name="disc_price">పి) ప్యాకేజీ డిస్కౌంట్\nధర(రూ.)\n((సి+ఎఫ్+ఐ+ఎల్)*ఓ)/100 </string>
+    <string name="amount_labour"> క్యు) మొత్తం(రూ.)\n(సి+ఎఫ్+ఐ+ఎల్+ఎన్)-పి</string>
 
 
 
@@ -491,7 +491,7 @@
     <string name="Package">ప్యాకేజీ</string>
     <string name="discount">డిస్కౌంట్(%)</string>
     <string name="disc">ఆఫర్ వర్తించబడింది</string>
-    <string name="text">మీ ప్యాకేజీపై డిస్కౌంట్</string>
+    <string name="text">ప్రతి 10 రోజులకు హార్వెస్టింగ్ సేవ అందించబడుతుంది.</string>
 
 
 
@@ -509,11 +509,17 @@
     <string name="userPermission">అన్ని అనుమతులు వినియోగదారుచే మంజూరు చేయబడాయి!</string>
     <string name="incrop_prunning">జి) ఇంటర్‌క్రాప్ కత్తిరింపు\nకాస్ట్/ట్రీ(రూ.)</string>
     <string name="num_intercrop">హెచ్) ఇంటర్‌క్రాప్\nచెట్ల సంఖ్య</string>
-    <string name="pru_intercrop_amountt">ఐ) కత్తిరింపు ఇంటర్‌క్రాప్\n  మొత్తం(రూ)(జి*హెచ్)</string>
+    <string name="pru_intercrop_amountt">ఐ) కత్తిరింపు ఇంటర్‌క్రాప్\n  మొత్తం(రూ.)(జి*హెచ్)</string>
     <string name="harv_inter_amountt">జె) ఇంటర్‌క్రాప్ హార్వెస్టింగ్\nకాస్ట్ / ట్రీ (రూ.)</string>
     <string name="harv_intercrop_netweight">కె) ఇంటర్‌క్రాప్ \n మొత్తం బరువు (టన్ను)</string>
-    <string name="harv_intercrop_amout">ఎల్ హార్వెస్టింగ్ ఇంటర్‌క్రాప్ \n మొత్తం(రూ)(జె*కె)</string>
-    <string name="details">Complete Details</string>
+    <string name="harv_intercrop_amout">ఎల్ హార్వెస్టింగ్ ఇంటర్‌క్రాప్ \n మొత్తం(రూ.)(జె*కె)</string>
+    <string name="details">పూర్తి వివరాలు</string>
+    <string name="close">మూసివేయండి</string>
+    <string name="cluster_officer">క్లస్టర్ పేరు</string>
+    <string name="inter_coco">ఇంటర్‌క్రాప్‌గా పరిపక్వమైన కోకో అదనపు కార్మిక ఛార్జీలను కలిగిస్తుంది.</string>
+    <string name="quick_reqc">శీఘ్ర చెల్లింపు ఇప్పటికే అభ్యర్థించబడింది, 1 వ తేదీ పూర్తయ్యే వరకు మరొక శీఘ్ర చెల్లింపు అభ్యర్థనను అభ్యర్థించలేము.</string>
+    <string name="visit_reqst">సందర్శన అభ్యర్థన ఇప్పటికే అభ్యర్థించబడింది.</string>
+    <string name="intercrops">అంతర పంట(లు)</string>
 
     <string-array name="switch_tabs">
 

@@ -86,11 +86,11 @@ import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class Visit_request_Activity extends BaseActivity implements View.OnClickListener {
-    String location, landmarkCode, plot_id, Farmer_code,date_of_plandation;
+    String location, landmarkCode, plot_id, Farmer_code,date_of_plandation,clustername;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     ImageView backImg, home_btn;
-    private TextView Age, id_plot, area, landMark,yop;
+    private TextView Age, id_plot, area, landMark,yop,cluster_name;
     List<String> Issue_type = new ArrayList<String>();
     private static final String TAG = Visit_request_Activity.class.getSimpleName();
     List<Integer> Issue_Id = new ArrayList<Integer>();
@@ -130,7 +130,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
     private Handler mHandler = new Handler();
     private int RECORD_AUDIO_REQUEST_CODE = 123;
     private boolean isPlaying = false;
-    double plot_Age;
+    double plot_Age,plotareaa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,9 +141,11 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         if (extras != null) {
             plot_id = extras.getString("plotid");
             plot_Age = extras.getDouble("plotAge", 0.00);
+            plotareaa = extras.getDouble("plotarea",0.00);
             location = extras.getString("plotVillage");
             landmarkCode = extras.getString("landMark");
             date_of_plandation = extras.getString("date_of_plandation");
+            clustername = extras.getString("cluster_name");
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getPermissionToRecordAudio();
@@ -195,6 +197,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
         area = findViewById(R.id.palmArea);
         landMark = findViewById(R.id.landmark);
         yop =findViewById(R.id.yop);
+        cluster_name =findViewById(R.id.cluster_officer);
         Select_Issue = findViewById(R.id.issue_type);
         comments = findViewById(R.id.comments);
         imageview = (ImageView) findViewById(R.id.iv);
@@ -309,11 +312,12 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
                 finish();
             }
         });
-        Age.setText(dec.format(plot_Age )+" Ha");
+        Age.setText(dec.format(plot_Age )+" Ha (" +dec.format(plotareaa )+" Acre)"  );
         area.setText(location);
         id_plot.setText(plot_id);
         landMark.setText(landmarkCode);
         yop.setText(date_of_plandation);
+        cluster_name.setText(clustername);
         if(isOnline()) {
             GetIssue_type();
         }
