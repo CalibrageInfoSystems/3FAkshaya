@@ -33,7 +33,7 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/req_loan"
                 android:layout_alignLeft="@+id/back"
-
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginStart="25dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
@@ -82,12 +82,13 @@
         android:textSize="@dimen/album_title"
         android:drawablePadding="5dp"
         android:layout_marginStart="6dp"
+        android:fontFamily="@font/hind_semibold"
         />
     <EditText
         android:id="@+id/loan_amount"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-
+        android:fontFamily="@font/hind_semibold"
         android:textColor="@color/white_new"
         android:layout_margin="8dp"
         android:padding="5dp"
@@ -114,7 +115,7 @@
             android:text="@string/reason_loan"
             android:paddingTop="5dp"
             android:textColor="@color/white_new"
-
+            android:fontFamily="@font/hind_semibold"
             android:textSize="@dimen/album_title"
             android:drawablePadding="5dp"
             android:layout_marginStart="6dp"
@@ -123,7 +124,7 @@
             android:id="@+id/reason"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-
+            android:fontFamily="@font/hind_semibold"
             android:textColor="@color/white_new"
             android:layout_margin="8dp"
             android:padding="5dp"
@@ -147,6 +148,7 @@
         android:layout_height="wrap_content"
         android:text="@string/i_have_agree"
         android:textSize="16dp"
+        android:fontFamily="@font/hind_semibold"
         android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:layout_alignParentLeft="true"
@@ -160,6 +162,7 @@
         android:layout_height="wrap_content"
         android:text="@string/terms_conditions"
         android:textSize="16dp"
+        android:fontFamily="@font/hind_semibold"
         android:layout_centerInParent="true"
         android:textColor="@color/colorOrange"
         android:layout_marginStart="@dimen/margin_5"
@@ -169,6 +172,7 @@
     </LinearLayout>
 
         <Button
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/req_loan"
            android:layout_height="wrap_content"
             android:layout_below="@+id/checkBox"

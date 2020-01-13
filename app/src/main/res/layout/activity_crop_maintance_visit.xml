@@ -80,7 +80,7 @@
             android:layout_toRightOf="@+id/plotIdLabel"
             android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
-
+            android:fontFamily="@font/hind_semibold"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
@@ -108,6 +108,7 @@
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/palmAreaLabel"
             android:hint=""
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
@@ -131,6 +132,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/palmArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -160,6 +162,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/landmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -174,7 +177,7 @@
             android:textSize="@dimen/album_title" />
         <TextView
             android:id="@+id/cluster_Label"
-
+            android:fontFamily="@font/hind_semibold"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/landmark"
@@ -188,6 +191,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/cluster_officer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -203,7 +207,7 @@
             android:textSize="@dimen/album_title" />
         <TextView
             android:id="@+id/status_Label"
-
+            android:fontFamily="@font/hind_semibold"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/cluster_Label"
@@ -217,6 +221,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/yop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -533,7 +538,7 @@ android:textSize="@dimen/_14dp"
                     android:layout_height="50dp"
 
                     android:layout_gravity="center_vertical"
-
+                    android:fontFamily="@font/hind_semibold"
                     android:gravity="center"
                     android:text="@string/pest"
                     android:textColor="@color/white_new"
@@ -567,7 +572,7 @@ android:textSize="@dimen/_14dp"
                     android:id="@+id/dease_text1"
                     android:gravity="center"
 
-
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
@@ -603,7 +608,7 @@ android:textSize="@dimen/_14dp"
                     android:id="@+id/nut_text1"
                     android:gravity="center"
 
-
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
@@ -639,7 +644,7 @@ android:textSize="@dimen/_14dp"
                     android:id="@+id/fert_rec_text1"
                     android:gravity="center"
 
-
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
@@ -674,7 +679,7 @@ android:textSize="@dimen/_14dp"
                     android:id="@+id/irr_rec_text1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_gravity="center_vertical"
 
                     android:gravity="center"
@@ -713,7 +718,7 @@ android:textSize="@dimen/_14dp"
                     android:layout_height="50dp"
 
                     android:layout_gravity="center_vertical"
-
+                    android:fontFamily="@font/hind_semibold"
                     android:gravity="center"
                     android:text="@string/inter_crop"
                     android:textColor="@color/white_new"
@@ -747,7 +752,7 @@ android:textSize="@dimen/_14dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-
+                    android:fontFamily="@font/hind_semibold"
                     android:gravity="center"
                     android:text="@string/fertilizer_crop"
                     android:textColor="@color/white_new"
@@ -768,6 +773,7 @@ android:textSize="@dimen/_14dp"
     </android.support.v4.widget.NestedScrollView>
 
     <TextView
+        android:fontFamily="@font/hind_semibold"
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

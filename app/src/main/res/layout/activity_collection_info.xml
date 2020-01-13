@@ -47,11 +47,11 @@
 
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/plotIdLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1sp"
-
                         android:text="@string/driver_name"
                         android:textColor="@color/white"
                         android:textSize="14dp"
@@ -59,6 +59,7 @@
 
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/dot2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -70,6 +71,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/driverName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,18 +98,19 @@
 
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/tvtext_item_four"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="1dp"
                         android:text="@string/vehicle_Number"
-
                         android:textColor="@color/white"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/dot3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -119,6 +122,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/vehicle_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -145,6 +149,7 @@
 
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/tvtext_item_six"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -163,11 +168,12 @@
                         android:layout_marginTop="1sp"
                         android:text=":"
                         android:textColor="@color/white"
-
+                        android:fontFamily="@font/hind_semibold"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/hind_semibold"
                         android:id="@+id/collection_center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

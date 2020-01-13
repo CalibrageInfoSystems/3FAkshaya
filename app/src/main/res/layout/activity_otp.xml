@@ -44,6 +44,7 @@
 
         <in.calibrage.akshaya.common.PinEntryEditText
 
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/txt_pin_entry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +64,7 @@
             />
 
         <Button
-
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/btn_otp_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

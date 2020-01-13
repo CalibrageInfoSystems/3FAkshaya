@@ -42,6 +42,7 @@
 
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_alignLeft="@+id/back"
@@ -174,7 +175,7 @@ android:id="@+id/spinner_"
             android:layout_gravity="center"
             android:layout_margin="6dp"
             android:layout_weight="0.4"
-
+            android:fontFamily="@font/hind_semibold"
             android:background="@drawable/button_bg"
             android:text="@string/submit"
             android:textColor="@color/colorOrange"
@@ -256,6 +257,7 @@ android:id="@+id/spinner_"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="0.5"
                 android:text="@string/ffb_qty"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -263,6 +265,7 @@ android:id="@+id/spinner_"
 
             <TextView
                 android:id="@+id/dot2"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -274,6 +277,7 @@ android:id="@+id/spinner_"
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/ffb_total"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -303,6 +307,7 @@ android:id="@+id/spinner_"
 
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvtext_item_ten"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -314,6 +319,7 @@ android:id="@+id/spinner_"
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/dot6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -325,6 +331,7 @@ android:id="@+id/spinner_"
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/totalBalance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -352,6 +359,7 @@ android:id="@+id/spinner_"
 
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvtext_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -363,6 +371,7 @@ android:id="@+id/spinner_"
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/dot3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -384,7 +393,7 @@ android:id="@+id/spinner_"
                 android:layout_toRightOf="@+id/dot3"
                 android:hint=""
                 android:text=""
-
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -394,6 +403,7 @@ android:id="@+id/spinner_"
 
     </LinearLayout>
     <TextView
+        android:fontFamily="@font/hind_semibold"
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -48,6 +48,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/payments"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20"
                 android:textStyle="bold" />

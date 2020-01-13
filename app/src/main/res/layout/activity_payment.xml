@@ -65,7 +65,7 @@
                 android:layout_alignLeft="@+id/back"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
-
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/payments"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
@@ -119,6 +119,7 @@
 
 
             <TextView
+
                 android:id="@+id/tvtext_item_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,6 +187,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text=":"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -233,6 +235,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5sp"
                 android:text=":"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -262,6 +265,7 @@
 
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvtext_item_eight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -314,7 +318,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5sp"
-
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/ifsc"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
@@ -327,6 +331,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5sp"
                 android:text=":"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -366,6 +371,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15sp"
                 android:gravity="center"
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/bank_details"
                 android:textAlignment="center"
                 android:textColor="@color/white"

@@ -23,6 +23,7 @@
             android:layout_height="match_parent"/>
     </android.support.v7.widget.Toolbar>
     <TextView
+        android:fontFamily="@font/hind_semibold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv"
@@ -51,6 +52,7 @@
             android:layout_weight="1" />
 
         <Button
+            android:fontFamily="@font/hind_semibold"
             android:id="@+id/btnGetDirection"
             android:text="Get Direction"
             android:layout_width="match_parent"

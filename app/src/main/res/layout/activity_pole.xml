@@ -24,6 +24,7 @@
             android:src="@drawable/ic_left" />
 
         <TextView
+            android:fontFamily="@font/hind_semibold"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginTop="10dp"
@@ -67,6 +68,7 @@
                     android:src="@drawable/cart" />
 
                 <TextView
+                    android:fontFamily="@font/hind_semibold"
                     android:id="@+id/txt_count"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -84,6 +86,7 @@
             </FrameLayout>
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvtext_item_four"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -94,6 +97,7 @@
                 android:textSize="25dp" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/dot3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,6 +108,7 @@
                 android:visibility="gone" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/meal_total"
                 style="@style/Common_textView"
                 android:layout_width="wrap_content"
@@ -166,6 +171,7 @@
 
             android:scrollbars="vertical" />
         <TextView
+
             android:id="@+id/no_data"
             android:layout_width="match_parent"
             android:layout_height="0dp"
