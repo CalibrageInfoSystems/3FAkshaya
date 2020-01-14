@@ -215,7 +215,7 @@ android:textColor="#191919"
                     android:layout_marginLeft="@dimen/margin_5"
                     android:layout_marginRight="@dimen/margin_5"
                     android:layout_weight="0.5"
-                    android:gravity="center"
+                    android:gravity="bottom"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -263,11 +263,11 @@ android:textColor="#191919"
 
                             </LinearLayout>
                         <LinearLayout
+                            android:gravity="bottom"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="bottom"
-                            android:layout_marginTop="@dimen/_30dp"
-
+                            android:layout_marginTop="50dp"
                             android:background="@android:color/darker_gray" />
 
 <!--                        <android.support.v7.widget.CardView-->
@@ -308,10 +308,11 @@ android:textColor="#191919"
 
                             </LinearLayout>
                         <LinearLayout
+                            android:gravity="bottom"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="bottom"
-android:layout_marginTop="@dimen/_30dp"
+android:layout_marginTop="50dp"
                             android:background="@android:color/darker_gray" />
 
 <!--                        </android.support.v7.widget.CardView>-->
@@ -422,9 +423,9 @@ android:layout_marginTop="@dimen/_30dp"
                         <LinearLayout
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
+                            android:layout_gravity="bottom"
 
-                            android:layout_marginBottom="@dimen/_30dp"
+                            android:layout_marginBottom="50dp"
                             android:background="@android:color/darker_gray" />
 
 <!--                        </android.support.v7.widget.CardView>-->
@@ -466,10 +467,10 @@ android:layout_marginTop="@dimen/_30dp"
 
                             </LinearLayout>
                         <LinearLayout
+                            android:layout_marginBottom="50dp"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="@dimen/_30dp"
+                            android:layout_gravity="bottom"
                             android:background="@android:color/darker_gray" />
 <!--                        </android.support.v7.widget.CardView>-->
 
@@ -558,7 +559,6 @@ android:layout_marginTop="@dimen/_30dp"
                     android:layout_gravity="bottom"
                     android:background="@color/white2"
                     android:numColumns="4" />
-
 
 
             </LinearLayout>
