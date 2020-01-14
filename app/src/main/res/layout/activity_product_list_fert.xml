@@ -31,6 +31,7 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/product_details"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_alignLeft="@+id/back"
                 android:textStyle="bold"
                 android:layout_marginStart="25dp"
@@ -81,6 +82,7 @@
                     style="@style/Common_textView"
                     android:text="@string/requestCodeLabel"
                     android:textSize="15dp"
+                    android:fontFamily="@font/hind_semibold"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 

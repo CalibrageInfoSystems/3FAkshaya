@@ -18,6 +18,7 @@
         android:id="@+id/text"
         android:visibility="gone"
         android:textAlignment="center"
+        android:fontFamily="@font/hind_semibold"
         android:text="@string/no_pdfs"
         android:layout_marginTop="@dimen/text_size_20"
         android:textSize="@dimen/text_size_20"

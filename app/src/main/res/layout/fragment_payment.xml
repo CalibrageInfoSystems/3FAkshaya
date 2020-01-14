@@ -38,6 +38,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_weight="0.5"
                 android:text="@string/ffb_qty"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -47,6 +48,7 @@
                 android:id="@+id/dot2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@+id/tvtext_item_two"
                 android:layout_weight="0.1"
@@ -61,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="0dp"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_toRightOf="@+id/dot2"
                 android:layout_weight="0.4"
                 android:hint=""

@@ -27,6 +27,7 @@
             android:textSize="18sp"
             android:textColor="@color/white_new"
             android:text="@string/error"
+            android:fontFamily="@font/hind_semibold"
             android:layout_width="wrap_content"
             android:layout_height="40dp"/>
     </LinearLayout>
@@ -52,6 +53,7 @@
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:text="@string/ok"
+        android:fontFamily="@font/hind_semibold"
         android:id="@+id/btn_dialog"
         android:gravity="center_vertical|center_horizontal"
         android:layout_below="@+id/text_dialog"

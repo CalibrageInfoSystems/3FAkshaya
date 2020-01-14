@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/relative"
-         >
+            >
             <TextView
                 android:id="@+id/requestCodeLabel"
                 android:layout_width="wrap_content"
@@ -22,6 +22,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/black"
                 android:text="@string/requestCodeLabel"
                 android:textSize="@dimen/album_title"
@@ -35,6 +36,7 @@
                 android:layout_alignBaseline="@id/requestCodeLabel"
                 android:layout_marginLeft="150dp"
                 android:textColor="@color/colorOrange"
+                android:fontFamily="@font/hind_semibold"
                 android:text="Email"
                 android:textSize="@dimen/album_title" />
             <TextView
@@ -46,6 +48,7 @@
                 android:gravity="center_vertical"
                 android:layout_below="@id/requestCodeLabel"
                 android:text="@string/plot_code"
+                android:fontFamily="@font/hind_semibold"
                 android:textSize="@dimen/album_title"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -57,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/plotIdLabel"
                 android:layout_marginLeft="150dp"
-
+                android:fontFamily="@font/hind_semibold"
                 android:text="Email"
                 android:textSize="@dimen/album_title" />
 
@@ -70,6 +73,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
+                android:fontFamily="@font/hind_semibold"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -80,6 +84,7 @@
                 android:text="Email"
                 android:layout_below="@id/plotIdLabel"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="150dp"
                 android:layout_marginRight="10dp"
@@ -93,6 +98,7 @@
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
                 android:textStyle="bold"
                 android:layout_below="@id/dateNTimeLabel"
                 android:layout_marginTop="10dp"
@@ -105,6 +111,7 @@
                 android:layout_below="@id/dateNTimeLabel"
                 android:textSize="@dimen/album_title"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginLeft="150dp"
                 android:layout_alignBaseline="@id/reqDateLabel"/>
 
@@ -119,6 +126,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_below="@id/reqDateLabel"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"/>
 
@@ -128,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/approveDateLabel"
                 android:layout_marginLeft="150dp"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginRight="0dp"
                 android:text="Email"
 
@@ -141,6 +150,7 @@
                 android:layout_below="@id/approveDateLabel"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
@@ -154,6 +164,7 @@
                 android:textSize="@dimen/album_title"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="150dp"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginRight="50dp"
                 android:layout_alignBaseline="@id/statusLabel"/>
             <TextView
@@ -168,6 +179,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginLeft="10dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -179,6 +191,7 @@
                 android:layout_marginTop="10dp"
 
                 android:layout_marginLeft="150dp"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_alignBaseline="@id/nameLabel"/>
             <TextView
 
@@ -187,22 +200,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/status"
-
+                android:layout_below="@id/name"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold"
-                android:layout_below="@+id/name"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"/>
 
             <TextView
                 android:id="@+id/status"
-                android:layout_below="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/req_date_text"
                 android:layout_marginLeft="150dp"
                 android:text="Email"
+                android:fontFamily="@font/hind_semibold"
                 android:textSize="@dimen/album_title" />
 
 
@@ -214,34 +228,40 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="14dp"
                 android:layout_marginBottom="@dimen/margin_10"
-      android:visibility="gone"
+                android:visibility="gone"
+                android:fontFamily="@font/hind_semibold"
+
                 android:background="@drawable/button_bg"
                 android:gravity="center"
                 android:text="@string/cancel"
                 android:textColor="@color/Red" />
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           android:gravity="center"
-            android:layout_marginTop="8dp"
-            android:id="@+id/details"
-            android:background="@color/light_gray2"
-            android:layout_below="@id/status">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:id="@+id/details"
+                android:fontFamily="@font/hind_semibold"
+
+                android:background="@color/light_gray2"
+                android:layout_below="@id/status">
 
                 <TextView
-                    style="@style/Common_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="@string/complete_details"
+                    style="@style/Common_textView"
+                    android:fontFamily="@font/hind_semibold"
+
+                    android:textSize="14sp"
                     android:textColor="@color/colorOrange"
-                    android:textSize="14sp">
+                    android:text="@string/complete_details">
 
                 </TextView>
             </LinearLayout>
-    </RelativeLayout>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 
 </LinearLayout>

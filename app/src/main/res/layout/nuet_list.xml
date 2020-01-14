@@ -28,6 +28,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/NutrientDeficiencyName"
                 android:paddingLeft="8dp"
+                android:fontFamily="@font/hind_semibold"
+
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/black"
@@ -42,6 +44,8 @@
                 android:text="@string/NutrientDeficiencyName"
                 android:gravity="center"
                 android:paddingLeft="4dp"
+                android:fontFamily="@font/hind_semibold"
+
 
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -56,6 +60,8 @@
 
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
+                android:fontFamily="@font/hind_semibold"
+
                 android:paddingRight="@dimen/album_title_padding"
                 android:text="@string/Nameofchemicalapplied"
                 android:textColor="@color/black"
@@ -69,6 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="4dp"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_below="@id/NutrientDeficiencyNameLabel"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -83,6 +91,8 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title" />
@@ -95,6 +105,8 @@
                 android:layout_below="@id/NameofchemicalappliedLabel"
                 android:paddingLeft="5dp"
                 android:paddingRight="@dimen/album_title_padding"
+                android:fontFamily="@font/hind_semibold"
+
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
             <!-- <TextView
@@ -133,6 +145,8 @@
                 android:textColor="@color/black"
                 android:layout_below="@+id/RecommendedFertilizerLabel"
                 android:textStyle="bold"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/Dosage"
@@ -144,6 +158,8 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="0dp"
                 android:paddingTop="@dimen/album_title_padding"
+                android:fontFamily="@font/hind_semibold"
+
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/UOMName"
@@ -154,6 +170,8 @@
                 android:layout_below="@id/RecommendedFertilizerLabel"
                 android:paddingLeft="3dp"
                 android:paddingRight="@dimen/album_title_padding"
+                android:fontFamily="@font/hind_semibold"
+
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
 
@@ -167,6 +185,8 @@
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="2dp"
+                android:fontFamily="@font/hind_semibold"
+
                 android:text="@string/registeredDate"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
@@ -178,6 +198,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/registeredDate"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_below="@id/DosageLabel"
                 android:paddingLeft="5dp"
                 android:paddingRight="@dimen/album_title_padding"
@@ -187,6 +209,8 @@
                 android:id="@+id/commentsLabel"
                 android:layout_marginStart="8dp"
                 android:layout_width="170dp"
+                android:fontFamily="@font/hind_semibold"
+
                 android:layout_height="wrap_content"
                 android:text="@string/comments"
                 android:paddingLeft="@dimen/album_title_padding"
@@ -201,6 +225,8 @@
                 android:layout_toRightOf="@+id/commentsLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
+
                 android:hint="@string/comments"
                 android:layout_below="@id/RegisteredDateLabel"
                 android:paddingLeft="5dp"

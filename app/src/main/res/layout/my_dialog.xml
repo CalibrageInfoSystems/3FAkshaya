@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:text="Summary"
             android:textAlignment="center"
+            android:fontFamily="@font/hind_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="18dp" />
 
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:visibility="gone"
+            android:fontFamily="@font/hind_semibold"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu erat tincidunt lacus fermentum rutrum."
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />

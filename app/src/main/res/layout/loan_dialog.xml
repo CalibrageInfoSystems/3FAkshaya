@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
                 android:id="@+id/head_text"
                 android:textStyle="bold"
@@ -43,6 +44,7 @@
                 android:paddingBottom="@dimen/margin_10"
                 android:text="@string/terms_conditions"
                 android:textColor="@color/white"
+                android:fontFamily="@font/hind_semibold"
                 android:textSize="18dp"
                 />
         </LinearLayout>
@@ -53,6 +55,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginEnd="@dimen/margin_5"
             android:visibility="gone"
+            android:fontFamily="@font/hind_semibold"
             android:gravity="center"
 
             android:text="X"
@@ -76,7 +79,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_gravity="left"
                 android:layout_marginStart="10dp"
-
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginTop="1dp"
 
                 android:layout_marginEnd="8dp"
@@ -101,6 +104,7 @@
             style="@style/Common_Button"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
+            android:fontFamily="@font/hind_semibold"
             android:layout_below="@+id/measurement"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
