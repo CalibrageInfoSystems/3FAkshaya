@@ -46,6 +46,7 @@
             android:id="@+id/linear_text"
             android:padding="16dp">
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/txtmsg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -35,6 +35,7 @@
 
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/plotIdLabel"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/collection_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,6 +64,7 @@
                 android:textSize="@dimen/album_title" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/palmAreaLabel"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
@@ -78,6 +81,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvNetWeight"
                 android:hint="tvNetWeight"
                 android:layout_toRightOf="@+id/palmAreaLabel"
@@ -89,6 +93,7 @@
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/locationLabel"
                 android:text="@string/only_date"
                 android:layout_marginStart="8dp"
@@ -102,6 +107,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvDate"
                 android:hint="Date"
                 android:layout_toRightOf="@+id/locationLabel"
@@ -114,6 +120,7 @@
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/statusLabel"
                 android:layout_marginStart="8dp"
                 android:layout_width="110dp"
@@ -127,6 +134,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/album_title" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvCc"
                 android:hint="cc"
                 android:layout_toRightOf="@+id/statusLabel"
@@ -147,6 +155,7 @@
                   android:paddingRight="@dimen/album_title_padding"
                   android:textSize="@dimen/songs_count" />-->
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/farmer_Code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -157,6 +166,7 @@
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="@dimen/songs_count" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/plot_Mandal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,6 +177,7 @@
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="@dimen/songs_count" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/plot_State"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,6 +188,7 @@
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="@dimen/songs_count" />
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/plot_District"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
