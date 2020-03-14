@@ -24,8 +24,10 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.AnimationUtil;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.RaiseRequest;
 import in.calibrage.akshaya.models.RecomPlotcodes;
@@ -44,12 +46,13 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.itextpdf.text.factories.GreekAlphabetFactory.getString;
 
 public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHolder> {
 
     public Context mContext;
     private List<LabourRecommendationsModel.ListResult> plot_Set;
-
+    private SpotsDialog mdilogue;
     DecimalFormat dec = new DecimalFormat("####0.00");
     private Subscription mSubscription;
      double plot_area,selected_plot;
@@ -74,7 +77,10 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
         SharedPreferences pref = mContext.getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
-
+        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(mContext)
+                .setTheme(R.style.Custom)
+                .build();
         holder.textViewpalmArea.setText(df.format(plot_Set.get(position).getPalmArea())+" Ha ("+  dec.format(plot_Set.get(position).getPalmAreainAcres() ) + " Acre)");
         ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
         //   ((ViewHolder) holder).textViewpalmArea.setText(plot_Set.get(position).getPalmArea() + " " + "Ha");
@@ -95,7 +101,10 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
                 plot_landmark = holder.textViewstatus.getText()+"";
                 plot_cluster_name =holder.cluster_name.getText()+"";
                 date_platation =  plot_Set.get(position).getDateOfPlanting()+"";
-                visit_CanRaiseRequest();
+                if (CommonUtil.isNetworkAvailable(mContext)) {
+                    visit_CanRaiseRequest();
+                }
+
 
 
 
@@ -113,6 +122,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
     }
 
     private void visit_CanRaiseRequest() {
+        mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
         mSubscription = service.getRaiseRequest(APIConstantURL.CanRaiseRequest + Farmer_code + "/" + plot_code + "/" + 14)
                 .subscribeOn(Schedulers.newThread())
@@ -120,6 +130,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
                 .subscribe(new Subscriber<RaiseRequest>() {
                     @Override
                     public void onCompleted() {
+                        mdilogue.dismiss();
                     }
                     @Override
                     public void onError(Throwable e) {
@@ -134,13 +145,13 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
                             }
                             e.printStackTrace();
                         }
-
-                        //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
+                        mdilogue.dismiss();
+                       showDialog(mContext, getString(R.string.server_error));
                     }
 
                     @Override
                     public void onNext(RaiseRequest raiseRequest) {
-
+                        mdilogue.dismiss();
                         if (raiseRequest.getIsSuccess()) {
                             Log.e("test=== ", raiseRequest.getIsSuccess() + "");
 

@@ -124,6 +124,7 @@ public class TransFragment extends BaseFragment {
                             ((HttpException) e).code();
                             ((HttpException) e).message();
                             ((HttpException) e).response().errorBody();
+
                             try {
                                 ((HttpException) e).response().errorBody().string();
                             } catch (IOException e1) {
@@ -131,9 +132,10 @@ public class TransFragment extends BaseFragment {
                             }
                             e.printStackTrace();
                         }
+                        Log.e("error==",e.getLocalizedMessage());
                         mdilogue.dismiss();
                         pay_adapter.clearAllDataa();
-                        showDialog(getActivity(), getString(R.string.server_error));
+                      showDialog(getActivity(), getString(R.string.server_error));
                     }
 
                     @Override

@@ -11,6 +11,7 @@ import in.calibrage.akshaya.models.ExportPayments;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.FertResponse;
+import in.calibrage.akshaya.models.GetActiveEncyclopediaCategoryDetails;
 import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.GetBankDetailsByFarmerCode;
 import in.calibrage.akshaya.models.GetCollectionInfoById;
@@ -22,6 +23,8 @@ import in.calibrage.akshaya.models.GetTranspotationCharges;
 import in.calibrage.akshaya.models.GetVisitRequestRepository;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.Getvisit;
+import in.calibrage.akshaya.models.IsActiveFarmer;
+import in.calibrage.akshaya.models.IsQuickPayBlockDate;
 import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.LabourTermsNCondtionsModel;
@@ -159,6 +162,9 @@ public interface ApiService {
     @GET
     Observable<BannerresponseModel> getbannerdetails(@Url String url);
 
+    @GET
+    Observable<GetActiveEncyclopediaCategoryDetails> getCategoryDetails(@Url String url);
+
 
     @POST(APIConstantURL.Post_fert)
     Observable<FertResponse> postfert(@Body JsonObject data);
@@ -229,4 +235,9 @@ public interface ApiService {
 
     @GET
     Observable<RaiseRequest> getRaiseRequest(@Url String url);
+    @GET
+    Observable<IsQuickPayBlockDate> getblockdate(@Url String url);
+
+    @GET
+    Observable<IsActiveFarmer> getActiveFarmer(@Url String url);
 }

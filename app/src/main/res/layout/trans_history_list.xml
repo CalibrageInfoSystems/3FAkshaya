@@ -150,7 +150,7 @@
                             android:textStyle="bold"
                             android:fontFamily="@font/hind_semibold"
                             android:gravity="center_vertical"
-                            android:text="@string/net_weightk"
+                            android:text="@string/net_weightt"
 
 
                             />

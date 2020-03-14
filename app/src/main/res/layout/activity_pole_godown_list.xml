@@ -104,7 +104,7 @@ android:fontFamily="@font/hind_semibold"
                             android:layout_height="match_parent"
                             android:background="@null"
                             android:minHeight="0dp"
-                            android:padding="@dimen/margin_10" />
+                            android:layout_marginLeft="@dimen/margin_10" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -173,7 +173,7 @@ android:fontFamily="@font/hind_semibold"
                                     android:textAppearance="?android:attr/textAppearanceMedium"
                                     android:textColor="@color/black"
                                     android:fontFamily="@font/hind_semibold"
-                                    android:textSize="15sp"
+                                    android:textSize="@dimen/_14dp"
                                     android:textStyle="normal" />
 
                             </LinearLayout>
@@ -230,7 +230,7 @@ android:fontFamily="@font/hind_semibold"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -243,6 +243,7 @@ android:fontFamily="@font/hind_semibold"
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:visibility="gone"
                                 android:orientation="horizontal"
                                 android:weightSum="1">
 
@@ -279,7 +280,7 @@ android:fontFamily="@font/hind_semibold"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -327,7 +328,7 @@ android:fontFamily="@font/hind_semibold"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -374,7 +375,7 @@ android:fontFamily="@font/hind_semibold"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -420,7 +421,7 @@ android:fontFamily="@font/hind_semibold"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="10"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>

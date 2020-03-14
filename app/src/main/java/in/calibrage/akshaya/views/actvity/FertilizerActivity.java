@@ -63,7 +63,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
     private RecyclerView recyclerView;
     private ModelFertAdapterNew adapter;
-
+    Double total_amount;
     String amount;
     String dis_price, Farmer_code;
     final Context context = this;
@@ -73,7 +73,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
-Double total_amount;
+
     private ImageView cartButtonIV;
     Integer Id, quantity;
     int price_final;
@@ -288,9 +288,13 @@ Double total_amount;
             try {
                 json = array.getJSONObject(i);
                 superHero.setName(json.getString("name"));
-                superHero.setDiscountedPrice(json.getDouble("actualPrice"));
-                superHero.setmAmount(json.getString("discountedPrice"));
-                superHero.setPrice(json.getInt("price"));
+//                superHero.setDiscountedPrice(json.getDouble("actualPrice"));
+//                superHero.setmAmount(json.getString("discountedPrice"));
+//                superHero.setPrice(json.getInt("price"));
+
+                superHero.setDiscountedPrice(json.getDouble("actualPriceInclGST"));
+                superHero.setmAmount(json.getString("discountedPriceInclGST"));
+                superHero.setPrice(json.getInt("priceInclGST"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
                 int size = json.getInt("size");
@@ -362,7 +366,9 @@ if( String.valueOf(gst)!= null) {
 
         }
         txt_count.setText(allproducts + "");
-        total_amount = Math.round(allitemscost * 100D) / 100D;
+       // total_amount = Math.round(allitemscost * 100D) / 100D;
+        total_amount = (allitemscost * 100) / 100;
+
         Log.e("valueRounded===",total_amount+"");
         mealTotalText.setText(dec.format(total_amount));
     }

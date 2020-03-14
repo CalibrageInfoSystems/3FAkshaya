@@ -5,12 +5,16 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
@@ -20,7 +24,7 @@ public class fertilizerRecommendation_Adapter extends RecyclerView.Adapter<ferti
 
 private List<fertilizerRecommendation> fert_rec_List;
 public Context mContext;
-
+String datetimevaluereq;
 public fertilizerRecommendation_Adapter(Context context, List<fertilizerRecommendation> fert_rec_List) {
         this.fert_rec_List = fert_rec_List;
         this.mContext=context;
@@ -41,7 +45,20 @@ public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 public void onBindViewHolder(final ViewHolder holder, int position) {
 
     fertilizerRecommendation list =  fert_rec_List.get(position);
-        holder.LastUpdatedDate.setText(list.getLastUpdatedDate());
+
+    SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
+    try {
+        Date oneWayTripDate = input.parse(list.getLastUpdatedDate());
+
+        datetimevaluereq = output.format(oneWayTripDate);
+
+
+        Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+        holder.LastUpdatedDate.setText(datetimevaluereq);
         holder.comments.setText(list.getComments());
         holder.Dosage.setText(list.getDosage());
     holder.UOMame.setText(list.getUOMame());

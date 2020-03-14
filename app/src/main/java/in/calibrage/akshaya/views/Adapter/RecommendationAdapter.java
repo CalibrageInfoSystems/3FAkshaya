@@ -50,7 +50,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         final double plot_area = plot_Set.get(position).getPalmAreainAcres();
 
         ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
-        holder.textViewpalmArea.setText(dec.format(plot_Set.get(position).getPalmArea())+"Ha ("+  dec.format(plot_Set.get(position).getPalmAreainAcres() ) + " Acre)");
+        holder.textViewpalmArea.setText(dec.format(plot_Set.get(position).getPalmArea())+" Ha ("+  dec.format(plot_Set.get(position).getPalmAreainAcres() ) + " Acre)");
         ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
         ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
         ((ViewHolder) holder).yop.setText(plot_Set.get(position).getDateOfPlanting() );

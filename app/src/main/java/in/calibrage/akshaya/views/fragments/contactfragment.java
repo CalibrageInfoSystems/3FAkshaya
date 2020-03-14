@@ -132,11 +132,60 @@ public class contactfragment extends BaseFragment {
 
                         mdilogue.cancel();
                         officer_name.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerName());
-                        officer_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
-                        manager_name.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerName());
-                        head_name.setText(resGet3FInfo.getResult().getImportantContacts().getStateHeadName());
-                        manager_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
+                        if (!resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber().isEmpty()) {
+                            officer_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
+                            officer_mobile.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
 
+
+                                    Intent i = new Intent(Intent.ACTION_DIAL, u);
+
+                                    try {
+
+                                        startActivity(i);
+                                    } catch (SecurityException s) {
+
+                                        Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
+                                                .show();
+                                    }
+                                }
+                            });
+                        }
+
+                        else
+                        officer_mobile.setText("N/A");
+                        if ( !resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerName().isEmpty())
+                        manager_name.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerName());
+                        else
+                            manager_name.setText("N/A");
+                        if(!resGet3FInfo.getResult().getImportantContacts().getStateHeadName().isEmpty())
+                        head_name.setText(resGet3FInfo.getResult().getImportantContacts().getStateHeadName());
+                        else
+                            head_name.setText("N/A");
+
+                        if(!resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber().isEmpty()){
+                        manager_mobile.setText(resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
+                            manager_mobile.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
+
+
+                                    Intent i = new Intent(Intent.ACTION_DIAL, u);
+
+                                    try {
+
+                                        startActivity(i);
+                                    } catch (SecurityException s) {
+
+                                        Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
+                                                .show();
+                                    }
+                                }
+                            });
+                        }
+                      else
+                            manager_mobile.setText("N/A");
                         try {
                             Log.d(TAG, "---- analysis ---->GetContactInfo -->> :" + resGet3FInfo.getResult().getImportantContacts());
 //
@@ -157,41 +206,9 @@ public class contactfragment extends BaseFragment {
                                     }
                                 }
                             });
-                            officer_mobile.setOnClickListener(new View.OnClickListener() {
-                                public void onClick(View v) {
-                                    Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerContactNumber());
 
 
-                                    Intent i = new Intent(Intent.ACTION_DIAL, u);
 
-                                    try {
-
-                                        startActivity(i);
-                                    } catch (SecurityException s) {
-
-                                        Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
-                                                .show();
-                                    }
-                                }
-                            });
-
-                            manager_mobile.setOnClickListener(new View.OnClickListener() {
-                                public void onClick(View v) {
-                                    Uri u = Uri.parse("tel:" + resGet3FInfo.getResult().getImportantContacts().getClusterOfficerManagerContactNumber());
-
-
-                                    Intent i = new Intent(Intent.ACTION_DIAL, u);
-
-                                    try {
-
-                                        startActivity(i);
-                                    } catch (SecurityException s) {
-
-                                        Toast.makeText(getContext(), "SecurityException", Toast.LENGTH_LONG)
-                                                .show();
-                                    }
-                                }
-                            });
                             whatsapp_number.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {

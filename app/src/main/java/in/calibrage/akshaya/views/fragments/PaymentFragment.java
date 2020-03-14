@@ -300,21 +300,25 @@ public class PaymentFragment extends BaseFragment {
                 payment.setMemo(" ");
             }
             payment.setObAmount(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getObAmount());
-
-            payment.setAmount(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAmount());
-            payment.setAdhocRate(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAdhocRate());
-            payment.setInvoiceRate(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getInvoiceRate());
+            int amt = (int) Math.round(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAmount());
+            int AdhocRate = (int) Math.round(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAdhocRate());
+            int InvoiceRate = (int) Math.round(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getInvoiceRate());
+            int GRAmount = (int) Math.round(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getGRAmount());
+            int Adjusted = (int) Math.round(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAdjusted());
+            payment.setAmount(amt);
+            payment.setAdhocRate(AdhocRate);
+            payment.setInvoiceRate(InvoiceRate);
             payment.setOb(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getOb());
             payment.setCb(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getCb());
-            payment.setGRAmount(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getGRAmount());
-            payment.setAdjusted(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getAdjusted());
-
+            payment.setGRAmount( GRAmount);
+            payment.setAdjusted(Adjusted);
+            int bal = (int) Math.round(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance());
             if (paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance() < 0) {
-                String balance1 = dff.format(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance()) + "" + ")";
+                String balance1 = bal + "" + ")";
                 //   String balance1 = dff.format(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance())+ "";
                 payment.setBalance(balance1.replace("-", "(") + " ");
             } else {
-                payment.setBalance(paymentResponseModelEXCEl.getResult().getPaymentResponce().get(i).getBalance() + "  ");
+                payment.setBalance(bal + "  ");
             }
 
 
@@ -460,7 +464,7 @@ public class PaymentFragment extends BaseFragment {
                         Log.d(TAG, "onNext:payment " + paymentResponseModel);
 
                         try {
-                            if (paymentResponseModel.getResult().getPaymentResponce() != null) {
+                            if (paymentResponseModel.getResult().getPaymentResponce() != null &&paymentResponseModel.getResult().getPaymentResponce().size()!=0 ) {
                                 Payment_recycle.setVisibility(View.VISIBLE);
                                 noRecords.setVisibility(View.GONE);
 
@@ -477,7 +481,7 @@ public class PaymentFragment extends BaseFragment {
                                     totalBalance.setText("0.00");
 
                                 } else {
-                                    totalBalance.setText(String.valueOf(paymentResponseModel.getResult().getTotalBalance()));
+                                    totalBalance.setText(dff.format(paymentResponseModel.getResult().getTotalBalance()));
                                 }
 
                                 if (paymentResponseModel.getAffectedRecords() == 0) {
@@ -491,9 +495,11 @@ public class PaymentFragment extends BaseFragment {
 
                             } else {
                                 noRecords.setVisibility(View.VISIBLE);
+                                linear1.setVisibility(View.GONE);
                                 //
                                 Payment_recycle.setVisibility(View.GONE);
-
+                                btnDownload.setVisibility(View.GONE);
+                                Downloaded_files.setVisibility(View.GONE);
                             }
                         } catch (Exception e) {
                             Log.e("Exception.==", e.getLocalizedMessage());

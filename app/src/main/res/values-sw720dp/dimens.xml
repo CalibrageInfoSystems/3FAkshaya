@@ -63,4 +63,5 @@
     <dimen name="_45dp">53dp</dimen>
     <dimen name="_16dp">20dp</dimen>
     <dimen name="_170dp">200dp</dimen>
+    <dimen name="_50dp">50dp</dimen>
 </resources>

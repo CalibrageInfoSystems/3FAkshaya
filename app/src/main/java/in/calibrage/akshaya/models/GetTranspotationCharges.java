@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class GetTranspotationCharges {
-
     @SerializedName("listResult")
     @Expose
     private List<ListResult> listResult = null;
@@ -93,10 +92,10 @@ public class GetTranspotationCharges {
         private String mandal;
         @SerializedName("rate")
         @Expose
-        private String rate;
+        private int rate;
         @SerializedName("qty")
         @Expose
-        private Integer qty;
+        private Double qty;
         @SerializedName("trpt")
         @Expose
         private Double trpt;
@@ -105,7 +104,7 @@ public class GetTranspotationCharges {
         private String receiptGeneratedDate;
         @SerializedName("status")
         @Expose
-        private String status;
+        private Object status;
 
         public String getCollectionCode() {
             return collectionCode;
@@ -147,19 +146,19 @@ public class GetTranspotationCharges {
             this.mandal = mandal;
         }
 
-        public String getRate() {
+        public int getRate() {
             return rate;
         }
 
-        public void setRate(String rate) {
+        public void setRate(int rate) {
             this.rate = rate;
         }
 
-        public Integer getQty() {
+        public Double getQty() {
             return qty;
         }
 
-        public void setQty(Integer qty) {
+        public void setQty(Double qty) {
             this.qty = qty;
         }
 
@@ -179,12 +178,13 @@ public class GetTranspotationCharges {
             this.receiptGeneratedDate = receiptGeneratedDate;
         }
 
-        public String getStatus() {
+        public Object getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(Object status) {
             this.status = status;
         }
+
     }
 }

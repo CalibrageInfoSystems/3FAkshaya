@@ -96,11 +96,11 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
         final ModelFert superHero = list_products.get(position);
 
-       imageLoader = CustomVolleyRequest.getInstance(mContext).getImageLoader();
+        imageLoader = CustomVolleyRequest.getInstance(mContext).getImageLoader();
 //        imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
 
         holder.imageView2.setImageUrl(superHero.getImageUrl(), imageLoader);
-       // holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
+        // holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
 
         Picasso.with(mContext )
                 .load(superHero.getImageUrl())
@@ -125,7 +125,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
             onlygst = 0.00;
         }
 
-
+        holder.quantityText.setText("" +superHero.getmQuantity());
         Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
         Double finalwithGST = itemcost + onlygst;
 
@@ -134,9 +134,9 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
         String total_amount = df.format(finalwithGST);
 
-        holder.currentCost.setText(mContext.getString(R.string.Rs) + total_amount);
+        holder.currentCost.setText(mContext.getString(R.string.Rs) +df.format(itemcost));
 
-      //  holder.disc.setText(superHero.getDescription());
+        //  holder.disc.setText(superHero.getDescription());
         if (!TextUtils.isEmpty(superHero.getSize() +"")) {
             holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
         } else {
@@ -144,19 +144,19 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         }
         if(superHero.getmQuantity() < superHero.getAvail_quantity()) {
             holder.quantityText.setText("" + superHero.getmQuantity());
-            holder.addMeal.setEnabled(true);
+            // holder.addMeal.setEnabled(true);
 
         }
 
-        if (superHero.getAvail_quantity()== 0){
-            holder.card_view.setVisibility(View.GONE);
-        }
-       else     if(superHero.getmQuantity()== superHero.getAvail_quantity()){
-            holder.quantityText.setText("" + superHero.getAvail_quantity());
-            holder.addMeal.setEnabled(false);
-            showDialog(mContext, "Available only " + superHero.getAvail_quantity() + " "+superHero.getName() + "  Products in this Godown ");
-            //Toast.makeText(context, "Have max "+superHero.getAvail_quantity()+"only", Toast.LENGTH_LONG).show();
-        }
+//        if (superHero.getAvail_quantity()== 0){
+//            holder.card_view.setVisibility(View.GONE);
+//        }
+//       else     if(superHero.getmQuantity()== superHero.getAvail_quantity()){
+//            holder.quantityText.setText("" +superHero.getmQuantity());
+        //  holder.addMeal.setEnabled(false);
+        // showDialog(mContext, "Available only " + superHero.getAvail_quantity() + " "+superHero.getName() + "  Products in this Godown ");
+        //Toast.makeText(context, "Have max "+superHero.getAvail_quantity()+"only", Toast.LENGTH_LONG).show();
+        //    }
 
 //        else {
 //            holder.addMeal.setEnabled(false);
@@ -182,30 +182,30 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
             }
         });
         holder.disc.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Description = superHero.getDescription();
-                    image_url=superHero.getImageUrl();
-                    price =superHero.getPrice();
-                    ProductName = superHero.getName();
-                    discount_price=superHero.getDiscountedPrice();
-                    product_size=superHero.getSize()+"";
-                    Product_uom =superHero.getUomType();
-                    gstprice=superHero.getgst();
-                    final_amount =superHero.getmAmount();
+            @Override
+            public void onClick(View view) {
+                Description = superHero.getDescription();
+                image_url=superHero.getImageUrl();
+                price =superHero.getPrice();
+                ProductName = superHero.getName();
+                discount_price=superHero.getDiscountedPrice();
+                product_size=superHero.getSize()+"";
+                Product_uom =superHero.getUomType();
+                gstprice=superHero.getgst();
+                final_amount =superHero.getmAmount();
 
-                    Available_quantity =superHero.getAvail_quantity();
-Log.e("Description==160",  discount_price +"   price"+price +"");
-                    displayPopupWindow(view);
-                }
-            });
-            holder.currentFoodName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ProductName = superHero.getName();
-                 //   displayPopupWindow2(view);
-                }
-            });
+                Available_quantity =superHero.getAvail_quantity();
+                Log.e("Description==160",  discount_price +"   price"+price +"");
+                displayPopupWindow(view);
+            }
+        });
+        holder.currentFoodName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductName = superHero.getName();
+                //   displayPopupWindow2(view);
+            }
+        });
 
 
         discount_cost =superHero.getDiscountedPrice();
@@ -213,7 +213,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
         discountgst = (discount_cost / 100.0f) * gst;
         Double finaldiscount= discount_cost + discountgst;
 
-        holder.actual_amt.setText(mContext.getString(R.string.Rs) + finaldiscount);
+        holder.actual_amt.setText(mContext.getString(R.string.Rs) + df.format(discount_cost));
         Log.e("cost===191", superHero.getmAmount()+"===============110"+superHero.getDiscountedPrice());
         if (superHero.getmAmount().equals("null") || superHero.getmAmount().equalsIgnoreCase(superHero.getDiscountedPrice()+"") ) {
             Log.e("cost===193", superHero.getmAmount()+"===============110"+superHero.getDiscountedPrice());
@@ -247,12 +247,12 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
                         if (myProducts.get(i).getProductID() == (superHero.getId())) {
                             Product_new product_new = myProducts.get(i);
                             Integer currentQTY = product_new.getQuandity();
-                            if(currentQTY==superHero.getAvail_quantity()){
-                                holder.addMeal.setEnabled(false);
-                                product_new.setQuandity(currentQTY);
-                            }else {
-                                product_new.setQuandity(currentQTY + 1);
-                            }
+//                            if(currentQTY==superHero.getAvail_quantity()){
+//                              //  holder.addMeal.setEnabled(false);
+//                                product_new.setQuandity(currentQTY);
+//                            }else {
+                            product_new.setQuandity(currentQTY + 1);
+                            //  }
 
                             myProducts.set(i, product_new);
                             Log.d("PRODUCT ", "---- analysis -----(Update new)  " + product_new.getQuandity());
@@ -284,7 +284,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
 
                     double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
-                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize(),
+                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, itemcost, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize(),
                             superHero.getProduct_code()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);
@@ -333,7 +333,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
     }
     public void showDialog(Context context, String msg) {
         final Dialog dialog = new Dialog(context, R.style.DialogSlideAnim);
-       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog);
         final ImageView img = dialog.findViewById(R.id.img_cross);
@@ -356,9 +356,9 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
         }, 500);
     }
     private void displayPopupWindow(View anchorView) {
-      //  View container;
+        //  View container;
         Log.e("Description==252", Description + "price=="+ price + discount_price +product_size + gstprice);
-    //    final PopupWindow popup = new PopupWindow(context);
+        //    final PopupWindow popup = new PopupWindow(context);
 
         final PopupWindow   popup = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
@@ -390,7 +390,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
         new_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Context  context=mContext.getApplicationContext();
+                Context  context=mContext.getApplicationContext();
                 mInflater = LayoutInflater.from(context);
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
                 View mView =mInflater.inflate(R.layout.dialog_custom_layout, null);
@@ -413,11 +413,11 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
         });
         DecimalFormat df = new DecimalFormat("####0.00");
 
-       // double total_amount = Double.parseDouble(df.format(finalwithGST));
-      //  imageLoader.get(image_url, ImageLoader.getImageListener(new_image, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
+        // double total_amount = Double.parseDouble(df.format(finalwithGST));
+        //  imageLoader.get(image_url, ImageLoader.getImageListener(new_image, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
         Product_Name.setText(": "+ProductName);
-        product_price.setText("  "+df.format(discount_price));
-        discountprice.setText(": "+df.format(price));
+        product_price.setText("  "+df.format(Math.round(discount_price)));
+        discountprice.setText(": "+df.format(Math.round(price)));
         productsize.setText(": "+product_size + " "+ Product_uom);
         gst_price.setText(": "+gstprice);
         instock.setText(": "+Available_quantity);
@@ -432,7 +432,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
             product_price.setVisibility(View.VISIBLE);
             product_price.setPaintFlags(product_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
-       // holder.actual_amt.setText(mContext.getString(R.string.Rs) + finaldiscount);
+        // holder.actual_amt.setText(mContext.getString(R.string.Rs) + finaldiscount);
         Log.e("Description==273", Description + "price=="+ price + discount_price +product_size + gstprice);
         popup.setContentView(layout);
         // Set content width and height
@@ -459,7 +459,7 @@ Log.e("Description==160",  discount_price +"   price"+price +"");
 //                wm.updateViewLayout(container, p);
 //            }
 
-     //   }
+        //   }
 
 
         // Closes the popup window when touch outside of it - when looses focus

@@ -3,6 +3,7 @@ package in.calibrage.akshaya.views.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,7 +67,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
     private Subscription mSubscription;
     TextView no_data;
     private GoogleMap googleMap;
-
+    int position;
     public placesfragment() {
         // Required empty public constructor
     }
@@ -118,7 +119,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
         collection_recycleview.setHasFixedSize(true);
         RecyclerView.LayoutManager collection = new LinearLayoutManager(getContext());
         collection_recycleview.setLayoutManager(collection);
-        no_data = (TextView) view.findViewById(R.id.no_data);
+        no_data = (TextView) view.findViewById(R.id.no_godown);
 
         mill_recycleview = (RecyclerView) view.findViewById(R.id.recyclerView_mill);
 
@@ -143,11 +144,13 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
             @Override
             public void onSwitch(int position, String tabText) {
 
-                if (position == 0) {
+                if (position == 0  )  {
                     fert_recyclerView.setVisibility(VISIBLE);
                     collection_recycleview.setVisibility(View.GONE);
                     mill_recycleview.setVisibility(View.GONE);
                     nurseries_recycleview.setVisibility(View.GONE);
+
+
                 } else if (position == 1) {
                     fert_recyclerView.setVisibility(View.GONE);
                     collection_recycleview.setVisibility(VISIBLE);
@@ -165,7 +168,10 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                     mill_recycleview.setVisibility(View.GONE);
                     nurseries_recycleview.setVisibility(VISIBLE);
                 }
+
             }
+
+
         });
 
 
@@ -194,25 +200,34 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                     }
 
                     @Override
-                    public void onNext(resGet3FInfo resGet3FInfo) {
+                    public void onNext(final resGet3FInfo resGet3FInfo) {
 
 
-                        if (resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null) {
-                            no_data.setVisibility(View.GONE);
+                        if (resGet3FInfo.getResult().getImportantPlaces().getGodowns() != null && resGet3FInfo.getResult().getImportantPlaces().getGodowns().size()!= 0) {
+                      //     no_data.setVisibility(View.GONE);
                             fert_recyclerView.setVisibility(VISIBLE);
                             Godown_adapter adapter = new Godown_adapter(resGet3FInfo.getResult().getImportantPlaces().getGodowns(), getContext());
                             fert_recyclerView.setAdapter(adapter);
-
-
-                        } else {
-                            no_data.setVisibility(VISIBLE);
-                            fert_recyclerView.setVisibility(View.GONE);
+                            Log.d(TAG, "---- analysis ---->GetContactInfo -->> have -->> :" );
 
                         }
 
+//                        if ( fert_recyclerView.getVisibility() == View.VISIBLE){
+//                            no_data.setVisibility(View.GONE);}
+//                        else {
+//                            no_data.setVisibility(VISIBLE);
+                            else {
+                            showDialog(getActivity(), getResources().getString(R.string.no_godowns));
+                              no_data.setVisibility(View.VISIBLE);
+                                fert_recyclerView.setVisibility(View.GONE);
+
+                                Log.d(TAG, "---- analysis ---->GetContactInfo -->> nodata -->> :" );
+                            }
+
+
                         if (resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null) {
                             no_data.setVisibility(View.GONE);
-                          collection_recycleview.setVisibility(VISIBLE);
+                            collection_recycleview.setVisibility(View.VISIBLE);
                             collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(), getContext());
                             collection_recycleview.setAdapter(adapter);
 
@@ -255,6 +270,9 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                         }
 
                         sw_paymentMode.setSelectedTab(0);
+
+
+
                     }
                 });
     }

@@ -91,7 +91,7 @@ public class ResPole {
         private String goDownName;
         @SerializedName("pin")
         @Expose
-        private Object pin;
+        private String pin;
         @SerializedName("subsidyAmount")
         @Expose
         private Double subsidyAmount;
@@ -179,11 +179,11 @@ public class ResPole {
             this.goDownName = goDownName;
         }
 
-        public Object getPin() {
+        public String getPin() {
             return pin;
         }
 
-        public void setPin(Object pin) {
+        public void setPin(String pin) {
             this.pin = pin;
         }
 

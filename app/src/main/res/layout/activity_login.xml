@@ -43,12 +43,13 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="15dp"
+
             android:layout_marginRight="15dp"
             android:background="@drawable/edt_bg"
             android:fontFamily="@font/hind_semibold"
             android:hint="@string/farmar_id"
-android:maxLength="20"
-            android:maxEms="50"
+            android:maxLength="20"
+
             android:maxLines="1"
             android:inputType="textCapCharacters"
             android:nextFocusDown="@id/btn_login"

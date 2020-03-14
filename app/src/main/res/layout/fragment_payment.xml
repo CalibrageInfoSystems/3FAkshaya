@@ -193,7 +193,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.85">
+            android:layout_weight="0.8">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/payment_recycler_view"
@@ -208,13 +208,25 @@
                 android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
 
+        </LinearLayout>
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+           android:layout_marginBottom="50dp"
+            android:text="@string/no_payments_found"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_20"
+            />
         <LinearLayout
             android:id="@+id/Download_linear"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.15"
+            android:layout_weight="0.2"
             android:weightSum="1"
 
             android:orientation="horizontal">
@@ -241,7 +253,7 @@
                 android:gravity="center"
                 android:text="@string/download"
                 android:textColor="@color/colorOrange"
-                android:textSize="14sp">
+                android:textSize="@dimen/_14dp">
 
             </TextView>
         </LinearLayout>
@@ -267,22 +279,12 @@
                 android:gravity="center"
                 android:text="@string/click_downlad"
                 android:textColor="@color/colorOrange"
-                android:textSize="14sp">
+                android:textSize="@dimen/_14dp">
 
             </TextView>
         </LinearLayout>
     </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="250dp"
-        android:text="@string/no_payments_found"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_size_20"
-        android:visibility="gone" />
+
 
 </LinearLayout>

@@ -22,11 +22,11 @@
 
             <TextView
                 android:id="@+id/PestLabel"
-                android:layout_marginStart="8dp"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/Pest"
-                android:paddingLeft="8dp"
+                android:paddingLeft="@dimen/album_title_padding"
                 android:fontFamily="@font/hind_semibold"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Pest"
                 android:gravity="center"
-                android:paddingLeft="4dp"
+                android:paddingLeft="5dp"
 
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -50,10 +50,10 @@
 
             <TextView
                 android:id="@+id/PestChemicalsLabel"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/PestLabel"
-                android:layout_marginStart="8dp"
 
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -70,7 +70,7 @@
                 android:layout_toRightOf="@+id/PestChemicalsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="4dp"
+                android:paddingLeft="5dp"
                 android:layout_below="@id/PestLabel"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -79,8 +79,8 @@
             <TextView
                 android:id="@+id/RecommendedChemicalLabel"
                 android:text="@string/RecommendedChemical"
-                android:layout_marginStart="8dp"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/PestChemicalsLabel"
                 android:paddingLeft="8dp"
@@ -128,8 +128,8 @@
             android:textSize="@dimen/album_title" />-->
             <TextView
                 android:id="@+id/DosageLabel"
-                android:layout_marginStart="8dp"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/dosage_only"
                 android:paddingLeft="@dimen/album_title_padding"
@@ -142,32 +142,39 @@
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/Dosage"
-                android:layout_toRightOf="@+id/DosageLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/dosage_only"
                 android:layout_below="@id/RecommendedChemicalLabel"
+                android:layout_marginStart="0dp"
+                android:layout_toEndOf="@+id/DosageLabel"
                 android:paddingLeft="5dp"
+                android:layout_toRightOf="@+id/DosageLabel"
                 android:fontFamily="@font/hind_semibold"
-                android:paddingTop="@dimen/album_title_padding"
-                android:textSize="@dimen/album_title" />
-            <TextView
-                android:id="@+id/UOMName"
-                android:layout_toRightOf="@+id/Dosage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/UOMName"
-                android:fontFamily="@font/hind_semibold"
-                android:layout_below="@id/RecommendedChemicalLabel"
-                android:paddingLeft="3dp"
-                android:paddingRight="@dimen/album_title_padding"
+
+                android:hint="1"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
 
             <TextView
+                android:id="@+id/UOMName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/RecommendedChemicalLabel"
+
+
+                android:layout_toRightOf="@+id/Dosage"
+                android:fontFamily="@font/hind_semibold"
+                android:hint="kg"
+
+                android:paddingLeft="5dp"
+                android:paddingTop="@dimen/album_title_padding"
+
+                android:textSize="@dimen/album_title" />
+
+            <TextView
                 android:id="@+id/CommentsLabel"
-                android:layout_marginStart="8dp"
-                android:layout_width="170dp"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_width="@dimen/_170dp"
                 android:layout_height="wrap_content"
                 android:text="@string/comments"
                 android:paddingLeft="@dimen/album_title_padding"

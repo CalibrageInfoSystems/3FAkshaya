@@ -36,7 +36,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         item_cost = view.findViewById(R.id.item_cost);
         card_view = view.findViewById(R.id.card_view);
         cgst =view.findViewById(R.id.cgst);
-        sgst =view.findViewById(R.id.sgst);
+       // sgst =view.findViewById(R.id.sgst);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,10 +68,14 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
         holder.product_name.setText(product_Listitems.get(position).getName());
         holder.quantity.setText(product_Listitems.get(position).getQuantity() + "");
-        holder.amount.setText(df.format(product_Listitems.get(position).getTotalAmount()));
+        double totalamount = product_Listitems.get(position).getTotalAmount();
+        int amount_total =(int)Math.round(totalamount);
+
+        Log.e("amount_total===",totalamount+"");
+        holder.amount.setText(df.format(amount_total));
         // holder.gst.setText(product_Listitems.get(position).getGstPercentage()+"");
-        holder.cgst.setText(product_Listitems.get(position).getCgstPercentage()+"");
-        holder.sgst.setText(product_Listitems.get(position).getSgstPercentage()+"");
+        holder.cgst.setText(product_Listitems.get(position).getGstPercentage()+"");
+        //holder.sgst.setText(product_Listitems.get(position).getSgstPercentage()+"");
         //  holder.item_cost.setText(df.format(product_Listitems.get(position).getAmount()));
         double amount = Double.valueOf(product_Listitems.get(position).getAmount());
         Log.e("amount===",amount+"");

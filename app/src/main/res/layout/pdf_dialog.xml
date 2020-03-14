@@ -23,7 +23,7 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:fontFamily="@font/hind_semibold"
-                android:text="@string/quick_docu"
+                android:text="@string/quick_pdf"
                 android:textColor="@color/white_new"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -47,6 +47,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
+            android:fontFamily="@font/hind_semibold"
             android:background="@drawable/button_bg"
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/ok"

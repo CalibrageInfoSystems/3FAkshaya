@@ -69,7 +69,7 @@
 
         <TextView
             android:id="@+id/plotIdLabel"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
@@ -87,7 +87,7 @@
             android:id="@+id/plot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+
             android:layout_toRightOf="@+id/plotIdLabel"
             android:hint=""
             android:paddingLeft="@dimen/album_title_padding"
@@ -98,7 +98,7 @@
         <TextView
             android:fontFamily="@font/hind_semibold"
             android:id="@+id/palmAreaLabel"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/plot"
             android:layout_marginTop="@dimen/margin_5"
@@ -116,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/plot"
-            android:layout_marginStart="10dp"
+
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/palmAreaLabel"
             android:hint=""
@@ -131,7 +131,7 @@
         <TextView
             android:fontFamily="@font/hind_semibold"
             android:id="@+id/textView55"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/palmAreaLabel"
             android:layout_marginTop="@dimen/margin_5"
@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/age_plot"
-            android:layout_marginStart="10dp"
+
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
             android:hint=""
@@ -163,7 +163,7 @@
             android:fontFamily="@font/hind_semibold"
             android:id="@+id/landmarkLabel"
 
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/palmArea"
             android:layout_marginTop="@dimen/margin_5"
@@ -180,7 +180,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/palmArea"
-            android:layout_marginStart="10dp"
+
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
             android:hint=""
@@ -192,7 +192,7 @@
             android:fontFamily="@font/hind_semibold"
             android:id="@+id/cluster_Label"
 
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/landmark"
             android:layout_marginTop="@dimen/margin_5"
@@ -209,7 +209,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/landmark"
-            android:layout_marginStart="10dp"
+
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
             android:hint=""
@@ -221,9 +221,9 @@
         <TextView
             android:id="@+id/status_Label"
             android:fontFamily="@font/hind_semibold"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cluster_Label"
+            android:layout_below="@id/cluster_officer"
             android:layout_marginTop="@dimen/margin_5"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
@@ -238,11 +238,11 @@
             android:id="@+id/yop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cluster_Label"
-            android:layout_marginStart="10dp"
+            android:layout_below="@id/cluster_officer"
+
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint=""
+            android:hint="asdf"
             android:maxLength="4"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
@@ -251,7 +251,7 @@
         <TextView
             android:id="@+id/intercrop_label"
             android:fontFamily="@font/hind_semibold"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/status_Label"
             android:layout_marginTop="@dimen/margin_5"
@@ -262,22 +262,22 @@
             android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
-
         <TextView
             android:fontFamily="@font/hind_semibold"
             android:id="@+id/intercrop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/status_Label"
-            android:layout_marginStart="10dp"
+
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
-            android:hint=""
-
+            android:hint="asdf"
+            android:maxLength="4"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
+
     </RelativeLayout>
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/activity_main"
@@ -322,10 +322,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
 
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginTop="-1dp"
                     android:background="@null"
-
-                    android:minHeight="0dp"
-                    android:padding="@dimen/margin_10" />
+                    android:minHeight="0dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -342,7 +343,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lin_one"
                 android:layout_margin="6dp"
-                android:visibility="gone"
+android:visibility="gone"
                 android:orientation="horizontal"
                 >
 
@@ -351,11 +352,11 @@
                     android:id="@+id/harv_amount_Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1sp"
+                    android:layout_marginTop="3sp"
                     android:fontFamily="@font/hind_semibold"
                     android:text="@string/harv_amount"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
 
@@ -364,11 +365,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="1sp"
-                    android:text=":"
+                    android:layout_marginTop="3sp"
+                    android:text="           :"
+
                     android:fontFamily="@font/hind_semibold"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -377,28 +379,18 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10sp"
-                    android:layout_marginTop="1sp"
+                    android:layout_marginTop="3sp"
 
                     android:layout_toRightOf="@+id/doth"
                     android:hint=""
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
 
-                <TextView
 
-                    android:id="@+id/harv_d_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginTop="1sp"
-                    android:layout_toRightOf="@+id/harv_amount"
-                    android:hint=""
-                    android:text=""
-                    android:visibility="gone"
-                    android:fontFamily="@font/hind_semibold"
-                    android:textColor="@color/white"
-                    android:textSize="12dp" />
+
+
+
 
             </RelativeLayout>
 
@@ -421,7 +413,7 @@
                     android:fontFamily="@font/hind_semibold"
                     android:text="@string/pru_amount"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -431,7 +423,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="1sp"
-                    android:text=":"
+
+                    android:text="           :"
                     android:textColor="@color/white"
                     android:textSize="12dp"
                     android:textStyle="bold" />
@@ -447,7 +440,7 @@
                     android:hint=""
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
                 <TextView
                     android:fontFamily="@font/hind_semibold"
                     android:id="@+id/pru_d_amount"
@@ -460,7 +453,7 @@
                     android:text=""
                     android:visibility="gone"
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -483,18 +476,23 @@
                     android:fontFamily="@font/hind_semibold"
                     android:text="@string/intercrop_prunning"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
 
                 <TextView
-                    android:fontFamily="@font/hind_semibold"
                     android:id="@+id/dotu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="1sp"
-                    android:text=":"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="                                    :"
                     android:textColor="@color/white"
                     android:textSize="12dp"
                     android:textStyle="bold" />
@@ -510,7 +508,7 @@
                     android:hint=""
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="12dp"/>
+                    android:textSize="14dp"/>
 
             </RelativeLayout>
             <RelativeLayout
@@ -532,18 +530,23 @@
                     android:fontFamily="@font/hind_semibold"
                     android:text="@string/harv_intercrop"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
 
                 <TextView
-                    android:fontFamily="@font/hind_semibold"
                     android:id="@+id/dotu2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="1sp"
-                    android:text=":"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="                                    :"
                     android:textColor="@color/white"
                     android:textSize="12dp"
                     android:textStyle="bold" />
@@ -559,9 +562,34 @@
                     android:hint=""
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
 
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="6dp"
+
+                android:id="@+id/check_pole"
+
+                android:elevation="2dp">
+
+                <CheckBox
+
+                    android:id="@+id/check_Box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="@font/hind_semibold"
+                    android:text="@string/have_pole"
+                    android:theme="@style/WhiteCheck"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/album_title" />
+
+
+            </RelativeLayout>
+
             <TextView
                 android:fontFamily="@font/hind_semibold"
                 android:id="@+id/textView7"
@@ -633,7 +661,7 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:minHeight="0dp"
-                    android:padding="@dimen/margin_10" />
+                    android:layout_marginLeft="@dimen/margin_10"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -643,6 +671,7 @@
                     android:padding="@dimen/_8dp"
                     android:src="@drawable/arrow_down" />
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -750,7 +779,7 @@
                     android:text="@string/i_have_agree"
                     android:fontFamily="@font/hind_semibold"
                     android:textColor="@color/white"
-
+                    android:theme="@style/WhiteCheck"
 
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"

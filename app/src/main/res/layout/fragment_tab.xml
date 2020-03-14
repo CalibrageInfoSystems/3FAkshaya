@@ -83,14 +83,15 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_video"
+        android:id="@+id/rcv_pdf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_8dp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_pdf"
+        android:id="@+id/rcv_video"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_8dp" />

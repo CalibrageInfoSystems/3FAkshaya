@@ -154,21 +154,21 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
             rcv_pdf.setVisibility(View.GONE);
         } else if (count == 3 && position == 1) {
             lyt_firstTab.setVisibility(View.GONE);
-            rcv_video.setVisibility(View.VISIBLE);
-            rcv_pdf.setVisibility(View.GONE);
+            rcv_pdf.setVisibility(View.VISIBLE);
+            rcv_video.setVisibility(View.GONE);
 
         } else if (count == 3 && position == 2) {
-            rcv_video.setVisibility(View.GONE);
-            rcv_pdf.setVisibility(View.VISIBLE);
+            rcv_pdf.setVisibility(View.GONE);
+            rcv_video.setVisibility(View.VISIBLE);
             lyt_firstTab.setVisibility(View.GONE);
         } else if (count == 2 && position == 0) {
             lyt_firstTab.setVisibility(View.GONE);
-            rcv_video.setVisibility(View.VISIBLE);
-            rcv_pdf.setVisibility(View.GONE);
+            rcv_pdf.setVisibility(View.VISIBLE);
+            rcv_video.setVisibility(View.GONE);
         } else if (count == 2 && position == 1) {
             lyt_firstTab.setVisibility(View.GONE);
-            rcv_video.setVisibility(View.GONE);
-            rcv_pdf.setVisibility(View.VISIBLE);
+            rcv_pdf.setVisibility(View.GONE);
+            rcv_video.setVisibility(View.VISIBLE);
         }
 
     }
@@ -240,30 +240,31 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         if (count == 3 && position == 0) {
 
                             lyt_firstTab.setVisibility(View.VISIBLE);
-                            rcv_video.setVisibility(View.GONE);
-                            no_data.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
-                        } else if (count == 3 && position == 1 && listResultVideo.size() == 0) {
+                            no_data.setVisibility(View.VISIBLE);
+
+                            rcv_video.setVisibility(View.GONE);
+                        } else if (count == 3 && position == 1 && listResultPDF.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
-                            noVedios.setVisibility(View.VISIBLE);
+                            noRecords.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
                             no_data.setVisibility(View.GONE);
 
-                        } else if (count == 3 && position == 2 && listResultPDF.size() == 0) {
+                        } else if (count == 3 && position == 2 && listResultVideo.size() == 0) {
                             rcv_video.setVisibility(View.GONE);
-                            noRecords.setVisibility(View.VISIBLE);
+                            noVedios.setVisibility(View.VISIBLE);
                             lyt_firstTab.setVisibility(View.GONE);
                             no_data.setVisibility(View.GONE);
-                        } else if (count == 2 && position == 0 && listResultVideo.size() == 0) {
+                        } else if (count == 2 && position == 0 && listResultPDF.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
-                            noVedios.setVisibility(View.VISIBLE);
+                            noRecords.setVisibility(View.VISIBLE);
                             rcv_pdf.setVisibility(View.GONE);
                             no_data.setVisibility(View.GONE);
-                        } else if (count == 2 && position == 1 && listResultPDF.size() == 0) {
+                        } else if (count == 2 && position == 1 && listResultVideo.size() == 0) {
                             lyt_firstTab.setVisibility(View.GONE);
                             rcv_video.setVisibility(View.GONE);
                             no_data.setVisibility(View.GONE);
-                            noRecords.setVisibility(View.VISIBLE);
+                            noVedios.setVisibility(View.VISIBLE);
                         }
 
 

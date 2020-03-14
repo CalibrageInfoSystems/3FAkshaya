@@ -84,7 +84,7 @@ public class PaymentResponseModel {
         private Double totalAdjusted;
         @SerializedName("totalAmount")
         @Expose
-        private Double totalAmount;
+        private int totalAmount;
         @SerializedName("totalBalance")
         @Expose
         private Object totalBalance;
@@ -116,11 +116,11 @@ public class PaymentResponseModel {
             this.totalAdjusted = totalAdjusted;
         }
 
-        public Double getTotalAmount() {
+        public int getTotalAmount() {
             return totalAmount;
         }
 
-        public void setTotalAmount(Double totalAmount) {
+        public void setTotalAmount(int totalAmount) {
             this.totalAmount = totalAmount;
         }
 

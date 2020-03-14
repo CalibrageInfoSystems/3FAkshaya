@@ -18,6 +18,8 @@ public class ModelFert {
     private int gst;
     private int Id;
 
+
+
     public ModelFert() {
         this.name = name;
         this.discountedPrice = discountedPrice;

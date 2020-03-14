@@ -54,13 +54,13 @@ import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.models.Product_new;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
-import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
+import in.calibrage.akshaya.views.Adapter.ModelpoleAdapter;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner {
+public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelpoleAdapter.listner {
     private RecyclerView recyclerView;
-    private ModelFertAdapterNew adapter;
+    private ModelpoleAdapter adapter;
     static ArrayList<Product_new> myProductsList = new ArrayList<>();
     String dis_price, Farmer_code;
     final Context context = this;
@@ -70,7 +70,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     private ImageView cartButtonIV;
-    Double  total_amount;
+    Integer  total_amount;
     int Godown_id;
     String Godown_code,Godown_name;
     DecimalFormat dec = new DecimalFormat("####0.00");
@@ -279,9 +279,13 @@ Log.e("myProductsList===",myProductsList.toString());
             try {
                 json = array.getJSONObject(i);
                 superHero.setName(json.getString("name"));
-                superHero.setDiscountedPrice(json.getDouble("actualPrice"));
-                superHero.setmAmount(json.getString("discountedPrice"));
-                superHero.setPrice(json.getInt("price"));
+//                superHero.setDiscountedPrice(json.getDouble("actualPrice"));
+//                superHero.setmAmount(json.getString("discountedPrice"));
+//                superHero.setPrice(json.getInt("price"));
+
+                superHero.setDiscountedPrice(json.getDouble("actualPriceInclGST"));
+                superHero.setmAmount(json.getString("discountedPriceInclGST"));
+                superHero.setPrice(json.getInt("priceInclGST"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
                 int size = json.getInt("size");
@@ -316,7 +320,7 @@ Log.e("myProductsList===",myProductsList.toString());
 
             product_list.add(superHero);
 
-            adapter = new ModelFertAdapterNew(product_list, this, this);
+            adapter = new ModelpoleAdapter(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
 
             recyclerView.setAdapter(adapter);
@@ -337,7 +341,7 @@ Log.e("myProductsList===",myProductsList.toString());
         int allproducts = 0;
 
         for (Product_new product : myProducts) {
-            Double oneitem = product.getQuandity() * (product.getWithGSTamount());
+            Double oneitem = product.getQuandity() * (product.getAmount());
             allitemscost = oneitem + allitemscost;
             Log.d("Product", "total Proce :" + allitemscost);
             int onitem = product.getQuandity();
@@ -347,10 +351,9 @@ Log.e("myProductsList===",myProductsList.toString());
 
         }
         txt_count.setText(allproducts + "");
-        total_amount = Math.round(allitemscost * 100D) / 100D;
+        total_amount = (int)(allitemscost * 100) / 100;
         Log.e("valueRounded===",total_amount+"");
-        mealTotalText.setText(dec.format(total_amount));
-    }
+        mealTotalText.setText(dec.format(total_amount)); }
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;

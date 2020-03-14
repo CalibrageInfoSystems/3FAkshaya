@@ -32,7 +32,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     public PaymentAdapter(Context mContext) {
         this.mContext = mContext;
     }
-
+    double  valueRounded;
     public void updateData(List<PaymentResponseModel.PaymentResponce> viewModels) {
         payment_Set.clear();
         Log.d("PaymentAdapter","----- analysis --- Size :"+payment_Set.size());
@@ -88,13 +88,17 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
 
         ((ViewHolder) holder).quantity_ffb.setText("" + df.format(Quanitity));
+        int amt = (int) Math.round(payment_Set.get(position).getAmount());
+        int AdhocRate = (int) Math.round(payment_Set.get(position).getAdhocRate());
+        int InvoiceRate = (int) Math.round(payment_Set.get(position).getInvoiceRate());
+        int GRAmount = (int) Math.round(payment_Set.get(position).getGRAmount());
+        int Adjusted = (int) Math.round(payment_Set.get(position).getAdjusted());
 
-
-        ((ViewHolder) holder).adhoc_value.setText("" + dff.format(payment_Set.get(position).getAdhocRate()));
-        ((ViewHolder) holder).txt_invoice.setText("" + dff.format(payment_Set.get(position).getInvoiceRate()));
-        ((ViewHolder) holder).txt_gr_rate.setText("" + dff.format(payment_Set.get(position).getGRAmount()));
-        ((ViewHolder) holder).adjustTxt.setText("" + dff.format(payment_Set.get(position).getAdjusted()));
-        ((ViewHolder) holder).finalAmount.setText("" + dff.format(payment_Set.get(position).getAmount()));
+        ((ViewHolder) holder).adhoc_value.setText("" + AdhocRate);
+        ((ViewHolder) holder).txt_invoice.setText("" +InvoiceRate);
+        ((ViewHolder) holder).txt_gr_rate.setText("" + GRAmount);
+        ((ViewHolder) holder).adjustTxt.setText("" + Adjusted);
+        ((ViewHolder) holder).finalAmount.setText("" + amt);
 
 
         if (position % 2 == 0) {
@@ -103,13 +107,15 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
         }
+        int a = (int) Math.round(payment_Set.get(position).getBalance());
 
+        Log.e("valueRounded===",a+"");
 
         if ((payment_Set.get(position).getBalance()) < 0) {
-            String balance1 = dff.format(payment_Set.get(position).getBalance() )+ "" + ")";
+            String balance1 = (a)+ "" + ")";
             ((ViewHolder) holder).balance.setText("" + balance1.toString().replace("-", "("));
         } else {
-            ((ViewHolder) holder).balance.setText("" + dff.format(payment_Set.get(position).getBalance()));
+            ((ViewHolder) holder).balance.setText("" + a);
         }
 
 
@@ -183,7 +189,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         }
 //
 
-        if (payment_Set.get(position).getAmount() == 0.0) {
+        if (amt == 0) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.finalAmount.setVisibility(View.GONE);
             holder.text_seven.setVisibility(View.GONE);

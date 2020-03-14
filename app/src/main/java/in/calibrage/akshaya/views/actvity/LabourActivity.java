@@ -19,6 +19,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -115,11 +116,13 @@ boolean result;
     RecyclerView terms_recycle, discount_recycle;
     Button button_submit;
     private SpotsDialog mdilogue;
-    CheckBox checkbox;
+    CheckBox checkbox,check_box;
     double harvesting_amount, harvesting_d_amount, prunning_amount, prunning_d_amount,intercrop_prun,intercrop_harv;
     String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate;
-    String plot_id, interCrops,location,clustername, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, selected_date,status, plantationdate, finalAmount, plantation_date;
+    String plot_id, interCrops,location,clustername, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, selected_date,status, finalAmount, plantation_date,plantationdate;
     EditText commentsTxt;
+    Integer statusTypeId;
+
     double plot_Age,plotarea;
     DecimalFormat dec = new DecimalFormat("####0.00");
     ImageView backImg, home_btn;
@@ -128,9 +131,11 @@ boolean result;
     LinearLayout discount_label;
     TextView discount_percentage, harv_d_amount, pru_d_amount;
     DatePickerDialog datePickerDialog ;
-
-    int Year, Month, Day, Hour, Minute;
+    RelativeLayout checkpole;
+    int Year, Month, Day, Hour, Minute,clusterId;
     Calendar calendar ;
+    boolean ownPole = false;
+    int diff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,7 +162,10 @@ boolean result;
                 clustername = extras.getString("cluster_name");
                 plantationdate = extras.getString("date_of_plandation");
                 status = extras.getString("status");
+                statusTypeId =extras.getInt("statusTypeId");
                 interCrops = extras.getString("interCrop");
+                clusterId =  extras.getInt("cluster_Id");
+                Log.e("plantationdate===",plantationdate+"");
             }
           //  GetInterCropByPlotCode();
             intview();
@@ -194,10 +202,11 @@ boolean result;
         labourSpinner = (Spinner) findViewById(R.id.labour_duration);
         edittext = (EditText) findViewById(R.id.date_display);
         checkbox = (CheckBox) findViewById(R.id.checkBox);
+        check_box =(CheckBox) findViewById(R.id.check_Box);
         button_submit = findViewById(R.id.buttonSubmit);
         amount_Label = findViewById(R.id.pruning_amount_label);
         harv_amount_label = findViewById(R.id.harv_amount_label);
-        harv_d_amount = findViewById(R.id.harv_d_amount);
+      //  harv_d_amount = findViewById(R.id.harv_d_amount);
         pru_d_amount = findViewById(R.id.pru_d_amount);
         discount_percentage = findViewById(R.id.discount_percentage);
         discount_label = findViewById(R.id.discount_label);
@@ -207,6 +216,7 @@ boolean result;
         harv_amount = findViewById(R.id.harv_amount);
         un_amount = findViewById(R.id.un_amount);
         un2_amount = findViewById(R.id.un2_amount);
+        checkpole =findViewById(R.id.check_pole);
         calendar = Calendar.getInstance();
 
         Year = calendar.get(Calendar.YEAR) ;
@@ -249,7 +259,12 @@ boolean result;
                 finish();
             }
         });
-
+        if (isOnline()) {
+            GetSpinnerLabourType();
+        } else {
+            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
+            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+        }
 //        try {
 //            Date oneWayTripDate = input.parse(plantationdate);
 //
@@ -267,10 +282,14 @@ boolean result;
         landMark.setText(landmarkCode);
         cluster_name.setText(clustername);
         InterCrop.setText(interCrops);
-        yop.setText(plantationdate);
+        yop.setText(plantationdate+"");
         myCalendar = Calendar.getInstance();
-
-
+        plantation_date = yop.getText().toString() ;
+        //  GetAll_tokens_closed();
+        Log.e("===============", "======plantation_date===========" + plantation_date);
+        int year = calendar.get(Calendar.YEAR);
+         diff =year - Integer.valueOf(plantation_date);
+        Log.e("diff===",diff+"");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         //  edittext.setText(dateFormat.format(new Date()));
 
@@ -385,6 +404,22 @@ boolean result;
             }
         });
 
+        check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                    // CostConfig();
+                    ownPole = true;
+
+                }
+                else {
+                    ownPole = false;
+                }
+
+            }
+        });
+
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -475,12 +510,6 @@ boolean result;
         ArrayAdapter aa = new ArrayAdapter(LabourActivity.this, R.layout.spinner_item, listdata);
         aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         labourSpinner.setAdapter(aa);
-        if (isOnline()) {
-            GetSpinnerLabourType();
-        } else {
-            showDialog(LabourActivity.this, getResources().getString(R.string.Internet));
-            //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
-        }
 
         if (isOnline()) {
             multiSelectionSpinner.setListener(this);
@@ -564,41 +593,45 @@ boolean result;
 
                 });
     }
-
-    private void discount_popup() {
-      // GetLabourPackageDiscount();
-        myDialog.setContentView(R.layout.discount_popup);
-        ok = (TextView) myDialog.findViewById(R.id.ok);
-
-        head_text = (TextView) myDialog.findViewById(R.id.head_text);
-        getTerms = (TextView) myDialog.findViewById(R.id.txtclose);
-        discount_recycle = (RecyclerView) myDialog.findViewById(R.id.recycler_discount);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(LabourActivity.this);
-        discount_recycle.setLayoutManager(mLayoutManager);
-
-
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-        getTerms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-
-        // add OK and Cancel buttons
-
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        myDialog.show();
-
-    }
+//
+//    private void discount_popup() {
+//      // GetLabourPackageDiscount();
+//        myDialog.setContentView(R.layout.discount_popup);
+//        ok = (TextView) myDialog.findViewById(R.id.ok);
+//
+//        head_text = (TextView) myDialog.findViewById(R.id.head_text);
+//        getTerms = (TextView) myDialog.findViewById(R.id.txtclose);
+//        discount_recycle = (RecyclerView) myDialog.findViewById(R.id.recycler_discount);
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(LabourActivity.this);
+//        discount_recycle.setLayoutManager(mLayoutManager);
+//
+//
+//        ok.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                myDialog.dismiss();
+//            }
+//        });
+//        getTerms.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                myDialog.dismiss();
+//            }
+//        });
+//
+//        // add OK and Cancel buttons
+//
+//        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+//        myDialog.show();
+//
+//    }
 
     private void ShowPopup() {
+
+
         myDialog.setContentView(R.layout.custompopup);
+        //myDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         ok = (TextView) myDialog.findViewById(R.id.ok);
         service_charge = (TextView) myDialog.findViewById(R.id.service_charge);
         head_text = (TextView) myDialog.findViewById(R.id.head_text);
@@ -933,6 +966,7 @@ boolean result;
 
 
     private void GetSpinnerLabourType() {
+
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getLabourService(APIConstantURL.GetLabourServicetype + plot_id)
                 .subscribeOn(Schedulers.newThread())
@@ -962,16 +996,30 @@ boolean result;
                     @Override
                     public void onNext(Labourservicetype labourservicetype) {
 
-                        if (labourservicetype.getResult() != null) {
 
+                        if (labourservicetype.getResult() != null) {
+                           if(diff>=3)
+
+                         {
                             for (Labourservicetype.Result data : labourservicetype.getResult()
                             ) {
-                                service_name.add(data.getDesc());
-                                labour_uID.add(data.getTypeCdId());
+
+                              service_name.add(data.getDesc());
+                                labour_uID.add(data.getTypeCdId());}
+
+
                             }
+                            else{
+
+                                service_name.add(labourservicetype.getResult().get(0).getDesc());
+                                labour_uID.add(labourservicetype.getResult().get(0).getTypeCdId());
+                            }
+
                             Log.d(TAG, "RESPONSE======" + service_name + labour_uID);
 
                             multiSelectionSpinner.setItems(service_name);
+
+
 
 //
 
@@ -1048,6 +1096,7 @@ boolean result;
 
     @Override
     public void selectedIndices(List<Integer> indices) {
+        check_box.setChecked(false);
         if (isOnline()) {
             ids_list.clear();
 
@@ -1073,8 +1122,8 @@ boolean result;
             Log.d(TAG, "---- analysis ---- > get selected labour name922 :" + selected_ids);
             if (selected_ids.contains("20")) {
                 harv_amount_label.setVisibility(View.VISIBLE);
-                harvesting_d_amount = harvesting_amount * discount / 100;
-                Log.e("call====864", discount + "discoutnt percentage" + harvesting_d_amount + "harvesting===with discount " + harvesting_amount);
+//                harvesting_d_amount = harvesting_amount * discount / 100;
+            //    Log.e("call====864", discount + "discoutnt percentage" + harvesting_d_amount + "harvesting===with discount " + harvesting_amount);
 
                 //double k = (int) (percentage * amount_product) / 100;
             } else {
@@ -1083,7 +1132,8 @@ boolean result;
             }
 //
             if (selected_ids.contains("19")) {
-                amount_Label.setVisibility(View.VISIBLE);
+
+               amount_Label.setVisibility(View.VISIBLE);
 
             } else {
                 amount_Label.setVisibility(View.GONE);
@@ -1095,17 +1145,23 @@ boolean result;
             }
             if (selected_ids.contains("34")) {
                 un2_amount_label.setVisibility(View.VISIBLE);
+
             } else {
                 un2_amount_label.setVisibility(View.GONE);
+
             }
 
-
+//            if (selected_ids.contains("20") || selected_ids.contains("34") ) {
+//                checkpole.setVisibility(View.VISIBLE);
+//            }
             if (selected_ids.contains("20") || selected_ids.contains("34") ) {
                 listdata.clear();
                 Getlabour_duration();
+             //   checkpole.setVisibility(View.VISIBLE);
             }
             else
             {
+               // checkpole.setVisibility(View.VISIBLE);
                 listdata.clear();
                 listdata.add("1 Day");
                 ArrayAdapter aa = new ArrayAdapter(LabourActivity.this, R.layout.spinner_item, listdata);
@@ -1117,6 +1173,7 @@ boolean result;
 
     @Override
     public JsonObject selectedStrings(List<String> strings) {
+        check_box.setChecked(false);
         for (int i = 0; i < strings.size(); i++) {
             String name = strings.get(i);
             Log.d(TAG, "---- analysis ---- > get selected labour name :" + name);
@@ -1194,18 +1251,26 @@ boolean result;
                             prunning_amount = getAmount.getResult().getPrunningCost();
                             intercrop_prun =getAmount.getResult().getUnKnown1Cost();
                             intercrop_harv =getAmount.getResult().getUnKnown2Cost();
-                            double harv = (double) (percentage * harvesting_amount) / 100;
+                            int harv = (int) (percentage * harvesting_amount) / 100;
                             Log.e("K===1",harv+"");
                             double prun= (double) (percentage * prunning_amount) / 100;
                             Log.e("K===2",prun+"");
-                            double prun_inter= (double) (percentage * prunning_amount) / 100;
+                            double prun_inter= (double) (percentage * intercrop_prun) / 100;
                             Log.e("K===3",prun_inter+"");
-                            double harv_inter= (double) (percentage * prunning_amount) / 100;
+                            double harv_inter= (double) (percentage * intercrop_harv) / 100;
                             Log.e("K===4",harv_inter+"");
-                            prun_amount.setText(df.format(prunning_amount+prun));
-                            harv_amount.setText(df.format(harvesting_amount+harv));
-                            un_amount.setText(df.format(intercrop_prun+prun_inter));
-                            un2_amount.setText(df.format(intercrop_harv+harv_inter)  );
+
+
+
+                            Log.e("prunning_amount===",(prunning_amount+prun)+"");
+                            int selected_prunning_amount =( int)Math.round(prunning_amount+prun);
+                            int selected_harvesting_amount =( int)Math.round(harvesting_amount+harv);
+                            int selected_intercrop_prun =( int)Math.round(intercrop_prun+prun_inter);
+                            int selected_intercrop_harv =( int)Math.round(intercrop_harv+harv_inter);
+                            prun_amount.setText(df.format(selected_prunning_amount));
+                            harv_amount.setText(df.format(selected_harvesting_amount));
+                            un_amount.setText(df.format(selected_intercrop_prun));
+                            un2_amount.setText(df.format(selected_intercrop_harv));
                           //  double  harv_amount =
                         } else {
                             //showDialog(LabourActivity.this, lobourResponse.getEndUserMessage());
@@ -1219,7 +1284,7 @@ boolean result;
 
     private JsonObject amountReuestobject() {
         AmountRequest requestModel = new AmountRequest();
-        requestModel.setDateOfPlanting(plantationdate);
+        requestModel.setDateOfPlanting(plantationdate+"");
 
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
@@ -1245,11 +1310,11 @@ boolean result;
         else{
             requestModel.setDurationId(38);}
         requestModel.setPlotVillage(location);
-        requestModel.setYearofPlanting(plantationdate);
-//        requestModel.setHarvestingAmount(0.00);
-//        requestModel.setPruningAmount(0.00);
-//        requestModel.setHarvestingAmount(harvesting_amount);
-//        requestModel.setPruningAmount(prunning_amount);
+        requestModel.setYearofPlanting(plantationdate+"");
+        requestModel.setClusterId(clusterId);
+        requestModel.setOwnPole(ownPole);
+       requestModel.setServices(selected_name);
+        requestModel.setPackage(seleced_Duration);
 //        requestModel.setUnKnown1Amount(intercrop_prun);
 //        requestModel.setUnKnown2Amount(intercrop_harv);
 
@@ -1291,6 +1356,10 @@ boolean result;
             requestModel.setUnKnown2Amount(0.0);}
 
         String selected_name = arrayyTOstring(selected_labour);
+
+
+
+
 //
 //        if (selected_name.contains("Harvesting")) {
 //            requestModel.setHarvestingAmount(Double.parseDouble((String) harv_amount.getText()));

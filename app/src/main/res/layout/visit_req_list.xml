@@ -9,7 +9,6 @@
         card_view:cardCornerRadius="4dp"
 
         android:layout_margin="5dp">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -21,25 +20,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/hind_semibold"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
                 android:text="@string/requestCodeLabel"
                 android:textSize="@dimen/album_title"
-                android:fontFamily="@font/hind_semibold"
-
                 android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/requestCode"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/requestCodeLabel"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="@dimen/_150dp"
                 android:textColor="@color/colorOrange"
                 android:text="Email"
-                android:fontFamily="@font/hind_semibold"
-
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/plotIdLabel"
@@ -47,12 +44,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/hind_semibold"
                 android:gravity="center_vertical"
                 android:layout_below="@id/requestCodeLabel"
                 android:text="@string/plot_code"
                 android:textSize="@dimen/album_title"
-                android:fontFamily="@font/hind_semibold"
-
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -62,10 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/plotIdLabel"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="@dimen/_150dp"
                 android:fontFamily="@font/hind_semibold"
-
-
                 android:text="Email"
                 android:textSize="@dimen/album_title" />
 
@@ -78,9 +72,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
-                android:gravity="center_vertical"
                 android:fontFamily="@font/hind_semibold"
-
+                android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
             <TextView
@@ -90,10 +83,9 @@
                 android:text="Email"
                 android:layout_below="@id/plotIdLabel"
                 android:textSize="@dimen/album_title"
-                android:fontFamily="@font/hind_semibold"
-
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="150dp"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginLeft="@dimen/_150dp"
                 android:layout_marginRight="10dp"
                 android:layout_alignBaseline="@id/dateNTimeLabel"/>
             <TextView
@@ -102,11 +94,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reqDateLabel"
                 android:text="@string/village"
-                android:fontFamily="@font/hind_semibold"
-
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
                 android:textStyle="bold"
                 android:layout_below="@id/dateNTimeLabel"
                 android:layout_marginTop="10dp"
@@ -116,12 +107,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/village_name"
                 android:text="Email"
-                android:fontFamily="@font/hind_semibold"
-
                 android:layout_below="@id/dateNTimeLabel"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="@dimen/_150dp"
                 android:layout_alignBaseline="@id/reqDateLabel"/>
 
 
@@ -132,11 +122,10 @@
                 android:id="@+id/statusLabel"
                 android:text="@string/req_date"
                 android:layout_below="@id/reqDateLabel"
-                android:fontFamily="@font/hind_semibold"
-
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold"
+                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"/>
@@ -145,12 +134,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/reqCreatedDate"
                 android:text="Email"
-                android:fontFamily="@font/hind_semibold"
-
                 android:layout_below="@id/reqDateLabel"
                 android:textSize="@dimen/album_title"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="@dimen/_150dp"
                 android:layout_marginRight="50dp"
                 android:layout_alignBaseline="@id/statusLabel"/>
 
@@ -159,9 +147,8 @@
                 android:id="@+id/req_date_text"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
-                android:fontFamily="@font/hind_semibold"
-
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/status"
                 android:layout_below="@id/statusLabel"
                 android:gravity="center_vertical"
@@ -173,12 +160,11 @@
 
             <TextView
                 android:id="@+id/statusType"
+                android:fontFamily="@font/hind_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/hind_semibold"
-
                 android:layout_alignBaseline="@id/req_date_text"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="@dimen/_150dp"
                 android:text="Email"
                 android:textSize="@dimen/album_title" />
 
@@ -191,11 +177,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="14dp"
                 android:layout_marginBottom="@dimen/margin_10"
+                android:fontFamily="@font/hind_semibold"
                 android:visibility="gone"
                 android:background="@drawable/button_bg"
                 android:gravity="center"
-                android:fontFamily="@font/hind_semibold"
-
                 android:text="@string/cancel"
                 android:textColor="@color/Red" />
 
@@ -212,12 +197,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:fontFamily="@font/hind_semibold"
-
                     android:padding="5dp"
                     style="@style/Common_textView"
-
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_16dp"
                     android:textColor="@color/colorOrange"
                     android:text="@string/complete_details">
 

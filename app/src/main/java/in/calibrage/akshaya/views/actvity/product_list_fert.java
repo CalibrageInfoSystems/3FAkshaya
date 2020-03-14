@@ -37,10 +37,11 @@ import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class product_list_fert extends BaseActivity {
     String id_holder;
-    Double payble_Amount,Subcidy_Amount;;
+
     private SpotsDialog mdilogue;
     RecyclerView recycler_view_products;
     private producut_Adapter mAdapter;
+    Double payble_Amount,Subcidy_Amount;
     TextView requst_code,Payble_amount,subcidy_amount;
     //LinearLayout noRecords;
     private Subscription mSubscription;
@@ -88,13 +89,13 @@ public class product_list_fert extends BaseActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id_holder = getIntent().getStringExtra("Name");
-            payble_Amount = getIntent().getDoubleExtra("pay", 0.00);
-            Subcidy_Amount = getIntent().getDoubleExtra("subcidy", 0.00);
+            payble_Amount = getIntent().getDoubleExtra("pay", 0.0);
+            Subcidy_Amount = getIntent().getDoubleExtra("subcidy", 0.0);
         }
         Log.e("540====","Selected: " + Subcidy_Amount + ", " +payble_Amount);
         requst_code.setText(id_holder);
-        subcidy_amount.setText(df.format(Subcidy_Amount));
-        Payble_amount.setText(df.format(payble_Amount));
+        subcidy_amount.setText(df.format(Math.round(Subcidy_Amount)));
+        Payble_amount.setText(df.format(Math.round(payble_Amount)));
         Log.e("id_holder===", id_holder);
         recycler_view_products = (RecyclerView) findViewById(R.id.products_recy);
         text_amount = (TextView) findViewById(R.id.amount);
@@ -153,15 +154,15 @@ public class product_list_fert extends BaseActivity {
                             Double gst_amountt =0.0;
                             for (int i = 0; i < resproduct.getListResult().size(); i++) {
                                 if (null != resproduct.getListResult().get(i).getAmount()) {
-                                    amount_total = amount_total + resproduct.getListResult().get(i).getAmount();
+                                    amount_total = amount_total + resproduct.getListResult().get(i).getBasePrice();
 
-                                    total_amount = total_amount + resproduct.getListResult().get(i).getTotalAmount();
+                                    total_amount = total_amount + resproduct.getListResult().get(i).getAmount();
 
 
                                     gst_amountt=total_amount-amount_total;
 
 
-                                    valueRounded = Math.round(gst_amountt * 100D) / 100D;
+                                    valueRounded = (double) (gst_amountt * 100) / 100;
                                     Log.e("valueRounded===",valueRounded+"");
                                 }
 //                                Log.e("amount_total====127", amount_total + "");
@@ -171,10 +172,10 @@ public class product_list_fert extends BaseActivity {
                                 // text_amount.setText(resproduct.getListResult().get(i).getAmount()+"");
 
                             }
-                            text_amount.setText(df.format(amount_total));
-                            Final_amount.setText(df.format(total_amount));
+                            text_amount.setText(df.format((amount_total)));
+                            Final_amount.setText(df.format((total_amount)));
                             gst_amount.setText(df.format(valueRounded));
-                            double cgst = valueRounded/2;
+                            double cgst =(double) valueRounded/2;
                             sgst_amount.setText(df.format(cgst));
                             cgst_amount.setText(df.format(cgst));
                         } else {

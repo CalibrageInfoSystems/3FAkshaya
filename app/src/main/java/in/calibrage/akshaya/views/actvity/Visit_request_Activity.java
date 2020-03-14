@@ -85,7 +85,7 @@ import rx.schedulers.Schedulers;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-public class Visit_request_Activity extends BaseActivity implements View.OnClickListener {
+public class  Visit_request_Activity extends BaseActivity implements View.OnClickListener {
     String location, landmarkCode, plot_id, Farmer_code,date_of_plandation,clustername;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
@@ -362,6 +362,7 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             public void onClick(View view) {
                 if (isOnline()) {
                     if (validations()) {
+                        stopRecording();
                         try {
                             mPlayer.release();
                         } catch (Exception e) {
@@ -733,10 +734,10 @@ public class Visit_request_Activity extends BaseActivity implements View.OnClick
             }
 
             VisitRequestModel requestModel = new VisitRequestModel(header, visitRepo);
+            requestModel.setReason(selected_issue);
 
             Log.d(TAG, "---- analysis ---->> base64 514:" + images.size() + fileName);
-//
-//
+
             return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
 

@@ -158,6 +158,8 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         mdilogue.show();
        // WebView webView = (WebView) rootView.findViewById(R.id.web_view);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setSupportZoom(true);
 
 //        webView.setWebViewClient(new WebViewClient() {
 //            @Override

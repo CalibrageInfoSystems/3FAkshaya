@@ -35,7 +35,7 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
             amount = view.findViewById(R.id.Value);
            // gst = view.findViewById(R.id.per_gst);
             cgst =view.findViewById(R.id.cgst);
-            sgst =view.findViewById(R.id.sgst);
+            //sgst =view.findViewById(R.id.sgst);
             item_cost = view.findViewById(R.id.item_cost);
             card_view = view.findViewById(R.id.card_view);
             view.setOnClickListener(new View.OnClickListener() {
@@ -69,20 +69,20 @@ public class producut_Adapter extends RecyclerView.Adapter<producut_Adapter.MyVi
         final Product_new dataa = product_Listitems.get(position);
         holder.product_name.setText(dataa.getProductname());
         holder.quantity.setText(dataa.getQuandity() + "");
-Double amountt =(dataa.getWithGSTamount()) * dataa.getQuandity() ;
+Double amountt =(dataa.getAmount()) * dataa.getQuandity() ;
 
 
-        valueRounded = Math.round(amountt * 100D) / 100D;
-        holder.amount.setText(dec.format(valueRounded ));
+        valueRounded = (amountt * 100D) / 100D;
+        holder.amount.setText(dec.format(amountt ));
        // holder.gst.setText(dataa.getGst()+"");
 
         holder.item_cost.setText(dec.format(dataa.getAmount()));
        if(" "+dataa.getGst()!=null){
            double GST = dataa.getGst();
             cgst =GST/2;
+           holder.cgst.setText(GST+"");
        }
-        holder.cgst.setText(cgst+"");
-        holder.sgst.setText(cgst+"");
+
     }
 
 

@@ -160,7 +160,7 @@
                     </LinearLayout>
 
 
-                    <in.calibrage.AkshayaFA.common.SignatureView
+                    <in.calibrage.akshaya.common.SignatureView
                         xmlns:sign="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/signature_view"
                         android:visibility="gone"
@@ -236,7 +236,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/lin_eight"
                         android:layout_marginStart="@dimen/margin_5"
-                        android:text="@string/terms_conditions"
+                        android:text="@string/terms_conditionss"
                         android:fontFamily="@font/hind_semibold"
                         android:textColor="@color/colorOrange"
                         android:textSize="16dp" />
@@ -435,7 +435,7 @@
                         android:layout_marginTop="5sp"
                         android:fontFamily="@font/hind_semibold"
                         android:layout_toRightOf="@+id/dot3"
-                        android:hint="0"
+                        android:hint=" "
                         android:text=""
                         android:textColor="@color/white"
                         android:textSize="@dimen/album_title"
@@ -484,7 +484,7 @@
                         android:layout_marginLeft="10sp"
                         android:layout_marginTop="5sp"
                         android:layout_toRightOf="@+id/dotq"
-                        android:hint="0"
+                        android:hint=" "
                         android:text=""
                         android:fontFamily="@font/hind_semibold"
                         android:textColor="@color/white"
@@ -534,7 +534,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_toRightOf="@+id/dot4"
                         android:fontFamily="@font/hind_semibold"
-                        android:hint="0"
+                        android:hint=" "
                         android:text=""
                         android:textColor="@color/white"
                         android:textSize="@dimen/album_title"
@@ -609,7 +609,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/margin_5"
                         android:fontFamily="@font/hind_semibold"
-                        android:text="@string/terms_conditions"
+                        android:text="@string/terms_conditionss"
                         android:textColor="@color/colorOrange2"
                         android:textSize="16dp" />
 

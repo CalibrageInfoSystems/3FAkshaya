@@ -13,6 +13,9 @@ public class VisitRequestModel {
     @SerializedName("visitRepo")
     @Expose
     private List<VisitRepo> visitRepo = null;
+    @SerializedName("reason")
+    @Expose
+    private String reason;
 
     public RequestHeader getRequestHeader() {
         return requestHeader;
@@ -28,6 +31,13 @@ public class VisitRequestModel {
 
     public void setVisitRepo(List<VisitRepo> visitRepo) {
         this.visitRepo = visitRepo;
+    }
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
 
@@ -395,5 +405,8 @@ public class VisitRequestModel {
     public VisitRequestModel(RequestHeader requestHeader, List<VisitRepo> visitRepo) {
         this.requestHeader = requestHeader;
         this.visitRepo = visitRepo;
+    }
+
+    public VisitRequestModel() {
     }
 }

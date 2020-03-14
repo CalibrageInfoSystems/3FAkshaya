@@ -143,7 +143,7 @@ public class Godown_list extends BaseActivity implements GodownListAdapter.OnIte
                     @Override
                     public void onNext(ActiveGodownsModel activeGodownsModel) {
                         mdilogue.cancel();
-                        if (activeGodownsModel.getListResult() != null) {
+                        if (activeGodownsModel.getListResult() != null && activeGodownsModel.getListResult().size()!= 0 ) {
                             lst_godown_list.setVisibility(View.VISIBLE);
                             noRecords.setVisibility(View.GONE);
                             Log.d(TAG, "---- analysis ---->GetActiveGodows-->> Responce size-->> :" + activeGodownsModel.getListResult().size());

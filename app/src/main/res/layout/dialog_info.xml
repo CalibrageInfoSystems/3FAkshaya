@@ -374,9 +374,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1sp"
+                android:fontFamily="@font/hind_semibold"
                 android:text="@string/operatorName"
                 android:textColor="@color/black"
-                android:fontFamily="@font/hind_semibold"
                 android:textSize="14dp"
                 android:textStyle="bold" />
 
@@ -415,7 +415,7 @@
             android:layout_marginTop="8dp"
             android:id="@+id/lin_rept"
 
-            android:layout_below="@+id/lin_eight">
+            android:layout_below="@+id/lin_comments">
 
             <TextView
                 style="@style/Common_textView"
@@ -633,10 +633,10 @@
             android:id="@+id/lin_comments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_rept"
+            android:layout_below="@+id/lin_eight"
             android:layout_marginStart="6dp"
             android:layout_marginTop="3sp"
-            android:visibility="gone"
+
             android:orientation="horizontal">
 
 
@@ -670,7 +670,7 @@
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dotcom"
-                android:hint=""
+                android:hint="xzz"
                 android:fontFamily="@font/hind_semibold"
 
                 android:textColor="@color/black"
@@ -682,7 +682,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_comments"
+            android:layout_below="@+id/lin_rept"
             android:layout_marginStart="6dp"
             android:gravity="center"
             android:layout_marginTop="3sp"

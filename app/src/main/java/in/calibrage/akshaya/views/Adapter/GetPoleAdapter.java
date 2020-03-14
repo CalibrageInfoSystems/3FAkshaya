@@ -81,7 +81,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         public TextView requestCode;
         public TextView req_date;
         public TextView statusType;
-        public TextView paymentMode, amount;
+        public TextView paymentMode, amount,pin,pinlabel;
         public ImageView showMore;
         public TextView cancel,godown_name;
         LinearLayout details;
@@ -102,7 +102,8 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
             godown_name=itemView.findViewById(R.id.godown_name);
             details = itemView.findViewById(R.id.details);
             card_view = itemView.findViewById(R.id.card_view);
-
+            pin = itemView.findViewById(R.id.pin);
+            pinlabel =itemView.findViewById(R.id.pin_label);
 
         }
 
@@ -137,6 +138,13 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         holder.godown_name.setText(list.get(position).getGoDownName());
         holder.req_date.setText(datetimevaluereq);
         holder.statusType.setText(list.get(position).getStatus());
+       if( list.get(position).getPin()!= null)
+        holder.pin.setText(list.get(position).getPin());
+       else{
+           holder.pin.setVisibility(View.GONE);
+           holder.pinlabel.setVisibility(View.GONE);
+       }
+
         holder.paymentMode.setText(list.get(position).getPaymentMode());
         if(null !=list.get(position).getPaubleAmount() )
         {

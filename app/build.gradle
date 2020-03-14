@@ -10,11 +10,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
 }
@@ -79,6 +81,9 @@ dependencies {
     implementation 'com.karumi:dexter:5.0.0'
 
     implementation 'com.wdullaer:materialdatetimepicker:3.6.4'
+    implementation 'com.github.kal72:RackMonthPicker:1.6.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    //  implementation 'com.android.support:multidex:1.0.3'
 
     // implementation 'com.android.support:support-v4:26.1.0'
 }

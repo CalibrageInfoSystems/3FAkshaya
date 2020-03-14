@@ -1,8 +1,11 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Animatable;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
@@ -12,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +31,7 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
+import in.calibrage.akshaya.models.IsQuickPayBlockDate;
 import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.RaiseRequest;
 import in.calibrage.akshaya.models.RecomPlotcodes;
@@ -101,6 +106,11 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setViews() {
+        if (isOnline()){
+            IsQuickPayBlockDate();}
+        else {
+            showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
+        }
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,18 +141,100 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        if (isOnline()) {
-            getQuckPay();
-            nextButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
-            nextButton.setVisibility(View.GONE);
-//            nextButton.setBackground(this.getDrawable(R.drawable.button_bg_disable));
-//            nextButton.setEnabled(false);
-        }
+//        if (isOnline()) {
+//            getQuckPay();
+//            nextButton.setVisibility(View.VISIBLE);
+//        }
+//        else {
+//            showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
+//            nextButton.setVisibility(View.GONE);
+////            nextButton.setBackground(this.getDrawable(R.drawable.button_bg_disable));
+////            nextButton.setEnabled(false);
+//        }
 
 
+    }
+    private void IsQuickPayBlockDate() {
+        mdilogue.show();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.getblockdate(APIConstantURL.IsQuickPayBlockDate)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<IsQuickPayBlockDate>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(IsQuickPayBlockDate isQuickPayBlockDate) {
+
+
+                        if (isQuickPayBlockDate.getIsSuccess()){
+                            if(isQuickPayBlockDate.getResult().equals(true)) {
+                                if (isOnline()) {
+                                    getQuckPay();
+                                  //  nextButton.setVisibility(View.VISIBLE);
+                                } else {
+                                    showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
+                                    //nextButton.setVisibility(View.GONE);
+                                }
+                            }
+
+                        }
+                        else {
+                            // edittext.getText().clear();Quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.
+                            showDialogf(QuickPayActivity.this, isQuickPayBlockDate.getEndUserMessage());
+
+                        }
+                    }
+                });
+    }
+
+    public void showDialogf(Activity activity, String msg) {
+        final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog);
+        final ImageView img = dialog.findViewById(R.id.img_cross);
+
+        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+        text.setText(msg);
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+        dialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        }, 500);
     }
 
     private void CanRaiseRequest() {
@@ -244,8 +336,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
 
                         if (quickPayModel.getListResult().size()!= 0  ) {
-                            noRecords.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
+                            nextButton.setVisibility(View.VISIBLE);
                             adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);
                             recyclerView.setAdapter(adapter);
                             w_Code = quickPayModel.getListResult().get(0).getWhsCode();

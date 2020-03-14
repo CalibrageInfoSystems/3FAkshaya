@@ -101,7 +101,7 @@
                             android:layout_height="match_parent"
                             android:background="@null"
                             android:minHeight="0dp"
-                            android:padding="@dimen/margin_10" />
+                            android:layout_marginLeft="@dimen/margin_10" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -169,7 +169,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="normal"
                                     android:textColor="@color/black"
-                                    android:textSize="15sp"
+                                    android:textSize="@dimen/_14dp"
 
                                     android:text="@string/note"
                                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -227,7 +227,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -241,6 +241,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
+                                android:visibility="gone"
                                 android:weightSum="1">
 
                                 <TextView
@@ -276,7 +277,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -324,7 +325,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -371,7 +372,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -423,7 +424,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="100"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -470,7 +471,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.4"
 
-                                    android:text="10"
+                                    android:text=""
                                     android:textAlignment="textStart"
                                     />
                             </LinearLayout>
@@ -519,7 +520,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.4"
 
-                                android:text="10"
+                                android:text=""
                                 android:textAlignment="textStart"
                                 />
                         </LinearLayout>

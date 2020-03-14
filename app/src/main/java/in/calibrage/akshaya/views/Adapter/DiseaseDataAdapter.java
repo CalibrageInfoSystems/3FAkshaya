@@ -41,7 +41,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         holder.Disease.setText(superHero.getDisease());
         holder.Chemical.setText(superHero.getChemical());
         holder.Dosage.setText(superHero.getDosage());
-
+        holder.RecommendedChemical.setText(superHero.getChemical());
         holder.UOMName.setText(superHero.getUOMName());
         holder.Comments.setText(superHero.getComments());
 
@@ -52,7 +52,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white2));
 
         }
-        if (superHero.getDosage().contains("0.0")) {
+        if (superHero.getDosage().contains("0.0") &&superHero.getDosage().contains("0") ) {
 
             holder.Dosage.setVisibility(View.GONE);
             holder.dosage_label.setVisibility(View.GONE);
@@ -63,15 +63,15 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             holder.dosage_label.setVisibility(View.VISIBLE);
             holder.UOMName.setVisibility(View.VISIBLE);
         }
-        if (superHero.getUOMName().contains("null")) {
-
-
-            holder.UOMName.setVisibility(View.GONE);
-
-        } else {
-
-            holder.UOMName.setVisibility(View.VISIBLE);
-        }
+//        if (superHero.getUOMName().contains("null")) {
+//
+//
+//            holder.UOMName.setVisibility(View.GONE);
+//
+//        } else {
+//
+//            holder.UOMName.setVisibility(View.VISIBLE);
+//        }
         if (superHero.getComments().contains("null")) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.Comments.setVisibility(View.GONE);

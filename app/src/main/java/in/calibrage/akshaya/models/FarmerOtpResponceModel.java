@@ -73,41 +73,43 @@ public class FarmerOtpResponceModel {
         this.exception = exception;
     }
 
-    public class Result {
 
-        @SerializedName("farmerDetails")
-        @Expose
-        private List<FarmerDetail> farmerDetails = null;
-        @SerializedName("bannerDetails")
-        @Expose
-        private List<BannerDetail> bannerDetails = null;
-        @SerializedName("categoriesDetails")
-        @Expose
-        private List<CategoriesDetail> categoriesDetails = null;
 
-        public List<FarmerDetail> getFarmerDetails() {
-            return farmerDetails;
-        }
+        public class Result {
 
-        public void setFarmerDetails(List<FarmerDetail> farmerDetails) {
-            this.farmerDetails = farmerDetails;
-        }
+            @SerializedName("farmerDetails")
+            @Expose
+            private List<FarmerDetail> farmerDetails = null;
+            @SerializedName("bannerDetails")
+            @Expose
+            private Object bannerDetails;
+            @SerializedName("categoriesDetails")
+            @Expose
+            private List<CategoriesDetail> categoriesDetails = null;
 
-        public List<BannerDetail> getBannerDetails() {
-            return bannerDetails;
-        }
+            public List<FarmerDetail> getFarmerDetails() {
+                return farmerDetails;
+            }
 
-        public void setBannerDetails(List<BannerDetail> bannerDetails) {
-            this.bannerDetails = bannerDetails;
-        }
+            public void setFarmerDetails(List<FarmerDetail> farmerDetails) {
+                this.farmerDetails = farmerDetails;
+            }
 
-        public List<CategoriesDetail> getCategoriesDetails() {
-            return categoriesDetails;
-        }
+            public Object getBannerDetails() {
+                return bannerDetails;
+            }
 
-        public void setCategoriesDetails(List<CategoriesDetail> categoriesDetails) {
-            this.categoriesDetails = categoriesDetails;
-        }
+            public void setBannerDetails(Object bannerDetails) {
+                this.bannerDetails = bannerDetails;
+            }
+
+            public List<CategoriesDetail> getCategoriesDetails() {
+                return categoriesDetails;
+            }
+
+            public void setCategoriesDetails(List<CategoriesDetail> categoriesDetails) {
+                this.categoriesDetails = categoriesDetails;
+            }
 
     }
     public class FarmerDetail {
@@ -457,6 +459,30 @@ public class FarmerOtpResponceModel {
         @SerializedName("name")
         @Expose
         private String name;
+        @SerializedName("teluguName")
+        @Expose
+        private String teluguName;
+        @SerializedName("hindiName")
+        @Expose
+        private String hindiName;
+        @SerializedName("remarks")
+        @Expose
+        private String remarks;
+        @SerializedName("isActive")
+        @Expose
+        private Boolean isActive;
+        @SerializedName("createdByUserId")
+        @Expose
+        private Integer createdByUserId;
+        @SerializedName("createdDate")
+        @Expose
+        private String createdDate;
+        @SerializedName("updatedByUserId")
+        @Expose
+        private Integer updatedByUserId;
+        @SerializedName("updatedDate")
+        @Expose
+        private String updatedDate;
 
         public Integer getId() {
             return id;
@@ -472,6 +498,70 @@ public class FarmerOtpResponceModel {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getTeluguName() {
+            return teluguName;
+        }
+
+        public void setTeluguName(String teluguName) {
+            this.teluguName = teluguName;
+        }
+
+        public String getHindiName() {
+            return hindiName;
+        }
+
+        public void setHindiName(String hindiName) {
+            this.hindiName = hindiName;
+        }
+
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public void setRemarks(String remarks) {
+            this.remarks = remarks;
+        }
+
+        public Boolean getIsActive() {
+            return isActive;
+        }
+
+        public void setIsActive(Boolean isActive) {
+            this.isActive = isActive;
+        }
+
+        public Integer getCreatedByUserId() {
+            return createdByUserId;
+        }
+
+        public void setCreatedByUserId(Integer createdByUserId) {
+            this.createdByUserId = createdByUserId;
+        }
+
+        public String getCreatedDate() {
+            return createdDate;
+        }
+
+        public void setCreatedDate(String createdDate) {
+            this.createdDate = createdDate;
+        }
+
+        public Integer getUpdatedByUserId() {
+            return updatedByUserId;
+        }
+
+        public void setUpdatedByUserId(Integer updatedByUserId) {
+            this.updatedByUserId = updatedByUserId;
+        }
+
+        public String getUpdatedDate() {
+            return updatedDate;
+        }
+
+        public void setUpdatedDate(String updatedDate) {
+            this.updatedDate = updatedDate;
         }
 
     }

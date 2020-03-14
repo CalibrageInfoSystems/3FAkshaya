@@ -9,7 +9,7 @@
 
     android:orientation="vertical"
     android:weightSum="1"
-
+android:background="@drawable/new_bg"
     tools:context=".views.fragments.HomeFragment">
 
     <ScrollView
@@ -25,6 +25,7 @@ android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="1"
+
             android:orientation="vertical">
 
             <LinearLayout
@@ -216,12 +217,12 @@ android:textColor="#191919"
                     android:layout_marginRight="@dimen/margin_5"
                     android:layout_weight="0.5"
                     android:gravity="bottom"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/home_View_lyt_height"
-                        android:weightSum="1">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/home_View_lyt_height"-->
+<!--                        android:weightSum="1">-->
 
 <!--                        <android.support.v7.widget.CardView-->
 <!--                            android:id="@+id/labour_button"-->
@@ -250,15 +251,16 @@ android:textColor="#191919"
                                     android:src="@drawable/labour"
 
                                     />
+
                                 <TextView
-                                    android:textAlignment="center"
+                                    style="@style/Common_textView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:maxLines="1"
                                     android:singleLine="true"
                                     android:text="@string/labour_lable"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
-                                    style="@style/Common_textView" />
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black" />
 
 
                             </LinearLayout>
@@ -267,7 +269,7 @@ android:textColor="#191919"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="bottom"
-                            android:layout_marginTop="50dp"
+                            android:layout_marginTop="@dimen/_50dp"
                             android:background="@android:color/darker_gray" />
 
 <!--                        <android.support.v7.widget.CardView-->
@@ -280,39 +282,48 @@ android:textColor="#191919"
 <!--                            android:elevation="8dp"-->
 <!--                            android:gravity="center"-->
 <!--                            android:orientation="vertical"-->
-<!--                            card_view:cardCornerRadius="6dp">-->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_60dp"
-                                android:layout_gravity="center"
-                                android:id="@+id/pole_button"
-                                android:layout_weight="0.33333"
-                                android:orientation="vertical"
-                                >
-                                <ImageView
-                                    style="@style/Common_image"
+<!--
 
-                                    android:src="@drawable/equipment"
-
-                                    />
-                                <TextView
-                                    android:textAlignment="center"
-                                    android:maxLines="1"
-                                    android:singleLine="true"
-                                    android:text="@string/pole"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
-                                    style="@style/Common_textView" />
+            card_view:cardCornerRadius="6dp">-->
 
 
-                            </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.33333"
+                        android:id="@+id/fertilizer_button"
+                        android:orientation="vertical"
+                        >
+                        <ImageView
+                            style="@style/Common_image"
+
+                            android:src="@drawable/fertilizers"
+
+                            />
+                        <TextView
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@string/fertilizer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            style="@style/Common_textView" />
+
+
+                    </LinearLayout>
+
+
+
+
                         <LinearLayout
                             android:gravity="bottom"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="bottom"
-android:layout_marginTop="50dp"
+android:layout_marginTop="@dimen/_50dp"
                             android:background="@android:color/darker_gray" />
 
 <!--                        </android.support.v7.widget.CardView>-->
@@ -328,32 +339,32 @@ android:layout_marginTop="50dp"
 <!--                            android:gravity="center"-->
 <!--                            android:orientation="vertical"-->
 <!--                            card_view:cardCornerRadius="6dp">-->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_60dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.33333"
-                                android:id="@+id/fertilizer_button"
-                                android:orientation="vertical"
-                                >
-                                <ImageView
-                                    style="@style/Common_image"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/pole_button"
+                        android:layout_weight="0.33333"
+                        android:orientation="vertical"
+                        >
+                        <ImageView
+                            style="@style/Common_image"
 
-                                    android:src="@drawable/fertilizers"
+                            android:src="@drawable/equipment"
 
-                                    />
-                                <TextView
-                                    android:textAlignment="center"
-                                    android:maxLines="1"
-                                    android:singleLine="true"
-                                    android:text="@string/fertilizer"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/black"
-                                    style="@style/Common_textView" />
+                            />
+                        <TextView
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@string/pole"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            style="@style/Common_textView" />
 
 
-                            </LinearLayout>
+                    </LinearLayout>
 
 <!--                        </android.support.v7.widget.CardView>-->
 
@@ -362,25 +373,27 @@ android:layout_marginTop="50dp"
 
 
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/home_View_lyt_height"
-                    android:gravity="center"
-                    android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/home_View_lyt_height"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="vertical">-->
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
                         android:layout_marginLeft="@dimen/margin_5"
                         android:layout_marginRight="@dimen/margin_5"
-                        android:weightSum="1">
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        android:layout_height="0dp">
 
 <!--                        <android.support.v7.widget.CardView-->
 <!--                          -->
@@ -425,7 +438,7 @@ android:layout_marginTop="50dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="bottom"
 
-                            android:layout_marginBottom="50dp"
+                            android:layout_marginBottom="@dimen/_50dp"
                             android:background="@android:color/darker_gray" />
 
 <!--                        </android.support.v7.widget.CardView>-->
@@ -467,7 +480,7 @@ android:layout_marginTop="50dp"
 
                             </LinearLayout>
                         <LinearLayout
-                            android:layout_marginBottom="50dp"
+                            android:layout_marginBottom="@dimen/_50dp"
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="bottom"
@@ -521,7 +534,7 @@ android:layout_marginTop="50dp"
                         android:layout_height="1dp"
                         android:background="@android:color/darker_gray" />
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

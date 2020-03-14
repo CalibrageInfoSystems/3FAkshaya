@@ -76,7 +76,9 @@
                     android:id="@+id/plothectrage"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14dp"
                     android:layout_marginTop="5dp"
                     android:text="5 Acres"/>
             </LinearLayout>
@@ -102,6 +104,8 @@
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14dp"
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_marginTop="5dp"
                     android:text="54965498132"/>
             </LinearLayout>
@@ -125,6 +129,8 @@
                     android:id="@+id/plotaddress"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:textSize="@dimen/_14dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Plot No: 132/A"/>
@@ -148,6 +154,8 @@
                     android:id="@+id/plotLandmark"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:textSize="@dimen/_14dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Brown Bear Bakery"/>
@@ -173,6 +181,8 @@
                     android:id="@+id/plotvillage"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
+                    android:textSize="@dimen/_14dp"
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="JNTU"/>
@@ -196,7 +206,9 @@
                     android:id="@+id/plotmandal"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
+                    android:textSize="@dimen/_14dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_marginTop="5dp"
                     android:text="Kukatpally"/>
             </LinearLayout>
@@ -224,6 +236,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/hind_semibold"
+                    android:textSize="@dimen/_14dp"
                     android:text="Medchal"/>
             </LinearLayout>
 
@@ -245,7 +259,9 @@
                     android:id="@+id/yop"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
-android:maxLength="6"
+                    android:maxLength="6"
+                    android:fontFamily="@font/hind_semibold"
+                    android:textSize="@dimen/_14dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                   />
@@ -270,7 +286,8 @@ android:maxLength="6"
                     android:id="@+id/cluster_offcer"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
-
+                    android:textSize="@dimen/_14dp"
+                    android:fontFamily="@font/hind_semibold"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     />

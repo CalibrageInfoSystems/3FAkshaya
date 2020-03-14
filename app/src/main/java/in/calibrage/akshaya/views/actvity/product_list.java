@@ -123,7 +123,7 @@ public class product_list extends BaseActivity {
                     @Override
                     public void onNext(Resproduct resproduct) {
                         if (resproduct.getListResult() != null) {
-  Req_producutt_Adapter adapter = new Req_producutt_Adapter(product_list.this, resproduct.getListResult());
+                           Req_producutt_Adapter adapter = new Req_producutt_Adapter(product_list.this, resproduct.getListResult());
                             recycler_view_products.setAdapter(adapter);
 
                             Double amount_total = 0.00;
@@ -131,15 +131,15 @@ public class product_list extends BaseActivity {
                             Double gst_amountt =0.0;
                             for (int i = 0; i < resproduct.getListResult().size(); i++) {
                                 if (null != resproduct.getListResult().get(i).getAmount()) {
-                                    amount_total = amount_total + resproduct.getListResult().get(i).getAmount();
+                                    amount_total = amount_total + resproduct.getListResult().get(i).getBasePrice();
 
-                                    total_amount = total_amount + resproduct.getListResult().get(i).getTotalAmount();
+                                    total_amount = total_amount + resproduct.getListResult().get(i).getAmount();
 
 
                                     gst_amountt=total_amount-amount_total;
 
 
-                                     valueRounded = Math.round(gst_amountt * 100D) / 100D;
+                                     valueRounded =(gst_amountt * 100D) / 100D;
                                     Log.e("valueRounded===",valueRounded+"");
                                 }
 //                                Log.e("amount_total====127", amount_total + "");
@@ -149,10 +149,12 @@ public class product_list extends BaseActivity {
                                 // text_amount.setText(resproduct.getListResult().get(i).getAmount()+"");
 
                             }
+
                             text_amount.setText(df.format(amount_total));
                             Final_amount.setText(df.format(total_amount));
                             gst_amount.setText(df.format(valueRounded));
-                            double cgst = valueRounded/2;
+                            double cgst =(double) gst_amountt/2;
+
                             sgst_amount.setText(df.format(cgst));
                             cgst_amount.setText(df.format(cgst));
                         } else {

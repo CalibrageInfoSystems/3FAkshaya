@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
- android:background="@drawable/shapee"
+ android:background="@drawable/shape"
     tools:context="in.calibrage.akshaya.views.actvity.CollectionsActivity">
 
     <LinearLayout
@@ -173,11 +173,11 @@ android:visibility="gone"
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/txt_from_date"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_5"
                 android:clipChildren="false"
-                android:layout_weight="0.3"
+                android:layout_weight="0.35"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
 
                 >
@@ -197,11 +197,11 @@ android:visibility="gone"
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/txt_to_date"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_5"
                 android:clipChildren="false"
-                android:layout_weight="0.3"
+                android:layout_weight="0.35"
                 app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText
@@ -217,12 +217,12 @@ android:visibility="gone"
 
         <Button
             android:id="@+id/buttonSubmit"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:layout_alignParentRight="true"
 android:layout_gravity="center"
-            android:layout_weight="0.4"
+            android:layout_weight="0.3"
             android:fontFamily="@font/hind_semibold"
             android:background="@drawable/button_bg"
             android:text="@string/submit"
@@ -329,7 +329,7 @@ android:background="@drawable/collect_bg"
         android:layout_alignWithParentIfMissing="true"
         android:layout_below="@+id/selecte_label"
         android:layout_margin="@dimen/_8dp"
-
+android:visibility="gone"
         android:elevation="2dp"
 
         >
@@ -426,7 +426,7 @@ android:background="@drawable/collect_bg"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="1sp"
                 android:layout_toRightOf="@+id/dot3"
-                android:hint="31213254698"
+                android:hint="    "
                 android:text=""
                 android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"

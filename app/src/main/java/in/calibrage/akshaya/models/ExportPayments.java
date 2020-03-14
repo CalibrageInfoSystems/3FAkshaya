@@ -20,7 +20,7 @@ public class ExportPayments {
     private Double totalAdjusted;
     @SerializedName("totalAmount")
     @Expose
-    private Double totalAmount;
+    private int totalAmount;
     @SerializedName("totalBalance")
     @Expose
     private Object totalBalance;
@@ -60,11 +60,11 @@ public class ExportPayments {
         this.totalAdjusted = totalAdjusted;
     }
 
-    public Double getTotalAmount() {
+    public int getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Double totalAmount) {
+    public void setTotalAmount(int totalAmount) {
         this.totalAmount = totalAmount;
     }
 
@@ -84,7 +84,7 @@ public class ExportPayments {
         this.paymentResponce = paymentResponce;
     }
 
-    public ExportPayments(BankDetails bankDetails, Double totalQuanitity, Double totalGRAmount, Double totalAdjusted, Double totalAmount, Object totalBalance, List<PaymentResponce> paymentResponce) {
+    public ExportPayments(BankDetails bankDetails, Double totalQuanitity, Double totalGRAmount, Double totalAdjusted, int totalAmount, Object totalBalance, List<PaymentResponce> paymentResponce) {
         this.bankDetails = bankDetails;
         this.totalQuanitity = totalQuanitity;
         this.totalGRAmount = totalGRAmount;
@@ -134,13 +134,13 @@ public class ExportPayments {
         private Double obAmount;
         @SerializedName("amount")
         @Expose
-        private Double amount;
+        private int amount;
         @SerializedName("adhoc_Rate")
         @Expose
-        private Double adhocRate;
+        private int adhocRate;
         @SerializedName("invoice_Rate")
         @Expose
-        private Double invoiceRate;
+        private int invoiceRate;
         @SerializedName("ob")
         @Expose
         private Double ob;
@@ -149,10 +149,10 @@ public class ExportPayments {
         private Double cb;
         @SerializedName("gR_Amount")
         @Expose
-        private Double gRAmount;
+        private int gRAmount;
         @SerializedName("adjusted")
         @Expose
-        private Double adjusted;
+        private int adjusted;
         @SerializedName("balance")
         @Expose
         private String balance;
@@ -253,27 +253,27 @@ public class ExportPayments {
             this.obAmount = obAmount;
         }
 
-        public Double getAmount() {
+        public int getAmount() {
             return amount;
         }
 
-        public void setAmount(Double amount) {
+        public void setAmount(int amount) {
             this.amount = amount;
         }
 
-        public Double getAdhocRate() {
+        public int getAdhocRate() {
             return adhocRate;
         }
 
-        public void setAdhocRate(Double adhocRate) {
+        public void setAdhocRate(int adhocRate) {
             this.adhocRate = adhocRate;
         }
 
-        public Double getInvoiceRate(Double invoiceRate) {
+        public int getInvoiceRate(int invoiceRate) {
             return this.invoiceRate;
         }
 
-        public void setInvoiceRate(Double invoiceRate) {
+        public void setInvoiceRate(int invoiceRate) {
             this.invoiceRate = invoiceRate;
         }
 
@@ -293,19 +293,19 @@ public class ExportPayments {
             this.cb = cb;
         }
 
-        public Double getGRAmount() {
+        public int getGRAmount() {
             return gRAmount;
         }
 
-        public void setGRAmount(Double gRAmount) {
+        public void setGRAmount(int gRAmount) {
             this.gRAmount = gRAmount;
         }
 
-        public Double getAdjusted() {
+        public int getAdjusted() {
             return adjusted;
         }
 
-        public void setAdjusted(Double adjusted) {
+        public void setAdjusted(int adjusted) {
             this.adjusted = adjusted;
         }
 
@@ -321,8 +321,6 @@ public class ExportPayments {
         {
 
         }
-
-
     }
     public static class BankDetails {
 

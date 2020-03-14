@@ -57,19 +57,19 @@ public class RequestsFragment extends Fragment implements MyReqListAdapter.Reque
     private void fetchContacts() {
 
         int[] covers = new int[]{
-                R.drawable.ic_labour,
-                R.drawable.ic_pole,
-                R.drawable.ic_ferti,
-                R.drawable.ic_collection,
-                R.drawable.ic_visits,
-                R.drawable.ic_bank,
+                R.drawable.labour,
+                R.drawable.fertilizers,
+                R.drawable.equipment,
+                R.drawable.quick_pay,
+                R.drawable.visit,
+                R.drawable.loan,
 
         };
         Request_settings a = new Request_settings( getResources().getString(R.string.lab_req), covers[0]);
         request_List.add(a);
-        a = new Request_settings( getResources().getString(R.string.pole_req), covers[1]);
+        a = new Request_settings( getResources().getString(R.string.fert_req), covers[1]);
         request_List.add(a);
-        a = new Request_settings( getResources().getString(R.string.fert_req), covers[2]);
+        a = new Request_settings( getResources().getString(R.string.pole_req), covers[2]);
         request_List.add(a);
         a = new Request_settings(getResources().getString(R.string.quick_req), covers[3]);
         request_List.add(a);

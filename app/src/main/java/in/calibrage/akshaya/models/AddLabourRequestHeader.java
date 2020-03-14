@@ -1,4 +1,4 @@
-  package in.calibrage.akshaya.models;
+package in.calibrage.akshaya.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -66,7 +66,18 @@ public class AddLabourRequestHeader {
     @SerializedName("yearofPlanting")
     @Expose
     private String yearofPlanting;
-
+    @SerializedName("clusterId")
+    @Expose
+    private Integer clusterId;
+    @SerializedName("ownPole")
+    @Expose
+    private Boolean ownPole;
+    @SerializedName("services")
+    @Expose
+    private String services;
+    @SerializedName("package")
+    @Expose
+    private String _package;
     public String getFarmerCode() {
         return farmerCode;
     }
@@ -226,4 +237,36 @@ public class AddLabourRequestHeader {
     public void setYearofPlanting(String yearofPlanting) {
         this.yearofPlanting = yearofPlanting;
     }
+
+    public Integer getClusterId() {
+        return clusterId;
+    }
+
+    public void setClusterId(Integer clusterId) {
+        this.clusterId = clusterId;
+    }
+
+    public Boolean getOwnPole() {
+        return ownPole;
+    }
+
+    public void setOwnPole(Boolean ownPole) {
+        this.ownPole = ownPole;
+    }
+    public String getServices() {
+        return services;
+    }
+
+    public void setServices(String services) {
+        this.services = services;
+    }
+
+    public String getPackage() {
+        return _package;
+    }
+
+    public void setPackage(String _package) {
+        this._package = _package;
+    }
+
 }

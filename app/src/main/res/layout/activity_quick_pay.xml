@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
     xmlns:tools="http://schemas.android.com/tools"
 
    >
@@ -16,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:background="@color/colorOrange_head"
+
         android:orientation="horizontal">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -85,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/backlinear"
         android:orientation="vertical"
+        android:layout_weight="0.95"
         android:weightSum="1">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/quick_recycler_view"
@@ -92,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/hed_text"
             android:scrollbarSize="3dp"
-            android:layout_weight="0.8"
+
 
             android:scrollbarStyle="outsideInset"
             android:scrollbarThumbVertical="@color/colorPrimary"
@@ -116,12 +120,53 @@
             style="@style/Common_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:layout_gravity="end"
+              android:layout_gravity="end"
             android:layout_below="@+id/quick_recycler_view"
             android:paddingLeft="@dimen/margin_10"
             android:layout_margin="@dimen/margin_5"
-
+android:visibility="gone"
             android:text="@string/request_rise" />
     </LinearLayout>
-</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_margin="6dp"
+
+        android:orientation="vertical"
+        android:background="@drawable/memo_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hind_semibold"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                android:textColor="@color/colorOrange"
+                android:text="Note "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:fontFamily="@font/hind_semibold"
+                android:id="@+id/txt_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14dp"
+
+                android:text="@string/unpaid_note"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -255,7 +255,7 @@
                     style="@style/Common_textView"
                     android:fontFamily="@font/hind_semibold"
 
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_16dp"
                     android:textColor="@color/colorOrange"
                     android:text="@string/complete_details">
 

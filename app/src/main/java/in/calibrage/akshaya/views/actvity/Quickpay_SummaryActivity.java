@@ -95,6 +95,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     String result;
     String whs_Code;
     double total_weight = 0.0;
+
      DecimalFormat df = new DecimalFormat("####0.00");
     DecimalFormat dff = new DecimalFormat("####0.000");
     @Override
@@ -193,11 +194,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (validations()) {
-                    if (isOnline()) {
-                     //   submitReq();
-                    } else {
-                        showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
-                    } }
+                    signature_popup();
+                    }
             }
         });
         if(isOnline()) {
@@ -209,7 +207,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
     private void signature_popup() {
         final Dialog dialog = new Dialog(this);
+
         dialog.setContentView(R.layout.signature_view);
+     //   dialog.setCancelable(false);
         dialog.setTitle("Title...");
 
         // set the custom dialog components - text, image and button
@@ -356,9 +356,15 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                                 convenienceChargeTxt.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
                             }
-                            closingBalanceTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
+
                          //   totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
 
+
+                            if(getquickpayDetailsModel.getListResult().get(0).getClosingBalance() > 0.0){
+                                closingBalanceTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
+                            }else{
+                                closingBalanceTxt.setText(" 0.00");
+                            }
                             if (getquickpayDetailsModel.getListResult().get(0).getTotal() > 0.0 ) {
                                 totalAmount.setText(" "+String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
                                // totalAmount.setText("0");
@@ -391,6 +397,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
 
     private void submitReq() {
+
         Double d1 = Double.valueOf(totalAmount.getText().toString());
 
         if (d1 > 0.0) {
@@ -459,10 +466,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         final WebView webView = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 
-       // webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+       webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setJavaScriptEnabled(true);
        webView.getSettings().setLoadWithOverviewMode(true);
        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setSupportZoom(true);
 
         //---you need this to prevent the webview from
         // launching another browser when a url

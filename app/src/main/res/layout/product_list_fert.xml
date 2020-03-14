@@ -7,7 +7,7 @@
 
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="2dp"
@@ -22,7 +22,7 @@
             <LinearLayout
                 android:id="@+id/linear"
                 android:layout_width="match_parent"
-                android:layout_weight=".25"
+                android:layout_weight=".3"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
@@ -40,12 +40,7 @@
                 <!--android:textSize="@dimen/album_title" />-->
 
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+
 
                     <TextView
                         android:textAlignment="textStart"
@@ -54,7 +49,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_weight="0.4"
+                        android:layout_weight="0.3"
                         android:text="@string/product"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -66,7 +61,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/collection_id"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.7"
                         android:hint="@string/land_mark"
 
                         android:text="@string/product"
@@ -74,73 +69,73 @@
 
                         />
 
-                </LinearLayout>
+
 
 
 
             </LinearLayout>
 
+<!--            <LinearLayout-->
+<!--                android:id="@+id/linear2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_weight=".25"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:weightSum="1">-->
+
+<!--                &lt;!&ndash;<TextView&ndash;&gt;roja-->
+<!--                &lt;!&ndash;android:id="@+id/collection_id_label"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:layout_marginStart="@dimen/margin_20"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:paddingLeft="@dimen/album_title_padding"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:paddingRight="@dimen/album_title_padding"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:paddingTop="@dimen/album_title_padding"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:text="@string/collection_id"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:textColor="@color/album_title"&ndash;&gt;-->
+<!--                &lt;!&ndash;android:textSize="@dimen/album_title" />&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:weightSum="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;android:visibility="gone"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_weight="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textAlignment="textStart"&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/Common_textView"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:id="@+id/each_item"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.4"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="@string/each_product"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textAlignment="textStart"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:id="@+id/item_cost"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_toRightOf="@+id/each_item"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.6"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:hint="@string/land_mark"&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        android:text="@string/product"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/album_title">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </TextView>&ndash;&gt;-->
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+
+<!--            </LinearLayout>-->
             <LinearLayout
-                android:id="@+id/linear2"
                 android:layout_width="match_parent"
-                android:layout_weight=".25"
-                android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <!--<TextView-->roja
-                <!--android:id="@+id/collection_id_label"-->
-                <!--android:layout_marginStart="@dimen/margin_20"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:paddingLeft="@dimen/album_title_padding"-->
-                <!--android:paddingRight="@dimen/album_title_padding"-->
-                <!--android:paddingTop="@dimen/album_title_padding"-->
-                <!--android:text="@string/collection_id"-->
-                <!--android:textColor="@color/album_title"-->
-                <!--android:textSize="@dimen/album_title" />-->
-
-
-
-
-                <LinearLayout
-                    android:weightSum="1"
-                    android:layout_width="0dp"
-
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:textAlignment="textStart"
-                        style="@style/Common_textView"
-                        android:id="@+id/each_item"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:text="@string/each_product"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:textAlignment="textStart"
-                        android:id="@+id/item_cost"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/each_item"
-                        android:layout_weight="0.6"
-                        android:hint="@string/land_mark"
-
-                        android:text="@string/product"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/album_title">
-
-                    </TextView>
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight=".25"
+                android:layout_weight=".3"
                 android:layout_height="0dp"
                 android:layout_below="@id/linear"
                 android:weightSum="1"
@@ -148,7 +143,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.6"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -159,19 +154,19 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_weight="0.5"
-                        android:text="@string/sgst"
+                        android:layout_weight="0.6"
+                        android:text="@string/each_product"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
                     <TextView
                         android:textAlignment="textStart"
-                        android:id="@+id/sgst"
+                        android:id="@+id/item_cost"
                         style="@style/Common_textView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/collection_id"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.4"
                         android:hint="@string/land_mark"
 
                         android:text="@string/product"
@@ -184,7 +179,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -196,7 +191,7 @@
                         android:layout_height="wrap_content"
 
                         android:layout_weight="0.6"
-                        android:text="@string/Cgst"
+                        android:text="@string/gst"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -221,7 +216,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight=".25"
+                android:layout_weight=".3"
                 android:layout_height="0dp"
                 android:layout_below="@id/linear"
                 android:weightSum="1"
@@ -231,7 +226,7 @@
                     android:layout_width="0dp"
 
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4">
+                    android:layout_weight="0.6">
 
                     <TextView
                         android:textAlignment="textStart"
@@ -239,7 +234,7 @@
                         android:id="@+id/dateLabel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.6"
                         android:text="@string/quantity"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -248,9 +243,10 @@
                         android:textAlignment="textStart"
                         android:id="@+id/qun_tity"
                         android:layout_width="0dp"
+                        style="@style/Common_textView"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/each_item"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.4"
                         android:hint="@string/land_mark"
                         android:paddingLeft="2dp"
                         android:text="@string/product"
@@ -267,7 +263,7 @@
                     android:layout_width="0dp"
 
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5">
+                    android:layout_weight="0.4">
 
                     <TextView
                         android:textAlignment="textStart"
@@ -283,6 +279,7 @@
                     <TextView
                         android:textAlignment="textStart"
                         android:id="@+id/Value"
+                        style="@style/Common_textView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/each_item"

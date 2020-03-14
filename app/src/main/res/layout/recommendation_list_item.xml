@@ -240,7 +240,7 @@ android:textAlignment="textStart"
                 android:id="@+id/date_plantation"
                 android:layout_width="@dimen/_130dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/plot_State"
+                android:layout_below="@id/status"
                 android:layout_marginStart="@dimen/margin_10"
 android:textAlignment="textStart"
 

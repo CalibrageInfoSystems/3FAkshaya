@@ -1,32 +1,41 @@
 package in.calibrage.akshaya.views.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
+import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.AnimationUtil;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
+import in.calibrage.akshaya.views.actvity.HomeActivity;
 import in.calibrage.akshaya.views.actvity.LabourActivity;
+import in.calibrage.akshaya.views.actvity.LoanActivity;
 
 
 public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourRecommendationAdapter.ViewHolder>{
 
-    List<LabourRecommendationsModel.ListResult> recomm_Set;
+    List<LabourRecommendationsModel.ListResult> recomm_Set  = new ArrayList<LabourRecommendationsModel.ListResult>();
     public Context mContext;
-
+int statusTypeId ,statusType_Id;
     DecimalFormat dec = new DecimalFormat("####0.00");
-    public LabourRecommendationAdapter(    List<LabourRecommendationsModel.ListResult> recomm_Set, Context context) {
+    public LabourRecommendationAdapter(List<LabourRecommendationsModel.ListResult> recomm_Set, Context context) {
         this.recomm_Set = recomm_Set;
         this.mContext=context;
     }
@@ -40,12 +49,13 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        statusTypeId =recomm_Set.get(position).getStatusTypeId();
 
 
-        holder.textViewplotId.setText(recomm_Set.get(position).getPlotcode());
+            holder.textViewplotId.setText(recomm_Set.get(position).getPlotcode());
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
 
-        holder.textViewpalmArea.setText(df.format(recomm_Set.get(position).getPalmArea())+"Ha ("+ dec.format(recomm_Set.get(position).getPalmAreainAcres() ) + " Acre)");
+        holder.textViewpalmArea.setText(df.format(recomm_Set.get(position).getPalmArea())+" Ha ("+ dec.format(recomm_Set.get(position).getPalmAreainAcres() ) + " Acre)");
         holder.textViewLocation.setText(recomm_Set.get(position).getVillageName());
         holder.landmark.setText(recomm_Set.get(position).getLandMark() );
         holder.textViewstatus.setText(recomm_Set.get(position).getStatusType() );
@@ -55,12 +65,14 @@ public class LabourRecommendationAdapter extends RecyclerView.Adapter<LabourReco
         holder.plot_District.setText(recomm_Set.get(position).getDistrictName());
         holder.cluster_name.setText(recomm_Set.get(position).getClusterName());
         holder.yop.setText(recomm_Set.get(position).getDateOfPlanting() );
-        Log.e("date",recomm_Set.get(position).getDateOfPlanting() );
-
+       // Log.e("date",recomm_Set.get(position).getDateOfPlanting() );
+        statusTypeId =recomm_Set.get(position).getStatusTypeId();
 final double selected_plot =recomm_Set.get(position).getPalmArea() ;
         final double selected_palm =recomm_Set.get(position).getPalmAreainAcres() ;
 
          final String interCrops =recomm_Set.get(position).getInterCrops() ;
+
+
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
 
@@ -78,7 +90,10 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
                 intent.putExtra("plotState",    holder.plot_State.getText());
                 intent.putExtra("plotDistrict",    holder.plot_District.getText());
                 intent.putExtra("cluster_name",    holder.cluster_name.getText());
+                intent.putExtra("cluster_Id",    recomm_Set.get(position).getClusterId());
                 intent.putExtra("interCrop",   interCrops);
+                intent.putExtra("statusTypeId",   recomm_Set.get(position).getStatusTypeId());
+
                 intent.putExtra("date_of_plandation",   recomm_Set.get(position).getDateOfPlanting());
 
 
@@ -96,6 +111,37 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
 
         AnimationUtil.animate(holder, true);
     }
+
+    public void showDialog(Context context, String msg) {
+        final Dialog dialog = new Dialog(context, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog);
+        final ImageView img = dialog.findViewById(R.id.img_cross);
+
+        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+        text.setText(msg);
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(mContext, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContext.startActivity(intent);
+
+
+            }
+        });
+        dialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        }, 500);
+    }
+
     @Override
     public int getItemCount() {
         return recomm_Set.size();

@@ -82,12 +82,12 @@ public class TransportationAdapter extends RecyclerView.Adapter<TransportationAd
         }
         ((ViewHolder) holder).date.setText(": " + datetimevaluereq);
         ((ViewHolder) holder).dateLabel.setText(datetimevaluereq);
-
+        int amt = (int) Math.round(trans_Set.get(position).getTrpt());
         ((ViewHolder) holder).collection_code.setText("" + trans_Set.get(position).getCollectionCode());
-        ((ViewHolder) holder).total_amount.setText(": " + trans_Set.get(position).getTrpt());
-        ((ViewHolder) holder).trans_charges.setText(": " + trans_Set.get(position).getRate());
+        ((ViewHolder) holder).total_amount.setText(": " + amt);
+        ((ViewHolder) holder).trans_charges.setText(": " +trans_Set.get(position).getRate());
         ((ViewHolder) holder).status.setText(": " + trans_Set.get(position).getStatus());
-        ((ViewHolder) holder).net_weight.setText(": " + trans_Set.get(position).getQty());
+        ((ViewHolder) holder).net_weight.setText(": " + df.format(trans_Set.get(position).getQty()));
 
        //(ViewHolder) holder).collection_code.setText(": " + df.format(Quanitity));
 

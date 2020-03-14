@@ -80,7 +80,7 @@
         android:layout_marginTop="250dp"
         android:text="@string/no_godowns"
         android:textAlignment="center"
-        android:visibility="gone"
+
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_size_20"
         />

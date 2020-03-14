@@ -74,7 +74,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
 
 
         public LinearLayout contentLayout;
-        public TextView requestCode;
+        public TextView requestCode,pin,pinlabel;
         public TextView req_date;
         public TextView statusType,sub_amount;
         public TextView paymentMode, amount,cancel,godown_name;
@@ -95,9 +95,11 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
             card_view =   itemView.findViewById(R.id.card_view);
             amount=itemView.findViewById(R.id.amount);
             godown_name=itemView.findViewById(R.id.godown_name);
-          cancel = itemView.findViewById(R.id.cancel);
+            cancel = itemView.findViewById(R.id.cancel);
             details = itemView.findViewById(R.id.details);
             card_view = itemView.findViewById(R.id.card_view);
+            pin = itemView.findViewById(R.id.pin);
+            pinlabel =itemView.findViewById(R.id.pin_label);
 
         }
 
@@ -133,9 +135,15 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         holder.godown_name.setText(list.get(position).getGoDownName());
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
-        holder.sub_amount.setText(list.get(position).getSubsidyAmount()+"");
-        if(null != list.get(position).getTotalCost())
-            holder.amount.setText(df.format(list.get(position).getTotalCost()));
+        holder.sub_amount.setText(df.format(Math.round(list.get(position).getSubsidyAmount())));
+        if( list.get(position).getPin()!= null)
+            holder.pin.setText(list.get(position).getPin());
+        else{
+            holder.pin.setVisibility(View.GONE);
+            holder.pinlabel.setVisibility(View.GONE);
+        }
+        if(null != list.get(position).getPaubleAmount())
+            holder.amount.setText(df.format(Math.round(list.get(position).getPaubleAmount())));
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 //        if (!"Closed".equals(holder.statusType.getText()))

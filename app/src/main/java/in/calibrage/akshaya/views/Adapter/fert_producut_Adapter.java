@@ -17,8 +17,9 @@ import in.calibrage.akshaya.models.Product_new;
 public class fert_producut_Adapter  extends RecyclerView.Adapter<fert_producut_Adapter.MyViewHolder> {
     private Context context;
     private ArrayList<Product_new> product_Listitems = new ArrayList<>();
-    double  valueRounded;
+    int  valueRounded;
     double cgst;
+    double GST;
     DecimalFormat dec = new DecimalFormat("####0.00");
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView product_name, quantity, amount, gst, item_cost,cgst,sgst;
@@ -31,7 +32,7 @@ public class fert_producut_Adapter  extends RecyclerView.Adapter<fert_producut_A
             amount = view.findViewById(R.id.Value);
             // gst = view.findViewById(R.id.per_gst);
             cgst =view.findViewById(R.id.cgst);
-            sgst =view.findViewById(R.id.sgst);
+//            sgst =view.findViewById(R.id.sgst);
             item_cost = view.findViewById(R.id.item_cost);
             card_view = view.findViewById(R.id.card_view);
             view.setOnClickListener(new View.OnClickListener() {
@@ -68,17 +69,18 @@ public class fert_producut_Adapter  extends RecyclerView.Adapter<fert_producut_A
         Double amountt =(dataa.getWithGSTamount()) * dataa.getQuandity() ;
 
 
-        valueRounded = Math.round(amountt * 100D) / 100D;
-        holder.amount.setText(dec.format(valueRounded ));
+        valueRounded = (int)(amountt * 100) / 100;
+        holder.amount.setText(dec.format(Math.round(amountt) ));
         // holder.gst.setText(dataa.getGst()+"");
 
-        holder.item_cost.setText(dec.format(dataa.getAmount()));
+        holder.item_cost.setText(dec.format(Math.round(dataa.getAmount())));
         if(" "+dataa.getGst()!=null){
-            double GST = dataa.getGst();
+             GST = dataa.getGst();
+            holder.cgst.setText(GST+"");
             cgst =GST/2;
         }
-        holder.cgst.setText(cgst+"");
-        holder.sgst.setText(cgst+"");
+
+       // holder.sgst.setText(cgst+"");
     }
 
 

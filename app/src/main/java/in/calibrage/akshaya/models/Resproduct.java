@@ -92,6 +92,9 @@ public class Resproduct {
         @SerializedName("quantity")
         @Expose
         private Integer quantity;
+        @SerializedName("bagCost")
+        @Expose
+        private Double bagCost;
         @SerializedName("farmerCode")
         @Expose
         private String farmerCode;
@@ -103,19 +106,22 @@ public class Resproduct {
         private Double amount;
         @SerializedName("gstPercentage")
         @Expose
-        private int gstPercentage;
+        private Double gstPercentage;
         @SerializedName("cgstPercentage")
         @Expose
-        private double cgstPercentage;
+        private Double cgstPercentage;
         @SerializedName("sgstPercentage")
         @Expose
-        private double sgstPercentage;
+        private Double sgstPercentage;
         @SerializedName("cgst")
         @Expose
         private Double cgst;
         @SerializedName("sgst")
         @Expose
         private Double sgst;
+        @SerializedName("basePrice")
+        @Expose
+        private Double basePrice;
         @SerializedName("totalAmount")
         @Expose
         private Double totalAmount;
@@ -152,6 +158,14 @@ public class Resproduct {
             this.quantity = quantity;
         }
 
+        public Double getBagCost() {
+            return bagCost;
+        }
+
+        public void setBagCost(Double bagCost) {
+            this.bagCost = bagCost;
+        }
+
         public String getFarmerCode() {
             return farmerCode;
         }
@@ -176,12 +190,28 @@ public class Resproduct {
             this.amount = amount;
         }
 
-        public int getGstPercentage() {
+        public Double getGstPercentage() {
             return gstPercentage;
         }
 
-        public void setGstPercentage(int gstPercentage) {
+        public void setGstPercentage(Double gstPercentage) {
             this.gstPercentage = gstPercentage;
+        }
+
+        public Double getCgstPercentage() {
+            return cgstPercentage;
+        }
+
+        public void setCgstPercentage(Double cgstPercentage) {
+            this.cgstPercentage = cgstPercentage;
+        }
+
+        public Double getSgstPercentage() {
+            return sgstPercentage;
+        }
+
+        public void setSgstPercentage(Double sgstPercentage) {
+            this.sgstPercentage = sgstPercentage;
         }
 
         public Double getCgst() {
@@ -200,29 +230,18 @@ public class Resproduct {
             this.sgst = sgst;
         }
 
+        public Double getBasePrice() {
+            return basePrice;
+        }
+
+        public void setBasePrice(Double basePrice) {
+            this.basePrice = basePrice;
+        }
+
         public Double getTotalAmount() {
             return totalAmount;
         }
 
         public void setTotalAmount(Double totalAmount) {
             this.totalAmount = totalAmount;
-        }
-
-        public double getCgstPercentage() {
-            return cgstPercentage;
-        }
-
-        public void setCgstPercentage(double cgstPercentage) {
-            this.cgstPercentage = cgstPercentage;
-        }
-
-        public double getSgstPercentage() {
-            return sgstPercentage;
-        }
-
-        public void setSgstPercentage(double sgstPercentage) {
-            this.sgstPercentage = sgstPercentage;
-        }
-    }
-
-}
+        }}}

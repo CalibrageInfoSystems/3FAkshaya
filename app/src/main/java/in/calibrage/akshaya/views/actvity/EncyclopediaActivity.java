@@ -36,18 +36,19 @@ public class EncyclopediaActivity extends BaseActivity {
     //region variables
     private static final String TAG = EncyclopediaActivity.class.getSimpleName();
     private int postTypeId;
-    private String titleName;
+    private String titleName,telugu_title;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private SpotsDialog mdilogue;
     private String[] tabnames;
+    final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
     private ViewPagerAdapter adapter;
     //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+
         if (langID == 2)
             updateResources(this, "te");
         else
@@ -75,6 +76,7 @@ public class EncyclopediaActivity extends BaseActivity {
         if (getIntent() != null) {
             postTypeId = getIntent().getIntExtra("postTypeId", 0);
             titleName = getIntent().getStringExtra("name");
+            telugu_title = getIntent().getStringExtra("teluguname");
             tabnames = getIntent().getStringArrayExtra("tabslist");
             SharedPrefsData.getInstance(this).updateIntValue(this,"count",tabnames.length);
             SharedPrefsData.getInstance(this).updateIntValue(this,"postTypeId",postTypeId);
@@ -85,7 +87,10 @@ public class EncyclopediaActivity extends BaseActivity {
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        toolbar.setTitle(titleName);
+        if (langID == 2)
+        toolbar.setTitle(telugu_title);
+        else
+            toolbar.setTitle(titleName);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

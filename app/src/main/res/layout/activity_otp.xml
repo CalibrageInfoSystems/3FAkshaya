@@ -73,7 +73,25 @@
            style="@style/Common_Button" />
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resend_otp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:autoLink="web"
+            android:text="@string/re_send"
+            android:textSize="@dimen/text_size"
+            android:fontFamily="@font/hind_semibold"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
 
+            android:clickable="true"
+            android:linksClickable="true"
+            android:textColorLink="@color/colorPrimary" />
     </LinearLayout>
 
 </RelativeLayout>

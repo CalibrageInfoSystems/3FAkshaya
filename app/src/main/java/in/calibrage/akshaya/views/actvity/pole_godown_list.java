@@ -106,6 +106,7 @@ public class pole_godown_list extends BaseActivity  {
     double payble_amount;
     double Subsidy_amount, subsidy_amountt;
     double Gst_total;
+    int   Totalgst ;
     //endregion
     private List<String> selected_list = new ArrayList<String>();
     @Override
@@ -237,18 +238,23 @@ public class pole_godown_list extends BaseActivity  {
 
             Log.e("percentage_value===", String.valueOf(percentage));
             //  int k = (int)(product_amount*(percentage/100.0f));
-            double k = (double) (percentage * amount_product) / 100;
+            double totalPrice =quantity * amount_product;
+            Log.e("totalPrice===",totalPrice+"");
+            double gstPrice = totalPrice - totalPrice / (1 + (gst/ 100));
+            Log.e("gstPrice===",gstPrice+"");
+            double BasePrice = totalPrice - gstPrice;
+            Log.e("BasePrice===",BasePrice+"");
 
-            gstvalues.add(k);
+            gstvalues.add(gstPrice);
 
             Log.e("percentage_value===", String.valueOf(gstvalues));
             Gst_total = CommonUtil.sum(gstvalues);
-            // include_gst_amount = Gst_sum + Amount_;
-            Log.e("gst_Sum===", String.valueOf(Gst_total));
-            gst_amount.setText(dec.format(Gst_total) );
-          //  gst_amount.setText(Gst_total + "");
-            //  Final_amount.setText("" + String.valueOf(include_gst_amount));
-            double cgst = Gst_total/2;
+
+           // Totalgst =( int)Math.round(Gst_total);
+//            gst_amount.setText(dec.format(Totalgst));
+//            Log.e("Totalgst===",Totalgst+"");
+            double cgst = (double) Gst_total/2;
+
 
             sgst_amount.setText(dec.format(cgst));
             cgst_amount.setText(dec.format(cgst));
@@ -364,7 +370,7 @@ public class pole_godown_list extends BaseActivity  {
                                     displayList.add(new MSGmodel(getString(R.string.product_quantity), selected_name));
 
                                     displayList.add(new MSGmodel(getResources().getString(R.string.amount), text_amount.getText()+""));
-                                    displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount), gst_amount.getText()+""));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount),dec.format(Gst_total)));
 
                                     displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), Final_amount.getText()+""));
 

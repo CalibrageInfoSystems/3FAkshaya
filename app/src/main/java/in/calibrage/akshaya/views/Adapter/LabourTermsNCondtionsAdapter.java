@@ -38,7 +38,7 @@ public class LabourTermsNCondtionsAdapter extends RecyclerView.Adapter<LabourTer
     public void onBindViewHolder(ViewHolder holder, int position) {
         Log.e("3==years",listdata.getListResult().get(0).getC3()+"");
         if (position == 0 & listdata.getListResult().size() >0) {
-            holder.age.setText(position + 1 + " Year");
+            holder.age.setText(" <= 1 Year");
             holder.purning.setText(String.valueOf(listdata.getListResult().get(0).getC1()));
             holder.harv.setText(String.valueOf(listdata.getListResult().get(1).getC1()));
            holder.unknown1.setText(""+listdata.getListResult().get(2).getC1());

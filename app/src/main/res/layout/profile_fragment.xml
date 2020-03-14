@@ -5,22 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-   >
+
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_marginBottom="50dp">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1"
+  >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:orientation="vertical">
         <ImageView
             android:id="@+id/img_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_weight=".5"
+            android:layout_marginTop="10dp"
             android:src="@mipmap/ic_launcher_round" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+
+        android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+        <TextView
+            style="@style/Common_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/qrcode"
+            android:textAlignment="center"
+
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                style="@style/Common_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.4"
+                android:text="@string/farmar_code"
+                android:textAlignment="textStart"
+                android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
+            <TextView
+                android:id="@+id/farmer_Code"
+                style="@style/Common_textView"
+                android:textColor="@color/colorOrange_head"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.55"
+                android:text=""
+                android:textAlignment="textStart"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +116,17 @@
                 android:text="@string/farmer_name"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/farmerName"
                 style="@style/Common_textView"
@@ -66,7 +155,17 @@
                 android:text="@string/fa_hu_name"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/fatherName"
                 style="@style/Common_textView"
@@ -94,7 +193,17 @@
                 android:text="@string/mobile"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/mobilenumber"
                 style="@style/Common_textView"
@@ -104,7 +213,7 @@
                 android:layout_weight="0.6"
                 android:text="@string/mobile"
                 android:textAlignment="textStart"
-                android:textColor="@color/black" />
+                android:textColor="@color/green" />
         </LinearLayout>
 
         <LinearLayout
@@ -123,13 +232,24 @@
                 android:text="@string/alter_mobile"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/alternatemobilenumber"
                 style="@style/Common_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.6"
                 android:text=""
                 android:textAlignment="textStart"
@@ -152,6 +272,17 @@
                 android:text="@string/email"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/emailid"
@@ -166,14 +297,14 @@
         </LinearLayout>
         <TextView
             style="@style/Common_textView"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/res_address"
             android:textAlignment="textStart"
             android:textStyle="bold"
-            android:textSize="13dp"
-            android:textColor="@color/black" />
+            android:textSize="@dimen/_14dp"
+            android:textColor="@color/colorOrange_head" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -197,6 +328,17 @@
                 android:text="@string/address"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/address"
@@ -228,6 +370,17 @@
                 android:text="@string/land_mark"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/landmark"
@@ -257,6 +410,17 @@
                 android:text="@string/village"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/village"
@@ -286,6 +450,17 @@
                 android:text="@string/mandal"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/mandal"
@@ -315,6 +490,17 @@
                 android:text="@string/dist"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/district"
@@ -344,6 +530,17 @@
                 android:text="@string/state"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
 
             <TextView
                 android:id="@+id/state"
@@ -373,7 +570,17 @@
                 android:text="@string/pin"
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
+            <TextView
 
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/memo_label"
+                android:layout_alignBaseline="@id/amount_label"
+                android:layout_weight="0.05"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_marginTop="5dp"
+                android:text=":"
+                android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/pincode"
                 style="@style/Common_textView"
@@ -381,7 +588,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.6"
-                android:text="@string/ente_pin"
+                android:text=" "
                 android:textAlignment="textStart"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -392,7 +599,42 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/devider_line" />
 
+<!--        <LinearLayout-->
+<!--            android:id="@+id/lyt_qr"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginBottom="10dp"-->
 
+<!--            android:weightSum="1">-->
+<!--            <TextView-->
+<!--                style="@style/Common_textView"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_weight="0.4"-->
+<!--                android:text="@string/qrcode"-->
+<!--                android:textAlignment="textStart"-->
+<!--                android:textColor="@color/black" />-->
+<!--            <TextView-->
+
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/memo_label"-->
+<!--                android:layout_alignBaseline="@id/amount_label"-->
+<!--                android:layout_weight="0.05"-->
+<!--                android:fontFamily="@font/hind_semibold"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:text=":"-->
+<!--                android:textSize="@dimen/album_title" />-->
+<!--            <ImageView android:id="@+id/imageView1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_weight="0.5"-->
+<!--                android:layout_marginBottom="50dp"-->
+<!--                />-->
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 

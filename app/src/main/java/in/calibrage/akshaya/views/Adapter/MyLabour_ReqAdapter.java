@@ -66,11 +66,11 @@ import static in.calibrage.akshaya.service.APIConstantURL.GetLabourPackageDiscou
 
 public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapter.ViewHolder> {
     TextView request_id, plot_code, plot_size, village, leader_name, pref_date, service_type, status, prun_amount, harv_amount, pruning_intercrop, harvest_intercrop, pack_name, collectionid, netweight,
-            Discount_percentage, amount, Discount_amount, comments, intercrop_tresscount, intercrop_amount, intercrop_netweight, intercrop_harv_amount, job_done, trees_count, service_charge, service_amount, total_prunning_amount, total_harvesting_amount;
+            Discount_percentage, txt_assign_date,amount,txt_pin, Discount_amount, comments, intercrop_tresscount, intercrop_amount, intercrop_netweight, intercrop_harv_amount, job_done, trees_count, service_charge, service_amount, total_prunning_amount, total_harvesting_amount;
     Button cancel_btn, ok_btn;
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
-    String request_date, prefferdate, currentDate, job_donee, prefferdate_popup;
+    String request_date, prefferdate, currentDate, job_donee, prefferdate_popup,assigndate;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
     DecimalFormat df = new DecimalFormat("####0.00");
@@ -80,7 +80,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     String seleced_Duration;
     int discount;
     // double total_amount = Double.parseDouble(df.format(finalwithGST));
-    RelativeLayout new_data, coll_label, label_netweight, label_amount, lin_comments, trees_lable, label_prunning, label_harv, label_amount_service;
+    RelativeLayout new_data, coll_label, label_netweight, label_amount, lin_comments, trees_lable, label_prunning, label_harv, label_amount_service,date_label;
     private Reqlister reqlister;
     RelativeLayout prunning_label, Harvesting_label, prunning_intercrop_label, harvesting_intercrop_label;
     // RecyclerView recyclerView;
@@ -114,7 +114,11 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         try {
 
             Date prefferdatee = input.parse(labourlist_Set.get(position).getStartDate());
+            if(labourlist_Set.get(position).getAssignedDate()!=null){
+           Date assign = input.parse(labourlist_Set.get(position).getAssignedDate());
+                assigndate = output.format(assign);}
             prefferdate = output.format(prefferdatee);
+
             if (labourlist_Set.get(position).getJobDoneDate() != null) {
                 Date oneWayTripDate = input.parse(labourlist_Set.get(position).getJobDoneDate() + "");
                 request_date = output.format(oneWayTripDate);
@@ -124,6 +128,8 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+
         holder.txtDate.setText(labourlist_Set.get(position).getLeader() + "");
         //   holder.txtApproveDate.setText(labourlist_Set.get(position).getLeader()+"");
         if ((holder.txtDate.getText().equals("null")) || holder.txtDate.getText() == "null") {
@@ -208,8 +214,8 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
                 selectedItemID = labourlist_Set.get(position).getRequestCode();
                 selectedPO = position;
                 Log.d("selectedPO==", selectedPO + "");
-                GetLabourPackageDiscount(selectedPO);
-                //showCondetailsDialog(selectedPO);
+              GetLabourPackageDiscount(selectedPO);
+              //showCondetailsDialog(selectedPO);
 
 
             }
@@ -362,6 +368,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         new_data = dialog.findViewById(R.id.new_data);
         coll_label = dialog.findViewById(R.id.lin_collection_ids);
         label_netweight = dialog.findViewById(R.id.label_netweight);
+        date_label =dialog.findViewById(R.id.date_label);
         label_amount = dialog.findViewById(R.id.label_amount);
         lin_comments = dialog.findViewById(R.id.lin_comments);
         trees_lable = dialog.findViewById(R.id.lin_new1);
@@ -374,7 +381,8 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         total_prunning_amount = dialog.findViewById(R.id.prun_total_amount);
         total_harvesting_amount = dialog.findViewById(R.id.harv_amountt);
         ok_btn = dialog.findViewById(R.id.btn_dialog);
-
+        txt_pin= dialog.findViewById(R.id.txt_pin);
+        txt_assign_date=dialog.findViewById(R.id.txt_assign_date);
 
         prunning_label = dialog.findViewById(R.id.prunning_label);
         Harvesting_label = dialog.findViewById(R.id.harvest_label);
@@ -382,6 +390,8 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         harvesting_intercrop_label = dialog.findViewById(R.id.harvest_inter_label);
         request_id.setText(labourlist_Set.get(selectedPO).getRequestCode());
         plot_code.setText(labourlist_Set.get(selectedPO).getPlotCode());
+        txt_pin.setText(labourlist_Set.get(selectedPO).getPin()+"");
+        txt_assign_date.setText(assigndate);
         plot_size.setText((dec.format(labourlist_Set.get(selectedPO).getPalmArea()) + " " + "Ha (" + dec.format(labourlist_Set.get(selectedPO).getPalmArea() * 2.5) + " Acre)"));
         village.setText(labourlist_Set.get(selectedPO).getPlotVillage());
         leader_name.setText(labourlist_Set.get(selectedPO).getLeader() + "");
@@ -403,7 +413,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         } else {
             prunning_label.setVisibility(View.GONE);
         }
-        if (labourlist_Set.get(selectedPO).getHarvestingAmount() != 0.0) {
+        if (labourlist_Set.get(selectedPO).getHarvestingAmount() != 0.0 ) {
             Harvesting_label.setVisibility(View.VISIBLE);
             harv_amount.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingAmountWithCharge()));
         } else {
@@ -437,7 +447,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         job_done.setText(request_date);
 
 
-        if (prun_amount.getText() != null && labourlist_Set.get(selectedPO).getTreesCount() != null && !prun_amount.getText().toString().isEmpty()) {
+        if (prun_amount.getText() != null && labourlist_Set.get(selectedPO).getTreesCount() != null && !prun_amount.getText().toString().isEmpty()&& labourlist_Set.get(selectedPO).getPruningAmount() != 0.0) {
 
             double prunning = Double.parseDouble(prun_amount.getText() + "");
             double tress = Double.parseDouble(labourlist_Set.get(selectedPO).getTreesCount() + "");
@@ -450,7 +460,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             trees_count.setText("0");
             total_prunning_amount.setText("0.00");
         }
-        if (pruning_intercrop.getText() != null && labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() != null && !pruning_intercrop.getText().toString().isEmpty()) {
+        if (pruning_intercrop.getText() != null && labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() != null && !pruning_intercrop.getText().toString().isEmpty()&& labourlist_Set.get(selectedPO).getPruningWithIntercropAmount() != 0.0) {
             //Code to perform calculations
 
             double prunning_intercrop = Double.parseDouble(pruning_intercrop.getText() + "");
@@ -465,7 +475,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             intercrop_amount.setText("0.00");
         }
 
-        if (harvest_intercrop.getText() != null && labourlist_Set.get(selectedPO).getNetWeightIntercrop() != null) {
+        if (harvest_intercrop.getText() != null && labourlist_Set.get(selectedPO).getNetWeightIntercrop() != null&& !harvest_intercrop.getText().toString().isEmpty() && labourlist_Set.get(selectedPO).getHarvestingWithIntercropAmount() != 0.0) {
 
             double harv_intercrop = Double.parseDouble(harvest_intercrop.getText() + "");
             double intercrop_net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeightIntercrop() + "");
@@ -477,7 +487,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             intercrop_harv_amount.setText("0.00");
             intercrop_netweight.setText("0.000");
         }
-        if (harv_amount.getText() != null && labourlist_Set.get(selectedPO).getNetWeight() != null && labourlist_Set.get(selectedPO).getServiceChargePercentage() != null) {
+        if (harv_amount.getText() != null && labourlist_Set.get(selectedPO).getNetWeight() != null && labourlist_Set.get(selectedPO).getServiceChargePercentage() != null && labourlist_Set.get(selectedPO).getHarvestingAmount() != 0.0 ) {
             double harvesting = Double.parseDouble(harv_amount.getText() + "");
             double net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeight() + "");
             netweight.setText(dff.format(net_weight));
@@ -506,7 +516,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         }
         /*if (total_prunning != 0.0 || total_hav != 0.0 || intercrop_prunning != 0.0 || intercrop_harvesting != 0.0) {
             Total_amount = total_prunning + total_hav + intercrop_prunning + intercrop_harvesting;
-            amount.setText(Total_amount + "");
+            amount.setText( labourlist_Set.get(selectedPO).getNetWeightIntercrop() );
         } else {
             amount.setText("0.00");
         }*/
@@ -514,14 +524,16 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         if
         (CommonUtil.isDoubleNullorEmpty(total_prunning) && CommonUtil.isDoubleNullorEmpty(intercrop_prunning) && CommonUtil.isDoubleNullorEmpty(intercrop_harvesting) && CommonUtil.isDoubleNullorEmpty(total_hav)) {
             Total_amount=0;
-            amount.setText("0.00");
+
+            amount.setText( df.format(labourlist_Set.get(selectedPO).getTotalCost()));
+           // amount.setText("0.00");
 Log.e("mahesh","Total_amount=======in if================"+Total_amount);
         } else {
 
-
+            amount.setText(df.format(labourlist_Set.get(selectedPO).getTotalCost()));
             Total_amount = total_prunning + total_hav + intercrop_prunning + intercrop_harvesting;
             Log.e("mahesh","Total_amount===========in else============"+Total_amount);
-            amount.setText(Total_amount+"");
+         //   amount.setText(Total_amount+"");
             Total_amount=0;total_prunning=0;total_hav=0;intercrop_prunning=0;intercrop_harvesting=0;
         }
        // amount.setText(Total_amount + "");
@@ -553,6 +565,7 @@ Log.e("mahesh","Total_amount=======in if================"+Total_amount);
 //        }
         if (leader_name.getText().equals("null") || leader_name.getText() == "null") {
             new_data.setVisibility(View.GONE);
+            date_label.setVisibility(View.GONE);
         }
 //        if (collectionid.getText().equals("null")|| collectionid.getText() == "null") {
 //            coll_label.setVisibility(View.GONE);

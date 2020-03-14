@@ -106,8 +106,9 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if (farmerId.getText() != null & farmerId.getText().toString().trim() != "" & !TextUtils.isEmpty(farmerId.getText())) {
-                    Farmer_code = farmerId.getText().toString();
+                    Farmer_code = farmerId.getText().toString().replaceAll(" ","");
                     Log.e("former==id", Farmer_code);
+
 
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("FARMER", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();

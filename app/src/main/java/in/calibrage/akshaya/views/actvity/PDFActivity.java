@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import dmax.dialog.SpotsDialog;
@@ -20,7 +22,7 @@ public class PDFActivity extends AppCompatActivity {
     private String name, url;
     WebView webView;
     private SpotsDialog mdilogue;
-
+    ProgressBar progressbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public class PDFActivity extends AppCompatActivity {
                 .setTheme(R.style.Custom)
                 .build();
 
-        mdilogue.show();
+
         pdfOpen(url);
 
         new Handler().postDelayed(new Runnable() {
@@ -70,15 +72,34 @@ public class PDFActivity extends AppCompatActivity {
     }
 
     private void pdfOpen(String fileUrl) {
-
+        mdilogue.show();
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
-
+        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setSupportZoom(true);
         //---you need this to prevent the webview from
         // launching another browser when a url
         // redirection occurs---
+
+
+
         webView.setWebViewClient(new Callback());
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                mdilogue.show();
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                mdilogue.dismiss();
+            }
+        });
         String furl = "http://docs.google.com/gview?embedded=true&url=" + fileUrl;
         Log.d("PDF", "final URL :" + furl);
         webView.loadUrl(furl);

@@ -12,7 +12,6 @@
         android:layout_margin="5dp"
 
         card_view:cardCornerRadius="4dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,6 +137,7 @@
                             android:fontFamily="@font/hind_semibold"
                             android:gravity="center_vertical"
                             android:text="@string/adjusted"
+                            android:textSize="@dimen/album_title"
 
 
                             />
@@ -254,6 +254,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.6"
                             android:fontFamily="@font/hind_semibold"
+                            android:textSize="@dimen/album_title"
                             android:gravity="center_vertical"
                             android:text="@string/adhoc_rate" />
                         <TextView
@@ -318,6 +319,7 @@
                             android:layout_below="@id/adhocLabel"
                             android:layout_alignBaseline="@id/invoice_label"
                             android:layout_weight="0.35"
+                            android:textSize="@dimen/album_title"
 
 
                             />
@@ -358,6 +360,7 @@
                             android:layout_width="0dp"
                             android:fontFamily="@font/hind_semibold"
                             android:layout_height="wrap_content"
+                            android:textSize="@dimen/album_title"
                             android:layout_below="@id/gr_amount_label"
                             android:layout_alignBaseline="@id/memo_label"
                             android:layout_weight="0.35" />

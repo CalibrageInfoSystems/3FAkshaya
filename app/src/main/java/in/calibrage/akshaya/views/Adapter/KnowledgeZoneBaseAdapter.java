@@ -3,6 +3,7 @@ package in.calibrage.akshaya.views.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +16,20 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
+import in.calibrage.akshaya.models.GetActiveEncyclopediaCategoryDetails;
 import in.calibrage.akshaya.views.actvity.EncyclopediaActivity;
 
 public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZoneBaseAdapter.ViewHolder> {
 
     public Context mContext;
-    private List<FarmerOtpResponceModel.CategoriesDetail> learning_Set;
+    private List<GetActiveEncyclopediaCategoryDetails.ListResult> learning_Set;
 
-    public KnowledgeZoneBaseAdapter(Context context, FarmerOtpResponceModel catagoriesList) {
+    public KnowledgeZoneBaseAdapter(Context context, List<GetActiveEncyclopediaCategoryDetails.ListResult>catagoriesList) {
 
         this.mContext = context;
-        this.learning_Set = catagoriesList.getResult().getCategoriesDetails();
+        this.learning_Set =catagoriesList;
 
     }
 
@@ -40,8 +43,19 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+       final int langID = SharedPrefsData.getInstance(mContext).getIntFromSharedPrefs("lang");
 
-        ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getName());
+       Log.e("languageid===", langID + "");
+
+
+        if (langID == 2){
+            ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getTeluguName());
+    }
+        else{
+            ((ViewHolder) holder).text_title.setText(learning_Set.get(position).getName());
+        }
+
+
         if(learning_Set.get(position).getId() == 1 ){
             Picasso.with(mContext )
                     .load(R.drawable.fertilizers)
@@ -49,7 +63,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                     .placeholder( R.drawable.progress_animation)
                     .into(holder.img);
 
-        }else if(learning_Set.get(position).getId() == 5 )
+        }else if(learning_Set.get(position).getId() == 2 )
         {
             Picasso.with(mContext )
                     .load(R.drawable.harvesting)
@@ -58,7 +72,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                     .into(holder.img);
 
         }
-        else if(learning_Set.get(position).getId() == 6 )
+        else if(learning_Set.get(position).getId() == 3 )
         {
             Picasso.with(mContext )
                     .load(R.drawable.pest)
@@ -67,7 +81,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                     .into(holder.img);
 
         }
-        else if(learning_Set.get(position).getId() == 7 )
+        else if(learning_Set.get(position).getId() == 4)
         {
             Picasso.with(mContext )
                     .load(R.drawable.oilpalm)
@@ -76,7 +90,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                     .into(holder.img);
 
         }
-        else if(learning_Set.get(position).getId() == 8 )
+        else if(learning_Set.get(position).getId() == 5)
         {
             Picasso.with(mContext )
                     .load(R.drawable.general)
@@ -101,10 +115,11 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("postTypeId", learning_Set.get(position).getId());
                 intent.putExtra("name", learning_Set.get(position).getName());
+                intent.putExtra("teluguname", learning_Set.get(position).getTeluguName());
 
                 if(learning_Set.get(position).getId() == 1 ){
 
-                    String[] tabnames = {mContext.getString(R.string.str_standard),mContext.getString(R.string.str_videos),mContext.getString(R.string.str_pdf)};
+                    String[] tabnames = {mContext.getString(R.string.str_standard),mContext.getString(R.string.str_pdf),mContext.getString(R.string.str_videos)};
 
 
 
@@ -112,7 +127,7 @@ public class KnowledgeZoneBaseAdapter extends RecyclerView.Adapter<KnowledgeZone
                 }else
                 {
 
-                    String[] tabnames = {mContext.getString(R.string.str_videos),mContext.getString(R.string.str_pdf)};
+                    String[] tabnames = {mContext.getString(R.string.str_pdf),mContext.getString(R.string.str_videos)};
                     intent.putExtra("tabslist", tabnames);
                 }
 

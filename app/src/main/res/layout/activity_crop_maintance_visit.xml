@@ -59,9 +59,10 @@
         android:layout_marginBottom="2dp"
         >
 
+
         <TextView
             android:id="@+id/plotIdLabel"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
@@ -70,7 +71,6 @@
             android:textColor="@color/black"
             android:textSize="@dimen/album_title"
             android:textStyle="bold" />
-
 
         <TextView
             android:id="@+id/plot"
@@ -87,7 +87,7 @@
 
         <TextView
             android:id="@+id/palmAreaLabel"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/plot"
             android:layout_marginTop="@dimen/margin_5"
@@ -119,7 +119,7 @@
 
         <TextView
             android:id="@+id/textView55"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/palmAreaLabel"
             android:layout_marginTop="@dimen/margin_5"
@@ -149,7 +149,7 @@
         <TextView
             android:id="@+id/landmarkLabel"
 
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/palmArea"
             android:layout_marginTop="@dimen/margin_5"
@@ -178,7 +178,7 @@
         <TextView
             android:id="@+id/cluster_Label"
             android:fontFamily="@font/hind_semibold"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/landmark"
             android:layout_marginTop="@dimen/margin_5"
@@ -205,13 +205,14 @@
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
+
         <TextView
             android:id="@+id/status_Label"
-            android:fontFamily="@font/hind_semibold"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cluster_Label"
-            android:layout_marginTop="@dimen/margin_5"
+            android:layout_below="@id/cluster_officer"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/yop"
@@ -225,7 +226,7 @@
             android:id="@+id/yop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cluster_Label"
+            android:layout_below="@id/cluster_officer"
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_toRightOf="@+id/textView55"
@@ -285,7 +286,6 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14dp"
                         android:textStyle="bold" />
-
 
                     <TextView
                         android:id="@+id/dot2"

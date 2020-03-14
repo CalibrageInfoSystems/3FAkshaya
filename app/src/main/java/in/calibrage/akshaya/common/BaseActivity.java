@@ -166,6 +166,7 @@ public class BaseActivity extends AppCompatActivity {
             TextView txtTitle = new TextView(this);
             txtTitle.setText(msg.get(i).getKey());
             txtTitle.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+
             txtTitle.setLayoutParams(new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
@@ -176,6 +177,7 @@ public class BaseActivity extends AppCompatActivity {
             txtitem.setText(msg.get(i).getValue());
             txtitem.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             txtitem.setPadding(10, 0, 0, 0);
+
             txtitem.setLayoutParams(new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/shape"
+    android:background="@drawable/new_bg"
 >
 
 
@@ -108,10 +108,10 @@ android:visibility="gone"
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_from_date"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_5"
-            android:layout_weight="0.3"
+            android:layout_weight="0.35"
             android:clipChildren="false"
             app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
 
@@ -122,7 +122,7 @@ android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="7"
-
+android:textSize="16sp"
                 android:focusable="false"
                 android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white"
@@ -132,10 +132,10 @@ android:visibility="gone"
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_to_date"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_5"
-            android:layout_weight="0.3"
+            android:layout_weight="0.35"
             android:clipChildren="false"
             app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
@@ -145,18 +145,19 @@ android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="7"
+                android:textSize="16sp"
                 android:focusable="false"
                 android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/btn__sub"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
             android:layout_margin="6dp"
-            android:layout_weight="0.4"
+            android:layout_weight="0.3"
             android:fontFamily="@font/hind_semibold"
             android:background="@drawable/button_bg"
             android:text="@string/submit"
@@ -200,6 +201,7 @@ android:visibility="gone"
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

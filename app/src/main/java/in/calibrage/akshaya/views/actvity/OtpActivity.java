@@ -9,7 +9,9 @@ import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -71,6 +74,7 @@ public class OtpActivity extends BaseActivity {
     String Reg_mobilenumber;
     private SpotsDialog mdilogue;
     String F_number, S_number;
+    TextView resend;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -105,6 +109,7 @@ public class OtpActivity extends BaseActivity {
         backImg = (ImageView) findViewById(R.id.back);
         otp_desc = (TextView) findViewById(R.id.otp_desc);
         pinEntry = findViewById(R.id.txt_pin_entry);
+        resend =findViewById(R.id.resend_otp);
         pinEntry.requestFocus();
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
@@ -112,6 +117,7 @@ public class OtpActivity extends BaseActivity {
                 .build();
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
+
 
     }
 
@@ -197,12 +203,71 @@ public class OtpActivity extends BaseActivity {
                 }
             }
         });
+        resend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resendotp();
+            }
+        });
+
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+    }
+
+    private void resendotp() {
+        mdilogue.show();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.getFormerOTP(APIConstantURL.Farmer_ID_CHECK + Farmer_code)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FarmerResponceModel>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.cancel();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        showDialog(OtpActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(FarmerResponceModel farmerResponceModel) {
+                        mdilogue.cancel();
+                        Log.d(TAG, "onNext: " + farmerResponceModel);
+                        if (farmerResponceModel.getIsSuccess()) {
+                            Toast.makeText(getApplicationContext(), getString(R.string.otpsuccess), Toast.LENGTH_LONG).show();
+                          //  showDialog(OtpActivity.this, "Otp sent to Your Register Mobile Number(s)");
+//                            if (farmerResponceModel.getResult()!=null) {
+//                                mobile_number = farmerResponceModel.getResult();
+//OTP మీ రిజిస్టర్ మొబైల్ నంబర్ (ల) కు పంపబడింది
+//                                Log.d("mobile_number===", mobile_number);
+//                            }
+//                            else {
+//                                showDialog(LoginActivity.this, "No Register Mobile Number for Send Otp");
+//                            }
+
+                        } else {
+                            showDialog(OtpActivity.this, getResources().getString(R.string.Invalid));
+                        }
+                    }
+                });
+
     }
 
     private void GetOtp() {

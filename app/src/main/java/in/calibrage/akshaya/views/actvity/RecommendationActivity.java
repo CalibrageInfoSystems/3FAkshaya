@@ -140,18 +140,18 @@ public class RecommendationActivity extends BaseActivity {
                     public void onNext(RecomPlotcodes recomPlotcodes) {
                         Log.d("", "onNext: " + recomPlotcodes);
                         mdilogue.dismiss();
-                        if(recomPlotcodes.getIsSuccess())
-                        {
 
-                            if (recomPlotcodes.getListResult().isEmpty()) {
-                                no_plots.setVisibility(View.VISIBLE);
 
-                            } else {
-                                no_plots.setVisibility(View.GONE);
-                            }
+                        if (recomPlotcodes.getListResult() != null) {
+                            no_plots.setVisibility(View.GONE);
+                            RecommendationAdapter rec_adapter= new RecommendationAdapter(RecommendationActivity.this, recomPlotcodes.getListResult());
+                            recom_recyclerView.setAdapter(rec_adapter);
+
+                        } else {
+                            no_plots.setVisibility(View.VISIBLE);
+
                         }
-                        RecommendationAdapter rec_adapter= new RecommendationAdapter(RecommendationActivity.this, recomPlotcodes.getListResult());
-                        recom_recyclerView.setAdapter(rec_adapter);
+
                     }
 
 

@@ -27,11 +27,7 @@
     <string name="recommendations">Recommendations</string>
 
 
-
-
-
     <string name="req_services">Request Services</string>
-
 
 
     <string name="confirm_req">Confirm Request</string>
@@ -50,6 +46,10 @@
 
     <string name="to_date">To Date *</string>
 
+    <string name="from_month">From Month *</string>
+
+    <string name="to_month">To Month *</string>
+
     <string name="date">Start Date</string>
 
 
@@ -57,16 +57,15 @@
     <string name="plot_id">Plot ID</string>
 
 
-
     <string name="code">Code</string>
 
-    <string name="net_weight">Net weight</string>
+    <string name="net_weight">Net Weight</string>
 
     <string name="location">Location</string>
     <string name="locationn">Location   :</string>
 
 
-<!--    collections-->
+    <!--    collections-->
     <string name="collection">FFB Collections</string>
     <string name="collectionsWeight">Total Net Weight </string>
     <string name="collectionsCount">Total Collections</string>
@@ -88,13 +87,13 @@
     <string name="totalBunches">Total Bunches</string>
     <string name="acceptedBunches">Accepted Bunches</string>
     <string name="rejectedBunches">Rejected Bunches</string>
-    <string name="operatorName">3F OP Collection \nofficer Name</string>
+    <string name="operatorName">3F OP Collection \nOfficer Name</string>
     <string name="receiptImg">Receipt</string>
     <string name="recept">Click Here to See Receipt</string>
     <string name="datevalidation">Please Enter From Date is less than To Date</string>
     <string name="enter_Date">Please Enter From Date and To Date</string>
 
-<!--  Payments  -->
+    <!--  Payments  -->
     <string name="no_payments_found">No Payments Found</string>
     <string name="grr">Payment for FFB(Rs.)</string>
     <string name="payments">Farmer Passbook</string>
@@ -120,7 +119,7 @@
     <string name="gr">GR Amount (Rs.)</string>
     <string name="adjusted">Adjusted (Rs.)</string>
     <string name="descriptionn">Description </string>
-    <string name="trans_charges"> Transportation  \nCharges/Kg (Rs.)</string>
+    <string name="trans_charges"> Transportation  \nCharges/Ton (Rs.)</string>
     <string name="no_trans_found">No Direct Farmer Transport Reimbursement Found</string>
 
 
@@ -174,7 +173,7 @@
     <string name="applyFertilizerFrequencyType">Apply Fertilizer Frequency</string>
 
 
-<!--   Labour  -->
+    <!--   Labour  -->
     <string name="labour_lable">Labour</string>
     <string name="select_labour_type">Labour Service</string>
     <string name="startDate">Preferred Date</string>
@@ -183,7 +182,7 @@
     <string name="labour_duration">Package </string>
     <string name="comments">Comments</string>
     <string name="i_have_agree">I Agree</string>
-    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="terms_conditions">Rate Chart - Terms &amp; Conditions</string>
     <string name="submit_req">Submit Request</string>
     <string name="harv_amount">Harvesting Amount/Ton (Rs.)</string>
     <string name="pru_amount">Pruning Amount/Tree (Rs.)</string>
@@ -198,7 +197,7 @@
     <string name="Valid_service">Please Select Service Type</string>
     <string name="valid_pack">Please Select Package</string>
     <string name="serviceType">Service Type(s)</string>
-<!-- Equipment   -->
+    <!-- Equipment   -->
     <string name="select_godown">Select Godown </string>
     <string name="payment_mode">Payment Mode </string>
     <string name="product">Product</string>
@@ -210,7 +209,7 @@
     <string name="select_product">Select Products</string>
     <string name="product_details">Product Details</string>
     <string name="notee">Note</string>
-    <string name="note">If the Products has not been Picked with in 2 Days of Requested Date,Your Order will be Cancelled.</string>
+    <string name="note">If the Products has not been Picked with in 5 Days of Requested Date,Your Order will be Cancelled.</string>
     <string name="subsidy_amt">Available Subsidy Amount(Rs.)</string>
     <string name="endusermsg">Total Cost Shouldnot be 0</string>
     <string name="each_product"> Each Item Cost (Rs.)</string>
@@ -222,8 +221,6 @@
     <string name="product_quantity">Product &amp; Quantity</string>
 
 
-
-
     <string name="land_mark">Landmark</string>
 
     <string name="language_notification">Language Setup Completed</string>
@@ -233,7 +230,7 @@
     <string name="tap_text">Please select Language below:</string>
     <string name="btn_en">English</string>
     <string name="btn_te">Telugu</string>
-   <string name="only_date">Date</string>
+    <string name="only_date">Date</string>
     <string name="no_videos">No Videos Available</string>
 
     <!-- <string name="harvest">Harvest</string>-->
@@ -241,38 +238,31 @@
     <string name="quantity">Quantity</string>
 
 
-
-
-
-
-
-
-<!--Loan-->
+    <!--Loan-->
     <string name="loan_req">Request for Loan</string>
-    <string name="loan_message">1.Quick Pay is a special feature provided by 3F Oil Palm so that our farmers can get payment for their FFB supplied within 1-2 working days.\n2.Working days are Monday- Saturday (except 2nd Saturday). All public holidays and company holidays are not considered working days.\n3.To avail this offer, there is a Rs. 100/ton quick pay fee along with a flat banking fee of Rs. 15. Quick pay will be paid based on the prevelant adhoc rate. In case adhoc rate is not yet known, quick pay will be based on an assumed adhoc rate, but it will be adjusted based on Government Order rate, as and when declared.\n
-4.Atleast 1 unpaid collection is required in order to request for Quick Pay.\n5.In case of more than 1 unpaid collection, quick pay request will  happen on all pending unpaid collections.\n6.All deductions such as fertilizers, poles and labour requests that were done against FFB will be reduced from the FFB payment while making quick pay payment.\n7.Complete calculation and value of payment will be mentioned in the receipt in the app. This requires a digital signature of the farmer, which signifies adherence to all terms and conditions.\n8.In order to be eligible for quick pay, FFB payment value should be greater than any against FFB deductions (such as fertilizers, poles or labour requests done against FFB).\n9.If quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.\n10.Once Quick Pay has been requested, it cannot be cancelled.</string>
+    <string name="loan_message">1.QuickPay is a special feature provided by 3F Oil Palm so that our farmers can get payment for their FFB supplied within 24 hours.\n2.Complete calculation and value of payment will be mentioned in the receipt in the app. This requires a digital signature of the farmer, which signifies adherence to all terms and conditions.
+\n3. To avail this offer, there is  flat transaction fee on actuals and per ton quickpay fee.\n4. Quickpay will be paid based on the prevelant adhoc rate.In case adhoc rate is not yet known, quickpay will be based on an assumed adhoc rate, but it will be adjusted based on Government Order rate, as and when declared. When the Invoice Rate is declared, that adjustment will also take place, and will be paid or deducted along with future payments (normal or quickpay)\n5. Atleast 1 unpaid collection is required in order to request for QuickPay.In case of more than 1 unpaid collection, quickpay request will happen on all pending unpaid collections.
+\n6. All deductions from farmer or pending payments to farmer such as rate adjustments, fertilizers, poles and labour requests that were done against FFB and are due by the farmer to the company before the date of request of QuickPay will be reduced from the FFB payment while making quickpay payment.
+\n7. In order to be eligible for quickpay, FFB payment value should be greater than any against FFB deductions
+\n8. If quickpay has already been requested, another quickpay request cannot be requested until the 1st one is completed.
+\n9. Once Quickpay has been requested, it cannot be cancelled.
+\n10. Quickpay is not available on the date on which the company is processing regular farmer’s payment. Those dates will come twice a month accoding to regular pay cycle. </string>
     <string name="got_it">Got It</string>
-
+    <string name="terms_conditionss">Terms &amp; Conditions</string>
     <string name="success_Loan">Loan Request Submitted Successfully</string>
     <string name="no_req_found">No Requests Found</string>
 
     <string name="loan_amount">Loan Amount (Rs.)</string>
     <string name="reason_loan">Reason for Loan</string>
     <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
-    <string name="enter_loan_amount"> Amount must be Greater than 0</string>
+    <string name="enter_loan_amount">Your dues are more than FFB Payment, So, quickpay can’t be completed</string>
     />
-<!--    -->
+    <!--    -->
     <string name="total_records">Total Records</string>
 
 
     <string name="no_pdfs">No Pdfs Available</string>
     <string name="dosage_only">Dosage</string>
-
-
-
-
-
-
 
 
     <string name="crop">Crop Maintenance Visit</string>
@@ -281,9 +271,8 @@
     <string name="LastUpdatedDate">Last Updated Date</string>
 
 
-
     <string name="Chemical">Chemical</string>
-<!--Navigation -->
+    <!--Navigation -->
     <string name="my3F">My 3F</string>
     <string name="logout">LogOut</string>
     <string name="confirmation">Confirmation</string>
@@ -291,17 +280,16 @@
     <string name="no_plots">No Plots Available</string>
 
 
-
     <string name="error">Error</string>
 
 
-<!--    Visit -->
+    <!--    Visit -->
     <string name="issue_type">Type of Issue</string>
     <string name="image">Image Upload</string>
     <string name="record">Voice Recording</string>
 
     <string name="visit_success">Visit Request Submitted Successfully</string>
-<!--    Quick pay -->
+    <!--    Quick pay -->
     <string name="digital_signature">Digital Signature</string>
     <string name="request_rise">Raise Request</string>
     <string name="clear">Clear</string>
@@ -310,9 +298,9 @@
     <string name="closingBal">Dues(Rs.)</string>
 
     <string name="quantity_mt">Quantity(MT)</string>
-    <string name="ffb_flot">FFB Rate(Rs.)</string>
-    <string name="amount_of_FFB">Total FFB Cost per MT(Rs)</string>
-    <string name="convenience_charge">Convenience Charge(Rs.)</string>
+    <string name="ffb_flot">FFB Rate per MT(Rs.)</string>
+    <string name="amount_of_FFB">Total FFB Cost(Rs.)</string>
+    <string name="convenience_charge">Transaction Fee(Rs.)</string>
     <string name="total_amt_pay">Total Bill Amount(Rs.)</string>
 
 
@@ -328,8 +316,6 @@
     <string name="str_pdf">Pdfs</string>
 
 
-
-
     <string name="total_amt">Total Amount (Rs.)</string>
 
     <string name="confirm">Confirm</string>
@@ -341,8 +327,7 @@
     <string name="str_select_plot">Select Plot</string>
 
 
-
-   >
+    >
     <string name="no_recommendations">No Recommendations</string>
     <string name="record_btn">Record</string>
     <string name="stop">STOP</string>
@@ -357,15 +342,12 @@
     <string name="success_fertilizer">Fertilizer Request Submitted Successfully</string>
 
 
-
-
-
     <string name="requestCodeLabel">Request Id</string>
     <string name="reqDatee">Requested Date</string>
     <string name="paymentMode">Payment Mode</string>
     <string name="req_date">Requested Date</string>
 
-<!--    Request -->
+    <!--    Request -->
     <string name="lab_req">Labour Request</string>
     <string name="select_labour_ltype">Labour Service</string>
     <string name="pole_req">Equipment Request</string>
@@ -374,7 +356,7 @@
     <string name="visit_req">Visit Request</string>
     <string name="Loan_req">Loan Request</string>
 
-<!--    -->
+    <!--    -->
     <string name="officer_name">Cluster Officer Name</string>
     <string name="officer_mobile">Cluster Officer  Contact Number</string>
     <string name="manager_name">Cluster Manager Name </string>
@@ -413,15 +395,13 @@
     <string name="farmer_profile">Farmer Profile</string>
     <string name="plot_details">Plot Details</string>
     <string name="cancel_success">Cancelled Successfully</string>
-    <string name="amount_payble">Amount Payble (Rs.)</string>
+    <string name="amount_payble">Amount Payable (Rs.)</string>
     <string name="comments_valid">Please Enter Comments</string>
     <string name="no_data">No Data Available</string>
     <string name="Godown_name">Godown</string>
 
     <string name="qucick_success">QuickPay Request has been Raised  Successfully</string>
     <string name="paym_validation">Please Select the Payment Mode</string>
-
-
 
 
     <string name="fertgodown">Fertilizer Godowns</string>
@@ -436,11 +416,11 @@
     <string name="price">Price (Rs.)</string>
     <string name="product_size"> Size</string>
 
-    <string name="pru_amountt">A) Pruning \nCost /Tree(Rs.)</string>
-    <string name="num_trees">B) No. of Trees</string>
+    <string name="pru_amountt">Pruning \nCost /Tree(Rs.)</string>
+    <string name="num_trees"> No. of Trees</string>
     <string name="Prunning_amount">C) Pruning  \nAmount(Rs.)(A*B)</string>
-    <string name="harv_amountt">D) Harvesting \nCost /Ton(Rs.)</string>
-    <string name="net_weight_mt">E) Net Weight (MT)</string>
+    <string name="harv_amountt"> Harvesting \nCost /Ton(Rs.)</string>
+    <string name="net_weight_mt"> Net Weight (MT)</string>
     <string name="harvesting_amount">F) Harvesting \nAmount(Rs.)(D*E)</string>
     <string name="service_chargeper">M) Service Charge (%)</string>
     <string name="service_amount">N) Service Charge(Rs.)\n((C+F+I+L)*M)/100</string>
@@ -452,7 +432,7 @@
     <string name="instock">In stock</string>
     <string name="nocomments">No Comments</string>
     <string name="net_weightk">Net Weight (Kg)</string>
-
+    <string name="net_weightt">Net Weight (Ton)</string>
     <string name="alert_msg">Are You Sure You Want to Cancel this Request?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -468,32 +448,66 @@
     <string name="Package">Package</string>
     <string name="discount">Discount(%)</string>
     <string name="disc">Offer Applied</string>
-    <string name="text">Harvesting service will be provided for every 10 days.</string>
+    <string name="text">Harvesting service will be provided for every 10 days in PEAK Season(MAY TO SEP) and 15 days in LEAN Season(OCT TO APRIL).</string>
 
     <string name="thirty_days">Last 30 days</string>
     <string name="currentfinicial">Current Financial Year</string>
     <string name="selected">Select Time Period</string>
     <string name="multistring">Please Select Service(s)</string>
     <string name="thirtyP_days"> Last 30 days</string>
-    <string name="currentfinicialP">Current Financial Year</string>
+    <string name="last_month"> Last Month</string>
+    <string name="last_threemonth"> Last Three Months</string>
+    <string name="currentfinicialP">Last One Year</string>
     <string name="selectedP">Select Time Period</string>
     <string name="or">OR</string>
     <string name="failmsg">You can\'t Raise the Request since Amount is 0</string>
     <string name="location_notfount">Location not available</string>
     <string name="userPermission">All permissions are granted by user!</string>
-    <string name="incrop_prunning">G) Intercrop Pruning \nCost / Tree(Rs.)</string>
-    <string name="num_intercrop">H) No.of Intercrop \nTrees</string>
-    <string name="pru_intercrop_amountt">I) Pruning Intercrop \nAmount(Rs.)(G*H)</string>
-    <string name="harv_inter_amountt">J) Intercrop Harvesting \nCost / Tree(Rs.)</string>
-    <string name="harv_intercrop_netweight">K) Intercrop \nNet Weight(Ton)</string>
-    <string name="harv_intercrop_amout">L) Harvesting Intercrop \nAmount(Rs.)(J*K)</string>
+    <string name="incrop_prunning"> Intercrop Pruning \nCost / Tree(Rs.)</string>
+    <string name="num_intercrop">No.of Intercrop \nTrees</string>
+    <string name="pru_intercrop_amountt"> Pruning Intercrop \nAmount(Rs.)(G*H)</string>
+    <string name="harv_inter_amountt">Intercrop Harvesting \nCost / Tree(Rs.)</string>
+    <string name="harv_intercrop_netweight">Intercrop \nNet Weight(Ton)</string>
+    <string name="harv_intercrop_amout">Harvesting Intercrop \nAmount(Rs.)(J*K)</string>
     <string name="details">Complete Details</string>
     <string name="close">Close</string>
     <string name="cluster_officer">Cluster Name</string>
-    <string name="inter_coco">Matured Cocoa as Intercrop posses Additional Labour Charges.</string>
-    <string name="quick_reqc">Quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.</string>
+    <string name="inter_coco">\u2022 Matured Cocoa as Intercrop Poses Additional Labour Charges.\n\u2022 Farmer has to engage loading and transport Labour after harvesting is done.\n\u2022 For off season minimum wage cap is Rs.525 per each Labour for any service.</string>
+    <string name="quick_reqc">Quickpay has already been requested, another quickpay request cannot be requested until the 1st one is completed.</string>
     <string name="visit_reqst">Visit Request has been Already Raised.</string>
     <string name="intercrops">Inter Crop(s)</string>
+    <string name="pinn">Pin</string>
+    <string name="re_send">RESEND OTP</string>
+    <string name="farmar_code">Farmer Code</string>
+    <string name="no_yeild">Yielding Plots are not Available</string>
+    <string name="assign_date">Assigned Date</string>
+    <string name="have_pole">Has Own Pole?</string>
+    <string name="loan_terms">3F Oil Palm had signed Memorandum of Understanding with State Bank of India to provide Crop loans to Oil Palm farmers
+    \n1.3F Oil Palm and SBI will enter into a tripartite agreement with the farmer in case the loan is approved.
+    \n2.Loans are subject to SBI Approval after necessary paperwork.
+    \n3.Required documents for sanction of crop loans tie up with 3f oil palm are given below Application (available at branch).
+    \n*Adhar card – Xerox
+    \n*Land records (Pattadhar pass book)
+    \n*1-B
+    \n*Adangal
+    \n*EC
+    \n*Photos
+    \n*Tripartite agreement – 100/- stamp
+    \n*Certificate of No loans available at another banks
+    \n4.There are 2 types of facilities offered – Crop loan and Agri term Loan.
+    \n5.The Limits sanctioned for any one of the above is at the discretion of SBI.
+    \n6.All FFB coming from oil palm gardens of farmers have to be submitted by law to 3F Oil Palm only.
+    \n7.FFB payment will be sent to the SBI loan account only.
+    \n8.Loan amount will be deducted from the FFB supplied.
+    \n9.During the loan period, change in bank account is not permitted.
+   </string>
+    <string name="otpsuccess">OTP sent to Your Register Mobile Number(s)</string>
+    <string name="inactive">You can\'t Raise the Request.Farmer is Inactive.</string>
+    <string name="unpaid_note">Collections can take upto 2 hours to show.If Any Collections are missed, Please Contact Customer Care.</string>
+    <string name="qrcode">QRCode</string>
+    <string name="nobanner">Have No Banners</string>
+    <string name="quick_pdf">QuickPay Request PDF</string>
+    <string name="select_imagee">( Please Attach At Least One Image or Voice Record.)</string>
 
     />
     <!-- we need to use video ids instead of video link -->

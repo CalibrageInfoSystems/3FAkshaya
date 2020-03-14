@@ -43,7 +43,7 @@
                 android:text="@string/plot_code"
                 android:fontFamily="@font/hind_semibold"
                 android:gravity="center"
-                android:paddingLeft="4dp"
+                android:paddingLeft="5dp"
 
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
@@ -67,27 +67,33 @@
                 android:textSize="@dimen/album_title" />
             <TextView
                 android:id="@+id/Dosage"
-                android:hint="@string/dosage_only"
-                android:layout_toRightOf="@+id/DosageLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/hind_semibold"
                 android:layout_below="@id/recommended_fertilizerLabel"
+                android:layout_marginStart="0dp"
+                android:layout_toEndOf="@+id/DosageLabel"
+
+                android:layout_toRightOf="@+id/DosageLabel"
+                android:fontFamily="@font/hind_semibold"
                 android:paddingLeft="5dp"
-                android:paddingRight="@dimen/album_title_padding"
+                android:hint="1"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
+
             <TextView
                 android:id="@+id/UOMName"
-                android:layout_toRightOf="@+id/Dosage"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/UOMName"
-                android:fontFamily="@font/hind_semibold"
                 android:layout_below="@id/recommended_fertilizerLabel"
-                android:paddingLeft="0dp"
-                android:paddingRight="@dimen/album_title_padding"
+
+
+                android:layout_toRightOf="@+id/Dosage"
+                android:fontFamily="@font/hind_semibold"
+                android:hint="kg"
+
+                android:paddingLeft="5dp"
                 android:paddingTop="@dimen/album_title_padding"
+
                 android:textSize="@dimen/album_title" />
 
             <TextView
@@ -128,7 +134,7 @@
                 android:paddingRight="2dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/black"
-                android:layout_below="@+id/commentsLabel"
+                android:layout_below="@+id/comments"
                 android:textStyle="bold"
                 android:textSize="@dimen/album_title" />
             <TextView
@@ -138,7 +144,7 @@
                 android:fontFamily="@font/hind_semibold"
                 android:layout_height="wrap_content"
                 android:hint="@string/LastUpdatedDate"
-                android:layout_below="@id/commentsLabel"
+                android:layout_below="@id/comments"
                 android:paddingLeft="5dp"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"

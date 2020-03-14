@@ -95,6 +95,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         return viewHolder;
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
@@ -256,7 +257,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
                             collectionid.setText(getCollectionInfoById.getResult().getCode());
                             if (getCollectionInfoById.getResult().getComments() != null && !getCollectionInfoById.getResult().getComments().isEmpty()){
                                 comments_layout.setVisibility(View.VISIBLE);
-                              //  comments.setText(getCollectionInfoById.getResult().getComments());
+                               comments.setText(getCollectionInfoById.getResult().getComments());
                             }else {
                                 comments_layout.setVisibility(View.GONE);
 
