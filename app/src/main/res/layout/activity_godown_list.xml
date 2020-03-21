@@ -23,7 +23,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right">
+            android:gravity="left"
+         >
             <TextView
                 android:gravity="center_vertical"
                 android:layout_weight="0.8"
@@ -80,7 +81,7 @@
         android:layout_marginTop="250dp"
         android:text="@string/no_godowns"
         android:textAlignment="center"
-
+android:visibility="gone"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_size_20"
         />

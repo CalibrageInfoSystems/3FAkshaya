@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -87,6 +88,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
     Calendar calendar ;
     Date dateObj;
     int diff;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,13 +100,30 @@ public class LabourRecommendationsActivity  extends BaseActivity {
         setContentView(R.layout.activity_labour_recommendations);
         init();
         setViews();
+        settoolbar();
+    }
+
+    private void settoolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Select Plot");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void init() {
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "");
         noRecords = (LinearLayout) findViewById(R.id.text);
-        backImg = (ImageView) findViewById(R.id.back);
+       // backImg = (ImageView) findViewById(R.id.back);
          home_btn = (ImageView) findViewById(R.id.home_btn);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
@@ -114,13 +133,13 @@ public class LabourRecommendationsActivity  extends BaseActivity {
 
     private void setViews() {
 
-        backImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
-            }
-        });
+//        backImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

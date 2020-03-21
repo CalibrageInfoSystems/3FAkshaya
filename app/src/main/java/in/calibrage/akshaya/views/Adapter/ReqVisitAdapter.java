@@ -56,6 +56,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
     DecimalFormat dec = new DecimalFormat("####0.00");
     private Subscription mSubscription;
      double plot_area,selected_plot;
+Integer cluster_id;
      String plot_code,plot_village,plot_landmark,plot_cluster_name,date_platation,Farmer_code;
     public ReqVisitAdapter(Context context, List<LabourRecommendationsModel.ListResult> plot_Set) {
 
@@ -100,6 +101,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
                 plot_village = holder.textViewLocation.getText()+"";
                 plot_landmark = holder.textViewstatus.getText()+"";
                 plot_cluster_name =holder.cluster_name.getText()+"";
+                cluster_id = plot_Set.get(position).getClusterId();
                 date_platation =  plot_Set.get(position).getDateOfPlanting()+"";
                 if (CommonUtil.isNetworkAvailable(mContext)) {
                     visit_CanRaiseRequest();
@@ -162,7 +164,8 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
                             intent.putExtra("plotVillage", plot_village);
                             intent.putExtra("landMark", plot_landmark);
                             intent.putExtra("cluster_name",plot_cluster_name);
-                            intent.putExtra("date_of_plandation", date_platation  );
+                            intent.putExtra("date_of_plandation", date_platation );
+                            intent.putExtra("cluster_Id",cluster_id);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                             mContext.startActivity(intent);

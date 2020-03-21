@@ -8,9 +8,9 @@
     <dimen name="margin_20">20dp</dimen>
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size">18sp</dimen>
-    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_20">16sp</dimen>
     <dimen name="text_size_22">22sp</dimen>
-
+    <dimen name="text_size_">16sp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="card_margin">5dp</dimen>
     <dimen name="album_title_padding">8dp</dimen>
@@ -20,7 +20,7 @@
     <dimen name="ic_album_overflow_width">20dp</dimen>
     <dimen name="ic_album_overflow_height">30dp</dimen>
 
-    <dimen name="_16">16dp</dimen>
+    <dimen name="_16">18dp</dimen>
     <dimen name="_8dp">8dp</dimen>
 <!--      fonts Diments for whole app -->
 
@@ -64,5 +64,6 @@
     <dimen name="_45dp">45dp</dimen>
     <dimen name="_16dp">16dp</dimen>
     <dimen name="_170dp">170dp</dimen>
+    <dimen name="_177dp">180dp</dimen>
     <dimen name="_50dp">40dp</dimen>
 </resources>

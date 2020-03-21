@@ -103,7 +103,7 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
     private RelativeLayout lyt_img, lyt_img2, lyt_img3;
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
-
+    Integer cluster_Id;
     private List<Bitmap> images = new ArrayList<>();
     DecimalFormat dec = new DecimalFormat("####0.00");
     String currentDate;
@@ -146,6 +146,7 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
             landmarkCode = extras.getString("landMark");
             date_of_plandation = extras.getString("date_of_plandation");
             clustername = extras.getString("cluster_name");
+            cluster_Id = extras.getInt("cluster_Id");
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getPermissionToRecordAudio();
@@ -456,7 +457,11 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
 
                                         // displayList.add(new MSGmodel(getString(R.string.select_labour_type), selected_name));
                                         displayList.add(new MSGmodel(getResources().getString(R.string.issue_type), selected_issue));
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.comments), comments.getText().toString()));
+
+                                        String Comments = comments.getText().toString();
+                                        if (Comments != null && !Comments.isEmpty() && !Comments.equals("null")) {
+                                            displayList.add(new MSGmodel(getResources().getString(R.string.comments), comments.getText().toString()));
+                                        }
 
 
                                         showvisitSuccessDialog(displayList, getResources().getString(R.string.visit_success));
@@ -691,6 +696,7 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
         header.setIssueTypeId(Issue_Id.get(Select_Issue.getSelectedItemPosition() - 1));
         header.setPalmArea(plot_Age + "");
         header.setPlotVillage(location);
+        header.setClusterId(cluster_Id);
         header.setYearofPlanting(date_of_plandation);
         List<VisitRequestModel.VisitRepo> visitRepo = new ArrayList<>();
 

@@ -72,6 +72,9 @@ public class FertRequest {
     @SerializedName("issueTypeId")
     @Expose
     private Integer issueTypeId;
+    @SerializedName("clusterId")
+    @Expose
+    private Integer clusterId;
     @SerializedName("godownCode")
     @Expose
     private String godownCode;
@@ -271,9 +274,16 @@ public class FertRequest {
         this.requestProductDetails = requestProductDetails;
     }
 
+    public Integer getClusterId() {
+        return clusterId;
+    }
+
+    public void setClusterId(Integer clusterId) {
+        this.clusterId = clusterId;
+    }
 
 
- public static class RequestProductDetail {
+    public static class RequestProductDetail {
 
      @SerializedName("productId")
      @Expose

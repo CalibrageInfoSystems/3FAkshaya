@@ -20,8 +20,8 @@
             android:layout_height="50dp"
             android:orientation="horizontal" >
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/ic_left"
                 android:layout_marginTop="18dp"
                 android:layout_marginStart="@dimen/margin_20"
@@ -34,7 +34,7 @@
                 android:text="@string/req_loan"
                 android:layout_alignLeft="@+id/back"
                 android:fontFamily="@font/hind_semibold"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="50dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
 

@@ -40,7 +40,7 @@
     <string name="unpaidCollection">పేమెంట్ జరగని సేకరణలు</string>
     <string name="no_unpaid_collections">పేమెంట్ జరగని సేకరణలు కనుగొనబడలేదు</string>
     <string name="date_label">తేదీ</string>
-    <string name="collection_id">సేకరణ ID</string>
+    <string name="collection_id">సేకరణ ఐడి</string>
     <string name="weight">బరువు</string>
      <string name="cc">సిసి</string>
      <string name="status">స్థితి</string>
@@ -154,7 +154,7 @@
     <string name="labour_duration">ప్యాకేజీ</string>
     <string name="comments">సూచనలు</string>
     <string name="i_have_agree">నేను అంగీకరిస్తాను</string>
-    <string name="terms_conditions"> నిబంధనలు &amp; షరతులను</string>
+    <string name="terms_conditions"> రేటు చార్ట్ - నిబంధనలు &amp; షరతులు </string>
     <string name="submit_req">అభ్యర్థనను సమర్పించండి</string>
     <string name="harv_amount">హార్వెస్టింగ్ మొత్తం / టన్ను(రూ.)</string>
     <string name="pru_amount">కత్తిరింపు మొత్తం / చెట్టు(రూ.)</string>
@@ -248,7 +248,7 @@
 
     <string name="fertilizer">ఎరువులు</string>
         
-    <string name="loan">లోన్</string>
+    <string name="loan">ఋణం</string>
         
     <string name="quickPay">త్వరితచెల్లింపు అభ్యర్థన</string>
     <string name="quick">త్వరితచెల్లింపు</string>
@@ -526,15 +526,15 @@
     <string name="close">మూసివేయండి</string>
     <string name="cluster_officer">క్లస్టర్ పేరు</string>
 
-    <string name ="inter_coco">\u2022 ఇంటర్‌క్రాప్ వలె పరిపక్వమైన కోకో అదనపు కార్మిక ఛార్జీలను కలిగిస్తుంది. పంట కోసిన తర్వాత ఫార్మర్ లోడింగ్ మరియు రవాణా శ్రమను కలిగి ఉండాలి.\n\u2022 ఆఫ్ సీజన్ కోసం కనీస వేతన పరిమితి ఏదైనా సేవకు తలపై రూ.525.</string>
-    <string name="quick_reqc">శీఘ్ర చెల్లింపు ఇప్పటికే అభ్యర్థించబడింది, 1 వ తేదీ పూర్తయ్యే వరకు మరొక శీఘ్ర చెల్లింపు అభ్యర్థనను అభ్యర్థించలేము.</string>
+    <string name ="inter_coco">\u2022 ఇంటర్‌క్రాప్ వలె పరిపక్వమైన కోకో అదనపు కార్మిక ఛార్జీలను కలిగిస్తుంది.\n\u2022 పంట కోసిన తర్వాత ఫార్మర్ లోడింగ్ మరియు రవాణా శ్రమను కలిగి ఉండాలి.\n\u2022 ఆఫ్ సీజన్ కోసం కనీస వేతన పరిమితి ఏదైనా సేవకు తలపై రూ.525.</string>
+    <string name="quick_reqc">క్విక్‌పే ఇప్పటికే అభ్యర్థించబడింది, ఒకటి పూర్తయ్యే వరకు మరొక క్విక్‌పే అభ్యర్థన అభ్యర్థించబడదు.</string>
     <string name="visit_reqst">సందర్శన అభ్యర్థన ఇప్పటికే అభ్యర్థించబడింది.</string>
     <string name="intercrops">అంతర పంట(లు)</string>
     <string name="last_month"> పోయిన నెల</string>
     <string name="last_threemonth"> చివరి మూడు నెలలు</string>
     <string name="from_month">నెల నుండి *</string>
 
-    <string name="to_month">నెలకు *</string>
+    <string name="to_month">నెల వరకు *</string>
     <string name="pinn">పిన్</string>
     <string name="re_send">పిన్ ను మళ్ళీ పంపు</string>
     <string name="farmar_code">రైతు కోడ్</string>
@@ -559,14 +559,17 @@
      \n7.ఎఫ్‌ఎఫ్‌బి చెల్లింపు ఎస్‌బిఐ రుణ ఖాతాకు మాత్రమే పంపబడుతుంది.
      \n8.సరఫరా చేసిన ఎఫ్‌ఎఫ్‌బి నుండి రుణ మొత్తం తీసివేయబడుతుంది.
      \n9.రుణ కాలంలో, బ్యాంక్ ఖాతాలో మార్పు అనుమతించబడదు.</string>
-    <string name="otpsuccess">OTP మీ రిజిస్టర్ మొబైల్ నంబర్ (ల) కు పంపబడింది </string>
+    <string name="otpsuccess">ఓటిపి మీ రిజిస్టర్ మొబైల్ నంబర్ (ల) కు పంపబడింది </string>
     <string name="inactive">మీరు అభ్యర్థనను పెంచలేరు. ఫార్మర్ క్రియారహితం.</string>
     <string name="unpaid_note">సేకరణలు చూపించడానికి 2 గంటలు పట్టవచ్చు. సేకరణలు తప్పినట్లయితే దయచేసి కస్టమర్ కేర్‌ను సంప్రదించండి.</string>
     <string name="qrcode">QR కోడ్</string>
     <string name="nobanner">బ్యానర్లు లేవు</string>
     <string name="quick_pdf">క్విక్‌పే అభ్యర్థన పీడీఎఫ్</string>
-    <string name="select_imagee">( Please Attach At Least One Image or Voice Record.)</string>
-
+    <string name="select_imagee">(దయచేసి కనీసం ఒక చిత్రం లేదా వాయిస్ రికార్డ్‌ను అటాచ్ చేయండి.)</string>
+    <string name="slecteddate">ఎంచుకున్న తేదీ</string>
+    <string name="terms_conditionss">నిబంధనలు &amp; షరతులు</string>
+    <string name="unableselect">ఈ నెలను ఎంచుకోవడం సాధ్యం కాలేదు</string>
+    <string name="downloaded">Downloaded Successfully</string>
     <string-array name="switch_tabs">
 
         <item>ఎరువుల గోడౌన్లు</item>

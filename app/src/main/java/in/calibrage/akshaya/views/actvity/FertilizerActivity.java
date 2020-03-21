@@ -13,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -73,7 +74,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     private List<ModelFert> product_list = new ArrayList<>();
     private ProgressDialog dialog;
     int SPLASH_DISPLAY_DURATION = 500;
-
+    private Toolbar toolbar;
     private ImageView cartButtonIV;
     Integer Id, quantity;
     int price_final;
@@ -98,14 +99,15 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         btn_next = findViewById(R.id.btn_next);
         no_data =findViewById(R.id.no_data);
         cartButtonIV = findViewById(R.id.cartButtonIV);
-        ImageView backImg = (ImageView) findViewById(R.id.back);
-        backImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                finish();
-            }
-        });
+        settoolbar();
+      //  ImageView backImg = (ImageView) findViewById(R.id.back);
+//        backImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                finish();
+//            }
+//        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Godown_code = extras.getString("code_godown");
@@ -194,6 +196,22 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(FertilizerActivity.this, RecommendationActivity.class));
+            }
+        });
+    }
+
+    private void settoolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Select Godown");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -316,7 +334,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
 
-                int gst =json.getInt("gstPercentage");
+                String gst =json.getString("gstPercentage");
                 Log.e("gst====", String.valueOf(gst));
 
 if( String.valueOf(gst)!= null) {

@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/back"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="@dimen/margin_20"
@@ -45,7 +45,7 @@
                 android:layout_height="35dp"
                 android:layout_alignLeft="@+id/back"
                 android:fontFamily="@font/hind_semibold"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/req_visit"
                 android:textColor="@color/white"

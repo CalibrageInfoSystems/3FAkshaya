@@ -38,6 +38,7 @@ import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ActiveGodownsModel;
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FertRequest;
 import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.MSGmodel;
@@ -108,6 +109,8 @@ public class pole_godown_list extends BaseActivity  {
     double Gst_total;
     int   Totalgst ;
     //endregion
+    private FarmerOtpResponceModel catagoriesList;
+    Integer Cluster_id;
     private List<String> selected_list = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +223,11 @@ public class pole_godown_list extends BaseActivity  {
     }
 
     private void setviews() {
+        catagoriesList = SharedPrefsData.getCatagories(this);
+
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
+            Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        Log.e("Cluster_id===",Cluster_id+"");
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => " + c.getTime());
 
@@ -425,6 +433,7 @@ public class pole_godown_list extends BaseActivity  {
         requestModel.setFileName(null);
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
+        requestModel.setClusterId(Cluster_id);
         //requestModel.setTotalCost(0.00);
         requestModel.setTotalCost(Double.valueOf(include_gst_amount));
         requestModel.setSubcidyAmount(0.0);

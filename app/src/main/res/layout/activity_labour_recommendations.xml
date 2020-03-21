@@ -4,56 +4,45 @@
     android:background="@color/white2"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_gravity="right"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolBarTheme.ToolBarStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/backlinear"
-        android:background="@color/colorOrange_head">
+        android:layout_alignParentTop="true"
+        android:background="@color/colorOrange_head"
+        android:visibility="visible"
+     >
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal" >
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_left"
-                android:layout_marginTop="18dp"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
-                android:id="@+id/back"/>
+        <LinearLayout
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:text="@string/str_select_plot"
-                android:layout_alignLeft="@+id/back"
+                android:gravity="center_vertical"
+                android:layout_weight="0.8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/hind_semibold"
-                android:layout_marginStart="25dp"
+                android:layout_toRightOf="@+id/back"
+                android:text="@string/str_select_plot"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
-
-
             <ImageView
+                android:layout_weight="0.2"
+                style="@style/Common_image"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:padding="@dimen/margin_5"
                 android:id="@+id/home_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/home"
-                android:textColor="#ff0000ff"
-                android:layout_marginTop="3dp"
-                />
-
-        </RelativeLayout>
-    </LinearLayout>
+                android:src="@drawable/home" />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_below="@+id/backlinear"
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

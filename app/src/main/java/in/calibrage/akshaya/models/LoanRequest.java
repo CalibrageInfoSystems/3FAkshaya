@@ -47,7 +47,9 @@ public class LoanRequest {
     @SerializedName("cropMaintainceDate")
     @Expose
     private String cropMaintainceDate;
-
+    @SerializedName("clusterId")
+    @Expose
+    private Integer clusterId;
     public Integer getRequestTypeId() {
         return requestTypeId;
     }
@@ -160,4 +162,11 @@ public class LoanRequest {
         this.cropMaintainceDate = cropMaintainceDate;
     }
 
+    public Integer getClusterId() {
+        return clusterId;
+    }
+
+    public void setClusterId(Integer clusterId) {
+        this.clusterId = clusterId;
+    }
 }

@@ -945,7 +945,7 @@ boolean result;
 
                                         displayList.add(new MSGmodel(getResources().getString(R.string.labour_duration), seleced_Duration));
 
-                                        displayList.add(new MSGmodel(getResources().getString(R.string.startDate), date));
+                                        displayList.add(new MSGmodel(getResources().getString(R.string.slecteddate), date));
 
 
 //

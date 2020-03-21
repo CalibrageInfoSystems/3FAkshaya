@@ -15,7 +15,7 @@ public class ModelFert {
     private ArrayList<String> powers;
     private int mQuantity,avail_quantity;
     private String mAmount,product_code;
-    private int gst;
+    private String gst;
     private int Id;
 
 
@@ -134,11 +134,11 @@ public class ModelFert {
     public void setId(int Id) {
         this.Id = Id;
     }
-    public int getgst() {
+    public String getgst() {
         return gst;
     }
 
-    public void setgst(int gst) {
+    public void setgst(String gst) {
         this.gst = gst;
     }
 

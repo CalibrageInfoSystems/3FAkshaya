@@ -1,13 +1,22 @@
 package in.calibrage.akshaya.views.fragments;
 
+import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.android.volley.DefaultRetryPolicy;
@@ -37,15 +47,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import dmax.dialog.SpotsDialog;
+import in.calibrage.akshaya.BuildConfig;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
 import in.calibrage.akshaya.common.CommonUtil;
+import in.calibrage.akshaya.common.FileDownloader;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.GetRecommendationsByAgeModel;
@@ -57,6 +70,7 @@ import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.GetRecommendationsByAgeAdapter;
 import in.calibrage.akshaya.views.actvity.OtpActivity;
 import in.calibrage.akshaya.views.actvity.PDFActivity;
+import in.calibrage.akshaya.views.actvity.Pdf_Activity;
 import in.calibrage.akshaya.views.actvity.PlayerActivity;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
@@ -72,6 +86,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     private LinearLayoutManager llmanagerVideo, llmanagerPDF, layoutManagerrecom;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
+    private String name, url;
     private int count;
     private String text_year;
     Spinner spinner;
@@ -96,12 +111,23 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         position = getArguments().getInt("pos");
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            // Do the file write
+        } else {
+            // Request permission from the user
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_tab, container, false);
+
+
     }
 
     @Override
@@ -542,11 +568,41 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getContext(), PDFActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("url", listResultPDF.get(position).getFileUrl());
-                    intent.putExtra("name", listResultPDF.get(position).getName());
-                    getContext().startActivity(intent);
+
+                    url =listResultPDF.get(position).getFileUrl();
+                    name=listResultPDF.get(position).getName();
+                    if (isOnline(getContext())) {
+                        new DownloadFilee().execute(url, name + ".pdf");
+                        Log.e("url==========", url);
+                    }
+                    else {
+                        showDialog(getActivity(), getResources().getString(R.string.Internet));
+                    }
+
+
+//                    File pdfFile = new File(Environment.getExternalStorageDirectory() + "/3FOIL/" + name+".pdf");
+//
+//                    Log.e("pdfFile===========",pdfFile+"");// -> filename = maven.pdf
+//                    //Uri path = Uri.fromFile(pdfFile);
+//                    Uri path = FileProvider.getUriForFile(getActivity(), BuildConfig.APPLICATION_ID + ".provider", pdfFile);
+//                    Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+//                    //
+//                    pdfIntent.setDataAndType(path, "application/pdf");
+//                    pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//                    try {
+//                        startActivity(pdfIntent);
+//                    } catch (ActivityNotFoundException e) {
+//                        Toast.makeText(getActivity(), "No Application available to view PDF", Toast.LENGTH_SHORT).show();
+//                    }
+//
+                  //  Toast.makeText(getActivity(), "Download Completed See in Views ", Toast.LENGTH_SHORT).show();
+                   //Intent intent = new Intent(getContext(), Pdf_Activity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.putExtra("url", listResultPDF.get(position).getFileUrl());
+//                    intent.putExtra("name", listResultPDF.get(position).getName());
+//                    getContext().startActivity(intent);
                 }
             });
             holder.txt_desc.setText(listResultPDF.get(position).getDescription());
@@ -569,5 +625,111 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
             }
         }
     }
+    @Override
+    public void onRequestPermissionsResult ( int requestCode, String[] permissions,
+                                             int[] grantResults){
+        switch (requestCode) {
+            case 0:
+                // Re-attempt file write
+        }
+    }
 
+    private class DownloadFilee extends AsyncTask<String, String, String> {
+
+        private String resp;
+     //   ProgressDialog progressDialog;
+
+        SpotsDialog mdiloguee = (SpotsDialog) new SpotsDialog.Builder()
+                .setContext(getContext())
+                .setTheme(R.style.Custom)
+                .build();
+        @Override
+        protected String doInBackground(String... strings) {
+            String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
+            String fileName = strings[1];  // -> maven.pdf
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File folder = new File(extStorageDirectory, "3FOIL");
+            folder.mkdir();
+
+            File pdfFile = new File(folder, fileName);
+
+            try {
+                pdfFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            FileDownloader.downloadFile(fileUrl, pdfFile);
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            // execution of result of Long time consuming operation
+            mdiloguee.dismiss();
+
+
+            File pdfFile = new File(Environment.getExternalStorageDirectory() + "/3FOIL/" + name+".pdf");
+
+            Log.e("pdfFile===========",pdfFile+"");// -> filename = maven.pdf
+            //Uri path = Uri.fromFile(pdfFile);
+            Uri path = FileProvider.getUriForFile(getActivity(), BuildConfig.APPLICATION_ID + ".provider", pdfFile);
+            Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+            //
+            pdfIntent.setDataAndType(path, "application/pdf");
+            pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                startActivity(pdfIntent);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(getActivity(), "No Application available to view PDF", Toast.LENGTH_SHORT).show();
+            }
+            //finalResult.setText(result);
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            mdiloguee.show();
+//            mdiloguee = ProgressDialog.show(getActivity(),
+//                    "ProgressDialog",
+//                    "Wait for "+ " seconds");
+        }
+
+
+        @Override
+        protected void onProgressUpdate(String... text) {
+            //finalResult.setText(text[0]);
+
+        }
+    }
 }
+
+
+//     class DownloadFilee extends AsyncTask<String, Void, Void> {
+//
+//
+//
+//        @Override
+//        protected Void doInBackground(String... strings) {
+//            String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
+//            String fileName = strings[1];  // -> maven.pdf
+//            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+//            File folder = new File(extStorageDirectory, "3FOIL");
+//            folder.mkdir();
+//
+//            File pdfFile = new File(folder, fileName);
+//
+//            try {
+//                pdfFile.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            FileDownloader.downloadFile(fileUrl, pdfFile);
+//            return null;
+//        }
+//    }
+
+

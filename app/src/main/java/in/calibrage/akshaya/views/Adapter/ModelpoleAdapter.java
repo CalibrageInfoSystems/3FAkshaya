@@ -62,7 +62,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
     private ModelFertAdapterNew.OnClickAck onClickAck1;
     String Description, ProductName,image_url,product_size,Product_uom ,final_amount;
     double onlygst, gst,discountgst ,discount_price,price;
-    Integer gstprice;
+    String gstprice;
     int Available_quantity;
     private ModelpoleAdapter.listner listner;
 
@@ -287,11 +287,10 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
                     Double finalwithGST = itemcost + onlygst;
 
                     DecimalFormat df = new DecimalFormat("####0.00");
-
-
+                    double Gst =    Double.parseDouble(superHero.getgst());
                     double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
-                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize(),
+                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount,Gst, itemcost, superHero.getId(), superHero.getSize(),
                             superHero.getProduct_code()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);

@@ -199,7 +199,15 @@ public class FarmerOtpResponceModel {
         @SerializedName("address")
         @Expose
         private String address;
-
+        @SerializedName("clusterId")
+        @Expose
+        private Integer clusterId;
+        @SerializedName("clusterName")
+        @Expose
+        private String clusterName;
+        @SerializedName("villageId")
+        @Expose
+        private Integer villageId;
         public String getCode() {
             return code;
         }
@@ -424,6 +432,29 @@ public class FarmerOtpResponceModel {
             this.address = address;
         }
 
+        public Integer getClusterId() {
+            return clusterId;
+        }
+
+        public void setClusterId(Integer clusterId) {
+            this.clusterId = clusterId;
+        }
+
+        public String getClusterName() {
+            return clusterName;
+        }
+
+        public void setClusterName(String clusterName) {
+            this.clusterName = clusterName;
+        }
+
+        public Integer getVillageId() {
+            return villageId;
+        }
+
+        public void setVillageId(Integer villageId) {
+            this.villageId = villageId;
+        }
     }
     public class BannerDetail {
 

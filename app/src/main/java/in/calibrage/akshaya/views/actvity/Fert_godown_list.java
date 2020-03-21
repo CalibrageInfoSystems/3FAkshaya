@@ -41,6 +41,7 @@ import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ActiveGodownsModel;
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FertRequest;
 import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.MSGmodel;
@@ -96,7 +97,8 @@ public class Fert_godown_list extends BaseActivity {
     DecimalFormat dec = new DecimalFormat("####0.00");
     List<String> listdata = new ArrayList<>();
 
-
+    private FarmerOtpResponceModel catagoriesList;
+    Integer Cluster_id;
     int productsamount,   Totalgst;
     private ArrayList<product> product_List = new ArrayList<>();
     private String final_amount, only_amount;
@@ -243,6 +245,12 @@ public class Fert_godown_list extends BaseActivity {
     }
 
     private void setviews() {
+
+
+        catagoriesList = SharedPrefsData.getCatagories(this);
+       if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
+        Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        Log.e("Cluster_id===",Cluster_id+"");
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => " + c.getTime());
 
@@ -473,7 +481,7 @@ public class Fert_godown_list extends BaseActivity {
         requestModel.setGodownCode(Godowncode);
         requestModel.setCropMaintainceDate(null);
         requestModel.setIssueTypeId(null);
-
+        requestModel.setClusterId(Cluster_id);
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
 
         for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {

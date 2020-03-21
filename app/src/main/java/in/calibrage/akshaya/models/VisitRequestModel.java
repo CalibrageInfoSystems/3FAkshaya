@@ -103,7 +103,9 @@ public class VisitRequestModel {
         @SerializedName("issueTypeId")
         @Expose
         private Integer issueTypeId;
-
+        @SerializedName("clusterId")
+        @Expose
+        private Integer clusterId;
 
 
         public Integer getId() {
@@ -282,6 +284,14 @@ public class VisitRequestModel {
 
         public void setYearofPlanting(String yearofPlanting) {
             this.yearofPlanting = yearofPlanting;
+        }
+
+        public Integer getClusterId() {
+            return clusterId;
+        }
+
+        public void setClusterId(Integer clusterId) {
+            this.clusterId = clusterId;
         }
     }
 

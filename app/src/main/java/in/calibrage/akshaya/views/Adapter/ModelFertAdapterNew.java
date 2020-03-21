@@ -70,7 +70,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     private OnClickAck onClickAck1;
     String Description, ProductName,image_url,product_size,Product_uom ,final_amount;
     double onlygst, gst,discountgst ,discount_price,price;
-    Integer gstprice;
+    String gstprice;
     int Available_quantity;
     private listner listner;
 
@@ -281,10 +281,10 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
                     DecimalFormat df = new DecimalFormat("####0.00");
 
-
+                 double Gst =    Double.parseDouble(superHero.getgst());
                     double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
-                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, itemcost, superHero.getgst(), itemcost, superHero.getId(), superHero.getSize(),
+                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, itemcost, Gst, itemcost, superHero.getId(), superHero.getSize(),
                             superHero.getProduct_code()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);

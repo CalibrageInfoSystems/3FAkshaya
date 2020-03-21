@@ -99,7 +99,7 @@ public class profile_fragment extends BaseFragment {
 
     private void setviews() {
         catagoriesList = SharedPrefsData.getCatagories(getContext());
-
+Log.e("Clusterid===",catagoriesList.getResult().getFarmerDetails().get(0).getClusterId()+"===="+ catagoriesList.getResult().getFarmerDetails().get(0).getClusterName());
         farmer_code.setText("" +Farmer_code);
         String name = catagoriesList.getResult().getFarmerDetails().get(0).getFirstName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getMiddleName() + " " + catagoriesList.getResult().getFarmerDetails().get(0).getLastName();
         farmer_name.setText("" + name.replace("null", ""));

@@ -52,6 +52,7 @@ import in.calibrage.akshaya.common.CommonUtil;
 
 import in.calibrage.akshaya.common.SignatureView;
 import in.calibrage.akshaya.localData.SharedPrefsData;
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.GetQuickpayDetails;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.MSGmodel;
@@ -91,11 +92,13 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     List<String> dates_list = new ArrayList<>();
     List<Double> netweight_list = new ArrayList<>();
     List<String> post_ids = new ArrayList<>();
+    List<String> post_codes = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
     String result;
     String whs_Code;
+    Integer Cluster_id;
     double total_weight = 0.0;
-
+    private FarmerOtpResponceModel catagoriesList;
      DecimalFormat df = new DecimalFormat("####0.00");
     DecimalFormat dff = new DecimalFormat("####0.000");
     @Override
@@ -116,6 +119,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void init() {
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
            // include_gst_amount = extras.getString("Total_amount");
@@ -132,13 +136,13 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             String date = dates_list.get(i);
             double weight = netweight_list.get(i);
             post_ids.add(id + "|" + weight + "|" + date + "");
-
+            post_codes.add(id + "(" + weight +" MT"+ ")" );
 
 
             total_weight = total_weight + weight;
             Log.e("total_weight===",total_weight+"");
 
-            Log.e("post_ids==", String.valueOf(post_ids));
+            Log.e("post_ids==", String.valueOf(post_codes));
         }
 
 
@@ -167,6 +171,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void setViews() {
+
+        catagoriesList = SharedPrefsData.getCatagories(this);
+      if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
+        Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        Log.e("Cluster_id===",Cluster_id+"");
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -366,7 +375,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                 closingBalanceTxt.setText(" 0.00");
                             }
                             if (getquickpayDetailsModel.getListResult().get(0).getTotal() > 0.0 ) {
-                                totalAmount.setText(" "+String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                                totalAmount.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
                                // totalAmount.setText("0");
 
                             } else {
@@ -518,7 +527,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     private JsonObject quickReuestobject() {
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
 
-        requestModel.setFarmername(SharedPrefsData.getusername(this));
+        requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
@@ -527,6 +536,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setUpdatedByUserId(null);
         requestModel.setUpdatedDate(currentDate);
         requestModel.setWhsCode(whs_Code);
+        requestModel.setClusterId(Cluster_id);
         requestModel.setFileLocation("");
         if(null != closingBalanceTxt.getText() & !TextUtils.isEmpty(closingBalanceTxt.getText()))
           requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
@@ -537,9 +547,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
         String val = arrayTOstring(post_ids);
         Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
-
-
+        String val_codes = arrayTOstring(post_codes);
+        Log.d(TAG, "------ analysis ------ >> get values in String(): " + val_codes);
         requestModel.setCollectionIds(val);
+
+        requestModel.setCollectionCodes(val_codes);
       //  requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
         requestModel.setSignatureExtension(".png");

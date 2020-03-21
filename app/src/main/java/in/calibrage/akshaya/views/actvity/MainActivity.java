@@ -208,7 +208,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View view) {
                 new RackMonthPicker(MainActivity.this)
-                        .setLocale(Locale.ENGLISH)
+                        .setLocale(Locale.getDefault())
                         .setPositiveButton(new DateMonthDialogListener() {
                             @Override
                             public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
@@ -222,14 +222,14 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
                                }
                                 else{
 
-                                  Toast.makeText(getApplicationContext(), "Unable select This Month", Toast.LENGTH_LONG).show();
+                                   Toast.makeText(getApplicationContext(), getResources().getString(R.string.unableselect), Toast.LENGTH_LONG).show();
                                }
                             }
                             else if(CurrentYear < year) {
 
-                                Toast.makeText(getApplicationContext(), "Unable select This Month", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.unableselect), Toast.LENGTH_LONG).show();
 
-                            }
+                             }
                             else if(CurrentYear >year) {
                                 fromText.setText(startDate + "/" + (month) + "/" + year);
                             }
@@ -250,7 +250,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View view) {
                 new RackMonthPicker(MainActivity.this)
-                        .setLocale(Locale.ENGLISH)
+                        .setLocale(Locale.getDefault())
                         .setPositiveButton(new DateMonthDialogListener() {
                             @Override
                             public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
@@ -325,12 +325,12 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemSele
                                     }
                                     else{
 
-                                        Toast.makeText(getApplicationContext(), "Unable select This Month", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.unableselect), Toast.LENGTH_LONG).show();
                                     }
                                 }
                                 else if(CurrentYear < year) {
 
-                                    Toast.makeText(getApplicationContext(), "Unable select This Month", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.unableselect), Toast.LENGTH_LONG).show();
 
                                 }
                                 else if(CurrentYear >year) {

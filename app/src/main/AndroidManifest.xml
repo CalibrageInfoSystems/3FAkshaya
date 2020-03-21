@@ -9,13 +9,14 @@
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
         android:largeHeap="true"
-        tools:replace="android:allowBackup"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".views.actvity.GenerateQr"></activity>
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+        <activity android:name=".views.actvity.Pdf_Activity"></activity>
+        <activity android:name=".views.actvity.GenerateQr" />
         <activity android:name=".views.actvity.test" />
         <activity
             android:name=".views.actvity.product_list_fert"
@@ -150,6 +151,15 @@
             </intent-filter>
             -->
         </activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
         <activity android:name=".common.BaseActivity" />
 
         <meta-data
@@ -177,7 +187,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-sdk android:targetSdkVersion="18" />
+
+
 
 </manifest>

@@ -205,7 +205,8 @@ public class PaymentFragment extends BaseFragment {
 
                                 dm.addCompletedDownload(file.getName(), "3F Akshaya", false, mime, file.getPath(), file.length(), true);
 
-                                Toast.makeText(getContext(), "Downloaded Successfully ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), getResources().getString(R.string.downloaded), Toast.LENGTH_SHORT).show();
+
 
                             } catch (IOException e) {
                                 Log.w("Roja==", "IOError writing file");
@@ -387,35 +388,36 @@ public class PaymentFragment extends BaseFragment {
 
                 @Override
                 public void onClick(View view) {
+                    startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
 
-                    try {
-                        File file = new File(Environment.DIRECTORY_DOWNLOADS);
-                        if (!file.exists()) {
-                            file.mkdirs();
-                        }
-
-                        MimeTypeMap map = MimeTypeMap.getSingleton();
-                        String ext = MimeTypeMap.getFileExtensionFromUrl(file.getName());
-                        String type = map.getMimeTypeFromExtension(ext);
-
-                        if (type == null)
-                            type = "*/*";
-
-//                    Intent chooser = new Intent(Intent.ACTION_VIEW);
-                        Uri selectedUri = Uri.parse(file.getAbsolutePath());
-                        Uri uri = Uri.parse(Environment.getDownloadCacheDirectory().getPath().toString());
-//                    chooser.addCategory(Intent.CATEGORY_OPENABLE);
-//                    chooser.setDataAndType(uri, type);
-
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        // intent.addCategory(Intent.CATEGORY_OPENABLE);
-                        intent.setDataAndType(uri, type);
-                        startActivityForResult(intent, 1);
-                    } catch (Exception e) {
-                        Log.e("errror===411",e.getLocalizedMessage());
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        File file = new File(Environment.DIRECTORY_DOWNLOADS);
+//                        if (!file.exists()) {
+//                            file.mkdirs();
+//                        }
+//
+//                        MimeTypeMap map = MimeTypeMap.getSingleton();
+//                        String ext = MimeTypeMap.getFileExtensionFromUrl(file.getName());
+//                        String type = map.getMimeTypeFromExtension(ext);
+//
+//                        if (type == null)
+//                            type = "*/*";
+//
+////                    Intent chooser = new Intent(Intent.ACTION_VIEW);
+//                        Uri selectedUri = Uri.parse(file.getAbsolutePath());
+//                        Uri uri = Uri.parse(Environment.getDownloadCacheDirectory().getPath().toString());
+////                    chooser.addCategory(Intent.CATEGORY_OPENABLE);
+////                    chooser.setDataAndType(uri, type);
+//
+//                        Intent intent = new Intent();
+//                        intent.setAction(Intent.ACTION_VIEW);
+//                        // intent.addCategory(Intent.CATEGORY_OPENABLE);
+//                        intent.setDataAndType(uri, type);
+//                        startActivityForResult(intent, 1);
+//                    } catch (Exception e) {
+//                        Log.e("errror===411",e.getLocalizedMessage());
+//                        e.printStackTrace();
+//                    }
 
                 }
             });

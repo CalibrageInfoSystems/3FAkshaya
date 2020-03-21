@@ -47,6 +47,7 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.AddLabourRequestHeader;
+import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.Labourservicetype;
 import in.calibrage.akshaya.models.LoanRequest;
 import in.calibrage.akshaya.models.LoanResponse;
@@ -76,7 +77,8 @@ public class LoanActivity extends BaseActivity {
     private SpotsDialog mdilogue;
     Dialog myDialog;
     EditText amount, reason;
-
+    private FarmerOtpResponceModel catagoriesList;
+    Integer Cluster_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +111,11 @@ public class LoanActivity extends BaseActivity {
     }
 
     private void setViews() {
+        catagoriesList = SharedPrefsData.getCatagories(this);
+        Log.e("Cluster_id===",catagoriesList.getResult().getFarmerDetails().get(0).getFirstName());
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
+            Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        Log.e("Cluster_id===",Cluster_id+"");
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -224,8 +231,12 @@ public class LoanActivity extends BaseActivity {
                             List<MSGmodel> displayList = new ArrayList<>();
 
                             displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
-                            displayList.add(new MSGmodel(getResources().getString(R.string.reason_loan), Reason));
 
+
+                            if (Reason != null && !Reason.isEmpty() && !Reason.equals("null")) {
+
+                                displayList.add(new MSGmodel(getResources().getString(R.string.reason_loan), Reason));
+                            }
                             showSuccessDialog(displayList, getResources().getString(R.string.success_Loan));
 
 
@@ -254,6 +265,7 @@ public class LoanActivity extends BaseActivity {
         requestModel.setCropMaintainceDate(null);
         requestModel.setStatusTypeId(15);
         requestModel.setRequestTypeId(28);
+        requestModel.setClusterId(Cluster_id);
         requestModel.setTotalCost(Double.parseDouble(amount.getText().toString()));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }

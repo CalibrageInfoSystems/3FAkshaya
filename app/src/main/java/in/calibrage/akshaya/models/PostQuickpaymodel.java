@@ -6,31 +6,24 @@ import com.google.gson.annotations.SerializedName;
 
 public class PostQuickpaymodel {
 
-    @SerializedName("farmername")
-    @Expose
-    private String farmername;
-
     @SerializedName("farmerCode")
     @Expose
     private String farmerCode;
+    @SerializedName("farmerName")
+    @Expose
+    private String farmerName;
     @SerializedName("isFarmerRequest")
     @Expose
     private Boolean isFarmerRequest;
     @SerializedName("reqCreatedDate")
     @Expose
     private String reqCreatedDate;
-    @SerializedName("cost")
-    @Expose
-    private Double cost;
     @SerializedName("netWeight")
     @Expose
     private Double netWeight;
     @SerializedName("closingBalance")
     @Expose
     private Double closingBalance;
-    @SerializedName("collectionIds")
-    @Expose
-    private String collectionIds;
     @SerializedName("fileLocation")
     @Expose
     private String fileLocation;
@@ -46,15 +39,24 @@ public class PostQuickpaymodel {
     @SerializedName("createdDate")
     @Expose
     private String createdDate;
-    @SerializedName("whsCode")
-    @Expose
-    private String whsCode;
     @SerializedName("updatedByUserId")
     @Expose
     private Integer updatedByUserId;
     @SerializedName("updatedDate")
     @Expose
     private String updatedDate;
+    @SerializedName("whsCode")
+    @Expose
+    private String whsCode;
+    @SerializedName("clusterId")
+    @Expose
+    private Integer clusterId;
+    @SerializedName("collectionCodes")
+    @Expose
+    private String collectionCodes;
+    @SerializedName("collectionIds")
+    @Expose
+    private String collectionIds;
 
     public String getFarmerCode() {
         return farmerCode;
@@ -62,6 +64,14 @@ public class PostQuickpaymodel {
 
     public void setFarmerCode(String farmerCode) {
         this.farmerCode = farmerCode;
+    }
+
+    public String getFarmerName() {
+        return farmerName;
+    }
+
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
     }
 
     public Boolean getIsFarmerRequest() {
@@ -80,14 +90,6 @@ public class PostQuickpaymodel {
         this.reqCreatedDate = reqCreatedDate;
     }
 
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
-    }
-
     public Double getNetWeight() {
         return netWeight;
     }
@@ -102,14 +104,6 @@ public class PostQuickpaymodel {
 
     public void setClosingBalance(Double closingBalance) {
         this.closingBalance = closingBalance;
-    }
-
-    public String getCollectionIds() {
-        return collectionIds;
-    }
-
-    public void setCollectionIds(String collectionIds) {
-        this.collectionIds = collectionIds;
     }
 
     public String getFileLocation() {
@@ -168,19 +162,35 @@ public class PostQuickpaymodel {
         this.updatedDate = updatedDate;
     }
 
-    public String getFarmername() {
-        return farmername;
-    }
-
-    public void setFarmername(String farmername) {
-        this.farmername = farmername;
-    }
-
     public String getWhsCode() {
         return whsCode;
     }
 
     public void setWhsCode(String whsCode) {
         this.whsCode = whsCode;
+    }
+
+    public Integer getClusterId() {
+        return clusterId;
+    }
+
+    public void setClusterId(Integer clusterId) {
+        this.clusterId = clusterId;
+    }
+
+    public String getCollectionCodes() {
+        return collectionCodes;
+    }
+
+    public void setCollectionCodes(String collectionCodes) {
+        this.collectionCodes = collectionCodes;
+    }
+
+    public String getCollectionIds() {
+        return collectionIds;
+    }
+
+    public void setCollectionIds(String collectionIds) {
+        this.collectionIds = collectionIds;
     }
 }

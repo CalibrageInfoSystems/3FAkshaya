@@ -38,7 +38,7 @@ public class product_list extends BaseActivity {
     String id_holder;
     private SpotsDialog mdilogue;
     RecyclerView recycler_view_products;
-    private producut_Adapter mAdapter;
+   
     TextView requst_code;
     //LinearLayout noRecords;
     private Subscription mSubscription;

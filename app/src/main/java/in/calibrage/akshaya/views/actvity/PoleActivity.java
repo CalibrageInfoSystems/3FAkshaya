@@ -13,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -72,6 +73,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     private ImageView cartButtonIV;
     Integer  total_amount;
     int Godown_id;
+    private Toolbar toolbar;
     String Godown_code,Godown_name;
     DecimalFormat dec = new DecimalFormat("####0.00");
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -90,14 +92,18 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         btn_next = findViewById(R.id.btn_next);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         no_data =findViewById(R.id.no_data);
-        ImageView backImg = (ImageView) findViewById(R.id.back);
-        backImg.setOnClickListener(new View.OnClickListener() {
+        ImageView Home_btn = (ImageView) findViewById(R.id.home_btn);
+        Home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(PoleActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
             }
         });
+        settoolbar();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Godown_code = extras.getString("code_godown");
@@ -182,6 +188,22 @@ Log.e("myProductsList===",myProductsList.toString());
 
         });
 //
+    }
+
+    private void settoolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Select ");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void Getstate() {
         dialog.setMessage("Loading, please wait....");
@@ -307,7 +329,7 @@ Log.e("myProductsList===",myProductsList.toString());
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
 
-                int gst =json.getInt("gstPercentage");
+                String gst =json.getString("gstPercentage");
                 Log.e("gst====", String.valueOf(gst));
 
                 if( String.valueOf(gst)!= null) {

@@ -90,10 +90,11 @@ public class TransFragment extends BaseFragment {
 
             if(to_date.equalsIgnoreCase("clear"))
             {
+                noRecords.setVisibility(View.GONE);
                 pay_adapter.clearAllDataa();
 
             }else {
-
+                noRecords.setVisibility(View.VISIBLE);
                 if (isOnline(getContext()))
                     GetTranspotationChargesByFarmerCode();
                 else {

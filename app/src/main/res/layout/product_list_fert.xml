@@ -42,32 +42,32 @@
 
 
 
-                    <TextView
-                        android:textAlignment="textStart"
-                        android:id="@+id/collection_id"
-                        style="@style/Common_textView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                <TextView
+                    android:textAlignment="textStart"
+                    android:id="@+id/collection_id"
+                    style="@style/Common_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
 
-                        android:layout_weight="0.3"
-                        android:text="@string/product"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
+                    android:layout_weight="0.3"
+                    android:text="@string/product"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:textAlignment="textStart"
-                        android:id="@+id/name"
-                        style="@style/Common_textView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/collection_id"
-                        android:layout_weight="0.7"
-                        android:hint="@string/land_mark"
+                <TextView
+                    android:textAlignment="textStart"
+                    android:id="@+id/name"
+                    style="@style/Common_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/collection_id"
+                    android:layout_weight="0.7"
+                    android:hint="@string/land_mark"
 
-                        android:text="@string/product"
-                        android:textColor="@color/colorOrange"
+                    android:text="@string/product"
+                    android:textColor="@color/colorOrange"
 
-                        />
+                    />
 
 
 
@@ -75,64 +75,64 @@
 
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/linear2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_weight=".25"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:weightSum="1">-->
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/linear2"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_weight=".25"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:weightSum="1">-->
 
-<!--                &lt;!&ndash;<TextView&ndash;&gt;roja-->
-<!--                &lt;!&ndash;android:id="@+id/collection_id_label"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:layout_marginStart="@dimen/margin_20"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:paddingLeft="@dimen/album_title_padding"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:paddingRight="@dimen/album_title_padding"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:paddingTop="@dimen/album_title_padding"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:text="@string/collection_id"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:textColor="@color/album_title"&ndash;&gt;-->
-<!--                &lt;!&ndash;android:textSize="@dimen/album_title" />&ndash;&gt;-->
-
-
+            <!--                &lt;!&ndash;<TextView&ndash;&gt;roja-->
+            <!--                &lt;!&ndash;android:id="@+id/collection_id_label"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:layout_marginStart="@dimen/margin_20"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:paddingLeft="@dimen/album_title_padding"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:paddingRight="@dimen/album_title_padding"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:paddingTop="@dimen/album_title_padding"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:text="@string/collection_id"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:textColor="@color/album_title"&ndash;&gt;-->
+            <!--                &lt;!&ndash;android:textSize="@dimen/album_title" />&ndash;&gt;-->
 
 
-<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:weightSum="1"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;android:visibility="gone"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_weight="1">&ndash;&gt;-->
 
-<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textAlignment="textStart"&ndash;&gt;-->
-<!--&lt;!&ndash;                        style="@style/Common_textView"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:id="@+id/each_item"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_weight="0.4"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:text="@string/each_product"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textColor="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
 
-<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textAlignment="textStart"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:id="@+id/item_cost"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_toRightOf="@+id/each_item"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_weight="0.6"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:hint="@string/land_mark"&ndash;&gt;-->
+            <!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:weightSum="1"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:layout_width="0dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:visibility="gone"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:layout_height="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:layout_weight="1">&ndash;&gt;-->
 
-<!--&lt;!&ndash;                        android:text="@string/product"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textColor="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textSize="@dimen/album_title">&ndash;&gt;-->
+            <!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textAlignment="textStart"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        style="@style/Common_textView"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:id="@+id/each_item"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_weight="0.4"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:text="@string/each_product"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textColor="@color/black"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
 
-<!--&lt;!&ndash;                    </TextView>&ndash;&gt;-->
-<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+            <!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textAlignment="textStart"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:id="@+id/item_cost"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_toRightOf="@+id/each_item"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_weight="0.6"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:hint="@string/land_mark"&ndash;&gt;-->
 
-<!--            </LinearLayout>-->
+            <!--&lt;!&ndash;                        android:text="@string/product"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textColor="@color/black"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textSize="@dimen/album_title">&ndash;&gt;-->
+
+            <!--&lt;!&ndash;                    </TextView>&ndash;&gt;-->
+            <!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+
+            <!--            </LinearLayout>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_weight=".3"
@@ -143,7 +143,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.6"
+                    android:layout_weight="0.5"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -154,7 +154,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.7"
                         android:text="@string/each_product"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -179,19 +179,19 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.5"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
                     <TextView
-                        android:textAlignment="textStart"
                         android:id="@+id/weightLabel"
                         style="@style/Common_textView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
 
-                        android:layout_weight="0.6"
                         android:text="@string/gst"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -202,7 +202,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/collection_id"
-                        android:layout_weight="0.4"
+                        android:layout_weight="0.5"
                         android:hint="@string/land_mark"
                         android:paddingLeft="2dp"
                         android:text="@string/product"
@@ -226,7 +226,7 @@
                     android:layout_width="0dp"
 
                     android:layout_height="match_parent"
-                    android:layout_weight="0.6">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:textAlignment="textStart"
@@ -234,7 +234,7 @@
                         android:id="@+id/dateLabel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.7"
                         android:text="@string/quantity"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -246,7 +246,7 @@
                         style="@style/Common_textView"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/each_item"
-                        android:layout_weight="0.4"
+                        android:layout_weight="0.3"
                         android:hint="@string/land_mark"
                         android:paddingLeft="2dp"
                         android:text="@string/product"
@@ -263,7 +263,7 @@
                     android:layout_width="0dp"
 
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4">
+                    android:layout_weight="0.5">
 
                     <TextView
                         android:textAlignment="textStart"
@@ -271,7 +271,7 @@
                         android:id="@+id/amount_label"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.5"
                         android:text="@string/amount"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -283,7 +283,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/each_item"
-                        android:layout_weight="0.4"
+                        android:layout_weight="0.5"
                         android:hint="@string/land_mark"
                         android:paddingLeft="2dp"
                         android:text="@string/product"

@@ -28,6 +28,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
     private Subscription mSubscription;
 
 
+    DecimalFormat df = new DecimalFormat("####0.00");
     public MyQuickPayDataAdapter(List<Resquickpay.ListResult> list, Context ctx) {
         this.list = list;
         this.mContext = ctx;
@@ -100,7 +102,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         holder.requestCode.setText(list.get(position).getRequestCode());
         holder.req_date.setText(datetimevaluereq);
         holder.statusType.setText(list.get(position).getStatusType());
-        holder.amount.setText(list.get(position).getTotalCost() + "");
+        holder.amount.setText(df.format(list.get(position).getTotalCost()));
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 //        if (!"Closed".equals(holder.statusType.getText())) {
 //            holder.cancel.setVisibility(View.VISIBLE);
