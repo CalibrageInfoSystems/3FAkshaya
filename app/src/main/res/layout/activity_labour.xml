@@ -343,7 +343,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lin_one"
                 android:layout_margin="6dp"
-android:visibility="gone"
+           android:visibility="gone"
                 android:orientation="horizontal"
                 >
 

@@ -20,6 +20,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -80,6 +81,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     int price_final;
     int Count=0;
     int Godown_id;
+    LinearLayout lyt_cart;
     String Godown_code,Godown_name;
     DecimalFormat dec = new DecimalFormat("####0.00");
     //code_godown
@@ -98,6 +100,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
         no_data =findViewById(R.id.no_data);
+        lyt_cart =findViewById(R.id.lyt_cart);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         settoolbar();
       //  ImageView backImg = (ImageView) findViewById(R.id.back);
@@ -253,7 +256,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                         Log.d(TAG, "GetProductsByCategoryId======" + affectedRecords);
                     }else {
                         no_data.setVisibility(View.VISIBLE);
-                        btn_next.setVisibility(View.GONE);
+                        lyt_cart.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         Log.d(TAG,"------ analysis ------ "+"Iam NUll");
                     }

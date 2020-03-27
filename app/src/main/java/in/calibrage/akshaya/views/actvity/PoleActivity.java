@@ -20,6 +20,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -72,6 +73,8 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
     private ProgressDialog dialog;
     private ImageView cartButtonIV;
     Integer  total_amount;
+
+    LinearLayout lyt_cart;
     int Godown_id;
     private Toolbar toolbar;
     String Godown_code,Godown_name;
@@ -90,6 +93,8 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         dialog = new ProgressDialog(this);
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
+
+         lyt_cart = findViewById(R.id.lyt_cart);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         no_data =findViewById(R.id.no_data);
         ImageView Home_btn = (ImageView) findViewById(R.id.home_btn);
@@ -243,7 +248,7 @@ Log.e("myProductsList===",myProductsList.toString());
                         Log.d(TAG, "GetProductsByCategoryId======" + affectedRecords);
                     }else {
                         no_data.setVisibility(View.VISIBLE);
-                        btn_next.setVisibility(View.GONE);
+                        lyt_cart.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         Log.d(TAG,"------ analysis ------ "+"Iam NUll");
                     }

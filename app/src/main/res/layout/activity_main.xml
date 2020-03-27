@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_alignLeft="@+id/back"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="35dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/payments"
                 android:textColor="@color/white"

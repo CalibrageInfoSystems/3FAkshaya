@@ -95,7 +95,7 @@
 
     <!--  Payments  -->
     <string name="no_payments_found">No Payments Found</string>
-    <string name="grr">Payment for FFB(Rs.)</string>
+    <string name="grr">Payment for FFB(Rs)</string>
     <string name="payments">Farmer Passbook</string>
     <string name="payment_summary">Payment Summary</string>
     <string name="bank_details">Bank Details</string>
@@ -108,21 +108,21 @@
     <string name="trans">Direct Farmer Transport Reimbursement</string>
     <string name="ffb_qty">Total FFB Qty (MT)</string>
     <string name="ffb">FFB Qty (MT)</string>
-    <string name="adhoc_rate">Adhoc Rate per MT (Rs.)</string>
-    <string name="invoice_rate">Invoice Rate per MT (Rs.)</string>
+    <string name="adhoc_rate">Adhoc Rate per MT (Rs)</string>
+    <string name="invoice_rate">Invoice Rate per MT (Rs)</string>
     <string name="memo">Memo</string>
-    <string name="amount">Amount (Rs.)</string>
+    <string name="amount">Amount (Rs)</string>
     <string name="download">Downloaded Files</string>
     <string name="click_downlad">Click Here to Download</string>
-    <string name="totalBalance">Closing Balance (Rs.)</string>
-    <string name="balance">Balance (Rs.)</string>
-    <string name="gr">GR Amount (Rs.)</string>
-    <string name="adjusted">Adjusted (Rs.)</string>
+    <string name="totalBalance">Closing Balance (Rs)</string>
+    <string name="balance">Balance (Rs)</string>
+    <string name="gr">GR Amount (Rs)</string>
+    <string name="adjusted">Adjusted (R.)</string>
     <string name="descriptionn">Description </string>
-    <string name="trans_charges"> Transportation  \nCharges/Ton (Rs.)</string>
+    <string name="trans_charges"> Transportation  \nCharges/Ton (Rs)</string>
     <string name="no_trans_found">No Direct Farmer Transport Reimbursement Found</string>
 
-
+    Crop mainatanance vists
     <!--    Crop Maintenance Visits -->
     <string name="recommendationss">Crop Maintenance Visits</string>
     <string name="plot_code">Plot Code</string>
@@ -184,15 +184,15 @@
     <string name="i_have_agree">I Agree</string>
     <string name="terms_conditions">Rate Chart - Terms &amp; Conditions</string>
     <string name="submit_req">Submit Request</string>
-    <string name="harv_amount">Harvesting Amount/Ton (Rs.)</string>
-    <string name="pru_amount">Pruning Amount/Tree (Rs.)</string>
+    <string name="harv_amount">Harvesting Amount/Ton (Rs)</string>
+    <string name="pru_amount">Pruning Amount/Tree (Rs)</string>
     <string name="success_labour">Labour Request Submitted Successfully</string>
     <string name="service">Service Charges  </string>
     <string name="charge">% extra.\nThe charges will be deducted from the FFB payment in the next payment cycle</string>
     <string name="Prunning">Prunning</string>
     <string name="harvesting">Harvesting Per Ton</string>
-    <string name="intercrop_prunning">Pruning With Cocoa Intercrop\nAmount/Tree (Rs.)</string>
-    <string name="harv_intercrop">Harvesting With Cocoa Intercrop\nAmount/Ton (Rs.)</string>
+    <string name="intercrop_prunning">Pruning With Cocoa Intercrop\nAmount/Tree (Rs)</string>
+    <string name="harv_intercrop">Harvesting With Cocoa Intercrop\nAmount/Ton (Rs)</string>
     <string name="measurement">Age</string>
     <string name="Valid_service">Please Select Service Type</string>
     <string name="valid_pack">Please Select Package</string>
@@ -203,21 +203,21 @@
     <string name="product">Product</string>
     <string name="gst">GST(%)</string>
     <string name="no_products">No Products Found</string>
-    <string name="gst_amount">GST (Rs.)</string>
+    <string name="gst_amount">GST (Rs)</string>
     <string name="no_godowns">No Godowns Found</string>
     <string name="address">Address</string>
     <string name="select_product">Select Products</string>
     <string name="product_details">Product Details</string>
     <string name="notee">Note</string>
     <string name="note">If the Products has not been Picked with in 5 Days of Requested Date,Your Order will be Cancelled.</string>
-    <string name="subsidy_amt">Available Subsidy Amount(Rs.)</string>
+    <string name="subsidy_amt">Available Subsidy Amount(Rs)</string>
     <string name="endusermsg">Total Cost Shouldnot be 0</string>
-    <string name="each_product"> Each Item Cost (Rs.)</string>
+    <string name="each_product"> Each Item Cost (Rs)</string>
     <string name="server_error">Server Not Responding, Please Try Again</string>
     <string name="godown_valid">Please Select Godown</string>
     <string name="success_pole">Equipment Request Submitted Successfully</string>
-    <string name="subcd_amt">Subsidy Amount (Rs.)</string>
-    <string name="Avb_subcd_amt">Available Subsidy Amount (Rs.)</string>
+    <string name="subcd_amt">Subsidy Amount (Rs)</string>
+    <string name="Avb_subcd_amt">Available Subsidy Amount (Rs)</string>
     <string name="product_quantity">Product &amp; Quantity</string>
 
 
@@ -252,7 +252,7 @@
     <string name="success_Loan">Loan Request Submitted Successfully</string>
     <string name="no_req_found">No Requests Found</string>
 
-    <string name="loan_amount">Loan Amount (Rs.)</string>
+    <string name="loan_amount">Loan Amount (Rs)</string>
     <string name="reason_loan">Reason for Loan</string>
     <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
     <string name="enter_loan_amount">Your dues are more than FFB Payment, So, quickpay can’t be completed</string>
@@ -294,14 +294,14 @@
     <string name="request_rise">Raise Request</string>
     <string name="clear">Clear</string>
     <string name="signature">Please Write Signature</string>
-    <string name="quick_pay">QuickPay Fee(Rs.)</string>
-    <string name="closingBal">Dues(Rs.)</string>
+    <string name="quick_pay">QuickPay Fee(Rs)</string>
+    <string name="closingBal">Dues(Rs)</string>
 
     <string name="quantity_mt">Quantity(MT)</string>
-    <string name="ffb_flot">FFB Rate per MT(Rs.)</string>
-    <string name="amount_of_FFB">Total FFB Cost(Rs.)</string>
-    <string name="convenience_charge">Transaction Fee(Rs.)</string>
-    <string name="total_amt_pay">Total Bill Amount(Rs.)</string>
+    <string name="ffb_flot">FFB Rate per MT(Rs)</string>
+    <string name="amount_of_FFB">Total FFB Cost(Rs)</string>
+    <string name="convenience_charge">Transaction Fee(Rs)</string>
+    <string name="total_amt_pay">Total Bill Amount(Rs)</string>
 
 
     <string name="farmar_id"> Enter Farmer Id</string>
@@ -316,7 +316,7 @@
     <string name="str_pdf">Pdfs</string>
 
 
-    <string name="total_amt">Total Amount (Rs.)</string>
+    <string name="total_amt">Total Amount (Rs)</string>
 
     <string name="confirm">Confirm</string>
     <string name="Rs">\u20B9</string>
@@ -395,7 +395,7 @@
     <string name="farmer_profile">Farmer Profile</string>
     <string name="plot_details">Plot Details</string>
     <string name="cancel_success">Cancelled Successfully</string>
-    <string name="amount_payble">Amount Payable (Rs.)</string>
+    <string name="amount_payble">Amount Payable (Rs)</string>
     <string name="comments_valid">Please Enter Comments</string>
     <string name="no_data">No Data Available</string>
     <string name="Godown_name">Godown</string>
@@ -413,20 +413,20 @@
     <string name="coll_id">Collection Id(s)</string>
 
     <string name="product_name">Product Name</string>
-    <string name="price">Price (Rs.)</string>
+    <string name="price">Price (Rs)</string>
     <string name="product_size"> Size</string>
 
-    <string name="pru_amountt">Pruning \nCost /Tree(Rs.)</string>
+    <string name="pru_amountt">Pruning \nCost /Tree(Rs)</string>
     <string name="num_trees"> No. of Trees</string>
-    <string name="Prunning_amount">C) Pruning  \nAmount(Rs.)(A*B)</string>
-    <string name="harv_amountt"> Harvesting \nCost /Ton(Rs.)</string>
+    <string name="Prunning_amount">C) Pruning  \nAmount(Rs)(A*B)</string>
+    <string name="harv_amountt"> Harvesting \nCost /Ton(Rs)</string>
     <string name="net_weight_mt"> Net Weight (MT)</string>
-    <string name="harvesting_amount">F) Harvesting \nAmount(Rs.)(D*E)</string>
+    <string name="harvesting_amount">F) Harvesting \nAmount(Rs)(D*E)</string>
     <string name="service_chargeper">M) Service Charge (%)</string>
-    <string name="service_amount">N) Service Charge(Rs.)\n((C+F+I+L)*M)/100</string>
+    <string name="service_amount">N) Service Charge(Rs)\n((C+F+I+L)*M)/100</string>
     <string name="disc_package">O) Package Discount(%)</string>
-    <string name="disc_price">P) Package Discount \nPrice(Rs.)\n((C+F+I+L)*O)/100 </string>
-    <string name="amount_labour">Q)Total Amount(Rs.)\n(C+F+I+L+N)-P</string>
+    <string name="disc_price">P) Package Discount \nPrice(Rs)\n((C+F+I+L)*O)/100 </string>
+    <string name="amount_labour">Q)Total Amount(Rs)\n(C+F+I+L+N)-P</string>
 
     <string name="payment_details">Total Amount Details</string>
     <string name="instock">In stock</string>
@@ -442,8 +442,8 @@
 
     <string name="Cgst">CGST(%)</string>
     <string name="sgst">SGST(%)</string>
-    <string name="cgst_amount">CGST (Rs.)</string>
-    <string name="sgst_amount">SGST (Rs.)</string>
+    <string name="cgst_amount">CGST (Rs)</string>
+    <string name="sgst_amount">SGST (Rs)</string>
     <string name="discount_percentage"> Package Details</string>
     <string name="Package">Package</string>
     <string name="discount">Discount(%)</string>
@@ -463,12 +463,12 @@
     <string name="failmsg">You can\'t Raise the Request since Amount is 0</string>
     <string name="location_notfount">Location not available</string>
     <string name="userPermission">All permissions are granted by user!</string>
-    <string name="incrop_prunning"> Intercrop Pruning \nCost / Tree(Rs.)</string>
+    <string name="incrop_prunning"> Intercrop Pruning \nCost / Tree(Rs)</string>
     <string name="num_intercrop">No.of Intercrop \nTrees</string>
-    <string name="pru_intercrop_amountt"> Pruning Intercrop \nAmount(Rs.)(G*H)</string>
-    <string name="harv_inter_amountt">Intercrop Harvesting \nCost / Tree(Rs.)</string>
+    <string name="pru_intercrop_amountt"> Pruning Intercrop \nAmount(Rs)(G*H)</string>
+    <string name="harv_inter_amountt">Intercrop Harvesting \nCost / Tree(Rs)</string>
     <string name="harv_intercrop_netweight">Intercrop \nNet Weight(Ton)</string>
-    <string name="harv_intercrop_amout">Harvesting Intercrop \nAmount(Rs.)(J*K)</string>
+    <string name="harv_intercrop_amout">Harvesting Intercrop \nAmount(Rs)(J*K)</string>
     <string name="details">Complete Details</string>
     <string name="close">Close</string>
     <string name="cluster_officer">Cluster Name</string>

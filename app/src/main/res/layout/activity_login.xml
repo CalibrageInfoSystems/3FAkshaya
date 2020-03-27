@@ -88,8 +88,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/hind_semibold"
-                    android:gravity="center"
-                    android:text="OR"
+
+                    android:text="@string/or"
+                    android:textAlignment="center"
                     android:textColor="@color/white_new"
                     android:textSize="18dp" />
 

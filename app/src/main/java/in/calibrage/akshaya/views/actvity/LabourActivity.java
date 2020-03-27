@@ -1157,16 +1157,26 @@ boolean result;
             if (selected_ids.contains("20") || selected_ids.contains("34") ) {
                 listdata.clear();
                 Getlabour_duration();
-             //   checkpole.setVisibility(View.VISIBLE);
+                //   checkpole.setVisibility(View.VISIBLE);
             }
-            else
-            {
-               // checkpole.setVisibility(View.VISIBLE);
+
+            else if (selected_ids.contains("19") || selected_ids.contains("33") ) {
                 listdata.clear();
                 listdata.add("1 Day");
                 ArrayAdapter aa = new ArrayAdapter(LabourActivity.this, R.layout.spinner_item, listdata);
                 aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
                 labourSpinner.setAdapter(aa);
+//                //   checkpole.setVisibility(View.VISIBLE);
+           }
+            else
+            {
+               // checkpole.setVisibility(View.VISIBLE);
+                listdata.clear();
+                listdata.add("Select");
+                ArrayAdapter aa = new ArrayAdapter(LabourActivity.this, R.layout.spinner_item, listdata);
+                aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+                labourSpinner.setAdapter(aa);
+
             }
         }
     }

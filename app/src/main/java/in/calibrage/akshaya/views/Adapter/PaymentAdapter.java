@@ -112,8 +112,12 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         Log.e("valueRounded===",a+"");
 
         if ((payment_Set.get(position).getBalance()) < 0) {
-            String balance1 = (a)+ "" + ")";
-            ((ViewHolder) holder).balance.setText("" + balance1.toString().replace("-", "("));
+            if(a!=0) {
+                String balance1 = (a) + "" + ")";
+                ((ViewHolder) holder).balance.setText("" + balance1.toString().replace("-", "("));
+            }
+            else
+            ((ViewHolder) holder).balance.setText("" + a);
         } else {
             ((ViewHolder) holder).balance.setText("" + a);
         }
