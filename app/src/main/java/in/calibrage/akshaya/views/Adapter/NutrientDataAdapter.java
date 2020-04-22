@@ -2,6 +2,7 @@ package in.calibrage.akshaya.views.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,28 +45,35 @@ public class NutrientDataAdapter extends RecyclerView.Adapter<NutrientDataAdapte
         holder.RegisteredDate.setText(dataa.getRegisteredDate());
 
         holder.comments.setText(dataa.getComments());
-
-        if (dataa.getDosage().contains("0.0")) {
+        Log.e("dosage==",dataa.getDosage());
+//
+        if (dataa.getDosage().equalsIgnoreCase("0.0")) {
 
             holder.Dosage.setVisibility(View.GONE);
             holder.dosage_label.setVisibility(View.GONE);
             holder.UOMName.setVisibility(View.GONE);
-
-        } else {
+        }
+        else{
             holder.Dosage.setVisibility(View.VISIBLE);
             holder.dosage_label.setVisibility(View.VISIBLE);
             holder.UOMName.setVisibility(View.VISIBLE);
-
-            if (dataa.getUOMName().contains("null")) {
-
-
-                holder.UOMName.setVisibility(View.GONE);
-
-            } else {
-
-                holder.UOMName.setVisibility(View.VISIBLE);
-            }
         }
+//
+//        } else {
+//            holder.Dosage.setVisibility(View.VISIBLE);
+//            holder.dosage_label.setVisibility(View.VISIBLE);
+//            holder.UOMName.setVisibility(View.VISIBLE);
+//
+//            if (dataa.getUOMName().contains("null")) {
+//
+//
+//                holder.UOMName.setVisibility(View.GONE);
+//
+//            } else {
+//
+//                holder.UOMName.setVisibility(View.VISIBLE);
+//            }
+//        }
         if (dataa.getComments().contains("null")) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.comments.setVisibility(View.GONE);

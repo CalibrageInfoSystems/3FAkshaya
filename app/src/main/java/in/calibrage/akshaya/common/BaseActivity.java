@@ -39,10 +39,13 @@ import java.io.File;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.views.actvity.HomeActivity;
 import in.calibrage.akshaya.views.actvity.PDFActivity;
 import in.calibrage.akshaya.views.actvity.Visit_request_Activity;
+
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 /*
  * This class base For all Activitys , here we declared all common activity related Methods
@@ -143,6 +146,11 @@ public class BaseActivity extends AppCompatActivity {
     //region Common Dialog For Sucess Message
     @RequiresApi(api = Build.VERSION_CODES.M)
     protected void showSuccessDialog(List<MSGmodel> msg, String summary) {
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         ViewGroup viewGroup = findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
 

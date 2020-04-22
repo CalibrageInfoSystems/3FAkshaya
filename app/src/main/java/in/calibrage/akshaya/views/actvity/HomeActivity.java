@@ -129,6 +129,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             txt_phone.setVisibility(View.GONE);
         else
             txt_phone.setText(catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber().toString());
+
+
         txt_adrs.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
 
         if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()))

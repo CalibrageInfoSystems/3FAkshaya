@@ -41,7 +41,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         holder.Disease.setText(superHero.getDisease());
         holder.Chemical.setText(superHero.getChemical());
         holder.Dosage.setText(superHero.getDosage());
-        holder.RecommendedChemical.setText(superHero.getChemical());
+        holder.RecommendedChemical.setText(superHero.getRec_Chemical());
         holder.UOMName.setText(superHero.getUOMName());
         holder.Comments.setText(superHero.getComments());
 
@@ -63,16 +63,26 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             holder.dosage_label.setVisibility(View.VISIBLE);
             holder.UOMName.setVisibility(View.VISIBLE);
         }
-//        if (superHero.getUOMName().contains("null")) {
-//
-//
-//            holder.UOMName.setVisibility(View.GONE);
-//
-//        } else {
-//
-//            holder.UOMName.setVisibility(View.VISIBLE);
-//        }
-        if (superHero.getComments().contains("null")) {
+        if (superHero.getRec_Chemical().equalsIgnoreCase("null")) {
+
+            holder.rec_label.setVisibility(View.GONE);
+            holder.RecommendedChemical.setVisibility(View.GONE);
+
+        } else {
+            holder.rec_label.setVisibility(View.VISIBLE);
+            holder.RecommendedChemical.setVisibility(View.VISIBLE);
+        }
+
+        if (superHero.getChemical().equalsIgnoreCase("null")) {
+
+            holder.chem_label.setVisibility(View.GONE);
+            holder.Chemical.setVisibility(View.GONE);
+
+        } else {
+            holder.chem_label.setVisibility(View.VISIBLE);
+            holder.Chemical.setVisibility(View.VISIBLE);
+        }
+        if (superHero.getComments().equalsIgnoreCase("null")) {
             //   Log.e("bbbbb",superHero.getmAmount());
             holder.Comments.setVisibility(View.GONE);
             holder.CommentsLabel.setVisibility(View.GONE);
@@ -98,7 +108,7 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
         public TextView Chemical;
         public TextView RecommendedChemical;
         public TextView Dosage;
-        public TextView UOMName,dosage_label,Comments,CommentsLabel;
+        public TextView UOMName,dosage_label,Comments,CommentsLabel,rec_label ,chem_label;
         protected CardView card_view;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -111,6 +121,8 @@ public class DiseaseDataAdapter extends RecyclerView.Adapter<DiseaseDataAdapter.
             dosage_label= itemView.findViewById(R.id.DosageLabel);
             CommentsLabel= itemView.findViewById(R.id.CommentsLabel);
             card_view=itemView.findViewById(R.id.card_view);
+            rec_label =itemView.findViewById(R.id.RecommendedChemicalLabel);
+            chem_label =itemView.findViewById(R.id.ChemicalLabel);
         }
     }
 }

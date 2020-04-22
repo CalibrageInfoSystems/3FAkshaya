@@ -57,6 +57,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
     String name;
+    MyLabour_ReqAdapter adapter;
     String  Farmer_code;
     TextView no_data;
     @Override
@@ -164,6 +165,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             e.printStackTrace();
                         }
                         mdilogue.cancel();
+                        adapter.clearAllDataa();
                         no_data.setVisibility(View.VISIBLE);
                         showDialog(RequestListctivity.this, getString(R.string.server_error));
                     }
@@ -175,7 +177,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                                 no_data.setVisibility(View.VISIBLE);
                                 Log.e("labourdata===", "Data");
                                 rcv_requests.setVisibility(View.VISIBLE);
-                                MyLabour_ReqAdapter adapter = new MyLabour_ReqAdapter(labour_req_response.getListResult(), ctx);
+                         //   adapter.updateData(labour_req_response.getListResult());
+                       adapter = new MyLabour_ReqAdapter(labour_req_response.getListResult(), ctx);
                                 rcv_requests.setAdapter(adapter);
 
 

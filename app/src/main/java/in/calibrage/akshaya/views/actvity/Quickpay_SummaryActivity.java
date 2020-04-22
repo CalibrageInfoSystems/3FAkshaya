@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -99,7 +100,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     Integer Cluster_id;
     double total_weight = 0.0;
     private FarmerOtpResponceModel catagoriesList;
-     DecimalFormat df = new DecimalFormat("####0.00");
+    DecimalFormat df = new DecimalFormat("####0.00");
     DecimalFormat dff = new DecimalFormat("####0.000");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +123,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-           // include_gst_amount = extras.getString("Total_amount");
+            // include_gst_amount = extras.getString("Total_amount");
 
             ids_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_ids");
             dates_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
@@ -173,8 +174,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     private void setViews() {
 
         catagoriesList = SharedPrefsData.getCatagories(this);
-      if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
-        Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
+            Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
         Log.e("Cluster_id===",Cluster_id+"");
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         home_btn.setOnClickListener(new View.OnClickListener() {
@@ -204,7 +205,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             public void onClick(View view) {
                 if (validations()) {
                     signature_popup();
-                    }
+                }
             }
         });
         if(isOnline()) {
@@ -218,20 +219,20 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         final Dialog dialog = new Dialog(this);
 
         dialog.setContentView(R.layout.signature_view);
-     //   dialog.setCancelable(false);
+        //   dialog.setCancelable(false);
         dialog.setTitle("Title...");
 
         // set the custom dialog components - text, image and button
-      TextView clear = (TextView) dialog.findViewById(R.id.clear);
+        TextView clear = (TextView) dialog.findViewById(R.id.clear);
         signatureView = (SignatureView) dialog.findViewById(R.id.signature_view);
-      //  text.setText("Android custom dialog example!");
-      //  ImageView image = (ImageView) dialog.findViewById(R.id.image);
-       // image.setImageResource(R.drawable.ic_launcher);
+        //  text.setText("Android custom dialog example!");
+        //  ImageView image = (ImageView) dialog.findViewById(R.id.image);
+        // image.setImageResource(R.drawable.ic_launcher);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-              signatureView.clearCanvas();
+                signatureView.clearCanvas();
 
             }
         });
@@ -269,7 +270,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
         if (signatureView.getSignatureBitmap() == null){
             signature_popup();
-          //  showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
+            //  showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.signature));
             return false;
             // myBitmap is empty/blank
         }
@@ -316,7 +317,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<GetquickpayDetailsModel>() {
-//        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+                    //        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
 //        mSubscription = service.getquickpaydetails(APIConstantURL.GetQuickpayDetails + Farmer_code)
 //                .subscribeOn(Schedulers.newThread())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -366,7 +367,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                 convenienceChargeTxt.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
                             }
 
-                         //   totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                            //   totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
 
 
                             if(getquickpayDetailsModel.getListResult().get(0).getClosingBalance() > 0.0){
@@ -376,11 +377,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                             }
                             if (getquickpayDetailsModel.getListResult().get(0).getTotal() > 0.0 ) {
                                 totalAmount.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
-                               // totalAmount.setText("0");
+                                // totalAmount.setText("0");
 
                             } else {
                                 totalAmount.setText(" 0.00");
-                               // totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                                // totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
                             }
                             text_quickpay_fee.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getQuickPay()));
 
@@ -399,9 +400,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setQuantity(total_weight);
         requestModel.setWhsCode(whs_Code);
-            return new Gson().toJsonTree(requestModel).getAsJsonObject();
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
-        }
+    }
 
 
 
@@ -412,6 +413,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         if (d1 > 0.0) {
             mdilogue.show();
             JsonObject object = quickReuestobject();
+
+            Log.e("object==",object+"");
             ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
             mSubscription = service.postquickpay(object)
                     .subscribeOn(Schedulers.newThread())
@@ -441,16 +444,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                         @Override
                         public void onNext(final QuickPayResponce quickPayResponce) {
                             if (quickPayResponce.getIsSuccess()) {
-                                new Handler().postDelayed(new Runnable() {
-                                    @RequiresApi(api = Build.VERSION_CODES.M)
-                                    @Override
-                                    public void run() {
+                                result = quickPayResponce.getResult();
 
-                                        result = quickPayResponce.getResult();
+                              showSuccesspdf(result);
 
-                                        showSuccesspdf();
-                                    }
-                                }, 300);
+
                             } else {
                                 showDialog(Quickpay_SummaryActivity.this, quickPayResponce.getEndUserMessage());
                             }
@@ -461,12 +459,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                     });
         } else {
             showDialog(Quickpay_SummaryActivity.this,getString(R.string.enter_loan_amount));
-           // Toast.makeText(this, "unable to process request now", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "unable to process request now", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    private void showSuccesspdf() {
+    private void showSuccesspdf(String result) {
         mdilogue.show();
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -474,37 +472,49 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         dialog.setContentView(R.layout.pdf_dialog);
         final WebView webView = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
+        webView.setWebViewClient(new WebViewClient());
+//        webView.getSettings().setSupportZoom(true);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        String url = "http://103.241.144.240:9096/3FAkshayaRepo/FileRepository/2020/04/13/QuickpayPdf/20200413062400627.pdf";
+//        webView.loadUrl("https://docs.google.com/gview?embedded=true&url="+url);
 
-       webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+//
+        //   WebView  wv = (WebView)findViewById(R.id.webview);
+        String doc=" http://docs.google.com/gview?embedded=true&url="+result;
         webView.getSettings().setJavaScriptEnabled(true);
-       webView.getSettings().setLoadWithOverviewMode(true);
-       webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setSupportZoom(true);
-
-        //---you need this to prevent the webview from
-        // launching another browser when a url
-        // redirection occurs---
-        webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-
-                webView.loadUrl("javascript:(function() { " +
-                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
-                mdilogue.show();
-            }
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                webView.loadUrl("javascript:(function() { " +
-                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
-                mdilogue.dismiss();
-            }
-        });
-        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
-       // mdilogue.cancel();
+        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.loadUrl(doc);
+//       webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//       webView.getSettings().setLoadWithOverviewMode(true);
+//       webView.getSettings().setUseWideViewPort(true);
+//        webView.getSettings().setBuiltInZoomControls(true);
+//        webView.getSettings().setSupportZoom(true);
+//
+//        //---you need this to prevent the webview from
+//        // launching another browser when a url
+//        // redirection occurs---
+//        webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//                super.onPageStarted(view, url, favicon);
+//
+//                webView.loadUrl("javascript:(function() { " +
+//                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+//                mdilogue.show();
+//            }
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                webView.loadUrl("javascript:(function() { " +
+//                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+//                mdilogue.dismiss();
+//            }
+//        });
+//        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
+        // mdilogue.cancel();
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -539,7 +549,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setClusterId(Cluster_id);
         requestModel.setFileLocation("");
         if(null != closingBalanceTxt.getText() & !TextUtils.isEmpty(closingBalanceTxt.getText()))
-          requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
+            requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
         else {
             requestModel.setClosingBalance(0.0);
         }
@@ -552,7 +562,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setCollectionIds(val);
 
         requestModel.setCollectionCodes(val_codes);
-      //  requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
+        //  requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
         requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
         requestModel.setSignatureExtension(".png");
         requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));

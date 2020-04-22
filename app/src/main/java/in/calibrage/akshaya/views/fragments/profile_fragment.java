@@ -181,7 +181,7 @@ Log.e("Clusterid===",catagoriesList.getResult().getFarmerDetails().get(0).getClu
         else
             lyt_alt_mobile.setVisibility(View.GONE); // alt_mobile.setText(": N/A");
 
-        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getEmail())
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getEmail() && !   TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getEmail()+"") && !catagoriesList.getResult().getFarmerDetails().get(0).getEmail().toString().isEmpty())
             email.setText("" + catagoriesList.getResult().getFarmerDetails().get(0).getEmail());
         else
             lyt_email.setVisibility(View.GONE);//;  email.setText(": N/A");

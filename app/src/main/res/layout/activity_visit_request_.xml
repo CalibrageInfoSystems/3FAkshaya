@@ -585,7 +585,7 @@
 
 android:fontFamily="@font/hind_semibold"
             android:layout_toRightOf="@+id/textView55"
-            android:hint=""
+            android:hint="Not Available"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"

@@ -117,7 +117,7 @@
     <string name="totalBalance">Closing Balance (Rs)</string>
     <string name="balance">Balance (Rs)</string>
     <string name="gr">GR Amount (Rs)</string>
-    <string name="adjusted">Adjusted (R.)</string>
+    <string name="adjusted">Adjusted (Rs)</string>
     <string name="descriptionn">Description </string>
     <string name="trans_charges"> Transportation  \nCharges/Ton (Rs)</string>
     <string name="no_trans_found">No Direct Farmer Transport Reimbursement Found</string>
@@ -148,7 +148,7 @@
     <string name="expectedPlamsCount">Expected Palms Count</string>
     <string name="last_date">Date of Last Visit</string>
     <string name="Frequency">Frequency</string>
-    <string name="static_data">We recommend harvesting every 10 days, when the loose fruitlets are seen on the ground for optimal yield</string>
+    <string name="static_data">We recommend harvesting every 10 days, when the loose fruitlets are seen on the ground for optimal yield.</string>
     <string name="Frequency_harvest">Days since last Harvest</string>
     <string name="NutrientDeficiencyName">Nutrient Deficiency Name</string>
     <string name="Nameofchemicalapplied">Name of Chemical Applied</string>
@@ -227,7 +227,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_off">Logout</string>
-    <string name="tap_text">Please select Language below:</string>
+    <string name="tap_text">Please Select Language Below:</string>
     <string name="btn_en">English</string>
     <string name="btn_te">Telugu</string>
     <string name="only_date">Date</string>
@@ -256,6 +256,7 @@
     <string name="reason_loan">Reason for Loan</string>
     <string name="str_enter_loan_amount">Please Enter Loan Amount</string>
     <string name="enter_loan_amount">Your dues are more than FFB Payment, So, quickpay can’t be completed</string>
+
     />
     <!--    -->
     <string name="total_records">Total Records</string>
@@ -511,6 +512,7 @@
     <string name="slecteddate">Preferred Date</string>
     <string name="unableselect">Unable to select This Month</string>
     <string name="downloaded">Downloaded Successfully</string>
+    <string name="enter_loan">Loan Amount should be greater than 0</string>
 
     />
     <!-- we need to use video ids instead of video link -->

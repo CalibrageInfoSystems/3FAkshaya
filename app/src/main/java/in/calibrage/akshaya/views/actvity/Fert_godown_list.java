@@ -556,7 +556,7 @@ public class Fert_godown_list extends BaseActivity {
                                     payble_amount = 0.0;
                                     paybleamount.setText(dec.format(payble_amount));
                                     Subsidy_amount = Double.parseDouble(include_gst_amount);
-                                    // subsidy_amount.setText(dec.format(Subsidy_amount));
+                                     subsidy_amount.setText(dec.format(Subsidy_amount));
                                 } else if (subsidy_amountt < Double.parseDouble(include_gst_amount)) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     Log.e("remaining_Amoubt===",remaining_Amoubt+"");

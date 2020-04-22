@@ -356,7 +356,7 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
                           // Log.e("TotalQuanitity======",TotalQuanitity+"==="+df.format(TotalQuanitity +""));
                             ffb.setText((df.format(TotalQuanitity)));
                             if (paymentResponseModel.getResult().getTotalBalance() == null) {
-                                totalBalance.setText("0.00");
+                                totalBalance.setText("0");
 
                             } else {
                                 totalBalance.setText(String.valueOf(paymentResponseModel.getResult().getTotalBalance()));

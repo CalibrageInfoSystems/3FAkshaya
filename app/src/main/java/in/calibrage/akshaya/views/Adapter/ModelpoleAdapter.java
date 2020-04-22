@@ -45,7 +45,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
     public Context mContext;
     PopupWindow popUp;
     LinearLayout layout;
-    TextView Product_Name,product_price, discountprice,productsize,gst_price,cancel,instock;
+    TextView Product_Name,product_price, discountprice,productsize,gst_price,cancel,instock,productsize_label;
     Double discount_cost, itemcost;
     WindowManager.LayoutParams params;
     LinearLayout mainLayout;
@@ -108,14 +108,14 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
             itemcost = Double.valueOf(superHero.getmAmount());
         }
 
-        if (Double.valueOf(superHero.getgst()) != null) {
-            gst = Double.valueOf(superHero.getgst());
-            Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
-            //Double onlygst = (gst / itemcost) * 100;
-            onlygst = (itemcost / 100.0f) * gst;
-        } else {
-            onlygst = 0.00;
-        }
+
+//            gst = Double.valueOf(superHero.getgst());
+//            Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
+//            //Double onlygst = (gst / itemcost) * 100;
+//            onlygst = (itemcost / 100.0f) * gst;
+//        } else {
+//            onlygst = 0.00;
+//        }
 
 
         Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
@@ -129,11 +129,10 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
         holder.currentCost.setText(mContext.getString(R.string.Rs) +df.format(itemcost));
 
         //  holder.disc.setText(superHero.getDescription());
-        if (!TextUtils.isEmpty(superHero.getSize() +"")) {
-            holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
-        } else {
-            holder.size.setText("N/A");
-        }
+
+
+
+
         if(superHero.getmQuantity() <= superHero.getAvail_quantity()) {
             holder.quantityText.setText("" + superHero.getmQuantity());
             holder.addMeal.setEnabled(true);
@@ -143,6 +142,14 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
             showDialog(mContext, "Available only " + superHero.getAvail_quantity() + " "+superHero.getName() + "  Products in this Godown ");
         }
 
+
+
+        if (String.valueOf(superHero.getSize())!= null &&superHero.getSize()!= 0 ) {
+            holder.size.setVisibility(View.VISIBLE);
+            holder.size.setText(superHero.getSize() + " " + superHero.getUomType());
+       } else {
+            holder.size.setVisibility(View.GONE);
+        }
 
 //        if (superHero.getAvail_quantity()== 0){
 //            holder.card_view.setVisibility(View.GONE);
@@ -180,7 +187,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
                 final_amount =superHero.getmAmount();
 
                 Available_quantity =superHero.getAvail_quantity();
-                Log.e("Description==160",  discount_price +"   price"+price +"");
+                Log.e("Description==160",  discount_price +"   gst====price"+gstprice +"");
                 displayPopupWindow(view);
             }
         });
@@ -198,7 +205,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
                 final_amount =superHero.getmAmount();
 
                 Available_quantity =superHero.getAvail_quantity();
-                Log.e("Description==160",  discount_price +"   price"+price +"");
+                Log.e("Description==160",  discount_price +"   price"+gstprice +"");
                 displayPopupWindow(view);
             }
         });
@@ -279,15 +286,17 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
                     }
 
                     Log.d("PRODUCT ", "---- analysis -----(itemcost)  :" + itemcost);
-                    Double gst = Double.valueOf(superHero.getgst());
-                    Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
+
+                  //  Double gst = Double.valueOf(superHero.getgst());
+                    double Gst =    Double.parseDouble(superHero.getgst());
+                    Log.d("PRODUCT ", "---- analysis -----(gst)  :" + Gst);
                     //Double onlygst = (gst / itemcost) * 100;
-                    double onlygst = (itemcost / 100.0f) * gst;
+                    double onlygst = (itemcost / 100.0f) * Gst;
                     Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
                     Double finalwithGST = itemcost + onlygst;
 
                     DecimalFormat df = new DecimalFormat("####0.00");
-                    double Gst =    Double.parseDouble(superHero.getgst());
+                    //double Gst =    Double.parseDouble(superHero.getgst());
                     double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
                     myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount,Gst, itemcost, superHero.getId(), superHero.getSize(),
@@ -380,6 +389,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
         instock =layout.findViewById(R.id.instock);
         discountprice =layout.findViewById(R.id.discount_price);
         productsize=layout.findViewById(R.id.product_size);
+        productsize_label=layout.findViewById(R.id.productsize_label);
         cancel=layout.findViewById(R.id.cancel);
         gst_price=layout.findViewById(R.id.gst_price);
         if(Description != null && !Description .isEmpty()){
@@ -424,7 +434,14 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
         Product_Name.setText(": "+ProductName);
         product_price.setText("  "+df.format(Math.round(discount_price)));
         discountprice.setText(": "+df.format(Math.round(price)));
-        productsize.setText(": "+product_size + " "+ Product_uom);
+        if(product_size!=null && Integer.valueOf( product_size)!=0) {
+            productsize.setText(": " + product_size + " " + Product_uom);
+        }
+        else{
+            productsize.setVisibility(View.GONE);
+            productsize_label.setVisibility(View.GONE);
+        }
+
         gst_price.setText(": "+gstprice);
         instock.setText(": "+Available_quantity);
         Log.e("finalamount ",final_amount);

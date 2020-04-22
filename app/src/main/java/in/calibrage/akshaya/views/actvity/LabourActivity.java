@@ -286,7 +286,7 @@ boolean result;
         myCalendar = Calendar.getInstance();
         plantation_date = yop.getText().toString() ;
         //  GetAll_tokens_closed();
-        Log.e("===============", "======plantation_date===========" + plantation_date);
+        Log.e("===============", "======landmarkCode===========" + landmarkCode);
         int year = calendar.get(Calendar.YEAR);
          diff =year - Integer.valueOf(plantation_date);
         Log.e("diff===",diff+"");

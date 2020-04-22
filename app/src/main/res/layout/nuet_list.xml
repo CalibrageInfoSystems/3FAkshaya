@@ -147,17 +147,27 @@
                 android:fontFamily="@font/hind_semibold"
 
                 android:textSize="@dimen/album_title" />
+
+
+
             <TextView
                 android:id="@+id/Dosage"
                 android:layout_toRightOf="@+id/DosageLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/dosage_only"
+
                 android:layout_below="@id/RecommendedFertilizerLabel"
-                android:paddingLeft="5dp"
+
                 android:paddingRight="0dp"
-                android:paddingTop="@dimen/album_title_padding"
+                android:layout_marginStart="0dp"
+                android:layout_toEndOf="@+id/DosageLabel"
+
+
                 android:fontFamily="@font/hind_semibold"
+                android:paddingLeft="5dp"
+                android:hint="1"
+                android:paddingTop="@dimen/album_title_padding"
+
 
                 android:textSize="@dimen/album_title" />
             <TextView
@@ -165,14 +175,16 @@
                 android:layout_toRightOf="@+id/Dosage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/UOMName"
-                android:layout_below="@id/RecommendedFertilizerLabel"
-                android:paddingLeft="3dp"
-                android:paddingRight="@dimen/album_title_padding"
-                android:fontFamily="@font/hind_semibold"
 
+                android:layout_below="@id/RecommendedFertilizerLabel"
+
+                android:fontFamily="@font/hind_semibold"
+                android:hint="kg"
+
+                android:paddingLeft="5dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:textSize="@dimen/album_title" />
+
+                android:textSize="@dimen/album_title"  />
 
             <TextView
                 android:id="@+id/RegisteredDateLabel"
@@ -185,7 +197,7 @@
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="2dp"
                 android:fontFamily="@font/hind_semibold"
-
+                android:visibility="gone"
                 android:text="@string/registeredDate"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
@@ -198,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/registeredDate"
                 android:fontFamily="@font/hind_semibold"
-
+                android:visibility="gone"
                 android:layout_below="@id/DosageLabel"
                 android:paddingLeft="5dp"
                 android:paddingRight="@dimen/album_title_padding"

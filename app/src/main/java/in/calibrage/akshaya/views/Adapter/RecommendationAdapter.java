@@ -52,8 +52,15 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
         ((ViewHolder) holder).textViewplotId.setText(plot_Set.get(position).getPlotcode());
         holder.textViewpalmArea.setText(dec.format(plot_Set.get(position).getPalmArea())+" Ha ("+  dec.format(plot_Set.get(position).getPalmAreainAcres() ) + " Acre)");
         ((ViewHolder) holder).textViewLocation.setText(plot_Set.get(position).getVillageName());
-        ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
+      ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
         ((ViewHolder) holder).yop.setText(plot_Set.get(position).getDateOfPlanting() );
+
+//        if(plot_Set.get(position).getLandMark()!=null){
+//            ((ViewHolder) holder).textViewstatus.setText(plot_Set.get(position).getLandMark());
+//        }else{
+//            ((ViewHolder) holder).textViewstatus.setVisibility(View.GONE);
+//            ((ViewHolder) holder).landmarkLabel.setVisibility(View.GONE);
+//        }
         holder.cluster_name.setText(plot_Set.get(position).getClusterName());
         ((ViewHolder) holder).card_view.setOnClickListener(new View.OnClickListener() {
 
@@ -98,7 +105,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
         public TextView textViewplotId;
         public TextView textViewpalmArea;
-        public TextView textViewLocation;
+        public TextView textViewLocation,landmarkLabel;
         public TextView textViewstatus,yop,cluster_name;
         public CardView card_view;
 
@@ -110,7 +117,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             this.textViewstatus = (TextView) itemView.findViewById(R.id.landmark);
             this.card_view = (CardView) itemView.findViewById(R.id.card_view);
             this.yop=(TextView)itemView.findViewById(R.id.yop);
-
+            this.landmarkLabel=(TextView)itemView.findViewById(R.id.landmarkLabel);
             this.cluster_name=(TextView)itemView.findViewById(R.id.status);
 
         }

@@ -70,7 +70,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     Button cancel_btn, ok_btn;
     private List<labour_req_response.ListResult> labourlist_Set = new ArrayList<>();
     public Context mContext;
-    String request_date, prefferdate, currentDate, job_donee, prefferdate_popup,assigndate;
+    String request_date, prefferdate, currentDate, jobdone, prefferdate_popup,assigndate;
     private SpotsDialog mdilogue;
     private Subscription mSubscription;
     DecimalFormat df = new DecimalFormat("####0.00");
@@ -91,11 +91,21 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
     LinearLayout linear;
 
     public MyLabour_ReqAdapter(List<labour_req_response.ListResult> labourlist_Set, Context ctx) {
+     //   labourlist_Set.clear();
         this.labourlist_Set = labourlist_Set;
         this.mContext = ctx;
 
     }
-
+//    public void updateData(List<labour_req_response.ListResult> viewModels) {
+//        labourlist_Set.clear();
+//        Log.d("PaymentAdapter","----- analysis --- Size :"+labourlist_Set.size());
+//        labourlist_Set= viewModels;
+//        //  notifyDataSetChanged();
+//    }
+    public void clearAllDataa() {
+        labourlist_Set.clear();
+        notifyDataSetChanged();
+    }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -114,16 +124,8 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         try {
 
             Date prefferdatee = input.parse(labourlist_Set.get(position).getStartDate());
-            if(labourlist_Set.get(position).getAssignedDate()!=null){
-           Date assign = input.parse(labourlist_Set.get(position).getAssignedDate());
-                assigndate = output.format(assign);}
-            prefferdate = output.format(prefferdatee);
 
-            if (labourlist_Set.get(position).getJobDoneDate() != null) {
-                Date oneWayTripDate = input.parse(labourlist_Set.get(position).getJobDoneDate() + "");
-                request_date = output.format(oneWayTripDate);
-                Log.e("===============", "======currentData======" + output.format(oneWayTripDate));
-            }
+                prefferdate = output.format(prefferdatee);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -213,9 +215,9 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
             public void onClick(View view) {
                 selectedItemID = labourlist_Set.get(position).getRequestCode();
                 selectedPO = position;
-                Log.d("selectedPO==", selectedPO + "");
-              GetLabourPackageDiscount(selectedPO);
-              //showCondetailsDialog(selectedPO);
+                Log.d("selectedPO==", selectedPO + "***************" + selectedItemID);
+              //GetLabourPackageDiscount(selectedPO);
+           showCondetailsDialog(selectedPO);
 
 
             }
@@ -286,7 +288,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
 
                         }
 
-                        showCondetailsDialog(selectedPO);
+                        //showCondetailsDialog(selectedPO);
                     }
                 });
     }
@@ -389,9 +391,10 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         prunning_intercrop_label = dialog.findViewById(R.id.prunning_intercrop_label);
         harvesting_intercrop_label = dialog.findViewById(R.id.harvest_inter_label);
         request_id.setText(labourlist_Set.get(selectedPO).getRequestCode());
+
         plot_code.setText(labourlist_Set.get(selectedPO).getPlotCode());
         txt_pin.setText(labourlist_Set.get(selectedPO).getPin()+"");
-        txt_assign_date.setText(assigndate);
+
         plot_size.setText((dec.format(labourlist_Set.get(selectedPO).getPalmArea()) + " " + "Ha (" + dec.format(labourlist_Set.get(selectedPO).getPalmArea() * 2.5) + " Acre)"));
         village.setText(labourlist_Set.get(selectedPO).getPlotVillage());
         leader_name.setText(labourlist_Set.get(selectedPO).getLeader() + "");
@@ -433,6 +436,36 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         } else {
             harvesting_intercrop_label.setVisibility(View.GONE);
         }
+        try {
+
+
+
+            if(labourlist_Set.get(selectedPO).getAssignedDate()!=null){
+
+                Date assign = input.parse(labourlist_Set.get(selectedPO).getAssignedDate());
+                assigndate = output.format(assign);
+                txt_assign_date.setText(assigndate);
+            }
+
+else{
+                date_label.setVisibility(View.GONE);
+            }
+
+
+            if (labourlist_Set.get(selectedPO).getJobDoneDate() != null) {
+                Date job_done = input.parse(labourlist_Set.get(selectedPO).getJobDoneDate() + "");
+                jobdone = output.format(job_done);
+
+            }else{
+                lin_comments.setVisibility(View.GONE);
+            }
+            Log.e("job_donedatee=======1",jobdone+"=="+labourlist_Set.get(selectedPO).getRequestCode());
+            Log.e("assigndatee=======1",assigndate+"=="+labourlist_Set.get(selectedPO).getRequestCode());
+            Log.e("prefferdatee=======1",prefferdate+"=="+labourlist_Set.get(selectedPO).getRequestCode());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        job_done.setText(jobdone);
         //   collectionid.setText(labourlist_Set.get(selectedPO).getCollectionIds()+"");
         //  netweight.setText(labourlist_Set.get(selectedPO).getNetWeight()+"");
 
@@ -444,7 +477,7 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         Log.e("tress====234", String.valueOf(percentages));
         service_charge.setText(percentages + "");
 
-        job_done.setText(request_date);
+
 
 
         if (prun_amount.getText() != null && labourlist_Set.get(selectedPO).getTreesCount() != null && !prun_amount.getText().toString().isEmpty()&& labourlist_Set.get(selectedPO).getPruningAmount() != 0.0) {
@@ -557,9 +590,7 @@ Log.e("mahesh","Total_amount=======in if================"+Total_amount);
 //
 //          amount.setText("0.00");
 //        }
-        if (job_done.getText() != null && TextUtils.isEmpty(request_date)) {
-            lin_comments.setVisibility(View.GONE);
-        }
+
 //        if (job_done.getText().equals("null")|| job_done.getText() == "null") {
 //            lin_comments.setVisibility(View.GONE);
 //        }

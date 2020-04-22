@@ -6,6 +6,7 @@ public class DiseaseDataModel {
     private String UOMName;
     private String Dosage;
     private String Comments;
+    private String rec_Chemical;
 
     public DiseaseDataModel() {
         Disease = Disease;
@@ -53,5 +54,13 @@ public class DiseaseDataModel {
 
     public void setComments(String comments) {
         Comments = comments;
+    }
+
+    public String getRec_Chemical() {
+        return rec_Chemical;
+    }
+
+    public void setRec_Chemical(String rec_Chemical) {
+        this.rec_Chemical = rec_Chemical;
     }
 }

@@ -153,7 +153,7 @@ public class LoanActivity extends BaseActivity {
 
                        }
                    } else {
-                       showDialog(LoanActivity.this, getString(R.string.enter_loan_amount));
+                       showDialog(LoanActivity.this, getString(R.string.enter_loan));
                    }
                }
                else {

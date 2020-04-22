@@ -96,7 +96,7 @@ public class PaymentFragment extends BaseFragment {
     public static final String PROGRESS_UPDATE = "progress_update";
     private static final int PERMISSION_REQUEST_CODE = 1;
 
-    DecimalFormat dff = new DecimalFormat("######0.00");
+    DecimalFormat dff = new DecimalFormat("######0");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -480,7 +480,7 @@ public class PaymentFragment extends BaseFragment {
 
                                 ffb.setText((df.format(TotalQuanitity)));
                                 if (paymentResponseModel.getResult().getTotalBalance() == null) {
-                                    totalBalance.setText("0.00");
+                                    totalBalance.setText("0");
 
                                 } else {
                                     totalBalance.setText(dff.format(paymentResponseModel.getResult().getTotalBalance()));

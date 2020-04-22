@@ -84,6 +84,7 @@ import rx.schedulers.Schedulers;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class  Visit_request_Activity extends BaseActivity implements View.OnClickListener {
     String location, landmarkCode, plot_id, Farmer_code,date_of_plandation,clustername;
@@ -135,6 +136,11 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
         setContentView(R.layout.activity_visit_request_);
         requestMultiplePermissions();
         Bundle extras = getIntent().getExtras();
@@ -1108,7 +1114,7 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
         chronometer.stop();
         chronometer.setBase(SystemClock.elapsedRealtime());
         //showing the play button
-        Toast.makeText(this, "Recording saved successfully.", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Recording saved successfully.", Toast.LENGTH_SHORT).show();
     }
 
 

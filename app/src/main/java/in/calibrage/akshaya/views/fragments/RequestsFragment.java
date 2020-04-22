@@ -55,6 +55,7 @@ public class RequestsFragment extends Fragment implements MyReqListAdapter.Reque
     }
 
     private void fetchContacts() {
+        request_List.clear();
 
         int[] covers = new int[]{
                 R.drawable.labour,
@@ -67,11 +68,11 @@ public class RequestsFragment extends Fragment implements MyReqListAdapter.Reque
         };
         Request_settings a = new Request_settings( getResources().getString(R.string.lab_req), covers[0]);
         request_List.add(a);
-
-        a = new Request_settings( getResources().getString(R.string.pole_req), covers[2]);
-        request_List.add(a);
         a = new Request_settings( getResources().getString(R.string.fert_req), covers[1]);
         request_List.add(a);
+        a = new Request_settings( getResources().getString(R.string.pole_req), covers[2]);
+        request_List.add(a);
+
         a = new Request_settings(getResources().getString(R.string.quick_req), covers[3]);
         request_List.add(a);
         a = new Request_settings(getResources().getString(R.string.visit_req), covers[4]);

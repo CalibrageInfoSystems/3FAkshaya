@@ -90,6 +90,7 @@
                 android:paddingRight="2dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/black"
+                android:visibility="gone"
                 android:layout_below="@+id/DosageLabel"
                 android:textStyle="bold"
                 android:textSize="@dimen/album_title" />
@@ -100,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:hint=""
                 android:maxLength="10"
+                android:visibility="gone"
                 android:fontFamily="@font/hind_semibold"
                 android:layout_below="@id/DosageLabel"
                 android:paddingLeft="5dp"

@@ -140,7 +140,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
                 pdf_url =list.get(position).getFileUrl();
                 Log.e("url===",pdf_url);
                 selectedPO = position;
-                showCondetailsDialog(selectedPO);
+                showCondetailsDialog(selectedPO,pdf_url);
 
 
             }
@@ -148,20 +148,20 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         });
     }
 
-    private void showCondetailsDialog(int selectedPO) {
+    private void showCondetailsDialog(int selectedPO,String pdf_url) {
 
         final Dialog dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.pdf_dialog);
-        final WebView webView = dialog.findViewById(R.id.webView);
+        final WebView webview = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setSupportZoom(true);
+        webview.getSettings().setBuiltInZoomControls(true);
+        webview.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf_url);
 
-        mdilogue.show();
-       // WebView webView = (WebView) rootView.findViewById(R.id.web_view);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setSupportZoom(true);
+
 
 //        webView.setWebViewClient(new WebViewClient() {
 //            @Override
@@ -170,25 +170,25 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
 //                return false;
 //            }
 //        });
-        webView.setWebViewClient(new WebViewClient() {
+        webview.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
 
-                webView.loadUrl("javascript:(function() { " +
+                webview.loadUrl("javascript:(function() { " +
                         "document.querySelector('[role=\"toolbar\"]').remove();})()");
                 mdilogue.show();
             }
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                webView.loadUrl("javascript:(function() { " +
+                webview.loadUrl("javascript:(function() { " +
                         "document.querySelector('[role=\"toolbar\"]').remove();})()");
                 mdilogue.dismiss();
             }
         });
 
-        webView.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url="  + pdf_url);
+       // webView.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url="  + pdf_url);
 //        mdilogue.show();
 //        final Dialog dialog = new Dialog(mContext);
 ////        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

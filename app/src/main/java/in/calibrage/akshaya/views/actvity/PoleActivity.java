@@ -315,14 +315,9 @@ Log.e("myProductsList===",myProductsList.toString());
                 superHero.setPrice(json.getInt("priceInclGST"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
-                int size = json.getInt("size");
-                Log.d(TAG, "--- Size ----" + size);
-//
-                superHero.setSize(size);
-
 
                 superHero.setId(json.getInt("id"));
-                superHero.setUomType(json.getString("uomType"));
+
                 superHero.setAvail_quantity(json.getInt("availableQuantity"));
                 superHero.setProduct_code(json.getString("code"));
 
@@ -334,13 +329,29 @@ Log.e("myProductsList===",myProductsList.toString());
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
 
+//                String gst =json.getString("gstPercentage");
+//                Log.e("gst====", String.valueOf(gst));
+//
+//
                 String gst =json.getString("gstPercentage");
                 Log.e("gst====", String.valueOf(gst));
 
                 if( String.valueOf(gst)!= null) {
                     superHero.setgst(gst);
                 }
+                String uoms = json.getString("uomType");
+                // superHero.setUomType(json.getString("uomType"));
 
+                if (String.valueOf(uoms) != null) {
+                    superHero.setUomType(uoms);
+                }
+                int size = json.getInt("size");
+                if (String.valueOf(size) != null){
+
+                Log.d(TAG, "--- Size ----" + size);
+//}
+                superHero.setSize(size);
+            }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

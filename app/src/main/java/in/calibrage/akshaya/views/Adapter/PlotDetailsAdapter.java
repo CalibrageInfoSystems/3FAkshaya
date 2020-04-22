@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -50,8 +51,10 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
         holder.textViewplotId.setText(": " + recomm_Set.get(position).getSurveyNumber());
         holder.textViewpalmArea.setText(": " + df.format(recomm_Set.get(position).getPalmArea()) + " " + "Ha ("+ df.format(recomm_Set.get(position).getPalmArea()*2.5) + " Acre)");
         holder.textViewLocation.setText(": " + recomm_Set.get(position).getVillageName());
-
+       if( recomm_Set.get(position).getLandMark()!=null)
         holder.plotLandmark.setText(": " + recomm_Set.get(position).getLandMark());
+       else
+           holder.landmark_layout.setVisibility(View.GONE);
         holder.plot_Mandal.setText(": " + recomm_Set.get(position).getMandalName());
         holder.plotvillage.setText(": " + recomm_Set.get(position).getVillageName());
         holder.plot_District.setText(": " + recomm_Set.get(position).getDistrictName());
@@ -86,14 +89,14 @@ public class PlotDetailsAdapter extends RecyclerView.Adapter<PlotDetailsAdapter.
         public TextView plot_code, date_plantation,cluster_offcer;
         public CardView card_view;
         public TextView plotLandmark, plot_Mandal, plot_State, plot_District;
-
+LinearLayout landmark_layout;
         public ViewHolder(View itemView) {
             super(itemView);
             this.textViewplotId = (TextView) itemView.findViewById(R.id.surveynumber);
             this.textViewpalmArea = (TextView) itemView.findViewById(R.id.plothectrage);
             this.textViewLocation = (TextView) itemView.findViewById(R.id.plotaddress);
             this.cluster_offcer = (TextView) itemView.findViewById(R.id.cluster_offcer);
-
+this.landmark_layout =(LinearLayout)itemView.findViewById(R.id.landmark_layout) ;
 
             this.plotLandmark = (TextView) itemView.findViewById(R.id.plotLandmark);
             this.plot_Mandal = (TextView) itemView.findViewById(R.id.plotmandal);

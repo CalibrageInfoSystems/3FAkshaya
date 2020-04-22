@@ -96,7 +96,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     private uprootment_Adapter UAdapter;
 
     private fertilizer_Adapter fAdapter;
-    private TextView Age, id_plot, area,landMark,cluster_name;
+    private TextView Age, id_plot, area,landMark,cluster_name,landmarkLabel;
     //
    private fertilizerRecommendation_Adapter fertadapter;
 //
@@ -130,7 +130,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
     public TextView seedsPlanted,prevPalmsCount,plamsCount,isTreesMissing,missingTreesCount,reasonType,expectedPlamsCount,comments;
     // ImageView thumbnail;
     public TextView comment_label,reason_label,yop;
-    String location,landmarkCode,date_of_plandation;
+    public String location,landmarkCode,date_of_plandation;
     ImageView backImg,home_btn;
     double plot_Age,plotarea;
     DecimalFormat dec = new DecimalFormat("####0.00");
@@ -157,7 +157,9 @@ public class CropMaintanceVisitActivity extends BaseActivity {
             landmarkCode = extras.getString("landMark");
             clustter = extras.getString("cluster_name");
             date_of_plandation=extras.getString("date_of_plandation");
+            Log.e("landmarkCode==========",landmarkCode);
         }
+
         intview();
         setViews();
         if (isOnline())
@@ -211,6 +213,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         id_plot = findViewById(R.id.plot);
         area = findViewById(R.id.palmArea);
         landMark = findViewById(R.id.landmark);
+        landmarkLabel=findViewById(R.id.landmarkLabel);
         yop=findViewById(R.id.yop);
     }
 
@@ -254,7 +257,12 @@ public class CropMaintanceVisitActivity extends BaseActivity {
         Age.setText(dec.format(plot_Age )+" Ha (" +dec.format(plotarea )+" Acre)"  );
         area.setText(location);
         id_plot.setText(plot_id);
+        if(landmarkCode !=null)
         landMark.setText(landmarkCode);
+        else {
+            landmarkLabel.setVisibility(View.GONE);
+            landMark.setVisibility(View.GONE);
+        }
         yop.setText(date_of_plandation);
         cluster_name.setText(clustter);
 
@@ -480,6 +488,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
                             dis_List.setUOMName(json.getString("uomName"));
                             dis_List.setChemical(json.getString("chemical"));
                             dis_List.setComments(json.getString("comments"));
+                            dis_List.setRec_Chemical(json.getString("recommendedChemical"));
 
 
 
