@@ -21,6 +21,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -54,7 +55,7 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private android.support.v7.widget.Toolbar toolbar;
+    private Toolbar toolbar;
     private BottomNavigationView bottom_navigation;
     private AlertDialog alert, alertDialog;
     private DrawerLayout dl;
@@ -98,8 +99,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         dl.addDrawerListener(t);
         t.syncState();
         bottom_navigation = findViewById(R.id.bottom_navigation);
-        View headerLayout =
-                nv.inflateHeaderView(R.layout.navigation_header);
+        View headerLayout = nv.inflateHeaderView(R.layout.navigation_header);
         img_profile = headerLayout.findViewById(R.id.img_profile);
         txt_name = headerLayout.findViewById(R.id.txt_name);
         txt_phone = headerLayout.findViewById(R.id.txt_phone);

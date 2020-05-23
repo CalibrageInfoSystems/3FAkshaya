@@ -240,13 +240,18 @@
 
     <!--Loan-->
     <string name="loan_req">Request for Loan</string>
-    <string name="loan_message">1.QuickPay is a special feature provided by 3F Oil Palm so that our farmers can get payment for their FFB supplied within 24 hours.\n2.Complete calculation and value of payment will be mentioned in the receipt in the app. This requires a digital signature of the farmer, which signifies adherence to all terms and conditions.
-\n3. To avail this offer, there is  flat transaction fee on actuals and per ton quickpay fee.\n4. Quickpay will be paid based on the prevelant adhoc rate.In case adhoc rate is not yet known, quickpay will be based on an assumed adhoc rate, but it will be adjusted based on Government Order rate, as and when declared. When the Invoice Rate is declared, that adjustment will also take place, and will be paid or deducted along with future payments (normal or quickpay)\n5. Atleast 1 unpaid collection is required in order to request for QuickPay.In case of more than 1 unpaid collection, quickpay request will happen on all pending unpaid collections.
-\n6. All deductions from farmer or pending payments to farmer such as rate adjustments, fertilizers, poles and labour requests that were done against FFB and are due by the farmer to the company before the date of request of QuickPay will be reduced from the FFB payment while making quickpay payment.
-\n7. In order to be eligible for quickpay, FFB payment value should be greater than any against FFB deductions
-\n8. If quickpay has already been requested, another quickpay request cannot be requested until the 1st one is completed.
-\n9. Once Quickpay has been requested, it cannot be cancelled.
-\n10. Quickpay is not available on the date on which the company is processing regular farmer’s payment. Those dates will come twice a month accoding to regular pay cycle. </string>
+    <string name="loan_message">1. Quick Pay is a special feature provided by 3F Oil Palm so that Our farmers can get payment for their FFB supplied within 24 hrs.
+        \n2. Complete calculation and value of payment will be mentioned in the receipt in the app. The receipt requires a digital signature of the farmer which signifies agreement to all terms and conditions. In case a 3FOP representative is raising a Quick Pay request on behalf of the farmer, then a 4 digit PIN number will be sent to the registered mobile number of the farmer. This will act as the confirmation to the agreement to all terms and conditions.
+        \n3. To avail this offer, there is a flat transaction fee On actuals and per ton Quick Pay fee.
+        \n4. Quick Pay will be paid based on the prevalent adhoc rate.In case adhoc rate is not yet known,Quick Pay will be based on an assumed adhoc rateBut it will be adjusted based on Government Order rate,
+          As and when declared. When the Invoice Rate is declared,That adjustment will also take place, and will be paid Or deducted along with future payments (normal or Quick Pay).
+        \n5. At least 1 unpaid collection is required in order to request for Quick Pay.In case of more than 1 unpaid collection,Quick Pay request will happen on all pending unpaid collections.
+        \n6. All deductions from farmer or pending payments to farmer such as rate adjustments,Fertilizers, poles and labour requests that were done against FFB and are due by theFarmer to the company before the date of request of Quick Pay Will be reduced from the FFB payment while making Quick Pay payment.
+        \n7. In order to be eligible for Quick Pay,FFB payment value should be greater than any against FFB deductions.
+        \n8. If Quick Pay has already been requested,Another Quick Pay request cannot be requested until the 1st one is completed.
+        \n9. Once Quick Pay has been requested, it cannot be cancelled.
+        \n10. Quick Pay is not available on the date on which the company is processing regular farmer’s payment.Those dates will come twice a month according to regular pay cycle.
+    </string>
     <string name="got_it">Got It</string>
     <string name="terms_conditionss">Terms &amp; Conditions</string>
     <string name="success_Loan">Loan Request Submitted Successfully</string>
@@ -449,7 +454,7 @@
     <string name="Package">Package</string>
     <string name="discount">Discount(%)</string>
     <string name="disc">Offer Applied</string>
-    <string name="text">Harvesting service will be provided for every 10 days in PEAK Season(MAY TO SEP) and 15 days in LEAN Season(OCT TO APRIL).</string>
+    <string name="text">Harvesting service will be provided for every 10 days in PEAK Season(APRIL TO SEP) and 15 days in LEAN Season(OCT TO MARCH).</string>
 
     <string name="thirty_days">Last 30 days</string>
     <string name="currentfinicial">Current Financial Year</string>
