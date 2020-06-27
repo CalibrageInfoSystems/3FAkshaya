@@ -410,32 +410,32 @@ public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapte
         //  Discount_percentage.setText(discount + "");
         service_type.setText(labourlist_Set.get(selectedPO).getServiceTypes());
         status.setText(labourlist_Set.get(selectedPO).getStatusType());
-        if (labourlist_Set.get(selectedPO).getPruningAmount() != 0.0) {
-            prunning_label.setVisibility(View.VISIBLE);
-            prun_amount.setText(df.format(labourlist_Set.get(selectedPO).getPruningAmountWithChange()));
-        } else {
-            prunning_label.setVisibility(View.GONE);
-        }
-        if (labourlist_Set.get(selectedPO).getHarvestingAmount() != 0.0 ) {
-            Harvesting_label.setVisibility(View.VISIBLE);
-            harv_amount.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingAmountWithCharge()));
-        } else {
-            Harvesting_label.setVisibility(View.GONE);
-        }
+//        if (labourlist_Set.get(selectedPO).getPruningAmount() != 0.0) {
+//            prunning_label.setVisibility(View.VISIBLE);
+//            prun_amount.setText(df.format(labourlist_Set.get(selectedPO).getPruningAmountWithChange()));
+//        } else {
+//            prunning_label.setVisibility(View.GONE);
+//        }
+//        if (labourlist_Set.get(selectedPO).getHarvestingAmount() != 0.0 ) {
+//            Harvesting_label.setVisibility(View.VISIBLE);
+//            harv_amount.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingAmountWithCharge()));
+//        } else {
+//            Harvesting_label.setVisibility(View.GONE);
+//        }
 
         pack_name.setText(labourlist_Set.get(selectedPO).getDuration() + "");
-        if (labourlist_Set.get(selectedPO).getPruningWithIntercropAmount() != 0.0) {
-            prunning_intercrop_label.setVisibility(View.VISIBLE);
-            pruning_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getPruningWithIntercropAmountAndCharge()));
-        } else {
-            prunning_intercrop_label.setVisibility(View.GONE);
-        }
-        if (labourlist_Set.get(selectedPO).getHarvestingWithIntercropAmount() != 0.0) {
-            harvesting_intercrop_label.setVisibility(View.VISIBLE);
-            harvest_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingWithIntercropAmountAndCharge()));
-        } else {
-            harvesting_intercrop_label.setVisibility(View.GONE);
-        }
+//        if (labourlist_Set.get(selectedPO).getPruningWithIntercropAmount() != 0.0) {
+//            prunning_intercrop_label.setVisibility(View.VISIBLE);
+//            pruning_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getPruningWithIntercropAmountAndCharge()));
+//        } else {
+//            prunning_intercrop_label.setVisibility(View.GONE);
+//        }
+//        if (labourlist_Set.get(selectedPO).getHarvestingWithIntercropAmount() != 0.0) {
+//            harvesting_intercrop_label.setVisibility(View.VISIBLE);
+//            harvest_intercrop.setText(df.format(labourlist_Set.get(selectedPO).getHarvestingWithIntercropAmountAndCharge()));
+//        } else {
+//            harvesting_intercrop_label.setVisibility(View.GONE);
+//        }
         try {
 
 
@@ -479,74 +479,74 @@ else{
 
 
 
+//
+//        if (prun_amount.getText() != null && labourlist_Set.get(selectedPO).getTreesCount() != null && !prun_amount.getText().toString().isEmpty()&& labourlist_Set.get(selectedPO).getPruningAmount() != 0.0) {
+//
+//            double prunning = Double.parseDouble(prun_amount.getText() + "");
+//            double tress = Double.parseDouble(labourlist_Set.get(selectedPO).getTreesCount() + "");
+//            total_prunning = tress * prunning;
+//            total_prunning_amount.setText(df.format(total_prunning));
+//            int value = (int) Math.round((Double) labourlist_Set.get(selectedPO).getTreesCount());
+//            trees_count.setText(value + "");
+//            Log.e("tress====236", String.valueOf(total_prunning));
+//        } else {
+//            trees_count.setText("0");
+//            total_prunning_amount.setText("0.00");
+//        }
+//        if (pruning_intercrop.getText() != null && labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() != null && !pruning_intercrop.getText().toString().isEmpty()&& labourlist_Set.get(selectedPO).getPruningWithIntercropAmount() != 0.0) {
+//            //Code to perform calculations
+//
+//            double prunning_intercrop = Double.parseDouble(pruning_intercrop.getText() + "");
+//            double tress_inter = Double.parseDouble(labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() + "");
+//            intercrop_prunning = tress_inter * prunning_intercrop;
+//            intercrop_amount.setText(df.format(intercrop_prunning));
+//            int value = (int) Math.round((Double) labourlist_Set.get(selectedPO).getTreesCountWithIntercrop());
+//            intercrop_tresscount.setText(value + "");
+//            Log.e("tress====424", String.valueOf(intercrop_prunning));
+//        } else {
+//            intercrop_tresscount.setText("0");
+//            intercrop_amount.setText("0.00");
+//        }
 
-        if (prun_amount.getText() != null && labourlist_Set.get(selectedPO).getTreesCount() != null && !prun_amount.getText().toString().isEmpty()&& labourlist_Set.get(selectedPO).getPruningAmount() != 0.0) {
-
-            double prunning = Double.parseDouble(prun_amount.getText() + "");
-            double tress = Double.parseDouble(labourlist_Set.get(selectedPO).getTreesCount() + "");
-            total_prunning = tress * prunning;
-            total_prunning_amount.setText(df.format(total_prunning));
-            int value = (int) Math.round((Double) labourlist_Set.get(selectedPO).getTreesCount());
-            trees_count.setText(value + "");
-            Log.e("tress====236", String.valueOf(total_prunning));
-        } else {
-            trees_count.setText("0");
-            total_prunning_amount.setText("0.00");
-        }
-        if (pruning_intercrop.getText() != null && labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() != null && !pruning_intercrop.getText().toString().isEmpty()&& labourlist_Set.get(selectedPO).getPruningWithIntercropAmount() != 0.0) {
-            //Code to perform calculations
-
-            double prunning_intercrop = Double.parseDouble(pruning_intercrop.getText() + "");
-            double tress_inter = Double.parseDouble(labourlist_Set.get(selectedPO).getTreesCountWithIntercrop() + "");
-            intercrop_prunning = tress_inter * prunning_intercrop;
-            intercrop_amount.setText(df.format(intercrop_prunning));
-            int value = (int) Math.round((Double) labourlist_Set.get(selectedPO).getTreesCountWithIntercrop());
-            intercrop_tresscount.setText(value + "");
-            Log.e("tress====424", String.valueOf(intercrop_prunning));
-        } else {
-            intercrop_tresscount.setText("0");
-            intercrop_amount.setText("0.00");
-        }
-
-        if (harvest_intercrop.getText() != null && labourlist_Set.get(selectedPO).getNetWeightIntercrop() != null&& !harvest_intercrop.getText().toString().isEmpty() && labourlist_Set.get(selectedPO).getHarvestingWithIntercropAmount() != 0.0) {
-
-            double harv_intercrop = Double.parseDouble(harvest_intercrop.getText() + "");
-            double intercrop_net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeightIntercrop() + "");
-            intercrop_harvesting = intercrop_net_weight * harv_intercrop;
-            intercrop_harv_amount.setText(df.format(intercrop_harvesting));
-            intercrop_netweight.setText(dff.format(intercrop_net_weight));
-            Log.e("tress====424", String.valueOf(intercrop_prunning));
-        } else {
-            intercrop_harv_amount.setText("0.00");
-            intercrop_netweight.setText("0.000");
-        }
-        if (harv_amount.getText() != null && labourlist_Set.get(selectedPO).getNetWeight() != null && labourlist_Set.get(selectedPO).getServiceChargePercentage() != null && labourlist_Set.get(selectedPO).getHarvestingAmount() != 0.0 ) {
-            double harvesting = Double.parseDouble(harv_amount.getText() + "");
-            double net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeight() + "");
-            netweight.setText(dff.format(net_weight));
-            total_hav = net_weight * harvesting;
-            total_harvesting_amount.setText(df.format(total_hav));
-//            Total_amount = total_prunning + total_hav+intercrop_prunning +intercrop_harvesting;
-//            Log.e("tress====247", String.valueOf(Total_amount));
-//            double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
-//            Log.e("percentage====252", String.valueOf(percentage));
-//            double Service_amount = (Total_amount * percentage) / 100;
-//            Log.e("percentage====254", String.valueOf(Service_amount));
-//            service_amount.setText(dff.format(Service_amount));
-//            double discount_amount =(Total_amount * discount)/100;
-//            Log.e("discount_amount==",discount_amount+"");
-//            Discount_amount.setText(discount_amount+"");
-
-        } else {
-            netweight.setText("0.000");
-            total_harvesting_amount.setText("0.00");
-            //   service_amount.setText("0.00");
-            //  Discount_amount.setText(("0.00"));
-            //  label_netweight.setVisibility(View.GONE);
-//            label_harv.setVisibility(View.GONE);
-//            label_amount_service.setVisibility(View.GONE);
-
-        }
+//        if (harvest_intercrop.getText() != null && labourlist_Set.get(selectedPO).getNetWeightIntercrop() != null&& !harvest_intercrop.getText().toString().isEmpty() && labourlist_Set.get(selectedPO).getHarvestingWithIntercropAmount() != 0.0) {
+//
+//            double harv_intercrop = Double.parseDouble(harvest_intercrop.getText() + "");
+//            double intercrop_net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeightIntercrop() + "");
+//            intercrop_harvesting = intercrop_net_weight * harv_intercrop;
+//            intercrop_harv_amount.setText(df.format(intercrop_harvesting));
+//            intercrop_netweight.setText(dff.format(intercrop_net_weight));
+//            Log.e("tress====424", String.valueOf(intercrop_prunning));
+//        } else {
+//            intercrop_harv_amount.setText("0.00");
+//            intercrop_netweight.setText("0.000");
+//        }
+//        if (harv_amount.getText() != null && labourlist_Set.get(selectedPO).getNetWeight() != null && labourlist_Set.get(selectedPO).getServiceChargePercentage() != null && labourlist_Set.get(selectedPO).getHarvestingAmount() != 0.0 ) {
+//            double harvesting = Double.parseDouble(harv_amount.getText() + "");
+//            double net_weight = Double.parseDouble(labourlist_Set.get(selectedPO).getNetWeight() + "");
+//            netweight.setText(dff.format(net_weight));
+//            total_hav = net_weight * harvesting;
+//            total_harvesting_amount.setText(df.format(total_hav));
+////            Total_amount = total_prunning + total_hav+intercrop_prunning +intercrop_harvesting;
+////            Log.e("tress====247", String.valueOf(Total_amount));
+////            double percentage = Double.parseDouble(labourlist_Set.get(selectedPO).getServiceChargePercentage());
+////            Log.e("percentage====252", String.valueOf(percentage));
+////            double Service_amount = (Total_amount * percentage) / 100;
+////            Log.e("percentage====254", String.valueOf(Service_amount));
+////            service_amount.setText(dff.format(Service_amount));
+////            double discount_amount =(Total_amount * discount)/100;
+////            Log.e("discount_amount==",discount_amount+"");
+////            Discount_amount.setText(discount_amount+"");
+//
+//        } else {
+//            netweight.setText("0.000");
+//            total_harvesting_amount.setText("0.00");
+//            //   service_amount.setText("0.00");
+//            //  Discount_amount.setText(("0.00"));
+//            //  label_netweight.setVisibility(View.GONE);
+////            label_harv.setVisibility(View.GONE);
+////            label_amount_service.setVisibility(View.GONE);
+//
+//        }
         /*if (total_prunning != 0.0 || total_hav != 0.0 || intercrop_prunning != 0.0 || intercrop_harvesting != 0.0) {
             Total_amount = total_prunning + total_hav + intercrop_prunning + intercrop_harvesting;
             amount.setText( labourlist_Set.get(selectedPO).getNetWeightIntercrop() );

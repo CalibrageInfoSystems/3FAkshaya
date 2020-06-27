@@ -661,7 +661,7 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginEnd="2dp"
                     android:layout_marginTop="3sp"
-
+android:visibility="gone"
                     android:orientation="horizontal">
 
 
@@ -746,7 +746,7 @@
                     android:orientation="vertical"
                     android:layout_below="@+id/lin_collection_ids"
                     android:id="@id/prunning_label"
-
+android:visibility="gone"
                     android:layout_height="wrap_content">
                     <RelativeLayout
                         android:id="@+id/lin_six"
@@ -914,7 +914,7 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
-
+                    android:visibility="gone"
                     android:id="@+id/harvest_label"
                     android:layout_below="@+id/prunning_label"
 
