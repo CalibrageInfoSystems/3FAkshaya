@@ -377,17 +377,18 @@ public class Fert_godown_list extends BaseActivity {
                             }
                             e.printStackTrace();
                         }
-                        mdilogue.cancel();
+                        mdilogue.dismiss();
                     }
 
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void onNext(FertResponse fertResponse) {
 
-                        mdilogue.cancel();
+
 
                         if (fertResponse.getIsSuccess()) {
-
+                            mdilogue.dismiss();
+                            btn_submit.setEnabled(false);
 
                             // Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
 

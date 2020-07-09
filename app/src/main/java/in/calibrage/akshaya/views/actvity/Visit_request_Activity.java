@@ -446,9 +446,11 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
 
                     @Override
                     public void onNext(VisitresponseModel visitresponseModel) {
-                        mdilogue.dismiss();
+
 
                         if (visitresponseModel.getIsSuccess()) {
+                            mdilogue.dismiss();
+                            submit.setEnabled(false);
                             if (visitresponseModel.getAffectedRecords() == 0) {
                                 showDialog(Visit_request_Activity.this, visitresponseModel.getEndUserMessage());
                             } else {

@@ -21,6 +21,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,6 +39,7 @@ import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Field;
 
+import in.calibrage.akshaya.BuildConfig;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleTransform;
@@ -71,6 +73,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     String FragmentTAG;
     FloatingActionButton myFab;
     Integer mSelectedItem;
+    AppCompatTextView app_version;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -91,7 +95,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void init() {
-
+        app_version = findViewById(R.id.app_version);
         nv = (NavigationView) findViewById(R.id.nv);
         dl = (DrawerLayout) findViewById(R.id.activity_main);
         t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.app_name);
@@ -114,6 +118,9 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void setViews() {
+
+        String versionName = BuildConfig.VERSION_NAME;
+        app_version.setText(getResources().getString(R.string.App_version)+ " "+versionName);
         BottomNavigationViewHelper bottomNavigationViewHelper = new BottomNavigationViewHelper();
         bottomNavigationViewHelper.disableShiftMode(bottom_navigation);
         initToolBar();

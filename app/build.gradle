@@ -7,8 +7,8 @@ android {
         applicationId "in.calibrage.akshaya"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 3
-        versionName "2.0"
+        versionCode 4
+        versionName "3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -92,6 +92,9 @@ dependencies {
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.5.0'
+
+
+    implementation 'com.ms-square:expandableTextView:0.1.4'
     //  implementation 'com.android.support:multidex:1.0.3'
 
     // implementation 'com.android.support:support-v4:26.1.0'

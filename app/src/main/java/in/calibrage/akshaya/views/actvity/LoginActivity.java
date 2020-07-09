@@ -180,9 +180,11 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onNext(FarmerResponceModel farmerResponceModel) {
-                        mdilogue.cancel();
+
                         Log.d(TAG, "onNext: " + farmerResponceModel);
                         if (farmerResponceModel.getIsSuccess()) {
+                            mdilogue.dismiss();
+                            loginBtn.setEnabled(false);
                             if (farmerResponceModel.getResult()!=null) {
                                 mobile_number = farmerResponceModel.getResult();
 

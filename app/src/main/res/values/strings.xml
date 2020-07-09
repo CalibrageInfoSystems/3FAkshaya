@@ -251,6 +251,8 @@
         \n8. If Quick Pay has already been requested,Another Quick Pay request cannot be requested until the 1st one is completed.
         \n9. Once Quick Pay has been requested, it cannot be cancelled.
         \n10. Quick Pay is not available on the date on which the company is processing regular farmer’s payment.Those dates will come twice a month according to regular pay cycle.
+        \n11.In case labour service or product purchase done recently against FFB,it might not show in this payout statementbecause it is still under process. However,it will be deducted during
+        Quick Pay payout.For details, pls see your farmer ledger.
     </string>
     <string name="got_it">Got It</string>
     <string name="terms_conditionss">Terms &amp; Conditions</string>
@@ -518,6 +520,7 @@
     <string name="unableselect">Unable to select This Month</string>
     <string name="downloaded">Downloaded Successfully</string>
     <string name="enter_loan">Loan Amount should be greater than 0</string>
+    <string name="App_version">App Version : </string>
 
     />
     <!-- we need to use video ids instead of video link -->

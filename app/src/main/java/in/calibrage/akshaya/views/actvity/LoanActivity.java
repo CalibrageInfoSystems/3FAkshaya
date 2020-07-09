@@ -225,7 +225,8 @@ public class LoanActivity extends BaseActivity {
 
 
                         if (loanResponse.getIsSuccess()) {
-
+                            mdilogue.dismiss();
+                            loan_Btn.setEnabled(false);
                             String Amount = amount.getText().toString();
                             String Reason = reason.getText().toString();
                             List<MSGmodel> displayList = new ArrayList<>();

@@ -301,9 +301,10 @@ public class OtpActivity extends BaseActivity {
 
                     @Override
                     public void onNext(final FarmerOtpResponceModel farmerOtpResponceModel) {
-                        mdilogue.dismiss();
-                        if (farmerOtpResponceModel.getIsSuccess()) {
 
+                        if (farmerOtpResponceModel.getIsSuccess()) {
+                            mdilogue.dismiss();
+                            sub_Btn.setEnabled(false);
 //                            if (null != farmerOtpResponceModel.getResult().getFarmerDetails() && farmerOtpResponceModel.getResult().getFarmerDetails().size() > 0) {
                                 new Handler().postDelayed(new Runnable() {
                                     @Override

@@ -893,6 +893,9 @@ boolean result;
                     @Override
                     public void onNext(LobourResponse lobourResponse) {
                         if (lobourResponse.getIsSuccess()) {
+                            mdilogue.dismiss();
+                            button_submit.setEnabled(false);
+
                             new Handler().postDelayed(new Runnable() {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override

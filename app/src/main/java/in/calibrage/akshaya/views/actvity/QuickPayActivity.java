@@ -238,6 +238,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     }
 
     private void CanRaiseRequest() {
+        mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getRaiseRequest(APIConstantURL.CanRaiseRequest + Farmer_code + "/" + null + "/" + 13)
                 .subscribeOn(Schedulers.newThread())
@@ -267,7 +268,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
                     @Override
                     public void onNext(RaiseRequest raiseRequest) {
-
+                        mdilogue.dismiss();
                         if (raiseRequest.getIsSuccess()){
                             Log.e("test=== ",raiseRequest.getIsSuccess()+"");
                             new Handler().postDelayed(new Runnable() {

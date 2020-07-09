@@ -81,6 +81,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     TextView ffbCostTxt, convenienceChargeTxt, closingBalanceTxt, totalAmount, text_flat_charge, text_quntity, text_quickpay_fee;
     String Farmer_code;
     private Subscription mSubscription;
+    Button dialogButton;
     ImageView backImg, home_btn;
     Button submit;
     private SpotsDialog mdilogue;
@@ -236,7 +237,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
             }
         });
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+         dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
         // if button is clicked, close the custom dialog
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -443,7 +444,10 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                         @Override
                         public void onNext(final QuickPayResponce quickPayResponce) {
+
                             if (quickPayResponce.getIsSuccess()) {
+                                mdilogue.dismiss();
+                                dialogButton.setEnabled(false);
                                 result = quickPayResponce.getResult();
 
                               showSuccesspdf(result);

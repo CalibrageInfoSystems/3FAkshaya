@@ -354,10 +354,10 @@ public class pole_godown_list extends BaseActivity  {
                     @Override
                     public void onNext(FertResponse fertResponse) {
 
-                        mdilogue.cancel();
 
                         if (fertResponse.getIsSuccess()) {
-
+                            mdilogue.dismiss();
+                            btn_submit.setEnabled(false);
                             new Handler().postDelayed(new Runnable() {
                                 @RequiresApi(api = Build.VERSION_CODES.M)
                                 @Override

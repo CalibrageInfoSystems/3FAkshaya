@@ -85,5 +85,35 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/navigation_menu">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:fontFamily="@font/hind_semibold"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/white"
+                android:text="" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:id="@+id/app_version"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="5dp"
+                android:gravity="right"
+                android:fontFamily="@font/hind_semibold"
+                android:textColor="@color/white"
+                android:text="@string/App_version"/>
+        </RelativeLayout>
     </android.support.design.widget.NavigationView>
+
+
 </android.support.v4.widget.DrawerLayout>
