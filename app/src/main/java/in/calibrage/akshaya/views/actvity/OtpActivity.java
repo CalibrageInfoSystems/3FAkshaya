@@ -61,6 +61,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 import static in.calibrage.akshaya.service.APIConstantURL.AddAppInstallation;
 
 public class OtpActivity extends BaseActivity {
@@ -83,9 +84,10 @@ public class OtpActivity extends BaseActivity {
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);

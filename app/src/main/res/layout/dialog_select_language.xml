@@ -67,6 +67,28 @@ android:layout_margin="@dimen/margin_10"
             android:textColor="@color/white_new"
             android:layout_marginBottom="10dp"
             android:textSize="18sp" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/rbTelugu"
+
+            android:layout_margin="@dimen/margin_10"
+            android:background="@color/light_gray" />
+
+        <TextView
+            android:id="@+id/rbkannada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view2"
+            android:fontFamily="@font/hind_semibold"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/kannada_str"
+
+            android:textColor="@color/white_new"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp" />
     </RelativeLayout>
 
 

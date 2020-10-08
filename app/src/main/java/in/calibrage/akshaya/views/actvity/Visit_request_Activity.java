@@ -107,7 +107,7 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
     Integer cluster_Id;
     private List<Bitmap> images = new ArrayList<>();
     DecimalFormat dec = new DecimalFormat("####0.00");
-    String currentDate;
+    String currentDate,statename;
     Button submit;
     Button buttonStart, buttonStop, buttonPlayLastRecordAudio, buttonStopPlayingRecording;
     String AudioSavePathInDevice = "";
@@ -132,13 +132,15 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
     private int RECORD_AUDIO_REQUEST_CODE = 123;
     private boolean isPlaying = false;
     double plot_Age,plotareaa;
-
+String statecode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_visit_request_);
@@ -153,6 +155,8 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
             date_of_plandation = extras.getString("date_of_plandation");
             clustername = extras.getString("cluster_name");
             cluster_Id = extras.getInt("cluster_Id");
+            statecode = extras.getString("statecode");
+            statename = extras.getString("statename");
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getPermissionToRecordAudio();
@@ -705,6 +709,8 @@ public class  Visit_request_Activity extends BaseActivity implements View.OnClic
         header.setPalmArea(plot_Age + "");
         header.setPlotVillage(location);
         header.setClusterId(cluster_Id);
+        header.setStateCode(statecode);
+        header.setStateName(statename);
         header.setYearofPlanting(date_of_plandation);
         List<VisitRequestModel.VisitRepo> visitRepo = new ArrayList<>();
 

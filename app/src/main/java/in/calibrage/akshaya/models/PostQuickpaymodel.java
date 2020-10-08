@@ -57,6 +57,12 @@ public class PostQuickpaymodel {
     @SerializedName("collectionIds")
     @Expose
     private String collectionIds;
+    @SerializedName("stateCode")
+    @Expose
+    private String stateCode;
+    @SerializedName("stateName")
+    @Expose
+    private String stateName;
 
     public String getFarmerCode() {
         return farmerCode;
@@ -192,5 +198,21 @@ public class PostQuickpaymodel {
 
     public void setCollectionIds(String collectionIds) {
         this.collectionIds = collectionIds;
+    }
+
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 }

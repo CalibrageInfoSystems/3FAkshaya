@@ -80,6 +80,8 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_quick_pay);
@@ -156,8 +158,9 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     }
     private void IsQuickPayBlockDate() {
         mdilogue.show();
+        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getblockdate(APIConstantURL.IsQuickPayBlockDate)
+        mSubscription = service.getblockdate(APIConstantURL.IsQuickPayBlockDate+statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<IsQuickPayBlockDate>() {
@@ -304,6 +307,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
     private void getQuckPay() {
         mdilogue.show();
+
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getquick(APIConstantURL.GetUnPayedCollectionsByFarmerCode + Farmer_code)
                 .subscribeOn(Schedulers.newThread())

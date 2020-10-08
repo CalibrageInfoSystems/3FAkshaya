@@ -124,6 +124,10 @@ public class ListResult {
     @SerializedName("stateName")
     @Expose
     private String stateName;
+
+    @SerializedName("stateCode")
+    @Expose
+    private String stateCode;
     @SerializedName("statusTypeId")
     @Expose
     private Integer statusTypeId;
@@ -361,5 +365,13 @@ public class ListResult {
 
     public void setInterCrops(String interCrops) {
         this.interCrops = interCrops;
+    }
+
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
     }
 }}

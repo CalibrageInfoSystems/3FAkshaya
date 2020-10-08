@@ -36,7 +36,7 @@ public class EncyclopediaActivity extends BaseActivity {
     //region variables
     private static final String TAG = EncyclopediaActivity.class.getSimpleName();
     private int postTypeId;
-    private String titleName,telugu_title;
+    private String titleName,telugu_title,kannada_titles;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -51,6 +51,8 @@ public class EncyclopediaActivity extends BaseActivity {
 
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_encyclopedia);
@@ -77,6 +79,7 @@ public class EncyclopediaActivity extends BaseActivity {
             postTypeId = getIntent().getIntExtra("postTypeId", 0);
             titleName = getIntent().getStringExtra("name");
             telugu_title = getIntent().getStringExtra("teluguname");
+            kannada_titles = getIntent().getStringExtra("kannadanames");
             tabnames = getIntent().getStringArrayExtra("tabslist");
             SharedPrefsData.getInstance(this).updateIntValue(this,"count",tabnames.length);
             SharedPrefsData.getInstance(this).updateIntValue(this,"postTypeId",postTypeId);
@@ -89,6 +92,8 @@ public class EncyclopediaActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
         if (langID == 2)
         toolbar.setTitle(telugu_title);
+        else  if(langID == 3)
+            toolbar.setTitle(kannada_titles);
         else
             toolbar.setTitle(titleName);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

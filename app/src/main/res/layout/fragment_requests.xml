@@ -23,6 +23,16 @@ android:background="@color/white"
                 android:id="@+id/recyclerView">
 
             </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
+                android:id="@+id/no_data"
+                android:fontFamily="@font/hind_semibold"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="@string/no_services"
+                android:textColor="@color/colorOrange"
+                android:textSize="@dimen/margin_20" />
         </RelativeLayout>
     </FrameLayout>

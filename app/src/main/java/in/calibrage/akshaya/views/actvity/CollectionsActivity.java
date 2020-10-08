@@ -100,6 +100,8 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+         else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_collections);

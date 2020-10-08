@@ -73,139 +73,150 @@ public class GetActiveEncyclopediaCategoryDetails {
         this.exception = exception;
     }
 
-    public class ListResult {
 
-        @SerializedName("id")
-        @Expose
-        private Integer id;
-        @SerializedName("name")
-        @Expose
-        private String name;
-        @SerializedName("teluguName")
-        @Expose
-        private String teluguName;
-        @SerializedName("hindiName")
-        @Expose
-        private String hindiName;
-        @SerializedName("remarks")
-        @Expose
-        private String remarks;
-        @SerializedName("isActive")
-        @Expose
-        private Boolean isActive;
-        @SerializedName("createdByUserId")
-        @Expose
-        private Integer createdByUserId;
-        @SerializedName("createdBy")
-        @Expose
-        private String createdBy;
-        @SerializedName("createdDate")
-        @Expose
-        private String createdDate;
-        @SerializedName("updatedByUserId")
-        @Expose
-        private Integer updatedByUserId;
-        @SerializedName("updatedBy")
-        @Expose
-        private String updatedBy;
-        @SerializedName("updatedDate")
-        @Expose
-        private String updatedDate;
+public class ListResult {
 
-        public Integer getId() {
-            return id;
-        }
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("teluguName")
+    @Expose
+    private String teluguName;
+    @SerializedName("hindiName")
+    @Expose
+    private String hindiName;
+    @SerializedName("kannadaName")
+    @Expose
+    private String kannadaName;
+    @SerializedName("remarks")
+    @Expose
+    private String remarks;
+    @SerializedName("isActive")
+    @Expose
+    private Boolean isActive;
+    @SerializedName("createdByUserId")
+    @Expose
+    private Integer createdByUserId;
+    @SerializedName("createdBy")
+    @Expose
+    private String createdBy;
+    @SerializedName("createdDate")
+    @Expose
+    private String createdDate;
+    @SerializedName("updatedByUserId")
+    @Expose
+    private Integer updatedByUserId;
+    @SerializedName("updatedBy")
+    @Expose
+    private String updatedBy;
+    @SerializedName("updatedDate")
+    @Expose
+    private String updatedDate;
 
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getTeluguName() {
-            return teluguName;
-        }
-
-        public void setTeluguName(String teluguName) {
-            this.teluguName = teluguName;
-        }
-
-        public String getHindiName() {
-            return hindiName;
-        }
-
-        public void setHindiName(String hindiName) {
-            this.hindiName = hindiName;
-        }
-
-        public String getRemarks() {
-            return remarks;
-        }
-
-        public void setRemarks(String remarks) {
-            this.remarks = remarks;
-        }
-
-        public Boolean getIsActive() {
-            return isActive;
-        }
-
-        public void setIsActive(Boolean isActive) {
-            this.isActive = isActive;
-        }
-
-        public Integer getCreatedByUserId() {
-            return createdByUserId;
-        }
-
-        public void setCreatedByUserId(Integer createdByUserId) {
-            this.createdByUserId = createdByUserId;
-        }
-
-        public String getCreatedBy() {
-            return createdBy;
-        }
-
-        public void setCreatedBy(String createdBy) {
-            this.createdBy = createdBy;
-        }
-
-        public String getCreatedDate() {
-            return createdDate;
-        }
-
-        public void setCreatedDate(String createdDate) {
-            this.createdDate = createdDate;
-        }
-
-        public Integer getUpdatedByUserId() {
-            return updatedByUserId;
-        }
-
-        public void setUpdatedByUserId(Integer updatedByUserId) {
-            this.updatedByUserId = updatedByUserId;
-        }
-
-        public String getUpdatedBy() {
-            return updatedBy;
-        }
-
-        public void setUpdatedBy(String updatedBy) {
-            this.updatedBy = updatedBy;
-        }
-
-        public String getUpdatedDate() {
-            return updatedDate;
-        }
-
-        public void setUpdatedDate(String updatedDate) {
-            this.updatedDate = updatedDate;
-        }
+    public Integer getId() {
+        return id;
     }
-}
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTeluguName() {
+        return teluguName;
+    }
+
+    public void setTeluguName(String teluguName) {
+        this.teluguName = teluguName;
+    }
+
+    public String getHindiName() {
+        return hindiName;
+    }
+
+    public void setHindiName(String hindiName) {
+        this.hindiName = hindiName;
+    }
+
+    public String getKannadaName() {
+        return kannadaName;
+    }
+
+    public void setKannadaName(String kannadaName) {
+        this.kannadaName = kannadaName;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public Integer getCreatedByUserId() {
+        return createdByUserId;
+    }
+
+    public void setCreatedByUserId(Integer createdByUserId) {
+        this.createdByUserId = createdByUserId;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Integer getUpdatedByUserId() {
+        return updatedByUserId;
+    }
+
+    public void setUpdatedByUserId(Integer updatedByUserId) {
+        this.updatedByUserId = updatedByUserId;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+}}

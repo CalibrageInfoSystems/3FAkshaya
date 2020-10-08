@@ -15,6 +15,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="choose_language_str">భాషను ఎంచుకోండి</string>
     <string name="telugu_str">తెలుగు</string>
+    <string name="kannada_str">ಕನ್ನಡ</string>
     <string name="english_str">English</string>
     <string name="ok"> సరే</string>
 
@@ -122,7 +123,7 @@
     <string name="last_date">చివరి సందర్శన తేదీ</string>
     <string name="Frequency">సూచన</string>
     <string name="static_data">అధిక దిగుబడి మరియు బరువు  కొరకు గెల యందు పండ్లు పండి నేలపై రాలుటకు సిద్ధంగా వున్న గెలలను మాత్రమే కోయవలెను మరియు ప్రతి 10 రోజులకు గెలలు కోయమని మేము సిపార్సు చేస్తున్నాము.</string>
-    <string name="Frequency_harvest">హార్వెస్ట్ యొక్క ఫ్రీక్వెన్సీ</string>
+    <string name="Frequency_harvest">ಹಾರ್ವೆಸ್ಟ್ ನಂತರದ ದಿನಗಳು</string>
     <string name="NutrientDeficiencyName">పోషక లోపం పేరు</string>
     <string name="Nameofchemicalapplied">కెమికల్ అప్లైడ్ పేరు</string>
     <string name="registeredDate">నమోదు చేసిన తేదీ</string>
@@ -180,7 +181,7 @@
     <string name="gst_amount">జీఎస్టీ (రూ)</string>
     <string name="no_godowns">గోడౌన్లు కనుగొనబడలేదు</string>
     <string name="address">చిరునామా</string>
-    <string name="notee">గమనిక</string>
+    <string name="notee">గమనిక : </string>
     <string name="select_product">ఉత్పత్తిని ఎంచుకోండి</string>
     <string name="note">అభ్యర్థించిన 5 రోజులలో ఉత్పత్తులను ఎంచుకోకపోతే, మీ ఆర్డర్ రద్దు చేయబడుతుంది.</string>
     <string name="subsidy_amt">అందుబాటులో ఉన్న సబ్సిడీ మొత్తం(రూ)</string>
@@ -296,6 +297,7 @@
     <string name="tap_text">దిగువ ఏదైనా భాషను ఎంచుకోండి:</string>
     <string name="btn_en">English</string>
         
+    <string name="btn_kn">Kannada</string>
     <string name="btn_te">తెలుగు</string>
     <string name="only_date">తేదీ</string>
     <string name="remarks">వ్యాఖ్యలు</string>
@@ -504,7 +506,7 @@
     <string name="Package">ప్యాకేజీ</string>
     <string name="discount">డిస్కౌంట్(%)</string>
     <string name="disc">ఆఫర్ వర్తించబడింది</string>
-    <string name="text">పీక్ సీజన్ (ఏప్రిల్ నుండి సెప్టెంబర్) లో ప్రతి 10 రోజులకు మరియు లీన్ సీజన్లో 15 రోజులు (అక్టోబర్ నుండి మార్చి) హార్వెస్టింగ్ సేవ అందించబడుతుంది.</string>
+    <string name="text">పీక్ సీజన్ (ఏప్రిల్ నుండి అక్టోబర్) లో ప్రతి 10 రోజులకు మరియు లీన్ సీజన్లో 15 రోజులు (నవంబర్ నుండి మార్చి) హార్వెస్టింగ్ సేవ అందించబడుతుంది.</string>
 
 
 
@@ -583,5 +585,12 @@
         <item>నర్సరీలు</item>
     </string-array>
     <string name="enter_loan">రుణ మొత్తం 0 కంటే ఎక్కువగా ఉండాలి.</string>
+    <string name="no_services">సేవలు అందుబాటులో లేవు</string>
+    <string name="qrscnner">QR స్కానర్</string>
+    <string name="nobasic">ప్రాథమిక సమాచారం కనుగొనబడలేదు</string>
+    <string name="no_mills">మిల్స్ కనుగొనబడలేదు</string>
+    <string name="no_collectioncenter_found">సేకరణ కేంద్రాలు కనుగొనబడలేదు</string>
+    <string name="paymentnote_note">ఈ పాస్ బుక్ లో చెల్లింపు జరగని ఎఫ్ ఎఫ్ బి కలెక్షన్స్   చూపించబడవు, చెల్లింపు అయిన కలెక్షన్స్ మాత్రమే చూపించబడును .</string>
+    <string name="standard_note">ఈ క్రింది సూచించిన పరిమాణము గ్రాములలో,ఒక మొక్కకి ఒక సంవత్సరానికి.</string>
 </resources>
 

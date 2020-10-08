@@ -93,6 +93,8 @@ final double selected_plot =recomm_Set.get(position).getPalmArea() ;
                 intent.putExtra("cluster_Id",    recomm_Set.get(position).getClusterId());
                 intent.putExtra("interCrop",   interCrops);
                 intent.putExtra("statusTypeId",   recomm_Set.get(position).getStatusTypeId());
+                intent.putExtra("statecode",   recomm_Set.get(position).getStateCode());
+                intent.putExtra("statename",   recomm_Set.get(position).getStateName());
 
                 intent.putExtra("date_of_plandation",   recomm_Set.get(position).getDateOfPlanting());
 

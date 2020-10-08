@@ -1,9 +1,11 @@
 package in.calibrage.akshaya.service;
 
 public interface APIConstantURL {
-//public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//test
+public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//test
 //public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
-public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
+
+
+   // public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
     //String LookUpCategory = "GetActiveLookUp/9";
     String LookUpCategory = "GetActiveLookUp/9";
     String banner ="Banner";
@@ -55,8 +57,9 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
     String GetBankDetailsByFarmerCode ="Farmer/GetBankDetailsByFarmerCode/";
     String HolidayList ="HolidayList/IsHoliday";
     String CanRaiseRequest ="RequestHeader/CanRaiseRequest/";
-    String IsQuickPayBlockDate ="QuickPayBlockDate/IsQuickPayBlockDate";
+    String IsQuickPayBlockDate ="QuickPayBlockDate/IsQuickPayBlockDate/";
    String IsActiveFarmer ="Farmer/IsActiveFarmer/";
+    String GetServicesByStateCode ="StateService/GetServicesByStateCode/";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 }

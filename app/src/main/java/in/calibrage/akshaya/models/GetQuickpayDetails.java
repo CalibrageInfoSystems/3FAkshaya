@@ -11,9 +11,12 @@ public class GetQuickpayDetails {
     @SerializedName("quantity")
     @Expose
     private Double quantity;
-    @SerializedName("whsCode")
+    @SerializedName("isSpecialPay")
     @Expose
-    private String whsCode;
+    private Boolean isSpecialPay;
+    @SerializedName("stateCode")
+    @Expose
+    private String stateCode;
 
     public String getFarmerCode() {
         return farmerCode;
@@ -31,11 +34,19 @@ public class GetQuickpayDetails {
         this.quantity = quantity;
     }
 
-    public String getWhsCode() {
-        return whsCode;
+    public Boolean getIsSpecialPay() {
+        return isSpecialPay;
     }
 
-    public void setWhsCode(String whsCode) {
-        this.whsCode = whsCode;
+    public void setIsSpecialPay(Boolean isSpecialPay) {
+        this.isSpecialPay = isSpecialPay;
+    }
+
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
     }
 }

@@ -89,7 +89,7 @@ public class pole_godown_list extends BaseActivity  {
     String Farmer_code, formattedDate, Godown_name;
     ImageView home_btn;
     Integer GodownId,quantity;
-
+    String state_name;
     DecimalFormat dec = new DecimalFormat("####0.00");
 
     List<String> listdata = new ArrayList<>();
@@ -118,6 +118,8 @@ public class pole_godown_list extends BaseActivity  {
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_pole_godown_list);
@@ -227,6 +229,7 @@ public class pole_godown_list extends BaseActivity  {
 
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
             Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        state_name = catagoriesList.getResult().getFarmerDetails().get(0).getStateName();
         Log.e("Cluster_id===",Cluster_id+"");
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => " + c.getTime());
@@ -413,7 +416,8 @@ public class pole_godown_list extends BaseActivity  {
 
     private JsonObject fertReuestobject() {
 
-
+        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
+        Log.e("state===",statecode);
         FertRequest requestModel = new FertRequest();
 
         requestModel.setId(0);
@@ -434,7 +438,8 @@ public class pole_godown_list extends BaseActivity  {
         requestModel.setFileExtension(null);
         requestModel.setFileLocation(null);
         requestModel.setClusterId(Cluster_id);
-        //requestModel.setTotalCost(0.00);
+        requestModel.setStateCode(statecode);
+        requestModel.setStateName(state_name);
         requestModel.setTotalCost(Double.valueOf(include_gst_amount));
         requestModel.setSubcidyAmount(0.0);
         requestModel.setPaybleAmount(Double.valueOf(include_gst_amount));

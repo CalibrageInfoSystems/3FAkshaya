@@ -118,7 +118,7 @@ boolean result;
     private SpotsDialog mdilogue;
     CheckBox checkbox,check_box;
     double harvesting_amount, harvesting_d_amount, prunning_amount, prunning_d_amount,intercrop_prun,intercrop_harv;
-    String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate;
+    String total_amount, serviceTypeId, Seleted_date, farmated_date, isSuccess, register, currentDate,statecode,statename;
     String plot_id, interCrops,location,clustername, farmerCode, plotMandal, plotState, plotDistrict, landmarkCode, reformattedDate, selected_date,status, finalAmount, plantation_date,plantationdate;
     EditText commentsTxt;
     Integer statusTypeId;
@@ -130,9 +130,10 @@ boolean result;
     SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
     LinearLayout discount_label;
     TextView discount_percentage, harv_d_amount, pru_d_amount;
-    DatePickerDialog datePickerDialog ;
+
     RelativeLayout checkpole;
     int Year, Month, Day, Hour, Minute,clusterId;
+    DatePickerDialog datePickerDialog ;
     Calendar calendar ;
     boolean ownPole = false;
     int diff;
@@ -142,6 +143,8 @@ boolean result;
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_labour);
@@ -165,6 +168,8 @@ boolean result;
                 statusTypeId =extras.getInt("statusTypeId");
                 interCrops = extras.getString("interCrop");
                 clusterId =  extras.getInt("cluster_Id");
+                statecode = extras.getString("statecode");
+                statename = extras.getString("statename");
                 Log.e("plantationdate===",plantationdate+"");
             }
           //  GetInterCropByPlotCode();
@@ -1328,8 +1333,8 @@ boolean result;
         requestModel.setOwnPole(ownPole);
        requestModel.setServices(selected_name);
         requestModel.setPackage(seleced_Duration);
-//        requestModel.setUnKnown1Amount(intercrop_prun);
-//        requestModel.setUnKnown2Amount(intercrop_harv);
+       requestModel.setStateCode(statecode);
+       requestModel.setStateName(statename);
 
 //        requestModel.setPlotMandal(plotMandal);
 //        requestModel.setPlotState(plotState);

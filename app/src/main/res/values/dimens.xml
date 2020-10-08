@@ -66,4 +66,5 @@
     <dimen name="_170dp">170dp</dimen>
     <dimen name="_177dp">180dp</dimen>
     <dimen name="_50dp">40dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
 </resources>

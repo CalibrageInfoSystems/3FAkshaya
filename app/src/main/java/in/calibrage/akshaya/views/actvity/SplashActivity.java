@@ -70,6 +70,8 @@ public class  SplashActivity extends BaseActivity {
 
                 if (langID == 2)
                     updateResources(SplashActivity.this, "te");
+                else if (langID == 3)
+                    updateResources(SplashActivity.this, "kan");
                 else
                     updateResources(SplashActivity.this, "en-US");
 

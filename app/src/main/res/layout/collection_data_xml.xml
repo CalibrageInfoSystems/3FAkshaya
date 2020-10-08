@@ -60,10 +60,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/new_line"
-                android:layout_marginStart="4dp"
+
                 android:paddingLeft="8dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="15dp"
+                android:paddingRight="@dimen/margin_25"
                 android:text="@string/date_label"
                 android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/black"
@@ -77,9 +77,9 @@
                 android:layout_below="@id/new_line"
                 android:layout_toRightOf="@+id/dateLabel"
                 android:fontFamily="@font/hind_semibold"
-                android:paddingLeft="5dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
+                android:paddingRight="15dp"
                 android:text="date"
                 android:textSize="@dimen/album_title" />
 
@@ -117,11 +117,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/weight"
-                android:layout_marginStart="4dp"
+
                 android:paddingLeft="8dp"
                 android:fontFamily="@font/hind_semibold"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="15dp"
+                android:paddingRight="@dimen/margin_25"
                 android:text="@string/cc"
 
                 android:textColor="@color/black"
@@ -136,7 +136,7 @@
                 android:layout_toRightOf="@+id/dateLabel"
                 android:hint="@string/cc"
                 android:fontFamily="@font/hind_semibold"
-                android:paddingLeft="5dp"
+                android:paddingLeft="15dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:textSize="@dimen/album_title" />
@@ -150,7 +150,7 @@
                 android:fontFamily="@font/hind_semibold"
                 android:paddingLeft="8dp"
                 android:paddingTop="@dimen/album_title_padding"
-                android:paddingRight="15dp"
+                android:paddingRight="@dimen/margin_20"
                 android:text="@string/status"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
@@ -163,7 +163,7 @@
                 android:fontFamily="@font/hind_semibold"
                 android:layout_below="@id/ccLabel"
                 android:layout_toRightOf="@+id/dateLabel"
-                android:hint=": "
+                android:hint="  : "
                 android:paddingLeft="10dp"
                 android:paddingTop="@dimen/album_title_padding"
 

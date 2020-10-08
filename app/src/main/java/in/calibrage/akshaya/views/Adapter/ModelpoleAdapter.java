@@ -279,7 +279,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
                     }
 
                 } else {
-                    if (superHero.getmAmount().equals("null")) {
+                    if (superHero.getmAmount().equals("null")&& superHero.getmAmount().equalsIgnoreCase("0.0") && superHero.getmAmount()== "0.0" ) {
                         itemcost = Double.valueOf(superHero.getPrice());
                     } else {
                         itemcost = Double.valueOf(superHero.getmAmount());

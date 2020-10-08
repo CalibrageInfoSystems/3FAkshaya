@@ -10,7 +10,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_60dp"
+            android:layout_height="@dimen/_80dp"
             android:layout_gravity="center"
 android:layout_marginBottom="@dimen/margin_5"
             android:orientation="vertical"
@@ -22,8 +22,8 @@ android:layout_marginBottom="@dimen/margin_5"
                 />
             <TextView
                 android:textAlignment="center"
-                android:maxLines="1"
-                android:singleLine="true"
+
+                android:singleLine="false"
                 android:textStyle="bold"
                 android:text="@string/account_no"
                 android:fontFamily="@font/hind_semibold"

@@ -68,6 +68,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setuptoolbar();
@@ -396,6 +398,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
         requestModel.setRequestTypeId(14);
+        requestModel.setStateCode(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
@@ -518,6 +521,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
         requestModel.setRequestTypeId(28);
+        requestModel.setStateCode(null);
+
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
@@ -528,6 +533,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
         requestModel.setRequestTypeId(13);
+        requestModel.setStateCode(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
@@ -536,6 +542,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
+        requestModel.setStateCode(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 

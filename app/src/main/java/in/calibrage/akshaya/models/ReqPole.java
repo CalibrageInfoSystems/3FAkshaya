@@ -18,6 +18,9 @@ public class ReqPole {
         @SerializedName("requestTypeId")
         @Expose
         private Integer requestTypeId;
+    @SerializedName("stateCode")
+    @Expose
+    private Integer stateCode;
 
         public String getFromDate() {
             return fromDate;
@@ -51,4 +54,11 @@ public class ReqPole {
             this.requestTypeId = requestTypeId;
         }
 
+    public Integer getStateCode() {
+        return stateCode;
     }
+
+    public void setStateCode(Integer stateCode) {
+        this.stateCode = stateCode;
+    }
+}

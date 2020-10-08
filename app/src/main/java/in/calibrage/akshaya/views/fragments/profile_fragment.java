@@ -36,6 +36,7 @@ import in.calibrage.akshaya.views.actvity.QRCodeEncoder;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.WINDOW_SERVICE;
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 
 public class profile_fragment extends BaseFragment {
@@ -69,9 +70,15 @@ public class profile_fragment extends BaseFragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else if (langID == 3)
+            updateResources(getContext(), "kan");
+        else
+            updateResources(getContext(), "en-US");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);

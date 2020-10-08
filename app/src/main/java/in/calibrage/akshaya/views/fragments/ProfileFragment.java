@@ -38,20 +38,20 @@ public class ProfileFragment extends  BaseFragment {
 
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else if (langID == 3)
+            updateResources(getContext(), "kan");
+        else
+            updateResources(getContext(), "en-US");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
-        if (langID == 2)
-            updateResources(getContext(), "te");
-        else
-            updateResources(getContext(), "en-US");
-
 
 
     }

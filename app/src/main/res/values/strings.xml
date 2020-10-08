@@ -11,7 +11,7 @@
     <string name="choose_language_str">Choose Language</string>
     <string name="telugu_str">తెలుగు</string>
 
-
+    <string name="kannada_str">ಕನ್ನಡ</string>
     <string name="english_str">English</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -208,7 +208,7 @@
     <string name="address">Address</string>
     <string name="select_product">Select Products</string>
     <string name="product_details">Product Details</string>
-    <string name="notee">Note</string>
+    <string name="notee">Note :</string>
     <string name="note">If the Products has not been Picked with in 5 Days of Requested Date,Your Order will be Cancelled.</string>
     <string name="subsidy_amt">Available Subsidy Amount(Rs)</string>
     <string name="endusermsg">Total Cost Shouldnot be 0</string>
@@ -230,6 +230,8 @@
     <string name="tap_text">Please Select Language Below:</string>
     <string name="btn_en">English</string>
     <string name="btn_te">Telugu</string>
+
+    <string name="btn_kn">Kannada</string>
     <string name="only_date">Date</string>
     <string name="no_videos">No Videos Available</string>
 
@@ -456,7 +458,7 @@
     <string name="Package">Package</string>
     <string name="discount">Discount(%)</string>
     <string name="disc">Offer Applied</string>
-    <string name="text">Harvesting service will be provided for every 10 days in PEAK Season(APRIL TO SEP) and 15 days in LEAN Season(OCT TO MARCH).</string>
+    <string name="text">Harvesting service will be provided for every 10 days in PEAK Season(APRIL TO OCT) and 15 days in LEAN Season(NOV TO MARCH).</string>
 
     <string name="thirty_days">Last 30 days</string>
     <string name="currentfinicial">Current Financial Year</string>
@@ -521,6 +523,14 @@
     <string name="downloaded">Downloaded Successfully</string>
     <string name="enter_loan">Loan Amount should be greater than 0</string>
     <string name="App_version">App Version : </string>
+    <string name="no_services">No Services Available</string>
+    <string name="qrscnner">QR Scanner</string>
+    <string name="nobasic">Basic Information not found</string>
+    <string name="no_mills">No Mills Found</string>
+    <string name="no_collectioncenter_found">No Collections Centers Found</string>
+    <string name="no_nus">No Nurseries Found</string>
+    <string name="paymentnote_note">FFB Collections which are still payment pending will not show, after payment only they will start showing.</string>
+    <string name="standard_note">Quantity in gm/plant/year</string>
 
     />
     <!-- we need to use video ids instead of video link -->
@@ -530,6 +540,11 @@
         <item>Mills</item>
         <item>Nurseries</item>
     </string-array>
+    <string-array name="switch_tabss">
+        <item>@string/fertgodown</item>
 
+        <item>Mills</item>
+        <item>Nurseries</item>
+    </string-array>
 </resources>
 

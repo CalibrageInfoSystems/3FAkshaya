@@ -50,6 +50,12 @@ public class LoanRequest {
     @SerializedName("clusterId")
     @Expose
     private Integer clusterId;
+    @SerializedName("stateCode")
+    @Expose
+    private String stateCode;
+    @SerializedName("stateName")
+    @Expose
+    private String stateName;
     public Integer getRequestTypeId() {
         return requestTypeId;
     }
@@ -168,5 +174,21 @@ public class LoanRequest {
 
     public void setClusterId(Integer clusterId) {
         this.clusterId = clusterId;
+    }
+
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 }

@@ -39,6 +39,7 @@ public class BasicinfoFragment extends BaseFragment {
     private static final String ARG_PARAM2 = "param2";
     TextView txt;
     WebView webView;
+    TextView no_data;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     // TODO: Rename and change types of parameters
@@ -79,6 +80,7 @@ public class BasicinfoFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_basicinfo,
                 container, false);
         webView = (WebView) view.findViewById(R.id.webView1);
+        no_data =(TextView) view.findViewById(R.id.no_data);
         WebSettings webSetting = webView.getSettings();
         webSetting.setBuiltInZoomControls(true);
         webSetting.setJavaScriptEnabled(true);
@@ -96,12 +98,12 @@ public class BasicinfoFragment extends BaseFragment {
 
     private void GetContactInfo() {
         mdilogue.show();
-        String farmer_code = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
+        String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
         String Farmer_code = pref.getString("farmerid", "");
 
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
-        mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo + Farmer_code)
+        mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo + Farmer_code +"/"+ statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<Resbasicinfo>() {
                     @Override
@@ -113,21 +115,29 @@ public class BasicinfoFragment extends BaseFragment {
                     public void onError(Throwable e) {
                         mdilogue.dismiss();
                         Log.d(TAG, "---- analysis ---->GetActiveGodows -->> error -->> :" + e.getLocalizedMessage());
-                        showDialog(getActivity(), getString(R.string.server_error));
+                    //   showDialog(getActivity(), getString(R.string.nobasic));
                     }
 
                     @Override
                     public void onNext(Resbasicinfo resbasicinfo) {
 
                         mdilogue.dismiss();
-                        final String mimeType = "text/html";
-                        final String encoding = "UTF-8";
+                        if(resbasicinfo.getListResult()!= null) {
+                            no_data.setVisibility(View.GONE);
+                            webView.setVisibility(View.VISIBLE);
+                            final String mimeType = "text/html";
+                            final String encoding = "UTF-8";
 
-                        String discription = resbasicinfo.getListResult().get(0).getDescription();
+                            String discription = resbasicinfo.getListResult().get(0).getDescription();
 
 
-                        webView.loadDataWithBaseURL("", discription, mimeType, encoding, "");
-//
+                            webView.loadDataWithBaseURL("", discription, mimeType, encoding, "");
+                        }else{
+                            no_data.setVisibility(View.VISIBLE);
+                            webView.setVisibility(View.GONE);
+                           // showDialog(getActivity(), getString(R.string.nobasic));
+                        }
+//}
                     }
                 });
     }

@@ -79,12 +79,15 @@ public class LoanActivity extends BaseActivity {
     EditText amount, reason;
     private FarmerOtpResponceModel catagoriesList;
     Integer Cluster_id;
+    String statename;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_loan);
@@ -115,6 +118,7 @@ public class LoanActivity extends BaseActivity {
         Log.e("Cluster_id===",catagoriesList.getResult().getFarmerDetails().get(0).getFirstName());
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
             Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        statename =catagoriesList.getResult().getFarmerDetails().get(0).getStateName();
         Log.e("Cluster_id===",Cluster_id+"");
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -252,6 +256,8 @@ public class LoanActivity extends BaseActivity {
     }
 
     private JsonObject LoanReuestobject() {
+        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
+        Log.e("state===",statecode);
         LoanRequest requestModel = new LoanRequest();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setPlotCode(null);
@@ -267,6 +273,8 @@ public class LoanActivity extends BaseActivity {
         requestModel.setStatusTypeId(15);
         requestModel.setRequestTypeId(28);
         requestModel.setClusterId(Cluster_id);
+        requestModel.setStateCode(statecode);
+        requestModel.setStateName(statename);
         requestModel.setTotalCost(Double.parseDouble(amount.getText().toString()));
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }

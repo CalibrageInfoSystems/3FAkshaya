@@ -75,6 +75,13 @@ public class FertRequest {
     @SerializedName("clusterId")
     @Expose
     private Integer clusterId;
+    @SerializedName("stateCode")
+    @Expose
+    private String stateCode;
+    @SerializedName("stateName")
+    @Expose
+    private String stateName;
+
     @SerializedName("godownCode")
     @Expose
     private String godownCode;
@@ -280,6 +287,22 @@ public class FertRequest {
 
     public void setClusterId(Integer clusterId) {
         this.clusterId = clusterId;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
     }
 
 

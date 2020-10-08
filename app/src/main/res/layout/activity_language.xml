@@ -36,6 +36,15 @@
       style="@style/Common_Button"
         android:layout_margin="3dp"
        />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
 
+
+        android:id="@+id/kannada"
+        android:text="@string/btn_kn"
+        style="@style/Common_Button"
+        android:layout_margin="3dp"
+        />
 
 </LinearLayout>

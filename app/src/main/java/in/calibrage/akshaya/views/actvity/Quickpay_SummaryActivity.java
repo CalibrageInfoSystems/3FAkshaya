@@ -79,7 +79,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     TextView terms;
     TextView ok, getTerms, Click_here ;
     TextView ffbCostTxt, convenienceChargeTxt, closingBalanceTxt, totalAmount, text_flat_charge, text_quntity, text_quickpay_fee;
-    String Farmer_code;
+    String Farmer_code,statename;
     private Subscription mSubscription;
     Button dialogButton;
     ImageView backImg, home_btn;
@@ -97,6 +97,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     List<String> post_codes = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
     String result;
+    String statecode;
     String whs_Code;
     Integer Cluster_id;
     double total_weight = 0.0;
@@ -109,6 +110,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_quickpay__summary);
@@ -173,11 +176,13 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private void setViews() {
-
+        statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
+        Log.e("state===",statecode);
         catagoriesList = SharedPrefsData.getCatagories(this);
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
             Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
         Log.e("Cluster_id===",Cluster_id+"");
+        statename =catagoriesList.getResult().getFarmerDetails().get(0).getStateName();
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -400,7 +405,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         GetQuickpayDetails requestModel = new GetQuickpayDetails();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setQuantity(total_weight);
-        requestModel.setWhsCode(whs_Code);
+        requestModel.setIsSpecialPay(false);
+        requestModel.setStateCode(statecode);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
     }
@@ -433,7 +439,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                 ((HttpException) e).message();
                                 ((HttpException) e).response().errorBody();
                                 try {
-                                    ((HttpException) e).response().errorBody().string();
+                                    ((HttpException) e).response(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ).errorBody().string();
                                 } catch (IOException e1) {
                                     e1.printStackTrace();
                                 }
@@ -468,7 +474,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     }
 
-    private void showSuccesspdf(String result) {
+    private void showSuccesspdf(final String result) {
         mdilogue.show();
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -476,19 +482,39 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         dialog.setContentView(R.layout.pdf_dialog);
         final WebView webView = dialog.findViewById(R.id.webView);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
-        webView.setWebViewClient(new WebViewClient());
-//        webView.getSettings().setSupportZoom(true);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        String url = "http://103.241.144.240:9096/3FAkshayaRepo/FileRepository/2020/04/13/QuickpayPdf/20200413062400627.pdf";
-//        webView.loadUrl("https://docs.google.com/gview?embedded=true&url="+url);
 
-//
-        //   WebView  wv = (WebView)findViewById(R.id.webview);
         String doc=" http://docs.google.com/gview?embedded=true&url="+result;
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setAllowFileAccess(true);
         webView.loadUrl(doc);
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+
+                webView.loadUrl("javascript:(function() { " +
+                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+                mdilogue.show();
+            }
+            @Override
+            public void onPageFinished(final WebView view, String url) {
+                super.onPageFinished(view, url);
+                mdilogue.dismiss();
+                if (view.getContentHeight() == 0) {
+                    view.reload();
+                view.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + result);
+                }
+//
+
+                webView.loadUrl("javascript:(function() { " +
+                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+
+
+            }
+        });
+
 //       webView.getSettings().setPluginState(WebSettings.PluginState.ON);
 //        webView.getSettings().setJavaScriptEnabled(true);
 //       webView.getSettings().setLoadWithOverviewMode(true);
@@ -539,10 +565,13 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     }
 
     private JsonObject quickReuestobject() {
+
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
 
         requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setFarmerCode(Farmer_code);
+        requestModel.setStateCode(statecode);
+        requestModel.setStateName(statename);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setReqCreatedDate(currentDate);

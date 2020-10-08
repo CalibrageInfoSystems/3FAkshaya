@@ -74,16 +74,18 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     FloatingActionButton myFab;
     Integer mSelectedItem;
     AppCompatTextView app_version;
-
+     int langID;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+      langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
+        else if (langID == 3)
+            updateResources(this, "kan");
         else
             updateResources(this, "en-US");
         setContentView(R.layout.activity_home);
@@ -320,6 +322,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
 
 
     private void selectLanguage() {
+        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
+        Log.e("state===",statecode);
         final Dialog dialog = new Dialog(HomeActivity.this, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_select_language);
@@ -329,7 +333,21 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         // set the custom forgotPasswordDialog components - text, image and button
         final TextView rbEng = dialog.findViewById(R.id.rbEng);
         final TextView rbTelugu = dialog.findViewById(R.id.rbTelugu);
+        final TextView rbKannada = dialog.findViewById(R.id.rbkannada);
+        View view =dialog.findViewById(R.id.view);
+        View view2 =dialog.findViewById(R.id.view2);
 
+//        if (statecode.equalsIgnoreCase("AP")){
+//
+//            rbTelugu.setVisibility(View.VISIBLE);
+//            rbKannada.setVisibility(View.GONE);
+//            view2.setVisibility(View.GONE);
+//        }
+//        else{
+//            rbTelugu.setVisibility(View.GONE);
+//            rbKannada.setVisibility(View.VISIBLE);
+//            view2.setVisibility(View.GONE);
+//        }
 
 /**
  * @param OnClickListner
@@ -368,7 +386,20 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 dialog.dismiss();
             }
         });
-
+        rbKannada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * "te" is the localization code for our default Telugu language.
+                 */
+                updateResources(HomeActivity.this, "kan");
+                SharedPrefsData.getInstance(HomeActivity.this).updateIntValue(HomeActivity.this, "lang", 3);
+                Intent refresh = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(refresh);
+                finish();
+                dialog.dismiss();
+            }
+        });
 
         dialog.show();
     }

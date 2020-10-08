@@ -37,6 +37,7 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.BannerresponseModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.GetActiveEncyclopediaCategoryDetails;
+import in.calibrage.akshaya.models.GetServicesByStateCode;
 import in.calibrage.akshaya.models.IsActiveFarmer;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
@@ -72,20 +73,36 @@ public class HomeFragment extends BaseFragment {
     private Subscription mSubscription;
     private List<in.calibrage.akshaya.models.LerningsModel> getCategoryList;
     private Object LerningsModel;
-    private RecyclerView leaning_recycle;
+    private RecyclerView leaning_recycle,service_list;
     private KnowledgeZoneBaseAdapter knowledgeZoneBaseAdapter;
-  //  private FarmerOtpResponceModel catagoriesList;
+  private  ServiceAdapter serviceadpter;
     private TextView txt_banner;
     SliderView sliderView;
     private SpotsDialog mdilogue;
     String Farmer_code;
     View v;
+    TextView noRecords;
     boolean isactive ;
+    ImageView defalt_iimage;
     public HomeFragment() {
         // Required empty public constructor
     }
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else if (langID == 3)
+            updateResources(getContext(), "kan");
+        else
+            updateResources(getContext(), "en-US");
+        super.onCreate(savedInstanceState);
+
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,17 +121,27 @@ public class HomeFragment extends BaseFragment {
 
             dialog = new ProgressDialog(getActivity());
             leaning_recycle = (RecyclerView) v.findViewById(R.id.learning_list);
+           service_list =(RecyclerView) v.findViewById(R.id.service_list);
             // img_banner =  v.findViewById(R.id.img_banner);
-
+        noRecords = (TextView) v.findViewById(R.id.no_data);
             txt_banner = v.findViewById(R.id.txt_banner);
             txt_banner.setSelected(true);
-
+        defalt_iimage = v.findViewById(R.id.defalt_iimage);
             RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
             leaning_recycle.setLayoutManager(mLayoutManager);
             leaning_recycle.setItemAnimator(new DefaultItemAnimator());
-            // adding inbuilt divider line
+            // adding inbuilt divider line service_list =(RecyclerView) v.findViewById(R.id.service_list)
             leaning_recycle.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
             leaning_recycle.addItemDecoration(new MyDividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL, 30));
+        RecyclerView.LayoutManager mLayoutManager1 = new GridLayoutManager(getContext(), 3);
+        service_list.setLayoutManager(mLayoutManager1);
+        service_list.setItemAnimator(new DefaultItemAnimator());
+        // adding inbuilt divider line service_list =(RecyclerView) v.findViewById(R.id.service_list)
+        service_list.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+        service_list.addItemDecoration(new MyDividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL, 30));
+
+
+
 
 
             v.findViewById(R.id.collections_button).setOnClickListener(new View.OnClickListener() {
@@ -141,103 +168,104 @@ public class HomeFragment extends BaseFragment {
                 }
             });
 
-        v.findViewById(R.id.labour_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (isactive = true) {
-                    Log.e("isactive====2",isactive+"");
-                    Intent intent = new Intent(getContext(), LabourRecommendationsActivity.class);
-                    startActivity(intent);
-                } else {
-                    Log.e("isactive====3",isactive+"");
-                    showDialog(getActivity(), getResources().getString(R.string.inactive));
-
-                }
-            }
-        });
-
-        v.findViewById(R.id.pole_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isactive = true){
-                    Intent intent = new Intent(getContext(), Godown_list.class);
-                    intent.putExtra("godown", "pole");
-                    startActivity(intent);
-                } else {
-
-                    showDialog(getActivity(), getResources().getString(R.string.inactive));
-
-
-                }
-            }
-        });
-
-
-            v.findViewById(R.id.fertilizer_button).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isactive = true){
-                        Intent intent = new Intent(getContext(), Godown_list.class);
-                        intent.putExtra("godown", "fert");
-                        startActivity(intent);
-                    } else {
-
-                        showDialog(getActivity(), getResources().getString(R.string.inactive));
-
-                    }
-                }
-            });
-
-        v.findViewById(R.id.quickPay_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isactive = true){
-                    Intent intent = new Intent(getContext(), QuickPayActivity.class);
-                    startActivity(intent);
-                } else {
-
-                    showDialog(getActivity(), getResources().getString(R.string.inactive));
-
-                }
-            }
-        });
-
-        v.findViewById(R.id.visit_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isactive = true){
-                    Intent intent = new Intent(getContext(), RequestVisitActivity.class);
-                    startActivity(intent);
-                } else {
-
-                    showDialog(getActivity(), getResources().getString(R.string.inactive));
-
-
-                }
-            }
-        });
-        v.findViewById(R.id.loan_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isactive = true){
-                    Intent intent = new Intent(getContext(), LoanActivity.class);
-                    startActivity(intent);
-                } else {
-
-                    showDialog(getActivity(), getResources().getString(R.string.inactive));
-
-
-                }
-            }
-
-        });
+//        v.findViewById(R.id.labour_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (isactive = true) {
+//                    Log.e("isactive====2",isactive+"");
+//                    Intent intent = new Intent(getContext(), LabourRecommendationsActivity.class);
+//                    startActivity(intent);
+//                } else {
+//                    Log.e("isactive====3",isactive+"");
+//                    showDialog(getActivity(), getResources().getString(R.string.inactive));
+//
+//                }
+//            }
+//        });
+//
+//        v.findViewById(R.id.pole_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isactive = true){
+//                    Intent intent = new Intent(getContext(), Godown_list.class);
+//                    intent.putExtra("godown", "pole");
+//                    startActivity(intent);
+//                } else {
+//
+//                    showDialog(getActivity(), getResources().getString(R.string.inactive));
+//
+//
+//                }
+//            }
+//        });
+//
+//
+//            v.findViewById(R.id.fertilizer_button).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (isactive = true){
+//                        Intent intent = new Intent(getContext(), Godown_list.class);
+//                        intent.putExtra("godown", "fert");
+//                        startActivity(intent);
+//                    } else {
+//
+//                        showDialog(getActivity(), getResources().getString(R.string.inactive));
+//
+//                    }
+//                }
+//            });
+//
+//        v.findViewById(R.id.quickPay_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isactive = true){
+//                    Intent intent = new Intent(getContext(), QuickPayActivity.class);
+//                    startActivity(intent);
+//                } else {
+//
+//                    showDialog(getActivity(), getResources().getString(R.string.inactive));
+//
+//                }
+//            }
+//        });
+//
+//        v.findViewById(R.id.visit_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isactive = true){
+//                    Intent intent = new Intent(getContext(), RequestVisitActivity.class);
+//                    startActivity(intent);
+//                } else {
+//
+//                    showDialog(getActivity(), getResources().getString(R.string.inactive));
+//
+//
+//                }
+//            }
+//        });
+//        v.findViewById(R.id.loan_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isactive = true){
+//                    Intent intent = new Intent(getContext(), LoanActivity.class);
+//                    startActivity(intent);
+//                } else {
+//
+//                    showDialog(getActivity(), getResources().getString(R.string.inactive));
+//
+//
+//                }
+//            }
+//
+//        });
 
 
 
             if (isOnline(getContext())) {
                 GetBannerByStateCode();
                 GetActiveEncyclopediaCategoryDetails();
+                GetServicesByStateCode();
             }
             else {
                 showDialog(getActivity(), getResources().getString(R.string.Internet));
@@ -259,6 +287,61 @@ public class HomeFragment extends BaseFragment {
             sliderView.startAutoCycle();
             return v;
         }
+
+    private void GetServicesByStateCode() {
+        String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
+        Log.e("state===",statecode);
+        ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
+        mSubscription = service.getservices(APIConstantURL.GetServicesByStateCode+statecode)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetServicesByStateCode>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        showDialog(getActivity(), getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(GetServicesByStateCode getServicesByStateCode) {
+                        mdilogue.cancel();
+                        if (getServicesByStateCode.getListResult() != null && getServicesByStateCode.getListResult().size()!= 0 ) {
+
+                            noRecords.setVisibility(View.GONE);
+                            service_list.setVisibility(View.VISIBLE);
+                            Log.d(TAG, "---- analysis ---->Getservices-->> Responce size-->> :" + getServicesByStateCode.getListResult().size());
+                            serviceadpter = new ServiceAdapter(mContext, getServicesByStateCode.getListResult());
+                            service_list.setAdapter(serviceadpter);
+                        }else{
+                            noRecords.setVisibility(View.VISIBLE);
+                            service_list.setVisibility(View.GONE);
+                        }
+                    }
+
+
+
+
+
+                });}
+
+
+
 
     private void IsActiveFarmer() {
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
@@ -416,7 +499,9 @@ public class HomeFragment extends BaseFragment {
                            txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                                 " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
                         }
                         else{
-                            showDialog(getActivity(), getString(R.string.nobanner));
+                            sliderView.setVisibility(View.GONE);
+                            txt_banner.setVisibility(View.GONE);
+                            defalt_iimage.setVisibility(View.VISIBLE);
                         }
                     }
 //                    @Override

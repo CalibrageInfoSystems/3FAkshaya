@@ -148,7 +148,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         });
     }
 
-    private void showCondetailsDialog(int selectedPO,String pdf_url) {
+    private void showCondetailsDialog(int selectedPO, final String pdf_url) {
 
         final Dialog dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -180,11 +180,29 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
                 mdilogue.show();
             }
             @Override
-            public void onPageFinished(WebView view, String url) {
+            public void onPageFinished(final WebView view, String url) {
                 super.onPageFinished(view, url);
-                webview.loadUrl("javascript:(function() { " +
-                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
                 mdilogue.dismiss();
+                if (view.getContentHeight() == 0) {
+                    view.reload();
+                    view.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf_url);
+                }
+//                    //Run off main thread to control delay
+//                    view.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            //Load url into the "WebView"
+//                            view.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf_url);
+//                        }
+//                        //Set 1s delay to give the view a longer chance to load before
+//                        // setting the view (or more likely to display blank)
+//                    }, 1000);
+
+
+                    webview.loadUrl("javascript:(function() { " +
+                            "document.querySelector('[role=\"toolbar\"]').remove();})()");
+
+
             }
         });
 

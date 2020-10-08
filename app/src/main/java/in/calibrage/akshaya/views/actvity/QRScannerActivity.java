@@ -19,6 +19,7 @@ Toolbar toolbar;
     public void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_qrscanner);
+
         setupToolbar();
 
         ViewGroup contentFrame = (ViewGroup) findViewById(R.id.content_frame);
@@ -28,7 +29,7 @@ Toolbar toolbar;
 
     private void setupToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("QRScanner ");
+        toolbar.setTitle(getString(R.string.qrscnner));
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

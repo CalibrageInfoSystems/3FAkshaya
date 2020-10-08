@@ -19,6 +19,7 @@ import java.io.IOException;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.res_plotdetails;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -34,6 +35,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,6 +78,13 @@ public class plot_details extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else if (langID == 3)
+            updateResources(getContext(), "kan");
+        else
+            updateResources(getContext(), "en-US");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);

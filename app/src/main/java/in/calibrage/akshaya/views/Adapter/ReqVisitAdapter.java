@@ -57,6 +57,7 @@ public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHo
     private Subscription mSubscription;
      double plot_area,selected_plot;
 Integer cluster_id;
+String statecode,statename;
      String plot_code,plot_village,plot_landmark,plot_cluster_name,date_platation,Farmer_code;
     public ReqVisitAdapter(Context context, List<LabourRecommendationsModel.ListResult> plot_Set) {
 
@@ -102,6 +103,8 @@ Integer cluster_id;
                 plot_landmark = holder.textViewstatus.getText()+"";
                 plot_cluster_name =holder.cluster_name.getText()+"";
                 cluster_id = plot_Set.get(position).getClusterId();
+                statecode =plot_Set.get(position).getStateCode()+"";
+                statename =plot_Set.get(position).getStateName()+"";
                 date_platation =  plot_Set.get(position).getDateOfPlanting()+"";
                 if (CommonUtil.isNetworkAvailable(mContext)) {
                     visit_CanRaiseRequest();
@@ -166,6 +169,8 @@ Integer cluster_id;
                             intent.putExtra("cluster_name",plot_cluster_name);
                             intent.putExtra("date_of_plandation", date_platation );
                             intent.putExtra("cluster_Id",cluster_id);
+                            intent.putExtra("statecode",statecode );
+                            intent.putExtra("statename",statename);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                             mContext.startActivity(intent);

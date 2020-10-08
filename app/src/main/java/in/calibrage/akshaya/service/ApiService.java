@@ -19,6 +19,7 @@ import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.GetInterCropByPlotCode;
 import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.models.GetLabourPackageDiscount;
+import in.calibrage.akshaya.models.GetServicesByStateCode;
 import in.calibrage.akshaya.models.GetTranspotationCharges;
 import in.calibrage.akshaya.models.GetVisitRequestRepository;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
@@ -240,4 +241,7 @@ public interface ApiService {
 
     @GET
     Observable<IsActiveFarmer> getActiveFarmer(@Url String url);
+
+    @GET
+    Observable<GetServicesByStateCode>getservices(@Url String url);
 }

@@ -420,7 +420,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                         try {
                             json = jsonArray.getJSONObject(i);
                             get_list.setFertilizer(json.getString("fertilizer"));
-                            get_list.setYear(json.getString("quantity") + " " + "Kgs");
+                            get_list.setYear(json.getString("quantity"));
                             get_list.setRemarks(json.getString("remarks"));
 
 

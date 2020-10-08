@@ -29,6 +29,7 @@ import java.text.DecimalFormat;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseFragment;
+import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.GetTranspotationCharges;
 import in.calibrage.akshaya.models.PageViewModel;
 import in.calibrage.akshaya.models.PaymentRequestModel;
@@ -44,6 +45,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 
 public class TransFragment extends BaseFragment {
@@ -56,6 +58,18 @@ public class TransFragment extends BaseFragment {
     TransportationAdapter pay_adapter;
     String Farmer_code;
     LinearLayout linear1;
+
+    public void onCreate(Bundle savedInstanceState) {
+        final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(getContext(), "te");
+        else if (langID == 3)
+            updateResources(getContext(), "kan");
+        else
+            updateResources(getContext(), "en-US");
+        super.onCreate(savedInstanceState);
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

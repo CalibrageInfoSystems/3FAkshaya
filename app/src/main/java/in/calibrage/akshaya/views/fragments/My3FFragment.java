@@ -46,6 +46,8 @@ public class My3FFragment extends BaseFragment {
         final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(getContext(), "te");
+        else if (langID == 3)
+            updateResources(getContext(), "kan");
         else
             updateResources(getContext(), "en-US");
         super.onCreate(savedInstanceState);

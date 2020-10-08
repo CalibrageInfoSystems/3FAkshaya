@@ -30,15 +30,21 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
         android:layout_alignParentTop="true"
+
         android:layout_centerHorizontal="true" />
-<!--    <EditText-->
+    <TextView
+        android:id="@+id/no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_8dp"
+        android:layout_marginRight="@dimen/_8dp"
+        android:layout_marginBottom="80dp"
+        android:fontFamily="@font/hind_semibold"
+        android:gravity="center"
 
-<!--        android:id="@+id/webView1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:editable="false"-->
 
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_centerHorizontal="true" />-->
+        android:text="@string/nobasic"
+        android:textColor="@color/colorOrange"
+        android:textSize="@dimen/margin_20" />
+
 </LinearLayout>
