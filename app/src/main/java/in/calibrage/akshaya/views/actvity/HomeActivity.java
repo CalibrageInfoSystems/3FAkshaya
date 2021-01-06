@@ -57,10 +57,11 @@ import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private Toolbar toolbar;
+
     private BottomNavigationView bottom_navigation;
     private AlertDialog alert, alertDialog;
     private DrawerLayout dl;
+    private Toolbar toolbar;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private ImageView img_profile;
@@ -288,7 +289,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_logout);
         dialogMessage = dialog.findViewById(R.id.dialogMessage);
-        dialogMessage.setText(getString(R.string.alert_logout));
+        dialogMessage.setText(     getString(R.string.alert_logout));
         cancel_btn = dialog.findViewById(R.id.cancel_btn);
         ok_btn = dialog.findViewById(R.id.ok_btn);
 /**

@@ -94,7 +94,7 @@ public class RequestVisitActivity extends BaseActivity {
                 .build();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
 
     }
 

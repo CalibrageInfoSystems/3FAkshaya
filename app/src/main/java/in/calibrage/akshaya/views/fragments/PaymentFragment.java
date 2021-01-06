@@ -3,7 +3,7 @@ package in.calibrage.akshaya.views.fragments;
 import android.Manifest;
 import android.app.DownloadManager;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -118,7 +118,7 @@ public class PaymentFragment extends BaseFragment {
 
 
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(getContext())
                 .setTheme(R.style.Custom)
@@ -403,34 +403,7 @@ public class PaymentFragment extends BaseFragment {
                 public void onClick(View view) {
                     startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
 
-//                    try {
-//                        File file = new File(Environment.DIRECTORY_DOWNLOADS);
-//                        if (!file.exists()) {
-//                            file.mkdirs();
-//                        }
-//
-//                        MimeTypeMap map = MimeTypeMap.getSingleton();
-//                        String ext = MimeTypeMap.getFileExtensionFromUrl(file.getName());
-//                        String type = map.getMimeTypeFromExtension(ext);
-//
-//                        if (type == null)
-//                            type = "*/*";
-//
-////                    Intent chooser = new Intent(Intent.ACTION_VIEW);
-//                        Uri selectedUri = Uri.parse(file.getAbsolutePath());
-//                        Uri uri = Uri.parse(Environment.getDownloadCacheDirectory().getPath().toString());
-////                    chooser.addCategory(Intent.CATEGORY_OPENABLE);
-////                    chooser.setDataAndType(uri, type);
-//
-//                        Intent intent = new Intent();
-//                        intent.setAction(Intent.ACTION_VIEW);
-//                        // intent.addCategory(Intent.CATEGORY_OPENABLE);
-//                        intent.setDataAndType(uri, type);
-//                        startActivityForResult(intent, 1);
-//                    } catch (Exception e) {
-//                        Log.e("errror===411",e.getLocalizedMessage());
-//                        e.printStackTrace();
-//                    }
+
 
                 }
             });

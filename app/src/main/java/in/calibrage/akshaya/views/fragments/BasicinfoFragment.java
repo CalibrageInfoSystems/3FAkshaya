@@ -100,7 +100,7 @@ public class BasicinfoFragment extends BaseFragment {
         mdilogue.show();
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "").trim();
 
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.getbasicinfo(APIConstantURL.GetContactInfo + Farmer_code +"/"+ statecode)

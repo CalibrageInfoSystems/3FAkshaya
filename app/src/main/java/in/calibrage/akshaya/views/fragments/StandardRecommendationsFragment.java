@@ -76,7 +76,7 @@ public class StandardRecommendationsFragment extends Fragment implements Adapter
 
 
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
 
         // Spinner element
         spin = (Spinner) view.findViewById(R.id.spinner);

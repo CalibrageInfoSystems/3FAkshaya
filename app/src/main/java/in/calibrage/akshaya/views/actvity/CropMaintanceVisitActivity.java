@@ -176,7 +176,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private void intview() {
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
         backImg = (ImageView) findViewById(R.id.back);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         recycler_view_pest =(RecyclerView)findViewById(R.id.recyclerView_pest);

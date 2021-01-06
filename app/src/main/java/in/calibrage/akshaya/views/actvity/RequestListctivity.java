@@ -26,6 +26,7 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.Getvisit;
 import in.calibrage.akshaya.models.LabourRequestModel;
 import in.calibrage.akshaya.models.ReqPole;
+import in.calibrage.akshaya.models.Reqquickpay;
 import in.calibrage.akshaya.models.ResLoan;
 import in.calibrage.akshaya.models.ResPole;
 import in.calibrage.akshaya.models.Resfert;
@@ -207,7 +208,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                 .setTheme(R.style.Custom)
                 .build();
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
 
     }
 
@@ -393,11 +394,11 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     }
 
     private JsonObject getheadervisitobject() {
-        ReqPole requestModel = new ReqPole();
+        Reqquickpay requestModel = new Reqquickpay();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
-        requestModel.setRequestTypeId(14);
+        requestModel.setUserId(null);
         requestModel.setStateCode(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
@@ -516,23 +517,22 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
 
     private JsonObject getLoanheaderobject() {
-        ReqPole requestModel = new ReqPole();
+        Reqquickpay requestModel = new Reqquickpay();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
-        requestModel.setRequestTypeId(28);
+        requestModel.setUserId(null);
         requestModel.setStateCode(null);
-
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
 
     private JsonObject getheaderobject() {
-        ReqPole requestModel = new ReqPole();
+        Reqquickpay requestModel = new Reqquickpay();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
-        requestModel.setRequestTypeId(13);
+        requestModel.setUserId(null);
         requestModel.setStateCode(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }

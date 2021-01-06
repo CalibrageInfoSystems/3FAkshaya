@@ -163,7 +163,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
     private void Get3FInfoo(String code) {
        //  statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "").trim();
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.get3finfo(APIConstantURL.Get3FInfo + Farmer_code + "/" + code)
@@ -302,7 +302,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
     private void Get3FInfoo2() {
         statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "").trim();
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.get3finfo(APIConstantURL.Get3FInfo + Farmer_code + "/" + statecode)
@@ -360,20 +360,19 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                                     no_data.setVisibility(VISIBLE);
                                     nurseries_recycleview.setVisibility(View.GONE);
 
-                                    if (resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters() != null && resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters().size()!= 0) {
+                                    if (resGet3FInfo.getResult().getImportantPlaces().getMills() != null && resGet3FInfo.getResult().getImportantPlaces().getMills().size()!= 0) {
                                         no_data.setVisibility(View.GONE);
-                                        collection_recycleview.setVisibility(View.VISIBLE);
-                                        collectioncenters_adapter adapter = new collectioncenters_adapter(resGet3FInfo.getResult().getImportantPlaces().getCollectionCenters(), getContext());
-                                        collection_recycleview.setAdapter(adapter);
+                                        mill_recycleview.setVisibility(VISIBLE);
+
+                                        Mills_adapter adapter = new Mills_adapter(resGet3FInfo.getResult().getImportantPlaces().getMills(), getContext());
+                                        mill_recycleview.setAdapter(adapter);
 
 
                                     } else {
-                                        no_data.setText(getResources().getString(R.string.no_collectioncenter_found));
+                                        no_data.setText(getResources().getString(R.string.no_mills));
+
                                         no_data.setVisibility(VISIBLE);
-
-                                        collection_recycleview.setVisibility(View.GONE);
-
-                                    }
+                                        mill_recycleview.setVisibility(View.GONE);}
                                 }
                                 else if (position == 2) {
                                     fert_recyclerView.setVisibility(View.GONE);

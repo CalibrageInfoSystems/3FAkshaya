@@ -27,20 +27,20 @@ import in.calibrage.akshaya.models.PaymentResponseModel;
 public class TransportationAdapter extends RecyclerView.Adapter<TransportationAdapter.ViewHolder> {
     String datetimevaluereq;
     public Context mContext;
-    private List<GetTranspotationCharges.ListResult> trans_Set = new ArrayList<>();
+    private List<GetTranspotationCharges.TranspotationCharge> trans_Set = new ArrayList<>();
     DecimalFormat dff,  df;
     public TransportationAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void updateData(List<GetTranspotationCharges.ListResult> viewModels) {
+    public void updateData(List<GetTranspotationCharges.TranspotationCharge> viewModels) {
         trans_Set.clear();
         Log.d("PaymentAdapter","----- analysis --- Size :"+trans_Set.size());
         trans_Set= viewModels;
         //  notifyDataSetChanged();
     }
 
-    public TransportationAdapter(Context context, List<GetTranspotationCharges.ListResult> trans_Set) {
+    public TransportationAdapter(Context context, List<GetTranspotationCharges.TranspotationCharge> trans_Set) {
 
         this.mContext = context;
         this.trans_Set = trans_Set;
@@ -82,11 +82,11 @@ public class TransportationAdapter extends RecyclerView.Adapter<TransportationAd
         }
         ((ViewHolder) holder).date.setText(": " + datetimevaluereq);
         ((ViewHolder) holder).dateLabel.setText(datetimevaluereq);
-        int amt = (int) Math.round(trans_Set.get(position).getTrpt());
+        int amt = (int) Math.round(trans_Set.get(position).getRate());
         ((ViewHolder) holder).collection_code.setText("" + trans_Set.get(position).getCollectionCode());
-        ((ViewHolder) holder).total_amount.setText(": " + amt);
-        ((ViewHolder) holder).trans_charges.setText(": " +trans_Set.get(position).getRate());
-        ((ViewHolder) holder).status.setText(": " + trans_Set.get(position).getStatus());
+      ((ViewHolder) holder).total_amount.setText(": " +dff.format(trans_Set.get(position).getRate()));
+        ((ViewHolder) holder).trans_charges.setText(": " +trans_Set.get(position).getTonnageCost());
+        //((ViewHolder) holder).status.setText(": " + trans_Set.get(position).getStatus());
         ((ViewHolder) holder).net_weight.setText(": " + df.format(trans_Set.get(position).getQty()));
 
        //(ViewHolder) holder).collection_code.setText(": " + df.format(Quanitity));

@@ -171,7 +171,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 .setTheme(R.style.Custom)
                 .build();
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
 
     }
 
@@ -406,7 +406,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setQuantity(total_weight);
         requestModel.setIsSpecialPay(false);
-        requestModel.setStateCode(statecode);
+    requestModel.setStateCode(statecode);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
     }

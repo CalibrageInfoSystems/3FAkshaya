@@ -142,7 +142,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         collecton_data = (RecyclerView) findViewById(R.id.collection_recycler_view);
         spin = (Spinner) findViewById(R.id.spinner);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
         fromText.setHint(CommonUtil.getMultiColourString(getString(R.string.from_date)));
         toText.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
     }

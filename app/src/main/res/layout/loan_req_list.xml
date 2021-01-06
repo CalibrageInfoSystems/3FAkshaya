@@ -85,6 +85,7 @@
                 android:fontFamily="@font/hind_semibold"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/album_title"
+                android:visibility="gone"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_below="@id/reqCreatedDateLabel"
@@ -99,6 +100,7 @@
                 android:layout_alignBaseline="@id/statusTypeLabel"
                 android:layout_marginLeft="@dimen/_150dp"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:text="Email"
                 android:fontFamily="@font/hind_semibold"
                 android:textSize="@dimen/album_title" />

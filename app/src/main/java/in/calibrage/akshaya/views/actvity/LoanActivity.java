@@ -103,7 +103,7 @@ public class LoanActivity extends BaseActivity {
         terms = (TextView) findViewById(R.id.terms);
         loan_Btn = (Button) findViewById(R.id.req_loan);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
         home_btn = (ImageView) findViewById(R.id.home_btn);
         amount = (EditText) findViewById(R.id.loan_amount);
         reason = (EditText) findViewById(R.id.reason);

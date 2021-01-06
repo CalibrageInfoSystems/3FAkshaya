@@ -77,7 +77,7 @@ String statecode,statename;
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         SharedPreferences pref = mContext.getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(mContext)

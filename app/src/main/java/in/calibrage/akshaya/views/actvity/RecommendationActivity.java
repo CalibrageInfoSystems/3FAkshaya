@@ -69,7 +69,7 @@ public class RecommendationActivity extends BaseActivity {
                 .build();
         recom_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
     }
     private void setViews() {
         backImg.setOnClickListener(new View.OnClickListener() {

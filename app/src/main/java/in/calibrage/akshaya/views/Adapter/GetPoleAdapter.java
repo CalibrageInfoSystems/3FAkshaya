@@ -193,6 +193,7 @@ public class GetPoleAdapter extends RecyclerView.Adapter<GetPoleAdapter.ViewHold
         holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 listener.onContactSelected1(list.get(position).getRequestCode().toString());
 
             }

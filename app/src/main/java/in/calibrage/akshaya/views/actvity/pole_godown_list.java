@@ -165,7 +165,7 @@ public class pole_godown_list extends BaseActivity  {
             }
         });
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
         if (isOnline()) {
             getPaymentMods();
 

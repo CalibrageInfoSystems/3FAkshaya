@@ -96,7 +96,7 @@ public class profile_fragment extends BaseFragment {
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
 
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-         Farmer_code = pref.getString("farmerid", "");
+         Farmer_code = pref.getString("farmerid", "").trim();
         init(view);
 
         setviews();

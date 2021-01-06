@@ -103,7 +103,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         noRecords = (TextView) findViewById(R.id.no_text);
         nextButton = (Button) findViewById(R.id.nextButton);
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

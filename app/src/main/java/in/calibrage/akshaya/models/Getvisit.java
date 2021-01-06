@@ -75,6 +75,8 @@ public class Getvisit {
         this.exception = exception;
     }
 
+
+
 public class ListResult {
 
     @SerializedName("requestCode")
@@ -83,18 +85,15 @@ public class ListResult {
     @SerializedName("farmerName")
     @Expose
     private String farmerName;
-    @SerializedName("requestTypeId")
-    @Expose
-    private Integer requestTypeId;
-    @SerializedName("requestType")
-    @Expose
-    private String requestType;
     @SerializedName("farmerCode")
     @Expose
     private String farmerCode;
     @SerializedName("plotCode")
     @Expose
     private String plotCode;
+    @SerializedName("stateName")
+    @Expose
+    private String stateName;
     @SerializedName("reqCreatedDate")
     @Expose
     private String reqCreatedDate;
@@ -104,36 +103,37 @@ public class ListResult {
     @SerializedName("statusType")
     @Expose
     private String statusType;
-    @SerializedName("isFarmerRequest")
-    @Expose
-    private Boolean isFarmerRequest;
-    @SerializedName("totalCost")
-    @Expose
-    private Object totalCost;
-    @SerializedName("comments")
-    @Expose
-    private String comments;
     @SerializedName("cropMaintainceDate")
     @Expose
     private Object cropMaintainceDate;
-    @SerializedName("issueTypeId")
+    @SerializedName("updatedDate")
     @Expose
-    private Integer issueTypeId;
-    @SerializedName("plotVillage")
-    @Expose
-    private String plotVillage;
-    @SerializedName("palmArea")
-    @Expose
-    private Double palmArea;
+    private String updatedDate;
     @SerializedName("issueType")
     @Expose
     private String issueType;
+    @SerializedName("comments")
+    @Expose
+    private String comments;
+    @SerializedName("createdBy")
+    @Expose
+    private Object createdBy;
     @SerializedName("isHavingImage")
     @Expose
     private String isHavingImage;
     @SerializedName("isHavingAudio")
     @Expose
     private String isHavingAudio;
+
+    @SerializedName("plotVillage")
+    @Expose
+    private String plotVillage;
+    @SerializedName("palmArea")
+    @Expose
+    private Double palmArea;
+
+//     "plotVillage": "Chodavaram",
+//             "palmArea": 0.58
 
     public String getRequestCode() {
         return requestCode;
@@ -151,22 +151,6 @@ public class ListResult {
         this.farmerName = farmerName;
     }
 
-    public Integer getRequestTypeId() {
-        return requestTypeId;
-    }
-
-    public void setRequestTypeId(Integer requestTypeId) {
-        this.requestTypeId = requestTypeId;
-    }
-
-    public String getRequestType() {
-        return requestType;
-    }
-
-    public void setRequestType(String requestType) {
-        this.requestType = requestType;
-    }
-
     public String getFarmerCode() {
         return farmerCode;
     }
@@ -181,6 +165,14 @@ public class ListResult {
 
     public void setPlotCode(String plotCode) {
         this.plotCode = plotCode;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
     public String getReqCreatedDate() {
@@ -207,20 +199,28 @@ public class ListResult {
         this.statusType = statusType;
     }
 
-    public Boolean getIsFarmerRequest() {
-        return isFarmerRequest;
+    public Object getCropMaintainceDate() {
+        return cropMaintainceDate;
     }
 
-    public void setIsFarmerRequest(Boolean isFarmerRequest) {
-        this.isFarmerRequest = isFarmerRequest;
+    public void setCropMaintainceDate(Object cropMaintainceDate) {
+        this.cropMaintainceDate = cropMaintainceDate;
     }
 
-    public Object getTotalCost() {
-        return totalCost;
+    public String getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setTotalCost(Object totalCost) {
-        this.totalCost = totalCost;
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public String getIssueType() {
+        return issueType;
+    }
+
+    public void setIssueType(String issueType) {
+        this.issueType = issueType;
     }
 
     public String getComments() {
@@ -231,44 +231,12 @@ public class ListResult {
         this.comments = comments;
     }
 
-    public Object getCropMaintainceDate() {
-        return cropMaintainceDate;
+    public Object getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCropMaintainceDate(Object cropMaintainceDate) {
-        this.cropMaintainceDate = cropMaintainceDate;
-    }
-
-    public Integer getIssueTypeId() {
-        return issueTypeId;
-    }
-
-    public void setIssueTypeId(Integer issueTypeId) {
-        this.issueTypeId = issueTypeId;
-    }
-
-    public String getPlotVillage() {
-        return plotVillage;
-    }
-
-    public void setPlotVillage(String plotVillage) {
-        this.plotVillage = plotVillage;
-    }
-
-    public Double getPalmArea() {
-        return palmArea;
-    }
-
-    public void setPalmArea(Double palmArea) {
-        this.palmArea = palmArea;
-    }
-
-    public String getIssueType() {
-        return issueType;
-    }
-
-    public void setIssueType(String issueType) {
-        this.issueType = issueType;
+    public void setCreatedBy(Object createdBy) {
+        this.createdBy = createdBy;
     }
 
     public String getIsHavingImage() {
@@ -287,4 +255,19 @@ public class ListResult {
         this.isHavingAudio = isHavingAudio;
     }
 
-} }
+    public String getPlotVillage() {
+        return plotVillage;
+    }
+
+    public void setPlotVillage(String plotVillage) {
+        this.plotVillage = plotVillage;
+    }
+
+    public double getPalmArea() {
+        return palmArea;
+    }
+
+    public void setPalmArea(double palmArea) {
+        this.palmArea = palmArea;
+    }
+}}

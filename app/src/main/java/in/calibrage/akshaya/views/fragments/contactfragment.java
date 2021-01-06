@@ -110,7 +110,7 @@ public class contactfragment extends BaseFragment {
     private void Get3FInfo() {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "").trim();
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.get3finfo(APIConstantURL.Get3FInfo + Farmer_code + "/" + statecode)

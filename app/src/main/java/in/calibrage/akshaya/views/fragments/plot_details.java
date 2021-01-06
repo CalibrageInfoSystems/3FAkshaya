@@ -125,7 +125,7 @@ public class plot_details extends BaseFragment {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        String Farmer_code = pref.getString("farmerid", "");
+        String Farmer_code = pref.getString("farmerid", "").trim();
         mSubscription = service.getrecommdetails(APIConstantURL.GetActivePlotsByFarmerCode + Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

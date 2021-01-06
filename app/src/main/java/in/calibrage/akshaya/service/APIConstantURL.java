@@ -1,11 +1,12 @@
 package in.calibrage.akshaya.service;
 
 public interface APIConstantURL {
-public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//test
-//public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
+//public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";
+  //test
+public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
 
 
-   // public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
+ //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
     //String LookUpCategory = "GetActiveLookUp/9";
     String LookUpCategory = "GetActiveLookUp/9";
     String banner ="Banner";
@@ -41,7 +42,9 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//test
     String labour_response = "GetLabourRequestDetails";
     String GetPoleRequestDetails = "FertilizerRequest/GetPoleRequestDetails";
     String GetFertilizerDetails = "GetFertilizerDetails";
-    String GetRequestHeaderDetails = "RequestHeader/GetRequestHeaderDetails";
+   String GetQuickpayRequestDetails = "QuickPayRequest/GetQuickpayRequestDetails";
+   String GetLoanRequestDetails = "RequestHeader/GetLoanRequestDetails";
+    String GetRequestHeaderDetails = "RequestHeader/GetVisitRequestDetails";
     String GetContactInfo = "ContactInfo/GetContactInfo/";
     String Get3FInfo = "Farmer/Get3FInfo/";
     String GetPlotDetailsByFarmerCode = "Farmer/GetPlotDetailsByFarmerCode/";
@@ -51,7 +54,7 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//test
 
     String CollectionInfoById ="Collection/CollectionInfoById/";
     String GetVisitRequestRepository ="RequestHeader/GetVisitRequestRepository/";
-
+    String GetQuickpayDocument ="QuickPayRequest/GetQuickpayDocument/";
     String GetLabourPackageDiscount ="LabourPackageDiscount/GetLabourPackageDiscount";
     String post_export ="Payment/ExportPayments";
     String GetBankDetailsByFarmerCode ="Farmer/GetBankDetailsByFarmerCode/";
@@ -60,6 +63,8 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//test
     String IsQuickPayBlockDate ="QuickPayBlockDate/IsQuickPayBlockDate/";
    String IsActiveFarmer ="Farmer/IsActiveFarmer/";
     String GetServicesByStateCode ="StateService/GetServicesByStateCode/";
+
+    String GetActiveBannerByStateCode ="Banner/GetActiveBannerByStateCode/";
 //   http://183.82.111.111/3FFarmerAPI/api/LabourRequest/GetLabourTermsandConditions/null
 
 }

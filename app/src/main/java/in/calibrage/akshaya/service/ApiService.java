@@ -19,6 +19,7 @@ import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.GetInterCropByPlotCode;
 import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.models.GetLabourPackageDiscount;
+import in.calibrage.akshaya.models.GetQuickpayDocumentRes;
 import in.calibrage.akshaya.models.GetServicesByStateCode;
 import in.calibrage.akshaya.models.GetTranspotationCharges;
 import in.calibrage.akshaya.models.GetVisitRequestRepository;
@@ -187,10 +188,10 @@ public interface ApiService {
     Observable<Resfert> GetfertRequestDetails(@Body JsonObject data);
 
 
-    @POST(APIConstantURL.GetRequestHeaderDetails)
+    @POST(APIConstantURL.GetQuickpayRequestDetails)
     Observable<Resquickpay> GetRequestheaderDetails(@Body JsonObject data);
 
-    @POST(APIConstantURL.GetRequestHeaderDetails)
+    @POST(APIConstantURL.GetLoanRequestDetails)
     Observable<ResLoan> GetRequestheaderLoanDetails(@Body JsonObject data);
     @POST(APIConstantURL.GetRequestHeaderDetails)
     Observable<Getvisit> GetRequestheadervistDetails(@Body JsonObject data);
@@ -224,6 +225,8 @@ public interface ApiService {
 
     @GET
     Observable<GetVisitRequestRepository> getimages(@Url String url);
+    @GET
+    Observable<GetQuickpayDocumentRes> getPdfurl(@Url String url);
 
     @GET
     Observable<GetLabourPackageDiscount> getdiscount(@Url String url);

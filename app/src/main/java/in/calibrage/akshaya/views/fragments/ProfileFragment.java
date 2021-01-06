@@ -78,7 +78,7 @@ public class ProfileFragment extends  BaseFragment {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
 
-        My3FFragment.Adapter adapter = new My3FFragment.Adapter(getChildFragmentManager());
+       Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(new profile_fragment(),  getResources().getString(R.string.farmer_profile));
         adapter.addFragment(new plot_details(), getResources().getString(R.string.plot_details));
 

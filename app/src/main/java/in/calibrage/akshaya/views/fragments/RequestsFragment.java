@@ -146,7 +146,7 @@ public class RequestsFragment extends BaseFragment implements MyReqListAdapter.R
                 R.drawable.loan,
 
         };
-//        Request_settings a = new Request_settings( getResources().getString(R.string.lab_req), covers[0]);
+    //   Request_settings a = new Request_settings( getResources().getString(R.string.lab_req), covers[0]);
 //        request_List.add(a);
 //        a = new Request_settings( getResources().getString(R.string.fert_req), covers[1]);
 //        request_List.add(a);

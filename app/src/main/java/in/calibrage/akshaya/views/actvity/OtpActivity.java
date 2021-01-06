@@ -118,7 +118,7 @@ public class OtpActivity extends BaseActivity {
                 .setTheme(R.style.Custom)
                 .build();
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
 
 
     }

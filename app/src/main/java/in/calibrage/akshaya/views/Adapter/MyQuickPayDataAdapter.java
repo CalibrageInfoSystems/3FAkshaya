@@ -39,9 +39,11 @@ import java.util.Locale;
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.DeleteObject;
+import in.calibrage.akshaya.models.GetQuickpayDocumentRes;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.Resdelete;
 import in.calibrage.akshaya.models.Resquickpay;
+import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.actvity.Quickpay_SummaryActivity;
@@ -137,16 +139,61 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
             @Override
             public void onClick(View view) {
                 selectedItemID = list.get(position).getRequestCode();
-                pdf_url =list.get(position).getFileUrl();
-                Log.e("url===",pdf_url);
                 selectedPO = position;
-                showCondetailsDialog(selectedPO,pdf_url);
+                GetQuickpayDocument(selectedPO,selectedItemID);
+
+
+
 
 
             }
 
         });
     }
+
+    private void GetQuickpayDocument(final int selectedPO, String selectedItemID) {
+        ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
+        mSubscription = service.getPdfurl(APIConstantURL.GetQuickpayDocument + selectedItemID)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetQuickpayDocumentRes>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        // mdilogue.dismiss();
+                        //showDialog(LabourActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(GetQuickpayDocumentRes getQuickpayDocumentRes) {
+                        if(getQuickpayDocumentRes.getResult()!=null){
+                            pdf_url= getQuickpayDocumentRes.getResult();
+                            showCondetailsDialog(selectedPO,pdf_url);
+                        }
+
+
+
+
+                    }
+
+
+
+    });}
 
     private void showCondetailsDialog(int selectedPO, final String pdf_url) {
 

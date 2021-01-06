@@ -531,6 +531,9 @@
     <string name="no_nus">No Nurseries Found</string>
     <string name="paymentnote_note">FFB Collections which are still payment pending will not show, after payment only they will start showing.</string>
     <string name="standard_note">Quantity in gm/plant/year</string>
+    <string name="tansportation_note">Unless Plot is declared during FFB Collection, all plots average transport rate is calculated based on age,size, &amp; Expected FFB.</string>
+    <string name="transportationrates">Transportation Rates</string>
+    <string name="rate">Rate per Ton (Rs)</string>
 
     />
     <!-- we need to use video ids instead of video link -->

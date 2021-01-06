@@ -122,7 +122,7 @@ public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnCli
         }
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
 
         recyclerView = (RecyclerView) findViewById(R.id.fer_recycler_view);
         mealTotalText = (TextView) findViewById(R.id.meal_total);

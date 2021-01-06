@@ -73,199 +73,93 @@ public class ResLoan {
     }
 
 
-    public class ListResult {
+public class ListResult {
 
-        @SerializedName("requestCode")
-        @Expose
-        private String requestCode;
-        @SerializedName("requestTypeId")
-        @Expose
-        private Integer requestTypeId;
-        @SerializedName("requestType")
-        @Expose
-        private String requestType;
-        @SerializedName("farmerCode")
-        @Expose
-        private String farmerCode;
-        @SerializedName("farmerName")
-        @Expose
-        private String farmerName;
-        @SerializedName("plotCode")
-        @Expose
-        private Object plotCode;
-        @SerializedName("reqCreatedDate")
-        @Expose
-        private String reqCreatedDate;
-        @SerializedName("statusTypeId")
-        @Expose
-        private Integer statusTypeId;
-        @SerializedName("statusType")
-        @Expose
-        private String statusType;
-        @SerializedName("isFarmerRequest")
-        @Expose
-        private Boolean isFarmerRequest;
-        @SerializedName("totalCost")
-        @Expose
-        private Double totalCost;
-        @SerializedName("comments")
-        @Expose
-        private String comments;
-        @SerializedName("cropMaintainceDate")
-        @Expose
-        private String cropMaintainceDate;
-        @SerializedName("issueTypeId")
-        @Expose
-        private Object issueTypeId;
-        @SerializedName("issueType")
-        @Expose
-        private Object issueType;
-        @SerializedName("isHavingImage")
-        @Expose
-        private Boolean isHavingImage;
-        @SerializedName("isHavingAudio")
-        @Expose
-        private Boolean isHavingAudio;
+    @SerializedName("requestCode")
+    @Expose
+    private String requestCode;
+    @SerializedName("farmerName")
+    @Expose
+    private String farmerName;
+    @SerializedName("farmerCode")
+    @Expose
+    private String farmerCode;
+    @SerializedName("stateName")
+    @Expose
+    private String stateName;
+    @SerializedName("reqCreatedDate")
+    @Expose
+    private String reqCreatedDate;
+    @SerializedName("totalCost")
+    @Expose
+    private Double totalCost;
+    @SerializedName("comments")
+    @Expose
+    private String comments;
+    @SerializedName("createdBy")
+    @Expose
+    private String createdBy;
 
-        public String getRequestCode() {
-            return requestCode;
-        }
-
-        public void setRequestCode(String requestCode) {
-            this.requestCode = requestCode;
-        }
-
-        public Integer getRequestTypeId() {
-            return requestTypeId;
-        }
-
-        public void setRequestTypeId(Integer requestTypeId) {
-            this.requestTypeId = requestTypeId;
-        }
-
-        public String getRequestType() {
-            return requestType;
-        }
-
-        public void setRequestType(String requestType) {
-            this.requestType = requestType;
-        }
-
-        public String getFarmerCode() {
-            return farmerCode;
-        }
-
-        public void setFarmerCode(String farmerCode) {
-            this.farmerCode = farmerCode;
-        }
-
-        public String getFarmerName() {
-            return farmerName;
-        }
-
-        public void setFarmerName(String farmerName) {
-            this.farmerName = farmerName;
-        }
-
-        public Object getPlotCode() {
-            return plotCode;
-        }
-
-        public void setPlotCode(Object plotCode) {
-            this.plotCode = plotCode;
-        }
-
-        public String getReqCreatedDate() {
-            return reqCreatedDate;
-        }
-
-        public void setReqCreatedDate(String reqCreatedDate) {
-            this.reqCreatedDate = reqCreatedDate;
-        }
-
-        public Integer getStatusTypeId() {
-            return statusTypeId;
-        }
-
-        public void setStatusTypeId(Integer statusTypeId) {
-            this.statusTypeId = statusTypeId;
-        }
-
-        public String getStatusType() {
-            return statusType;
-        }
-
-        public void setStatusType(String statusType) {
-            this.statusType = statusType;
-        }
-
-        public Boolean getIsFarmerRequest() {
-            return isFarmerRequest;
-        }
-
-        public void setIsFarmerRequest(Boolean isFarmerRequest) {
-            this.isFarmerRequest = isFarmerRequest;
-        }
-
-        public Double getTotalCost() {
-            return totalCost;
-        }
-
-        public void setTotalCost(Double totalCost) {
-            this.totalCost = totalCost;
-        }
-
-        public String getComments() {
-            return comments;
-        }
-
-        public void setComments(String comments) {
-            this.comments = comments;
-        }
-
-        public String getCropMaintainceDate() {
-            return cropMaintainceDate;
-        }
-
-        public void setCropMaintainceDate(String cropMaintainceDate) {
-            this.cropMaintainceDate = cropMaintainceDate;
-        }
-
-        public Object getIssueTypeId() {
-            return issueTypeId;
-        }
-
-        public void setIssueTypeId(Object issueTypeId) {
-            this.issueTypeId = issueTypeId;
-        }
-
-        public Object getIssueType() {
-            return issueType;
-        }
-
-        public void setIssueType(Object issueType) {
-            this.issueType = issueType;
-        }
-
-        public Boolean getIsHavingImage() {
-            return isHavingImage;
-        }
-
-        public void setIsHavingImage(Boolean isHavingImage) {
-            this.isHavingImage = isHavingImage;
-        }
-
-        public Boolean getIsHavingAudio() {
-            return isHavingAudio;
-        }
-
-        public void setIsHavingAudio(Boolean isHavingAudio) {
-            this.isHavingAudio = isHavingAudio;
-        }
-
+    public String getRequestCode() {
+        return requestCode;
     }
 
+    public void setRequestCode(String requestCode) {
+        this.requestCode = requestCode;
+    }
 
-}
+    public String getFarmerName() {
+        return farmerName;
+    }
 
+    public void setFarmerName(String farmerName) {
+        this.farmerName = farmerName;
+    }
 
+    public String getFarmerCode() {
+        return farmerCode;
+    }
+
+    public void setFarmerCode(String farmerCode) {
+        this.farmerCode = farmerCode;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public String getReqCreatedDate() {
+        return reqCreatedDate;
+    }
+
+    public void setReqCreatedDate(String reqCreatedDate) {
+        this.reqCreatedDate = reqCreatedDate;
+    }
+
+    public Double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }}}

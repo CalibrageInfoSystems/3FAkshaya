@@ -5,75 +5,29 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class GetTranspotationCharges {
-    @SerializedName("listResult")
+    @SerializedName("transpotationCharges")
     @Expose
-    private List<ListResult> listResult = null;
-    @SerializedName("isSuccess")
+    private List<TranspotationCharge> transpotationCharges = null;
+    @SerializedName("trasportRates")
     @Expose
-    private Boolean isSuccess;
-    @SerializedName("affectedRecords")
-    @Expose
-    private Integer affectedRecords;
-    @SerializedName("endUserMessage")
-    @Expose
-    private String endUserMessage;
-    @SerializedName("validationErrors")
-    @Expose
-    private List<Object> validationErrors = null;
-    @SerializedName("exception")
-    @Expose
-    private Object exception;
+    private List<TrasportRate> trasportRates = null;
 
-    public List<ListResult> getListResult() {
-        return listResult;
+    public List<TranspotationCharge> getTranspotationCharges() {
+        return transpotationCharges;
     }
 
-    public void setListResult(List<ListResult> listResult) {
-        this.listResult = listResult;
+    public void setTranspotationCharges(List<TranspotationCharge> transpotationCharges) {
+        this.transpotationCharges = transpotationCharges;
     }
 
-    public Boolean getIsSuccess() {
-        return isSuccess;
+    public List<TrasportRate> getTrasportRates() {
+        return trasportRates;
     }
 
-    public void setIsSuccess(Boolean isSuccess) {
-        this.isSuccess = isSuccess;
+    public void setTrasportRates(List<TrasportRate> trasportRates) {
+        this.trasportRates = trasportRates;
     }
-
-    public Integer getAffectedRecords() {
-        return affectedRecords;
-    }
-
-    public void setAffectedRecords(Integer affectedRecords) {
-        this.affectedRecords = affectedRecords;
-    }
-
-    public String getEndUserMessage() {
-        return endUserMessage;
-    }
-
-    public void setEndUserMessage(String endUserMessage) {
-        this.endUserMessage = endUserMessage;
-    }
-
-    public List<Object> getValidationErrors() {
-        return validationErrors;
-    }
-
-    public void setValidationErrors(List<Object> validationErrors) {
-        this.validationErrors = validationErrors;
-    }
-
-    public Object getException() {
-        return exception;
-    }
-
-    public void setException(Object exception) {
-        this.exception = exception;
-    }
-
-
-    public class ListResult {
+    public class TranspotationCharge {
 
         @SerializedName("collectionCode")
         @Expose
@@ -84,27 +38,18 @@ public class GetTranspotationCharges {
         @SerializedName("farmerName")
         @Expose
         private String farmerName;
-        @SerializedName("village")
+        @SerializedName("tonnageCost")
         @Expose
-        private String village;
-        @SerializedName("mandal")
-        @Expose
-        private String mandal;
+        private Double tonnageCost;
         @SerializedName("rate")
         @Expose
-        private int rate;
+        private Double rate;
         @SerializedName("qty")
         @Expose
         private Double qty;
-        @SerializedName("trpt")
-        @Expose
-        private Double trpt;
         @SerializedName("receiptGeneratedDate")
         @Expose
         private String receiptGeneratedDate;
-        @SerializedName("status")
-        @Expose
-        private Object status;
 
         public String getCollectionCode() {
             return collectionCode;
@@ -130,6 +75,64 @@ public class GetTranspotationCharges {
             this.farmerName = farmerName;
         }
 
+        public Double getTonnageCost() {
+            return tonnageCost;
+        }
+
+        public void setTonnageCost(Double tonnageCost) {
+            this.tonnageCost = tonnageCost;
+        }
+
+        public Double getRate() {
+            return rate;
+        }
+
+        public void setRate(Double rate) {
+            this.rate = rate;
+        }
+
+        public Double getQty() {
+            return qty;
+        }
+
+        public void setQty(Double qty) {
+            this.qty = qty;
+        }
+
+        public String getReceiptGeneratedDate() {
+            return receiptGeneratedDate;
+        }
+
+        public void setReceiptGeneratedDate(String receiptGeneratedDate) {
+            this.receiptGeneratedDate = receiptGeneratedDate;
+        }
+
+    }
+
+
+    public class TrasportRate {
+
+        @SerializedName("farmerCode")
+        @Expose
+        private String farmerCode;
+        @SerializedName("village")
+        @Expose
+        private String village;
+        @SerializedName("mandal")
+        @Expose
+        private String mandal;
+        @SerializedName("rate")
+        @Expose
+        private double rate;
+
+        public String getFarmerCode() {
+            return farmerCode;
+        }
+
+        public void setFarmerCode(String farmerCode) {
+            this.farmerCode = farmerCode;
+        }
+
         public String getVillage() {
             return village;
         }
@@ -146,44 +149,12 @@ public class GetTranspotationCharges {
             this.mandal = mandal;
         }
 
-        public int getRate() {
+        public double getRate() {
             return rate;
         }
 
-        public void setRate(int rate) {
+        public void setRate(double rate) {
             this.rate = rate;
-        }
-
-        public Double getQty() {
-            return qty;
-        }
-
-        public void setQty(Double qty) {
-            this.qty = qty;
-        }
-
-        public Double getTrpt() {
-            return trpt;
-        }
-
-        public void setTrpt(Double trpt) {
-            this.trpt = trpt;
-        }
-
-        public String getReceiptGeneratedDate() {
-            return receiptGeneratedDate;
-        }
-
-        public void setReceiptGeneratedDate(String receiptGeneratedDate) {
-            this.receiptGeneratedDate = receiptGeneratedDate;
-        }
-
-        public Object getStatus() {
-            return status;
-        }
-
-        public void setStatus(Object status) {
-            this.status = status;
         }
 
     }

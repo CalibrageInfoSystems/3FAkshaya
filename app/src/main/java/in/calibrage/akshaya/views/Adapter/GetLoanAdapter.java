@@ -95,7 +95,7 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
         holder.requestCode.setText(list_loan.get(position).getRequestCode());
         holder.req_date.setText(datetimevaluereq);
         holder.amount.setText(df.format(list_loan.get(position).getTotalCost()));
-          holder.statusType.setText(list_loan.get(position).getStatusType());
+         // holder.statusType.setText(list_loan.get(position).getStatusType());
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 //        if (!"Closed".equals(holder.statusType.getText()))
 //        {
@@ -212,7 +212,7 @@ public class GetLoanAdapter extends RecyclerView.Adapter<GetLoanAdapter.ViewHold
                     public void onNext(Resdelete resdelete) {
 
                                 ResLoan.ListResult item =list_loan.get(selectedPO);
-                                item.setStatusType("Cancelled");
+                             //   item.setStatusType("Cancelled");
                                 list_loan.set(selectedPO,item);
                                 Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
                                 notifyItemChanged(selectedPO);

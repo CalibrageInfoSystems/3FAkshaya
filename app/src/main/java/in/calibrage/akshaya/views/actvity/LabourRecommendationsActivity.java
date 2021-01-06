@@ -123,7 +123,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
 
     private void init() {
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
         noRecords = (LinearLayout) findViewById(R.id.text);
        // backImg = (ImageView) findViewById(R.id.back);
          home_btn = (ImageView) findViewById(R.id.home_btn);

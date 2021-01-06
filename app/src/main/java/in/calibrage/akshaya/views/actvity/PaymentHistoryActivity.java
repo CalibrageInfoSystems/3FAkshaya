@@ -120,7 +120,7 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
         //  txt_to_date.setHint(CommonUtil.getMultiColourString(getString(R.string.to_date)));
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
     }
 
     private void setviews() {

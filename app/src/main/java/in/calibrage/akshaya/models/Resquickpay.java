@@ -75,260 +75,216 @@ public class Resquickpay {
         this.exception = exception;
     }
 
-
 public class ListResult {
 
-    @SerializedName("requestCode")
-    @Expose
-    private String requestCode;
-    @SerializedName("farmerName")
-    @Expose
-    private String farmerName;
-    @SerializedName("requestTypeId")
-    @Expose
-    private Integer requestTypeId;
-    @SerializedName("requestType")
-    @Expose
-    private String requestType;
-    @SerializedName("farmerCode")
-    @Expose
-    private String farmerCode;
-    @SerializedName("plotCode")
-    @Expose
-    private Object plotCode;
-    @SerializedName("reqCreatedDate")
-    @Expose
-    private String reqCreatedDate;
-    @SerializedName("statusTypeId")
-    @Expose
-    private Integer statusTypeId;
-    @SerializedName("statusType")
-    @Expose
-    private String statusType;
-    @SerializedName("isFarmerRequest")
-    @Expose
-    private Boolean isFarmerRequest;
-    @SerializedName("totalCost")
-    @Expose
-    private Double totalCost;
-    @SerializedName("comments")
-    @Expose
-    private Object comments;
-    @SerializedName("cropMaintainceDate")
-    @Expose
-    private Object cropMaintainceDate;
-    @SerializedName("issueTypeId")
-    @Expose
-    private Object issueTypeId;
-    @SerializedName("plotVillage")
-    @Expose
-    private Object plotVillage;
-    @SerializedName("palmArea")
-    @Expose
-    private Object palmArea;
-    @SerializedName("issueType")
-    @Expose
-    private Object issueType;
-    @SerializedName("isHavingImage")
-    @Expose
-    private String isHavingImage;
-    @SerializedName("isHavingAudio")
-    @Expose
-    private String isHavingAudio;
-    @SerializedName("fileExtension")
-    @Expose
-    private String fileExtension;
-    @SerializedName("fileLocation")
-    @Expose
-    private String fileLocation;
-    @SerializedName("fileName")
-    @Expose
-    private String fileName;
-    @SerializedName("fileUrl")
-    @Expose
-    private String fileUrl;
 
-    public String getRequestCode() {
-        return requestCode;
-    }
 
-    public void setRequestCode(String requestCode) {
-        this.requestCode = requestCode;
-    }
+        @SerializedName("requestCode")
+        @Expose
+        private String requestCode;
+        @SerializedName("farmerName")
+        @Expose
+        private String farmerName;
+        @SerializedName("farmerCode")
+        @Expose
+        private String farmerCode;
+        @SerializedName("requestType")
+        @Expose
+        private String requestType;
+        @SerializedName("stateName")
+        @Expose
+        private String stateName;
+        @SerializedName("clusterCategory")
+        @Expose
+        private Object clusterCategory;
+        @SerializedName("reqCreatedDate")
+        @Expose
+        private String reqCreatedDate;
+        @SerializedName("statusTypeId")
+        @Expose
+        private Integer statusTypeId;
+        @SerializedName("statusType")
+        @Expose
+        private String statusType;
+        @SerializedName("approvedDate")
+        @Expose
+        private String approvedDate;
+        @SerializedName("totalCost")
+        @Expose
+        private Double totalCost;
+        @SerializedName("createdBy")
+        @Expose
+        private String createdBy;
+        @SerializedName("comments")
+        @Expose
+        private Object comments;
+        @SerializedName("weighbridgeSlipVerified")
+        @Expose
+        private Boolean weighbridgeSlipVerified;
+        @SerializedName("requestsVerified")
+        @Expose
+        private Boolean requestsVerified;
+        @SerializedName("duesVerified")
+        @Expose
+        private Boolean duesVerified;
+        @SerializedName("updatedDate")
+        @Expose
+        private String updatedDate;
+        @SerializedName("netWeight")
+        @Expose
+        private Double netWeight;
+        @SerializedName("stateCode")
+        @Expose
+        private String stateCode;
 
-    public String getFarmerName() {
-        return farmerName;
-    }
+        public String getRequestCode() {
+            return requestCode;
+        }
 
-    public void setFarmerName(String farmerName) {
-        this.farmerName = farmerName;
-    }
+        public void setRequestCode(String requestCode) {
+            this.requestCode = requestCode;
+        }
 
-    public Integer getRequestTypeId() {
-        return requestTypeId;
-    }
+        public String getFarmerName() {
+            return farmerName;
+        }
 
-    public void setRequestTypeId(Integer requestTypeId) {
-        this.requestTypeId = requestTypeId;
-    }
+        public void setFarmerName(String farmerName) {
+            this.farmerName = farmerName;
+        }
 
-    public String getRequestType() {
-        return requestType;
-    }
+        public String getFarmerCode() {
+            return farmerCode;
+        }
 
-    public void setRequestType(String requestType) {
-        this.requestType = requestType;
-    }
+        public void setFarmerCode(String farmerCode) {
+            this.farmerCode = farmerCode;
+        }
 
-    public String getFarmerCode() {
-        return farmerCode;
-    }
+        public String getRequestType() {
+            return requestType;
+        }
 
-    public void setFarmerCode(String farmerCode) {
-        this.farmerCode = farmerCode;
-    }
+        public void setRequestType(String requestType) {
+            this.requestType = requestType;
+        }
 
-    public Object getPlotCode() {
-        return plotCode;
-    }
+        public String getStateName() {
+            return stateName;
+        }
 
-    public void setPlotCode(Object plotCode) {
-        this.plotCode = plotCode;
-    }
+        public void setStateName(String stateName) {
+            this.stateName = stateName;
+        }
 
-    public String getReqCreatedDate() {
-        return reqCreatedDate;
-    }
+        public Object getClusterCategory() {
+            return clusterCategory;
+        }
 
-    public void setReqCreatedDate(String reqCreatedDate) {
-        this.reqCreatedDate = reqCreatedDate;
-    }
+        public void setClusterCategory(Object clusterCategory) {
+            this.clusterCategory = clusterCategory;
+        }
 
-    public Integer getStatusTypeId() {
-        return statusTypeId;
-    }
+        public String getReqCreatedDate() {
+            return reqCreatedDate;
+        }
 
-    public void setStatusTypeId(Integer statusTypeId) {
-        this.statusTypeId = statusTypeId;
-    }
+        public void setReqCreatedDate(String reqCreatedDate) {
+            this.reqCreatedDate = reqCreatedDate;
+        }
 
-    public String getStatusType() {
-        return statusType;
-    }
+        public Integer getStatusTypeId() {
+            return statusTypeId;
+        }
 
-    public void setStatusType(String statusType) {
-        this.statusType = statusType;
-    }
+        public void setStatusTypeId(Integer statusTypeId) {
+            this.statusTypeId = statusTypeId;
+        }
 
-    public Boolean getIsFarmerRequest() {
-        return isFarmerRequest;
-    }
+        public String getStatusType() {
+            return statusType;
+        }
 
-    public void setIsFarmerRequest(Boolean isFarmerRequest) {
-        this.isFarmerRequest = isFarmerRequest;
-    }
+        public void setStatusType(String statusType) {
+            this.statusType = statusType;
+        }
 
-    public Double getTotalCost() {
-        return totalCost;
-    }
+        public String getApprovedDate() {
+            return approvedDate;
+        }
 
-    public void setTotalCost(Double totalCost) {
-        this.totalCost = totalCost;
-    }
+        public void setApprovedDate(String approvedDate) {
+            this.approvedDate = approvedDate;
+        }
 
-    public Object getComments() {
-        return comments;
-    }
+        public Double getTotalCost() {
+            return totalCost;
+        }
 
-    public void setComments(Object comments) {
-        this.comments = comments;
-    }
+        public void setTotalCost(Double totalCost) {
+            this.totalCost = totalCost;
+        }
 
-    public Object getCropMaintainceDate() {
-        return cropMaintainceDate;
-    }
+        public String getCreatedBy() {
+            return createdBy;
+        }
 
-    public void setCropMaintainceDate(Object cropMaintainceDate) {
-        this.cropMaintainceDate = cropMaintainceDate;
-    }
+        public void setCreatedBy(String createdBy) {
+            this.createdBy = createdBy;
+        }
 
-    public Object getIssueTypeId() {
-        return issueTypeId;
-    }
+        public Object getComments() {
+            return comments;
+        }
 
-    public void setIssueTypeId(Object issueTypeId) {
-        this.issueTypeId = issueTypeId;
-    }
+        public void setComments(Object comments) {
+            this.comments = comments;
+        }
 
-    public Object getPlotVillage() {
-        return plotVillage;
-    }
+        public Boolean getWeighbridgeSlipVerified() {
+            return weighbridgeSlipVerified;
+        }
 
-    public void setPlotVillage(Object plotVillage) {
-        this.plotVillage = plotVillage;
-    }
+        public void setWeighbridgeSlipVerified(Boolean weighbridgeSlipVerified) {
+            this.weighbridgeSlipVerified = weighbridgeSlipVerified;
+        }
 
-    public Object getPalmArea() {
-        return palmArea;
-    }
+        public Boolean getRequestsVerified() {
+            return requestsVerified;
+        }
 
-    public void setPalmArea(Object palmArea) {
-        this.palmArea = palmArea;
-    }
+        public void setRequestsVerified(Boolean requestsVerified) {
+            this.requestsVerified = requestsVerified;
+        }
 
-    public Object getIssueType() {
-        return issueType;
-    }
+        public Boolean getDuesVerified() {
+            return duesVerified;
+        }
 
-    public void setIssueType(Object issueType) {
-        this.issueType = issueType;
-    }
+        public void setDuesVerified(Boolean duesVerified) {
+            this.duesVerified = duesVerified;
+        }
 
-    public String getIsHavingImage() {
-        return isHavingImage;
-    }
+        public String getUpdatedDate() {
+            return updatedDate;
+        }
 
-    public void setIsHavingImage(String isHavingImage) {
-        this.isHavingImage = isHavingImage;
-    }
+        public void setUpdatedDate(String updatedDate) {
+            this.updatedDate = updatedDate;
+        }
 
-    public String getIsHavingAudio() {
-        return isHavingAudio;
-    }
+        public Double getNetWeight() {
+            return netWeight;
+        }
 
-    public void setIsHavingAudio(String isHavingAudio) {
-        this.isHavingAudio = isHavingAudio;
-    }
+        public void setNetWeight(Double netWeight) {
+            this.netWeight = netWeight;
+        }
 
-    public String getFileExtension() {
-        return fileExtension;
-    }
+        public String getStateCode() {
+            return stateCode;
+        }
 
-    public void setFileExtension(String fileExtension) {
-        this.fileExtension = fileExtension;
-    }
-
-    public String getFileLocation() {
-        return fileLocation;
-    }
-
-    public void setFileLocation(String fileLocation) {
-        this.fileLocation = fileLocation;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getFileUrl() {
-        return fileUrl;
-    }
-
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
-    }
-}}
+        public void setStateCode(String stateCode) {
+            this.stateCode = stateCode;
+        }}}

@@ -345,7 +345,7 @@ public class HomeFragment extends BaseFragment {
 
     private void IsActiveFarmer() {
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-         Farmer_code = pref.getString("farmerid", "");
+         Farmer_code = pref.getString("farmerid", "").trim();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
         mSubscription = service.getActiveFarmer(APIConstantURL.IsActiveFarmer +Farmer_code)
                 .subscribeOn(Schedulers.newThread())
@@ -454,7 +454,7 @@ public class HomeFragment extends BaseFragment {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
-        mSubscription = service.getbannerdetails(APIConstantURL.GetBannerByStateCode + statecode)
+        mSubscription = service.getbannerdetails(APIConstantURL.GetActiveBannerByStateCode + statecode)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BannerresponseModel>() {

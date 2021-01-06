@@ -202,7 +202,7 @@ String statecode;
                 .build();
 
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");       // Saving string data of your editext
+        Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
         Age = findViewById(R.id.age_plot);
         id_plot = findViewById(R.id.plot);
         area = findViewById(R.id.palmArea);
@@ -339,7 +339,7 @@ String statecode;
         Select_Issue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selected_issue = Select_Issue.getItemAtPosition(Select_Issue.getSelectedItemPosition()).toString();
+                 selected_issue = Select_Issue.getItemAtPosition(Select_Issue.getSelectedItemPosition()).toString();
 
                 //  Log.e("seleced_period===", seleced_Duration);
 //                durationId = period_id.get(labourSpinner.getSelectedItemPosition());

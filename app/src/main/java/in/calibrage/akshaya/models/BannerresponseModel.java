@@ -74,52 +74,64 @@ public class BannerresponseModel {
     }
 
 
-    public class ListResult {
 
-        @SerializedName("id")
-        @Expose
-        private Integer id;
-        @SerializedName("imageName")
-        @Expose
-        private String imageName;
-        @SerializedName("description")
-        @Expose
-        private String description;
-        @SerializedName("stateCode")
-        @Expose
-        private String stateCode;
 
-        public Integer getId() {
-            return id;
-        }
+public class ListResult {
 
-        public void setId(Integer id) {
-            this.id = id;
-        }
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("imageName")
+    @Expose
+    private String imageName;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("stateCode")
+    @Expose
+    private String stateCode;
+    @SerializedName("isActive")
+    @Expose
+    private Boolean isActive;
 
-        public String getImageName() {
-            return imageName;
-        }
-
-        public void setImageName(String imageName) {
-            this.imageName = imageName;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public String getStateCode() {
-            return stateCode;
-        }
-
-        public void setStateCode(String stateCode) {
-            this.stateCode = stateCode;
-        }
-
+    public Integer getId() {
+        return id;
     }
-}
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+}}

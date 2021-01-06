@@ -1,7 +1,8 @@
 package in.calibrage.akshaya.views.fragments;
 
+import android.app.Dialog;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +28,8 @@ import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -37,7 +42,9 @@ import in.calibrage.akshaya.models.PaymentResponseModel;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.PaymentAdapter;
+import in.calibrage.akshaya.views.Adapter.TransactionRatesAdapter;
 import in.calibrage.akshaya.views.Adapter.TransportationAdapter;
+import in.calibrage.akshaya.views.actvity.LabourActivity;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -54,10 +61,15 @@ public class TransFragment extends BaseFragment {
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     private RecyclerView trans_recycle;
-    TextView noRecords;
+    TextView noRecords,ratetext;
     TransportationAdapter pay_adapter;
     String Farmer_code;
+    Button transportationratesbtn;
     LinearLayout linear1;
+    RecyclerView trans_rates;
+    TransactionRatesAdapter ratesAdapter;
+    private List<GetTranspotationCharges.TrasportRate> ratelist = new ArrayList<>();
+    Button ok_btn;
 
     public void onCreate(Bundle savedInstanceState) {
         final int langID = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("lang");
@@ -70,6 +82,7 @@ public class TransFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,7 +90,7 @@ public class TransFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_trans, container, false);
 
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-        Farmer_code = pref.getString("farmerid", "");
+        Farmer_code = pref.getString("farmerid", "").trim();
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(getContext())
                 .setTheme(R.style.Custom)
@@ -87,13 +100,43 @@ public class TransFragment extends BaseFragment {
         noRecords = (TextView) rootView.findViewById(R.id.text);
         trans_recycle.setHasFixedSize(true);
         trans_recycle.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        transportationratesbtn = (Button) rootView.findViewById(R.id.transportationratesbtn);
 
         pay_adapter = new TransportationAdapter(getContext());
         trans_recycle.setAdapter(pay_adapter);
+
+
+
+
 //
         return rootView;
     }
+
+    private void Showtransactionrates() {
+        final Dialog dialog = new Dialog(getContext(), R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        dialog.setContentView(R.layout.transactionrates);
+        trans_rates = (RecyclerView) dialog.findViewById(R.id.trans_rates);
+        ok_btn = dialog.findViewById(R.id.btn_dialog);
+        ratetext = dialog.findViewById(R.id.ratetext);
+        trans_rates.setHasFixedSize(true);
+        trans_rates.setLayoutManager(new LinearLayoutManager(getContext()));
+        ratesAdapter = new TransactionRatesAdapter(getContext(),ratelist);
+        trans_rates.setAdapter(ratesAdapter);
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                dialog.dismiss();
+
+            }
+        });
+        dialog.show();
+
+    }
+
     private BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -102,12 +145,11 @@ public class TransFragment extends BaseFragment {
             from_date = intent.getStringExtra("fromdate");
             trans_recycle.setVisibility(View.GONE);
 
-            if(to_date.equalsIgnoreCase("clear"))
-            {
+            if (to_date.equalsIgnoreCase("clear")) {
                 noRecords.setVisibility(View.GONE);
                 pay_adapter.clearAllDataa();
 
-            }else {
+            } else {
                 noRecords.setVisibility(View.VISIBLE);
                 if (isOnline(getContext()))
                     GetTranspotationChargesByFarmerCode();
@@ -115,12 +157,27 @@ public class TransFragment extends BaseFragment {
                     showDialog(getActivity(), getResources().getString(R.string.Internet));
                 }
             }
-            Log.e("roja=====",to_date+"=====" + from_date);
+            Log.e("roja=====", to_date + "=====" + from_date);
+
+            transportationratesbtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    if (isOnline(getContext())) {
+                        Showtransactionrates();
+
+                    } else {
+                        showDialog(getActivity(), getResources().getString(R.string.Internet));
+                    }
+                }
+            });
         }
     };
 
     private void GetTranspotationChargesByFarmerCode() {
         pay_adapter.clearAllDataa();
+
         mdilogue.show();
         JsonObject object = paymenObject();
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
@@ -150,24 +207,25 @@ public class TransFragment extends BaseFragment {
                         Log.e("error==",e.getLocalizedMessage());
                         mdilogue.dismiss();
                         pay_adapter.clearAllDataa();
+
                       showDialog(getActivity(), getString(R.string.server_error));
                     }
 
                     @Override
-                    public void onNext(GetTranspotationCharges getTranspotationCharges) {
-
+                    public void onNext(final GetTranspotationCharges getTranspotationCharges) {
+                        mdilogue.dismiss();
 
                         Log.d(TAG, "onNext:payment " + getTranspotationCharges);
 
                         try {
-                            if (getTranspotationCharges.getListResult() != null) {
+                            if (getTranspotationCharges.getTranspotationCharges().size() != 0) {
                                 trans_recycle.setVisibility(View.VISIBLE);
                                 noRecords.setVisibility(View.GONE);
 
-                                pay_adapter.updateData(getTranspotationCharges.getListResult());
+                                pay_adapter.updateData(getTranspotationCharges.getTranspotationCharges());
 
 
-                                if(getTranspotationCharges.getAffectedRecords()==0){
+                                if(getTranspotationCharges.getTranspotationCharges().size()==0 && getTranspotationCharges.getTranspotationCharges() == null){
                                     noRecords.setVisibility(View.VISIBLE);
 
                                     trans_recycle.setVisibility(View.GONE);
@@ -178,10 +236,34 @@ public class TransFragment extends BaseFragment {
                                 //
                                 trans_recycle.setVisibility(View.GONE);
                             }
+
+                            if (getTranspotationCharges.getTrasportRates() != null) {
+                                ratelist = getTranspotationCharges.getTrasportRates();
+
+                            }
+
+
+//                                transportationratesbtn.setOnClickListener(new View.OnClickListener() {
+//
+//                                    @Override
+//                                    public void onClick(View view) {
+//
+//                                        if (isOnline(getContext())) {
+
+//
+//                                        } else {
+//                                            showDialog(getActivity(), getResources().getString(R.string.Internet));
+//                                        }
+//                                    }
+//                                });
+
                         } catch (Exception e) {
                             Log.e("Exception.==",e.getLocalizedMessage());
                             e.printStackTrace();
                         }
+
+
+
                     }
 
 
