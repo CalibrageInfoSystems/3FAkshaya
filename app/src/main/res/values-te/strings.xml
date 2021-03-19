@@ -600,6 +600,7 @@
     <string name="standard_note">ఈ క్రింది సూచించిన పరిమాణము గ్రాములలో,ఒక మొక్కకి ఒక సంవత్సరానికి.</string>
     <string name="tansportation_note">ఎఫ్ఎఫ్బి కలెక్షన్ సమయంలో ప్లాట్ ప్రకటించకపోతే, ప్లాట్ పరిమాణం, వయస్సు, ఆశించిన ఎఫ్ఎఫ్బి ఆధారంగా అన్ని ప్లాట్లు సగటు రవాణా రేటు లెక్కించబడుతుంది.></string>
     <string name="rate">టన్నుకు రేటు (రూ.)</string>
+    <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
 
 </resources>
 

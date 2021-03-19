@@ -534,6 +534,7 @@
     <string name="tansportation_note">Unless Plot is declared during FFB Collection, all plots average transport rate is calculated based on age,size, &amp; Expected FFB.</string>
     <string name="transportationrates">Transportation Rates</string>
     <string name="rate">Rate per Ton (Rs)</string>
+    <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
 
     />
     <!-- we need to use video ids instead of video link -->

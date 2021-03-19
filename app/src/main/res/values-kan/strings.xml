@@ -540,6 +540,7 @@
     <string name="tansportation_note">ಎಫ್ಎಫ್ಬಿ  ಸಂಗ್ರಹದ ಸಮಯದಲ್ಲಿ ಪ್ಲಾಟ್ ಘೋಷಿಸದಿದ್ದರೆ, ಎಲ್ಲಾ ಪ್ಲಾಟ್ಗಳ ಸರಾಸರಿ ಸಾರಿಗೆ ದರವನ್ನು ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆವಯಸ್ಸು, ಗಾತ್ರ ಮತ್ತು ನಿರೀಕ್ಷಿತ ಎಫ್ಎಫ್ಬಿ ಆಧರಿಸಿ.</string>
     <string name="transportationrates">ಸಾರಿಗೆ ದರಗಳು</string>
     <string name="rate">ಪ್ರತಿ ಟನ್‌ಗೆ ದರ (ರೂ)</string>
+    <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
 
     />
     <!-- we need to use video ids instead of video link -->

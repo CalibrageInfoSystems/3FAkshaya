@@ -433,7 +433,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void viewFragment(Fragment fragment, String name) {
-        final FragmentManager fragmentManager = getSupportFragmentManager();
+          fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);
         // 1. Know how many fragments there are in the stack
@@ -464,6 +464,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public void onBackPressed() {
         MenuItem homeItem = bottom_navigation.getMenu().getItem(0);
+        Log.e("===========>",homeItem.getItemId()+"");
 
         if (mSelectedItem !=null && mSelectedItem != homeItem.getItemId()) {
 

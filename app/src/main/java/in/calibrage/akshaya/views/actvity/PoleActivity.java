@@ -217,8 +217,8 @@ Log.e("myProductsList===",myProductsList.toString());
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
 
-        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/2/"+ Godown_code;
-
+    String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/2/"+ Godown_code;
+        //String url ="http://103.241.144.240:9098/api//Products/GetProductsByGodown/2/AgrGKNBG";
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

@@ -612,11 +612,15 @@ public class Fert_godown_list extends BaseActivity {
     private boolean validations() {
 
 
-        if (paymentspin.getSelectedItemPosition() == 0) {
+        if (paymentspin.getSelectedItemPosition() == 0 ) {
 
             showDialog(Fert_godown_list.this, getResources().getString(R.string.paym_validation));
             return false;
         }
+//        else if(Subsidy_amount == 0.0 && paybleamount.getText().toString().equalsIgnoreCase("0.00")){
+//            showDialog(Fert_godown_list.this,  getResources().getString(R.string.Internetpay));
+//            return false;
+//        }
         return true;
     }
 

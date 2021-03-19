@@ -6,7 +6,7 @@ public interface APIConstantURL {
 public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
 
 
- //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
+//public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
     //String LookUpCategory = "GetActiveLookUp/9";
     String LookUpCategory = "GetActiveLookUp/9";
     String banner ="Banner";
