@@ -18,6 +18,13 @@ public class GetQuickpayDetails {
     @Expose
     private String stateCode;
 
+    @SerializedName("districtId")
+    @Expose
+    private Integer districtId;
+    @SerializedName("docDate")
+    @Expose
+    private String docDate;
+
     public String getFarmerCode() {
         return farmerCode;
     }
@@ -48,5 +55,21 @@ public class GetQuickpayDetails {
 
     public void setStateCode(String stateCode) {
         this.stateCode = stateCode;
+    }
+
+    public Integer getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
+    }
+
+    public String getDocDate() {
+        return docDate;
+    }
+
+    public void setDocDate(String docDate) {
+        this.docDate = docDate;
     }
 }

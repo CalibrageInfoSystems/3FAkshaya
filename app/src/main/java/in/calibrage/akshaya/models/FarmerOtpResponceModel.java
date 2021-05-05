@@ -208,6 +208,11 @@ public class FarmerOtpResponceModel {
         @SerializedName("villageId")
         @Expose
         private Integer villageId;
+
+        @SerializedName("districtId")
+        @Expose
+        private Integer districtId;
+
         public String getCode() {
             return code;
         }
@@ -455,6 +460,14 @@ public class FarmerOtpResponceModel {
         public void setVillageId(Integer villageId) {
             this.villageId = villageId;
         }
+
+        public Integer getDistrictId() {
+            return districtId;
+        }
+
+        public void setDistrictId(Integer districtId) {
+            this.districtId = districtId;
+        }
     }
     public class BannerDetail {
 
@@ -596,5 +609,7 @@ public class FarmerOtpResponceModel {
         }
 
     }
+
+
 
 }

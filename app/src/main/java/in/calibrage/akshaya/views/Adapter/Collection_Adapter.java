@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -96,6 +97,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
     }
 
 
+    @SuppressLint("RecyclerView")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {

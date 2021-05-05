@@ -257,7 +257,8 @@
         Quick Pay payout.For details, pls see your farmer ledger.
     </string>
     <string name="got_it">Got It</string>
-    <string name="terms_conditionss">Terms &amp; Conditions</string>
+    <string name="terms_conditionss">I Agree Terms &amp; Conditions</string>
+    <string name="terms_conditionsss">Terms &amp; Conditions</string>
     <string name="success_Loan">Loan Request Submitted Successfully</string>
     <string name="no_req_found">No Requests Found</string>
 
@@ -304,14 +305,14 @@
     <string name="request_rise">Raise Request</string>
     <string name="clear">Clear</string>
     <string name="signature">Please Write Signature</string>
-    <string name="quick_pay">QuickPay Fee(Rs)</string>
-    <string name="closingBal">Dues(Rs)</string>
+    <string name="quick_pay">QuickPay Fee (Rs)</string>
+    <string name="closingBal">Dues (Rs)</string>
 
-    <string name="quantity_mt">Quantity(MT)</string>
-    <string name="ffb_flot">FFB Rate per MT(Rs)</string>
-    <string name="amount_of_FFB">Total FFB Cost(Rs)</string>
-    <string name="convenience_charge">Transaction Fee(Rs)</string>
-    <string name="total_amt_pay">Total Bill Amount(Rs)</string>
+    <string name="quantity_mt">Quantity (MT)</string>
+    <string name="ffb_flot">FFB Rate per MT (Rs)</string>
+    <string name="amount_of_FFB">FFB Cost (Rs)</string>
+    <string name="convenience_charge">Transaction Fee (Rs)</string>
+    <string name="total_amt_pay">Total (Rs)</string>
 
 
     <string name="farmar_id"> Enter Farmer Id</string>
@@ -393,6 +394,8 @@
     <string name="collection_centres">Collection Centers</string>
     <string name="Mills">Mills</string>
     <string name="name">Name</string>
+    <string name="value">Value</string>
+
     <string name="link">Link to Google Maps</string>
     <string name="map">maps</string>
     <string name="list">list</string>
@@ -421,6 +424,7 @@
     <string name="labour_leader">Leader </string>
     <string name="job_done">Job Done On</string>
     <string name="coll_id">Collection Id(s)</string>
+    <string name="collection_Id">Collection Id</string>
 
     <string name="product_name">Product Name</string>
     <string name="price">Price (Rs)</string>
@@ -447,6 +451,10 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="quick_docu">QuickPay Document</string>
+    <string name="quickpay_details">QuickPay Details</string>
+    <string name="collectionsdetails">Collection(s) Details</string>
+
+
 
     <string name="description">Description :</string>
 

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/shape"
 
     >
 
     <LinearLayout
         android:id="@+id/backlinear"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:background="@color/transparent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/colorOrange_head">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
@@ -70,12 +70,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/backlinear"
             android:layout_gravity="right"
-            android:background="@color/transparent"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/lin_one"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
 
@@ -86,7 +85,6 @@
                 android:layout_marginEnd="@dimen/_8dp"
                 android:layout_marginRight="@dimen/_8dp"
                 android:layout_marginBottom="@dimen/_8dp"
-                android:background="@drawable/collect_bg"
                 android:orientation="horizontal">
 
                 <Button
@@ -222,10 +220,8 @@
                         android:id="@+id/checkBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/i_have_agree"
                         android:textColor="@color/white"
                         android:textSize="16dp"
-
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -247,7 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-
+                    android:visibility="invisible"
                     android:orientation="horizontal">
 
 
@@ -299,6 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lin_zero"
                     android:layout_marginTop="5dp"
+                    android:visibility="invisible"
                     android:orientation="horizontal">
 
 
@@ -344,6 +341,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="invisible"
                     android:id="@+id/lin_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -395,6 +393,7 @@
 
 
                 <RelativeLayout
+                    android:visibility="invisible"
                     android:id="@+id/lin_pay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -445,6 +444,7 @@
 
 
                 <RelativeLayout
+                    android:visibility="invisible"
                     android:id="@+id/lin_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -494,6 +494,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="invisible"
                     android:id="@+id/lin_four"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -543,6 +544,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="invisible"
                     android:id="@+id/lin_five"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -597,7 +599,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="@dimen/margin_10"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lin_five"
+                    android:layout_below="@+id/details_recyclerview"
 
                     android:background="@drawable/terms_bg"
                     android:orientation="vertical">
@@ -643,12 +645,23 @@
                     android:fontFamily="@font/hind_semibold"
 
                     android:textAlignment="center"
-                    android:textColor="@color/white_new"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16"
 
                     />
 
+                <android.support.v7.widget.RecyclerView
+
+                    android:id="@+id/details_recyclerview"
+                    android:layout_below="@+id/tvtext_item"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+
                 <View
+                    android:visibility="invisible"
                     android:id="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
@@ -658,4 +671,4 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

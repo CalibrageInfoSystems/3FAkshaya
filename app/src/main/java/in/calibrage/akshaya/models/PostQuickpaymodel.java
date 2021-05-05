@@ -64,6 +64,19 @@ public class PostQuickpaymodel {
     @Expose
     private String stateName;
 
+    @SerializedName("districtId")
+    @Expose
+    private Integer districtId;
+
+    @SerializedName("districtName")
+    @Expose
+    private String districtName;
+    @SerializedName("ffbCost")
+    @Expose
+    private Double ffbCost;
+
+
+
     public String getFarmerCode() {
         return farmerCode;
     }
@@ -214,5 +227,29 @@ public class PostQuickpaymodel {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
+    }
+
+    public Integer getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public Double getFfbCost() {
+        return ffbCost;
+    }
+
+    public void setFfbCost(Double ffbCost) {
+        this.ffbCost = ffbCost;
     }
 }

@@ -1,11 +1,13 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Animatable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +15,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -58,10 +62,12 @@ import in.calibrage.akshaya.models.GetQuickpayDetails;
 import in.calibrage.akshaya.models.GetquickpayDetailsModel;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PostQuickpaymodel;
+import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.Adapter.QuickPayDataAdapter;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -77,8 +83,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     String currentDate;
     String total;
     TextView terms;
+    private Quickpaydetailsadapter adapter;
     TextView ok, getTerms, Click_here ;
-    TextView ffbCostTxt, convenienceChargeTxt, closingBalanceTxt, totalAmount, text_flat_charge, text_quntity, text_quickpay_fee;
+    TextView  totalclosingBalanceTxt,totalffbcost, totalTransactionFee, totalQuickpayFee,totalpay;
     String Farmer_code,statename;
     private Subscription mSubscription;
     Button dialogButton;
@@ -92,18 +99,38 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     String path;
     List<String> ids_list = new ArrayList<>();
     List<String> dates_list = new ArrayList<>();
+    List<Double> ffbflatchargelist = new ArrayList<>();
+
+
+    List<GetquickpayDetailsModel> quickpaydetailslist = new ArrayList<>();
     List<Double> netweight_list = new ArrayList<>();
     List<String> post_ids = new ArrayList<>();
     List<String> post_codes = new ArrayList<>();
     private static final String IMAGE_DIRECTORY = "/signdemo";
     String result;
-    String statecode;
+    String statecode, districtName;
+    Integer districtId;
     String whs_Code;
+    String collectiondate;
+    Double collectionweight;
     Integer Cluster_id;
     double total_weight = 0.0;
     private FarmerOtpResponceModel catagoriesList;
     DecimalFormat df = new DecimalFormat("####0.00");
     DecimalFormat dff = new DecimalFormat("####0.000");
+    RecyclerView detailsrecyclerview;
+
+    boolean QuickpayinProgress = false;
+    boolean QuickpaySuccess = true;
+    double totalflatcharge = 0;
+    double totalFFBcost = 0;
+    double totaltransactionfee = 0;
+    double totalquickfee = 0;
+    double totaldue = 0;
+    double totalamounttopay = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +141,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             updateResources(this, "kan");
         else
             updateResources(this, "en-US");
-        setContentView(R.layout.activity_quickpay__summary);
+        setContentView(R.layout.quickpaysummaryactivity);
 
         init();
         setViews();
@@ -135,12 +162,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             whs_Code =extras.getString("whsCode");
             Log.e("whs_Code==",whs_Code);
         }
+
         for (int i = 0; i < ids_list.size(); i++) {
 
             String id = ids_list.get(i);
             String date = dates_list.get(i);
             double weight = netweight_list.get(i);
-            post_ids.add(id + "|" + weight + "|" + date + "");
             post_codes.add(id + "(" + weight +" MT"+ ")" );
 
 
@@ -155,17 +182,16 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         signatureView = (SignatureView) findViewById(R.id.signature_view);
         Click_here = (TextView) findViewById(R.id.clear);
         save = (Button) findViewById(R.id.save);
-        ffbCostTxt = (TextView) findViewById(R.id.tvtext_item_five);
-        convenienceChargeTxt = (TextView) findViewById(R.id.tvtext_item_seven);
-        closingBalanceTxt = (TextView) findViewById(R.id.tvtext_item_nine);
-        totalAmount = (TextView) findViewById(R.id.tvtext_item_fifteen);
-        text_flat_charge = (TextView) findViewById(R.id.text_flat_charge);
-        text_quntity = (TextView) findViewById(R.id.text_quntity);
-        text_quickpay_fee = (TextView) findViewById(R.id.text_quickpay_fee);
+        totalffbcost = (TextView) findViewById(R.id.totalffbcost);
+        totalclosingBalanceTxt = (TextView) findViewById(R.id.totaldues);
+        totalQuickpayFee = (TextView) findViewById(R.id.totalquickpayfee);
+        totalTransactionFee = (TextView) findViewById(R.id.totaltransactioncost);
+        totalpay = (TextView) findViewById(R.id.totalpay);
         Button confirmBtn = (Button) findViewById(R.id.buttonConfirm);
         checkbox = (CheckBox) findViewById(R.id.checkBox);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         submit = (Button) findViewById(R.id.buttonConfirm);
+        detailsrecyclerview = findViewById(R.id.details_recyclerview);
         mdilogue = (SpotsDialog) new SpotsDialog.Builder()
                 .setContext(this)
                 .setTheme(R.style.Custom)
@@ -177,7 +203,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     private void setViews() {
         statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
+        districtId = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("districtId");
+        districtName = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("districtName");
         Log.e("state===",statecode);
+        Log.e("districtId===",districtId.toString() +"");
+        Log.e("districtName===",districtName.toString() +"");
         catagoriesList = SharedPrefsData.getCatagories(this);
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
             Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
@@ -214,13 +244,57 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 }
             }
         });
+
+        detailsrecyclerview.setHasFixedSize(true);
+        detailsrecyclerview.setLayoutManager(new LinearLayoutManager(this));
+
         if(isOnline()) {
-            GetQuckPaySummary();
+
+//            for (int i=0; i<dates_list.size(); i++){
+//
+//                Log.d("CollectionDates", dates_list.get(i) + "");
+//                collectiondate = dates_list.get(i);
+//                collectionweight = netweight_list.get(i);
+//                GetQuckPaySummary(collectiondate,collectionweight);
+//
+//            }
+//
+            // Got all responces
+    QuickpayinProgress =true;
+            GetQuckPaySummary(dates_list,netweight_list,0,dates_list.size());
         }
         else {
             showDialog(Quickpay_SummaryActivity.this, getResources().getString(R.string.Internet));
         }
     }
+
+    public void showwDialog(Activity activity, String msg) {
+        final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog);
+        final ImageView img = dialog.findViewById(R.id.img_cross);
+
+        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+        text.setText(msg);
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        dialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((Animatable) img.getDrawable()).start();
+            }
+        }, 500);
+    }
+
+
     private void signature_popup() {
         final Dialog dialog = new Dialog(this);
 
@@ -315,9 +389,70 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     }
 
-    private void GetQuckPaySummary() {
+    private void GetQuckPaySummary(List<String> Cdate, List<Double> Cweightx, final int curentIndex, int totalIndex) {
         mdilogue.show();
-        JsonObject object = GetReuestobject();
+
+        // cdate[index],
+
+
+        if (curentIndex < dates_list.size()){
+
+
+            JsonObject object = GetReuestobject(Cdate.get(curentIndex), Cweightx.get(curentIndex));
+            quickpayProcess(curentIndex, object);
+        }else{
+
+            QuickpaySuccess = true;
+            QuickpayinProgress = false;
+            Log.d(TAG, "All API's Completed");
+            Log.d(TAG, "DetailsListSize" + quickpaydetailslist.size() + "");
+            adapter = new Quickpaydetailsadapter(Quickpay_SummaryActivity.this, quickpaydetailslist, ids_list,dates_list);
+            detailsrecyclerview.setAdapter(adapter);
+              totalFFBcost =0;
+
+            for(int i =0; i < quickpaydetailslist.size(); i ++)
+            {
+                totalFFBcost = totalFFBcost+ quickpaydetailslist.get(i).getListResult().get(0).getFfbCost();
+                totaltransactionfee = totaltransactionfee+ quickpaydetailslist.get(i).getListResult().get(0).getConvenienceCharge();
+                totalquickfee = totalquickfee+ quickpaydetailslist.get(i).getListResult().get(0).getQuickPay();
+                totaldue = totaldue+ quickpaydetailslist.get(i).getListResult().get(0).getClosingBalance();
+                totalflatcharge = totalflatcharge+ quickpaydetailslist.get(i).getListResult().get(0).getFfbFlatCharge();
+                totalamounttopay = totalamounttopay + quickpaydetailslist.get(i).getListResult().get(0).getTotal();
+                ffbflatchargelist.add(quickpaydetailslist.get(i).getListResult().get(0).getFfbFlatCharge());
+
+            }
+
+            Log.d(TAG, "totalFFBcostis:"+totalFFBcost);
+            Log.d(TAG, "totaltransactionfeeis:"+totaltransactionfee);
+            Log.d(TAG, "totalquickfeeis:"+totalquickfee);
+            Log.d(TAG, "totaldueis:"+totaldue);
+            Log.d(TAG, "totalflatchargeis:"+totalflatcharge);
+            Log.d(TAG, "totalamounttopayis:"+totalamounttopay);
+            Log.d(TAG, "ffbflatchargelistis:"+ffbflatchargelist);
+
+            totalffbcost.setText(df.format(totalFFBcost));
+            totalTransactionFee.setText("-" + df.format(totaltransactionfee));
+            totalQuickpayFee.setText("-" + df.format(totalquickfee));
+            totalclosingBalanceTxt.setText(df.format(totaldue));
+            totalpay.setText(df.format(totalamounttopay));
+
+        }
+
+    }
+
+    private void quickpayProcess(final int curentIndex, JsonObject object) {
+        //        GetQuickpayDetails requestModel = new GetQuickpayDetails();
+//
+//        requestModel.setFarmerCode(Farmer_code);
+//        requestModel.setQuantity(Cweight);
+//        requestModel.setIsSpecialPay(false);
+//        requestModel.setStateCode(statecode);
+//        requestModel.setDistrictId(districtId);
+//        requestModel.setDocDate(Cdate);
+//
+//
+//        object = new Gson().toJsonTree(requestModel).getAsJsonObject();
+
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.post_details(object)
                 .subscribeOn(Schedulers.newThread())
@@ -354,45 +489,82 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                     public void onNext(GetquickpayDetailsModel getquickpayDetailsModel) {
                         if (getquickpayDetailsModel.getListResult() != null) {
 
+                            // Check Quick pay Deatils Valid or not
+
+                            quickpaydetailslist.add(getquickpayDetailsModel);
+                            Log.d("getquickpayDetailsModel", quickpaydetailslist.size() + "");
+
+//                            double sum = 0;
+//                            for(Double d : ffbflatchargelist) {
+//                                sum += d;
+//                            }
+//
+//                            Log.d("statecode========", statecode);
+//
+//                            Log.d(TAG, "Sum is: " +sum);
+//
+
+//                            ffbflatchargelist = new ArrayList<>();
+//
+//                            for (int i=0; i<dates_list.size())
+//
+//                            ffbflatchargelist.add(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge());
+//
+//                            Log.e("ffbflatchargelist====", ffbflatchargelist + "");
+
                             Log.e("nodada====", "nodata===custom2");
-                            text_quntity.setText(" "+dff.format(getquickpayDetailsModel.getListResult().get(0).getQuantity()));
+//                            text_quntity.setText(" "+dff.format(getquickpayDetailsModel.getListResult().get(0).getQuantity()));
+//
+//                            if (getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge() == null) {
+//                                text_flat_charge.setText(" 0.00");
+//
+//                            } else
+//                            ffbCostTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getFfbCost()));
+//
+//                            if (getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge() == null) {
+//                                convenienceChargeTxt.setText(" 0.00");
+//
+//                            } else {
+//
+//                                convenienceChargeTxt.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
+//                            }
+//
+//                            //   totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+//
+//
+//                            if(getquickpayDetailsModel.getListResult().get(0).getClosingBalance() > 0.0){
+//                                closingBalanceTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
+//                            }else{
+//                                closingBalanceTxt.setText(" 0.00");
+//                            }
+//                            if (getquickpayDetailsModel.getListResult().get(0).getTotal() > 0.0 ) {
+//                                totalAmount.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+//                                // totalAmount.setText("0");
+//
+//                            } else {
+//                                totalAmount.setText(" 0.00");
+//                                // totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+//                            }
+//                            text_quickpay_fee.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getQuickPay()));
+                            if (curentIndex < dates_list.size()){
 
-                            if (getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge() == null) {
-                                text_flat_charge.setText(" 0.00");
-
-                            } else {
-                                text_flat_charge.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getFfbFlatCharge()));
-                            }
-                            ffbCostTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getFfbCost()));
-
-                            if (getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge() == null) {
-                                convenienceChargeTxt.setText(" 0.00");
-
-                            } else {
-
-                                convenienceChargeTxt.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getConvenienceCharge()));
-                            }
-
-                            //   totalAmount.setText(df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
-
-
-                            if(getquickpayDetailsModel.getListResult().get(0).getClosingBalance() > 0.0){
-                                closingBalanceTxt.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getClosingBalance()));
+                                GetQuckPaySummary(dates_list,netweight_list,curentIndex+1,dates_list.size());
                             }else{
-                                closingBalanceTxt.setText(" 0.00");
-                            }
-                            if (getquickpayDetailsModel.getListResult().get(0).getTotal() > 0.0 ) {
-                                totalAmount.setText(" "+df.format(getquickpayDetailsModel.getListResult().get(0).getTotal()));
-                                // totalAmount.setText("0");
 
-                            } else {
-                                totalAmount.setText(" 0.00");
-                                // totalAmount.setText(String.valueOf(getquickpayDetailsModel.getListResult().get(0).getTotal()));
+                                QuickpaySuccess = true;
+                                QuickpayinProgress = false;
+                                Log.d(TAG, "All API's Completed");
+                                Log.d(TAG, "DetailsListSize" + quickpaydetailslist.size() + "");
+                                adapter = new Quickpaydetailsadapter(Quickpay_SummaryActivity.this, quickpaydetailslist,ids_list, dates_list);
+                                detailsrecyclerview.setAdapter(adapter);
                             }
-                            text_quickpay_fee.setText("-" + df.format(getquickpayDetailsModel.getListResult().get(0).getQuickPay()));
 
                         } else {
+                            Log.d(TAG, "QuickPay  Deatis #### Error or No Data" );
 
+                            QuickpaySuccess = false;
+                            QuickpayinProgress = false;
+                            showwDialog(Quickpay_SummaryActivity.this,"One of your Collection doesn't have FFB Rate. Due to which Quickpay Request can't be raised");
                         }
 
                     }
@@ -401,21 +573,27 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 });
     }
 
-    private JsonObject GetReuestobject() {
-        GetQuickpayDetails requestModel = new GetQuickpayDetails();
-        requestModel.setFarmerCode(Farmer_code);
-        requestModel.setQuantity(total_weight);
-        requestModel.setIsSpecialPay(false);
-    requestModel.setStateCode(statecode);
-        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    private JsonObject GetReuestobject(String Cdate, Double Cweight) {
 
+
+        GetQuickpayDetails requestModel = new GetQuickpayDetails();
+
+        requestModel.setFarmerCode(Farmer_code);
+            requestModel.setQuantity(Cweight);
+            requestModel.setIsSpecialPay(false);
+            requestModel.setStateCode(statecode);
+            requestModel.setDistrictId(districtId);
+            requestModel.setDocDate(Cdate);
+
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
 
 
     private void submitReq() {
 
-        Double d1 = Double.valueOf(totalAmount.getText().toString());
+        Double d1 = totalamounttopay;
 
         if (d1 > 0.0) {
             mdilogue.show();
@@ -566,6 +744,18 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     private JsonObject quickReuestobject() {
 
+//        double sum = 0;
+//        for(Double d : ffbflatchargelist) {
+//            sum += d;
+//        }
+//
+//        Log.d("statecode========", statecode);
+//
+//        Log.d(TAG, "Sum is: " +sum);
+
+        Double avgffbcost = totalflatcharge/dates_list.size();
+        Log.d(TAG, "Avg FFB Cost is: " + avgffbcost);
+
         PostQuickpaymodel requestModel = new PostQuickpaymodel();
 
         requestModel.setFarmerName(SharedPrefsData.getusername(this));
@@ -581,12 +771,32 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setWhsCode(whs_Code);
         requestModel.setClusterId(Cluster_id);
         requestModel.setFileLocation("");
-        if(null != closingBalanceTxt.getText() & !TextUtils.isEmpty(closingBalanceTxt.getText()))
-            requestModel.setClosingBalance(Double.parseDouble(closingBalanceTxt.getText().toString()));
+
+        if (!statecode.startsWith("AP") ) {
+            requestModel.setDistrictId(0);
+            requestModel.setDistrictName(null);
+        }else{
+            requestModel.setDistrictId(districtId);
+            requestModel.setDistrictName(districtName);
+        }
+
+        requestModel.setFfbCost(avgffbcost);
+
+        if(null != totalclosingBalanceTxt.getText() & !TextUtils.isEmpty(totalclosingBalanceTxt.getText()))
+            requestModel.setClosingBalance(Double.parseDouble(totalclosingBalanceTxt.getText().toString()));
         else {
             requestModel.setClosingBalance(0.0);
         }
         //TODO make dynamic
+
+        for (int i = 0; i < ids_list.size(); i++) {
+
+            String id = ids_list.get(i);
+            String date = dates_list.get(i);
+            double weight = netweight_list.get(i);
+            post_ids.add(id + "|" + weight + "|" + date + "|"+ ffbflatchargelist.get(i) + "");
+
+        }
 
         String val = arrayTOstring(post_ids);
         Log.d(TAG, "------ analysis ------ >> get values in String(): " + val);
@@ -596,9 +806,10 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
         requestModel.setCollectionCodes(val_codes);
         //  requestModel.setCost(Double.parseDouble(ffbCostTxt.getText().toString()));
-        requestModel.setNetWeight(Double.parseDouble(text_quntity.getText().toString()));
+        requestModel.setNetWeight(total_weight);
         requestModel.setSignatureExtension(".png");
         requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));
+
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 
     }

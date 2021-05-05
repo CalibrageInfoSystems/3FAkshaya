@@ -70,6 +70,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     List<String> ids_list = new ArrayList<>();
     List<String> dates_list = new ArrayList<>();
     List<Double> weight_list = new ArrayList<>();
+    List<String> CollectionIds = new ArrayList<>();
     String w_Code;
     int SPLASH_DISPLAY_DURATION = 500;
 
@@ -338,7 +339,6 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                     @Override
                     public void onNext(QuickPayModel quickPayModel) {
                         mdilogue.dismiss();
-
 
                         if (quickPayModel.getListResult().size()!= 0  ) {
                             nextButton.setVisibility(View.VISIBLE);

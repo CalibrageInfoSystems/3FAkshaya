@@ -317,6 +317,10 @@ public class OtpActivity extends BaseActivity {
                                         SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, Constants.USER_ID, farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getCode());
                                         Log.e("Formarclustter==", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getClusterId()+"");
                                         SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "statecode", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getStateCode());
+                                        SharedPrefsData.getInstance(OtpActivity.this).updateIntValue(OtpActivity.this, "districtId", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getDistrictId());
+                                        SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "districtName", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getDistrictName());
+
+
                                         AddAppInstallation();
                                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                         startActivity(intent);
