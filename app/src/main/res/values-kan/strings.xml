@@ -269,7 +269,7 @@
         \n11.ಎಫ್ ಎಫ್ ಬಿ ಮೊತ್ತಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ಮೊತ್ತಕ್ಕೆ ಇತ್ತೀಚೆಗೆ ಕಾರ್ಮಿಕ ಸೇವೆ ಅಥವಾ ಉತ್ಪನ್ನ ಖರೀದಿಸಿದ್ದರೆ , ಅದು ಈ ಪಾವತಿಯ ಹೇಳಿಕೆಯಲ್ಲಿ ತೋರಿಸದಿರಬಹುದು ಏಕೆಂದರೆ ಅದು ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ . ಹಾಗಾಗಿ , ಇದನ್ನು ತ್ವರಿತ ಪಾವತಿಯ ಸಂದರ್ಭದಲ್ಲಿ ಕಡಿತಗೊಳಿಸಲಾಗುತ್ತದೆ . ವಿವರಗಳಿಗಾಗಿ , ದಯವಿಟ್ಟು ನಿಮ್ಮ ರೈತ ಲೆಡ್ಜರ್ ಅನ್ನು ನೋಡಿ  .
     </string>
     <string name="got_it">ಗೊತ್ತಾಯಿತು</string>
-    <string name="terms_conditionss">ನಿಯಮಗಳು &amp; ಷರತ್ತುಗಳು</string>
+    <string name="terms_conditionss">ನಾನು ಒಪ್ಪುತ್ತೇನೆ ನಿಯಮಗಳು &amp; ಷರತ್ತುಗಳು</string>
     <string name="success_Loan">ಸಾಲ ವಿನಂತಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ</string>
     <string name="no_req_found">ಯಾವುದೇ ವಿನಂತಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
 
@@ -277,7 +277,7 @@
     <string name="reason_loan">ಸಾಲಕ್ಕೆ ಕಾರಣ</string>
     <string name="str_enter_loan_amount">ದಯವಿಟ್ಟು ಸಾಲದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="enter_loan_amount">ನಿಮ್ಮ ಬಾಕಿ ಎಫ್‌ಎಫ್‌ಬಿ ಪಾವತಿಗಿಂತ ಹೆಚ್ಚಾಗಿದೆ, ಆದ್ದರಿಂದ, ಕ್ವಿಕ್‌ಪೇ ಪೂರ್ಣಗೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
-
+    <string name="terms_conditionsss">ನಿಯಮಗಳು &amp; ಷರತ್ತುಗಳು</string>
     />
     <!--    -->
     <string name="total_records">ಒಟ್ಟು ದಾಖಲೆಗಳು</string>
@@ -320,8 +320,8 @@
     <string name="closingBal">ಬಾಕಿ (ರೂ)</string>
 
     <string name="quantity_mt">ಪ್ರಮಾಣ (MT)</string>
-    <string name="ffb_flot">ಪ್ರತಿ ಎಂಟಿಗೆ ಎಫ್‌ಎಫ್‌ಬಿ ದರ (ರೂ)</string>
-    <string name="amount_of_FFB">ಒಟ್ಟು ಎಫ್‌ಎಫ್‌ಬಿ ವೆಚ್ಚ (ರೂ)</string>
+    <string name="ffb_flot">್ವರಿತ ಪಾವತಿ ದರ (ರೂ)</string>
+    <string name="amount_of_FFB">ಒಟ್ಟು ್ವರಿತ ಪಾವತಿ ವೆಚ್ಚ (ರೂ)</string>
     <string name="convenience_charge">ವಹಿವಾಟು ಶುಲ್ಕ (ರೂ)</string>
     <string name="total_amt_pay">ಒಟ್ಟು ಬಿಲ್ ಮೊತ್ತ (ರೂ)</string>
     <string name="farmar_id">ಫಾರ್ಮರ್ ಐಡಿ ನಮೂದಿಸಿ</string>
@@ -490,7 +490,7 @@
     <string name="details">ಸಂಪೂರ್ಣ ವಿವರಗಳು</string>
     <string name="close">ಮುಚ್ಚಿ</string>
     <string name="cluster_officer">ಕ್ಲಸ್ಟರ್ ಹೆಸರು</string>
-    <string name="inter_coco">\u2022 ಪ್ರಬುದ್ಧ ಕೋಕೋ ಹೆಚ್ಚುವರಿ ಕಾರ್ಮಿಕ ಶುಲ್ಕಗಳನ್ನು ಒಡ್ಡುತ್ತದೆ. \n \u2022 ಕೊಯ್ಲು ಮಾಡಿದ ನಂತರ ರೈತ ಲೋಡಿಂಗ್ ಮತ್ತು ಸಾಗಣೆಯನ್ನು ತೊಡಗಿಸಿಕೊಳ್ಳಬೇಕು. \n \u2022 ಆಫ್ ಸೀಸನ್ ಕನಿಷ್ಠ ವೇತನ ಕ್ಯಾಪ್ ಪ್ರತಿ ಕಾರ್ಮಿಕರಿಗೆ ರೂ.525 ಯಾವುದೇ ಸೇವೆಗೆ.</string>
+    <string name="inter_coco">\u2022 ಪ್ರಬುದ್ಧ ಕೋಕೋ ಹೆಚ್ಚುವರಿ ಕಾರ್ಮಿಕ ಶುಲ್ಕಗಳನ್ನು ಒಡ್ಡುತ್ತದೆ. \n \u2022 ಕೊಯ್ಲು ಮಾಡಿದ ನಂತರ ರೈತ ಲೋಡಿಂಗ್ ಮತ್ತು ಸಾಗಣೆಯನ್ನು ತೊಡಗಿಸಿಕೊಳ್ಳಬೇಕು. \n \u2022 ಆಫ್ ಸೀಸನ್‌ಗೆ, ಕೊಯ್ಲು ಮಾಡಿದ ನೈಜ ಪ್ರಮಾಣವನ್ನು ಲೆಕ್ಕಿಸದೆ ಉದ್ಯಾನದ ವಯಸ್ಸಿನ ಪ್ರಕಾರ 1 ಟನ್ ಸುಗ್ಗಿಯ ಕನಿಷ್ಠ ಬಿಲ್ಲಿಂಗ್ ಆಗಿದೆ. ನೆಲದ ವಾಸ್ತವತೆಗಳ ಆಧಾರದ ಮೇಲೆ ಆಫ್ ಸೀಸನ್ ಮತ್ತು ಕಾರಣದ ವ್ಯಾಖ್ಯಾನವು ವರ್ಷದಿಂದ ವರ್ಷಕ್ಕೆ ಭಿನ್ನವಾಗಿರುತ್ತದೆ. ಯಾವುದೇ ಸ್ಪಷ್ಟತೆಗಾಗಿ ನಿಮ್ಮ ಕ್ಲಸ್ಟರ್ ಅಧಿಕಾರಿಯನ್ನು ಕೇಳಿ.</string>
     <string name="quick_reqc">ಕ್ವಿಕ್‌ಪೇ ಅನ್ನು ಈಗಾಗಲೇ ವಿನಂತಿಸಲಾಗಿದೆ, 1 ನೆಯದು ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೆ ಮತ್ತೊಂದು ಕ್ವಿಕ್‌ಪೇ ವಿನಂತಿಯನ್ನು ವಿನಂತಿಸಲಾಗುವುದಿಲ್ಲ.</string>
     <string name="visit_reqst">ಭೇಟಿ ವಿನಂತಿಯನ್ನು ಈಗಾಗಲೇ ಹೆಚ್ಚಿಸಲಾಗಿದೆ.</string>
     <string name="intercrops">ಇಂಟರ್ ಕ್ರಾಪ್ (ಗಳು)</string>
@@ -541,6 +541,10 @@
     <string name="transportationrates">ಸಾರಿಗೆ ದರಗಳು</string>
     <string name="rate">ಪ್ರತಿ ಟನ್‌ಗೆ ದರ (ರೂ)</string>
     <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
+
+    <string name="quickpay_details">ತ್ವರಿತ ವೇತನ ವಿವರಗಳು</string>
+    <string name="collectionsdetails">ಸಂಗ್ರಹ ವಿವರಗಳು</string>
+    <string name="ffbratenorthere"><![CDATA[<p>ನಿಮ್ಮ ಸಂಗ್ರಹಣೆಗಳಲ್ಲಿ ಒಂದು <b>ತ್ವರಿತ ವೇತನ ದರವನ್ನು</b> ಹೊಂದಿಲ್ಲ. ತ್ವರಿತ ವೇತನ ವಿನಂತಿಯನ್ನು ಹೆಚ್ಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</p>]]></string>
 
     />
     <!-- we need to use video ids instead of video link -->

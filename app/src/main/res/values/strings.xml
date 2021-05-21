@@ -83,7 +83,7 @@
     <string name="vehicle_Number">Vehicle Number</string>
     <string name="collectionCenter">Collection Center</string>
     <string name="grossWeight">Gross Weight</string>
-    <string name="tareWeight">Tare Weight</string>
+    <string name="tareWeight">Tare Weight</string>b
     <string name="totalBunches">Total Bunches</string>
     <string name="acceptedBunches">Accepted Bunches</string>
     <string name="rejectedBunches">Rejected Bunches</string>
@@ -309,8 +309,8 @@
     <string name="closingBal">Dues (Rs)</string>
 
     <string name="quantity_mt">Quantity (MT)</string>
-    <string name="ffb_flot">FFB Rate per MT (Rs)</string>
-    <string name="amount_of_FFB">FFB Cost (Rs)</string>
+    <string name="ffb_flot">Quickpay Rate (Rs)</string>
+    <string name="amount_of_FFB">Quickpay Cost (Rs)</string>
     <string name="convenience_charge">Transaction Fee (Rs)</string>
     <string name="total_amt_pay">Total (Rs)</string>
 
@@ -451,10 +451,11 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="quick_docu">QuickPay Document</string>
+
+
     <string name="quickpay_details">QuickPay Details</string>
     <string name="collectionsdetails">Collection(s) Details</string>
-
-
+    <string name="ffbratenorthere"><![CDATA[<p>One of your Collections does not have <b>Quick Pay Rate</b>. Due to which QuickPay Request cannot be raised</p>]]></string>
 
     <string name="description">Description :</string>
 
@@ -467,6 +468,8 @@
     <string name="discount">Discount(%)</string>
     <string name="disc">Offer Applied</string>
     <string name="text">Harvesting service will be provided for every 10 days in PEAK Season(APRIL TO OCT) and 15 days in LEAN Season(NOV TO MARCH).</string>
+
+
 
     <string name="thirty_days">Last 30 days</string>
     <string name="currentfinicial">Current Financial Year</string>
@@ -490,7 +493,7 @@
     <string name="details">Complete Details</string>
     <string name="close">Close</string>
     <string name="cluster_officer">Cluster Name</string>
-    <string name="inter_coco">\u2022 Matured Cocoa as Intercrop Poses Additional Labour Charges.\n\u2022 Farmer has to engage loading and transport Labour after harvesting is done.\n\u2022 For off season minimum wage cap is Rs.525 per each Labour for any service.</string>
+    <string name="inter_coco">\u2022 Matured Cocoa as Intercrop Poses Additional Labour Charges.\n\u2022 Farmer has to engage loading and transport Labour after harvesting is done.\n\u2022 For off season, minimum billing is for 1 Ton of harvest as per age of garden, irrespective of actual quantity harvested. Definition of off season and reason will differ year to year based on ground realities. Please ask your cluster officer for any clarity.</string>
     <string name="quick_reqc">Quickpay has already been requested, another quickpay request cannot be requested until the 1st one is completed.</string>
     <string name="visit_reqst">Visit Request has been Already Raised.</string>
     <string name="intercrops">InterCrop(s)</string>

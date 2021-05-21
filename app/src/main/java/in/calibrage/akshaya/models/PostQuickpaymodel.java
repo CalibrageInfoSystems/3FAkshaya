@@ -77,6 +77,19 @@ public class PostQuickpaymodel {
 
 
 
+    @SerializedName("isSpecialPay")
+    @Expose
+    private Boolean isSpecialPay;
+
+
+    public Boolean getSpecialPay() {
+        return isSpecialPay;
+    }
+
+    public void setSpecialPay(Boolean specialPay) {
+        isSpecialPay = specialPay;
+    }
+
     public String getFarmerCode() {
         return farmerCode;
     }

@@ -102,6 +102,22 @@ public class ListResult {
     @Expose
     private Double quantity;
 
+    @SerializedName("stateCode")
+    @Expose
+    private String stateCode;
+
+    @SerializedName("stateName")
+    @Expose
+    private String stateName;
+
+    @SerializedName("districtId")
+    @Expose
+    private Integer districtId;
+
+    @SerializedName("districtName")
+    @Expose
+    private String districtName;
+
     public String getUColnid() {
         return uColnid;
     }
@@ -166,6 +182,37 @@ public class ListResult {
         this.quantity = quantity;
     }
 
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public Integer getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
 }
 
 

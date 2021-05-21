@@ -71,7 +71,8 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     List<String> dates_list = new ArrayList<>();
     List<Double> weight_list = new ArrayList<>();
     List<String> CollectionIds = new ArrayList<>();
-    String w_Code;
+    String w_Code,statecode,districtName,stateName;
+    int districtId;
     int SPLASH_DISPLAY_DURATION = 500;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -241,7 +242,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
         }, 500);
     }
 
-    private void CanRaiseRequest() {
+    private void  CanRaiseRequest() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.getRaiseRequest(APIConstantURL.CanRaiseRequest + Farmer_code + "/" + null + "/" + 13)
@@ -285,6 +286,12 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                                     intent.putExtra("collection_dates", (Serializable) dates_list);
                                     intent.putExtra("collection_weight", (Serializable) weight_list);
                                     intent.putExtra("whsCode",w_Code);
+
+                                    intent.putExtra("ccstatename", stateName);
+                                    intent.putExtra("ccstatecode",  statecode);
+                                    intent.putExtra("ccdistrictname",districtName);
+                                    intent.putExtra("ccdistrictid",districtId);
+
                                     startActivity(intent);
 
                                     Log.e("ids_list===", String.valueOf(ids_list));
@@ -340,11 +347,17 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                     public void onNext(QuickPayModel quickPayModel) {
                         mdilogue.dismiss();
 
-                        if (quickPayModel.getListResult().size()!= 0  ) {
+                        if (quickPayModel.getListResult() != null  ) {
                             nextButton.setVisibility(View.VISIBLE);
                             adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);
                             recyclerView.setAdapter(adapter);
                             w_Code = quickPayModel.getListResult().get(0).getWhsCode();
+                            statecode = quickPayModel.getListResult().get(0).getStateCode();
+                            stateName = quickPayModel.getListResult().get(0).getStateName();
+                            districtName = quickPayModel.getListResult().get(0).getDistrictName();
+                            districtId = quickPayModel.getListResult().get(0).getDistrictId();
+
+
                             for (QuickPayModel.ListResult item : quickPayModel.getListResult()
                             ) {
                                 ids_list.add(item.getUColnid());

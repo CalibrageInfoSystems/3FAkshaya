@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -110,7 +111,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     String result;
     String statecode, districtName;
     Integer districtId;
-    String whs_Code;
+    String whs_Code, ccstateName, ccstateCode, ccdistrictName;
+    int ccdistrictId;
     String collectiondate;
     Double collectionweight;
     Integer Cluster_id;
@@ -128,7 +130,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
     double totalquickfee = 0;
     double totaldue = 0;
     double totalamounttopay = 0;
-
+    double sumoftotalamounttopay = 0;
+    double dueamount = 0;
 
 
     @Override
@@ -160,6 +163,19 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             dates_list = (ArrayList<String>) getIntent().getSerializableExtra("collection_dates");
             netweight_list = (ArrayList<Double>) getIntent().getSerializableExtra("collection_weight");
             whs_Code =extras.getString("whsCode");
+
+
+
+            ccstateName = extras.getString("ccstatename");
+            ccstateCode = extras.getString("ccstatecode");
+            ccdistrictName = extras.getString("ccdistrictname");
+            ccdistrictId = extras.getInt("ccdistrictid");
+
+//            Log.e("ccstatename==",ccstateName);
+//            Log.e("ccstatecode==",ccstateCode);
+//            Log.e("ccdistrictName==",ccdistrictName);
+//            Log.e("ccdistrictId==",ccdistrictId + "");
+
             Log.e("whs_Code==",whs_Code);
         }
 
@@ -205,7 +221,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
         districtId = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("districtId");
         districtName = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("districtName");
-        Log.e("state===",statecode);
+        Log.e("statecode===",statecode);
         Log.e("districtId===",districtId.toString() +"");
         Log.e("districtName===",districtName.toString() +"");
         catagoriesList = SharedPrefsData.getCatagories(this);
@@ -213,6 +229,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
         Log.e("Cluster_id===",Cluster_id+"");
         statename =catagoriesList.getResult().getFarmerDetails().get(0).getStateName();
+        Log.e("stateName===",statename);
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,7 +285,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         }
     }
 
-    public void showwDialog(Activity activity, String msg) {
+    public void showwDialog(Activity activity, Spanned msg) {
         final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -413,9 +430,9 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             for(int i =0; i < quickpaydetailslist.size(); i ++)
             {
                 totalFFBcost = totalFFBcost+ quickpaydetailslist.get(i).getListResult().get(0).getFfbCost();
-                totaltransactionfee = totaltransactionfee+ quickpaydetailslist.get(i).getListResult().get(0).getConvenienceCharge();
+                totaltransactionfee =  quickpaydetailslist.get(i).getListResult().get(0).getConvenienceCharge();
                 totalquickfee = totalquickfee+ quickpaydetailslist.get(i).getListResult().get(0).getQuickPay();
-                totaldue = totaldue+ quickpaydetailslist.get(i).getListResult().get(0).getClosingBalance();
+                totaldue = quickpaydetailslist.get(i).getListResult().get(0).getClosingBalance();
                 totalflatcharge = totalflatcharge+ quickpaydetailslist.get(i).getListResult().get(0).getFfbFlatCharge();
                 totalamounttopay = totalamounttopay + quickpaydetailslist.get(i).getListResult().get(0).getTotal();
                 ffbflatchargelist.add(quickpaydetailslist.get(i).getListResult().get(0).getFfbFlatCharge());
@@ -430,12 +447,57 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             Log.d(TAG, "totalamounttopayis:"+totalamounttopay);
             Log.d(TAG, "ffbflatchargelistis:"+ffbflatchargelist);
 
-            totalffbcost.setText(df.format(totalFFBcost));
-            totalTransactionFee.setText("-" + df.format(totaltransactionfee));
-            totalQuickpayFee.setText("-" + df.format(totalquickfee));
-            totalclosingBalanceTxt.setText(df.format(totaldue));
-            totalpay.setText(df.format(totalamounttopay));
 
+            if (totalFFBcost > 0.0){
+                totalffbcost.setText(df.format(totalFFBcost));;
+            }else{
+                totalffbcost.setText(" 0.00");
+            }
+
+            if (totaltransactionfee > 0.0){
+                totalTransactionFee.setText("-" + df.format(totaltransactionfee));;
+            }else{
+                totalTransactionFee.setText(" 0.00");
+            }
+
+            if (totalquickfee > 0.0){
+                totalQuickpayFee.setText("-" + df.format(totalquickfee));;
+            }else{
+                totalQuickpayFee.setText(" 0.00");
+            }
+
+            if (totaldue > 0.0){
+                totalclosingBalanceTxt.setText("-" +df.format(totaldue));
+                //dueamount = Double.parseDouble(totalclosingBalanceTxt.getText().toString());
+            }else{
+                totalclosingBalanceTxt.setText(" 0.00");
+                //dueamount = Double.parseDouble(totalclosingBalanceTxt.getText().toString());
+            }
+
+//            double due = 0.0;
+//            try{
+//                due =  Double.parseDouble(totalclosingBalanceTxt.getText().toString());
+//
+//            }catch (Exception ex){
+//
+//                Log.e(TAG, "due amount expection is" + ex);
+//            }
+
+            double totalDueamount = 0.0;
+            if(totaldue > 0.0)
+            {
+                totalDueamount  = totaldue;
+
+            }else{
+                totalDueamount = 0.0;
+            }
+
+            //We are not adding negative due amount ##CIS
+            sumoftotalamounttopay = (totalFFBcost - totaltransactionfee - totalquickfee) - totalDueamount;
+           // sumoftotalamounttopay = totalFFBcost - totaltransactionfee - totalquickfee - (-165);
+            Log.d("sumtotalamounttopay", sumoftotalamounttopay + "");
+
+                totalpay.setText(df.format(sumoftotalamounttopay));
         }
 
     }
@@ -564,7 +626,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                             QuickpaySuccess = false;
                             QuickpayinProgress = false;
-                            showwDialog(Quickpay_SummaryActivity.this,"One of your Collection doesn't have FFB Rate. Due to which Quickpay Request can't be raised");
+                            Spanned test = Html.fromHtml(getString(R.string.ffbratenorthere));
+                            showwDialog(Quickpay_SummaryActivity.this,test);
                         }
 
                     }
@@ -581,9 +644,63 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setFarmerCode(Farmer_code);
             requestModel.setQuantity(Cweight);
             requestModel.setIsSpecialPay(false);
-            requestModel.setStateCode(statecode);
-            requestModel.setDistrictId(districtId);
             requestModel.setDocDate(Cdate);
+
+        if (ccstateCode != null && !ccstateCode.isEmpty() && !ccstateCode.equals("null")) {
+            requestModel.setStateCode(ccstateCode);
+
+            if (!ccstateCode.startsWith("AP") ) {
+
+                requestModel.setDistrictId(0);
+
+            }else{
+                requestModel.setDistrictId(ccdistrictId);
+            }
+
+        }else{
+
+            requestModel.setStateCode(statecode);
+
+            if (!statecode.startsWith("AP") ) {
+
+                requestModel.setDistrictId(0);
+
+            }else{
+                requestModel.setDistrictId(districtId);
+            }
+
+        }
+
+
+
+
+//        if (ccstateCode != null && !ccstateCode.isEmpty() && !ccstateCode.equals("null")) {
+//
+//            if (!ccstateCode.startsWith("AP") ) {
+//
+//                requestModel.setDistrictId(0);
+//
+//            }else{
+//                requestModel.setDistrictId(ccdistrictId);
+//            }
+//
+//        }else{
+//
+//            if (!statecode.startsWith("AP") ) {
+//
+//                requestModel.setDistrictId(0);
+//
+//            }else{
+//                requestModel.setDistrictId(districtId);
+//            }
+//
+//        }
+
+//        if (!statecode.startsWith("AP") ) {
+//            requestModel.setDistrictId(0);
+//        }else{
+//            requestModel.setDistrictId(districtId);
+//        }
 
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
@@ -593,7 +710,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     private void submitReq() {
 
-        Double d1 = totalamounttopay;
+        Double d1 = sumoftotalamounttopay;
 
         if (d1 > 0.0) {
             mdilogue.show();
@@ -760,8 +877,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
         requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setFarmerCode(Farmer_code);
-        requestModel.setStateCode(statecode);
-        requestModel.setStateName(statename);
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setReqCreatedDate(currentDate);
@@ -771,22 +886,58 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setWhsCode(whs_Code);
         requestModel.setClusterId(Cluster_id);
         requestModel.setFileLocation("");
+        requestModel.setSpecialPay(false);
 
-        if (!statecode.startsWith("AP") ) {
-            requestModel.setDistrictId(0);
-            requestModel.setDistrictName(null);
+        if (ccstateCode != null && !ccstateCode.isEmpty() && !ccstateCode.equals("null")) {
+            requestModel.setStateCode(ccstateCode);
+
+            if (!ccstateCode.startsWith("AP") ) {
+
+                requestModel.setDistrictId(0);
+                requestModel.setDistrictName("null");
+
+            }else{
+                requestModel.setDistrictId(ccdistrictId);
+                requestModel.setDistrictName(ccdistrictName);
+            }
+
         }else{
-            requestModel.setDistrictId(districtId);
-            requestModel.setDistrictName(districtName);
+
+            requestModel.setStateCode(statecode);
+
+            if (!statecode.startsWith("AP") ) {
+
+                requestModel.setDistrictId(0);
+                requestModel.setDistrictName("null");
+
+            }else{
+                requestModel.setDistrictId(districtId);
+                requestModel.setDistrictName(districtName);
+            }
+
         }
+
+        if (ccstateName != null && !ccstateName.isEmpty() && !ccstateName.equals("null")) {
+            requestModel.setStateName(ccstateName);
+        }else{
+            requestModel.setStateName(statename);
+        }
+
 
         requestModel.setFfbCost(avgffbcost);
 
-        if(null != totalclosingBalanceTxt.getText() & !TextUtils.isEmpty(totalclosingBalanceTxt.getText()))
-            requestModel.setClosingBalance(Double.parseDouble(totalclosingBalanceTxt.getText().toString()));
-        else {
+        if(totaldue > 0.0){
+            requestModel.setClosingBalance(totaldue);
+        }else {
+
             requestModel.setClosingBalance(0.0);
         }
+
+//        if(null != totalclosingBalanceTxt.getText() & !TextUtils.isEmpty(totalclosingBalanceTxt.getText()))
+//            requestModel.setClosingBalance(Double.parseDouble(totalclosingBalanceTxt.getText().toString()));
+//        else {
+//            requestModel.setClosingBalance(0.0);
+//        }
         //TODO make dynamic
 
         for (int i = 0; i < ids_list.size(); i++) {

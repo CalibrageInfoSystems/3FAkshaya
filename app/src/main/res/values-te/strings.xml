@@ -235,8 +235,8 @@
     <string name="closingBal">ముగింపు బ్యాలెన్స్ (రూ)</string>
     <string name="digital_signature">డిజిటల్ సంతకం</string>
     <string name="quantity_mt">మొత్తము (టన్ను)</string>
-    <string name="ffb_flot">ఎఫ్‌ఎఫ్‌బి ఫ్లాట్ ఛార్జ్ (రూ)</string>
-    <string name="amount_of_FFB">ఎఫ్‌ఎఫ్‌బి మొత్తం (రూ)</string>
+    <string name="ffb_flot">త్వరితచెల్లింపు రేటు (రూ)</string>
+    <string name="amount_of_FFB">త్వరితచెల్లింపు ధర (రూ)</string>
     <string name="convenience_charge">లావాదేవీ  రుసుము (రూ)</string>
     <string name="total_amt_pay">చెల్లించవలసిన మొత్తం (రూ)</string>
 
@@ -532,7 +532,7 @@
     <string name="close">మూసివేయండి</string>
     <string name="cluster_officer">క్లస్టర్ పేరు</string>
 
-    <string name ="inter_coco">\u2022 ఇంటర్‌క్రాప్ వలె పరిపక్వమైన కోకో అదనపు కార్మిక ఛార్జీలను కలిగిస్తుంది.\n\u2022 పంట కోసిన తర్వాత ఫార్మర్ లోడింగ్ మరియు రవాణా శ్రమను కలిగి ఉండాలి.\n\u2022 ఆఫ్ సీజన్ కోసం కనీస వేతన పరిమితి ఏదైనా సేవకు తలపై రూ.525.</string>
+    <string name ="inter_coco">\u2022 అంతరపంటగా ముదురు కోకో తోటలు కలిగిన తోటలకు గెలల కోత ధర అదికముగా చెల్లించవలసియుండును.\n\u2022 గెలల కోత పూర్తయిన తరువాత రైతు లోడింగ్ మరియు రవాణా చేయుటకు ఏర్పాట్లు చేసుకొనవలెను.\n\u2022 అన్ సీజన్ లో గెలల కోత యొక్క కనీస ధర ఒక టన్నుకు గెలల పరిమాణంతో సంబందం లేకుండా తోట వయస్సు ప్రకారం కనీస ధర నిర్దారించబడును. అన్ సీజన్ కారణంగా సంవత్సరం, సంవత్సరానికి జరిగే మార్పులు మరియు వ్యత్యాసాల యొక్క సందేహాలను మీ యొక్క ఫీల్డ్ అదికారిని సంప్రదించి నివృత్తిచేసుకోగలరు.</string>
     <string name="quick_reqc">క్విక్‌పే ఇప్పటికే అభ్యర్థించబడింది, ఒకటి పూర్తయ్యే వరకు మరొక క్విక్‌పే అభ్యర్థన అభ్యర్థించబడదు.</string>
     <string name="visit_reqst">సందర్శన అభ్యర్థన ఇప్పటికే అభ్యర్థించబడింది.</string>
     <string name="intercrops">అంతర పంట(లు)</string>
@@ -573,10 +573,16 @@
     <string name="quick_pdf">క్విక్‌పే అభ్యర్థన పీడీఎఫ్</string>
     <string name="select_imagee">(దయచేసి కనీసం ఒక చిత్రం లేదా వాయిస్ రికార్డ్‌ను అటాచ్ చేయండి.)</string>
     <string name="slecteddate">ఎంచుకున్న తేదీ</string>
-    <string name="terms_conditionss">నిబంధనలు &amp; షరతులు</string>
+    <string name="terms_conditionss">నేను అంగీకరిస్తాను నిబంధనలు &amp; షరతులు</string>
+    <string name="terms_conditionsss">నిబంధనలు &amp; షరతులు</string>
     <string name="unableselect">ఈ నెలను ఎంచుకోవడం సాధ్యం కాలేదు</string>
     <string name="downloaded">Downloaded Successfully</string>
     <string name="App_version" >అప్లికేషన్ వెర్షన్ : </string>
+
+    <string name="quickpay_details">త్వరిత చెల్లింపు వివరములు</string>
+    <string name="collectionsdetails">గెలల సేకరణ వివరములు</string>
+    <string name="ffbratenorthere"><![CDATA[<p>మీ యొక్క గెలల సేకరణలలో  ఒక సేకరణకు <b>త్వరిత చెల్లింపు ధర</b> లేనందున, ఈ త్వరిత చెల్లింపు అభ్యర్ధన నమోదుచేయబడదు</p>]]></string>
+
     <string-array name="switch_tabs">
 
         <item>ఎరువుల గోడౌన్లు</item>
