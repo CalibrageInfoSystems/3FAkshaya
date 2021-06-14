@@ -20,19 +20,31 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.IsQuickPayBlockDate;
+import in.calibrage.akshaya.models.PostQuickpaymodel;
 import in.calibrage.akshaya.models.QuickPayModel;
+import in.calibrage.akshaya.models.QuickPayResponce;
+import in.calibrage.akshaya.models.QuickpayBlockdateRequest;
+import in.calibrage.akshaya.models.QuickpayBlockdateResponse;
 import in.calibrage.akshaya.models.RaiseRequest;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -61,6 +73,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     public static String TAG = "QuickPayActivity";
     private Button btnSelection;
     String datetimevaluereq, Farmer_code;
+    String currentDate;
     TextView no_unpaid_collections;
     Button nextButton;
     TextView noRecords;
@@ -72,8 +85,11 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     List<Double> weight_list = new ArrayList<>();
     List<String> CollectionIds = new ArrayList<>();
     String w_Code,statecode,districtName,stateName;
+    String cstatecode;
+    int cdistrictId;
     int districtId;
     int SPLASH_DISPLAY_DURATION = 500;
+    private QuickPayModel quickPayModelData;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -111,7 +127,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setViews() {
         if (isOnline()){
-            IsQuickPayBlockDate();}
+            getQuckPay();}
         else {
             showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
         }
@@ -158,60 +174,97 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
 
     }
-    private void IsQuickPayBlockDate() {
-        mdilogue.show();
-        String statecode = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
-        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getblockdate(APIConstantURL.IsQuickPayBlockDate+statecode)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<IsQuickPayBlockDate>() {
-                    @Override
-                    public void onCompleted() {
-                        mdilogue.dismiss();
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            ((HttpException) e).code();
-                            ((HttpException) e).message();
-                            ((HttpException) e).response().errorBody();
-                            try {
-                                ((HttpException) e).response().errorBody().string();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            e.printStackTrace();
-                        }
-                        mdilogue.dismiss();
-                        //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
-                    }
+//    private void IsQuickPayBlockDate() {
+//
+//        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+//        mdilogue.show();
+//        String statecodee = SharedPrefsData.getInstance(this).getStringFromSharedPrefs("statecode");
+//        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+//        mSubscription = service.getblockdate(APIConstantURL.IsQuickPayBlockDate+statecodee+"/"+"true"+"/"+currentDate)
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<IsQuickPayBlockDate>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        mdilogue.dismiss();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        if (e instanceof HttpException) {
+//                            ((HttpException) e).code();
+//                            ((HttpException) e).message();
+//                            ((HttpException) e).response().errorBody();
+//                            try {
+//                                ((HttpException) e).response().errorBody().string();
+//                            } catch (IOException e1) {
+//                                e1.printStackTrace();
+//                            }
+//                            e.printStackTrace();
+//                        }
+//                        mdilogue.dismiss();
+//                        //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
+//                    }
+//
+//                    @Override
+//                    public void onNext(IsQuickPayBlockDate isQuickPayBlockDate) {
+//
+//
+//                        if (isQuickPayBlockDate.getIsSuccess()){
+//                            if(isQuickPayBlockDate.getResult().equals(true)) {
+//                                if (isOnline()) {
+//                                   // getQuckPay();
+//                                  //  nextButton.setVisibility(View.VISIBLE);
+//
+//                                    nextButton.setVisibility(View.VISIBLE);
+//                                    adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModelData.getListResult(), QuickPayActivity.this);
+//                                    recyclerView.setAdapter(adapter);
+//                                    w_Code = quickPayModelData.getListResult().get(0).getWhsCode();
+//                                    statecode = quickPayModelData.getListResult().get(0).getStateCode();
+//                                    stateName = quickPayModelData.getListResult().get(0).getStateName();
+//                                    districtName = quickPayModelData.getListResult().get(0).getDistrictName();
+//                                    districtId = quickPayModelData.getListResult().get(0).getDistrictId();
+//
+//
+//                                    for (QuickPayModel.ListResult item : quickPayModelData.getListResult()
+//                                    ) {
+//
+//                                        if (item.getCollectionBlocked() == false){
+//                                            ids_list.add(item.getUColnid());
+//                                            dates_list.add(item.getDocDate());
+//                                            weight_list.add(item.getQuantity());
+//                                            Log.d("Collectionssize1", ids_list.size() + "");
+//                                        }
+//
+//                                        if (ids_list.size() <= 0 ){
+//
+//                                            nextButton.setVisibility(View.GONE);
+//                                            Log.d("Collectionssize2", ids_list.size() + "");
+//                                        }else{
+//
+//                                            nextButton.setVisibility(View.VISIBLE);
+//                                        }
+//
+//                                        Log.d("Collectionssize33", ids_list.size() + "");
+//
+//                                    }
+//                                } else {
+//                                    showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
+//                                    //nextButton.setVisibility(View.GONE);
+//                                }
+//                            }
+//
+//                        }
+//                        else {
+//                            // edittext.getText().clear();Quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.
+//                            showDialogf(QuickPayActivity.this, isQuickPayBlockDate.getEndUserMessage());
+//
+//                        }
+//                    }
+//                });
+//    }
 
-                    @Override
-                    public void onNext(IsQuickPayBlockDate isQuickPayBlockDate) {
-
-
-                        if (isQuickPayBlockDate.getIsSuccess()){
-                            if(isQuickPayBlockDate.getResult().equals(true)) {
-                                if (isOnline()) {
-                                    getQuckPay();
-                                  //  nextButton.setVisibility(View.VISIBLE);
-                                } else {
-                                    showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
-                                    //nextButton.setVisibility(View.GONE);
-                                }
-                            }
-
-                        }
-                        else {
-                            // edittext.getText().clear();Quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.
-                            showDialogf(QuickPayActivity.this, isQuickPayBlockDate.getEndUserMessage());
-
-                        }
-                    }
-                });
-    }
 
     public void showDialogf(Activity activity, String msg) {
         final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
@@ -348,22 +401,13 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                         mdilogue.dismiss();
 
                         if (quickPayModel.getListResult() != null  ) {
-                            nextButton.setVisibility(View.VISIBLE);
-                            adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModel.getListResult(), QuickPayActivity.this);
-                            recyclerView.setAdapter(adapter);
-                            w_Code = quickPayModel.getListResult().get(0).getWhsCode();
-                            statecode = quickPayModel.getListResult().get(0).getStateCode();
-                            stateName = quickPayModel.getListResult().get(0).getStateName();
-                            districtName = quickPayModel.getListResult().get(0).getDistrictName();
-                            districtId = quickPayModel.getListResult().get(0).getDistrictId();
+                            quickPayModelData = quickPayModel;
+                            // check can we raise quick pay or not
 
+                            cstatecode = quickPayModelData.getListResult().get(0).getStateCode();
+                            cdistrictId  = quickPayModelData.getListResult().get(0).getDistrictId();
 
-                            for (QuickPayModel.ListResult item : quickPayModel.getListResult()
-                            ) {
-                                ids_list.add(item.getUColnid());
-                                dates_list.add(item.getDocDate());
-                                weight_list.add(item.getQuantity());
-                            }
+                            IsQuickPayBlockDate();
 
                         } else {
                             noRecords.setVisibility(View.VISIBLE);
@@ -372,15 +416,13 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                             nextButton.setVisibility(View.GONE);
                         }
 
-
                         Log.d("", "onNext: " + quickPayModel);
-
 
                     }
 
-
                 });
     }
+
 
     @Override
     public void onBackPressed() {
@@ -399,4 +441,114 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
             }
         }
     }
+
+    private void IsQuickPayBlockDate(){
+
+            mdilogue.show();
+            JsonObject object = quickpayblockdateReuestobject();
+            ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+            mSubscription = service.quickpayBlockdate(object)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<QuickpayBlockdateResponse>() {
+                        @Override
+                        public void onCompleted() {
+                            mdilogue.dismiss();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            if (e instanceof HttpException) {
+                                ((HttpException) e).code();
+                                ((HttpException) e).message();
+                                ((HttpException) e).response().errorBody();
+                                try {
+                                    ((HttpException) e).response(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ).errorBody().string();
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                }
+                                e.printStackTrace();
+                            }
+                            mdilogue.cancel();
+                        }
+
+                        @Override
+                        public void onNext(final QuickpayBlockdateResponse quickPayblockdateresponse) {
+
+                            if (quickPayblockdateresponse.getIsSuccess()){
+                                if(quickPayblockdateresponse.getResult().equals(true)) {
+                                    if (isOnline()) {
+
+                                        nextButton.setVisibility(View.VISIBLE);
+                                        adapter = new QuickPayDataAdapter(QuickPayActivity.this, quickPayModelData.getListResult(), QuickPayActivity.this);
+                                        recyclerView.setAdapter(adapter);
+                                        w_Code = quickPayModelData.getListResult().get(0).getWhsCode();
+                                        statecode = quickPayModelData.getListResult().get(0).getStateCode();
+                                        stateName = quickPayModelData.getListResult().get(0).getStateName();
+                                        districtName = quickPayModelData.getListResult().get(0).getDistrictName();
+                                        districtId = quickPayModelData.getListResult().get(0).getDistrictId();
+
+
+                                        for (QuickPayModel.ListResult item : quickPayModelData.getListResult()
+                                        ) {
+
+                                            if (item.getCollectionBlocked() == false){
+                                                ids_list.add(item.getUColnid());
+                                                dates_list.add(item.getDocDate());
+                                                weight_list.add(item.getQuantity());
+                                                Log.d("Collectionssize1", ids_list.size() + "");
+                                            }
+
+                                            if (ids_list.size() <= 0 ){
+
+                                                nextButton.setVisibility(View.GONE);
+                                                Log.d("Collectionssize2", ids_list.size() + "");
+                                            }else{
+
+                                                nextButton.setVisibility(View.VISIBLE);
+                                            }
+
+                                            Log.d("Collectionssize33", ids_list.size() + "");
+
+                                        }
+                                    } else {
+                                        showDialog(QuickPayActivity.this, getResources().getString(R.string.Internet));
+                                        //nextButton.setVisibility(View.GONE);
+                                    }
+                                }
+
+                            }
+                            else {
+                                // edittext.getText().clear();Quick pay has already been requested, another quick pay request cannot be requested until the 1st one is completed.
+                                showDialogf(QuickPayActivity.this, quickPayblockdateresponse.getEndUserMessage());
+
+                            }
+
+                        }
+
+
+                    });
+
+    }
+    private JsonObject quickpayblockdateReuestobject() {
+
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+        QuickpayBlockdateRequest requestModel = new QuickpayBlockdateRequest();
+
+        requestModel.setIsQuickPayBlocked(true);
+        requestModel.setDocDate(currentDate);
+        requestModel.setStateCode(cstatecode);
+
+            if (!cstatecode.startsWith("AP") ) {
+                requestModel.setDistrictId(0);
+            }else{
+                requestModel.setDistrictId(cdistrictId);
+            }
+
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+
+    }
+
+
 }

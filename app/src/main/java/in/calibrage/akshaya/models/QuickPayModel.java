@@ -118,9 +118,24 @@ public class ListResult {
     @Expose
     private String districtName;
 
+
+
+    @SerializedName("isCollectionBlocked")
+    @Expose
+    private Boolean isCollectionBlocked;
+
+    public Boolean getCollectionBlocked() {
+        return isCollectionBlocked;
+    }
+
+    public void setCollectionBlocked(Boolean collectionBlocked) {
+        isCollectionBlocked = collectionBlocked;
+    }
+
     public String getUColnid() {
         return uColnid;
     }
+
 
     public void setUColnid(String uColnid) {
         this.uColnid = uColnid;

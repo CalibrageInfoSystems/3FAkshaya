@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.views.Adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -55,11 +56,20 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
         return viewHolder;
     }
 
+    @SuppressLint("RecyclerView")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
         final int pos = position;
+
+        if (stList.get(position).getCollectionBlocked() == true){
+
+            viewHolder.blockedCollection.setVisibility(View.VISIBLE);
+        }else {
+
+            viewHolder.blockedCollection.setVisibility(View.GONE);
+        }
 
         viewHolder.collection_id.setText(stList.get(position).getUColnid());
 
@@ -122,6 +132,7 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
         public CheckBox chkSelected;
         public CardView card_view;
         public QuickPayModel singlestudent;
+        TextView blockedCollection;
 
 
         public ViewHolder(View itemLayoutView) {
@@ -131,6 +142,7 @@ public class QuickPayDataAdapter extends RecyclerView.Adapter<QuickPayDataAdapte
             tvNetWeight = (TextView) itemLayoutView.findViewById(R.id.tvNetWeight);
             tvDate = (TextView) itemLayoutView.findViewById(R.id.tvDate);
             tvCc = (TextView) itemLayoutView.findViewById(R.id.tvCc);
+            blockedCollection = itemLayoutView.findViewById(R.id.blockedCollection);
 
             card_view = (CardView) itemLayoutView.findViewById(R.id.card_view);
 

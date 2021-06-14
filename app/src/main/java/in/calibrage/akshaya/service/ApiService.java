@@ -39,6 +39,7 @@ import in.calibrage.akshaya.models.PaymentsType;
 import in.calibrage.akshaya.models.PostHoliday;
 import in.calibrage.akshaya.models.QuickPayModel;
 import in.calibrage.akshaya.models.QuickPayResponce;
+import in.calibrage.akshaya.models.QuickpayBlockdateResponse;
 import in.calibrage.akshaya.models.RaiseRequest;
 import in.calibrage.akshaya.models.RecomPlotcodes;
 import in.calibrage.akshaya.models.ResLoan;
@@ -237,10 +238,13 @@ public interface ApiService {
     @POST(APIConstantURL.HolidayList)
     Observable<RespHoliday> postholiday(@Body JsonObject data);
 
+    @POST(APIConstantURL.IsQuickPayBlockDate)
+    Observable<QuickpayBlockdateResponse> quickpayBlockdate(@Body JsonObject data);
+
     @GET
     Observable<RaiseRequest> getRaiseRequest(@Url String url);
-    @GET
-    Observable<IsQuickPayBlockDate> getblockdate(@Url String url);
+//    @GET
+//    Observable<IsQuickPayBlockDate> getblockdate(@Url String url);
 
     @GET
     Observable<IsActiveFarmer> getActiveFarmer(@Url String url);

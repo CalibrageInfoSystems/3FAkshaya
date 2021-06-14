@@ -62,7 +62,7 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
     String GetBankDetailsByFarmerCode ="Farmer/GetBankDetailsByFarmerCode/";
     String HolidayList ="HolidayList/IsHoliday";
     String CanRaiseRequest ="RequestHeader/CanRaiseRequest/";
-    String IsQuickPayBlockDate ="QuickPayBlockDate/IsQuickPayBlockDate/";
+    String IsQuickPayBlockDate ="QuickPayBlockDate/IsQuickPayBlockDate";
    String IsActiveFarmer ="Farmer/IsActiveFarmer/";
     String GetServicesByStateCode ="StateService/GetServicesByStateCode/";
 

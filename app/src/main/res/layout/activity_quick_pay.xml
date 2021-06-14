@@ -118,6 +118,7 @@
 
     </LinearLayout>
     <Button
+        android:visibility="gone"
         android:id="@+id/nextButton"
         style="@style/Common_Button"
         android:layout_width="wrap_content"
@@ -126,7 +127,6 @@
         android:layout_below="@+id/quick_recycler_view"
         android:paddingLeft="@dimen/margin_10"
         android:layout_margin="@dimen/margin_5"
-
         android:text="@string/request_rise" />
     <LinearLayout
         android:layout_width="match_parent"
