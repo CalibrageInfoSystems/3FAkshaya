@@ -406,6 +406,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
                             cstatecode = quickPayModelData.getListResult().get(0).getStateCode();
                             cdistrictId  = quickPayModelData.getListResult().get(0).getDistrictId();
+                            Log.d("CollectionStateCode", cstatecode + "");
 
                             IsQuickPayBlockDate();
 
