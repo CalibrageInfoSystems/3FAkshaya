@@ -55,11 +55,12 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
     private GetLabproductAdapterListener1 listener;
     public CardView card_view;
     String datetimevaluereq,currentDate;
-    DecimalFormat df = new DecimalFormat("####0.00");
+    // RecyclerView recyclerView;
     String selectedItemID;
+    Button cancel_btn,ok_btn;
     int selectedPO;
     private Subscription mSubscription;
-    Button cancel_btn,ok_btn;
+    DecimalFormat df = new DecimalFormat("####0.00");
 
     public GetLabproductsAdapter(List<LabproductsRequest.ListResult> list, Context ctx, GetLabproductAdapterListener1 listener) {
         this.mContext = ctx;
@@ -69,7 +70,7 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup parent, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem = layoutInflater.inflate(R.layout.pole_list, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.fert_list, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -90,52 +91,22 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
             e.printStackTrace();
         }
         holder.requestCode.setText(list.get(position).getRequestCode());
-        holder.godown_name.setText(list.get(position).getGoDownName());
         holder.req_date.setText(datetimevaluereq);
+        holder.godown_name.setText(list.get(position).getGoDownName());
         holder.statusType.setText(list.get(position).getStatus());
+        holder.paymentMode.setText(list.get(position).getPaymentMode());
+        holder.sub_amount.setText(df.format(Math.round(list.get(position).getSubsidyAmount())));
         if( list.get(position).getPin()!= null)
             holder.pin.setText(list.get(position).getPin());
         else{
             holder.pin.setVisibility(View.GONE);
             holder.pinlabel.setVisibility(View.GONE);
         }
-
-        holder.paymentMode.setText(list.get(position).getPaymentMode());
-        if(null !=list.get(position).getPaubleAmount() )
-        {
-            holder.amount.setText(df.format(list.get(position).getPaubleAmount()));
-        }
+        if(null != list.get(position).getPaubleAmount())
+            holder.amount.setText(df.format(Math.round(list.get(position).getPaubleAmount())));
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-//        if (!"Closed".equals(holder.statusType.getText()))
-//        {
-//            holder.cancel.setVisibility(View.VISIBLE);
-//
-//        }
-//        else {
-//            holder.cancel.setVisibility(View.GONE);
-//        }
 
-
-        //todo
-        //  if (!"Closed".equals(holder.statusType.getText()) && !"Cancelled".equals(holder.statusType.getText())) {
-//            holder.cancel.setVisibility(View.VISIBLE);
-//
-//        } else {
-//            holder.cancel.setVisibility(View.GONE);
-//        }
-//
-//        holder.cancel.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                selectedItemID = list.get(position).getRequestCode();
-//                selectedPO = position;
-//                showConformationDialog(selectedPO);
-//
-//            }
-//
-//        });
 
         if (position % 2 == 0) {
             holder.card_view.setCardBackgroundColor(mContext.getColor(R.color.white));
@@ -148,27 +119,26 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
         holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 listener.onContactSelected2(list.get(position));
-
             }
         });
-        AnimationUtil.animate(holder, true);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (null != list)
+            return list.size();
+        else
+            return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout contentLayout;
-        public TextView requestCode;
+        public TextView requestCode,pin,pinlabel;
         public TextView req_date;
-        public TextView statusType;
-        public TextView paymentMode, amount,pin,pinlabel;
+        public TextView statusType,sub_amount;
+        public TextView paymentMode, amount,cancel,godown_name;
         public ImageView showMore;
-        public TextView cancel,godown_name;
         LinearLayout details;
         public CardView card_view;
         public ViewHolder(View itemView) {
@@ -178,74 +148,17 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
             requestCode = itemView.findViewById(R.id.requestCode);
             req_date = itemView.findViewById(R.id.reqCreatedDate);
             statusType = itemView.findViewById(R.id.statusType);
+            sub_amount = itemView.findViewById(R.id.sub_amount);
             paymentMode = itemView.findViewById(R.id.paymentMode);
             card_view =   itemView.findViewById(R.id.card_view);
             amount=itemView.findViewById(R.id.amount);
-            cancel = itemView.findViewById(R.id.cancel);
             godown_name=itemView.findViewById(R.id.godown_name);
+            cancel = itemView.findViewById(R.id.cancel);
             details = itemView.findViewById(R.id.details);
             card_view = itemView.findViewById(R.id.card_view);
             pin = itemView.findViewById(R.id.pin);
             pinlabel =itemView.findViewById(R.id.pin_label);
         }
-    }
-
-    private void delete_request()  throws JSONException {
-
-        JsonObject object = Requestobject();
-        ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
-        mSubscription = service.postdelete(object)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Resdelete>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            ((HttpException) e).code();
-                            ((HttpException) e).message();
-                            ((HttpException) e).response().errorBody();
-                            try {
-                                ((HttpException) e).response().errorBody().string();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
-                            e.printStackTrace();
-                        }
-
-                    }
-
-                    @Override
-                    public void onNext(Resdelete resdelete) {
-
-
-                        LabproductsRequest.ListResult item =list.get(selectedPO);
-                        item.setStatus("Cancelled");
-                        list.set(selectedPO,item);
-                        Toast.makeText(mContext, mContext.getString(R.string.cancel_success), Toast.LENGTH_LONG).show();
-                        notifyItemChanged(selectedPO);
-
-
-                    }
-
-
-
-                });
-    }
-
-    private JsonObject Requestobject() {
-        DeleteObject requestModel = new DeleteObject();
-        requestModel.setRequestCode(selectedItemID);
-        requestModel.setStatusTypeId(32);
-        requestModel.setUpdatedByUserId(null);
-        requestModel.setUpdatedDate(currentDate);
-        return new Gson().toJsonTree(requestModel).getAsJsonObject();
-
-
     }
 
 
