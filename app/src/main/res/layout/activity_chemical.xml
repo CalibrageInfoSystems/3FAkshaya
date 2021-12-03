@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".views.actvity.ChemicalActivity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/ToolBarTheme.ToolBarStyle"
@@ -23,11 +24,11 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right"
+            android:gravity="left"
             >
             <TextView
                 android:gravity="center_vertical"
-                android:layout_weight="0.6"
+                android:layout_weight="0.8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/hind_semibold"
@@ -35,20 +36,15 @@
                 android:text="@string/select_product"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_20" />
-            <TextView
-                android:id="@+id/txt_recomandations"
-                style="@style/Common_textView"
+            <ImageView
+                android:layout_weight="0.2"
+                style="@style/Common_image"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.4"
-                android:layout_alignParentRight="true"
-                android:layout_margin="@dimen/margin_5"
-                android:background="@drawable/edt_bg"
-                android:gravity="center"
-                android:text="@string/recommendationss"
-                android:textColor="@color/whitepure" />
+                android:layout_height="40dp"
+                android:padding="@dimen/margin_5"
+                android:id="@+id/home_btn"
+                android:src="@drawable/home" />
         </LinearLayout>
-
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
@@ -65,6 +61,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.7">
+
+
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="?attr/actionButtonStyle"
                 android:layout_width="wrap_content"
@@ -97,26 +95,6 @@
 
             </FrameLayout>
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/txt_count"-->
-            <!--                style="@style/Common_textView"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginLeft="@dimen/margin_5"-->
-
-            <!--&lt;!&ndash;                android:text="00"&ndash;&gt;-->
-            <!--&lt;!&ndash;                />&ndash;&gt;-->
-            <!--            <ImageButton-->
-            <!--                android:id="@+id/cartButtonIV"-->
-            <!--                android:layout_width="50dp"-->
-            <!--                android:layout_height="50dp"-->
-            <!--                android:layout_gravity="bottom"-->
-            <!--                android:background="@null"-->
-            <!--                android:clickable="false"-->
-            <!--                android:padding="@dimen/margin_10"-->
-            <!--                android:scaleType="fitCenter"-->
-            <!--                android:src="@drawable/cart" />-->
-
             <TextView
                 android:fontFamily="@font/hind_semibold"
                 android:id="@+id/tvtext_item_four"
@@ -140,6 +118,7 @@
                 android:visibility="gone" />
 
             <TextView
+                android:fontFamily="@font/hind_semibold"
                 android:id="@+id/meal_total"
                 style="@style/Common_textView"
                 android:layout_width="wrap_content"
@@ -156,7 +135,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.3                  "
             android:gravity="right">
 
             <Button
@@ -202,6 +181,7 @@
 
             android:scrollbars="vertical" />
         <TextView
+
             android:id="@+id/no_data"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -214,8 +194,77 @@
             android:textColor="@color/colorOrange"
             android:textSize="@dimen/margin_20" />
 
-
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_10"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/lin_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lin_two"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:background="#28201E1E"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/margin_5">
+
+
+            <!--   <TextView
+                   android:id="@+id/tvtext_item_four"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="50dp"
+                   android:layout_marginTop="5dp"
+
+                   android:text="@string/total_amt"
+                   android:textColor="#111"
+                   android:textSize="@dimen/album_title"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:id="@+id/dot3"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginTop="5dp"
+                   android:text=":"
+
+                   android:textColor="#111"
+                   android:textSize="@dimen/album_title"
+                   android:textStyle="bold" />-->
+
+            <!-- <TextView
+                 android:id="@+id/meal_total"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10sp"
+                 android:layout_marginTop="5sp"
+                 android:layout_toRightOf="@+id/dot3"
+                 android:hint="0"
+                 android:text=""
+                 android:textColor="@color/black"
+                 android:textSize="@dimen/album_title"
+                 android:textStyle="bold" />-->
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/confirm"
+            style="@style/Common_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_view"
+            android:text="@string/confirm"
+            android:visibility="gone" />
+    </LinearLayout>
 
 </RelativeLayout>

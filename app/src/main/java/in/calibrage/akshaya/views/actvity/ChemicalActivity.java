@@ -103,7 +103,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
         setContentView(R.layout.activity_chemical);
 
         dialog = new ProgressDialog(this);
-        txt_recomandations = findViewById(R.id.txt_recomandations);
+   //     txt_recomandations = findViewById(R.id.txt_recomandations);
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
         no_data =findViewById(R.id.no_data);
@@ -155,7 +155,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
                 try {
                     if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
-                        Intent i = new Intent(ChemicalActivity.this, Fert_godown_list.class);
+                        Intent i = new Intent(ChemicalActivity.this, Labproducts.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
                         i.putExtra("godown_id",Godown_id);
                         i.putExtra("godown_code",Godown_code);
@@ -182,7 +182,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
                 try {
                     if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
-                        Intent i = new Intent(ChemicalActivity.this, Fert_godown_list.class);
+                        Intent i = new Intent(ChemicalActivity.this, Labproducts.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
                         i.putExtra("godown_id",Godown_id);
                         i.putExtra("godown_code",Godown_code);
@@ -202,12 +202,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
             }
 
         });
-        txt_recomandations.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ChemicalActivity.this, RecommendationActivity.class));
-            }
-        });
+
     }
 
     private void settoolbar() {

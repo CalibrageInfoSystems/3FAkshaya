@@ -33,7 +33,7 @@
     <string name="confirm_req">Confirm Request</string>
     <string name="pole">Equipment</string>
     <string name="fertilizer">Fertilizer</string>
-    <string name="labproducts">Lab Products</string>
+    <string name="labproducts">Bio Lab</string>
     <string name="loan">Loan</string>
     <string name="quickPay">QuickPay Request</string>
     <string name="quick">QuickPay</string>
@@ -367,7 +367,7 @@
     <string name="quick_req">QuickPay Request</string>
     <string name="visit_req">Visit Request</string>
     <string name="Loan_req">Loan Request</string>
-    <string name="labproduct_req">Lab Product Request</string>
+    <string name="labproduct_req">Bio Lab Request</string>
 
     <!--    -->
     <string name="officer_name">Cluster Officer Name</string>
@@ -547,6 +547,7 @@
     <string name="transportationrates">Transportation Rates</string>
     <string name="rate">Rate per Ton (Rs)</string>
     <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
+    <string name="success_lab">Bio Lab Request Submitted Successfully</string>
 
     />
     <!-- we need to use video ids instead of video link -->

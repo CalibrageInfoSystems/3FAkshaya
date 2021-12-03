@@ -409,7 +409,7 @@
     <string name="quick_req">త్వరితచెల్లింపు అభ్యర్థన</string>
     <string name="visit_req">తోట సందర్శన అభ్యర్థన</string>
     <string name="Loan_req">రుణ అభ్యర్థన</string>
-    <string name="labproduct_req">Lab Product Request</string>
+    <string name="labproduct_req">బయో ల్యాబ్</string>
     <string name="officer_name">క్లస్టర్ ఆఫీసర్ పేరు</string>
     <string name="officer_mobile">క్లస్టర్ ఆఫీసర్ మొబైల్</string>
     <string name="manager_name">క్లస్టర్ మేనేజర్ పేరు </string>
@@ -608,6 +608,7 @@
     <string name="tansportation_note">ఎఫ్ఎఫ్బి కలెక్షన్ సమయంలో ప్లాట్ ప్రకటించకపోతే, ప్లాట్ పరిమాణం, వయస్సు, ఆశించిన ఎఫ్ఎఫ్బి ఆధారంగా అన్ని ప్లాట్లు సగటు రవాణా రేటు లెక్కించబడుతుంది.></string>
     <string name="rate">టన్నుకు రేటు (రూ.)</string>
     <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
+    <string name="success_lab">Lab Product  Request Submitted Successfully</string>
 
 </resources>
 

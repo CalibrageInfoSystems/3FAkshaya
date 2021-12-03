@@ -547,6 +547,7 @@
     <string name="quickpay_details">ತ್ವರಿತ ವೇತನ ವಿವರಗಳು</string>
     <string name="collectionsdetails">ಸಂಗ್ರಹ ವಿವರಗಳು</string>
     <string name="ffbratenorthere"><![CDATA[<p>ನಿಮ್ಮ ಸಂಗ್ರಹಣೆಗಳಲ್ಲಿ ಒಂದು <b>ತ್ವರಿತ ವೇತನ ದರವನ್ನು</b> ಹೊಂದಿಲ್ಲ. ತ್ವರಿತ ವೇತನ ವಿನಂತಿಯನ್ನು ಹೆಚ್ಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</p>]]></string>
+    <string name="success_lab">Lab Product  Request Submitted Successfully</string>
 
     />
     <!-- we need to use video ids instead of video link -->

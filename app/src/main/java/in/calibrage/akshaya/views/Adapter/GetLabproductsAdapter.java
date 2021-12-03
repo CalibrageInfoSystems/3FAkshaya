@@ -70,7 +70,7 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup parent, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem = layoutInflater.inflate(R.layout.fert_list, parent, false);
+        View listItem = layoutInflater.inflate(R.layout.pole_list, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -95,7 +95,7 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
         holder.godown_name.setText(list.get(position).getGoDownName());
         holder.statusType.setText(list.get(position).getStatus());
         holder.paymentMode.setText(list.get(position).getPaymentMode());
-        holder.sub_amount.setText(df.format(Math.round(list.get(position).getSubsidyAmount())));
+
         if( list.get(position).getPin()!= null)
             holder.pin.setText(list.get(position).getPin());
         else{
@@ -148,7 +148,7 @@ public class GetLabproductsAdapter extends RecyclerView.Adapter<GetLabproductsAd
             requestCode = itemView.findViewById(R.id.requestCode);
             req_date = itemView.findViewById(R.id.reqCreatedDate);
             statusType = itemView.findViewById(R.id.statusType);
-            sub_amount = itemView.findViewById(R.id.sub_amount);
+        //    sub_amount = itemView.findViewById(R.id.sub_amount);
             paymentMode = itemView.findViewById(R.id.paymentMode);
             card_view =   itemView.findViewById(R.id.card_view);
             amount=itemView.findViewById(R.id.amount);

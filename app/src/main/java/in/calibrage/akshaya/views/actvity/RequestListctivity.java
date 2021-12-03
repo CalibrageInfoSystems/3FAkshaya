@@ -587,11 +587,10 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
 
     private JsonObject getlabproductsheaderobject() {
-        Reqquickpay requestModel = new Reqquickpay();
+        ReqPole requestModel = new ReqPole();
         requestModel.setFarmerCode(Farmer_code);
         requestModel.setToDate(null);
         requestModel.setFromDate(null);
-        requestModel.setUserId(null);
         requestModel.setStateCode(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
@@ -652,7 +651,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         startActivity(intent);
     }
     public void onContactSelected2(LabproductsRequest.ListResult list) {
-        Intent intent = new Intent(RequestListctivity.this, product_list_fert.class);
+        Intent intent = new Intent(RequestListctivity.this, product_list.class);
         intent.putExtra("Name",  list.getRequestCode());
         intent.putExtra("subcidy",   list.getSubsidyAmount());
         intent.putExtra("pay",   list.getPaubleAmount());
