@@ -33,6 +33,7 @@
     <string name="confirm_req">Confirm Request</string>
     <string name="pole">Equipment</string>
     <string name="fertilizer">Fertilizer</string>
+    <string name="labproducts">Lab Products</string>
     <string name="loan">Loan</string>
     <string name="quickPay">QuickPay Request</string>
     <string name="quick">QuickPay</string>
@@ -366,6 +367,7 @@
     <string name="quick_req">QuickPay Request</string>
     <string name="visit_req">Visit Request</string>
     <string name="Loan_req">Loan Request</string>
+    <string name="labproduct_req">Lab Product Request</string>
 
     <!--    -->
     <string name="officer_name">Cluster Officer Name</string>
@@ -468,7 +470,6 @@
     <string name="discount">Discount(%)</string>
     <string name="disc">Offer Applied</string>
     <string name="text">Harvesting service will be provided for every 10 days in PEAK Season(APRIL TO OCT) and 15 days in LEAN Season(NOV TO MARCH).</string>
-
 
 
     <string name="thirty_days">Last 30 days</string>

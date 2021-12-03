@@ -47,6 +47,7 @@ public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
    String GetQuickpayRequestDetails = "QuickPayRequest/GetQuickpayRequestDetails";
    String GetLoanRequestDetails = "RequestHeader/GetLoanRequestDetails";
     String GetRequestHeaderDetails = "RequestHeader/GetVisitRequestDetails";
+    String GetLabproductsRequestHeaderDetails = "FertilizerRequest/GetChemicalRequestDetails";
     String GetContactInfo = "ContactInfo/GetContactInfo/";
     String Get3FInfo = "Farmer/Get3FInfo/";
     String GetPlotDetailsByFarmerCode = "Farmer/GetPlotDetailsByFarmerCode/";

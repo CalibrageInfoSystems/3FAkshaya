@@ -25,6 +25,7 @@ import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.Getvisit;
 import in.calibrage.akshaya.models.LabourRequestModel;
+import in.calibrage.akshaya.models.LabproductsRequest;
 import in.calibrage.akshaya.models.ReqPole;
 import in.calibrage.akshaya.models.Reqquickpay;
 import in.calibrage.akshaya.models.ResLoan;
@@ -34,6 +35,7 @@ import in.calibrage.akshaya.models.Resquickpay;
 import in.calibrage.akshaya.models.labour_req_response;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.Adapter.GetLabproductsAdapter;
 import in.calibrage.akshaya.views.Adapter.GetLoanAdapter;
 import in.calibrage.akshaya.views.Adapter.GetPoleAdapter;
 import in.calibrage.akshaya.views.Adapter.GetfertAdapter;
@@ -48,7 +50,7 @@ import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-public class RequestListctivity extends BaseActivity implements GetPoleAdapter.GetPoleAdapterListener1, GetfertAdapter.GetPoleAdapterListener{
+public class RequestListctivity extends BaseActivity implements GetPoleAdapter.GetPoleAdapterListener1, GetfertAdapter.GetPoleAdapterListener, GetLabproductsAdapter.GetLabproductAdapterListener1{
 
     public static final String TAG = RequestListctivity.class.getSimpleName();
 
@@ -126,6 +128,17 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         } else if (name.equalsIgnoreCase( getResources().getString(R.string.Loan_req))) {
             if (isOnline())
                 getLoan();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+        }
+        else if (name.equalsIgnoreCase( getResources().getString(R.string.labproduct_req))) {
+            if (isOnline())
+                getlabproducts();
             else {
                 showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
                 //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
@@ -514,7 +527,74 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                     });
         }
 
+    private void getlabproducts() {
 
+        mdilogue.show();
+        JsonObject object = getlabproductsheaderobject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.GetLabproductsRequestHeaderDetails(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<LabproductsRequest>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(LabproductsRequest getlabproductRequests) {
+                        if(getlabproductRequests.getListResult().size()!= 0)
+                        {
+                            no_data.setVisibility(View.GONE);
+                            rcv_requests.setVisibility(View.VISIBLE);
+                            GetLabproductsAdapter adapter = new GetLabproductsAdapter(getlabproductRequests.getListResult(), ctx, RequestListctivity.this);
+                            rcv_requests.setAdapter(adapter);
+                        }
+                        else{
+                            no_data.setVisibility(View.VISIBLE);
+                            rcv_requests.setVisibility(View.GONE);;
+
+                        }
+                    }
+
+
+//                            GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
+//                            rcv_requests.setAdapter(adapter);
+
+
+
+
+
+                });
+    }
+
+
+    private JsonObject getlabproductsheaderobject() {
+        Reqquickpay requestModel = new Reqquickpay();
+        requestModel.setFarmerCode(Farmer_code);
+        requestModel.setToDate(null);
+        requestModel.setFromDate(null);
+        requestModel.setUserId(null);
+        requestModel.setStateCode(null);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
 
     private JsonObject getLoanheaderobject() {
         Reqquickpay requestModel = new Reqquickpay();
@@ -571,4 +651,18 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
         startActivity(intent);
     }
+    public void onContactSelected2(LabproductsRequest.ListResult list) {
+        Intent intent = new Intent(RequestListctivity.this, product_list_fert.class);
+        intent.putExtra("Name",  list.getRequestCode());
+        intent.putExtra("subcidy",   list.getSubsidyAmount());
+        intent.putExtra("pay",   list.getPaubleAmount());
+        Log.e("540====","Selected: " +  list.getSubsidyAmount() + ", " +list.getPaubleAmount());
+
+//                    // Sending Student Id, Name, Number and Class to next UpdateActivity.
+
+
+        startActivity(intent);
+
+    }
+
 }

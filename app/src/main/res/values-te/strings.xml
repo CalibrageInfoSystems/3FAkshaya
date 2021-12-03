@@ -250,7 +250,7 @@
         
     <string name="confirm_req">అభ్యర్థనను నిర్ధారించండి</string>
     <string name="pole">పరికరాలు</string>
-
+    <string name="labproducts">Lab Products</string>
     <string name="fertilizer">ఎరువులు</string>
         
     <string name="loan">రుణం</string>
@@ -409,6 +409,7 @@
     <string name="quick_req">త్వరితచెల్లింపు అభ్యర్థన</string>
     <string name="visit_req">తోట సందర్శన అభ్యర్థన</string>
     <string name="Loan_req">రుణ అభ్యర్థన</string>
+    <string name="labproduct_req">Lab Product Request</string>
     <string name="officer_name">క్లస్టర్ ఆఫీసర్ పేరు</string>
     <string name="officer_mobile">క్లస్టర్ ఆఫీసర్ మొబైల్</string>
     <string name="manager_name">క్లస్టర్ మేనేజర్ పేరు </string>

@@ -125,6 +125,15 @@ public class MyReqListAdapter extends RecyclerView.Adapter<MyReqListAdapter.MyVi
                     .into(holder.thumbnail);
          holder.name.setText(mContext.getString(R.string.loan));
         }
+        else if(Service_Set.get(position).getServiceTypeId() == 107)
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.fertilizers)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.thumbnail);
+            holder.name.setText(mContext.getString(R.string.labproducts));
+        }
 
 
 

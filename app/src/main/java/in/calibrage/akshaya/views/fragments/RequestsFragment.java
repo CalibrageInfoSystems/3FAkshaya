@@ -197,6 +197,11 @@ public class RequestsFragment extends BaseFragment implements MyReqListAdapter.R
             intent.putExtra("key", getResources().getString(R.string.Loan_req));
             startActivity(intent);
         }
+        if (request.getServiceTypeId()==107){
+            Intent intent = new Intent(getContext(), RequestListctivity.class);
+            intent.putExtra("key", getResources().getString(R.string.labproduct_req));
+            startActivity(intent);
+        }
     }
 }
 

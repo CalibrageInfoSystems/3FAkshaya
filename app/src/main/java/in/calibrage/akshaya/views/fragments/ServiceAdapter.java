@@ -110,6 +110,15 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
                     .into(holder.img);
             ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.loan));
         }
+        else if(Service_Set.get(position).getServiceTypeId() == 107)
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.fertilizers)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+            ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.labproducts));
+        }
         holder.learn_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +151,12 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
                     mContext.startActivity(intent);
                 } else if(Service_Set.get(position).getServiceTypeId() == 28 ){
                     Intent intent = new Intent(mContext, LoanActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                }
+                else if(Service_Set.get(position).getServiceTypeId() == 107 ){
+                    Intent intent = new Intent(mContext, Godown_list.class);
+                    intent.putExtra("godown", "chemical");
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }

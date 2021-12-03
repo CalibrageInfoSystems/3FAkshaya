@@ -40,6 +40,7 @@
     <string name="req_visit">ವಿನಂತಿಯನ್ನು ಭೇಟಿ ಮಾಡಿ</string>
     <string name="learning">ಕಲಿಕೆ</string>
     <string name="time_peroid">ಸಮಯದ ಅವಧಿ</string>
+    <string name="labproducts">Lab Products</string>
 
 
     <string name="from_date">ದಿನಾಂಕ *</string>
@@ -373,6 +374,7 @@
     <string name="quick_req">ತ್ವರಿತ ಪಾವತಿ</string>
     <string name="visit_req">ತೋಟದ ಭೇಟಿಯ ವಿನಂತಿ</string>
     <string name="Loan_req">ಸಾಲ ವಿನಂತಿ</string>
+    <string name="labproduct_req">Lab Product Request</string>
 
     <!--    -->
     <string name="officer_name">ಕ್ಲಸ್ಟರ್ ಅಧಿಕಾರಿ ಹೆಸರು</string>

@@ -31,6 +31,7 @@ import in.calibrage.akshaya.models.LabourDuration;
 import in.calibrage.akshaya.models.LabourRecommendationsModel;
 import in.calibrage.akshaya.models.LabourTermsNCondtionsModel;
 import in.calibrage.akshaya.models.Labourservicetype;
+import in.calibrage.akshaya.models.LabproductsRequest;
 import in.calibrage.akshaya.models.LerningsModel;
 import in.calibrage.akshaya.models.LoanResponse;
 import in.calibrage.akshaya.models.LobourResponse;
@@ -196,6 +197,8 @@ public interface ApiService {
     Observable<ResLoan> GetRequestheaderLoanDetails(@Body JsonObject data);
     @POST(APIConstantURL.GetRequestHeaderDetails)
     Observable<Getvisit> GetRequestheadervistDetails(@Body JsonObject data);
+    @POST(APIConstantURL.GetLabproductsRequestHeaderDetails)
+    Observable<LabproductsRequest> GetLabproductsRequestHeaderDetails(@Body JsonObject data);
 
     @GET
     Observable<Resbasicinfo> getbasicinfo(@Url String url);
