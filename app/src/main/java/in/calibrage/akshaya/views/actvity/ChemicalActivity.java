@@ -232,7 +232,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
 
-        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/1/"+ Godown_code;
+        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/11/"+ Godown_code;
         Log.e("url==Godown_code===",url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
