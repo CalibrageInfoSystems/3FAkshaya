@@ -250,8 +250,8 @@ public class Fert_godown_list extends BaseActivity {
 
 
         catagoriesList = SharedPrefsData.getCatagories(this);
-       if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
-        Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
+        if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
+            Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
 
         state_name = catagoriesList.getResult().getFarmerDetails().get(0).getStateName();
         Log.e("Cluster_id===",Cluster_id+"");
@@ -266,8 +266,8 @@ public class Fert_godown_list extends BaseActivity {
             Double amount_product = SharedPrefsData.getCartData(this).get(i).getAmount();
             int quantity = SharedPrefsData.getCartData(this).get(i).getQuandity();
 
-          double totalPrice =quantity * amount_product;
-          Log.e("totalPrice===",totalPrice+"");
+            double totalPrice =quantity * amount_product;
+            Log.e("totalPrice===",totalPrice+"");
             double gstPrice = totalPrice - totalPrice / (1 + (gst/ 100));
             Log.e("gstPrice===",gstPrice+"");
             double BasePrice = totalPrice - gstPrice;
@@ -279,7 +279,7 @@ public class Fert_godown_list extends BaseActivity {
             Gst_total = CommonUtil.sum(gstvalues);
             // include_gst_amount = Gst_sum + Amount_;
             Log.e("gst_Sum===", String.valueOf(Gst_total));
-           //  Totalgst =( int)Math.round(Gst_total);
+            //  Totalgst =( int)Math.round(Gst_total);
             gst_amount.setText(dec.format(Gst_total));
             Log.e("Totalgst===",Gst_total+"");
             double cgst = (double) Gst_total/2;
@@ -549,7 +549,7 @@ public class Fert_godown_list extends BaseActivity {
                     public void onNext(SubsidyResponse subsidyResponse) {
                         mdilogue.cancel();
                         if (subsidyResponse.getIsSuccess()) {
-                           // subsidy_amount.setText(dec.format(subsidyResponse.getResult().getRemainingAmount()));
+                            // subsidy_amount.setText(dec.format(subsidyResponse.getResult().getRemainingAmount()));
                             subsidy_amountt = subsidyResponse.getResult().getRemainingAmount();
                             subsidy_amount.setText(dec.format(Math.round(subsidyResponse.getResult().getRemainingAmount())));
                             Log.d(TAG, "-----analysis----->> Subsidy Amount : " + subsidy_amountt);
@@ -563,7 +563,7 @@ public class Fert_godown_list extends BaseActivity {
                                     payble_amount = 0.0;
                                     paybleamount.setText(dec.format(payble_amount));
                                     Subsidy_amount = Double.parseDouble(include_gst_amount);
-                                     subsidy_amount.setText(dec.format(Subsidy_amount));
+                                    subsidy_amount.setText(dec.format(Subsidy_amount));
                                 } else if (subsidy_amountt < Double.parseDouble(include_gst_amount)) {
                                     Double remaining_Amoubt = Double.parseDouble(include_gst_amount) - subsidy_amountt;
                                     Log.e("remaining_Amoubt===",remaining_Amoubt+"");
