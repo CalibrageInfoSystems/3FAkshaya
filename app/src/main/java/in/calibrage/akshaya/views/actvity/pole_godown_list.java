@@ -137,9 +137,9 @@ public class pole_godown_list extends BaseActivity  {
         btn_submit = findViewById(R.id.btn_submit);
         sgst_amount =(TextView) findViewById(R.id.sgst_amount);
         cgst_amount =(TextView) findViewById(R.id.cgst_amount);
-      //  txt_select_godown = findViewById(R.id.txt_select_godown);
+        //  txt_select_godown = findViewById(R.id.txt_select_godown);
         txt_Payment_mode = findViewById(R.id.txt_Payment_mode);
-       // lst_godown_list = findViewById(R.id.lst_godown_list);
+        // lst_godown_list = findViewById(R.id.lst_godown_list);
 
         //     sw_paymentMode = findViewById(R.id.sw_paymentMode);
 //        linearLayoutManager = new LinearLayoutManager(ctx);
@@ -169,7 +169,7 @@ public class pole_godown_list extends BaseActivity  {
         if (isOnline()) {
             getPaymentMods();
 
-      //   getActiveGodowns();
+            //   getActiveGodowns();
         } else {
             showDialog(pole_godown_list.this, getResources().getString(R.string.Internet));
 
@@ -180,7 +180,7 @@ public class pole_godown_list extends BaseActivity  {
     private void getPaymentMods() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getpaymentModes(APIConstantURL.GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
+        mSubscription = service.getpaymentModes(APIConstantURL. GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<PaymentsType>() {
                     @Override
@@ -261,7 +261,7 @@ public class pole_godown_list extends BaseActivity  {
             Log.e("percentage_value===", String.valueOf(gstvalues));
             Gst_total = CommonUtil.sum(gstvalues);
 
-           // Totalgst =( int)Math.round(Gst_total);
+            // Totalgst =( int)Math.round(Gst_total);
 //            gst_amount.setText(dec.format(Totalgst));
 //            Log.e("Totalgst===",Totalgst+"");
             double cgst = (double) Gst_total/2;
@@ -529,17 +529,17 @@ public class pole_godown_list extends BaseActivity  {
          *
          * */
 
-            if (validations()) {
-                if (isOnline())
+        if (validations()) {
+            if (isOnline())
 
-                    FertilizerRequest();
-                else {
-                    showDialog(pole_godown_list.this, getResources().getString(R.string.Internet));
+                FertilizerRequest();
+            else {
+                showDialog(pole_godown_list.this, getResources().getString(R.string.Internet));
 
-                }
             }
-
         }
+
+    }
 
 
     private boolean validations() {

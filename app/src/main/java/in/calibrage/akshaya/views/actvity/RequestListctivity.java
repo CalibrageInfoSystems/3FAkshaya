@@ -67,8 +67,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_listctivity);
-         name = getIntent().getStringExtra("key");
-       final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        name = getIntent().getStringExtra("key");
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
         if (langID == 2)
             updateResources(this, "te");
         else if (langID == 3)
@@ -78,7 +78,38 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         setuptoolbar();
         init();
 
-        if (name.equalsIgnoreCase(getResources().getString(R.string.lab_req))) {
+        if (name.equalsIgnoreCase(getResources().getString(R.string.fert_req))) {
+            if (isOnline())
+                getfertilizer();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+        else if (name.equalsIgnoreCase(getResources().getString(R.string.pole_req))) {
+            if (isOnline())
+                getPole();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+        else if (name.equalsIgnoreCase( getResources().getString(R.string.labproduct_req))) {
+            if (isOnline())
+                getlabproducts();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+        }
+        else if (name.equalsIgnoreCase(getResources().getString(R.string.lab_req))) {
             if (isOnline())
                 GetLabourRequestDetails();
             else {
@@ -88,25 +119,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
 
 
-        } else if (name.equalsIgnoreCase(getResources().getString(R.string.pole_req))) {
-            if (isOnline())
-                getPole();
-            else {
-                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
-                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
-            }
-
-
-        } else if (name.equalsIgnoreCase(getResources().getString(R.string.fert_req))) {
-            if (isOnline())
-                getfertilizer();
-            else {
-                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
-                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
-            }
-
-
-        } else if (name.equalsIgnoreCase(getResources().getString(R.string.quick_req))) {
+        }
+        else if (name.equalsIgnoreCase(getResources().getString(R.string.quick_req))) {
             if (isOnline())
                 getquickpay();
             else {
@@ -136,17 +150,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
 
         }
-        else if (name.equalsIgnoreCase( getResources().getString(R.string.labproduct_req))) {
-            if (isOnline())
-                getlabproducts();
-            else {
-                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
-                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
-            }
 
-
-
-        }
 
 
     }
@@ -190,18 +194,18 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                     public void onNext(labour_req_response labour_req_response) {
                         if ( labour_req_response.getListResult().size() != 0) {
 
-                                no_data.setVisibility(View.VISIBLE);
-                                Log.e("labourdata===", "Data");
-                                rcv_requests.setVisibility(View.VISIBLE);
-                         //   adapter.updateData(labour_req_response.getListResult());
-                       adapter = new MyLabour_ReqAdapter(labour_req_response.getListResult(), ctx);
-                                rcv_requests.setAdapter(adapter);
+                            no_data.setVisibility(View.VISIBLE);
+                            Log.e("labourdata===", "Data");
+                            rcv_requests.setVisibility(View.VISIBLE);
+                            //   adapter.updateData(labour_req_response.getListResult());
+                            adapter = new MyLabour_ReqAdapter(labour_req_response.getListResult(), ctx);
+                            rcv_requests.setAdapter(adapter);
 
 
                         } else {
                             no_data.setVisibility(View.VISIBLE);
                             Log.e("labourdata===","No===Data");
-                          //  no_data.setText("No " + name + " Found");
+                            //  no_data.setText("No " + name + " Found");
                             rcv_requests.setVisibility(View.GONE);
                         }
 
@@ -282,10 +286,10 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                             GetPoleAdapter adapter = new GetPoleAdapter(poleResponce.getListResult(), ctx, RequestListctivity.this);
                             rcv_requests.setAdapter(adapter);
 
-                    }
+                        }
                         else{
                             no_data.setVisibility(View.VISIBLE);
-                           // no_data.setText("No " + name + " Found");
+                            // no_data.setText("No " + name + " Found");
                             rcv_requests.setVisibility(View.GONE);
                         }
 
@@ -471,50 +475,50 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     }
     private void getvisit() {
 
-            mdilogue.show();
-            JsonObject object = getheadervisitobject();
-            ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-            mSubscription = service.GetRequestheadervistDetails(object)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<Getvisit>() {
-                        @Override
-                        public void onCompleted() {
-                            mdilogue.dismiss();
-                        }
+        mdilogue.show();
+        JsonObject object = getheadervisitobject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.GetRequestheadervistDetails(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Getvisit>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            if (e instanceof HttpException) {
-                                ((HttpException) e).code();
-                                ((HttpException) e).message();
-                                ((HttpException) e).response().errorBody();
-                                try {
-                                    ((HttpException) e).response().errorBody().string();
-                                } catch (IOException e1) {
-                                    e1.printStackTrace();
-                                }
-                                e.printStackTrace();
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
                             }
-                            mdilogue.dismiss();
-                            showDialog(RequestListctivity.this, getString(R.string.server_error));
+                            e.printStackTrace();
                         }
+                        mdilogue.dismiss();
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
+                    }
 
-                        @Override
-                        public void onNext(Getvisit getvisit) {
-                            if(getvisit.getListResult().size()!= 0)
-                            {
-                                no_data.setVisibility(View.GONE);
-                                rcv_requests.setVisibility(View.VISIBLE);;
-                                GetvisitAdapter adapter = new GetvisitAdapter(getvisit.getListResult(), ctx);
-                                rcv_requests.setAdapter(adapter);
-                            }
-                            else{
-                                no_data.setVisibility(View.VISIBLE);
-                                rcv_requests.setVisibility(View.GONE);;
-
-                            }
+                    @Override
+                    public void onNext(Getvisit getvisit) {
+                        if(getvisit.getListResult().size()!= 0)
+                        {
+                            no_data.setVisibility(View.GONE);
+                            rcv_requests.setVisibility(View.VISIBLE);;
+                            GetvisitAdapter adapter = new GetvisitAdapter(getvisit.getListResult(), ctx);
+                            rcv_requests.setAdapter(adapter);
                         }
+                        else{
+                            no_data.setVisibility(View.VISIBLE);
+                            rcv_requests.setVisibility(View.GONE);;
+
+                        }
+                    }
 
 
 //                            GetLoanAdapter adapter = new GetLoanAdapter(resLoan.getListResult(), ctx);
@@ -524,8 +528,8 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
 
 
-                    });
-        }
+                });
+    }
 
     private void getlabproducts() {
 

@@ -75,7 +75,7 @@ public class HomeFragment extends BaseFragment {
     private Object LerningsModel;
     private RecyclerView leaning_recycle,service_list;
     private KnowledgeZoneBaseAdapter knowledgeZoneBaseAdapter;
-  private  ServiceAdapter serviceadpter;
+    private  ServiceAdapter serviceadpter;
     private TextView txt_banner;
     SliderView sliderView;
     private SpotsDialog mdilogue;
@@ -108,7 +108,7 @@ public class HomeFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-             v = inflater.inflate(R.layout.fragment_home, container, false);
+        v = inflater.inflate(R.layout.fragment_home, container, false);
 
 
 
@@ -117,22 +117,22 @@ public class HomeFragment extends BaseFragment {
 //            Log.e("catagoriesList===",catagoriesList+"");
 
 
-            init();
+        init();
 
-            dialog = new ProgressDialog(getActivity());
-            leaning_recycle = (RecyclerView) v.findViewById(R.id.learning_list);
-           service_list =(RecyclerView) v.findViewById(R.id.service_list);
-            // img_banner =  v.findViewById(R.id.img_banner);
+        dialog = new ProgressDialog(getActivity());
+        leaning_recycle = (RecyclerView) v.findViewById(R.id.learning_list);
+        service_list =(RecyclerView) v.findViewById(R.id.service_list);
+        // img_banner =  v.findViewById(R.id.img_banner);
         noRecords = (TextView) v.findViewById(R.id.no_data);
-            txt_banner = v.findViewById(R.id.txt_banner);
-            txt_banner.setSelected(true);
+        txt_banner = v.findViewById(R.id.txt_banner);
+        txt_banner.setSelected(true);
         defalt_iimage = v.findViewById(R.id.defalt_iimage);
-            RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
-            leaning_recycle.setLayoutManager(mLayoutManager);
-            leaning_recycle.setItemAnimator(new DefaultItemAnimator());
-            // adding inbuilt divider line service_list =(RecyclerView) v.findViewById(R.id.service_list)
-            leaning_recycle.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
-            leaning_recycle.addItemDecoration(new MyDividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL, 30));
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
+        leaning_recycle.setLayoutManager(mLayoutManager);
+        leaning_recycle.setItemAnimator(new DefaultItemAnimator());
+        // adding inbuilt divider line service_list =(RecyclerView) v.findViewById(R.id.service_list)
+        leaning_recycle.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+        leaning_recycle.addItemDecoration(new MyDividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL, 30));
         RecyclerView.LayoutManager mLayoutManager1 = new GridLayoutManager(getContext(), 3);
         service_list.setLayoutManager(mLayoutManager1);
         service_list.setItemAnimator(new DefaultItemAnimator());
@@ -142,31 +142,58 @@ public class HomeFragment extends BaseFragment {
 
 
 
+//        service_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                if (!service_list.canScrollVertically(1) && dy > 0)
+//                {
+//                    Toast.makeText(getContext(), "BOTTOM", Toast.LENGTH_LONG).show();
+//                    //scrolled to BOTTOM
+//                }else if (!service_list.canScrollVertically(-1) && dy < 0)
+//                {
+//                    Toast.makeText(getContext(), "TOP", Toast.LENGTH_LONG).show();
+//                    //scrolled to TOP
+//                }
+//            }
+//        });
+
+//        service_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView service_list, int newState) {
+//                super.onScrollStateChanged(service_list, newState);
+//
+//                if (!service_list.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
+//                    Log.d("-----","end");
+//
+//                }
+//            }
+//        });
 
 
-            v.findViewById(R.id.collections_button).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), CollectionsActivity.class);
-                    startActivity(intent);
-                }
-            });
+
+        v.findViewById(R.id.collections_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CollectionsActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-            v.findViewById(R.id.recommendations_button).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), RecommendationActivity.class);
-                    startActivity(intent);
-                }
-            });
-            v.findViewById(R.id.payments_button).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), PaymentActivity.class);
-                    startActivity(intent);
-                }
-            });
+        v.findViewById(R.id.recommendations_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RecommendationActivity.class);
+                startActivity(intent);
+            }
+        });
+        v.findViewById(R.id.payments_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        v.findViewById(R.id.labour_button).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -262,31 +289,31 @@ public class HomeFragment extends BaseFragment {
 
 
 
-            if (isOnline(getContext())) {
-                GetBannerByStateCode();
-                GetActiveEncyclopediaCategoryDetails();
-                GetServicesByStateCode();
-            }
-            else {
-                showDialog(getActivity(), getResources().getString(R.string.Internet));
+        if (isOnline(getContext())) {
+            GetBannerByStateCode();
+            GetActiveEncyclopediaCategoryDetails();
+            GetServicesByStateCode();
+        }
+        else {
+            showDialog(getActivity(), getResources().getString(R.string.Internet));
 
-            }
+        }
 
-            //Picasso.with(getContext()).load(catagoriesList.getResult().getBannerDetails().get(0).getImageURL()).into(img_banner);
-            // txt_banner.setText(catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription());
-            sliderView = v.findViewById(R.id.imageSliderr);
+        //Picasso.with(getContext()).load(catagoriesList.getResult().getBannerDetails().get(0).getImageURL()).into(img_banner);
+        // txt_banner.setText(catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription() + "                    " + catagoriesList.getResult().getBannerDetails().get(0).getDescription());
+        sliderView = v.findViewById(R.id.imageSliderr);
 //        final SlideAdapter adapter = new SlideAdapter(getContext());
 //        adapter.setCount(3);
 //
 //        sliderView.setSliderAdapter(adapter);
-            sliderView.setIndicatorAnimation(IndicatorAnimations.SCALE_DOWN); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-            sliderView.setSliderTransformAnimation(SliderAnimations.POPTRANSFORMATION);
-            sliderView.setAutoCycleDirection(SliderView.FOCUS_FORWARD);
-            sliderView.setIndicatorSelectedColor(Color.WHITE);
-            sliderView.setIndicatorUnselectedColor(Color.GRAY);
-            sliderView.startAutoCycle();
-            return v;
-        }
+        sliderView.setIndicatorAnimation(IndicatorAnimations.SCALE_DOWN); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.POPTRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.FOCUS_FORWARD);
+        sliderView.setIndicatorSelectedColor(Color.WHITE);
+        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.startAutoCycle();
+        return v;
+    }
 
     private void GetServicesByStateCode() {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
@@ -345,57 +372,57 @@ public class HomeFragment extends BaseFragment {
 
     private void IsActiveFarmer() {
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
-         Farmer_code = pref.getString("farmerid", "").trim();
+        Farmer_code = pref.getString("farmerid", "").trim();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
         mSubscription = service.getActiveFarmer(APIConstantURL.IsActiveFarmer +Farmer_code)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<IsActiveFarmer>() {
-                               @Override
-                               public void onCompleted() {
-                                   mdilogue.dismiss();
-                               }
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
 
-                               @Override
-                               public void onError(Throwable e) {
-                                   if (e instanceof HttpException) {
-                                       ((HttpException) e).code();
-                                       ((HttpException) e).message();
-                                       ((HttpException) e).response().errorBody();
-                                       try {
-                                           ((HttpException) e).response().errorBody().string();
-                                       } catch (IOException e1) {
-                                           e1.printStackTrace();
-                                       }
-                                       e.printStackTrace();
-                                   }
-                                   mdilogue.dismiss();
-                                   //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
-                               }
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.dismiss();
+                        //   showDialog(QuickPayActivity.this, getString(R.string.server_error));
+                    }
 
-                               @Override
-                               public void onNext(final IsActiveFarmer isActiveFarmer) {
-
-
-                                   if (isActiveFarmer.getIsSuccess()) {
-
-                                       isactive = true;
-                                   }
-                                   else {
-                                       isactive = false;
-                                   }
+                    @Override
+                    public void onNext(final IsActiveFarmer isActiveFarmer) {
 
 
+                        if (isActiveFarmer.getIsSuccess()) {
+
+                            isactive = true;
+                        }
+                        else {
+                            isactive = false;
+                        }
 
 
 
 
 
-                                   }
 
 
-                    });
-                }
+                    }
+
+
+                });
+    }
 
 
 
@@ -495,8 +522,8 @@ public class HomeFragment extends BaseFragment {
                             sliderView.setIndicatorUnselectedColor(Color.GRAY);
                             sliderView.startAutoCycle();
                             sliderView.setScrollTimeInSec(8);
-                           // txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription());
-                           txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                                 " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
+                            // txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription());
+                            txt_banner.setText(bannerresponseModel.getListResult().get(0).getDescription() + "                                 " + bannerresponseModel.getListResult().get(0).getDescription() + "                          ");
                         }
                         else{
                             sliderView.setVisibility(View.GONE);

@@ -56,16 +56,7 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
 
 
 
-        if(Service_Set.get(position).getServiceTypeId() == 11 ){
-            Picasso.with(mContext )
-                    .load(R.drawable.labour)
-                    .error(R.drawable.ic_applogo )
-                    .placeholder( R.drawable.progress_animation)
-                    .into(holder.img);
-            ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.labour_lable));
-
-
-        } else if(Service_Set.get(position).getServiceTypeId() == 12 )
+        if(Service_Set.get(position).getServiceTypeId() == 12 )
         {
             Picasso.with(mContext )
                     .load(R.drawable.fertilizers)
@@ -74,7 +65,7 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
                     .into(holder.img);
             ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.fertilizer));
         }
-         else if(Service_Set.get(position).getServiceTypeId() == 10 )
+        else if(Service_Set.get(position).getServiceTypeId() == 10 )
         {
             Picasso.with(mContext )
                     .load(R.drawable.equipment)
@@ -82,6 +73,25 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
                     .placeholder( R.drawable.progress_animation)
                     .into(holder.img);
             ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.pole));
+        }
+        else if(Service_Set.get(position).getServiceTypeId() == 107)
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.fertilizers)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+            ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.labproducts));
+        }
+        else  if(Service_Set.get(position).getServiceTypeId() == 11 ){
+            Picasso.with(mContext )
+                    .load(R.drawable.labour)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.img);
+            ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.labour_lable));
+
+
         }
         else if(Service_Set.get(position).getServiceTypeId() == 13)
         {
@@ -110,15 +120,7 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
                     .into(holder.img);
             ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.loan));
         }
-        else if(Service_Set.get(position).getServiceTypeId() == 107)
-        {
-            Picasso.with(mContext )
-                    .load(R.drawable.fertilizers)
-                    .error(R.drawable.ic_applogo )
-                    .placeholder( R.drawable.progress_animation)
-                    .into(holder.img);
-            ((ViewHolder) holder).text_title.setText(mContext.getString(R.string.labproducts));
-        }
+
         holder.learn_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +142,7 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }
-               else if(Service_Set.get(position).getServiceTypeId() == 13 ){
+                else if(Service_Set.get(position).getServiceTypeId() == 13 ){
                     Intent intent = new Intent(mContext, QuickPayActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);

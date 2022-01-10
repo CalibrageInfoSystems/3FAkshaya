@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/margin_15"
-                android:layout_weight="0.2"
+                android:layout_weight="0.18"
 
                 android:gravity="left"
                 android:orientation="vertical">
@@ -196,7 +196,7 @@
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".28"
+                android:layout_weight=".3"
                 android:orientation="vertical">
 
                 <TextView
@@ -214,7 +214,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-
+                    android:stackFromBottom="true"
+                    android:transcriptMode="alwaysScroll"
                     android:background="@color/white"
                     android:numColumns="4" />
 
@@ -225,7 +226,7 @@
                     android:id="@+id/no_data"
                     android:fontFamily="@font/hind_semibold"
                     android:gravity="center"
-android:visibility="gone"
+                    android:visibility="gone"
                     android:text="@string/no_services"
                     android:textColor="@color/colorOrange"
                     android:textSize="@dimen/margin_20" />
@@ -570,7 +571,7 @@ android:visibility="gone"
                 android:layout_height="0dp"
                 android:layout_gravity="top"
                 android:background="@color/white"
-                android:layout_weight="0.28"
+                android:layout_weight="0.2"
                 android:gravity="top"
 
                 android:orientation="vertical">
@@ -647,16 +648,16 @@ android:visibility="gone"
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/_60dp"
                     android:src="@drawable/banner" />
-<!--                <ImageView-->
-<!--                    android:id="@+id/defalt_iimage"-->
-<!--                    style="@style/Common_image"-->
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/defalt_iimage"-->
+                <!--                    style="@style/Common_image"-->
 
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginBottom="@dimen/_60dp"-->
-<!--                    android:src="@drawable/banner"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_marginBottom="@dimen/_60dp"-->
+                <!--                    android:src="@drawable/banner"-->
 
-                    />
+                />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -249,7 +249,7 @@
         \n4. Quick Pay will be paid based on the prevalent adhoc rate.In case adhoc rate is not yet known,Quick Pay will be based on an assumed adhoc rateBut it will be adjusted based on Government Order rate,
           As and when declared. When the Invoice Rate is declared,That adjustment will also take place, and will be paid Or deducted along with future payments (normal or Quick Pay).
         \n5. At least 1 unpaid collection is required in order to request for Quick Pay.In case of more than 1 unpaid collection,Quick Pay request will happen on all pending unpaid collections.
-        \n6. All deductions from farmer or pending payments to farmer such as rate adjustments,Fertilizers, poles and labour requests that were done against FFB and are due by theFarmer to the company before the date of request of Quick Pay Will be reduced from the FFB payment while making Quick Pay payment.
+
         \n7. In order to be eligible for Quick Pay,FFB payment value should be greater than any against FFB deductions.
         \n8. If Quick Pay has already been requested,Another Quick Pay request cannot be requested until the 1st one is completed.
         \n9. Once Quick Pay has been requested, it cannot be cancelled.
