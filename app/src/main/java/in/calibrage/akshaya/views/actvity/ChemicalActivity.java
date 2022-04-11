@@ -103,7 +103,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
         setContentView(R.layout.activity_chemical);
 
         dialog = new ProgressDialog(this);
-   //     txt_recomandations = findViewById(R.id.txt_recomandations);
+        //     txt_recomandations = findViewById(R.id.txt_recomandations);
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
         no_data =findViewById(R.id.no_data);
@@ -320,7 +320,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
                 superHero.setPrice(json.getInt("priceInclGST"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
-                int size = json.getInt("size");
+                double size = json.getDouble("size");
                 Log.d(TAG, "--- Size ----" + size);
 //
                 superHero.setSize(size);

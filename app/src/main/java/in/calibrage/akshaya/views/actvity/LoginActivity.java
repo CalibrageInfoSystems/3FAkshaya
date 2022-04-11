@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -101,6 +102,7 @@ public class LoginActivity extends BaseActivity {
         validationPopShow();
     }
     private void setview() {
+        farmerId.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

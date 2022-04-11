@@ -105,7 +105,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         lyt_cart =findViewById(R.id.lyt_cart);
         cartButtonIV = findViewById(R.id.cartButtonIV);
         settoolbar();
-      //  ImageView backImg = (ImageView) findViewById(R.id.back);
+        //  ImageView backImg = (ImageView) findViewById(R.id.back);
 //        backImg.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -138,11 +138,11 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             Getstate();
         else {
             showDialog(FertilizerActivity.this,getResources().getString(R.string.Internet));
-          btn_next.setBackground(this.getDrawable(R.drawable.button_bg_disable));
+            btn_next.setBackground(this.getDrawable(R.drawable.button_bg_disable));
             btn_next.setEnabled(false);
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
         }
-       // Getstate();
+        // Getstate();
         cartButtonIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -247,9 +247,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                         JSONArray kl = jsonObject.getJSONArray("listResult");
                         Log.d("kl==============", String.valueOf(kl));
                         parseData(kl);
-                            recyclerView.setVisibility(View.VISIBLE);
-                            no_data.setVisibility(View.GONE);
-                            Log.e("no==data==208","No data");
+                        recyclerView.setVisibility(View.VISIBLE);
+                        no_data.setVisibility(View.GONE);
+                        Log.e("no==data==208","No data");
 
                         // parseData(alsoKnownAsArray);
 
@@ -320,7 +320,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 superHero.setPrice(json.getInt("priceInclGST"));
                 superHero.setImageUrl(json.getString("imageUrl"));
                 superHero.setDescription(json.getString("description"));
-                int size = json.getInt("size");
+                double size = json.getDouble("size");
                 Log.d(TAG, "--- Size ----" + size);
 //
                 superHero.setSize(size);
@@ -342,9 +342,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 String gst =json.getString("gstPercentage");
                 Log.e("gst====", String.valueOf(gst));
 
-if( String.valueOf(gst)!= null) {
-    superHero.setgst(gst);
-}
+                if( String.valueOf(gst)!= null) {
+                    superHero.setgst(gst);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -389,7 +389,7 @@ if( String.valueOf(gst)!= null) {
 
         }
         txt_count.setText(allproducts + "");
-       // total_amount = Math.round(allitemscost * 100D) / 100D;
+        // total_amount = Math.round(allitemscost * 100D) / 100D;
         total_amount = (allitemscost * 100) / 100;
 
         Log.e("valueRounded===",total_amount+"");
