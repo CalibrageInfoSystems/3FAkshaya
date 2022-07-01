@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--ROJA-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="in.calibrage.akshaya">
-<!--Roja git-->
+
     <application
         android:allowBackup="false"
         android:hardwareAccelerated="false"

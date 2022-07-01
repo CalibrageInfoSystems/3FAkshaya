@@ -365,7 +365,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                     }
                 });
     }
-
+// Get UnPayedCollections By FarmerCode
     private void getQuckPay() {
         mdilogue.show();
 
@@ -406,9 +406,9 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
 
                             cstatecode = quickPayModelData.getListResult().get(0).getStateCode();
                             cdistrictId  = quickPayModelData.getListResult().get(0).getDistrictId();
-                            Log.d("CollectionStateCode", cstatecode + "");
-
+                           Log.d("CollectionStateCode", cstatecode + "");
                             IsQuickPayBlockDate();
+
 
                         } else {
                             noRecords.setVisibility(View.VISIBLE);
@@ -442,7 +442,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
             }
         }
     }
-
+//Is QuickPay BlockDate
     private void IsQuickPayBlockDate(){
 
             mdilogue.show();
@@ -471,6 +471,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                                 e.printStackTrace();
                             }
                             mdilogue.cancel();
+                            showDialog(QuickPayActivity.this, getString(R.string.server_error));
                         }
 
                         @Override

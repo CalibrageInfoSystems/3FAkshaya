@@ -143,6 +143,9 @@ public class LoginActivity extends BaseActivity {
 
         });
     }
+
+    // SendOTP
+
     private void GetLogin() {
         if (null != mdilogue)
             mdilogue.show();

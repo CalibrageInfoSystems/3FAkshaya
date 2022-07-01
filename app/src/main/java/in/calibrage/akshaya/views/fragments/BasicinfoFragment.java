@@ -95,7 +95,7 @@ public class BasicinfoFragment extends BaseFragment {
 
         return view;
     }
-
+// Get Basic Information
     private void GetContactInfo() {
         mdilogue.show();
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");

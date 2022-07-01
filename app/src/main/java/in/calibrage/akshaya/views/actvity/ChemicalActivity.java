@@ -221,7 +221,7 @@ public class ChemicalActivity extends BaseActivity implements ChemicalProductAda
         });
     }
 
-
+//Get Bio Lab products based on Godowncode
     private void Getstate() {
         dialog.setMessage("Loading, please wait....");
         dialog.show();

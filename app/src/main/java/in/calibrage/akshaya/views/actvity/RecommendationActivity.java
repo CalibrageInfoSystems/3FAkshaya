@@ -107,7 +107,7 @@ public class RecommendationActivity extends BaseActivity {
 
 
 
-
+    //Get Farmer Active Plots
     private void Getplots() {
 
         mdilogue.show();

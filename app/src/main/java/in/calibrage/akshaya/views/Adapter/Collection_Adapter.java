@@ -198,7 +198,7 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
         });
         dialog.show();
     }
-
+//Get Collection Info By Id
     private void CollectionInfoById() {
       //  mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);

@@ -3,7 +3,7 @@ package in.calibrage.akshaya.service;
 public interface APIConstantURL {
 public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";
   //test
-//public static  final  String LOCAL_URL="http://183.82.111.111/3FFarmerAPI/api/";
+//public static  final  String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
 
 
 //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
@@ -25,7 +25,7 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";
     String GetLabourDuration = "TypeCdDmt/7";
     String GetLabourServicetype = "Farmer/GetServicesByPlotCode/";
     String post_labour = "LabourRequest/AddLabourRequestHeader";
-    String Post_Loan = " RequestHeader/AddRequestHeader";
+    String Post_Loan = "RequestHeader/AddRequestHeader";
     String labour_amount = "LabourServiceCost/GetLabourServiceCostCalculation";
     String GetUnPayedCollectionsByFarmerCode ="Farmer/GetUnPayedCollectionsByFarmerCode/";
     String GetLabourTermsandConditions ="LabourServiceCost/GetLabourServiceCost/null";

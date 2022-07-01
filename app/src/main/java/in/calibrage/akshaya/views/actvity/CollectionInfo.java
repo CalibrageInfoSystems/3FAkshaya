@@ -72,7 +72,7 @@ String collection_id;
         CollectionInfoById();
 
     }
-
+//Get Collection Info By Id
     private void CollectionInfoById() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

@@ -288,7 +288,7 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
         return date1.getTime() - date2.getTime();
 
     }
-
+//Get  payment History
     private void getPaymentDetails(String fromString, String toString) {
         SimpleDateFormat fromUser = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -441,7 +441,7 @@ public class PaymentHistoryActivity extends BaseActivity implements AdapterView.
             totalLinear.setVisibility(View.GONE);//
         }
     }
-
+    //Payments  API Requests
     private void getfinacial_year() {
         int CurrentYear = Calendar.getInstance().get(Calendar.YEAR);
         int CurrentMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);

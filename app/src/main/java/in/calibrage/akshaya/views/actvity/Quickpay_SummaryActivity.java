@@ -501,7 +501,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         }
 
     }
-
+// Get Quickpay Details By FarmerCode
     private void quickpayProcess(final int curentIndex, JsonObject object) {
         //        GetQuickpayDetails requestModel = new GetQuickpayDetails();
 //

@@ -90,7 +90,7 @@ public class product_list extends BaseActivity {
             showDialog(product_list.this, getResources().getString(R.string.Internet));
         }
     }
-
+// Get ProductDetails By RequestCode
     private void GetProductDetailsByRequestCode() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

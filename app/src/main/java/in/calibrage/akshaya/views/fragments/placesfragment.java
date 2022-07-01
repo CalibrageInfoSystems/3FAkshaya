@@ -159,7 +159,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
 
         return view;
     }
-
+// Get Important contacts & Important places
     private void Get3FInfoo(String code) {
        //  statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
@@ -298,7 +298,7 @@ public class placesfragment extends BaseFragment implements OnMapReadyCallback {
                     }
                 });
     }
-
+// Get Important contacts & Important places
     private void Get3FInfoo2() {
         statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);

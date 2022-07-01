@@ -198,11 +198,11 @@ public class Fert_godown_list extends BaseActivity {
 
     }
 
-    //region API Requests
+    //Payment mode
     private void getPaymentMods() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getpaymentModes(APIConstantURL.GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
+        mSubscription = service.getpaymentModes(APIConstantURL.   GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<PaymentsType>() {
                     @Override
@@ -352,7 +352,7 @@ public class Fert_godown_list extends BaseActivity {
             }
         });
     }
-
+    //Fertilizer submit  API Requests
     private void FertilizerRequest() {
 
 
@@ -528,7 +528,7 @@ public class Fert_godown_list extends BaseActivity {
         });
     }
 
-
+    //get Fertilizer Subsidies  API Requests
     private void getFertilizerSubsidies() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

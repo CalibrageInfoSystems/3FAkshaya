@@ -193,7 +193,7 @@ public class LoanActivity extends BaseActivity {
 
         });
     }
-
+    //  Loan Request Submit  API Requests
     private void GetLoanDetails() {
         mdilogue.show();
         JsonObject object = LoanReuestobject();

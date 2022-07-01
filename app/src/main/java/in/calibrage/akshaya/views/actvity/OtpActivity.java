@@ -122,7 +122,7 @@ public class OtpActivity extends BaseActivity {
 
 
     }
-
+// First time App installation based on IMEI number
     private void AddAppInstallation() {
         JsonObject object = getinstallobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

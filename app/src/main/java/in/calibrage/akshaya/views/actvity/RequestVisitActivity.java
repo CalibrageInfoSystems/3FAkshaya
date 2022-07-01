@@ -134,7 +134,7 @@ public class RequestVisitActivity extends BaseActivity {
 
 
     }
-
+//Get Farmer Active Plots
     private void GetLabourRequestDetails() {
 
         mdilogue.show();

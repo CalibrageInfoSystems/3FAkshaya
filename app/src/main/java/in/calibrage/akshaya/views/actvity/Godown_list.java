@@ -119,7 +119,7 @@ public class Godown_list extends BaseActivity implements GodownListAdapter.OnIte
 
 
 
-
+////  Active  Godowns list ==> Godown/GetActiveGodowns
     private void getActiveGodowns() {
 
         int typeid = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("postTypeId");

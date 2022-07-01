@@ -865,7 +865,7 @@ boolean result;
 
         return true;
     }
-
+  //  Labour Request Submit API Requests
     private void AddLabourRequestHeader() {
         mdilogue.show();
         JsonObject object = LabourReuestobject();
@@ -972,7 +972,7 @@ boolean result;
                 });
     }
 
-
+//Labour Services multi selection
     private void GetSpinnerLabourType() {
 
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -1042,7 +1042,7 @@ boolean result;
                 });
     }
 
-
+// package drop down
     private void Getlabour_duration() {
 
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -1221,7 +1221,7 @@ boolean result;
 
         return null;
     }
-
+// Get Labour Service Cost Calculation
     private void GetLabourServiceCostByAge() {
 
         mdilogue.show();
@@ -1531,7 +1531,7 @@ boolean result;
         }
         HolidayList();
     }
-
+//Is Holiday
     private void HolidayList() {
         mdilogue.show();
         JsonObject object = holidayobject();

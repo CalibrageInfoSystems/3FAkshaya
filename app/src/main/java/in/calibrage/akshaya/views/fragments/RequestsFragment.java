@@ -82,7 +82,7 @@ public class RequestsFragment extends BaseFragment implements MyReqListAdapter.R
 
 
     }
-
+    //Get All Services  base on login Farmer State Code
     private void fetchContacts() {
 
         request_List.clear();

@@ -314,7 +314,7 @@ public class HomeFragment extends BaseFragment {
         sliderView.startAutoCycle();
         return v;
     }
-
+//Get All Services  base on login Farmer State Code
     private void GetServicesByStateCode() {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         Log.e("state===",statecode);
@@ -369,7 +369,7 @@ public class HomeFragment extends BaseFragment {
 
 
 
-
+//Is Active Farmer
     private void IsActiveFarmer() {
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "").trim();
@@ -475,7 +475,7 @@ public class HomeFragment extends BaseFragment {
     public static void setTAG(String TAG) {
         HomeFragment.TAG = TAG;
     }
-
+//Get Active Banner By StateCode
     private void GetBannerByStateCode() {
 
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");

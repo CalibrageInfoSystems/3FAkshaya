@@ -174,7 +174,7 @@ public class TransFragment extends BaseFragment {
             });
         }
     };
-
+    //Get  Transpotation Charges By FarmerCode
     private void GetTranspotationChargesByFarmerCode() {
         pay_adapter.clearAllDataa();
 

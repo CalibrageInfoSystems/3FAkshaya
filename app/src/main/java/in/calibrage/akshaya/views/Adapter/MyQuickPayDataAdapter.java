@@ -150,7 +150,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
 
         });
     }
-
+    // Get Quickpay Document
     private void GetQuickpayDocument(final int selectedPO, String selectedItemID) {
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
         mSubscription = service.getPdfurl(APIConstantURL.GetQuickpayDocument + selectedItemID)

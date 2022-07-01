@@ -374,7 +374,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
 
     }
 
-    //region API Requests
+    //Get Collection API Requests
     private void getCustomCollections(String fromString, String toString) {
         collection_list.clear();
         mdilogue.show();

@@ -97,13 +97,13 @@ public class CropMaintanceVisitActivity extends BaseActivity {
 
     private fertilizer_Adapter fAdapter;
     private TextView Age, id_plot, area,landMark,cluster_name,landmarkLabel;
-    //
+
    private fertilizerRecommendation_Adapter fertadapter;
-//
+
     private pest_Adapter pestadapter;
-    //
+
     private DiseaseDataAdapter disease_adapter;
-    //
+
     private InterCrop_Adapter interadapter;
     private NutrientDataAdapter nut_adapter;
 

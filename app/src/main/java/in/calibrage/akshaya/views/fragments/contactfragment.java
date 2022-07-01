@@ -106,7 +106,7 @@ public class contactfragment extends BaseFragment {
 
 
     }
-
+// Get Important contacts & Important places
     private void Get3FInfo() {
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);

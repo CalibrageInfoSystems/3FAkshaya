@@ -156,7 +156,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
     }
 
 
-
+//Get Labour Requests
     private void GetLabourRequestDetails() {
 
         mdilogue.show();
@@ -245,7 +245,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
             }
         });
     }
-
+ //   Get Equipment Requests
     private void getPole() {
         mdilogue.show();
         JsonObject object = getPoleobject();
@@ -300,6 +300,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
 
     }
+    //Get  Fertilizer Requests
     private void getfertilizer() {
         mdilogue.show();
         JsonObject object = getPoleobject();
@@ -353,7 +354,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
                 });
 
     }
-
+//Get Quick pay Request
     private void getquickpay() {
         mdilogue.show();
         JsonObject object = getheaderobject();
@@ -419,7 +420,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         requestModel.setStateCode(null);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
-
+//Get Loan Request
     private void getLoan() {
         mdilogue.show();
         JsonObject object = getLoanheaderobject();
@@ -473,6 +474,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                 });
     }
+    //Get Visit Request
     private void getvisit() {
 
         mdilogue.show();
@@ -530,7 +532,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
                 });
     }
-
+//Get Chemical Request
     private void getlabproducts() {
 
         mdilogue.show();

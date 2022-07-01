@@ -205,7 +205,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
         rcv_recom.setLayoutManager(layoutManagerrecom);
         spinner.setOnItemSelectedListener(this);
     }
-
+//Get Encyclopedia Details
     private void GetEncyclopediaDetails() {
         int typeid = SharedPrefsData.getInstance(getContext()).getIntFromSharedPrefs("postTypeId");
         String statecode = SharedPrefsData.getInstance(getContext()).getStringFromSharedPrefs("statecode");
@@ -324,7 +324,7 @@ public class TabFragment extends BaseFragment implements AdapterView.OnItemSelec
                     }
                 });
     }
-
+//Get Recommendation based on plot Ages
     private void GetRecommendation() {
         ApiService service = ServiceFactory.createRetrofitService(getContext(), ApiService.class);
         mSubscription = service.getSpinnerDetails(APIConstantURL.GetRecommendationAges)

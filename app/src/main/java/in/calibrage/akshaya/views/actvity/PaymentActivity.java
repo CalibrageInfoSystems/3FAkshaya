@@ -130,7 +130,7 @@ public class PaymentActivity extends BaseActivity {
         }
 
     }
-
+// Get Bank Details By FarmerCode
     private void getBankDetails() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

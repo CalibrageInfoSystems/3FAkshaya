@@ -233,7 +233,7 @@ public class GetvisitAdapter extends RecyclerView.Adapter<GetvisitAdapter.ViewHo
         dialog.show();
 
     }
-
+// Get Visit Request Repository
     private void GetVisitRequestRepository() {
         ApiService service = ServiceFactory.createRetrofitService(mContext, ApiService.class);
         mSubscription = service.getimages(APIConstantURL.GetVisitRequestRepository + selectedItemID)

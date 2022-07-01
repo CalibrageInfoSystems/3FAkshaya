@@ -169,6 +169,7 @@ public class LabourRecommendationsActivity  extends BaseActivity {
 
 
     }
+    // Farmer Active  plots list ==> Farmer/GetActivePlotsByFarmerCode/
 
     private void GetLabourRequestDetails() {
         mdilogue.show();
