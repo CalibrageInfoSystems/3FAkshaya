@@ -1,8 +1,6 @@
 package in.calibrage.akshaya.models;
 
-import java.io.Serializable;
-
-public class Product_new implements Serializable {
+public class SelectedProducts {
     private Integer Quandity;
     private String Productname;
     private Double amount;
@@ -12,17 +10,21 @@ public class Product_new implements Serializable {
     private double size;
     private  String product_code;
     private Integer ProductID;
+    private Double TranportPrice;
+    private double transgst;
 
-    public Product_new(Integer quandity, String productname, Double amount, double withGSTamount, double gst, double eachproductcost, int productID,double size, String productcode) {
+    public SelectedProducts(Integer quandity, String productname, Double amount, double withGSTamount, double gst, double eachproductcost, double size, String product_code, Integer productID, Double tranportPrice, double transgst) {
         Quandity = quandity;
         Productname = productname;
         this.amount = amount;
         this.withGSTamount = withGSTamount;
         this.gst = gst;
         this.eachproductcost = eachproductcost;
-        this.size =size;
+        this.size = size;
+        this.product_code = product_code;
         ProductID = productID;
-        product_code =productcode;
+        TranportPrice = tranportPrice;
+        this.transgst = transgst;
     }
 
     public Integer getQuandity() {
@@ -73,14 +75,6 @@ public class Product_new implements Serializable {
         this.eachproductcost = eachproductcost;
     }
 
-    public Integer getProductID() {
-        return ProductID;
-    }
-
-    public void setProductID(int productID) {
-        ProductID = productID;
-    }
-
     public double getSize() {
         return size;
     }
@@ -97,5 +91,27 @@ public class Product_new implements Serializable {
         this.product_code = product_code;
     }
 
+    public Integer getProductID() {
+        return ProductID;
+    }
 
+    public void setProductID(Integer productID) {
+        ProductID = productID;
+    }
+
+    public Double getTranportPrice() {
+        return TranportPrice;
+    }
+
+    public void setTranportPrice(Double tranportPrice) {
+        TranportPrice = tranportPrice;
+    }
+
+    public double getTransgst() {
+        return transgst;
+    }
+
+    public void setTransgst(double transgst) {
+        this.transgst = transgst;
+    }
 }

@@ -21,7 +21,7 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import static in.calibrage.akshaya.common.CommonUtil.getDeviceDensityString;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-public class  SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity {
     public static final String TAG = SplashActivity.class.getSimpleName();
     private ImageView imgLogo;
     private TypeWriter txt_name, txt_desc;
@@ -53,7 +53,6 @@ public class  SplashActivity extends BaseActivity {
         txt_name.setText("");
         txt_name.setCharacterDelay(30);
         txt_name.animateText("3F OIL PALM");
-
         txt_desc.setText("");
         txt_desc.setCharacterDelay(60);
         txt_desc.animateText("Sowing for a Better Future");

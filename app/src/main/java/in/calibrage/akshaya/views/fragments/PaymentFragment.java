@@ -196,7 +196,7 @@ public class PaymentFragment extends BaseFragment {
                             byte[] inData = Base64.decode(base64String, 0);
                             Log.e("base64String===", inData+"");
 //                                   for (KanboardTaskFile f: files) {
-//                                       if (f.getId() == id) {
+//                                       if (f.getId() == id)  {
                             try {
                                 Date date = new Date();
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy HH_mm_ss");

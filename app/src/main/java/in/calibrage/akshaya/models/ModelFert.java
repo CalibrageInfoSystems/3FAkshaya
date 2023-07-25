@@ -17,7 +17,8 @@ public class ModelFert {
     private String mAmount,product_code;
     private String gst;
     private int Id;
-
+    private double transPortActualPriceInclGST;
+    private double transportGSTPercentage;
 
 
     public ModelFert() {
@@ -105,6 +106,9 @@ public class ModelFert {
     public void setPowers(ArrayList<String> powers) {
         this.powers = powers;
     }
+
+
+
     public void addToQuantity(){
         this.mQuantity += 1;
     }
@@ -159,5 +163,21 @@ public class ModelFert {
 
     public void setProduct_code(String product_code) {
         this.product_code = product_code;
+    }
+
+    public double getTransPortActualPriceInclGST() {
+        return transPortActualPriceInclGST;
+    }
+
+    public void setTransPortActualPriceInclGST(double transPortActualPriceInclGST) {
+        this.transPortActualPriceInclGST = transPortActualPriceInclGST;
+    }
+
+    public double getTransportGSTPercentage() {
+        return transportGSTPercentage;
+    }
+
+    public void setTransportGSTPercentage(double transportGSTPercentage) {
+        this.transportGSTPercentage = transportGSTPercentage;
     }
 }

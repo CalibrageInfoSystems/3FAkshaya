@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -48,7 +49,7 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final int langID = SharedPrefsData.getInstance(mContext).getIntFromSharedPrefs("lang");
 
         Log.e("languageid===", langID + "");
@@ -151,7 +152,8 @@ class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
                     Intent intent = new Intent(mContext, RequestVisitActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
-                } else if(Service_Set.get(position).getServiceTypeId() == 28 ){
+                }
+                else if(Service_Set.get(position).getServiceTypeId() == 28 ){
                     Intent intent = new Intent(mContext, LoanActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);

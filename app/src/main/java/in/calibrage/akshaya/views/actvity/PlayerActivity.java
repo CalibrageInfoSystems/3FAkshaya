@@ -44,8 +44,7 @@ public class PlayerActivity extends BaseActivity implements YouTubePlayer.OnInit
             }
         });
 
-        playerFragment =
-                (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_player_fragment);
+        playerFragment = (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_player_fragment);
 
         playerFragment.initialize(YouTubeKey, this);
     }

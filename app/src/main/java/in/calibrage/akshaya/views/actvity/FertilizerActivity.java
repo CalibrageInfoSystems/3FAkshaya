@@ -54,6 +54,7 @@ import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.models.Product_new;
+import in.calibrage.akshaya.models.SelectedProducts;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
@@ -65,8 +66,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
     private RecyclerView recyclerView;
     private ModelFertAdapterNew adapter;
-    Double total_amount;
+    Double total_amount,Transport_amount;
     String amount;
+    static ArrayList<SelectedProducts> myProductsList = new ArrayList<>();
     String dis_price, Farmer_code;
     final Context context = this;
     Button button, btn_next;
@@ -151,12 +153,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
                         Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
-                        i.putExtra("Total_amount", mealTotalText.getText());
-                        i.putExtra("godown_id",Godown_id);
-                        i.putExtra("godown_code",Godown_code);
-                        i.putExtra("godown_name",Godown_name);
-
-                        startActivity(i);
+                           startActivity(i);
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                     }
                     else{
@@ -179,6 +176,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
                         Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
+                        i.putExtra("Transport_amount",dec.format(Transport_amount) );
                         i.putExtra("godown_id",Godown_id);
                         i.putExtra("godown_code",Godown_code);
                         i.putExtra("godown_name",Godown_name);
@@ -305,32 +303,27 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
         for (int i = 0; i < array.length(); i++) {
 
-            ModelFert superHero = new ModelFert();
+            ModelFert Fertdetails = new ModelFert();
             JSONObject json = null;
 
             try {
                 json = array.getJSONObject(i);
-                superHero.setName(json.getString("name"));
-//                superHero.setDiscountedPrice(json.getDouble("actualPrice"));
-//                superHero.setmAmount(json.getString("discountedPrice"));
-//                superHero.setPrice(json.getInt("price"));
+                Fertdetails.setName(json.getString("name"));
 
-                superHero.setDiscountedPrice(json.getDouble("actualPriceInclGST"));
-                superHero.setmAmount(json.getString("discountedPriceInclGST"));
-                superHero.setPrice(json.getInt("priceInclGST"));
-                superHero.setImageUrl(json.getString("imageUrl"));
-                superHero.setDescription(json.getString("description"));
+
+                Fertdetails.setDiscountedPrice(json.getDouble("actualPriceInclGST"));
+                Fertdetails.setmAmount(json.getString("discountedPriceInclGST"));
+                Fertdetails.setPrice(json.getInt("priceInclGST"));
+                Fertdetails.setImageUrl(json.getString("imageUrl"));
+                Fertdetails.setDescription(json.getString("description"));
+                Fertdetails.setTransPortActualPriceInclGST(json.getDouble("transPortActualPriceInclGST"));
+                Fertdetails.setTransportGSTPercentage(json.getDouble("transportGSTPercentage"));
                 double size = json.getDouble("size");
                 Log.d(TAG, "--- Size ----" + size);
-//
-                superHero.setSize(size);
-
-
-                superHero.setId(json.getInt("id"));
-                superHero.setUomType(json.getString("uomType"));
-                superHero.setAvail_quantity(json.getInt("availableQuantity"));
-                superHero.setProduct_code(json.getString("code"));
-
+                Fertdetails.setId(json.getInt("id"));
+                Fertdetails.setUomType(json.getString("uomType"));
+                Fertdetails.setAvail_quantity(json.getInt("availableQuantity"));
+                Fertdetails.setProduct_code(json.getString("code"));
                 Log.e("uom===", json.getString("uomType"));
                 int price_finall = json.getInt("price");
                 Log.e("price_final====", String.valueOf(price_finall));
@@ -338,19 +331,18 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Log.e("final_price====", String.valueOf(final_price));
                 dis_price = json.getString("discountedPrice");
                 Log.e("dis_price====", dis_price);
-
                 String gst =json.getString("gstPercentage");
                 Log.e("gst====", String.valueOf(gst));
 
                 if( String.valueOf(gst)!= null) {
-                    superHero.setgst(gst);
+                    Fertdetails.setgst(gst);
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            product_list.add(superHero);
+            product_list.add(Fertdetails);
 
             adapter = new ModelFertAdapterNew(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
@@ -369,30 +361,33 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     }
 
     @Override
-    public void updated(int po, ArrayList<Product_new> myProducts) {
-        SharedPrefsData.saveCartitems(context,myProducts);
+    public void updated(int po, ArrayList<SelectedProducts> myProducts) {
+        SharedPrefsData.saveFertCartitems(context,myProducts);
 
 
         myProductsList = myProducts;
-        CommonUtil.Productitems =myProductsList;
+        CommonUtil.FertProductitems =myProductsList;
         Double allitemscost = 0.0;
+        Double totaltransportcost = 0.0;
         int allproducts = 0;
 
-        for (Product_new product : myProducts) {
+
+        for (SelectedProducts product : myProducts) {
             Double oneitem = product.getQuandity() * (product.getWithGSTamount());
             allitemscost = oneitem + allitemscost;
             Log.d("Product", "total Proce :" + allitemscost);
             int onitem = product.getQuandity();
             allproducts = allproducts + onitem;
             Log.d("Product", "totalitems :" + allproducts);
-
-
+            Double onetransfortitem = product.getQuandity() * (product.getTranportPrice());
+            totaltransportcost = onetransfortitem + totaltransportcost;
         }
         txt_count.setText(allproducts + "");
         // total_amount = Math.round(allitemscost * 100D) / 100D;
-        total_amount = (allitemscost * 100) / 100;
 
-        Log.e("valueRounded===",total_amount+"");
+        total_amount = (allitemscost * 100) / 100;
+        Transport_amount = (totaltransportcost * 100) / 100;
+        Log.e("valueRounded===",totaltransportcost+"");
         mealTotalText.setText(dec.format(total_amount));
     }
 
@@ -441,35 +436,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-    private void makeFlyAnimation(ImageView targetView) {
 
-        // RelativeLayout destView = (RelativeLayout) findViewById(R.id.cartRelativeLayout);
-        ImageView destView = findViewById(R.id.cartButtonIV);
-
-        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setCircleDuration(500).setMoveDuration(800).setDestView(destView).setAnimationListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                //  addItemToCart();
-                // Toast.makeText(MainActivity.this, "Continue Shopping...", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        }).startAnimation();
-
-
-    }
 
 }

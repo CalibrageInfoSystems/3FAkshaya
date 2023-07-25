@@ -382,7 +382,8 @@ String statecode;
                         mPlayer = null;
 
                             AddVisitRequest();
-
+                        submit.setEnabled(false);
+                        submit.setBackgroundResource(R.drawable.button_bg_disable);
 
                     }}
                     else {
@@ -420,6 +421,8 @@ String statecode;
 
 
     private void AddVisitRequest() {
+        submit.setEnabled(false);
+        submit.setBackgroundResource(R.drawable.button_bg_disable);
         mdilogue.show();
         JsonObject object = visitReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

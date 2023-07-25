@@ -15,6 +15,7 @@ import java.util.List;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.GetBankDetailsByFarmerCode;
 import in.calibrage.akshaya.models.Product_new;
+import in.calibrage.akshaya.models.SelectedProducts;
 
 
 public class SharedPrefsData {
@@ -38,7 +39,7 @@ public class SharedPrefsData {
         return instance;
     }
 
-    private void getPitchItSharedPrefs(Context context) {
+    public void getPitchItSharedPrefs(Context context) {
         if (this.ChurchSharedPrefs == null) {
             this.ChurchSharedPrefs = context.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
         }
@@ -108,8 +109,7 @@ public class SharedPrefsData {
     }
 
     public String getUserId(Context context) {
-        SharedPreferences profilePref = context.getSharedPreferences(CHURCH_DATA,
-                Context.MODE_PRIVATE);
+        SharedPreferences profilePref = context.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
         return profilePref.getString(USER_ID, "");
 
     }
@@ -221,6 +221,32 @@ public class SharedPrefsData {
         Type type = new TypeToken<List<Product_new>>() {
         }.getType();
         ArrayList<Product_new> obj = gson.fromJson(json, type);
+        return obj;
+    }
+
+    public static void saveFertCartitems(Context mContext, ArrayList<SelectedProducts> myProducts) {
+        Gson gson = new Gson();
+
+        if (mContext != null) {
+            String json = gson.toJson(myProducts);
+            SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = profilePref.edit();
+            editor.putString("cart", json);
+
+            // Commit the edits!
+            editor.apply();
+
+        }
+    }
+
+    public static ArrayList<SelectedProducts> getFertCartData(Context mContext) {
+        Gson gson = new Gson();
+        SharedPreferences profilePref = mContext.getSharedPreferences(CHURCH_DATA,
+                Context.MODE_PRIVATE);
+        String json = profilePref.getString("cart", "");
+        Type type = new TypeToken<List<SelectedProducts>>() {
+        }.getType();
+        ArrayList<SelectedProducts> obj = gson.fromJson(json, type);
         return obj;
     }
 

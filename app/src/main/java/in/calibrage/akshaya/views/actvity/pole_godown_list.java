@@ -324,7 +324,8 @@ public class pole_godown_list extends BaseActivity  {
 
     private void FertilizerRequest() {
 
-
+        btn_submit.setEnabled(false);
+        btn_submit.setBackgroundResource(R.drawable.button_bg_disable);
         mdilogue.show();
         JsonObject object = fertReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
@@ -426,7 +427,6 @@ public class pole_godown_list extends BaseActivity  {
         requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
-
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setCreatedDate(formattedDate);
@@ -448,11 +448,7 @@ public class pole_godown_list extends BaseActivity  {
         requestModel.setIssueTypeId(null);
         requestModel.setGodownCode(Godowncode);
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
-
-
         for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
-
-
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
             products.setBagCost(SharedPrefsData.getCartData(this).get(i).getAmount());
             products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst());
@@ -460,7 +456,6 @@ public class pole_godown_list extends BaseActivity  {
             products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
             products.setSize((SharedPrefsData.getCartData(this).get(i).getSize()));
             products.setProductCode((SharedPrefsData.getCartData(this).get(i).getProduct_code()));
-
             req_products.add(products);
         }
 

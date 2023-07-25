@@ -252,8 +252,6 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 this.dl.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.action_profile) {
-
-
             mSelectedItem = item.getItemId();
             viewFragment(new RequestsFragment(), ProfileFragment.TAG);
             bottom_navigation.setSelectedItemId(R.id.action_profile);
@@ -282,8 +280,6 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void logOutDialog() {
-
-
         final Dialog dialog = new Dialog(HomeActivity.this, R.style.DialogSlideAnim);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -298,8 +294,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                updateResources(getApplicationContext(), "en-US");
-//                SharedPrefsData.getInstance(getApplicationContext()).ClearData(getApplicationContext());
+
                 SharedPrefsData.putBool(HomeActivity.this, Constants.IS_LOGIN, false);
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

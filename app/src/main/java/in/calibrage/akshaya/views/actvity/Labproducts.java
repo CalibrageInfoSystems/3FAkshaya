@@ -321,7 +321,8 @@ public class Labproducts extends BaseActivity {
 
     private void FertilizerRequest() {
 
-
+        btn_submit.setEnabled(false);
+        btn_submit.setBackgroundResource(R.drawable.button_bg_disable);
         mdilogue.show();
         JsonObject object = fertReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

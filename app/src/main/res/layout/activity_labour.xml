@@ -218,13 +218,14 @@
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
+
         <TextView
             android:id="@+id/status_Label"
-            android:fontFamily="@font/hind_semibold"
             android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/cluster_officer"
             android:layout_marginTop="@dimen/margin_5"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/yop"
@@ -248,13 +249,14 @@
             android:paddingRight="@dimen/album_title_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/album_title" />
+
         <TextView
             android:id="@+id/intercrop_label"
-            android:fontFamily="@font/hind_semibold"
             android:layout_width="@dimen/_150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/status_Label"
             android:layout_marginTop="@dimen/margin_5"
+            android:fontFamily="@font/hind_semibold"
             android:paddingLeft="@dimen/album_title_padding"
             android:paddingRight="@dimen/album_title_padding"
             android:text="@string/intercrops"

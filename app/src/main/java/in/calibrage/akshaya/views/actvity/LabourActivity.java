@@ -867,6 +867,8 @@ boolean result;
     }
   //  Labour Request Submit API Requests
     private void AddLabourRequestHeader() {
+        button_submit.setEnabled(false);
+        button_submit.setBackgroundResource(R.drawable.button_bg_disable);
         mdilogue.show();
         JsonObject object = LabourReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

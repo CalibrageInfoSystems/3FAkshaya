@@ -195,6 +195,9 @@ public class LoanActivity extends BaseActivity {
     }
     //  Loan Request Submit  API Requests
     private void GetLoanDetails() {
+
+        loan_Btn.setEnabled(false);
+        loan_Btn.setBackgroundResource(R.drawable.button_bg_disable);
         mdilogue.show();
         JsonObject object = LoanReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);

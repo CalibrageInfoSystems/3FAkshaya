@@ -39,6 +39,7 @@ import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.GetActiveEncyclopediaCategoryDetails;
 import in.calibrage.akshaya.models.GetServicesByStateCode;
 import in.calibrage.akshaya.models.IsActiveFarmer;
+import in.calibrage.akshaya.models.LerningsModel;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
@@ -140,34 +141,6 @@ public class HomeFragment extends BaseFragment {
         service_list.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         service_list.addItemDecoration(new MyDividerItemDecoration(getContext(), LinearLayoutManager.HORIZONTAL, 30));
 
-
-
-//        service_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                if (!service_list.canScrollVertically(1) && dy > 0)
-//                {
-//                    Toast.makeText(getContext(), "BOTTOM", Toast.LENGTH_LONG).show();
-//                    //scrolled to BOTTOM
-//                }else if (!service_list.canScrollVertically(-1) && dy < 0)
-//                {
-//                    Toast.makeText(getContext(), "TOP", Toast.LENGTH_LONG).show();
-//                    //scrolled to TOP
-//                }
-//            }
-//        });
-
-//        service_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView service_list, int newState) {
-//                super.onScrollStateChanged(service_list, newState);
-//
-//                if (!service_list.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
-//                    Log.d("-----","end");
-//
-//                }
-//            }
-//        });
 
 
 

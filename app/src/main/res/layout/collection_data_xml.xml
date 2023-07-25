@@ -55,17 +55,18 @@
                     android:layout_gravity="center"
                     android:textSize="@dimen/album_title" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/dateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/new_line"
 
+                android:fontFamily="@font/hind_semibold"
                 android:paddingLeft="8dp"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/margin_25"
                 android:text="@string/date_label"
-                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -90,11 +91,11 @@
                 android:layout_below="@id/new_line"
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@+id/date"
+                android:fontFamily="@font/hind_semibold"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:text="@string/weight"
-                android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title"
                 android:textStyle="bold" />
@@ -105,11 +106,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/new_line"
                 android:layout_toRightOf="@+id/weightLabel"
-                android:paddingLeft="5dp"
-                android:paddingTop="@dimen/album_title_padding"
-
-                android:text="@string/weight"
                 android:fontFamily="@font/hind_semibold"
+
+                android:paddingTop="@dimen/album_title_padding"
+                android:text="@string/weight"
                 android:textSize="@dimen/album_title" />
 
             <TextView

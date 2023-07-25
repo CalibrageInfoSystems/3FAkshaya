@@ -2,6 +2,8 @@ package in.calibrage.akshaya.service;
 
 import com.google.gson.JsonObject;
 
+import java.util.List;
+
 import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.BannerresponseModel;
 import in.calibrage.akshaya.models.CollectionResponceModel;
@@ -19,6 +21,7 @@ import in.calibrage.akshaya.models.GetEncyclopediaDetails;
 import in.calibrage.akshaya.models.GetInterCropByPlotCode;
 import in.calibrage.akshaya.models.GetIssueModel;
 import in.calibrage.akshaya.models.GetLabourPackageDiscount;
+import in.calibrage.akshaya.models.GetProductDetailsByRequestCode;
 import in.calibrage.akshaya.models.GetQuickpayDocumentRes;
 import in.calibrage.akshaya.models.GetServicesByStateCode;
 import in.calibrage.akshaya.models.GetTranspotationCharges;
@@ -81,6 +84,7 @@ public interface ApiService {
     @GET
     Observable<RecomPlotcodes> getplots(@Url String url);
 
+
     @GET
     Observable<FarmerResponceModel> getFormerOTP(@Url String url);
 
@@ -95,7 +99,7 @@ public interface ApiService {
     Observable<PaymentResponseModel> postpayment(@Body JsonObject data);
 
     @POST(APIConstantURL.transport_history)
-    Observable<GetTranspotationCharges> posttrans(@Body JsonObject data);
+    Observable<GetTranspotationCharges > posttrans(@Body JsonObject data);
 
 
     @GET
@@ -214,7 +218,8 @@ public interface ApiService {
 
     @GET
     Observable<Resproduct> getLoan(@Url String url);
-
+    @GET
+    Observable<GetProductDetailsByRequestCode> getfertilizerdetails(@Url String url);
     @POST(APIConstantURL.AddAppInstallation)
     Observable<Resinstall> post_install(@Body JsonObject data);
 

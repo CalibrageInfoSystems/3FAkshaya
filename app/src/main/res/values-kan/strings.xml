@@ -548,6 +548,12 @@
     <string name="collectionsdetails">ಸಂಗ್ರಹ ವಿವರಗಳು</string>
     <string name="ffbratenorthere"><![CDATA[<p>ನಿಮ್ಮ ಸಂಗ್ರಹಣೆಗಳಲ್ಲಿ ಒಂದು <b>ತ್ವರಿತ ವೇತನ ದರವನ್ನು</b> ಹೊಂದಿಲ್ಲ. ತ್ವರಿತ ವೇತನ ವಿನಂತಿಯನ್ನು ಹೆಚ್ಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</p>]]></string>
     <string name="success_lab">Lab Product  Request Submitted Successfully</string>
+    <string name="transportprice">Tranport Price</string>
+    <string name="transgst">Transport Gst</string>
+    <string name="transamount">Transport Amount(Rs)</string>
+    <string name="tsgst_amount">Transport SGST (Rs)</string>
+    <string name="tcgst_amount">Transport CGST (Rs)</string>
+    <string name="trnstotal_amt">Total Transport  Amount (Rs)</string>
 
     />
     <!-- we need to use video ids instead of video link -->

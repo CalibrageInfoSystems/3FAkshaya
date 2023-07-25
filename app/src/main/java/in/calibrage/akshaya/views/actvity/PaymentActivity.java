@@ -180,79 +180,6 @@ public class PaymentActivity extends BaseActivity {
 
                 });
 
-//
-//        String url = APIConstantURL.LOCAL_URL + "Farmer/GetBankDetailsByFarmerCode/" + Farmer_code;
-//        Log.e("url===", url);
-//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Log.d(TAG, "RESPONSE======" + response);
-//                try {
-//                    JSONObject jsonObject = new JSONObject(response);
-//                    Log.d(TAG, "RESPONSE======" + jsonObject);
-//                    if (dialog.isShowing()) {
-//                        dialog.dismiss();
-//                    }
-//                    JSONArray alsoKnownAsArray = jsonObject.getJSONArray("listResult");
-//                    for (int i = 0; i < alsoKnownAsArray.length(); i++) {
-//                        JSONObject leagueData = alsoKnownAsArray.getJSONObject(i);
-//                        String cardName = leagueData.getString("accountHolderName");
-//                        String bank_Account = leagueData.getString("accountNumber");
-//                        String bankName = leagueData.getString("bankName");
-//                        String branch = leagueData.getString("branchName");
-//                        String ifscCode1 = leagueData.getString("ifscCode");
-//                        Log.d(TAG, "RESPONSE cardName======" + cardName);
-//                        Log.d(TAG, "RESPONSE bank_Account======" + bank_Account);
-//                        accoontHolderName.setText(cardName);
-//                        accoontNumber.setText(bank_Account);
-//                        bankNamee.setText(bankName);
-//                        branchName.setText(branch);
-//                        ifscCode.setText(ifscCode1);
-//                    }
-//
-//                    String affectedRecords = jsonObject.getString("affectedRecords");
-//                    Log.d(TAG, "RESPONSE getBankDetails======" + affectedRecords);
-//                    String success = jsonObject.getString("isSuccess");
-//                    Log.d(TAG, "success======" + success);
-//
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                error.printStackTrace();
-//                if (error instanceof NetworkError) {
-//                    Log.i("one:" + TAG, error.toString());
-//
-//                } else if (error instanceof ServerError) {
-//                    Log.i("two:" + TAG, error.toString());
-//
-//                } else if (error instanceof AuthFailureError) {
-//                    Log.i("three:" + TAG, error.toString());
-//
-//                } else if (error instanceof ParseError) {
-//                    Log.i("four::" + TAG, error.toString());
-//
-//                } else if (error instanceof NoConnectionError) {
-//                    Log.i("five::" + TAG, error.toString());
-//
-//                } else if (error instanceof TimeoutError) {
-//                    Log.i("six::" + TAG, error.toString());
-//
-//                } else {
-//                    System.out.println("Checking error in else");
-//                }
-//            }
-//        });
-//        int socketTimeout = 30000;
-//        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-//        stringRequest.setRetryPolicy(policy);
-//        requestQueue.add(stringRequest);
-//    }
     }
     @Override
     public void onBackPressed() {
@@ -261,8 +188,3 @@ public class PaymentActivity extends BaseActivity {
     }
 }
 
-//   accoontHolderName.setText(cardName);
-//           accoontNumber.setText(bank_Account);
-//           bankNamee.setText(bankName);
-//           branchName.setText(branch);
-//           ifscCode.setText(ifscCode1);

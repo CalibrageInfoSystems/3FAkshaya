@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".views.fragments.BasicinfoFragment">
+    tools:context=".views.fragments.BasicinfoFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
    <!-- <RelativeLayout

@@ -42,13 +42,14 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.models.Product_new;
+import in.calibrage.akshaya.models.SelectedProducts;
 import in.calibrage.akshaya.views.actvity.FertilizerActivity;
 import in.calibrage.akshaya.views.actvity.Godown_list;
 
 
 public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNew.ViewHolder> {
 
-    private ArrayList<Product_new> myProducts = new ArrayList<>();
+    private ArrayList<SelectedProducts> myProducts = new ArrayList<>();
     private ImageLoader imageLoader;
     public Context mContext;
     PopupWindow popUp;
@@ -92,7 +93,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         final ModelFert superHero = list_products.get(position);
 
@@ -107,6 +108,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                 .error(R.drawable.ic_applogo )
                 .placeholder( R.drawable.progress_animation)
                 .into(holder.imageView);
+
         holder.currentFoodName.setText(superHero.getName());
 
         if (superHero.getmAmount().equals("null")) {
@@ -148,20 +150,6 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
         }
 
-//        if (superHero.getAvail_quantity()== 0){
-//            holder.card_view.setVisibility(View.GONE);
-//        }
-//       else     if(superHero.getmQuantity()== superHero.getAvail_quantity()){
-//            holder.quantityText.setText("" +superHero.getmQuantity());
-        //  holder.addMeal.setEnabled(false);
-        // showDialog(mContext, "Available only " + superHero.getAvail_quantity() + " "+superHero.getName() + "  Products in this Godown ");
-        //Toast.makeText(context, "Have max "+superHero.getAvail_quantity()+"only", Toast.LENGTH_LONG).show();
-        //    }
-
-//        else {
-//            holder.addMeal.setEnabled(false);
-//            Toast.makeText(context, "Have max "+superHero.getAvail_quantity()+"only", Toast.LENGTH_LONG).show();
-//        }
 
         holder.card_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,7 +233,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                 if (contains(myProducts, superHero.getId())) {
                     for (int i = 0; i < myProducts.size(); i++) {
                         if (myProducts.get(i).getProductID() == (superHero.getId())) {
-                            Product_new product_new = myProducts.get(i);
+                            SelectedProducts product_new = myProducts.get(i);
                             Integer currentQTY = product_new.getQuandity();
 //                            if(currentQTY==superHero.getAvail_quantity()){
 //                              //  holder.addMeal.setEnabled(false);
@@ -284,8 +272,10 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                  double Gst =    Double.parseDouble(superHero.getgst());
                     double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
-                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, itemcost, Gst, itemcost, superHero.getId(), superHero.getSize(),
-                            superHero.getProduct_code()));
+
+                        myProducts.add(new SelectedProducts(1, superHero.getName(),
+                            itemcost, itemcost, Gst, itemcost, superHero.getSize(),
+                            superHero.getProduct_code(),superHero.getId(), superHero.getTransPortActualPriceInclGST(), superHero.getTransportGSTPercentage()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);
 
@@ -303,7 +293,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
                 if (contains(myProducts, superHero.getId())) {
                     for (int i = 0; i < myProducts.size(); i++) {
                         if (myProducts.get(i).getProductID() == (superHero.getId())) {
-                            Product_new product_new = myProducts.get(i);
+                            SelectedProducts product_new = myProducts.get(i);
                             if (product_new.getQuandity() > 1) {
                                 Integer currentQTY = product_new.getQuandity();
                                 product_new.setQuandity(currentQTY - 1);
@@ -530,7 +520,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     public void caliculateTotalAmount() {
         Double allitemscost = 0.0;
         int allproducts = 0;
-        for (Product_new product : myProducts) {
+        for (SelectedProducts product : myProducts) {
             Double oneitem = product.getQuandity() * (product.getWithGSTamount());
             allitemscost = oneitem + allitemscost;
             Log.d("Product", "total Proce :" + allitemscost);
@@ -543,8 +533,8 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         SharedPrefsData.getInstance(mContext).updateStringValue(mContext, "amount", allitemscost + "");
     }
 
-    boolean contains(ArrayList<Product_new> list, int name) {
-        for (Product_new item : list) {
+    boolean contains(ArrayList<SelectedProducts> list, int name) {
+        for (SelectedProducts item : list) {
             if (item.getProductID() == name) {
                 return true;
             }
@@ -553,7 +543,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     }
 
     public interface listner {
-        void updated(int po, ArrayList<Product_new> myProducts);
+        void updated(int po, ArrayList<SelectedProducts> myProducts);
     }
 
 }

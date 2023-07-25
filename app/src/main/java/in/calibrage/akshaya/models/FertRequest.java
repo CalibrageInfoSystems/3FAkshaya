@@ -63,6 +63,9 @@ public class FertRequest {
     @SerializedName("paybleAmount")
     @Expose
     private Double paybleAmount;
+    @SerializedName("TransportPayableAmount")
+    @Expose
+    private Double TransportPayableAmount;
     @SerializedName("comments")
     @Expose
     private String comments;
@@ -305,6 +308,14 @@ public class FertRequest {
         this.stateCode = stateCode;
     }
 
+    public Double getTransportPayableAmount() {
+        return TransportPayableAmount;
+    }
+
+    public void setTransportPayableAmount(Double transportPayableAmount) {
+        TransportPayableAmount = transportPayableAmount;
+    }
+
 
     public static class RequestProductDetail {
 
@@ -326,6 +337,12 @@ public class FertRequest {
      @SerializedName("productCode")
      @Expose
      private String productCode;
+        @SerializedName("transGstPercentage")
+        @Expose
+        private Double transGstPercentage;
+        @SerializedName("transportCost")
+        @Expose
+        private Double transportCost;
 
      public Integer getProductId() {
          return productId;
@@ -375,4 +392,19 @@ public class FertRequest {
          this.productCode = productCode;
      }
 
- }}
+        public Double getTransGstPercentage() {
+            return transGstPercentage;
+        }
+
+        public void setTransGstPercentage(Double transGstPercentage) {
+            this.transGstPercentage = transGstPercentage;
+        }
+
+        public Double getTransporCost() {
+            return transportCost;
+        }
+
+        public void setTransporCost(Double transporCost) {
+            this.transportCost = transporCost;
+        }
+    }}

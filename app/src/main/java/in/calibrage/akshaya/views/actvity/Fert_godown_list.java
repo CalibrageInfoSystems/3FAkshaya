@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -78,16 +79,18 @@ public class Fert_godown_list extends BaseActivity {
     private RecyclerView lst_godown_list;
     private LinearLayoutManager linearLayoutManager;
 
-    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount,sgst_amount,cgst_amount;
+    private TextView txt_select_godown, txt_Payment_mode, text_amount, Final_amount, gst_amount, subsidy_amount,
+            paybleamount,sgst_amount,cgst_amount,transamount,tsgst_amount,tcgst_amount,totaltransportamount;
     private BottomSheetBehavior behavior;
-    double products_amount;
+    double products_amount,transport_AmountwithoutGst;
     private Toolbar toolbar;
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     private GodownListAdapter adapter;
     Integer RequestType;
-    int productspay_amount;
+    int productspay_amount,TransportAmount;
     ArrayList<Double> gstvalues = new ArrayList<Double>();
+    ArrayList<Double> transgstvalues = new ArrayList<Double>();
 
     String product_name, selected_name;
     String Farmer_code, formattedDate, Godown_name,Godowncode;
@@ -103,14 +106,15 @@ public class Fert_godown_list extends BaseActivity {
     private ArrayList<product> product_List = new ArrayList<>();
     private String final_amount, only_amount;
     int mealTotal = 0;
-    String Gst_sum, Amount_, include_gst_amount;
+    String Gst_sum, Amount_, include_gst_amount,Transport_amount;
     Integer Paymode, Statusid;
     private fert_producut_Adapter mAdapter;
     RecyclerView recycler_view_products;
     PaymentsType paymentsTypes;
     double payble_amount, remaining_subsidy_amountt;
     double Subsidy_amount, subsidy_amountt;
-    double Gst_total;
+    double Gst_total,TransGsttotal;
+  //  double transportamount;
     //endregion
     private List<String> selected_list = new ArrayList<String>();
     String state_name;
@@ -152,10 +156,14 @@ public class Fert_godown_list extends BaseActivity {
 //        txt_select_godown.setText(CommonUtil.getMultiColourString(getString(R.string.select_godown)));
 //        txt_Payment_mode.setText(CommonUtil.getMultiColourString(getString(R.string.payment_mode)));
         text_amount = (TextView) findViewById(R.id.amount);
+        transamount = (TextView) findViewById(R.id.transamount);
         Final_amount = (TextView) findViewById(R.id.final_amount_gst);
         gst_amount = (TextView) findViewById(R.id.gst_amount);
         sgst_amount =(TextView) findViewById(R.id.sgst_amount);
+        tcgst_amount =(TextView) findViewById(R.id.tcgst_amount);
+       tsgst_amount =(TextView) findViewById(R.id.tsgst_amount);
         cgst_amount =(TextView) findViewById(R.id.cgst_amount);
+        totaltransportamount= (TextView)findViewById(R.id.totaltransportamount);
         home_btn = (ImageView) findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +210,7 @@ public class Fert_godown_list extends BaseActivity {
     private void getPaymentMods() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getpaymentModes(APIConstantURL.   GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
+        mSubscription = service.getpaymentModes(APIConstantURL.GetPaymentsTypeByFarmerCode + SharedPrefsData.getInstance(this).getStringFromSharedPrefs(Constants.USER_ID))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<PaymentsType>() {
                     @Override
@@ -246,9 +254,17 @@ public class Fert_godown_list extends BaseActivity {
                 });
     }
 
+    @SuppressLint("LongLogTag")
     private void setviews() {
 
-
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            include_gst_amount = extras.getString("Total_amount");
+            Transport_amount = extras.getString("Transport_amount");
+            GodownId = extras.getInt("godown_id");
+            Godowncode = extras.getString("godown_code");
+            Godown_name = extras.getString("godown_name");
+        }
         catagoriesList = SharedPrefsData.getCatagories(this);
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId() && 0 != catagoriesList.getResult().getFarmerDetails().get(0).getClusterId())
             Cluster_id =  catagoriesList.getResult().getFarmerDetails().get(0).getClusterId();
@@ -260,12 +276,12 @@ public class Fert_godown_list extends BaseActivity {
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         formattedDate = df.format(c.getTime());
-        for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
-            double gst = SharedPrefsData.getCartData(this).get(i).getGst();
-
-            Double amount_product = SharedPrefsData.getCartData(this).get(i).getAmount();
-            int quantity = SharedPrefsData.getCartData(this).get(i).getQuandity();
-
+        for (int i = 0; i < SharedPrefsData.getFertCartData(this).size(); i++) {
+            double gst = SharedPrefsData.getFertCartData(this).get(i).getGst();
+            double tgst = SharedPrefsData.getFertCartData(this).get(i).getTransgst();
+            Double amount_product = SharedPrefsData.getFertCartData(this).get(i).getAmount();
+            int quantity = SharedPrefsData.getFertCartData(this).get(i).getQuandity();
+            Double transportamountbyproduct = SharedPrefsData.getFertCartData(this).get(i).getTranportPrice();
             double totalPrice =quantity * amount_product;
             Log.e("totalPrice===",totalPrice+"");
             double gstPrice = totalPrice - totalPrice / (1 + (gst/ 100));
@@ -274,12 +290,8 @@ public class Fert_godown_list extends BaseActivity {
             Log.e("BasePrice===",BasePrice+"");
 
             gstvalues.add(gstPrice);
-
-            Log.e("percentage_value===", String.valueOf(gstvalues));
             Gst_total = CommonUtil.sum(gstvalues);
-            // include_gst_amount = Gst_sum + Amount_;
-            Log.e("gst_Sum===", String.valueOf(Gst_total));
-            //  Totalgst =( int)Math.round(Gst_total);
+
             gst_amount.setText(dec.format(Gst_total));
             Log.e("Totalgst===",Gst_total+"");
             double cgst = (double) Gst_total/2;
@@ -287,15 +299,31 @@ public class Fert_godown_list extends BaseActivity {
             sgst_amount.setText(dec.format(cgst));
             cgst_amount.setText(dec.format(cgst));
 
-        }
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            include_gst_amount = extras.getString("Total_amount");
+            Log.e("percentage_value===", String.valueOf(gstvalues));
+          double   transportamount =quantity * transportamountbyproduct;
+            Log.e("transportamount===",transportamount+"");
+            double transgstPrice = transportamount - transportamount / (1 + (tgst/ 100));
+            Log.e("transgstPrice===",transgstPrice+"");
+            double  transportpricewithoutgst = transportamount - transgstPrice;
+            Log.e("transportpricewithoutgst===",transportpricewithoutgst+"");
+            transgstvalues.add(transgstPrice);
+            TransGsttotal = CommonUtil.sum(transgstvalues);
+            Log.e("transgst_Sum===", String.valueOf(TransGsttotal));
 
-            GodownId = extras.getInt("godown_id");
-            Godowncode = extras.getString("godown_code");
-            Godown_name = extras.getString("godown_name");
+
+            double tcgst = (double) TransGsttotal/2;
+            Log.e("Totalgst===",cgst+"");
+            tsgst_amount.setText(dec.format(tcgst));
+            tcgst_amount.setText(dec.format(tcgst));
+        //    transamount.setText(dec.format(transportpricewithoutgst));
+        //    totaltransportamount.setText(dec.format(transportamount));
+            // include_gst_amount = Gst_sum + Amount_;
+            Log.e("gst_Sum===", String.valueOf(Gst_total));
+            //  Totalgst =( int)Math.round(Gst_total);
+
+
         }
+
         Final_amount.setText(include_gst_amount);
         DecimalFormat dff = new DecimalFormat("####0.00");
         DecimalFormat form = new DecimalFormat("0.00");
@@ -308,9 +336,11 @@ public class Fert_godown_list extends BaseActivity {
 
         products_amount = Double.parseDouble(include_gst_amount) - Double.parseDouble(String.valueOf(Gst_total));
         Log.e("products_amount===", String.valueOf(products_amount));
+        transport_AmountwithoutGst =Double.parseDouble(Transport_amount) - Double.parseDouble(String.valueOf(TransGsttotal));
         // productsamount = ( int)Math.round(products_amount);
         text_amount.setText(dec.format(products_amount));
-
+        transamount.setText(dec.format(transport_AmountwithoutGst));
+        totaltransportamount.setText(Transport_amount);
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -320,7 +350,7 @@ public class Fert_godown_list extends BaseActivity {
 
             }
         });
-        mAdapter = new fert_producut_Adapter(this, SharedPrefsData.getCartData(this));
+        mAdapter = new fert_producut_Adapter(this, SharedPrefsData.getFertCartData(this));
         recycler_view_products.setAdapter(mAdapter);
 //        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 //            @Override
@@ -333,8 +363,12 @@ public class Fert_godown_list extends BaseActivity {
 //                // React to dragging events
 //            }
 //        });
-        productspay_amount= ( int)Math.round(payble_amount);
-        paybleamount.setText(dec.format(productspay_amount));
+        payble_amount =  Double.parseDouble(include_gst_amount) + Double.parseDouble(String.valueOf(Transport_amount));
+//        productspay_amount= ( int)Math.round(payble_amount);
+//        TransportAmount     =  ( int)Math.round(Double.parseDouble(Transport_amount));
+//        Log.e("products_amount===", String.valueOf(productspay_amount));
+//        Log.e("TransportAmount===", String.valueOf(TransportAmount));
+        paybleamount.setText(dec.format(payble_amount));
 
         paymentspin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -354,7 +388,8 @@ public class Fert_godown_list extends BaseActivity {
     }
     //Fertilizer submit  API Requests
     private void FertilizerRequest() {
-
+   btn_submit.setEnabled(false);
+   btn_submit.setBackgroundResource(R.drawable.button_bg_disable);
 
         mdilogue.show();
         JsonObject object = fertReuestobject();
@@ -388,8 +423,6 @@ public class Fert_godown_list extends BaseActivity {
                     @Override
                     public void onNext(FertResponse fertResponse) {
 
-
-
                         if (fertResponse.getIsSuccess()) {
                             mdilogue.dismiss();
                             btn_submit.setEnabled(false);
@@ -405,11 +438,11 @@ public class Fert_godown_list extends BaseActivity {
 
                                     List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
 
-                                    for (int i = 0; i < SharedPrefsData.getCartData(Fert_godown_list.this).size(); i++) {
+                                    for (int i = 0; i < SharedPrefsData.getFertCartData(Fert_godown_list.this).size(); i++) {
 
 
-                                        product_name = SharedPrefsData.getCartData(getApplicationContext()).get(i).getProductname();
-                                        quantity = SharedPrefsData.getCartData(getApplicationContext()).get(i).getQuandity();
+                                        product_name = SharedPrefsData.getFertCartData(getApplicationContext()).get(i).getProductname();
+                                        quantity = SharedPrefsData.getFertCartData(getApplicationContext()).get(i).getQuandity();
                                         selected_list.add(product_name + " : " + quantity + "");
                                         selected_name = arrayyTOstring(selected_list);
                                     }
@@ -420,9 +453,15 @@ public class Fert_godown_list extends BaseActivity {
                                     displayList.add(new MSGmodel(getResources().getString(R.string.gst_amount),dec.format(Gst_total)));
 
                                     displayList.add(new MSGmodel(getResources().getString(R.string.total_amt), include_gst_amount));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.transamount),  dec.format(transport_AmountwithoutGst)));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.transgst),dec.format(TransGsttotal)));
 
+                                  displayList.add(new MSGmodel(getResources().getString(R.string.totaltransportcost), Transport_amount));
                                     //Double subAmount = subsidy_amountt- include_gst_amount dec.format(Gst_total)
                                     displayList.add(new MSGmodel(getResources().getString(R.string.subcd_amt), dec.format(Math.round(Subsidy_amount))));
+
+
+
                                     displayList.add(new MSGmodel(getResources().getString(R.string.amount_payble),paybleamount.getText().toString()));
 
 //products_amount
@@ -431,7 +470,8 @@ public class Fert_godown_list extends BaseActivity {
                                     showSuccessDialog(displayList, getString(R.string.success_fertilizer));
                                 }
                             }, 300);
-                        } else {
+                        }
+                        else {
                             showDialog(Fert_godown_list.this, getString(R.string.endusermsg));
                         }
 
@@ -468,7 +508,6 @@ public class Fert_godown_list extends BaseActivity {
         requestModel.setFarmerName(SharedPrefsData.getusername(this));
         requestModel.setPlotCode(null);
         requestModel.setRequestCreatedDate(formattedDate);
-
         requestModel.setIsFarmerRequest(true);
         requestModel.setCreatedByUserId(null);
         requestModel.setCreatedDate(formattedDate);
@@ -484,6 +523,7 @@ public class Fert_godown_list extends BaseActivity {
         requestModel.setStateName(state_name);
         requestModel.setSubcidyAmount(Double.valueOf(Subsidy_amount));
         requestModel.setPaybleAmount(Double.valueOf(paybleamount.getText().toString()));
+        requestModel.setTransportPayableAmount(Double.valueOf(totaltransportamount.getText().toString()));
         requestModel.setComments(null);
         requestModel.setGodownCode(Godowncode);
         requestModel.setCropMaintainceDate(null);
@@ -491,16 +531,18 @@ public class Fert_godown_list extends BaseActivity {
         requestModel.setClusterId(Cluster_id);
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
 
-        for (int i = 0; i < SharedPrefsData.getCartData(this).size(); i++) {
+        for (int i = 0; i < SharedPrefsData.getFertCartData(this).size(); i++) {
 
 
             FertRequest.RequestProductDetail products = new FertRequest.RequestProductDetail();
-            products.setBagCost(SharedPrefsData.getCartData(this).get(i).getAmount());
-            products.setGstPersentage(SharedPrefsData.getCartData(this).get(i).getGst());
-            products.setProductId(SharedPrefsData.getCartData(this).get(i).getProductID());
-            products.setQuantity(SharedPrefsData.getCartData(this).get(i).getQuandity());
-            products.setSize((SharedPrefsData.getCartData(this).get(i).getSize()));
-            products.setProductCode((SharedPrefsData.getCartData(this).get(i).getProduct_code()));
+            products.setBagCost(SharedPrefsData.getFertCartData(this).get(i).getAmount());
+            products.setGstPersentage(SharedPrefsData.getFertCartData(this).get(i).getGst());
+            products.setProductId(SharedPrefsData.getFertCartData(this).get(i).getProductID());
+            products.setQuantity(SharedPrefsData.getFertCartData(this).get(i).getQuandity());
+            products.setSize((SharedPrefsData.getFertCartData(this).get(i).getSize()));
+            products.setProductCode((SharedPrefsData.getFertCartData(this).get(i).getProduct_code()));
+            products.setTransGstPercentage((SharedPrefsData.getFertCartData(this).get(i).getTransgst()));
+            products.setTransporCost((SharedPrefsData.getFertCartData(this).get(i).getTranportPrice()));
 
             req_products.add(products);
         }
@@ -581,7 +623,7 @@ public class Fert_godown_list extends BaseActivity {
                                 subsidy_amount.setText("0.00");
                                 payble_amount = Double.parseDouble(include_gst_amount);
                                 Log.d(TAG, "-----analysis----->> < 560 payble_amount  : " + payble_amount);
-                                paybleamount.setText(dec.format(Math.round(payble_amount)));
+                                paybleamount.setText(dec.format(Math.round(payble_amount) + dec.format(Transport_amount)));
                             }
 
                         }
@@ -597,6 +639,7 @@ public class Fert_godown_list extends BaseActivity {
          * */
 
         if (validations()) {
+
             if (isOnline())
 
                 FertilizerRequest();

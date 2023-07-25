@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -42,7 +43,9 @@ public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         }
 
 @Override
-public void onBindViewHolder(final ViewHolder holder, final int position) {
+public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+
+
 final int langID = SharedPrefsData.getInstance(mContext).getIntFromSharedPrefs("lang");
 
         Log.e("languageid===", langID + "");
@@ -60,13 +63,14 @@ final int langID = SharedPrefsData.getInstance(mContext).getIntFromSharedPrefs("
 
 
         if(learning_Set.get(position).getId() == 1 ){
-        Picasso.with(mContext )
+         Picasso.with(mContext )
         .load(R.drawable.fertilizers)
         .error(R.drawable.ic_applogo )
         .placeholder( R.drawable.progress_animation)
         .into(holder.img);
 
-        }else if(learning_Set.get(position).getId() == 2 )
+        }
+        else if(learning_Set.get(position).getId() == 2 )
         {
         Picasso.with(mContext )
         .load(R.drawable.harvesting)

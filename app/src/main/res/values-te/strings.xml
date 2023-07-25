@@ -22,15 +22,12 @@
     <string name="cancel">రద్దు చేయండి</string>
     <string name="plot_id">ప్లాట్ ఐడి</string>
     <string name="terms_agree">దయచేసి నిబంధనలు మరియు షరతులను అంగీకరించండి</string>
-        
 
-    <!--           <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>-->
-        
+    <!--  <string name="recommendationss">పంట నిర్వహణ సందర్శనలు</string>-->
+
     <string name="otp_desc">మీ రిజిస్టర్డ్ మొబైల్ నంబర్(ల)కు పంపిన 6 అంకెల కోడ్‌ను నమోదు చేయండి</string>
     <string name="submit"> సమర్పించండి</string>
-        
 
-        
     <!--    collections-->
     <string name="collection">ఎఫ్‌ఎఫ్‌బి గెలల సేకరణ వివరములు</string>
     <string name="collectionsWeight">గెలల సేకరణల బరువు</string>
@@ -43,8 +40,8 @@
     <string name="date_label">తేదీ</string>
     <string name="collection_id">సేకరణ ఐడి</string>
     <string name="weight">బరువు</string>
-     <string name="cc">సిసి</string>
-     <string name="status">స్థితి</string>
+   <string name="cc">సిసి</string>
+   <string name="status">స్థితి</string>
     <string name="driver_name">డ్రైవర్ పేరు</string>
     <string name="vehicle_Number">వాహన సంఖ్య</string>
     <string name="collectionCenter">సేకరణ కేంద్రం</string>
@@ -170,8 +167,6 @@
     <string name="Valid_service">దయచేసి కార్మిక రకాన్ని ఎంచుకోండి</string>
     <string name="valid_pack">దయచేసి ప్యాకేజీని ఎంచుకోండి</string>
     <string name="serviceType">సేవా రకం</string>త్వరితచెల్లింపు
-
-        
     <!-- Equipment   -->
     <string name="select_godown">గోడౌన్ ఎంచుకోండి</string>
     <string name="payment_mode">చెల్లింపు విధానం</string>
@@ -220,7 +215,7 @@
     <string name="reason_loan">రుణానికి కారణం</string>
     <string name="str_enter_loan_amount">దయచేసి రుణ మొత్తాన్ని నమోదు చేయండి</string>
     <string name="enter_loan_amount"> మీ బకాయిలు ఎఫ్‌ఎఫ్‌బి చెల్లింపు కంటే ఎక్కువ కాబట్టి శీఘ్ర చెల్లింపు పూర్తి చేయబడదు</string>
-        
+
     <!--Visit -->
     <string name="issue_type">సమస్యను ఎంచుకోండి</string>
     <string name="image">సమస్య యొక్క ఫోటో పొందుపరచవలెను</string>
@@ -240,63 +235,43 @@
     <string name="convenience_charge">లావాదేవీ  రుసుము (రూ)</string>
     <string name="total_amt_pay">చెల్లించవలసిన మొత్తం (రూ)</string>
 
-        
-
-        
-
     <string name="req_services">సేవలను అభ్యర్థించండి</string>
-     
-
-        
     <string name="confirm_req">అభ్యర్థనను నిర్ధారించండి</string>
     <string name="pole">పరికరాలు</string>
     <string name="labproducts">Lab Products</string>
     <string name="fertilizer">ఎరువులు</string>
-        
+
     <string name="loan">రుణం</string>
-        
+
     <string name="quickPay">త్వరితచెల్లింపు అభ్యర్థన</string>
     <string name="quick">త్వరితచెల్లింపు</string>
-        
     <string name="visit">తోట సందర్శనకు అభ్యర్ధన</string>
-        
     <string name="req_visit"> తోట సందర్శన అభ్యర్ధన </string>
-        
     <string name="learning">నేర్చుకోవడం</string>
     <string name="time_peroid">టైమ్ పెరాయిడ్</string>
-        
     <string name="from_date">తేదీ నుండి * </string>
-        
     <string name="to_date">తేదీ వరకు * </string>
-        
-
-        
     <string name="date">తేదీని ఎంచుకోండి</string>
-        
-
     <string name="req_loan">రుణం కోసం అభ్యర్థన</string>
     <string name="no_videos">వీడియోలు లేవు</string>
 
 
     <string name="net_weight">నికర బరువు</string>
-        
 
-        
     <string name="location">గ్రామం</string>
     <string name="locationn">గ్రామం   :</string>
 
-        
     <string name="land_mark">సమీప స్థల గుర్తింపు</string>
 
 
     <string name="language_notification">భాషా సెటప్ పూర్తయింది</string>
-        <!-- TODO: Remove or change this placeholder text -->
-        
+   <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">హలో ఖాళీ భాగం</string>
     <string name="log_off">లాగ్అవుట్</string>
     <string name="tap_text">దిగువ ఏదైనా భాషను ఎంచుకోండి:</string>
     <string name="btn_en">English</string>
-        
+
     <string name="btn_kn">Kannada</string>
     <string name="btn_te">తెలుగు</string>
     <string name="only_date">తేదీ</string>
@@ -308,26 +283,10 @@
     <string name="cgst_amount">సిజిఎస్టి (రూ)</string>
     <string name="sgst_amount">ఎస్జిఎస్టి (రూ)</string>
 
-
-
-
-
-
-
-
-
-
     <string name="total_records">మొత్తం రికార్డులు</string>
 
     <string name="no_pdfs">పిడిఎఫ్ లేదు</string>
     <string name="dosage_only">మోతాదు</string>
-
-
-
-
-
-
-
 
     <string name="crop">పంట నిర్వహణ</string>
     <string name="recommended_ertilizer">సిఫార్సు చేసిన ఎరువులు</string>
@@ -337,23 +296,12 @@
     <string name="Chemical">కెమికల్</string>
 
 
-
-
-
-
     <string name="my3F">నా 3 ఎఫ్</string>
     <string name="logout">లాగ్అవుట్</string>
     <string name="confirmation">నిర్ధారణ</string>
     <string name="alert_logout">మీరు లాగ్ అవుట్ చేయాలనుకుంటున్నారా?</string>
     <string name="no_plots">ప్లాట్లు అందుబాటులో లేవు</string>
-
-
-    <string name="error">లోపం</string>
-
-
-
-
-
+ <string name="error">లోపం</string>
 
     <string name="datevalidation">దయచేసి తేదీ నుండి  కంటే తక్కువ తేదీ ఎంచుకోండి</string>
     <string name="enter_Date">దయచేసి తేదీ నుండి మరియు తేది వరకు నమోదు చేయండి</string>
@@ -368,12 +316,8 @@
     <string name="str_standard">ప్రామాణిక</string>
     <string name="str_videos">వీడియో</string>
     <string name="str_pdf">పిడిఎఫ్</string>
+  <string name="total_amt"> మొత్తం డబ్బు (రూ)</string>
 
-
-
-
-    <string name="total_amt"> మొత్తం డబ్బు (రూ)</string>
-        
     <string name="confirm">నిర్ధారించండి</string>
     <string name="Rs">\u20B9</string>
     <string name="select_product_toast">దయచేసి కనీసం ఒక ఉత్పత్తిని ఎంచుకోండి</string>
@@ -381,11 +325,7 @@
     <string name="select_image">దయచేసి కనీసం ఒక చిత్రం లేదా వాయిస్ రికార్డ్‌ను అటాచ్ చేయండి</string>
     <string name="str_select_plot">ప్లాట్ ఎంచుకోండి</string>
 
-
     <string name="no_recommendations">సిఫార్సులు లేవు</string>
-
-
-
     <string name="record_btn">రికార్డు</string>
     <string name="stop">ఆపు</string>
     <string name="play">ప్లే</string>
@@ -609,6 +549,12 @@
     <string name="rate">టన్నుకు రేటు (రూ.)</string>
     <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
     <string name="success_lab">Lab Product  Request Submitted Successfully</string>
+    <string name="transportprice">Tranport Price</string>
+    <string name="transgst">Transport Gst</string>
+    <string name="transamount">Transport Amount(Rs)</string>
+    <string name="tsgst_amount">Transport SGST (Rs)</string>
+    <string name="tcgst_amount">Transport CGST (Rs)</string>
+    <string name="trnstotal_amt">Total Transport  Amount (Rs)</string>
 
 </resources>
 

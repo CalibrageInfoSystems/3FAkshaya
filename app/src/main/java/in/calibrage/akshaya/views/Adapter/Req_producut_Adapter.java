@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -14,29 +15,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.models.GetProductDetailsByRequestCode;
 import in.calibrage.akshaya.models.Resproduct;
 
 public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adapter.MyViewHolder> {
     private Context context;
-    private List<Resproduct.ListResult> product_Listitems = new ArrayList<>();
+    private List<GetProductDetailsByRequestCode.ListResult> product_Listitems = new ArrayList<>();
     DecimalFormat df = new DecimalFormat("####0.00");
     String holiday_id, name;
     String Enduser, IsSuccess;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView product_name, quantity, amount, gst, item_cost,cgst,sgst;
+        public TextView product_name, quantity, amount, gst, item_cost,cgst,TranportPrice,Transgst,TotalTranportPrice,TotalAmount;
         CardView card_view;
-
+        LinearLayout transportlayout,transtotallinear;
         public MyViewHolder(View view) {
             super(view);
             product_name = view.findViewById(R.id.name);
             quantity = view.findViewById(R.id.qun_tity);
             amount = view.findViewById(R.id.Value);
-           // gst = view.findViewById(R.id.per_gst);
-            item_cost = view.findViewById(R.id.item_cost);
-            card_view = view.findViewById(R.id.card_view);
+            TranportPrice = view.findViewById(R.id.TranportPrice);
             cgst =view.findViewById(R.id.cgst);
-           // sgst =view.findViewById(R.id.sgst);
+            Transgst =view.findViewById(R.id.Transgst);
+            item_cost = view.findViewById(R.id.item_cost);
+            TotalTranportPrice= view.findViewById(R.id.TotalTranportPrice);
+            TotalAmount= view.findViewById(R.id.totalamount);
+            transportlayout = view.findViewById(R.id.transportlayout);
+            transtotallinear = view.findViewById(R.id.transtotallinear);
+            card_view = view.findViewById(R.id.card_view);
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -47,7 +54,7 @@ public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adap
     }
 
 
-    public Req_producut_Adapter(Context context, List<Resproduct.ListResult> product_Listitems) {
+    public Req_producut_Adapter(Context context, List<GetProductDetailsByRequestCode.ListResult> product_Listitems) {
         this.context = context;
 
         this.product_Listitems = product_Listitems;
@@ -83,6 +90,15 @@ public class Req_producut_Adapter extends RecyclerView.Adapter<Req_producut_Adap
         Integer quantity = Integer.parseInt(holder.quantity.getText().toString());
         double value = amount / quantity;
         holder.item_cost.setText(df.format(value));
+
+        holder.TranportPrice.setText(product_Listitems.get(position).getTransPortCost() + "");
+        holder.Transgst.setText(product_Listitems.get(position).getTransPortGSTPercentage() + "");
+        holder.TotalTranportPrice.setText(product_Listitems.get(position).getTransPortTotalAmount() + "");
+        double product_Amount = product_Listitems.get(position).getTotalAmount();
+        double Transport_Amount = product_Listitems.get(position).getTransPortTotalAmount();
+
+        double final_Amount = product_Amount + Transport_Amount ;
+        holder.TotalAmount.setText(df.format(final_Amount) + "");
     }
 
 

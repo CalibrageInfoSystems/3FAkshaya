@@ -79,7 +79,6 @@
                         <ImageView
                             android:id="@+id/imageView"
                             style="@style/Common_image"
-
                             android:src="@drawable/ffb_collection"
 
                             />

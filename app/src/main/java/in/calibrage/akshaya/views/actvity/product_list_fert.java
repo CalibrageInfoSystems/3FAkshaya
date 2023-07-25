@@ -20,6 +20,7 @@ import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.localData.SharedPrefsData;
+import in.calibrage.akshaya.models.GetProductDetailsByRequestCode;
 import in.calibrage.akshaya.models.Product_new;
 import in.calibrage.akshaya.models.Resproduct;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -46,8 +47,8 @@ public class product_list_fert extends BaseActivity {
     //LinearLayout noRecords;
     private Subscription mSubscription;
     private List<Product_new> product_List = new ArrayList<>();
-    private TextView text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount,sgst_amount,cgst_amount;
-    double valueRounded;
+    private TextView text_amount, Final_amount, gst_amount, subsidy_amount, paybleamount,sgst_amount,cgst_amount,transamount,tsgst_amount,tcgst_amount,totaltransportamount;
+    double valueRounded,transportvalueRounded;
     DecimalFormat df = new DecimalFormat("####0.00");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,8 @@ public class product_list_fert extends BaseActivity {
                 finish();
             }
         });
+
+
         ImageView home_btn = (ImageView) findViewById(R.id.home_btn);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +107,11 @@ public class product_list_fert extends BaseActivity {
 
         Final_amount = (TextView) findViewById(R.id.final_amount_gst);
         gst_amount = (TextView) findViewById(R.id.gst_amount);
+        transamount = (TextView)findViewById(R.id.transamount);
+        tsgst_amount =(TextView)findViewById(R.id.tsgst_amount);
+        tcgst_amount =(TextView)findViewById(R.id.tcgst_amount);
+        totaltransportamount  = (TextView) findViewById(R.id.totaltransportamount);
+
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view_products.setLayoutManager(mLayoutManager);
         recycler_view_products.setItemAnimator(new DefaultItemAnimator());
@@ -117,10 +125,10 @@ public class product_list_fert extends BaseActivity {
     private void GetProductDetailsByRequestCode() {
         mdilogue.show();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getLoan(APIConstantURL.GetProductDetailsByRequestCode + id_holder)
+        mSubscription = service.getfertilizerdetails(APIConstantURL.GetProductDetailsByRequestCode + id_holder)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Resproduct>() {
+                .subscribe(new Subscriber<GetProductDetailsByRequestCode>() {
                     @Override
                     public void onCompleted() {
                         mdilogue.dismiss();
@@ -144,7 +152,7 @@ public class product_list_fert extends BaseActivity {
                     }
 
                     @Override
-                    public void onNext(Resproduct resproduct) {
+                    public void onNext(GetProductDetailsByRequestCode resproduct) {
                         if (resproduct.getListResult() != null) {
 
 
@@ -154,18 +162,23 @@ public class product_list_fert extends BaseActivity {
                             Double amount_total = 0.00;
                             Double total_amount = 0.00;
                             Double gst_amountt =0.0;
+
+                            Double transamount_total = 0.00;
+                            Double transtotal_amount = 0.00;
+                            Double transgst_amountt =0.0;
                             for (int i = 0; i < resproduct.getListResult().size(); i++) {
                                 if (null != resproduct.getListResult().get(i).getAmount()) {
                                     amount_total = amount_total + resproduct.getListResult().get(i).getBasePrice();
-
                                     total_amount = total_amount + resproduct.getListResult().get(i).getAmount();
-
-
                                     gst_amountt=total_amount-amount_total;
-
-
                                     valueRounded = (double) (gst_amountt * 100) / 100;
                                     Log.e("valueRounded===",valueRounded+"");
+
+                                    transamount_total = transamount_total + resproduct.getListResult().get(i).getTransPortAmount();
+                                    transtotal_amount = transtotal_amount + resproduct.getListResult().get(i).getTransPortTotalAmount();
+                                    transgst_amountt=transtotal_amount-transamount_total;
+                                    transportvalueRounded = (double) (transgst_amountt * 100) / 100;
+                                    Log.e("transportgst===",transportvalueRounded+"");
                                 }
 //                                Log.e("amount_total====127", amount_total + "");
 //                                if (null != resproduct.getListResult().get(i).getCgst() && null != resproduct.getListResult().get(i).getSgst()){
@@ -180,6 +193,13 @@ public class product_list_fert extends BaseActivity {
                             double cgst =(double) valueRounded/2;
                             sgst_amount.setText(df.format(cgst));
                             cgst_amount.setText(df.format(cgst));
+
+                            transamount.setText(df.format((transamount_total)));
+                            totaltransportamount.setText(df.format((transtotal_amount)));
+                            double transcgst =(double) transportvalueRounded/2;
+                            tsgst_amount.setText(df.format(transcgst));
+                            tcgst_amount.setText(df.format(transcgst));
+
                         } else {
                             Log.e("data", "No==have");
                         }

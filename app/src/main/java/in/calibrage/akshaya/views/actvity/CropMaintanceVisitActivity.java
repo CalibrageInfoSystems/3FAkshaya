@@ -388,35 +388,7 @@ public class CropMaintanceVisitActivity extends BaseActivity {
                   Log.e("uprootment_Data======", String.valueOf(uprootment_Data));
 
                     plamsCount.setText(uprootment_Data.getString("plamsCount"));
-//                    isTreesMissing.setText(uprootment_Data.getString("isTreesMissing"));
-//                    missingTreesCount.setText(uprootment_Data.getString("missingTreesCount"));
-//                    reasonType.setText(uprootment_Data.getString("reasonType"));
-//                    expectedPlamsCount.setText(uprootment_Data.getString("expectedPlamsCount"));
-//                    comments.setText(uprootment_Data.getString("comments"));
 //
-//                    if (uprootment_Data.getString("reasonType").contains("null"))
-//                    {
-//                        //   Log.e("bbbbb",superHero.getmAmount());
-//                        reasonType.setVisibility(View.GONE);
-//                        reason_label.setVisibility(View.GONE);
-//
-//                    }
-//                    else {
-//                        reasonType.setVisibility(View.VISIBLE);
-//                        reason_label.setVisibility(View.VISIBLE);
-//                    }
-//                    if (uprootment_Data.getString("comments").contains("null"))
-//                    {
-//                        //   Log.e("bbbbb",superHero.getmAmount());
-//                        comments.setVisibility(View.GONE);
-//                        comment_label.setVisibility(View.GONE);
-//
-//                    }
-//                    else {
-//                        comments.setVisibility(View.VISIBLE);
-//                        comment_label.setVisibility(View.VISIBLE);
-//                    }
-
 
                     JSONArray pest_Data = jsonObject.getJSONArray("pestData");
                     if(pest_Data.length()==0){

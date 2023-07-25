@@ -52,6 +52,7 @@ import java.util.regex.Pattern;
 
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.models.Product_new;
+import in.calibrage.akshaya.models.SelectedProducts;
 
 
 
@@ -64,6 +65,7 @@ import in.calibrage.akshaya.models.Product_new;
 
 public class CommonUtil {
     public static ArrayList<Product_new> Productitems;
+    public static ArrayList<SelectedProducts> FertProductitems;
 
     public ArrayList<Product_new> getProductitems() {
         return Productitems;

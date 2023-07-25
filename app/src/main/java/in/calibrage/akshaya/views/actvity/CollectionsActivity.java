@@ -107,7 +107,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         setContentView(R.layout.activity_collections);
 
       String[]  selection2=  {
-               getString(R.string.thirty_days), getString(R.string.currentfinicial), getString(R.string.selected)};
+              getString(R.string.thirty_days), getString(R.string.currentfinicial), getString(R.string.selected)};
         selection= selection2;
         init();
         setViews();
@@ -241,7 +241,7 @@ public class CollectionsActivity extends BaseActivity implements AdapterView.OnI
         } else {
             financiyalYearFrom = (CurrentYear) + "-04-01";
             financiyalYearTo = (CurrentYear + 1) + "-03-31";
-            ;
+
             Log.i(" financiyalYearFrom2 ", financiyalYearFrom);
             Log.i("financiyalYearTo2 ", financiyalYearTo);
         }

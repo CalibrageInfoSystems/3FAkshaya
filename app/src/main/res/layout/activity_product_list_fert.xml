@@ -1,9 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     >
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +14,7 @@
         android:id="@+id/backlinear"
         android:background="@color/colorOrange_head">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:orientation="horizontal" >
@@ -53,70 +53,86 @@
 
         </RelativeLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/backlinear"
+        android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
-        android:layout_below="@+id/backlinear"
         android:weightSum="1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:layout_weight="0.7" >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:id="@+id/requestCodeLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    style="@style/Common_textView"
-                    android:text="@string/requestCodeLabel"
-                    android:textSize="15dp"
-                    android:fontFamily="@font/hind_semibold"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
 
 
-                <TextView
-                    android:id="@+id/requst_code"
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/requestCodeLabel"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="Email"
-android:textStyle="bold"
-                    android:textColor="@color/colorOrange"
-                    android:textSize="@dimen/album_title" />
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="0.6" >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:id="@+id/requestCodeLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            style="@style/Common_textView"
+                            android:text="@string/requestCodeLabel"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/hind_semibold"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
 
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/requst_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/requestCodeLabel"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="Email"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorOrange"
+                            android:textSize="@dimen/album_title" />
+
+
+                    </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/products_recy"
                 android:layout_margin="6dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="350dp"
                 android:clipToPadding="false"
-
                 android:scrollbars="vertical"
                 />
-        </LinearLayout>
+                </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:layout_marginBottom="10dp"
+            android:layout_weight="0.38"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@drawable/devider_line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -356,6 +372,209 @@ android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
                 android:background="@drawable/devider_line" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@drawable/devider_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/tvtext_item_four"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:text="@string/transamount"
+                    android:textAlignment="textStart" />
+
+
+                <TextView
+                    android:id="@+id/dot"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:paddingLeft="@dimen/margin_10"
+
+                    android:textAlignment="textStart"
+                    android:text=":"
+                    />
+
+                <TextView
+                    android:id="@+id/transamount"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+
+                    android:text=""
+                    android:textAlignment="textStart"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@drawable/devider_line" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/ttextcgst"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:text="@string/tcgst_amount"
+                    android:textAlignment="textStart" />
+
+
+                <TextView
+                    android:id="@+id/dotcg"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:paddingLeft="@dimen/margin_10"
+
+                    android:textAlignment="textStart"
+                    android:text=":"
+                    />
+
+                <TextView
+                    android:id="@+id/tcgst_amount"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+
+                    android:text=""
+                    android:textAlignment="textStart"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@drawable/devider_line" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/text_sgst"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:text="@string/tsgst_amount"
+                    android:textAlignment="textStart" />
+
+
+                <TextView
+                    android:id="@+id/dotsg"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:paddingLeft="@dimen/margin_10"
+
+                    android:textAlignment="textStart"
+                    android:text=":"
+                    />
+
+                <TextView
+                    android:id="@+id/tsgst_amount"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+
+                    android:text=""
+                    android:textAlignment="textStart"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@drawable/devider_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/text_final"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:text="@string/trnstotal_amt"
+                    android:textAlignment="textStart" />
+
+
+                <TextView
+                    android:id="@+id/dotf"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:textAlignment="textStart"
+                    android:text=":"
+                    />
+
+                <TextView
+                    android:id="@+id/totaltransportamount"
+                    style="@style/Common_textView"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+
+                    android:text=""
+                    android:textAlignment="textStart"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@drawable/devider_line" />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -454,5 +673,8 @@ android:textStyle="bold"
                 android:layout_height="0.4dp"
                 android:background="@drawable/line_bg" />
         </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
     </LinearLayout>
 </RelativeLayout>

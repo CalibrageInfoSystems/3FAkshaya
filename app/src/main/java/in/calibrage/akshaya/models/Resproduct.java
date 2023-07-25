@@ -1,6 +1,4 @@
-
-
-        package in.calibrage.akshaya.models;
+   package in.calibrage.akshaya.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

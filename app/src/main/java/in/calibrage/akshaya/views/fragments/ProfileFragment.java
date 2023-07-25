@@ -63,6 +63,8 @@ public class ProfileFragment extends  BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_profile,
                 container, false);
+
+
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 

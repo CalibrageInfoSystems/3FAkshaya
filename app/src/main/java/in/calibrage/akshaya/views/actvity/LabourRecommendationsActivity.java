@@ -190,14 +190,16 @@ public class LabourRecommendationsActivity  extends BaseActivity {
                             ((HttpException) e).message();
                             ((HttpException) e).response().errorBody();
                             try {
+                                Log.d(TAG, "error " + ((HttpException) e).response().errorBody());
                                 ((HttpException) e).response().errorBody().string();
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
                             e.printStackTrace();
                         }
+
                         mdilogue.dismiss();
-                        showDialog(LabourRecommendationsActivity.this, getString(R.string.server_error));
+          showDialog(LabourRecommendationsActivity.this, getString(R.string.server_error));
                     }
 
                     @Override
@@ -240,12 +242,12 @@ public class LabourRecommendationsActivity  extends BaseActivity {
                             if (!isLessthan3years) {
                                 showDialogf(LabourRecommendationsActivity.this, getResources().getString(R.string.no_yeild));
 
-                            }else
-                            {
+                            }else{
+
                                 noRecords.setVisibility(View.GONE);
                                 adapter = new LabourRecommendationAdapter(labourRecommendationsModel.getListResult(), LabourRecommendationsActivity.this);
                                 recyclerView.setAdapter(adapter);
-                            }
+                        }
 
 
 

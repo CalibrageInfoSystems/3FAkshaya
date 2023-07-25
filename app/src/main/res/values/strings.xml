@@ -213,7 +213,7 @@
     <string name="note">If the Products has not been Picked with in 5 Days of Requested Date,Your Order will be Cancelled.</string>
     <string name="subsidy_amt">Available Subsidy Amount(Rs)</string>
     <string name="endusermsg">Total Cost Shouldnot be 0</string>
-    <string name="each_product"> Each Item Cost (Rs)</string>
+    <string name="each_product"> Item Cost (Rs)</string>
     <string name="server_error">Server Not Responding, Please Try Again</string>
     <string name="godown_valid">Please Select Godown</string>
     <string name="success_pole">Equipment Request Submitted Successfully</string>
@@ -548,6 +548,13 @@
     <string name="rate">Rate per Ton (Rs)</string>
     <string name="Internetpay">Please Check Internet Connection, Payment Not Updated</string>
     <string name="success_lab">Bio Lab Request Submitted Successfully</string>
+    <string name="transportprice">Transport Cost(Rs)</string>
+    <string name="transgst">Transport GST(Rs)</string>
+    <string name="totaltransportcost">Total Transport Amount (Rs)</string>
+    <string name="transamount">Transport Amount(Rs)</string>
+    <string name="tsgst_amount">Transport SGST (Rs)</string>
+    <string name="tcgst_amount">Transport CGST (Rs)</string>
+    <string name="trnstotal_amt">Total Transport  Amount (Rs)</string>
 
     />
     <!-- we need to use video ids instead of video link -->

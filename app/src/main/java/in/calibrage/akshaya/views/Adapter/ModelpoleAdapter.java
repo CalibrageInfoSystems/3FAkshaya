@@ -84,7 +84,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         final ModelFert superHero = list_products.get(position);
 
@@ -288,7 +288,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
                     Log.d("PRODUCT ", "---- analysis -----(itemcost)  :" + itemcost);
 
                   //  Double gst = Double.valueOf(superHero.getgst());
-                    double Gst =    Double.parseDouble(superHero.getgst());
+                    double Gst =  Double.parseDouble(superHero.getgst());
                     Log.d("PRODUCT ", "---- analysis -----(gst)  :" + Gst);
                     //Double onlygst = (gst / itemcost) * 100;
                     double onlygst = (itemcost / 100.0f) * Gst;
@@ -299,8 +299,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
                     //double Gst =    Double.parseDouble(superHero.getgst());
                     double total_amount = Double.parseDouble(df.format(finalwithGST));
                     Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
-                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount,Gst, itemcost, superHero.getId(), superHero.getSize(),
-                            superHero.getProduct_code()));
+                    myProducts.add(new Product_new(1, superHero.getName(), itemcost, total_amount,Gst, itemcost, superHero.getId(), superHero.getSize(), superHero.getProduct_code()));
                     Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
                     superHero.setmQuantity(1);
 
@@ -377,8 +376,6 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
 
         final PopupWindow   popup = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
-
-
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.popup_content, null);
         TextView text = layout.findViewById(R.id.product_description);
@@ -434,7 +431,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
         Product_Name.setText(": "+ProductName);
         product_price.setText("  "+df.format(Math.round(discount_price)));
         discountprice.setText(": "+df.format(Math.round(price)));
-        if(product_size!=null && Integer.valueOf( product_size)!=0) {
+        if(product_size!= null && !product_size.equals("0.0")) {
             productsize.setText(": " + product_size + " " + Product_uom);
         }
         else{
@@ -471,22 +468,7 @@ public class ModelpoleAdapter extends RecyclerView.Adapter<ModelpoleAdapter.View
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.3f;
         wm.updateViewLayout(container, p);
-//         container = popup.getContentView().getRootView();
-//        if(container != null) {
-//            WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-//            WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
-//            p.flags = WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
 //
-//            p.dimAmount = 0.3f;
-//            if (wm != null) {
-//                wm.updateViewLayout(container, p);
-//            }
-
-        //   }
-
-
-        // Closes the popup window when touch outside of it - when looses focus
-//        popup.setOutsideTouchable(true);
         popup.setFocusable(true);
 
         cancel.setOnClickListener(new View.OnClickListener() {

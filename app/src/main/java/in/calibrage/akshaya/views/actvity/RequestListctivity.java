@@ -639,10 +639,7 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
         intent.putExtra("subcidy",   list.getSubsidyAmount());
         intent.putExtra("pay",   list.getPaubleAmount());
         Log.e("540====","Selected: " +  list.getSubsidyAmount() + ", " +list.getPaubleAmount());
-
-//                    // Sending Student Id, Name, Number and Class to next UpdateActivity.
-
-
+//                    // Sending Student Id, Name, Number and Class to next UpdateActivity
         startActivity(intent);
     }
 

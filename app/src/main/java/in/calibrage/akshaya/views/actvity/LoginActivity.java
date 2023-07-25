@@ -77,10 +77,11 @@ public class LoginActivity extends BaseActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private Button loginBtn, Qr_scan;
     public static EditText farmerId;
-    private String Farmer_code;
+
     private Subscription mSubscription;
     private SpotsDialog mdilogue;
     String mobile_number;
+    private String Farmer_code;
     private int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,14 +186,12 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onNext(FarmerResponceModel farmerResponceModel) {
-
                         Log.d(TAG, "onNext: " + farmerResponceModel);
                         if (farmerResponceModel.getIsSuccess()) {
                             mdilogue.dismiss();
                             loginBtn.setEnabled(false);
                             if (farmerResponceModel.getResult()!=null) {
                                 mobile_number = farmerResponceModel.getResult();
-
                                 Log.d("mobile_number===", mobile_number);
                             }
                             else {
@@ -206,7 +205,6 @@ public class LoginActivity extends BaseActivity {
                                     i.putExtra("mobile", mobile_number);
                                     startActivity(i);
                                     overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-
                                     finish();
                                 }
                             }, 300);
