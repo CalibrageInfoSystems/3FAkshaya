@@ -122,6 +122,15 @@ Log.e("Clusterid===",catagoriesList.getResult().getFarmerDetails().get(0).getClu
         else
             lyt_address.setVisibility(View.GONE);// res_address.setText(": N/A");
 
+        if (catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() == null)
+        {
+            res_address.setText( catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2()+"");
+
+        }else{
+            res_address.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
+
+        }
+
         if (null != catagoriesList.getResult().getFarmerDetails().get(0).getMandalName())
             mandal.setText("" + catagoriesList.getResult().getFarmerDetails().get(0).getMandalName());
         else

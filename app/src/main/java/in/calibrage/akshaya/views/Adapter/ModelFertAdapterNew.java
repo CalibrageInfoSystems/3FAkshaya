@@ -118,7 +118,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
             itemcost = Double.valueOf(superHero.getmAmount());
         }
 
-        if (Double.valueOf(superHero.getgst()) != null) {
+        if (Double.valueOf(superHero.getgst()) != null && !superHero.getgst().equals("null")) {
             gst = Double.valueOf(superHero.getgst());
             Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
             //Double onlygst = (gst / itemcost) * 100;

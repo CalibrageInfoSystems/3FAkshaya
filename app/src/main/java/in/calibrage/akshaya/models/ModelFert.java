@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class ModelFert {
 
-
     private String name;
     private double discountedPrice;
     private int price;

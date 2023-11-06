@@ -400,7 +400,7 @@ public class QuickPayActivity extends BaseActivity implements QuickPayDataAdapte
                     public void onNext(QuickPayModel quickPayModel) {
                         mdilogue.dismiss();
 
-                        if (quickPayModel.getListResult() != null  ) {
+                        if (quickPayModel.getListResult() != null && quickPayModel.getListResult().size()!=0 ) {
                             quickPayModelData = quickPayModel;
                             // check can we raise quick pay or not
 

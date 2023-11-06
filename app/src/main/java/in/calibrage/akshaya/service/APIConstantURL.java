@@ -1,9 +1,9 @@
 package in.calibrage.akshaya.service;
 
 public interface APIConstantURL {
-public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
+ //public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
   //test
-//public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
+public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
 
 
 //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
@@ -33,7 +33,7 @@ public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
     String GetInterCropByPlotCode ="Farmer/GetInterCropByPlotCode/";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetailsByFarmerCode";
     String GetIssue = "TypeCdDmt/10";
-    String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
+    String post_quickpay = "QuickPayRequest/AddQuickpayRequesttt";
     String post_visit = "RequestHeader/AddVisitRequest";
     String GetActiveGodowns = "Godown/GetActiveGodowns";
     String GetPaymentsTypeByFarmerCode = "Farmer/GetPaymentsTypeByFarmerCode/";
@@ -41,13 +41,13 @@ public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
     String GetActiveEncyclopediaCategoryDetails = "Encyclopedia/GetActiveEncyclopediaCategoryDetails";
     String Post_fert = "FertilizerRequest";
     String Getfarmersubsidy= "FertilizerSubsidies/";
-    String labour_response = "GetLabourRequestDetails";
-    String GetPoleRequestDetails = "FertilizerRequest/GetPoleRequestDetails";
-    String GetFertilizerDetails = "GetFertilizerDetails";
-   String GetQuickpayRequestDetails = "QuickPayRequest/GetQuickpayRequestDetails";
-   String GetLoanRequestDetails = "RequestHeader/GetLoanRequestDetails";
-    String GetRequestHeaderDetails = "RequestHeader/GetVisitRequestDetails";
-    String GetLabproductsRequestHeaderDetails = "FertilizerRequest/GetChemicalRequestDetails";
+    String labour_response = "GetLabourRequestDetails"; //Get Labour Requests
+    String GetPoleRequestDetails = "FertilizerRequest/GetPoleRequestDetails";  //   Get Equipment Requests
+    String GetFertilizerDetails = "GetFertilizerDetails";     //Get  Fertilizer Requests
+   String GetQuickpayRequestDetails = "QuickPayRequest/GetQuickpayRequestDetails"; //Get Quick pay Request
+   String GetLoanRequestDetails = "RequestHeader/GetLoanRequestDetails"; //Get Loan Request
+    String GetRequestHeaderDetails = "RequestHeader/GetVisitRequestDetails";  ///Get Visit Request
+    String GetLabproductsRequestHeaderDetails = "FertilizerRequest/GetChemicalRequestDetails"; //Get Chemical Request
     String GetContactInfo = "ContactInfo/GetContactInfo/";
     String Get3FInfo = "Farmer/Get3FInfo/";
     String GetPlotDetailsByFarmerCode = "Farmer/GetPlotDetailsByFarmerCode/";

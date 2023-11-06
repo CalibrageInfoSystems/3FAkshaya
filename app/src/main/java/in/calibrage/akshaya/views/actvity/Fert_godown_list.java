@@ -388,10 +388,9 @@ public class Fert_godown_list extends BaseActivity {
     }
     //Fertilizer submit  API Requests
     private void FertilizerRequest() {
+        mdilogue.show();
    btn_submit.setEnabled(false);
    btn_submit.setBackgroundResource(R.drawable.button_bg_disable);
-
-        mdilogue.show();
         JsonObject object = fertReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.postfert(object)
@@ -417,6 +416,7 @@ public class Fert_godown_list extends BaseActivity {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
+                    //    showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
                     }
 
                     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -472,7 +472,8 @@ public class Fert_godown_list extends BaseActivity {
                             }, 300);
                         }
                         else {
-                            showDialog(Fert_godown_list.this, getString(R.string.endusermsg));
+                        //    showDialog(Fert_godown_list.this, getString(R.string.endusermsg));
+                            showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
                         }
 
 

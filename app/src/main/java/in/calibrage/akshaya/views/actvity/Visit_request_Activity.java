@@ -1083,7 +1083,7 @@ String statecode;
     private void startRecording() {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
 
         File root = android.os.Environment.getExternalStorageDirectory();
         File file = new File(root.getAbsolutePath() + "/3FAkshaya/Audios");

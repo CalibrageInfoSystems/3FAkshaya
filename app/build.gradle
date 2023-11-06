@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "in.calibrage.akshaya"
         minSdkVersion 17
-        targetSdkVersion 30
-        versionCode 14
-        versionName "14.0"
+        targetSdkVersion 33
+        versionCode 15
+        versionName "15.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -24,14 +24,22 @@ android {
 
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
+
+ //   androidTestImplementation 'androidx.test:core:1.1.0'
+  //  androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -89,13 +97,18 @@ dependencies {
 
     implementation 'com.wdullaer:materialdatetimepicker:3.6.4'
     implementation 'com.github.kal72:RackMonthPicker:1.6.0'
-    implementation 'com.android.support:multidex:1.0.3'
+  implementation 'com.android.support:multidex:1.0.3'
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.5.0'
 
 
     implementation 'com.ms-square:expandableTextView:0.1.4'
+
+
+    implementation 'com.google.android.play:core:1.10.3'
+
+
     //  implementation 'com.android.support:multidex:1.0.3'
 
     // implementation 'com.android.support:support-v4:26.1.0'

@@ -191,7 +191,7 @@ public interface ApiService {
 
 
     @POST(APIConstantURL.GetFertilizerDetails)
-    Observable<Resfert> GetfertRequestDetails(@Body JsonObject data);
+    Observable<Resfert>  GetfertRequestDetails(@Body JsonObject data);
 
 
     @POST(APIConstantURL.GetQuickpayRequestDetails)

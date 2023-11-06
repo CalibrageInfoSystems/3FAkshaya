@@ -139,9 +139,15 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             txt_phone.setVisibility(View.GONE);
         else
             txt_phone.setText(catagoriesList.getResult().getFarmerDetails().get(0).getMobileNumber().toString());
+        if (catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() == null)
+        {
+            txt_adrs.setText( catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2()+"");
 
+        }else{
+            txt_adrs.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
 
-        txt_adrs.setText(catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine1() + " - " + catagoriesList.getResult().getFarmerDetails().get(0).getAddressLine2());
+        }
+
 
         if (!TextUtils.isEmpty(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()))
             Picasso.with(HomeActivity.this).load(catagoriesList.getResult().getFarmerDetails().get(0).getFarmerPictureLocation()).error(R.drawable.ic_user).transform(new CircleTransform()).into(img_profile);
@@ -285,7 +291,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_logout);
         dialogMessage = dialog.findViewById(R.id.dialogMessage);
-        dialogMessage.setText(     getString(R.string.alert_logout));
+        dialogMessage.setText(getString(R.string.alert_logout));
         cancel_btn = dialog.findViewById(R.id.cancel_btn);
         ok_btn = dialog.findViewById(R.id.ok_btn);
 /**

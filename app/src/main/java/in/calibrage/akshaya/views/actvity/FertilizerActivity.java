@@ -322,7 +322,12 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Log.d(TAG, "--- Size ----" + size);
                 Fertdetails.setId(json.getInt("id"));
                 Fertdetails.setUomType(json.getString("uomType"));
-                Fertdetails.setAvail_quantity(json.getInt("availableQuantity"));
+                if (!json.isNull("availableQuantity")) {
+                    Fertdetails.setAvail_quantity(json.getInt("availableQuantity"));
+                } else {
+                    Fertdetails.setAvail_quantity(0);
+                }
+
                 Fertdetails.setProduct_code(json.getString("code"));
                 Log.e("uom===", json.getString("uomType"));
                 int price_finall = json.getInt("price");

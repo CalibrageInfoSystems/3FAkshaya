@@ -769,58 +769,22 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
     }
 
-    private void showSuccesspdf(final String result) {
-        mdilogue.show();
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.pdf_dialog);
-        final WebView webView = dialog.findViewById(R.id.webView);
-        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
-
-        String doc=" http://docs.google.com/gview?embedded=true&url="+result;
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.loadUrl(doc);
-
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-
-                webView.loadUrl("javascript:(function() { " +
-                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
-                mdilogue.show();
-            }
-            @Override
-            public void onPageFinished(final WebView view, String url) {
-                super.onPageFinished(view, url);
-                mdilogue.dismiss();
-                if (view.getContentHeight() == 0) {
-                    view.reload();
-                view.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + result);
-                }
+//    private void showSuccesspdf(final String result) {
+//        mdilogue.show();
+//        final Dialog dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setCancelable(false);
+//        dialog.setContentView(R.layout.pdf_dialog);
+//        final WebView webView = dialog.findViewById(R.id.webView);
+//        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
+//        String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
 //
-
-                webView.loadUrl("javascript:(function() { " +
-                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
-
-
-            }
-        });
-
-//       webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+//      //  String doc=" http://docs.google.com/gview?embedded=true&url="+result;
 //        webView.getSettings().setJavaScriptEnabled(true);
-//       webView.getSettings().setLoadWithOverviewMode(true);
-//       webView.getSettings().setUseWideViewPort(true);
-//        webView.getSettings().setBuiltInZoomControls(true);
-//        webView.getSettings().setSupportZoom(true);
+//        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+//        webView.getSettings().setAllowFileAccess(true);
+//        webView.loadUrl(doc);
 //
-//        //---you need this to prevent the webview from
-//        // launching another browser when a url
-//        // redirection occurs---
-//        webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
 //        webView.setWebViewClient(new WebViewClient() {
 //            @Override
 //            public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -831,15 +795,92 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 //                mdilogue.show();
 //            }
 //            @Override
-//            public void onPageFinished(WebView view, String url) {
+//            public void onPageFinished(final WebView view, String url) {
 //                super.onPageFinished(view, url);
+//                mdilogue.dismiss();
+//                if (view.getContentHeight() == 0) {
+//                    view.reload();
+//                view.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + result);
+//                }
+////
+//
 //                webView.loadUrl("javascript:(function() { " +
 //                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
-//                mdilogue.dismiss();
+//
+//
 //            }
 //        });
-//        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
-        // mdilogue.cancel();
+//
+////       webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+////        webView.getSettings().setJavaScriptEnabled(true);
+////       webView.getSettings().setLoadWithOverviewMode(true);
+////       webView.getSettings().setUseWideViewPort(true);
+////        webView.getSettings().setBuiltInZoomControls(true);
+////        webView.getSettings().setSupportZoom(true);
+////
+////        //---you need this to prevent the webview from
+////        // launching another browser when a url
+////        // redirection occurs---
+////        webView.setWebViewClient(new Quickpay_SummaryActivity.Callback());
+////        webView.setWebViewClient(new WebViewClient() {
+////            @Override
+////            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+////                super.onPageStarted(view, url, favicon);
+////
+////                webView.loadUrl("javascript:(function() { " +
+////                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+////                mdilogue.show();
+////            }
+////            @Override
+////            public void onPageFinished(WebView view, String url) {
+////                super.onPageFinished(view, url);
+////                webView.loadUrl("javascript:(function() { " +
+////                        "document.querySelector('[role=\"toolbar\"]').remove();})()");
+////                mdilogue.dismiss();
+////            }
+////        });
+////        webView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + result);
+//        // mdilogue.cancel();
+//        btn_dialog.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.M)
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//                List<MSGmodel> displayList = new ArrayList<>();
+//
+//                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
+//                showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
+////                Intent intent = new Intent(Quickpay_SummaryActivity.this, HomeActivity.class);
+////                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+////                startActivity(intent);
+////                finish();
+//            }
+//        });
+//        dialog.show();
+//
+//    }
+    private void showSuccesspdf(final String result) {
+        mdilogue.show();
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.pdf_dialog);
+        final WebView webView = dialog.findViewById(R.id.webView);
+        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
+
+        String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.loadUrl(doc);
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                mdilogue.dismiss();
+            }
+        });
+
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -849,14 +890,11 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                 //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
                 showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
-//                Intent intent = new Intent(Quickpay_SummaryActivity.this, HomeActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                finish();
+                // Your code for handling the dialog dismissal.
             }
         });
-        dialog.show();
 
+        dialog.show();
     }
 
     private JsonObject quickReuestobject() {

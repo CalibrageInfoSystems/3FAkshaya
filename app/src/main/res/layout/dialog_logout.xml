@@ -16,11 +16,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/hind_semibold"
             android:text="@string/confirmation"
             android:textColor="@color/colorOrange"
             android:textSize="18sp"
-            android:fontFamily="@font/hind_semibold"
-            android:layout_margin="5dp"
             android:textStyle="bold" />
 
 

@@ -23,25 +23,32 @@
         <activity android:name=".views.actvity.test" />
         <activity
             android:name=".views.actvity.product_list_fert"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+           />
         <activity
             android:name=".views.actvity.Godown_list"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+         />
         <activity
             android:name=".views.actvity.PaymentHistories"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+          />
         <activity
             android:name=".views.actvity.CollectionInfo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="true"/>
         <activity
             android:name=".views.actvity.QRScannerActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="true"/>
         <activity
             android:name=".views.actvity.MapActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="true"/>
         <activity
             android:name=".views.actvity.product_list"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+           />
         <activity
             android:name=".views.actvity.RequestListctivity"
             android:screenOrientation="portrait" />
@@ -118,6 +125,7 @@
         <activity
             android:name=".views.actvity.PaymentActivity"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.RecommendationActivity"
@@ -146,6 +154,7 @@
         <activity
             android:name=".views.actvity.SplashActivity"
             android:screenOrientation="portrait"
+            android:exported="true"
             android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -157,14 +166,7 @@
             android:name=".views.actvity.MainActivity"
             android:screenOrientation="portrait">
 
-            <!--
-            <intent-filter>
->>>>>>> f24f5c838df0cb747cb177d8cfde7df796d24a2d
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
 
         <activity android:name=".common.BaseActivity" />
@@ -184,7 +186,8 @@
         </provider> <!-- <meta-data -->
         <!-- android:name="com.google.android.geo.API_KEY" -->
         <!-- android:value="@string/google_maps_key" /> -->
-        <service android:name=".service.BackgroundNotificationService" />
+        <service android:name=".service.BackgroundNotificationService"
+            android:exported="true"/>
 
         <uses-library
             android:name="org.apache.http.legacy"

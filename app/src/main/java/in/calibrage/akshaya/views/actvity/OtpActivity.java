@@ -163,7 +163,8 @@ public class OtpActivity extends BaseActivity {
                 F_number = separated[0].replaceAll("\\d(?=(?:\\D*\\d){4})", "*");
                 S_number = separated[1].replaceAll("\\d(?=(?:\\D*\\d){4})", "*");
                 otp_desc.setText(getString(R.string.otp_desc) + " " + F_number + "," + S_number);
-            } else {
+            }
+            else {
                 String number = Reg_mobilenumber
                         .replaceAll("\\d(?=(?:\\D*\\d){4})", "*");
                 otp_desc.setText(getString(R.string.otp_desc) + " " + number);
@@ -301,7 +302,7 @@ public class OtpActivity extends BaseActivity {
                                         SharedPrefsData.getInstance(OtpActivity.this).updateStringValue(OtpActivity.this, "districtName", farmerOtpResponceModel.getResult().getFarmerDetails().get(0).getDistrictName());
 
 
-                                        AddAppInstallation();
+                                        AddAppInstallation() ;
                                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                         startActivity(intent);
                                         finish();

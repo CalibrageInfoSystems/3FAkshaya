@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.views.Adapter;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -14,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -83,7 +86,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
@@ -206,7 +209,9 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setSupportZoom(true);
         webview.getSettings().setBuiltInZoomControls(true);
-        webview.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf_url);
+     //   String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
+
+        webview.loadUrl("https://docs.google.com/gview?embedded=true&url=" + pdf_url);
 
 
 
@@ -217,6 +222,15 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
 //                return false;
 //            }
 //        });
+
+        webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                Log.d("WebView Console", consoleMessage.message());
+                return true;
+            }
+        });
+
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -234,17 +248,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
                     view.reload();
                     view.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf_url);
                 }
-//                    //Run off main thread to control delay
-//                    view.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //Load url into the "WebView"
-//                            view.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf_url);
-//                        }
-//                        //Set 1s delay to give the view a longer chance to load before
-//                        // setting the view (or more likely to display blank)
-//                    }, 1000);
-
+//
 
                     webview.loadUrl("javascript:(function() { " +
                             "document.querySelector('[role=\"toolbar\"]').remove();})()");
@@ -253,29 +257,7 @@ public class MyQuickPayDataAdapter extends RecyclerView.Adapter<MyQuickPayDataAd
             }
         });
 
-       // webView.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url="  + pdf_url);
-//        mdilogue.show();
-//        final Dialog dialog = new Dialog(mContext);
-////        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-////        dialog.setCancelable(false);
-//        dialog.setContentView(R.layout.pdf_dialog);
-//        WebView webView = dialog.findViewById(R.id.webView);
-//        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
-//
-//      webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.getSettings().setLoadWithOverviewMode(true);
-//        webView.getSettings().setUseWideViewPort(true);
-//
-//        //---you need this to prevent the webview from
-//        // launching another browser when a url
-//        // redirection occurs---
-//        webView.setWebViewClient(new Callback());
-//        Log.e("url===158",pdf_url);
-//
-//        webView.loadUrl(
-//                "http://docs.google.com/gview?embedded=true&url=" + pdf_url);
-//        mdilogue.dismiss();
+
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

@@ -555,6 +555,9 @@
     <string name="tsgst_amount">Transport SGST (Rs)</string>
     <string name="tcgst_amount">Transport CGST (Rs)</string>
     <string name="trnstotal_amt">Total Transport  Amount (Rs)</string>
+    <string name="endusermsgnew">An Error occured while raising a fertilizer request</string>
+    <string name="alert_updateapp" />
+    <string name="updatenow">UPDATE NOW</string>
 
 </resources>
 
