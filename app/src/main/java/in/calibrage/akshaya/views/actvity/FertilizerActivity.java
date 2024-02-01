@@ -309,8 +309,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             try {
                 json = array.getJSONObject(i);
                 Fertdetails.setName(json.getString("name"));
-
-
                 Fertdetails.setDiscountedPrice(json.getDouble("actualPriceInclGST"));
                 Fertdetails.setmAmount(json.getString("discountedPriceInclGST"));
                 Fertdetails.setPrice(json.getInt("priceInclGST"));
@@ -320,6 +318,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Fertdetails.setTransportGSTPercentage(json.getDouble("transportGSTPercentage"));
                 double size = json.getDouble("size");
                 Log.d(TAG, "--- Size ----" + size);
+                Fertdetails.setSize(size);
                 Fertdetails.setId(json.getInt("id"));
                 Fertdetails.setUomType(json.getString("uomType"));
                 if (!json.isNull("availableQuantity")) {

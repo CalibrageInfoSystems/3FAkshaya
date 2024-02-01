@@ -1,9 +1,9 @@
 package in.calibrage.akshaya.service;
 
 public interface APIConstantURL {
- //public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
+ public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
   //test
-public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
+//public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
 
 
 //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live

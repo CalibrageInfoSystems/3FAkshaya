@@ -300,7 +300,7 @@ public class Fert_godown_list extends BaseActivity {
             cgst_amount.setText(dec.format(cgst));
 
             Log.e("percentage_value===", String.valueOf(gstvalues));
-          double   transportamount =quantity * transportamountbyproduct;
+            double   transportamount =quantity * transportamountbyproduct;
             Log.e("transportamount===",transportamount+"");
             double transgstPrice = transportamount - transportamount / (1 + (tgst/ 100));
             Log.e("transgstPrice===",transgstPrice+"");
