@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.annotation.RequiresApi;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -63,6 +63,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.annotation.RequiresApi;
 
 public class LoanActivity extends BaseActivity {
     public static String TAG = LoanActivity.class.getSimpleName();

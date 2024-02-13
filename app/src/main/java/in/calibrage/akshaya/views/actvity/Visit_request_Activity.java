@@ -16,8 +16,8 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
+//import android.support.annotation.RequiresApi;
+//import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.transition.TransitionManager;
@@ -85,6 +85,9 @@ import rx.schedulers.Schedulers;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 public class  Visit_request_Activity extends BaseActivity implements View.OnClickListener {
     String location, landmarkCode, plot_id, Farmer_code,date_of_plandation,clustername;
@@ -769,6 +772,7 @@ String statecode;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case RequestPermissionCode:
                 if (grantResults.length > 0) {
@@ -1085,7 +1089,8 @@ String statecode;
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
 
-        File root = android.os.Environment.getExternalStorageDirectory();
+       // File root = android.os.Environment.getExternalStorageDirectory();
+        File root = this.getBaseContext().getExternalFilesDir(null);
         File file = new File(root.getAbsolutePath() + "/3FAkshaya/Audios");
         if (!file.exists()) {
             file.mkdirs();

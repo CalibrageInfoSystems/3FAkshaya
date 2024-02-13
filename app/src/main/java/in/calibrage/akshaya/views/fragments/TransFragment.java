@@ -1,7 +1,7 @@
 package in.calibrage.akshaya.views.fragments;
 
 import android.app.Dialog;
-import android.arch.lifecycle.Observer;
+//import android.arch.lifecycle.Observer;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,10 +10,10 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.Nullable;
+//import android.support.v4.app.Fragment;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +53,9 @@ import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class TransFragment extends BaseFragment {

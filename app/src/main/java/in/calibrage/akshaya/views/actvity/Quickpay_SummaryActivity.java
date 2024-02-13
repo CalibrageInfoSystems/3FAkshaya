@@ -1,6 +1,7 @@
 package in.calibrage.akshaya.views.actvity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,13 +11,14 @@ import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.RequiresApi;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -25,7 +27,9 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -33,6 +37,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +73,7 @@ import in.calibrage.akshaya.models.QuickPayResponce;
 import in.calibrage.akshaya.service.APIConstantURL;
 import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
+import in.calibrage.akshaya.views.Adapter.MyQuickPayDataAdapter;
 import in.calibrage.akshaya.views.Adapter.QuickPayDataAdapter;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
@@ -76,6 +82,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Quickpay_SummaryActivity extends BaseActivity {
     CheckBox checkbox;
@@ -751,7 +761,14 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                                 dialogButton.setEnabled(false);
                                 result = quickPayResponce.getResult();
 
-                              showSuccesspdf(result);
+                                List<MSGmodel> displayList = new ArrayList<>();
+
+                                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    showSuccessDialogg(displayList, getResources().getString(R.string.qucick_success));
+                                }
+
+                                //showSuccesspdf(result);
 
 
                             } else {
@@ -767,6 +784,129 @@ public class Quickpay_SummaryActivity extends BaseActivity {
             // Toast.makeText(this, "unable to process request now", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    protected void showSuccessDialogg(List<MSGmodel> msg, String summary) {
+        final int langID = SharedPrefsData.getInstance(this).getIntFromSharedPrefs("lang");
+        if (langID == 2)
+            updateResources(this, "te");
+        else
+            updateResources(this, "en-US");
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
+
+
+        //TextView txtmsg = dialogView.findViewById(R.id.txtmsg);
+        LinearLayout layout = dialogView.findViewById(R.id.linear_text);
+        TextView summary_text = dialogView.findViewById(R.id.summary_text);
+        summary_text.setText(summary);
+        final ImageView img = dialogView.findViewById(R.id.img);
+
+
+        for (int i = 0; i < msg.size(); i++) {
+
+            LinearLayout lty = new LinearLayout(this);
+            lty.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT));
+            lty.setWeightSum(1);
+            lty.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView txtTitle = new TextView(this);
+            txtTitle.setText(msg.get(i).getKey());
+            txtTitle.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+
+            txtTitle.setLayoutParams(new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
+            txtTitle.setTextColor(getColor(R.color.red));
+            lty.addView(txtTitle);
+
+            TextView txtitem = new TextView(this);
+            txtitem.setText(msg.get(i).getValue());
+            txtitem.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            txtitem.setPadding(10, 0, 0, 0);
+
+            txtitem.setLayoutParams(new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f));
+
+
+            lty.addView(txtitem);
+            //  lty.setGravity(View.FOCUS_LEFT);
+
+            layout.addView(lty);
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+        builder.setCancelable(false);
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button dialogButton = (Button) alertDialog.findViewById(R.id.buttonOk);
+//        dialogButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                alertDialog.dismiss();
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+//                browserIntent.setData(Uri.parse(result));
+//                startActivity(browserIntent);
+//              //  showSuccesspdf(result);
+//                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
+
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+
+                new OpenBrowserTask().execute(result);
+
+                       Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(homeIntent);
+                        finish();  // Finish the current activity if needed
+
+
+                // Open the browser after a delay
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+//                        browserIntent.setData(Uri.parse(result));
+//                        startActivity(browserIntent);
+//                    }
+//                }, 1000); // Delay in milliseconds (adjust as needed)
+//
+//                // Navigate to Home Activity after the delay
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+//                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(homeIntent);
+//                        finish();  // Finish the current activity if needed
+//                    }
+//                }, 5000); // Delay in milliseconds (adjust as needed)
+            }
+        });
+
+    }
+
+    private class OpenBrowserTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... params) {
+            String url = params[0];
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
+            return null;
+        }
     }
 
 //    private void showSuccesspdf(final String result) {
@@ -859,16 +999,19 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 //        dialog.show();
 //
 //    }
+
+
     private void showSuccesspdf(final String result) {
         mdilogue.show();
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.pdf_dialog);
-        final WebView webView = dialog.findViewById(R.id.webView);
+        final WebView webView = dialog.findViewById(R.id.webViewpdf);
         Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 
         String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
+        //String doc =  result;
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAllowFileAccess(true);
         webView.loadUrl(doc);
@@ -889,13 +1032,54 @@ public class Quickpay_SummaryActivity extends BaseActivity {
                 List<MSGmodel> displayList = new ArrayList<>();
 
                 //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
-                showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
+               // showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
                 // Your code for handling the dialog dismissal.
             }
         });
 
         dialog.show();
     }
+
+
+    //orgianl
+//    private void showSuccesspdf(final String result) {
+//        mdilogue.show();
+//        final Dialog dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setCancelable(false);
+//        dialog.setContentView(R.layout.pdf_dialog);
+//        final WebView webView = dialog.findViewById(R.id.webViewpdf);
+//        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
+//
+//        //String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
+//        String doc =  result;
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setAllowFileAccess(true);
+//        webView.loadUrl(doc);
+//
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                mdilogue.dismiss();
+//            }
+//        });
+//
+//        btn_dialog.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.M)
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//                List<MSGmodel> displayList = new ArrayList<>();
+//
+//                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
+//                showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
+//                // Your code for handling the dialog dismissal.
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 
     private JsonObject quickReuestobject() {
 

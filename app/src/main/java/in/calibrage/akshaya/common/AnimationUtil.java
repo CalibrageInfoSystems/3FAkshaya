@@ -3,7 +3,9 @@ package in.calibrage.akshaya.common;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.support.v7.widget.RecyclerView;
+//import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /*
 * This util helpfull For Help Loading Animations in Lists

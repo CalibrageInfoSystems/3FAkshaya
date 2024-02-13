@@ -240,7 +240,7 @@
 
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -548,7 +548,7 @@ android:textSize="@dimen/_14dp"
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_pest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -583,7 +583,7 @@ android:textSize="@dimen/_14dp"
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_dease"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -619,7 +619,7 @@ android:textSize="@dimen/_14dp"
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_nut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -654,7 +654,7 @@ android:textSize="@dimen/_14dp"
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_fert_rec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -690,7 +690,7 @@ android:textSize="@dimen/_14dp"
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_irrigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -726,7 +726,7 @@ android:textSize="@dimen/_14dp"
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_InterCrop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -762,7 +762,7 @@ android:textSize="@dimen/_14dp"
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_fertilizer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -770,7 +770,7 @@ android:textSize="@dimen/_14dp"
                 android:visibility="gone"
                 android:layout_marginBottom="10dp" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:fontFamily="@font/hind_semibold"

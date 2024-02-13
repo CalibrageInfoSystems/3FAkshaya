@@ -7,9 +7,9 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Animatable;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.RequiresApi;
+//import android.support.v7.widget.CardView;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +47,10 @@ import rx.schedulers.Schedulers;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.itextpdf.text.factories.GreekAlphabetFactory.getString;
+
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ReqVisitAdapter extends RecyclerView.Adapter<ReqVisitAdapter.ViewHolder> {
 

@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+//import android.support.v4.app.Fragment;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,14 +37,10 @@ import rx.schedulers.Schedulers;
 import static android.content.Context.MODE_PRIVATE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link plot_details.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link plot_details#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 public class plot_details extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     public static String TAG = plot_details.class.getSimpleName();

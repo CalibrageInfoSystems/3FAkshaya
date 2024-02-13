@@ -9,11 +9,11 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+//import android.support.annotation.RequiresApi;
+//import android.support.v7.widget.DefaultItemAnimator;
+//import android.support.v7.widget.GridLayoutManager;
+//import android.support.v7.widget.RecyclerView;
+//import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -59,6 +59,12 @@ import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelpoleAdapter;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class PoleActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelpoleAdapter.listner {
     private RecyclerView recyclerView;

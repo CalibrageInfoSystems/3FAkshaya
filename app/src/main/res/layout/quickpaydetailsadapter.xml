@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     app:cardBackgroundColor="@color/whitepure"
     android:layout_margin="@dimen/_8dp"
     android:id="@+id/card_view"
@@ -279,4 +279,4 @@
         android:background="@color/black"></TextView>
 
 </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

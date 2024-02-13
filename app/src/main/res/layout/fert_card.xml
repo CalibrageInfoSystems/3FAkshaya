@@ -7,7 +7,7 @@
 
     >
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         card_view:cardCornerRadius="8dp"
 
         android:id="@+id/card_view"
@@ -224,7 +224,7 @@
 
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
 

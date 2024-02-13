@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="in.calibrage.akshaya.views.actvity.FertilizerActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/ToolBarTheme.ToolBarStyle"
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                     android:textColor="@color/whitepure" />
             </LinearLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 <!--    <LinearLayout-->
 <!--        android:id="@+id/linear1"-->
 <!--        android:layout_width="match_parent"-->
@@ -237,7 +237,7 @@
         android:orientation="vertical">
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fer_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

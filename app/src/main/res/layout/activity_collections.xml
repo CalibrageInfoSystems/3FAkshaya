@@ -171,7 +171,7 @@ android:padding="10dp"
 
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_from_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -192,10 +192,10 @@ android:padding="10dp"
                     android:textColor="@color/white_new"
 
                     />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_to_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -212,7 +212,7 @@ android:padding="10dp"
                     android:fontFamily="@font/hind_semibold"
                     android:focusable="false"
                     android:textColor="@color/white_new" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
@@ -541,7 +541,7 @@ android:visibility="gone"
     android:layout_height="wrap_content"
     android:layout_below="@+id/top_linear"
     android:background="@color/white"
->   <android.support.v7.widget.RecyclerView
+>   <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/collection_recycler_view"
         android:layout_width="match_parent"

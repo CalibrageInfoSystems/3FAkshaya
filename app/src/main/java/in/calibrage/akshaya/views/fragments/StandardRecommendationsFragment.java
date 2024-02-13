@@ -5,10 +5,10 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.NonNull;
+//import android.support.v4.app.Fragment;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +48,10 @@ import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.service.APIConstantURL;
 
 import static android.content.Context.MODE_PRIVATE;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class StandardRecommendationsFragment extends Fragment implements AdapterView.OnItemSelectedListener {

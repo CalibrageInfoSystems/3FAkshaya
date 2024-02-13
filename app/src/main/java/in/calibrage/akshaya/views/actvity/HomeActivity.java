@@ -1,28 +1,16 @@
 package in.calibrage.akshaya.views.actvity;
 
+//import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
+import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -35,9 +23,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import in.calibrage.akshaya.BuildConfig;
 import in.calibrage.akshaya.R;
@@ -45,16 +52,12 @@ import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CircleTransform;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
-
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.views.fragments.HomeFragment;
 import in.calibrage.akshaya.views.fragments.My3FFragment;
 import in.calibrage.akshaya.views.fragments.ProfileFragment;
 import in.calibrage.akshaya.views.fragments.RequestsFragment;
 import rx.Subscription;
-
-import static android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
-import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
 public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -125,7 +128,9 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         String versionName = BuildConfig.VERSION_NAME;
         app_version.setText(getResources().getString(R.string.App_version)+ " "+versionName);
         BottomNavigationViewHelper bottomNavigationViewHelper = new BottomNavigationViewHelper();
-        bottomNavigationViewHelper.disableShiftMode(bottom_navigation);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            bottomNavigationViewHelper.disableShiftMode(bottom_navigation);
+        }
         initToolBar();
 
         nv.setNavigationItemSelectedListener(this);
@@ -226,8 +231,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!dl.isDrawerOpen(Gravity.START)) dl.openDrawer(Gravity.START);
-                        else dl.closeDrawer(Gravity.END);
+                        if (!dl.isDrawerOpen(GravityCompat.START)) dl.openDrawer(GravityCompat.START);
+                        else dl.closeDrawer(GravityCompat.END);
                     }
                 }
         );
@@ -407,8 +412,35 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
 
+//    public class BottomNavigationViewHelper {
+//
+//        @SuppressLint("RestrictedApi")
+//        public void disableShiftMode(BottomNavigationView view) {
+//            BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+//            try {
+//                Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+//                shiftingMode.setAccessible(true);
+//                shiftingMode.setBoolean(menuView, false);
+//                shiftingMode.setAccessible(false);
+//                for (int i = 0; i < menuView.getChildCount(); i++) {
+//                    BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+//                    //noinspection RestrictedApi
+//                    item.setShiftingMode(false);
+//                    // set once again checked value, so view will be updated
+//                    //noinspection RestrictedApi
+//                    item.setChecked(item.getItemData().isChecked());
+//                }
+//            } catch (NoSuchFieldException e) {
+//                Log.e("BNVHelper", "Unable to get shift mode field", e);
+//            } catch (IllegalAccessException e) {
+//                Log.e("BNVHelper", "Unable to change value of shift mode", e);
+//            }
+//        }
+//    }
+
     public class BottomNavigationViewHelper {
 
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @SuppressLint("RestrictedApi")
         public void disableShiftMode(BottomNavigationView view) {
             BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
@@ -417,21 +449,29 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                 shiftingMode.setAccessible(true);
                 shiftingMode.setBoolean(menuView, false);
                 shiftingMode.setAccessible(false);
+
                 for (int i = 0; i < menuView.getChildCount(); i++) {
                     BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                    //noinspection RestrictedApi
-                    item.setShiftingMode(false);
+
+                    // Use reflection to access setShiftingMode method
+                    Method setShiftingMode = item.getClass().getDeclaredMethod("setShiftingMode", boolean.class);
+                    setShiftingMode.setAccessible(true);
+                    setShiftingMode.invoke(item, false);
+                    setShiftingMode.setAccessible(false);
+
                     // set once again checked value, so view will be updated
-                    //noinspection RestrictedApi
                     item.setChecked(item.getItemData().isChecked());
                 }
             } catch (NoSuchFieldException e) {
                 Log.e("BNVHelper", "Unable to get shift mode field", e);
-            } catch (IllegalAccessException e) {
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException | NoSuchMethodException e) {
                 Log.e("BNVHelper", "Unable to change value of shift mode", e);
             }
         }
     }
+
 
     private void viewFragment(Fragment fragment, String name) {
           fragmentManager = getSupportFragmentManager();

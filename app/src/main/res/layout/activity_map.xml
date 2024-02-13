@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.actvity.MapActivity">
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:visibility="visible"
         android:layout_alignParentTop="true"
         style="@style/ToolBarTheme.ToolBarStyle"
@@ -21,7 +21,7 @@
             style="@style/Common_textView_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
     <TextView
         android:fontFamily="@font/hind_semibold"
         android:layout_width="match_parent"

@@ -8,12 +8,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+//import android.support.v4.app.Fragment;
+//import android.support.v7.widget.DefaultItemAnimator;
+//import android.support.v7.widget.DividerItemDecoration;
+//import android.support.v7.widget.GridLayoutManager;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,9 +64,12 @@ import rx.schedulers.Schedulers;
 import static android.content.Context.MODE_PRIVATE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class HomeFragment extends BaseFragment {
     public static String TAG = "HomeFragment";
     private ProgressDialog dialog;

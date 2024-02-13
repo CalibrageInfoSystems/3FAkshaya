@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:id="@+id/backlinear"
         android:background="@color/colorPrimary">
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             style="@style/ToolBarTheme.ToolBarStyle"
             android:layout_width="match_parent"
@@ -46,9 +46,9 @@
                     android:id="@+id/home_btn"
                     android:src="@drawable/home" />
             </LinearLayout>
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_below="@+id/backlinear"
         android:layout_width="match_parent"

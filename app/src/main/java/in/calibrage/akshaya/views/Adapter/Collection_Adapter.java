@@ -7,10 +7,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.RequiresApi;
+//import android.support.v7.app.AlertDialog;
+//import android.support.v7.widget.CardView;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
@@ -52,6 +53,11 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.service.APIConstantURL.CollectionInfoById;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.ViewHolder> {
@@ -275,11 +281,17 @@ public class Collection_Adapter extends RecyclerView.Adapter<Collection_Adapter.
                               //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
                                 PhotoView photoView = mView.findViewById(R.id.imageView);
                                 TextView cancel =mView.findViewById(R.id.cancel);
-                                if(getCollectionInfoById.getResult().getReceiptImg()!=null)
-                                    Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(photoView);
-                              //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
-                                else
-                                    Picasso.with(mContext).load(R.drawable.logo).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(photoView);
+                                if(getCollectionInfoById.getResult() != null){
+                                    if(getCollectionInfoById.getResult().getReceiptImg()!=null)
+                                        Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(photoView);
+                                        //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
+                                    else
+                                        Picasso.with(mContext).load(R.drawable.logo).error(R.drawable.ic_user).placeholder( R.drawable.progress_animation).into(photoView);
+                                }else{
+                                    Toast.makeText(context, "no receipt found", Toast.LENGTH_SHORT).show();
+                                }
+
+
                                 //photoView.setImageResource(Integer.parseInt(getCollectionInfoById.getResult().getReceiptImg()));
                                 mBuilder.setView(mView);
 

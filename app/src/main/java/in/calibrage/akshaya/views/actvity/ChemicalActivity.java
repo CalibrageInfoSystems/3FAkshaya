@@ -8,13 +8,13 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.annotation.RequiresApi;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+//import android.support.v7.widget.DefaultItemAnimator;
+//import android.support.v7.widget.GridLayoutManager;
+//import android.support.v7.widget.RecyclerView;
+//import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -63,6 +63,12 @@ import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 import static in.calibrage.akshaya.views.actvity.PoleActivity.myProductsList;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ChemicalActivity extends BaseActivity implements ChemicalProductAdapter.OnClickAck, ChemicalProductAdapter.listner {
 

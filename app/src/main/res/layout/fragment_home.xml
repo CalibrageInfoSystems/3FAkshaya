@@ -208,7 +208,7 @@
                     android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/req_services" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/service_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -586,7 +586,7 @@
                     android:paddingTop="5dp"
                     android:text="@string/learning" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/learning_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -1,5 +1,6 @@
 package in.calibrage.akshaya.views.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,8 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -37,6 +38,8 @@ import in.calibrage.akshaya.views.actvity.QRCodeEncoder;
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.WINDOW_SERVICE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.viewpager.widget.ViewPager;
 
 
 public class profile_fragment extends BaseFragment {
@@ -93,7 +96,7 @@ public class profile_fragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.profile_fragment,
                 container, false);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
 
         SharedPreferences pref = getActivity().getSharedPreferences("FARMER", MODE_PRIVATE);
          Farmer_code = pref.getString("farmerid", "").trim();

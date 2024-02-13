@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Animatable;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
+//import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -73,6 +73,10 @@ import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 import static java.util.Calendar.YEAR;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LabourRecommendationsActivity  extends BaseActivity {
     private static final String TAG = LabourRecommendationsActivity.class.getSimpleName();

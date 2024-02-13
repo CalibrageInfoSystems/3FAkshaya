@@ -9,10 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.text.TimeZoneFormat;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.RequiresApi;
+//import android.support.v4.app.NotificationCompat;
+//import android.support.v7.widget.CardView;
+//import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -63,6 +63,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.service.APIConstantURL.GetLabourPackageDiscount;
+
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MyLabour_ReqAdapter extends RecyclerView.Adapter<MyLabour_ReqAdapter.ViewHolder> {
     TextView request_id, plot_code, plot_size, village, leader_name, pref_date, service_type, status, prun_amount, harv_amount, pruning_intercrop, harvest_intercrop, pack_name, collectionid, netweight,

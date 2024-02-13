@@ -12,11 +12,11 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.annotation.RequiresApi;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentActivity;
+//import android.support.v4.app.FragmentTransaction;
+//import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -46,6 +46,9 @@ import in.calibrage.akshaya.views.actvity.PDFActivity;
 import in.calibrage.akshaya.views.actvity.Visit_request_Activity;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 /*
  * This class base For all Activitys , here we declared all common activity related Methods

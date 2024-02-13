@@ -5,9 +5,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.opengl.Visibility;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+//import android.support.v4.app.Fragment;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +48,9 @@ import rx.schedulers.Schedulers;
 import static android.content.Context.MODE_PRIVATE;
 import static android.view.View.VISIBLE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class placesfragment extends BaseFragment implements OnMapReadyCallback {

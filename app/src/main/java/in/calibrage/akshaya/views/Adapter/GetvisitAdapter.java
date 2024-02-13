@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
+//import android.support.v7.app.AlertDialog;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
@@ -291,7 +294,7 @@ public class GetvisitAdapter extends RecyclerView.Adapter<GetvisitAdapter.ViewHo
                                         public void onClick(View view) {
                                             Context context = mContext.getApplicationContext();
                                             mInflater = LayoutInflater.from(context);
-                                            android.support.v7.app.AlertDialog.Builder mBuilder = new android.support.v7.app.AlertDialog.Builder(mContext);
+                                           AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
                                             View mView = mInflater.inflate(R.layout.dialog_custom_layout, null);
                                             TextView cancel =mView.findViewById(R.id.cancel);
                                             //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
@@ -322,7 +325,7 @@ public class GetvisitAdapter extends RecyclerView.Adapter<GetvisitAdapter.ViewHo
                                         public void onClick(View view) {
                                             Context context = mContext.getApplicationContext();
                                             mInflater = LayoutInflater.from(context);
-                                            android.support.v7.app.AlertDialog.Builder mBuilder = new android.support.v7.app.AlertDialog.Builder(mContext);
+                                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
                                             View mView = mInflater.inflate(R.layout.dialog_custom_layout, null);
                                             TextView cancel =mView.findViewById(R.id.cancel);
                                             //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);
@@ -351,7 +354,7 @@ public class GetvisitAdapter extends RecyclerView.Adapter<GetvisitAdapter.ViewHo
                                             public void onClick(View view) {
                                                 Context context = mContext.getApplicationContext();
                                                 mInflater = LayoutInflater.from(context);
-                                                android.support.v7.app.AlertDialog.Builder mBuilder = new android.support.v7.app.AlertDialog.Builder(mContext);
+                                               AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
                                                 View mView = mInflater.inflate(R.layout.dialog_custom_layout, null);
                                                 TextView cancel =mView.findViewById(R.id.cancel);
                                                 //  Picasso.with(mContext).load(getCollectionInfoById.getResult().getReceiptImg()).error(R.drawable.ic_user).into(photoView);

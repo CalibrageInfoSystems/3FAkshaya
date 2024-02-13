@@ -7,7 +7,7 @@
     tools:context="in.calibrage.akshaya.views.actvity.FertilizerActivity">
 
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/ToolBarTheme.ToolBarStyle"
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:id="@+id/home_btn"
                 android:src="@drawable/home" />
         </LinearLayout>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/lyt_cart"
@@ -168,7 +168,7 @@
         android:orientation="vertical">
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fer_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

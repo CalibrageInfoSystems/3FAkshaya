@@ -106,7 +106,7 @@ android:visibility="gone"
         >
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txt_from_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -129,8 +129,8 @@ android:textSize="16sp"
 
 
                 />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txt_to_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -149,7 +149,7 @@ android:textSize="16sp"
                 android:focusable="false"
                 android:fontFamily="@font/hind_semibold"
                 android:textColor="@color/white" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/btn__sub"
             android:layout_width="0dp"
@@ -166,7 +166,7 @@ android:textSize="16sp"
 
     </LinearLayout>
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
         android:layout_marginLeft="@dimen/_8dp"
         android:layout_marginTop="4dp"
@@ -182,14 +182,14 @@ android:textSize="16sp"
 
       >
 
-        <android.support.design.widget.TabItem
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/tabpayments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
        style="@style/Common_textView"
             android:text="@string/payments" />
 
-        <android.support.design.widget.TabItem
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/tabtrans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -197,9 +197,9 @@ android:textSize="16sp"
             android:text="@string/trans" />
 
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:background="@color/white"
         android:layout_width="match_parent"

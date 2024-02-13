@@ -650,7 +650,7 @@
 
                     />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
 
                     android:id="@+id/details_recyclerview"
                     android:layout_below="@+id/tvtext_item"

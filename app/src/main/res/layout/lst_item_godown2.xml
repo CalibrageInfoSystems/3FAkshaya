@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="0.4dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         app:cardBackgroundColor="@color/white_new"
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -184,7 +184,7 @@
 
 
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>

@@ -25,14 +25,14 @@ android:background="@drawable/white_baground"
             android:textSize="@dimen/text_size_20"
             />
 
-<android.support.v7.widget.RecyclerView
+<androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:id="@+id/trans_rates"
 android:layout_below="@+id/text"
     android:layout_height="wrap_content">
 
 
-</android.support.v7.widget.RecyclerView>
+</androidx.recyclerview.widget.RecyclerView>
 
 
         <TextView

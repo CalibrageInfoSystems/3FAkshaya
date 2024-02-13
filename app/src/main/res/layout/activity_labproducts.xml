@@ -9,7 +9,7 @@
     tools:context=".views.actvity.Labproducts">
 
     <!--head toolbar-->
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="@style/ToolBarTheme.ToolBarStyle"
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:id="@+id/home_btn"
                 android:src="@drawable/home" />
         </LinearLayout>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <!--    body of the view-->
@@ -132,7 +132,7 @@
                         android:orientation="vertical"
                         android:weightSum="1">
 
-                        <android.support.v7.widget.RecyclerView
+                        <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/products_recy"
                             android:layout_width="match_parent"
                             android:layout_height="350dp"

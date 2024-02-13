@@ -2,15 +2,15 @@ package in.calibrage.akshaya.views.actvity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.annotation.Nullable;
+//import android.support.annotation.StringRes;
+//import android.support.design.widget.TabLayout;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.FragmentPagerAdapter;
+//import android.support.v4.app.FragmentTransaction;
+//import android.support.v4.view.ViewPager;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,10 +21,19 @@ import android.widget.Spinner;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.views.fragments.PaymentFragment;
-import in.calibrage.akshaya.views.fragments.ProfileFragment;
 import in.calibrage.akshaya.views.fragments.TransFragment;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 public class PaymentHistories extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] selection = {"Last 30 Days", "Current Financial Year", "Custom Time Period"};

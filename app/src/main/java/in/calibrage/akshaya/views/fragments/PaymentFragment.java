@@ -2,7 +2,7 @@ package in.calibrage.akshaya.views.fragments;
 
 import android.Manifest;
 import android.app.DownloadManager;
-import android.arch.lifecycle.Observer;
+//import android.arch.lifecycle.Observer;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,15 +16,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+//import android.support.annotation.Nullable;
+//import android.support.annotation.RequiresApi;
+//import android.support.design.widget.Snackbar;
+//import android.support.v4.app.ActivityCompat;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.content.ContextCompat;
+//import android.support.v4.content.LocalBroadcastManager;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,6 +81,12 @@ import rx.schedulers.Schedulers;
 import static android.content.Context.MODE_PRIVATE;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 import static in.calibrage.akshaya.views.actvity.PaymentHistoryActivity.compareTo;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class PaymentFragment extends BaseFragment {
     public static String TAG = PaymentFragment.class.getSimpleName();

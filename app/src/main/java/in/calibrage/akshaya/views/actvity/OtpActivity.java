@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
+//import android.support.annotation.RequiresApi;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -56,6 +58,8 @@ public class OtpActivity extends BaseActivity {
     private SpotsDialog mdilogue;
     String F_number, S_number;
     TextView resend;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override

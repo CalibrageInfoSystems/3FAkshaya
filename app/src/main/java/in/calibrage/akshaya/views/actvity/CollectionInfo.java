@@ -1,6 +1,6 @@
 package in.calibrage.akshaya.views.actvity;
 
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -30,6 +30,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CollectionInfo extends AppCompatActivity {
 String collection_id;

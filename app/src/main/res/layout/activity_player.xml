@@ -8,7 +8,7 @@
     android:background="@color/light_gray2"
     tools:context=".views.actvity.PlayerActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:visibility="visible"
         style="@style/ToolBarTheme.ToolBarStyle"
         android:id="@+id/toolbar"
@@ -22,7 +22,7 @@
             style="@style/Common_textView_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
 
