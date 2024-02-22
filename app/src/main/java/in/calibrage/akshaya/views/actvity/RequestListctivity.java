@@ -92,6 +92,17 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
 
         }
+        else if (name.equalsIgnoreCase( getResources().getString(R.string.ediableproduct_req))) {
+            if (isOnline())
+                getediableoils();
+            else {
+                showDialog(RequestListctivity.this, getResources().getString(R.string.Internet));
+                //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+        }
         else if (name.equalsIgnoreCase(getResources().getString(R.string.pole_req))) {
             if (isOnline())
                 getPole();
@@ -159,8 +170,62 @@ public class RequestListctivity extends BaseActivity implements GetPoleAdapter.G
 
     }
 
+    private void getediableoils() {
+        mdilogue.show();
+        JsonObject object = getPoleobject();
+        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
+        mSubscription = service.GetediableRequestDetails(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Resfert>() {
+                    @Override
+                    public void onCompleted() {
+                        mdilogue.dismiss();
+                    }
 
-//Get Labour Requests
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                        mdilogue.cancel();
+                        no_data.setVisibility(View.VISIBLE);
+                        showDialog(RequestListctivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onNext(Resfert fertResponce) {
+
+
+                        if(fertResponce.getListResult() .size() != 0)
+                        {
+                            no_data.setVisibility(View.GONE);
+                            rcv_requests.setVisibility(View.VISIBLE);
+                            GetfertAdapter adapter = new GetfertAdapter(fertResponce.getListResult(), ctx, RequestListctivity.this);
+                            rcv_requests.setAdapter(adapter);
+
+                        }
+                        else{
+                            no_data.setVisibility(View.VISIBLE);
+                            rcv_requests.setVisibility(View.GONE);
+                        }
+
+                    }
+
+                });
+
+    }
+
+
+    //Get Labour Requests
     private void GetLabourRequestDetails() {
 
         mdilogue.show();

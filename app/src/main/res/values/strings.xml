@@ -557,8 +557,12 @@
     <string name="trnstotal_amt">Total Transport  Amount (Rs)</string>
 
     <string name="endusermsgnew">An Error occured while raising a fertilizer request</string>
-    <string name="alert_updateapp" >We have launched a new and improved version. Please update the app for better experience.</string>
+    <string name="alert_updateapp">We have launched a new and improved version. Please update the app for better experience.</string>
     <string name="updatenow">UPDATE NOW</string>
+    <string name="edibleoils">Edible Oil</string>
+    <string name="success_edible">Edible Oil Request Submitted Successfully</string>
+    <string name="Categorytype">Category Type</string>
+    <string name="ediableproduct_req">Ediable Oil Request</string>
 
     />
     <!-- we need to use video ids instead of video link -->

@@ -25,7 +25,7 @@ android:layout_marginBottom="@dimen/margin_5"
 
                 android:singleLine="false"
                 android:textStyle="bold"
-                android:text="@string/account_no"
+                android:text=""
                 android:fontFamily="@font/hind_semibold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

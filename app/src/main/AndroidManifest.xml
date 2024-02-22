@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--ROJA-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="in.calibrage.akshaya">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="false"
         android:hardwareAccelerated="false"
@@ -17,39 +33,39 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".views.actvity.Labproducts"></activity>
+        <activity
+            android:name=".views.actvity.EdibleOilsubmitscreen"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.actvity.EdibleOilsActivity" />
+        <activity android:name=".views.actvity.Labproducts" />
         <activity android:name=".views.actvity.ChemicalActivity" />
         <activity android:name=".views.actvity.Pdf_Activity" />
         <activity android:name=".views.actvity.GenerateQr" />
         <activity android:name=".views.actvity.test" />
         <activity
             android:name=".views.actvity.product_list_fert"
-            android:screenOrientation="portrait"
-           />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.Godown_list"
-            android:screenOrientation="portrait"
-         />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.PaymentHistories"
-            android:screenOrientation="portrait"
-          />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.CollectionInfo"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.QRScannerActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.MapActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.product_list"
-            android:screenOrientation="portrait"
-           />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.actvity.RequestListctivity"
             android:screenOrientation="portrait" />
@@ -66,39 +82,39 @@
         <activity
             android:name=".views.actvity.Visit_request_Activity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.Quickpay_SummaryActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.LabourActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.PDFActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.PlayerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.EncyclopediaActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.LoanActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.RequestVisitActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.QuickPayActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.FertilizerActivity"
             android:screenOrientation="portrait"
@@ -110,23 +126,23 @@
         <activity
             android:name=".views.actvity.LabourRecommendationsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.CropMaintanceVisitActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.LanguageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.PaymentHistoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.PaymentActivity"
-            android:screenOrientation="portrait"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.RecommendationActivity"
@@ -154,8 +170,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".views.actvity.SplashActivity"
-            android:screenOrientation="portrait"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -165,11 +181,7 @@
         </activity>
         <activity
             android:name=".views.actvity.MainActivity"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-
+            android:screenOrientation="portrait" />
         <activity android:name=".common.BaseActivity" />
 
         <meta-data
@@ -187,28 +199,13 @@
         </provider> <!-- <meta-data -->
         <!-- android:name="com.google.android.geo.API_KEY" -->
         <!-- android:value="@string/google_maps_key" /> -->
-        <service android:name=".service.BackgroundNotificationService"
-            android:exported="true"/>
+        <service
+            android:name=".service.BackgroundNotificationService"
+            android:exported="true" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

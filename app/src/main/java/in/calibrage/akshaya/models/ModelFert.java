@@ -16,6 +16,7 @@ public class ModelFert {
     private String mAmount,product_code;
     private String gst;
     private int Id;
+    private int categoryId;
     private double transPortActualPriceInclGST;
     private double transportGSTPercentage;
 
@@ -178,5 +179,13 @@ public class ModelFert {
 
     public void setTransportGSTPercentage(double transportGSTPercentage) {
         this.transportGSTPercentage = transportGSTPercentage;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

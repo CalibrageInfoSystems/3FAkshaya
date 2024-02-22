@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -339,13 +340,23 @@ public class SignatureView extends View {
      *
      * @return Bitmap
      */
+//    public Bitmap getSignatureBitmap() {
+//        if (bmp != null) {
+//            return Bitmap.createScaledBitmap(bmp, bmp.getWidth(), bmp.getHeight(), true);
+//        } else {
+//            return null;
+//        }
+//    }
     public Bitmap getSignatureBitmap() {
         if (bmp != null) {
             return Bitmap.createScaledBitmap(bmp, bmp.getWidth(), bmp.getHeight(), true);
         } else {
+            // Log an error or handle the case where bmp is null
+            Log.e("SignatureBitmap", "Bitmap is null in getSignatureBitmap()");
             return null;
         }
     }
+
 
     private Bitmap getSignatureBitmap(Bitmap bitmap) {
         return Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);

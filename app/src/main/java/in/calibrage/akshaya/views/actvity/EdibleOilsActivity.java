@@ -1,5 +1,14 @@
 package in.calibrage.akshaya.views.actvity;
 
+import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -9,21 +18,13 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
-//import android.support.annotation.RequiresApi;
-//import android.support.v7.widget.DefaultItemAnimator;
-//import android.support.v7.widget.GridLayoutManager;
-//import android.support.v7.widget.RecyclerView;
-//import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -50,33 +51,18 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
 import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.localData.SharedPrefsData;
-import in.calibrage.akshaya.models.FertilizerSubCategories;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.models.SelectedProducts;
 import in.calibrage.akshaya.service.APIConstantURL;
-import in.calibrage.akshaya.service.ApiService;
-import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
-import static in.calibrage.akshaya.common.CommonUtil.updateResources;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class FertilizerActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner  {
+public class EdibleOilsActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner  {
 
     private RecyclerView recyclerView;
     private ModelFertAdapterNew adapter;
@@ -99,17 +85,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     int Godown_id;
     LinearLayout lyt_cart;
     String Godown_code,Godown_name;
-    Spinner categorySpinner;
-    private Subscription mSubscription;
-    private SpotsDialog mdilogue;
     DecimalFormat dec = new DecimalFormat("####0.00");
-
-    //TODO
-    FertilizerSubCategories categoryTypes;
-    List<String> listdata = new ArrayList<>();
-    List<Integer> category_id = new ArrayList<Integer>();
-    int categoryid;
-    String seleced_category;
     //code_godown
     @SuppressLint("MissingInflatedId")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -123,23 +99,15 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             updateResources(this, "kan");
         else
             updateResources(this, "en-US");
-        setContentView(R.layout.activity_fertilizer);
+        setContentView(R.layout.activity_edible_oils);
         dialog = new ProgressDialog(this);
         txt_recomandations = findViewById(R.id.txt_recomandations);
         txt_count = findViewById(R.id.txt_count);
         btn_next = findViewById(R.id.btn_next);
         no_data =findViewById(R.id.no_data);
         lyt_cart =findViewById(R.id.lyt_cart);
-        categorySpinner =  findViewById(R.id.categorySpinner);
         cartButtonIV = findViewById(R.id.cartButtonIV);
-
-        mdilogue = (SpotsDialog) new SpotsDialog.Builder()
-                .setContext(this)
-                .setTheme(R.style.Custom)
-                .build();
         settoolbar();
-
-
         //  ImageView backImg = (ImageView) findViewById(R.id.back);
 //        backImg.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -158,29 +126,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
 
 
         }
-
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                product_list.clear();
-                seleced_category = categorySpinner.getItemAtPosition(categorySpinner.getSelectedItemPosition()).toString();
-                Log.e("seleced_category==", seleced_category);
-                if (!seleced_category.equalsIgnoreCase("Select")) {
-                    categoryid = category_id.get(categorySpinner.getSelectedItemPosition() - 1);
-                    Log.d("categoryid", categoryid + "");
-                    Getstate(categoryid);
-                    // Call GetAllproducts() only when a category other than "Select" is chosen
-                } else {
-                    GetAllproducts();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // DO Nothing here
-            }
-        });
-
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
         Farmer_code = pref.getString("farmerid", "").trim();       // Saving string data of your editext
 
@@ -192,11 +137,10 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        if (isOnline()){
-            getgcategorydata();
-           }
+        if (isOnline())
+            Getstate();
         else {
-            showDialog(FertilizerActivity.this,getResources().getString(R.string.Internet));
+            showDialog(EdibleOilsActivity.this,getResources().getString(R.string.Internet));
             btn_next.setBackground(this.getDrawable(R.drawable.button_bg_disable));
             btn_next.setEnabled(false);
             //Toast.makeText(LoginActivity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
@@ -209,7 +153,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 try {
                     if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
-                        Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
+                        Intent i = new Intent(EdibleOilsActivity.this, Fert_godown_list.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
                         i.putExtra("Transport_amount",dec.format(Transport_amount) );
                         i.putExtra("godown_id",Godown_id);
@@ -220,7 +164,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                     }
                     else{
-                        showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
+                        showDialog(EdibleOilsActivity.this, getResources().getString(R.string.select_product_toast));
                     }
                 } catch (Resources.NotFoundException e) {
                     Log.e("error==",e.getLocalizedMessage());
@@ -237,7 +181,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 try {
                     if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
 
-                        Intent i = new Intent(FertilizerActivity.this, Fert_godown_list.class);
+                        Intent i = new Intent(EdibleOilsActivity.this, EdibleOilsubmitscreen.class);
                         i.putExtra("Total_amount", mealTotalText.getText());
                         i.putExtra("Transport_amount",dec.format(Transport_amount) );
                         i.putExtra("godown_id",Godown_id);
@@ -248,7 +192,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
                     }
                     else{
-                        showDialog(FertilizerActivity.this, getResources().getString(R.string.select_product_toast));
+                        showDialog(EdibleOilsActivity.this, getResources().getString(R.string.select_product_toast));
                     }
                 } catch (Resources.NotFoundException e) {
                     Log.e("error==",e.getLocalizedMessage());
@@ -261,139 +205,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         txt_recomandations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(FertilizerActivity.this, RecommendationActivity.class));
+                startActivity(new Intent(EdibleOilsActivity.this, RecommendationActivity.class));
             }
         });
-    }
-
-    private void GetAllproducts() {
-        dialog.setMessage("Loading, please wait....");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
-
-        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/1/"+ Godown_code;
-        Log.e("url==Godown_code===",url);
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "RESPONSE======" + response);
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    Log.d(TAG, "GetProductsByCategoryId ======" + jsonObject);
-                    String success = jsonObject.getString("isSuccess");
-                    Log.d(TAG, "success======" + success);
-                    if(!jsonObject.getString("listResult").equals("null")) {
-
-                        JSONArray kl = jsonObject.getJSONArray("listResult");
-                        //Log.d("kl==============", seleced_category);
-                        parseData(kl);
-
-                        recyclerView.setVisibility(View.VISIBLE);
-                        no_data.setVisibility(View.GONE);
-                        Log.e("no==data==208","No data");
-
-
-
-                        String affectedRecords = jsonObject.getString("affectedRecords");
-                        Log.d(TAG, "GetProductsByCategoryId======" + affectedRecords);
-                    }else {
-                        no_data.setVisibility(View.VISIBLE);
-                        lyt_cart.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.GONE);
-                        Log.d(TAG,"------ analysis ------ "+"Iam NUll");
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                if (error instanceof NetworkError) {
-                    Log.i("one:" + TAG, error.toString());
-
-                } else if (error instanceof ServerError) {
-                    Log.i("two:" + TAG, error.toString());
-
-                } else if (error instanceof AuthFailureError) {
-                    Log.i("three:" + TAG, error.toString());
-
-                } else if (error instanceof ParseError) {
-                    Log.i("four::" + TAG, error.toString());
-
-                } else if (error instanceof NoConnectionError) {
-                    Log.i("five::" + TAG, error.toString());
-
-                } else if (error instanceof TimeoutError) {
-                    Log.i("six::" + TAG, error.toString());
-
-                } else {
-                    System.out.println("Checking error in else");
-                }
-            }
-        });
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);
-    }
-
-
-    private void getgcategorydata() {
-        mdilogue.show();
-        ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
-        mSubscription = service.getfertilizercategory(APIConstantURL.GetFertilizerSubCategories) //static 1
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<FertilizerSubCategories>() {
-                    @Override
-                    public void onCompleted() {
-                        mdilogue.cancel();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mdilogue.cancel();
-                        showDialog(FertilizerActivity.this, getString(R.string.server_error));
-                    }
-
-                    @Override
-                    public void onNext(FertilizerSubCategories fertilizerSubCategories) {
-
-
-                        categoryTypes = fertilizerSubCategories;
-                        mdilogue.cancel();
-                        if (fertilizerSubCategories.getListResult() != null) {
-                            listdata.add("Select");
-                            for (FertilizerSubCategories.SubCategory string : fertilizerSubCategories.getListResult()
-                            ) {
-                                listdata.add(string.getName());
-                                category_id.add(string.getCategoryId());
-                            }
-
-
-                            Log.d(TAG, "RESPONSE======" + listdata);
-
-//
-
-                            ArrayAdapter aa = new ArrayAdapter(FertilizerActivity.this, R.layout.spinner_itemm, listdata);
-                            aa.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-                            categorySpinner.setAdapter(aa);
-
-                        } else {
-                            Log.e("nodada====", "nodata===custom2");
-
-                        }
-
-
-                    }
-                });
     }
 
     private void settoolbar() {
@@ -413,13 +227,12 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     }
 
 
-    private void Getstate(int categoryid) {
-        product_list.clear();
+    private void Getstate() {
         dialog.setMessage("Loading, please wait....");
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
 
-        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/1/"+ Godown_code;
+        String url = APIConstantURL.LOCAL_URL + "Products/GetProductsByGodown/12/"+ Godown_code;
         Log.e("url==Godown_code===",url);
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -434,15 +247,16 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                     Log.d(TAG, "GetProductsByCategoryId ======" + jsonObject);
                     String success = jsonObject.getString("isSuccess");
                     Log.d(TAG, "success======" + success);
-                    Log.d(TAG, "success======" + jsonObject.getString("listResult"));
                     if(!jsonObject.getString("listResult").equals("null")) {
 
                         JSONArray kl = jsonObject.getJSONArray("listResult");
-                     Log.d("categoryid=======", categoryid+"");
-                        parseData(kl,categoryid);
+                        Log.d("kl==============", String.valueOf(kl));
+                        parseData(kl);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        no_data.setVisibility(View.GONE);
+                        Log.e("no==data==208","No data");
 
-//
-
+                        // parseData(alsoKnownAsArray);
 
 
                         String affectedRecords = jsonObject.getString("affectedRecords");
@@ -491,81 +305,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
-    private void parseData(JSONArray array, int categoryId) {
-        product_list.clear();
-        Log.d(TAG, "product_list======categoryId" + array.length());
-        Log.d(TAG, "categoryId===?" + categoryId+"");
-        for (int i = 0; i < array.length(); i++) {
-            try {
-                JSONObject json = array.getJSONObject(i);
-                Log.d(TAG, "product_list======categoryId1" +json.getInt("categoryId"));
-                // Check if the categoryId matches
-                if (json.has("categoryId") && json.getInt("categoryId") == categoryId) {
-                    Log.d(TAG, "product_list======categoryId2" +categoryId);
-                    Log.d(TAG, "Adding item with categoryId: " + categoryId + ", Name: " + json.getString("name"));
-
-                    ModelFert Fertdetails = new ModelFert();
-                    Fertdetails.setName(json.getString("name"));
-                    Fertdetails.setDiscountedPrice(json.getDouble("actualPriceInclGST"));
-                    Fertdetails.setmAmount(json.getString("discountedPriceInclGST"));
-                    Fertdetails.setPrice(json.getInt("priceInclGST"));
-                    Fertdetails.setImageUrl(json.getString("imageUrl"));
-                    Fertdetails.setDescription(json.getString("description"));
-                    Fertdetails.setTransPortActualPriceInclGST(json.getDouble("transPortActualPriceInclGST"));
-                    Fertdetails.setTransportGSTPercentage(json.getDouble("transportGSTPercentage"));
-                    double size = json.getDouble("size");
-                    Log.d(TAG, "--- Size ----" + size);
-                    Fertdetails.setSize(size);
-                    Fertdetails.setId(json.getInt("id"));
-                    Fertdetails.setUomType(json.getString("uomType"));
-                    if (!json.isNull("availableQuantity")) {
-                        Fertdetails.setAvail_quantity(json.getInt("availableQuantity"));
-                    } else {
-                        Fertdetails.setAvail_quantity(0);
-                    }
-                    Fertdetails.setProduct_code(json.getString("code"));
-                    Log.e("uom===", json.getString("uomType"));
-                    int price_finall = json.getInt("price");
-                    Log.e("price_final====", String.valueOf(price_finall));
-                    String final_price = Integer.toString(price_finall);
-                    Log.e("final_price====", String.valueOf(final_price));
-                    dis_price = json.getString("discountedPrice");
-                    Log.e("dis_price====", dis_price);
-                    String gst = json.getString("gstPercentage");
-                    Log.e("gst====", String.valueOf(gst));
-                    if (String.valueOf(gst) != null) {
-                        Fertdetails.setgst(gst);
-                    }
-                    // Add data to product_list only if categoryId matches
-                    product_list.add(Fertdetails);
-                } else {
-                    Log.d(TAG, "Skipping item with categoryId: " + json.getInt("categoryId") + ", Name: " + json.getString("name"));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        Log.d(TAG, "product_list: " + product_list.size());
-        if ( product_list.size() == 0) {
-            // Display a message indicating that no data is available
-            no_data.setVisibility(View.VISIBLE);
-
-            recyclerView.setVisibility(View.GONE);
-        } else {
-            recyclerView.setVisibility(View.VISIBLE);
-                        no_data.setVisibility(View.GONE);
-                        Log.e("no==data==208","No data");
-            adapter = new ModelFertAdapterNew(product_list, this, this);
-            recyclerView.setAdapter(adapter);
-        }
-    }
-
-
-
 
     private void parseData(JSONArray array) {
-        Log.d(TAG, "product_list======All" + array.length());
+
         for (int i = 0; i < array.length(); i++) {
 
             ModelFert Fertdetails = new ModelFert();
@@ -614,7 +356,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
             product_list.add(Fertdetails);
 
             adapter = new ModelFertAdapterNew(product_list, this, this);
-
+            Log.d(TAG, "listSuperHeroes======" + product_list);
 
             recyclerView.setAdapter(adapter);
 

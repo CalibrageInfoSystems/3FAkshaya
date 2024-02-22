@@ -1182,6 +1182,7 @@ public class Quickpay_SummaryActivity extends BaseActivity {
         requestModel.setNetWeight(total_weight);
         requestModel.setSignatureExtension(".png");
         requestModel.setSignatureName(CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()));
+        Log.e("base64",CommonUtil.bitMaptoBase64(signatureView.getSignatureBitmap()).trim());
 
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
 

@@ -13,6 +13,7 @@ import in.calibrage.akshaya.models.ExportPayments;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FarmerResponceModel;
 import in.calibrage.akshaya.models.FertResponse;
+import in.calibrage.akshaya.models.FertilizerSubCategories;
 import in.calibrage.akshaya.models.GetActiveEncyclopediaCategoryDetails;
 import in.calibrage.akshaya.models.GetAmount;
 import in.calibrage.akshaya.models.GetBankDetailsByFarmerCode;
@@ -166,7 +167,8 @@ public interface ApiService {
 
     @GET
     Observable<PaymentsType> getpaymentModes(@Url String url);
-
+    @GET
+    Observable<FertilizerSubCategories> getfertilizercategory(@Url String url);
     @GET
     Observable<BannerresponseModel> getbannerdetails(@Url String url);
 
@@ -192,6 +194,8 @@ public interface ApiService {
 
     @POST(APIConstantURL.GetFertilizerDetails)
     Observable<Resfert>  GetfertRequestDetails(@Body JsonObject data);
+    @POST(APIConstantURL.Getediableoildetails)
+    Observable<Resfert>  GetediableRequestDetails(@Body JsonObject data);
 
 
     @POST(APIConstantURL.GetQuickpayRequestDetails)

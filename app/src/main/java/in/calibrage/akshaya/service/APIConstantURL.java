@@ -3,12 +3,12 @@ package in.calibrage.akshaya.service;
 public interface APIConstantURL {
  //public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
   //test
-//public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
+public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
 
 
 //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
 
-public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
+//public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
 
 
     //String LookUpCategory = "GetActiveLookUp/9";
@@ -35,17 +35,20 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
     String GetInterCropByPlotCode ="Farmer/GetInterCropByPlotCode/";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetailsByFarmerCode";
     String GetIssue = "TypeCdDmt/10";
-    String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
+    String post_quickpay = "QuickPayRequest/AddQuickpayRequest";//todo
     String post_visit = "RequestHeader/AddVisitRequest";
     String GetActiveGodowns = "Godown/GetActiveGodowns";
     String GetPaymentsTypeByFarmerCode = "Farmer/GetPaymentsTypeByFarmerCode/";
     String GetBannerByStateCode = "Banner/GetBannerByStateCode/";
+
+    String GetFertilizerSubCategories = "Categories/GetCategoriesByParentCategory/1";
     String GetActiveEncyclopediaCategoryDetails = "Encyclopedia/GetActiveEncyclopediaCategoryDetails";
     String Post_fert = "FertilizerRequest";
     String Getfarmersubsidy= "FertilizerSubsidies/";
     String labour_response = "GetLabourRequestDetails"; //Get Labour Requests
     String GetPoleRequestDetails = "FertilizerRequest/GetPoleRequestDetails";  //   Get Equipment Requests
-    String GetFertilizerDetails = "GetFertilizerDetails";     //Get  Fertilizer Requests
+    String GetFertilizerDetails = "GetFertilizerDetails";
+    String Getediableoildetails = "FertilizerRequest/GetEdibleOilsRequestDetails";//Get  Fertilizer Requests
    String GetQuickpayRequestDetails = "QuickPayRequest/GetQuickpayRequestDetails"; //Get Quick pay Request
    String GetLoanRequestDetails = "RequestHeader/GetLoanRequestDetails"; //Get Loan Request
     String GetRequestHeaderDetails = "RequestHeader/GetVisitRequestDetails";  ///Get Visit Request

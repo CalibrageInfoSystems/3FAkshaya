@@ -136,8 +136,20 @@ public class MyReqListAdapter extends RecyclerView.Adapter<MyReqListAdapter.MyVi
                     .into(holder.thumbnail);
             holder.name.setText(mContext.getString(R.string.labproducts));
         }
-
-
+        else if(Service_Set.get(position).getServiceTypeId() == 116)
+        {
+            Picasso.with(mContext )
+                    .load(R.drawable.edibleoil)
+                    .error(R.drawable.ic_applogo )
+                    .placeholder( R.drawable.progress_animation)
+                    .into(holder.thumbnail);
+            holder.name.setText(mContext.getString(R.string.edibleoils));
+        }
+//        else if(Service_Set.get(position).getServiceTypeId() == 108)
+//        {
+//            holder.itemView.setVisibility(View.GONE);
+//            return;
+//        }
 
    //     Picasso.with(context).load(settings.getImage()).error(R.drawable.ic_user).transform(new CircleTransform()).into(holder.thumbnail);
 

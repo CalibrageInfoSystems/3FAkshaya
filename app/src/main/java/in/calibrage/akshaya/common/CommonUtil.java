@@ -480,9 +480,15 @@ public class CommonUtil {
         return dims;
     }
 
+//    public static String bitMaptoBase64(Bitmap bitmap) {
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 30, outputStream);
+//
+//        return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+//    }
     public static String bitMaptoBase64(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 30, outputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream); // No compression
 
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
