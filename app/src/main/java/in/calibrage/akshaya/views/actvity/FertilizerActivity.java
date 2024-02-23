@@ -76,11 +76,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FertilizerActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner  {
-
+public class FertilizerActivity extends BaseActivity implements  ModelFertAdapterNew.listner  {
     private RecyclerView recyclerView;
     private ModelFertAdapterNew adapter;
     Double total_amount,Transport_amount;
+
     String amount;
     static ArrayList<SelectedProducts> myProductsList = new ArrayList<>();
     String dis_price, Farmer_code;
@@ -140,14 +140,6 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         settoolbar();
 
 
-        //  ImageView backImg = (ImageView) findViewById(R.id.back);
-//        backImg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                finish();
-//            }
-//        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Godown_code = extras.getString("code_godown");
@@ -168,10 +160,16 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 if (!seleced_category.equalsIgnoreCase("Select")) {
                     categoryid = category_id.get(categorySpinner.getSelectedItemPosition() - 1);
                     Log.d("categoryid", categoryid + "");
+                 if(txt_count.getText().toString()  != "0") {
+                     Log.d("getfertdata",  SharedPrefsData.getFertCartData(FertilizerActivity.this).get(0).getProduct_code() + "");
+                     SharedPrefsData.getFertCartData(FertilizerActivity.this);
+                 }
                     Getstate(categoryid);
                     // Call GetAllproducts() only when a category other than "Select" is chosen
                 } else {
-                    GetAllproducts();
+                    if(txt_count.getText().toString()  != "0") {
+                        GetAllproducts();
+                    }
                 }
             }
 
@@ -291,7 +289,12 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                         JSONArray kl = jsonObject.getJSONArray("listResult");
                         //Log.d("kl==============", seleced_category);
                         parseData(kl);
-
+                        if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
+                            updateCartQuantities();
+                        }
+                        else {
+                            displayProductList(product_list);
+                        }
                         recyclerView.setVisibility(View.VISIBLE);
                         no_data.setVisibility(View.GONE);
                         Log.e("no==data==208","No data");
@@ -442,8 +445,13 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                         parseData(kl,categoryid);
 
 //
-
-
+                        Log.d("productsize=======", txt_count.getText().toString()+"");
+                        if (myProductsList.size() > 0 & !TextUtils.isEmpty(mealTotalText.getText()) & mealTotalText.getText()!= "" ) {
+                            updateCartQuantities();
+                        }
+                        else {
+                            displayProductList(product_list);
+                        }
 
                         String affectedRecords = jsonObject.getString("affectedRecords");
                         Log.d(TAG, "GetProductsByCategoryId======" + affectedRecords);
@@ -491,6 +499,31 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         stringRequest.setRetryPolicy(policy);
         requestQueue.add(stringRequest);
     }
+
+    // Method to compare and update quantities of products in the cart
+
+    // Update the cart quantities and update the RecyclerView
+    private void updateCartQuantities() {
+        for (ModelFert product : product_list) {
+            for (SelectedProducts cartProduct : myProductsList) {
+            //    Log.e("====>",product.getProduct_code());
+                Log.e("====>cart",cartProduct.getProduct_code());
+                if (product.getProduct_code() != null && cartProduct.getProduct_code() != null) {
+                    if (product.getProduct_code().equals(cartProduct.getProduct_code())) {
+                        product.setmQuantity(cartProduct.getQuandity());
+                        break;
+                    }
+                }
+            }
+        }
+        adapter.updateDataset(product_list); // Update the adapter with the modified product list
+    }
+
+    private void displayProductList(List<ModelFert> productList) {
+        adapter = new ModelFertAdapterNew(productList, this, this);
+        recyclerView.setAdapter(adapter);
+    }
+
     private void parseData(JSONArray array, int categoryId) {
         product_list.clear();
         Log.d(TAG, "product_list======categoryId" + array.length());
@@ -582,7 +615,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
                 Fertdetails.setTransPortActualPriceInclGST(json.getDouble("transPortActualPriceInclGST"));
                 Fertdetails.setTransportGSTPercentage(json.getDouble("transportGSTPercentage"));
                 double size = json.getDouble("size");
-                Log.d(TAG, "--- Size ----" + size);
+             //   Log.d(TAG, "--- Size ----" + size);
                 Fertdetails.setSize(size);
                 Fertdetails.setId(json.getInt("id"));
                 Fertdetails.setUomType(json.getString("uomType"));
@@ -622,15 +655,9 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
     }
 
 
-
-
-    @Override
-    public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
-
-    }
-
     @Override
     public void updated(int po, ArrayList<SelectedProducts> myProducts) {
+
         SharedPrefsData.saveFertCartitems(context,myProducts);
 
 
@@ -658,6 +685,7 @@ public class FertilizerActivity extends BaseActivity implements ModelFertAdapter
         Transport_amount = (totaltransportcost * 100) / 100;
         Log.e("valueRounded===",totaltransportcost+"");
         mealTotalText.setText(dec.format(total_amount));
+
     }
 
 

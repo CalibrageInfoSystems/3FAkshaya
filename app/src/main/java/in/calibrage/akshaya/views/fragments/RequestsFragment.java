@@ -124,7 +124,16 @@ public class RequestsFragment extends BaseFragment implements MyReqListAdapter.R
                             noRecords.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
                             Log.d(TAG, "---- analysis ---->Getservices-->> Responce size-->> :" + getServicesByStateCode.getListResult().size());
-                            myReqListAdapter =    new MyReqListAdapter(getActivity(), getServicesByStateCode.getListResult(), RequestsFragment.this);
+
+                            List<GetServicesByStateCode.ListResult> filteredList = new ArrayList<>();
+                            for (GetServicesByStateCode.ListResult service : getServicesByStateCode.getListResult()) {
+                                if (service.getServiceTypeId() != 108) {
+                                    filteredList.add(service);
+                                }
+                            }
+
+                           // serviceadpter = new ServiceAdapter(mContext, filteredList);
+                            myReqListAdapter =    new MyReqListAdapter(getActivity(), filteredList, RequestsFragment.this);
                             recyclerView.setAdapter(myReqListAdapter);
                         }else{
                             noRecords.setVisibility(View.VISIBLE);

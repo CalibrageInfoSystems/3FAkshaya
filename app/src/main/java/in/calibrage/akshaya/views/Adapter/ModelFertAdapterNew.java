@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.calibrage.akshaya.R;
+import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.models.Product_new;
@@ -227,66 +228,56 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         holder.addMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                 *
-                 * user Need to add items to Cart
-                 *
-                 * */
-
-
-                if (contains(myProducts, superHero.getId())) {
-                    for (int i = 0; i < myProducts.size(); i++) {
-                        if (myProducts.get(i).getProductID() == (superHero.getId())) {
-                            SelectedProducts product_new = myProducts.get(i);
-                            Integer currentQTY = product_new.getQuandity();
-//                            if(currentQTY==superHero.getAvail_quantity()){
-//                              //  holder.addMeal.setEnabled(false);
-//                                product_new.setQuandity(currentQTY);
-//                            }else {
-                            product_new.setQuandity(currentQTY + 1);
-                            //  }
-
-                            myProducts.set(i, product_new);
-                            Log.d("PRODUCT ", "---- analysis -----(Update new)  " + product_new.getQuandity());
-                            superHero.setmQuantity(product_new.getQuandity());
-
-                            // holder.quantityText.setText("x " + product_new.getQuandity());
-                            notifyItemChanged(position);
-
+                if (myProducts != null && superHero != null) {
+                    if (contains(myProducts, superHero.getId())) {
+                        for (int i = 0; i < myProducts.size(); i++) {
+                            if (myProducts.get(i).getProductID() == superHero.getId()) {
+                                SelectedProducts product_new = myProducts.get(i);
+                                Integer currentQTY = product_new.getQuandity();
+                                if (currentQTY != null) {
+                                    // Increment the current quantity by 1
+                                    product_new.setQuandity(currentQTY + 1);
+                                } else {
+                                    // If current quantity is null, set it to 1
+                                    product_new.setQuandity(1);
+                                }
+                                myProducts.set(i, product_new);
+                                Log.d("PRODUCT ", "---- analysis -----(Update new)  " + product_new.getQuandity());
+                                superHero.setmQuantity(product_new.getQuandity());
+                                notifyItemChanged(position);
+                                break; // Exit the loop once the item is found and updated
+                            }
                         }
-                    }
-
-                } else {
-                    if (superHero.getmAmount().equals("null")) {
-                        itemcost = Double.valueOf(superHero.getPrice());
                     } else {
-                        itemcost = Double.valueOf(superHero.getmAmount());
-                    }
-
-                    Log.d("PRODUCT ", "---- analysis -----(itemcost)  :" + itemcost);
-                    Double gst = Double.valueOf(superHero.getgst());
-                    Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
-                    //Double onlygst = (gst / itemcost) * 100;
-                    double onlygst = (itemcost / 100.0f) * gst;
-                    Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
-                    Double finalwithGST = itemcost + onlygst;
-
-                    DecimalFormat df = new DecimalFormat("####0.00");
-
-                 double Gst =    Double.parseDouble(superHero.getgst());
-                    double total_amount = Double.parseDouble(df.format(finalwithGST));
-                    Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
+                        // Add the item with a quantity of 1
+                        if (superHero.getmAmount().equals("null")) {
+                            itemcost = Double.valueOf(superHero.getPrice());
+                        } else {
+                            itemcost = Double.valueOf(superHero.getmAmount());
+                        }
+                        Log.d("PRODUCT ", "---- analysis -----(itemcost)  :" + itemcost);
+                        Double gst = Double.valueOf(superHero.getgst());
+                        Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
+                        double onlygst = (itemcost / 100.0f) * gst;
+                        Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
+                        Double finalwithGST = itemcost + onlygst;
+                        DecimalFormat df = new DecimalFormat("####0.00");
+                        double Gst = Double.parseDouble(superHero.getgst());
+                        double total_amount = Double.parseDouble(df.format(finalwithGST));
+                        Log.d("PRODUCT ", "---- analysis -----  " + total_amount);
 
                         myProducts.add(new SelectedProducts(1, superHero.getName(),
-                            itemcost, itemcost, Gst, itemcost, superHero.getSize(),
-                            superHero.getProduct_code(),superHero.getId(), superHero.getTransPortActualPriceInclGST(), superHero.getTransportGSTPercentage()));
-                    Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
-                    superHero.setmQuantity(1);
-
-                    notifyItemChanged(position);
+                                itemcost, itemcost, Gst, itemcost, superHero.getSize(),
+                                superHero.getProduct_code(),superHero.getId(), superHero.getTransPortActualPriceInclGST(), superHero.getTransportGSTPercentage()));
+                        Log.d("PRODUCT ", "---- analysis -----(Add new)  ");
+                        superHero.setmQuantity(1);
+                        notifyItemChanged(position);
+                    }
+                    caliculateTotalAmount();
+                    listner.updated(position, myProducts);
+                } else {
+                    Log.e("ERROR", "myProducts or superHero is null");
                 }
-                caliculateTotalAmount();
-                listner.updated(position, myProducts);
             }
         });
 
@@ -323,6 +314,24 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
             }
         });
+
+//        for (int i = 0; i < SharedPrefsData.getFertCartData().size(); i++) {
+//            double gst = SharedPrefsData.getFertCartData(this).get(i).getGst();
+//            double tgst = SharedPrefsData.getFertCartData(this).get(i).getTransgst();
+//            Double amount_product = SharedPrefsData.getFertCartData(this).get(i).getAmount();
+//            int quantity = SharedPrefsData.getFertCartData(this).get(i).getQuandity();
+//            Double transportamountbyproduct = SharedPrefsData.getFertCartData(this).get(i).getTranportPrice();
+//            double totalPrice =quantity * amount_product;
+//            Log.e("totalPrice===",totalPrice+"");
+//            double gstPrice = totalPrice - totalPrice / (1 + (gst/ 100));
+//            Log.e("gstPrice===",gstPrice+"");
+//            double BasePrice = totalPrice - gstPrice;
+//            Log.e("BasePrice===",BasePrice+"");
+//
+//
+//
+//
+//        }
 
     }
     public void showDialog(Context context, String msg) {
@@ -476,6 +485,9 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
     @Override
     public int getItemCount() {
         return list_products.size();
+    }
+
+    public void updateDataset(List<ModelFert> product_list) {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -27,6 +27,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -329,7 +330,14 @@ public class HomeFragment extends BaseFragment {
                             noRecords.setVisibility(View.GONE);
                             service_list.setVisibility(View.VISIBLE);
                             Log.d(TAG, "---- analysis ---->Getservices-->> Responce size-->> :" + getServicesByStateCode.getListResult().size());
-                            serviceadpter = new ServiceAdapter(mContext, getServicesByStateCode.getListResult());
+                       //     serviceadpter = new ServiceAdapter(mContext, getServicesByStateCode.getListResult());
+                            List<GetServicesByStateCode.ListResult> filteredList = new ArrayList<>();
+                            for (GetServicesByStateCode.ListResult service : getServicesByStateCode.getListResult()) {
+                                if (service.getServiceTypeId() != 108) {
+                                    filteredList.add(service);
+                                }
+                            }
+                            serviceadpter = new ServiceAdapter(mContext, filteredList);
                             service_list.setAdapter(serviceadpter);
                         }else{
                             noRecords.setVisibility(View.VISIBLE);
