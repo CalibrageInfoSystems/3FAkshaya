@@ -562,7 +562,8 @@
     <string name="edibleoils">Edible Oil</string>
     <string name="success_edible">Edible Oil Request Submitted Successfully</string>
     <string name="Categorytype">Category Type</string>
-    <string name="ediableproduct_req">Ediable Oil Request</string>
+    <string name="ediableproduct_req">Edible Oil Request</string>
+    <string name="imdpayment">Immediate Payment</string>
 
     />
     <!-- we need to use video ids instead of video link -->

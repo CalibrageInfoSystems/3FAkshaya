@@ -38,6 +38,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -763,12 +764,12 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 
                                 List<MSGmodel> displayList = new ArrayList<>();
 
-                                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                    showSuccessDialogg(displayList, getResources().getString(R.string.qucick_success));
-                                }
+//                                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
+//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                                    showSuccessDialogg(displayList, getResources().getString(R.string.qucick_success));
+//                                }
 
-                                //showSuccesspdf(result);
+                                showSuccesspdf(result);
 
 
                             } else {
@@ -1001,47 +1002,6 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 //    }
 
 
-    private void showSuccesspdf(final String result) {
-        mdilogue.show();
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.pdf_dialog);
-        final WebView webView = dialog.findViewById(R.id.webViewpdf);
-        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
-
-        String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
-        //String doc =  result;
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.loadUrl(doc);
-
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                mdilogue.dismiss();
-            }
-        });
-
-        btn_dialog.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                List<MSGmodel> displayList = new ArrayList<>();
-
-                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
-               // showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
-                // Your code for handling the dialog dismissal.
-            }
-        });
-
-        dialog.show();
-    }
-
-
-    //orgianl
 //    private void showSuccesspdf(final String result) {
 //        mdilogue.show();
 //        final Dialog dialog = new Dialog(this);
@@ -1051,8 +1011,8 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 //        final WebView webView = dialog.findViewById(R.id.webViewpdf);
 //        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
 //
-//        //String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
-//        String doc =  result;
+//        String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
+//        //String doc =  result;
 //        webView.getSettings().setJavaScriptEnabled(true);
 //        webView.getSettings().setAllowFileAccess(true);
 //        webView.loadUrl(doc);
@@ -1073,13 +1033,66 @@ public class Quickpay_SummaryActivity extends BaseActivity {
 //                List<MSGmodel> displayList = new ArrayList<>();
 //
 //                //   displayList.add(new MSGmodel(getString(R.string.loan_amount), Amount));
-//                showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
+//               // showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
 //                // Your code for handling the dialog dismissal.
 //            }
 //        });
 //
 //        dialog.show();
 //    }
+
+
+    //orgianl
+    private void showSuccesspdf(final String result) {
+        mdilogue.show();
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.pdf_dialog);
+        final WebView webView = dialog.findViewById(R.id.webViewpdf);
+        final ProgressBar progressBar = dialog.findViewById(R.id.progressBar);
+        Button btn_dialog = dialog.findViewById(R.id.btn_dialog);
+
+        progressBar.setVisibility(View.VISIBLE); // Show the progress bar initially
+      //  String pdfurl = "https://3FAkshaya.com/3FAkshayaRepo/FileRepository/2023/07/28/QuickpayPdf/20230728111114410.pdf";
+
+         String doc = "https://docs.google.com/gview?embedded=true&url=" + result;
+
+     //   String doc = "https://docs.google.com/gview?embedded=true&url=" + pdfurl;
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.loadUrl(doc);
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                progressBar.setVisibility(View.GONE); // Hide the progress bar when page is loaded
+            }
+        });
+
+        btn_dialog.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                List<MSGmodel> displayList = new ArrayList<>();
+
+                showSuccessDialog(displayList, getResources().getString(R.string.qucick_success));
+//
+//                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                        finish();
+
+
+
+            }
+        });
+
+        dialog.show();
+    }
 
     private JsonObject quickReuestobject() {
 

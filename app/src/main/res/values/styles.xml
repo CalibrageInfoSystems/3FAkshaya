@@ -119,4 +119,7 @@
     <style name="WhiteCheck">
         <item name="colorAccent">#fff</item>
     </style>
+    <style name="paymentCheck">
+        <item name="colorAccent">#000</item>
+    </style>
 </resources>

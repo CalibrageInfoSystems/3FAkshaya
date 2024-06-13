@@ -46,6 +46,7 @@ import in.calibrage.akshaya.models.FertRequest;
 import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PaymentsType;
+import in.calibrage.akshaya.models.SelectedProducts;
 import in.calibrage.akshaya.models.SubsidyResponse;
 import in.calibrage.akshaya.models.product;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -462,6 +463,7 @@ import rx.schedulers.Schedulers;
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
                                         showSuccessDialog(displayList, getString(R.string.success_edible));
+                                        saveEmptyCartItems();
                                     }
                                 }, 300);
                             }
@@ -477,6 +479,18 @@ import rx.schedulers.Schedulers;
                     });
 
 
+        }
+
+        private void saveEmptyCartItems() {
+            // Create an empty list of SelectedProducts
+            ArrayList<SelectedProducts> emptyList = new ArrayList<>();
+
+            // Save the empty list to SharedPreferences to clear the cart items
+            SharedPrefsData.saveFertCartitems(this, emptyList);
+
+            // Update myProductsList and CommonUtil.FertProductitems
+
+            CommonUtil.FertProductitems = emptyList;
         }
 
         public String arrayyTOstring(List<String> arrayList) {

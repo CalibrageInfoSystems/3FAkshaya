@@ -90,6 +90,9 @@ public class Resfert {
         @SerializedName("pin")
         @Expose
         private String pin;
+        @SerializedName("isImmediatePayment")
+        @Expose
+        private String isImmediatePayment;
         @SerializedName("subsidyAmount")
         @Expose
         private Double subsidyAmount;
@@ -329,6 +332,13 @@ public class Resfert {
             this.gstn = gstn;
         }
 
+        public String getIsImmediatePayment() {
+            return isImmediatePayment;
+        }
+
+        public void setIsImmediatePayment(String isImmediatePayment) {
+            this.isImmediatePayment = isImmediatePayment;
+        }
     }
 
 }

@@ -111,7 +111,30 @@
                             android:padding="@dimen/_8dp"
                             android:src="@drawable/ic_arrow_drop_down" />
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="6dp"
+                        android:visibility="gone"
+                        android:id="@+id/check_payment"
 
+                        android:elevation="2dp">
+
+                        <CheckBox
+
+                            android:id="@+id/check_Box"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/hind_semibold"
+                            android:text="@string/imdpayment"
+                            android:theme="@style/paymentCheck"
+
+                            android:textColor="@color/text_dark_gray"
+                            android:textSize="@dimen/font_reguler" />
+
+
+                    </RelativeLayout>
                     <TextView
                         style="@style/Common_textView_title"
                         android:layout_width="match_parent"

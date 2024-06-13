@@ -17,11 +17,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.gson.Gson;
@@ -32,9 +33,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import dmax.dialog.SpotsDialog;
 import in.calibrage.akshaya.R;
@@ -42,12 +41,12 @@ import in.calibrage.akshaya.common.BaseActivity;
 import in.calibrage.akshaya.common.CommonUtil;
 import in.calibrage.akshaya.common.Constants;
 import in.calibrage.akshaya.localData.SharedPrefsData;
-import in.calibrage.akshaya.models.ActiveGodownsModel;
 import in.calibrage.akshaya.models.FarmerOtpResponceModel;
 import in.calibrage.akshaya.models.FertRequest;
 import in.calibrage.akshaya.models.FertResponse;
 import in.calibrage.akshaya.models.MSGmodel;
 import in.calibrage.akshaya.models.PaymentsType;
+import in.calibrage.akshaya.models.SelectedProducts;
 import in.calibrage.akshaya.models.SubsidyResponse;
 import in.calibrage.akshaya.models.product;
 import in.calibrage.akshaya.service.APIConstantURL;
@@ -55,16 +54,14 @@ import in.calibrage.akshaya.service.ApiService;
 import in.calibrage.akshaya.service.ServiceFactory;
 import in.calibrage.akshaya.views.Adapter.GodownListAdapter;
 import in.calibrage.akshaya.views.Adapter.fert_producut_Adapter;
-import in.calibrage.akshaya.views.Adapter.producut_Adapter;
-import lib.kingja.switchbutton.SwitchMultiButton;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static in.calibrage.akshaya.common.CommonUtil.arrayToString;
 import static in.calibrage.akshaya.common.CommonUtil.updateResources;
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
@@ -120,10 +117,13 @@ public class Fert_godown_list extends BaseActivity {
     double payble_amount, remaining_subsidy_amountt;
     double Subsidy_amount, subsidy_amountt;
     double Gst_total,TransGsttotal;
-  //  double transportamount;
+    //  double transportamount;
     //endregion
     private List<String> selected_list = new ArrayList<String>();
     String state_name;
+    CheckBox paymentcheckbox;
+    boolean imdpayment = false;
+    RelativeLayout check_payment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +150,8 @@ public class Fert_godown_list extends BaseActivity {
         btn_submit = findViewById(R.id.btn_submit);
         //txt_select_godown = findViewById(R.id.txt_select_godown);
         txt_Payment_mode = findViewById(R.id.txt_Payment_mode);
+        paymentcheckbox =findViewById(R.id.check_Box);
+        check_payment =findViewById(R.id.check_payment);
 
         subsidy_amount = findViewById(R.id.subcdamount);
         paybleamount = findViewById(R.id.paybleamount);
@@ -167,7 +169,7 @@ public class Fert_godown_list extends BaseActivity {
         gst_amount = (TextView) findViewById(R.id.gst_amount);
         sgst_amount =(TextView) findViewById(R.id.sgst_amount);
         tcgst_amount =(TextView) findViewById(R.id.tcgst_amount);
-       tsgst_amount =(TextView) findViewById(R.id.tsgst_amount);
+        tsgst_amount =(TextView) findViewById(R.id.tsgst_amount);
         cgst_amount =(TextView) findViewById(R.id.cgst_amount);
         totaltransportamount= (TextView)findViewById(R.id.totaltransportamount);
         home_btn = (ImageView) findViewById(R.id.home_btn);
@@ -179,6 +181,21 @@ public class Fert_godown_list extends BaseActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
+            }
+        });
+        paymentcheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                    // CostConfig();
+                    imdpayment = true;
+
+                }
+                else {
+                    imdpayment = false;
+                }
+
             }
         });
         SharedPreferences pref = getSharedPreferences("FARMER", MODE_PRIVATE);
@@ -321,8 +338,8 @@ public class Fert_godown_list extends BaseActivity {
             Log.e("Totalgst===",cgst+"");
             tsgst_amount.setText(dec.format(tcgst));
             tcgst_amount.setText(dec.format(tcgst));
-        //    transamount.setText(dec.format(transportpricewithoutgst));
-        //    totaltransportamount.setText(dec.format(transportamount));
+            //    transamount.setText(dec.format(transportpricewithoutgst));
+            //    totaltransportamount.setText(dec.format(transportamount));
             // include_gst_amount = Gst_sum + Amount_;
             Log.e("gst_Sum===", String.valueOf(Gst_total));
             //  Totalgst =( int)Math.round(Gst_total);
@@ -382,8 +399,14 @@ public class Fert_godown_list extends BaseActivity {
                 String seleced_payment = paymentspin.getItemAtPosition(paymentspin.getSelectedItemPosition()).toString();
                 Log.e("seleced_payment==", seleced_payment);
 
+             if (seleced_payment.equalsIgnoreCase("Against FFB")){
+                 check_payment.setVisibility(View.VISIBLE);
+             }
+             else{
+                 check_payment.setVisibility(View.GONE);
+             }
 
-//            }
+
             }
 
             @Override
@@ -395,8 +418,8 @@ public class Fert_godown_list extends BaseActivity {
     //Fertilizer submit  API Requests
     private void FertilizerRequest() {
         mdilogue.show();
-   btn_submit.setEnabled(false);
-   btn_submit.setBackgroundResource(R.drawable.button_bg_disable);
+        btn_submit.setEnabled(false);
+        btn_submit.setBackgroundResource(R.drawable.button_bg_disable);
         JsonObject object = fertReuestobject();
         ApiService service = ServiceFactory.createRetrofitService(this, ApiService.class);
         mSubscription = service.postfert(object)
@@ -422,7 +445,7 @@ public class Fert_godown_list extends BaseActivity {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
-                    //    showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
+                        //    showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
                     }
 
                     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -462,7 +485,7 @@ public class Fert_godown_list extends BaseActivity {
                                     displayList.add(new MSGmodel(getResources().getString(R.string.transamount),  dec.format(transport_AmountwithoutGst)));
                                     displayList.add(new MSGmodel(getResources().getString(R.string.transgst),dec.format(TransGsttotal)));
 
-                                  displayList.add(new MSGmodel(getResources().getString(R.string.totaltransportcost), Transport_amount));
+                                    displayList.add(new MSGmodel(getResources().getString(R.string.totaltransportcost), Transport_amount));
                                     //Double subAmount = subsidy_amountt- include_gst_amount dec.format(Gst_total)
                                     displayList.add(new MSGmodel(getResources().getString(R.string.subcd_amt), dec.format(Math.round(Subsidy_amount))));
 
@@ -474,11 +497,12 @@ public class Fert_godown_list extends BaseActivity {
 //                                    Log.d(TAG, "------ analysis ------ >> get selected_name in String(): " + selected_name);
 
                                     showSuccessDialog(displayList, getString(R.string.success_fertilizer));
+                                    saveEmptyCartItems();
                                 }
                             }, 300);
                         }
                         else {
-                        //    showDialog(Fert_godown_list.this, getString(R.string.endusermsg));
+                            //    showDialog(Fert_godown_list.this, getString(R.string.endusermsg));
                             showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
                         }
 
@@ -489,6 +513,18 @@ public class Fert_godown_list extends BaseActivity {
                 });
 
 
+    }
+
+    private void saveEmptyCartItems() {
+        // Create an empty list of SelectedProducts
+        ArrayList<SelectedProducts> emptyList = new ArrayList<>();
+
+        // Save the empty list to SharedPreferences to clear the cart items
+        SharedPrefsData.saveFertCartitems(this, emptyList);
+
+        // Update myProductsList and CommonUtil.FertProductitems
+
+        CommonUtil.FertProductitems = emptyList;
     }
 
     public String arrayyTOstring(List<String> arrayList) {
@@ -536,6 +572,15 @@ public class Fert_godown_list extends BaseActivity {
         requestModel.setCropMaintainceDate(null);
         requestModel.setIssueTypeId(null);
         requestModel.setClusterId(Cluster_id);
+        switch (payment_id.get(paymentspin.getSelectedItemPosition() - 1)) {
+            case 26:
+                requestModel.setIsImmediatePayment(imdpayment);
+                break;
+            default:
+                requestModel.setIsImmediatePayment(null);
+                break;
+        }
+
         List<FertRequest.RequestProductDetail> req_products = new ArrayList<>();
 
         for (int i = 0; i < SharedPrefsData.getFertCartData(this).size(); i++) {
@@ -661,7 +706,7 @@ public class Fert_godown_list extends BaseActivity {
 
     private boolean validations() {
 
-
+        Log.d(TAG, "----- analysis ----->> imdpayment  :" + imdpayment);
         if (paymentspin.getSelectedItemPosition() == 0 ) {
 
             showDialog(Fert_godown_list.this, getResources().getString(R.string.paym_validation));
@@ -677,8 +722,13 @@ public class Fert_godown_list extends BaseActivity {
     //endregion
     @Override
     public void onBackPressed() {
+        // Save an empty list to clear the cart items
+     //   saveEmptyCartItems();
 
+        // Call super to handle back button press as usual
         super.onBackPressed();
-
     }
+
+
+
 }

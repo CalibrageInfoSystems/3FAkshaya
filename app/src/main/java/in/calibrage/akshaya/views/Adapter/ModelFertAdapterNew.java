@@ -103,6 +103,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         final ModelFert superHero = list_products.get(position);
 
         imageLoader = CustomVolleyRequest.getInstance(mContext).getImageLoader();
+
 //        imageLoader.get(superHero.getImageUrl(), ImageLoader.getImageListener(holder.imageView, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
 
         holder.imageView2.setImageUrl(superHero.getImageUrl(), imageLoader);
@@ -122,15 +123,22 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         } else {
             itemcost = Double.valueOf(superHero.getmAmount());
         }
-
-        if (Double.valueOf(superHero.getgst()) != null && !superHero.getgst().equals("null") && superHero.getgst()!= null) {
-            gst = Double.valueOf(superHero.getgst());
+        if (superHero.getgst() != null && !superHero.getgst().equals("null") && !superHero.getgst().isEmpty()) {
+            gst = Double.valueOf(superHero.getgst().trim());
             Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
-            //Double onlygst = (gst / itemcost) * 100;
             onlygst = (itemcost / 100.0f) * gst;
         } else {
             onlygst = 0.00;
         }
+
+//        if (Double.valueOf(superHero.getgst()) != null && !superHero.getgst().equals("null") && superHero.getgst()!= null) {
+//            gst = Double.valueOf(superHero.getgst());
+//            Log.d("PRODUCT ", "---- analysis -----(gst)  :" + gst);
+//            //Double onlygst = (gst / itemcost) * 100;
+//            onlygst = (itemcost / 100.0f) * gst;
+//        } else {
+//            onlygst = 0.00;
+//        }
 
         holder.quantityText.setText("" +superHero.getmQuantity());
         Log.d("PRODUCT ", "---- analysis -----(withgstitemcost)  :" + onlygst);
@@ -225,9 +233,18 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
 
         String powers = "";
 
+
+
+
+
         holder.addMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ModelFert product = list_products.get(position);
+                if (CommonUtil.FertProductitems != null) {
+                    myProducts = CommonUtil.FertProductitems;
+                }
                 if (myProducts != null && superHero != null) {
                     if (contains(myProducts, superHero.getId())) {
                         for (int i = 0; i < myProducts.size(); i++) {
@@ -285,6 +302,9 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
             @Override
             public void onClick(View view) {
                 Log.e("Roja====,", "clicked----");
+                if (CommonUtil.FertProductitems != null) {
+                    myProducts = CommonUtil.FertProductitems;
+                }
                 if (contains(myProducts, superHero.getId())) {
                     for (int i = 0; i < myProducts.size(); i++) {
                         if (myProducts.get(i).getProductID() == (superHero.getId())) {
@@ -451,19 +471,7 @@ public class ModelFertAdapterNew extends RecyclerView.Adapter<ModelFertAdapterNe
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.3f;
         wm.updateViewLayout(container, p);
-//         container = popup.getContentView().getRootView();
-//        if(container != null) {
-//            WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-//            WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
-//            p.flags = WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
 //
-//            p.dimAmount = 0.3f;
-//            if (wm != null) {
-//                wm.updateViewLayout(container, p);
-//            }
-
-        //   }
-
 
         // Closes the popup window when touch outside of it - when looses focus
 //        popup.setOutsideTouchable(true);

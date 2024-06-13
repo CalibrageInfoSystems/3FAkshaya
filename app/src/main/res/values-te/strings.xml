@@ -558,10 +558,11 @@
     <string name="endusermsgnew">An Error occured while raising a fertilizer request</string>
     <string name="alert_updateapp" />
     <string name="updatenow">UPDATE NOW</string>
-    <string name="edibleoils">Edible Oils</string>
-    <string name="success_edible">Edible Oils  Request Submitted Successfully</string>
+    <string name="edibleoils">వంట నునె</string>
+    <string name="success_edible">వంట నునె అభ్యర్థన విజయవంతంగా సమర్పించబడింది</string>
     <string name="Categorytype">"Category Type "</string>
-    <string name="ediableproduct_req">Ediable Oils Request</string>
+    <string name="ediableproduct_req">Edible Oils Request</string>
+    <string name="imdpayment">Immediate Payment</string>
 
 </resources>
 

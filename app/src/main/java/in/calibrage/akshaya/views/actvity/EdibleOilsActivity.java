@@ -58,14 +58,15 @@ import in.calibrage.akshaya.localData.SharedPrefsData;
 import in.calibrage.akshaya.models.ModelFert;
 import in.calibrage.akshaya.models.SelectedProducts;
 import in.calibrage.akshaya.service.APIConstantURL;
+import in.calibrage.akshaya.views.Adapter.ModelEdibleAdapter;
 import in.calibrage.akshaya.views.Adapter.ModelFertAdapter;
-import in.calibrage.akshaya.views.Adapter.ModelFertAdapterNew;
 
 
-public class EdibleOilsActivity extends BaseActivity implements ModelFertAdapter.OnClickAck, ModelFertAdapterNew.listner  {
+
+public class EdibleOilsActivity extends BaseActivity implements  ModelEdibleAdapter.listner  {
 
     private RecyclerView recyclerView;
-    private ModelFertAdapterNew adapter;
+    private ModelEdibleAdapter adapter;
     Double total_amount,Transport_amount;
     String amount;
     static ArrayList<SelectedProducts> myProductsList = new ArrayList<>();
@@ -221,11 +222,11 @@ public class EdibleOilsActivity extends BaseActivity implements ModelFertAdapter
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveEmptyCartItems();
                 finish();
             }
         });
     }
-
 
     private void Getstate() {
         dialog.setMessage("Loading, please wait....");
@@ -355,7 +356,7 @@ public class EdibleOilsActivity extends BaseActivity implements ModelFertAdapter
 
             product_list.add(Fertdetails);
 
-            adapter = new ModelFertAdapterNew(product_list, this, this);
+            adapter = new ModelEdibleAdapter(product_list, this, this);
             Log.d(TAG, "listSuperHeroes======" + product_list);
 
             recyclerView.setAdapter(adapter);
@@ -366,10 +367,6 @@ public class EdibleOilsActivity extends BaseActivity implements ModelFertAdapter
 
 
 
-    @Override
-    public void setOnClickAckListener(String status, int position, Boolean ischecked, NetworkImageView img) {
-
-    }
 
     @Override
     public void updated(int po, ArrayList<SelectedProducts> myProducts) {
@@ -447,6 +444,27 @@ public class EdibleOilsActivity extends BaseActivity implements ModelFertAdapter
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
+    //endregion
+    @Override
+    public void onBackPressed() {
+        // Save an empty list to clear the cart items
+        saveEmptyCartItems();
+
+        // Call super to handle back button press as usual
+        super.onBackPressed();
+    }
+
+    private void saveEmptyCartItems() {
+        // Create an empty list of SelectedProducts
+        ArrayList<SelectedProducts> emptyList = new ArrayList<>();
+
+        // Save the empty list to SharedPreferences to clear the cart items
+        SharedPrefsData.saveFertCartitems(this, emptyList);
+
+        // Update myProductsList and CommonUtil.FertProductitems
+
+        CommonUtil.FertProductitems = emptyList;
+    }
 
 
 }

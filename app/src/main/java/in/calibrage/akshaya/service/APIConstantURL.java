@@ -1,14 +1,14 @@
 package in.calibrage.akshaya.service;
 
 public interface APIConstantURL {
- //public static  final  String LOCAL_URL="https://3fakshaya.com/api/";
+//public static  final  String LOCAL_URL="https://3fakshaya.com/api/";  // Live 18th march
   //test
-public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
+//public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
 
 
 //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
 
-//public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
+public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
 
 
     //String LookUpCategory = "GetActiveLookUp/9";
@@ -35,7 +35,7 @@ public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/"
     String GetInterCropByPlotCode ="Farmer/GetInterCropByPlotCode/";
     String GetQuickpayDetails ="QuickPayRequest/GetQuickpayDetailsByFarmerCode";
     String GetIssue = "TypeCdDmt/10";
-    String post_quickpay = "QuickPayRequest/AddQuickpayRequest";//todo
+    String post_quickpay = "QuickPayRequest/AddQuickpayRequest";
     String post_visit = "RequestHeader/AddVisitRequest";
     String GetActiveGodowns = "Godown/GetActiveGodowns";
     String GetPaymentsTypeByFarmerCode = "Farmer/GetPaymentsTypeByFarmerCode/";

@@ -88,6 +88,9 @@ public class FertRequest {
     @SerializedName("godownCode")
     @Expose
     private String godownCode;
+    @SerializedName("isImmediatePayment")
+    @Expose
+    private Boolean isImmediatePayment;
     @SerializedName("requestProductDetails")
     @Expose
     private List<RequestProductDetail> requestProductDetails = null;
@@ -307,7 +310,13 @@ public class FertRequest {
     public void setStateCode(String stateCode) {
         this.stateCode = stateCode;
     }
+    public Boolean getIsImmediatePayment() {
+        return isImmediatePayment;
+    }
 
+    public void setIsImmediatePayment(Boolean isImmediatePayment) {
+        this.isImmediatePayment = isImmediatePayment;
+    }
     public Double getTransportPayableAmount() {
         return TransportPayableAmount;
     }

@@ -138,7 +138,7 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
                 .setTheme(R.style.Custom)
                 .build();
         settoolbar();
-
+        saveEmptyCartItems();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -160,22 +160,25 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
                 if (!seleced_category.equalsIgnoreCase("Select")) {
                     categoryid = category_id.get(categorySpinner.getSelectedItemPosition() - 1);
                     Log.d("categoryid", categoryid + "");
-                 if(txt_count.getText().toString()  != "0") {
-                     Log.d("getfertdata",  SharedPrefsData.getFertCartData(FertilizerActivity.this).get(0).getProduct_code() + "");
-                     SharedPrefsData.getFertCartData(FertilizerActivity.this);
-                 }
-                    Getstate(categoryid);
-                    // Call GetAllproducts() only when a category other than "Select" is chosen
-                } else {
-                    if(txt_count.getText().toString()  != "0") {
-                        GetAllproducts();
+
+                    // Check if there are items in the cart
+                    if (txt_count.getText().toString().equals("0")) {
+                        // If cart is empty, fetch products for the selected category
+                        Getstate(categoryid);
+                    } else {
+                        // Cart is not empty, save cart data and fetch products for the selected category
+                        saveCartData();
+                        Getstate(categoryid);
                     }
+                } else {
+                    // "Select" category chosen, fetch all products
+                    GetAllproducts();
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                // DO Nothing here
+                // Do nothing here
             }
         });
 
@@ -192,7 +195,7 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
 
         if (isOnline()){
             getgcategorydata();
-           }
+        }
         else {
             showDialog(FertilizerActivity.this,getResources().getString(R.string.Internet));
             btn_next.setBackground(this.getDrawable(R.drawable.button_bg_disable));
@@ -263,6 +266,13 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
             }
         });
     }
+
+    private void saveCartData() {
+        // Save the current state of the cart data (e.g., to SharedPreferences or a database)
+        List<SelectedProducts> cartData = new ArrayList<>(myProductsList);
+        SharedPrefsData.saveFertCartitems(context, (ArrayList<SelectedProducts>) cartData);
+    }
+
 
     private void GetAllproducts() {
         dialog.setMessage("Loading, please wait....");
@@ -410,10 +420,25 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                saveEmptyCartItems();
                 finish();
             }
         });
     }
+
+    private void saveEmptyCartItems() {
+        // Create an empty list of SelectedProducts
+        ArrayList<SelectedProducts> emptyList = new ArrayList<>();
+
+        // Save the empty list to SharedPreferences to clear the cart items
+        SharedPrefsData.saveFertCartitems(context, emptyList);
+
+        // Update myProductsList and CommonUtil.FertProductitems
+        myProductsList = emptyList;
+        CommonUtil.FertProductitems = emptyList;
+    }
+
 
 
     private void Getstate(int categoryid) {
@@ -441,7 +466,7 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
                     if(!jsonObject.getString("listResult").equals("null")) {
 
                         JSONArray kl = jsonObject.getJSONArray("listResult");
-                     Log.d("categoryid=======", categoryid+"");
+                        Log.d("categoryid=======", categoryid+"");
                         parseData(kl,categoryid);
 
 //
@@ -506,13 +531,17 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
     private void updateCartQuantities() {
         for (ModelFert product : product_list) {
             for (SelectedProducts cartProduct : myProductsList) {
-            //    Log.e("====>",product.getProduct_code());
+                //    Log.e("====>",product.getProduct_code());
                 Log.e("====>cart",cartProduct.getProduct_code());
                 if (product.getProduct_code() != null && cartProduct.getProduct_code() != null) {
-                    if (product.getProduct_code().equals(cartProduct.getProduct_code())) {
+                    if (product.getId() == cartProduct.getProductID()) {
                         product.setmQuantity(cartProduct.getQuandity());
                         break;
                     }
+//                    if (product.getProduct_code().equals(cartProduct.getProduct_code())) {
+//                        product.setmQuantity(cartProduct.getQuandity());
+//                        break;
+//                    }
                 }
             }
         }
@@ -587,8 +616,8 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
             recyclerView.setVisibility(View.GONE);
         } else {
             recyclerView.setVisibility(View.VISIBLE);
-                        no_data.setVisibility(View.GONE);
-                        Log.e("no==data==208","No data");
+            no_data.setVisibility(View.GONE);
+            Log.e("no==data==208","No data");
             adapter = new ModelFertAdapterNew(product_list, this, this);
             recyclerView.setAdapter(adapter);
         }
@@ -615,7 +644,7 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
                 Fertdetails.setTransPortActualPriceInclGST(json.getDouble("transPortActualPriceInclGST"));
                 Fertdetails.setTransportGSTPercentage(json.getDouble("transportGSTPercentage"));
                 double size = json.getDouble("size");
-             //   Log.d(TAG, "--- Size ----" + size);
+                //   Log.d(TAG, "--- Size ----" + size);
                 Fertdetails.setSize(size);
                 Fertdetails.setId(json.getInt("id"));
                 Fertdetails.setUomType(json.getString("uomType"));
@@ -654,41 +683,42 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
         }
     }
 
-
     @Override
     public void updated(int po, ArrayList<SelectedProducts> myProducts) {
-
-        SharedPrefsData.saveFertCartitems(context,myProducts);
-
-
+        SharedPrefsData.saveFertCartitems(context, myProducts);
         myProductsList = myProducts;
-        CommonUtil.FertProductitems =myProductsList;
+        CommonUtil.FertProductitems = myProductsList;
         Double allitemscost = 0.0;
         Double totaltransportcost = 0.0;
         int allproducts = 0;
 
+        // Convert SelectedProducts to ModelFert
+        List<ModelFert> convertedProducts = new ArrayList<>();
+        for (SelectedProducts selectedProduct : myProducts) {
+            ModelFert modelFert = new ModelFert();
+            // Populate modelFert with relevant data from selectedProduct
+            // Assuming you have a method to convert SelectedProducts to ModelFert
+            // modelFert = convertSelectedProductToModelFert(selectedProduct);
+            convertedProducts.add(modelFert);
 
-        for (SelectedProducts product : myProducts) {
-            Double oneitem = product.getQuandity() * (product.getWithGSTamount());
+            Double oneitem = selectedProduct.getQuandity() * (selectedProduct.getWithGSTamount());
             allitemscost = oneitem + allitemscost;
             Log.d("Product", "total Proce :" + allitemscost);
-            int onitem = product.getQuandity();
+            int onitem = selectedProduct.getQuandity();
             allproducts = allproducts + onitem;
             Log.d("Product", "totalitems :" + allproducts);
-            Double onetransfortitem = product.getQuandity() * (product.getTranportPrice());
+            Double onetransfortitem = selectedProduct.getQuandity() * (selectedProduct.getTranportPrice());
             totaltransportcost = onetransfortitem + totaltransportcost;
         }
         txt_count.setText(allproducts + "");
-        // total_amount = Math.round(allitemscost * 100D) / 100D;
-
         total_amount = (allitemscost * 100) / 100;
         Transport_amount = (totaltransportcost * 100) / 100;
-        Log.e("valueRounded===",totaltransportcost+"");
+
         mealTotalText.setText(dec.format(total_amount));
 
+        // Update the quantities of products in the RecyclerView
+        adapter.updateDataset(convertedProducts);
     }
-
-
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -732,6 +762,16 @@ public class FertilizerActivity extends BaseActivity implements  ModelFertAdapte
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
+    @Override
+    public void onBackPressed() {
+        // Save an empty list to clear the cart items
+        saveEmptyCartItems();
+
+        // Call super to handle back button press as usual
+        super.onBackPressed();
+    }
+
 
 
 

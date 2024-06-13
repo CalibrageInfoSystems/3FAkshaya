@@ -81,7 +81,7 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         public TextView requestCode,pin,pinlabel;
         public TextView req_date;
         public TextView statusType,sub_amount;
-        public TextView paymentMode, amount,cancel,godown_name;
+        public TextView paymentMode, amount,cancel,godown_name,imdpayment_label,imdpayment;
         public ImageView showMore;
         LinearLayout details;
         public CardView card_view;
@@ -104,6 +104,8 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
             card_view = itemView.findViewById(R.id.card_view);
             pin = itemView.findViewById(R.id.pin);
             pinlabel =itemView.findViewById(R.id.pin_label);
+            imdpayment = itemView.findViewById(R.id.imdpayment);
+            imdpayment_label =itemView.findViewById(R.id.imdpayment_label);
 
         }
 
@@ -145,6 +147,12 @@ public class GetfertAdapter extends RecyclerView.Adapter<GetfertAdapter.ViewHold
         else{
             holder.pin.setVisibility(View.GONE);
             holder.pinlabel.setVisibility(View.GONE);
+        }
+        if( list.get(position).getIsImmediatePayment()!= null)
+            holder.imdpayment.setText(list.get(position).getIsImmediatePayment());
+        else{
+            holder.imdpayment.setVisibility(View.GONE);
+            holder.imdpayment_label.setVisibility(View.GONE);
         }
         if(null != list.get(position).getPaubleAmount())
             holder.amount.setText(df.format(Math.round(list.get(position).getPaubleAmount())));
