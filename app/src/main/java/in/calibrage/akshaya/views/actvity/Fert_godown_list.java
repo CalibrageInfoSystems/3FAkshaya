@@ -445,7 +445,7 @@ public class Fert_godown_list extends BaseActivity {
                             e.printStackTrace();
                         }
                         mdilogue.dismiss();
-                        //    showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
+                      showDialog(Fert_godown_list.this, ((HttpException) e).message());
                     }
 
                     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -489,8 +489,6 @@ public class Fert_godown_list extends BaseActivity {
                                     //Double subAmount = subsidy_amountt- include_gst_amount dec.format(Gst_total)
                                     displayList.add(new MSGmodel(getResources().getString(R.string.subcd_amt), dec.format(Math.round(Subsidy_amount))));
 
-
-
                                     displayList.add(new MSGmodel(getResources().getString(R.string.amount_payble),paybleamount.getText().toString()));
 
 //products_amount
@@ -502,8 +500,9 @@ public class Fert_godown_list extends BaseActivity {
                             }, 300);
                         }
                         else {
+                            showDialog(Fert_godown_list.this, fertResponse.getEndUserMessage());
                             //    showDialog(Fert_godown_list.this, getString(R.string.endusermsg));
-                            showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
+                          //  showDialog(Fert_godown_list.this, getString(R.string.endusermsgnew));
                         }
 
 

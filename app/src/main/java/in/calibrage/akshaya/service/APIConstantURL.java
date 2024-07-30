@@ -1,14 +1,14 @@
 package in.calibrage.akshaya.service;
 
 public interface APIConstantURL {
-//public static  final  String LOCAL_URL="https://3fakshaya.com/api/";  // Live 18th march
+//public static  final  String LOCAL_URL="https://3fakshaya.com/api/";  // Live 16th july
   //test
-//public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
+public static  final String LOCAL_URL="http://182.18.157.215/3FAkshaya/API/api/";
 
 
 //public static  final  String LOCAL_URL="http://103.241.144.240:9098/api/";//live
 
-public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
+//public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
 
 
     //String LookUpCategory = "GetActiveLookUp/9";
@@ -19,7 +19,6 @@ public static  final  String LOCAL_URL="http://103.241.144.240:9096/api/";//uat
     String Farmer_ID_CHECK ="farmer/SendOTP/";
     String Farmer_otp ="Farmer/";
     String payment_history ="Payment/GetVendorLedger";
-
     String transport_history ="Payment/GetTranspotationChargesByFarmerCode";
     String GetEncyclopediaDetails = "Encyclopedia/GetEncyclopediaDetails/";
     String GetRecommendationAges = "GetRecommendationAges";

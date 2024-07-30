@@ -7,8 +7,8 @@ android {
         applicationId "in.calibrage.akshaya"
         minSdkVersion 17
         targetSdkVersion 33
-        versionCode 16
-        versionName "16.0"
+        versionCode 19
+        versionName "19.0" //16th july
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
